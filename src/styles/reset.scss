@@ -1,0 +1,38 @@
+:global html {
+  box-sizing: border-box;
+}
+
+:global body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:global * {
+  box-shadow: none;
+  box-sizing: inherit;
+
+  &::after,
+  &::before {
+    box-sizing: inherit;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+:global h1,
+:global h2,
+:global h3,
+:global h4,
+:global h5,
+:global h6,
+:global p {
+  margin: 0;
+}
