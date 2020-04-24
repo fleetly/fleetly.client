@@ -1,0 +1,74 @@
+@import '~@styles/color.scss';
+
+@mixin colorOutlineButton($color) {
+  border-color: rgba($color, .2);
+  color: $color;
+
+  &:active {
+    background: rgba($color, .05);
+    color: rgba($color, .6);
+  }
+
+  &:hover:not(:active) {
+    background: rgba($color, .2);
+  }
+}
+
+.Root {
+  border-radius: 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  letter-spacing: -.2px;
+  min-width: 120px;
+  transition: background .2s, color .2s;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &Variant {
+    &Outlined {
+      background: transparent;
+      border: 2px solid;
+
+      &:active,
+      &:hover:not(:active) {
+        border: 0;
+      }
+
+      &.RootColor {
+        &Default {
+          border-color: rgba($color-text, .1);
+          color: $color-text-secondary;
+
+          &:active {
+            background: rgba($color-text, .05);
+            color: rgba($color-text-secondary, .4);
+          }
+
+          &:hover:not(:active) {
+            background: rgba($color-text, .1);
+          }
+        }
+
+        &Danger {
+          @include colorOutlineButton($color-danger);
+        }
+
+        &Primary {
+          @include colorOutlineButton($color-primary);
+        }
+
+        &Secondary {
+          @include colorOutlineButton($color-secondary);
+        }
+
+        &Success {
+          @include colorOutlineButton($color-success);
+        }
+      }
+    }
+  }
+}
