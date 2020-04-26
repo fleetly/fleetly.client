@@ -17,39 +17,35 @@ enum VARIANT {
 interface TypographyProps {
   children: React.ReactNode;
   className?: string;
-  component?: string;
+  component?: any;
   variant?: VARIANT;
 }
 
 const Typography: React.SFC<TypographyProps> = ({
   children,
   className,
-  component,
+  component: Component = 'div',
   variant = VARIANT.P,
   ...props
-}) => {
-  const Component = 'div';
-
-  return (
-    <Component
-      {...props}
-      className={classNames(className, styles.Root, {
-        // Body
-        [styles.RootVariantCaption]: variant === VARIANT.P,
-        [styles.RootVariantP]: variant === VARIANT.P,
-        // Headers
-        [styles.RootVariantH1]: variant === VARIANT.H1,
-        [styles.RootVariantH2]: variant === VARIANT.H2,
-        [styles.RootVariantH3]: variant === VARIANT.H3,
-        [styles.RootVariantH4]: variant === VARIANT.H4,
-        [styles.RootVariantH5]: variant === VARIANT.H5,
-        [styles.RootVariantH6]: variant === VARIANT.H6
-      })}
-    >
-      {children}
-    </Component>
-  );
-};
+}) => (
+  <Component
+    {...props}
+    className={classNames(className, styles.Root, {
+      // Body
+      [styles.RootVariantCaption]: variant === VARIANT.P,
+      [styles.RootVariantP]: variant === VARIANT.P,
+      // Headers
+      [styles.RootVariantH1]: variant === VARIANT.H1,
+      [styles.RootVariantH2]: variant === VARIANT.H2,
+      [styles.RootVariantH3]: variant === VARIANT.H3,
+      [styles.RootVariantH4]: variant === VARIANT.H4,
+      [styles.RootVariantH5]: variant === VARIANT.H5,
+      [styles.RootVariantH6]: variant === VARIANT.H6
+    })}
+  >
+    {children}
+  </Component>
+);
 
 // Exports
 export default Typography;
