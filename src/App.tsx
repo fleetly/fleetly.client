@@ -2,6 +2,7 @@ import * as React from 'react';
 
 // Components
 import Button from '@components/Button';
+import { H1, H2, H3, H4, H5, H6, P } from '@components/Typography';
 
 // Styles
 import styles from './App.scss';
@@ -9,7 +10,15 @@ import { COLOR } from '@styles/color';
 
 const App = () => (
   <div className={styles.Root}>
-    <h1>Hello World!</h1>
+    <div className={styles.List}>
+      <H1>Fleetly!</H1>
+      <H2>Welcome to!</H2>
+      <H3>General</H3>
+      <H4>Disable this company</H4>
+      <H5>Disable</H5>
+      <H6>Hello wolrd!</H6>
+      <P>All incoming information will no longer be processed.</P>
+    </div>
 
     <div className={styles.List}>
       <Button>Default</Button>

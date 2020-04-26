@@ -1,0 +1,49 @@
+.Root {
+  &Variant {
+    &H1 {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 76px;
+      letter-spacing: 1px;
+    }
+
+    &H2 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 40px;
+    }
+
+    &H3 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -.2px;
+      line-height: 24px;
+    }
+
+    &H4 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.2px;
+      line-height: 24px;
+    }
+
+    &H5 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -.2px;
+      line-height: 20px;
+    }
+
+    &H6 {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+    }
+
+    &P {
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: -.2px;
+    }
+  }
+}
