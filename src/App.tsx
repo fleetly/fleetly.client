@@ -11,11 +11,11 @@ import { COLOR } from '@styles/color';
 const App = () => (
   <div className={styles.Root}>
     <div className={styles.List}>
-      <H1>Hello wolrd!</H1>
-      <H2>Hello wolrd!</H2>
-      <H3>Hello wolrd!</H3>
-      <H4>Hello wolrd!</H4>
-      <H5>Hello wolrd!</H5>
+      <H1>Hello world!</H1>
+      <H2>Hello world!</H2>
+      <H3>General</H3>
+      <H4>Disable this company</H4>
+      <H5>Disable</H5>
       <H6>Hello wolrd!</H6>
       <P>All incoming information will no longer be processed.</P>
     </div>
