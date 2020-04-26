@@ -5,12 +5,12 @@ import * as React from 'react';
 import Link from '@components/Link';
 
 // Styles
-import { COLOR, getColorClassName } from '@styles/color';
+import { Color, getColorClassName } from '@styles/color';
 import styles from './Button.scss';
 
-export enum BUTTON_VARIANT {
-  FILLED = 'filled',
-  OUTLINED = 'outlined'
+export enum ButtonVariant {
+  Filled,
+  Outlined
 }
 
 interface ButtonProps {
@@ -19,26 +19,26 @@ interface ButtonProps {
   classes?: {
     root?: string;
   };
-  color?: COLOR;
+  color?: Color;
   disabled?: boolean;
   icon?: string;
   onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
   to?: string;
   type?: 'button' | 'reset' | 'submit';
-  variant?: BUTTON_VARIANT;
+  variant?: ButtonVariant;
 }
 
 const Button: React.SFC<ButtonProps> = ({
   children,
   className,
   classes = {},
-  color = COLOR.DEFAULT,
+  color = Color.Default,
   disabled,
   icon,
   onClick,
   to,
   type = 'button',
-  variant = BUTTON_VARIANT.OUTLINED
+  variant = ButtonVariant.Outlined
 }) => {
   const Component = to ? Link : 'button';
 
@@ -53,8 +53,8 @@ const Button: React.SFC<ButtonProps> = ({
           [styles.RootModeIcon]: !children && icon
         },
         {
-          [styles.RootVariantFilled]: variant === BUTTON_VARIANT.FILLED,
-          [styles.RootVariantOutlined]: variant === BUTTON_VARIANT.OUTLINED
+          [styles.RootVariantFilled]: variant === ButtonVariant.Filled,
+          [styles.RootVariantOutlined]: variant === ButtonVariant.Outlined
         }
       )}
       disabled={disabled}

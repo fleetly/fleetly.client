@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 // Components
-import Button, { BUTTON_VARIANT } from '@components/Button';
+import Button, { ButtonVariant } from '@components/Button';
 import Link from '@components/Link';
 import { H1, H2, H3, H4, H5, H6, P } from '@components/Typography';
 
 // Styles
 import styles from './App.scss';
-import { COLOR } from '@styles/color';
+import { Color } from '@styles/color';
 
 const App = () => (
   <div className={styles.Root}>
@@ -26,64 +26,52 @@ const App = () => (
     <div className={styles.List}>
       <div className={styles.Column}>
         <Button to="/123">Default</Button>
-        <Button color={COLOR.DANGER}>Danger</Button>
-        <Button color={COLOR.PRIMARY}>Primary</Button>
-        <Button color={COLOR.SECONDARY}>Secondary</Button>
-        <Button color={COLOR.SUCCESS}>Success</Button>
-        <Button color={COLOR.WARNING}>Success</Button>
+        <Button color={Color.Danger}>Danger</Button>
+        <Button color={Color.Primary}>Primary</Button>
+        <Button color={Color.Secondary}>Secondary</Button>
+        <Button color={Color.Success}>Success</Button>
+        <Button color={Color.Warning}>Success</Button>
       </div>
 
       <div className={styles.Column}>
         <Button icon="1" />
-        <Button color={COLOR.DANGER} icon="1" />
-        <Button color={COLOR.PRIMARY} icon="1" />
-        <Button color={COLOR.SECONDARY} icon="1" />
-        <Button color={COLOR.SUCCESS} icon="1" />
-        <Button color={COLOR.WARNING} icon="1" />
+        <Button color={Color.Danger} icon="1" />
+        <Button color={Color.Primary} icon="1" />
+        <Button color={Color.Secondary} icon="1" />
+        <Button color={Color.Success} icon="1" />
+        <Button color={Color.Warning} icon="1" />
       </div>
 
       <div className={styles.Column}>
-        <Button variant={BUTTON_VARIANT.FILLED}>Default</Button>
-        <Button color={COLOR.DANGER} variant={BUTTON_VARIANT.FILLED}>
+        <Button variant={ButtonVariant.Filled}>Default</Button>
+        <Button color={Color.Danger} variant={ButtonVariant.Filled}>
           Danger
         </Button>
-        <Button color={COLOR.PRIMARY} variant={BUTTON_VARIANT.FILLED}>
+        <Button color={Color.Primary} variant={ButtonVariant.Filled}>
           Primary
         </Button>
-        <Button color={COLOR.SECONDARY} variant={BUTTON_VARIANT.FILLED}>
+        <Button color={Color.Secondary} variant={ButtonVariant.Filled}>
           Secondary
         </Button>
-        <Button color={COLOR.SUCCESS} variant={BUTTON_VARIANT.FILLED}>
+        <Button color={Color.Success} variant={ButtonVariant.Filled}>
           Success
         </Button>
-        <Button color={COLOR.WARNING} variant={BUTTON_VARIANT.FILLED}>
+        <Button color={Color.Warning} variant={ButtonVariant.Filled}>
           Success
         </Button>
       </div>
 
       <div className={styles.Column}>
-        <Button icon="1" variant={BUTTON_VARIANT.FILLED} />
-        <Button color={COLOR.DANGER} icon="1" variant={BUTTON_VARIANT.FILLED} />
+        <Button icon="1" variant={ButtonVariant.Filled} />
+        <Button color={Color.Danger} icon="1" variant={ButtonVariant.Filled} />
+        <Button color={Color.Primary} icon="1" variant={ButtonVariant.Filled} />
         <Button
-          color={COLOR.PRIMARY}
+          color={Color.Secondary}
           icon="1"
-          variant={BUTTON_VARIANT.FILLED}
+          variant={ButtonVariant.Filled}
         />
-        <Button
-          color={COLOR.SECONDARY}
-          icon="1"
-          variant={BUTTON_VARIANT.FILLED}
-        />
-        <Button
-          color={COLOR.SUCCESS}
-          icon="1"
-          variant={BUTTON_VARIANT.FILLED}
-        />
-        <Button
-          color={COLOR.WARNING}
-          icon="1"
-          variant={BUTTON_VARIANT.FILLED}
-        />
+        <Button color={Color.Success} icon="1" variant={ButtonVariant.Filled} />
+        <Button color={Color.Warning} icon="1" variant={ButtonVariant.Filled} />
       </div>
     </div>
   </div>
