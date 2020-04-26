@@ -1,0 +1,41 @@
+.Root {
+  &Variant {
+    &H1 {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 50px;
+    }
+
+    &H2 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 40px;
+    }
+
+    &H3 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    &H4 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    &H5 {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    &H6 {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    &P {
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 22px;
+    }
+  }
+}
