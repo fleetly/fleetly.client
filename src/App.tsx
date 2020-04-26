@@ -11,8 +11,8 @@ import { COLOR } from '@styles/color';
 const App = () => (
   <div className={styles.Root}>
     <div className={styles.List}>
-      <H1>Hello world!</H1>
-      <H2>Hello world!</H2>
+      <H1>Fleetly!</H1>
+      <H2>Welcome to!</H2>
       <H3>General</H3>
       <H4>Disable this company</H4>
       <H5>Disable</H5>
