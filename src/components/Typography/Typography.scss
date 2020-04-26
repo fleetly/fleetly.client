@@ -4,38 +4,45 @@
       font-size: 60px;
       font-weight: 800;
       line-height: 50px;
+      letter-spacing: 1px;
     }
 
     &H2 {
       font-size: 30px;
       font-weight: 800;
       line-height: 40px;
+      letter-spacing: normal;
     }
 
     &H3 {
       font-size: 20px;
       font-weight: 600;
+      letter-spacing: -0.2px;
     }
 
     &H4 {
       font-size: 18px;
       font-weight: 600;
+      letter-spacing: -0.2px;
     }
 
     &H5 {
       font-size: 14px;
       font-weight: 500;
+      letter-spacing: -0.2px;
     }
 
     &H6 {
       font-size: 14px;
       font-weight: 500;
+      letter-spacing: 0;
     }
 
     &P {
       font-size: 14px;
       font-weight: normal;
       line-height: 22px;
+      letter-spacing: -0.2px;
     }
   }
 }
