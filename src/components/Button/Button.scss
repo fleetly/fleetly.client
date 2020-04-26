@@ -1,6 +1,20 @@
 @import '~@styles/color.scss';
 
-@mixin colorOutlineButton($color) {
+@mixin colorFilledButton($color) {
+  background: rgba($color, .1);
+  color: $color;
+
+  &:active {
+    background: rgba($color, .1);
+    color: rgba($color, .6);
+  }
+
+  &:hover:not(:active) {
+    background: rgba($color, .2);
+  }
+}
+
+@mixin colorOutlinedButton($color) {
   border-color: rgba($color, .2);
   color: $color;
 
@@ -15,20 +29,71 @@
 }
 
 .Root {
+  align-items: center;
   border-radius: 20px;
+  display: flex;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
   height: 40px;
+  justify-content: center;
   letter-spacing: -.2px;
   min-width: 120px;
   transition: background .2s, color .2s;
+  text-decoration: none;
 
   &:hover {
     cursor: pointer;
   }
 
+  &Mode {
+    &Icon {
+      min-width: 40px;
+      width: 40px;
+    }
+  }
+
   &Variant {
+    &Filled {
+      border: none;
+
+      &.RootColor {
+        &Danger {
+          @include colorFilledButton($color-danger);
+        }
+
+        &Default {
+          background: rgba($color-text, .1);
+          color: $color-text-secondary;
+
+          &:active {
+            background: rgba($color-text, .1);
+            color: rgba($color-text-secondary, .6);
+          }
+
+          &:hover:not(:active) {
+            background: rgba($color-text, .2);
+          }
+        }
+
+        &Primary {
+          @include colorFilledButton($color-primary);
+        }
+
+        &Secondary {
+          @include colorFilledButton($color-secondary);
+        }
+
+        &Success {
+          @include colorFilledButton($color-success);
+        }
+
+        &Warning {
+          @include colorFilledButton($color-warning);
+        }
+      }
+    }
+
     &Outlined {
       background: transparent;
       border: 2px solid;
@@ -54,19 +119,23 @@
         }
 
         &Danger {
-          @include colorOutlineButton($color-danger);
+          @include colorOutlinedButton($color-danger);
         }
 
         &Primary {
-          @include colorOutlineButton($color-primary);
+          @include colorOutlinedButton($color-primary);
         }
 
         &Secondary {
-          @include colorOutlineButton($color-secondary);
+          @include colorOutlinedButton($color-secondary);
         }
 
         &Success {
-          @include colorOutlineButton($color-success);
+          @include colorOutlinedButton($color-success);
+        }
+
+        &Warning {
+          @include colorOutlinedButton($color-warning);
         }
       }
     }

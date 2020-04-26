@@ -1,6 +1,6 @@
 @import '~@styles/reset.scss';
 
-.List {
+.Column {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -9,4 +9,10 @@
   & > *:not(:first-child) {
     margin: 8px 0 0;
   }
+}
+
+.List {
+  align-items: flex-start;
+  display: flex;
+  padding: 24px;
 }

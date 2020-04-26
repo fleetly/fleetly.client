@@ -8,7 +8,8 @@ export enum COLOR {
   DEFAULT = 'default',
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
-  SUCCESS = 'success'
+  SUCCESS = 'success',
+  WARNING = 'warning'
 }
 
 export const getColorClassName = (
