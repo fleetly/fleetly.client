@@ -7,7 +7,7 @@ import { H1, H2, H3, H4, H5, H6, P } from '@components/Typography';
 
 // Styles
 import styles from './App.scss';
-import { Color } from '@styles/color';
+import { Color } from '@styles/colors';
 
 const App = () => (
   <div className={styles.Root}>
@@ -35,11 +35,11 @@ const App = () => (
 
       <div className={styles.Column}>
         <Button icon="1" />
-        <Button color={Color.Danger} icon="1" />
-        <Button color={Color.Primary} icon="1" />
-        <Button color={Color.Secondary} icon="1" />
-        <Button color={Color.Success} icon="1" />
-        <Button color={Color.Warning} icon="1" />
+        <Button color={Color.Danger} icon="fab fa-vk" />
+        <Button color={Color.Primary} icon="fab fa-facebook-f" />
+        <Button color={Color.Secondary} icon="fab fa-twitter" />
+        <Button color={Color.Success} icon="fab fa-instagram" />
+        <Button color={Color.Warning} icon="fab fa-telegram-plane" />
       </div>
 
       <div className={styles.Column}>
@@ -62,14 +62,23 @@ const App = () => (
       </div>
 
       <div className={styles.Column}>
-        <Button icon="1" variant={ButtonVariant.Filled} />
-        <Button color={Color.Danger} icon="1" variant={ButtonVariant.Filled} />
-        <Button color={Color.Primary} icon="1" variant={ButtonVariant.Filled} />
+        <Button icon="fas fa-eye" variant={ButtonVariant.Filled} />
         <Button
-          color={Color.Secondary}
-          icon="1"
+          color={Color.Danger}
+          icon="fas fa-power-off"
           variant={ButtonVariant.Filled}
         />
+        <Button
+          color={Color.Primary}
+          icon="fas fa-redo"
+          variant={ButtonVariant.Filled}
+        />
+        <Button
+          color={Color.Secondary}
+          icon="fas fa-times"
+          variant={ButtonVariant.Filled}
+        />
+
         <Button color={Color.Success} icon="1" variant={ButtonVariant.Filled} />
         <Button color={Color.Warning} icon="1" variant={ButtonVariant.Filled} />
       </div>

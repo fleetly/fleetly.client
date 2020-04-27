@@ -5,6 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 // App
 import App from './App';
 
+// Styles
+import '@fortawesome/fontawesome-pro/css/all.min.css';
+
 // Utils
 import * as serviceWorker from '@utils/serviceWorker';
 
