@@ -9,6 +9,9 @@ import App from './App';
 // Store
 import createStore from './store';
 
+// Styles
+import '@fortawesome/fontawesome-pro/css/all.min.css';
+
 // Utils
 import * as serviceWorker from '@utils/serviceWorker';
 

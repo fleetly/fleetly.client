@@ -5,7 +5,7 @@ import * as React from 'react';
 import Link from '@components/Link';
 
 // Styles
-import { Color, getColorClassName } from '@styles/color';
+import { Color, getColorClassName } from '@styles/colors';
 import styles from './Button.scss';
 
 export enum ButtonVariant {
@@ -62,7 +62,7 @@ const Button: React.SFC<ButtonProps> = ({
       to={to}
       type={type}
     >
-      {icon && <i>{icon}</i>}
+      {icon && <i className={classNames(styles.Icon, icon)} />}
       {children}
     </Component>
   );
