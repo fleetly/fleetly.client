@@ -1,4 +1,4 @@
-@import '~@styles/color.scss';
+@import '~@styles/colors.scss';
 
 @mixin colorFilledButton($color) {
   background: rgba($color, .1);
@@ -140,4 +140,8 @@
       }
     }
   }
+}
+
+.Icon {
+  font-size: 14px;
 }
