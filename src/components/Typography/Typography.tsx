@@ -19,6 +19,7 @@ interface TypographyProps {
   className?: string;
   component?: any;
   variant?: TypographyVariant;
+  htmlFor?: string;
 }
 
 const Typography: React.SFC<TypographyProps> = ({

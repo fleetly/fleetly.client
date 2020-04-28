@@ -11,6 +11,16 @@
   }
 }
 
+.Row {
+  display: flex;
+  padding: 24px;
+
+  & > * {
+    margin: 0 16px 0 0;
+    max-width: 260px;
+  }
+}
+
 .List {
   align-items: flex-start;
   display: flex;
