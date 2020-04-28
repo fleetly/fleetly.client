@@ -5,12 +5,11 @@
 :global body {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-weight: 500;
   margin: 0;
   padding: 0;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 :global * {
