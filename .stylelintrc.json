@@ -1,13 +1,6 @@
 {
-  "extends": [
-    "stylelint-config-prettier",
-    "stylelint-config-standard"
-  ],
-  "plugins": [
-    "stylelint-order",
-    "stylelint-prettier",
-    "stylelint-scss"
-  ],
+  "extends": ["stylelint-config-prettier", "stylelint-config-standard"],
+  "plugins": ["stylelint-order", "stylelint-prettier", "stylelint-scss"],
   "rules": {
     "at-rule-no-unknown": null,
     "number-leading-zero": "never",
@@ -35,9 +28,13 @@
       }
     ],
     "order/properties-alphabetical-order": true,
-    "selector-pseudo-class-no-unknown": [true, {
-      "ignorePseudoClasses": ["global"]
-    }],
-    "scss/at-rule-no-unknown": true
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "scss/at-rule-no-unknown": true,
+    "no-descending-specificity": null
   }
 }

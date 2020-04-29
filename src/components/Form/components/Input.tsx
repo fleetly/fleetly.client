@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 // Components
-import { P, H6 } from '@components/Typography';
+import { P, Span } from '@components/Typography';
 
 // Styles
 import styles from './Input.scss';
@@ -40,7 +40,6 @@ const Input: React.SFC<InputProps> = ({
   onChange,
   placeholder,
   type = 'text',
-  autoComplete,
   value
 }) => (
   <div
@@ -59,9 +58,7 @@ const Input: React.SFC<InputProps> = ({
     )}
 
     <input
-      className={classNames(classes.input, styles.Input, {
-        [styles.InputError]: !!error
-      })}
+      className={classNames(classes.input, styles.Input)}
       disabled={disabled}
       id={id}
       name={name}
@@ -71,14 +68,8 @@ const Input: React.SFC<InputProps> = ({
       value={value}
     />
 
-    {autoComplete && (
-      <div className={styles.AutoCompleteWrapper}>
-        <div className={styles.AutoComplete}>{autoComplete}</div>
-      </div>
-    )}
-
     {error && (
-      <H6 className={classNames(classes.error, styles.Error)}>{error}</H6>
+      <Span className={classNames(classes.error, styles.Error)}>{error}</Span>
     )}
   </div>
 );

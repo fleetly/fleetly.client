@@ -8,16 +8,7 @@ import styles from './Link.scss';
 // Utils
 import { isExternal } from '@utils/url';
 
-interface LinkProps {
-  children: React.ReactNode;
-  className?: string;
-  classes?: {
-    root?: string;
-  };
-  to?: string;
-}
-
-const Link: React.SFC<LinkProps> = ({
+const Link: React.SFC<Link.Props> = ({
   children,
   className: classNameProp,
   classes = {},

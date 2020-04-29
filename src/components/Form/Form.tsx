@@ -15,7 +15,7 @@ interface FormProps {
     error?: string;
   };
   error?: string;
-  onSubmit: () => void;
+  onSubmit(event: React.SyntheticEvent<HTMLFormElement>): void;
 }
 
 const Form: React.SFC<FormProps> = ({

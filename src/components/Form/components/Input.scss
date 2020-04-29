@@ -3,36 +3,40 @@
 .Root {
   display: flex;
   flex-direction: column;
-  position: relative;
+
+  &Is {
+    &Failed .Input {
+      background: rgba($color-danger, .1);
+      border: solid 2px rgba($color-danger, .4);
+
+      &:focus {
+        background: rgba($color-text-secondary, .1);
+        border: solid 2px rgba($color-danger, .4);
+      }
+    }
+  }
 }
 
 .Input {
-  -moz-box-shadow: inset 0 0 0 2px rgba($color-text-secondary, .1);
-  -webkit-box-shadow: inset 0 0 0 2px rgba($color-text-secondary, .1);
   background: rgba($color-text-secondary, .1);
+  border: solid 2px rgba($color-text-secondary, .1);
   border-radius: 20px;
-  border: none;
-  box-shadow: inset 0 0 0 2px rgba($color-text-secondary, .1);
   color: rgba($color-text, .8);
-  font-family: 'Montserrat', sans-serif;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 600;
   height: 40px;
-  letter-spacing: -0.2px;
+  letter-spacing: -.2px;
   padding: 0 20px;
   transition: .2s;
 
   &:hover {
-    -moz-box-shadow: inset 0 0 0 2px rgba($color-primary, .4);
-    -webkit-box-shadow: inset 0 0 0 2px rgba($color-primary, .4);
     background: rgba($color-primary, .1);
-    box-shadow: inset 0 0 0 2px rgba($color-primary, .4);
+    border: solid 2px rgba($color-primary, .4);
   }
 
   &:focus {
-    -moz-box-shadow: inset 0 0 0 2px rgba($color-primary, .5);
-    -webkit-box-shadow: inset 0 0 0 2px rgba($color-primary, .5);
-    box-shadow: inset 0 0 0 2px rgba($color-primary, .5);
+    border: solid 2px rgba($color-primary, .5);
     color: rgba($color-text, .8);
   }
 
@@ -40,24 +44,8 @@
     color: rgba($color-text, .5);
 
     &:hover {
-      -moz-box-shadow: inset 0 0 0 2px rgba($color-text-secondary, .1);
-      -webkit-box-shadow: inset 0 0 0 2px rgba($color-text-secondary, .1);
       background: rgba($color-text-secondary, .1);
-      box-shadow: inset 0 0 0 2px rgba($color-text-secondary, .1);
-    }
-  }
-
-  &Error {
-    -moz-box-shadow: inset 0 0 0 2px rgba($color-danger, .4);
-    -webkit-box-shadow: inset 0 0 0 2px rgba($color-danger, .4);
-    background: rgba($color-danger, .1);
-    box-shadow: inset 0 0 0 2px rgba($color-danger, .4);
-
-    &:focus {
-      -moz-box-shadow: inset 0 0 0 2px rgba($color-danger, .4);
-      -webkit-box-shadow: inset 0 0 0 2px rgba($color-danger, .4);
-      background: rgba($color-text-secondary, .1);
-      box-shadow: inset 0 0 0 2px rgba($color-danger, .4);
+      border: solid 2px rgba rgba($color-text-secondary, .1);
     }
   }
 }
@@ -71,22 +59,7 @@
 
 .Error {
   color: rgba($color-danger, .8);
+  font-weight: 600;
   margin: 12px 0 0 0;
   padding: 0 40px 0 20px;
-}
-
-.AutoCompleteWrapper {
-  margin: 20px 0 0 0;
-  position: relative;
-  width: 100%;
-}
-
-.AutoComplete {
-  background-color: rgba($color-primary, .9);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px 0 rgba(103, 129, 244, 0.2);
-  padding: 30px;
-  position: absolute;
-  top: 0;
-  width: 100%;
 }
