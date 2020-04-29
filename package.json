@@ -12,6 +12,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
+    "react-transition-group": "^4.3.0",
     "redux": "^4.0.5",
     "redux-form": "^8.3.5"
   },
@@ -30,6 +31,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.1.4",
+    "@types/react-transition-group": "^4.2.4",
     "@types/redux-form": "^8.2.3",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
@@ -110,12 +112,11 @@
   },
   "lint-staged": {
     "*.scss": [
-      "yarn lint:scss"
+      "yarn lint:scss",
+      "yarn format"
     ],
     "*.{ts,tsx}": [
-      "yarn lint:ts"
-    ],
-    "*": [
+      "yarn lint:ts",
       "yarn format"
     ]
   },

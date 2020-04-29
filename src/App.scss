@@ -1,18 +1,7 @@
 @import '~@styles/reset.scss';
 
-.Column {
-  align-items: flex-start;
+.Root {
   display: flex;
-  flex-direction: column;
-  padding: 24px;
-
-  & > *:not(:first-child) {
-    margin: 8px 0 0;
-  }
-}
-
-.List {
-  align-items: flex-start;
-  display: flex;
-  padding: 24px;
+  min-height: 100vh;
+  width: 100%;
 }
