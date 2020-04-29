@@ -7,15 +7,13 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
+      "@global": ["src/types/global.d.ts"],
+
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@containers/*": ["containers/*"],
@@ -30,12 +28,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es5",
-    "typeRoots": [
-      "./src/types",
-      "./node_modules/@types"
-    ]
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
