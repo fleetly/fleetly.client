@@ -10,7 +10,7 @@ interface IError {
 }
 
 export default (schema: ISchema) => (values: object) =>
-  schema.validate(values, { abortEarly: false }).catch((error: object) => {
+  schema.validate(values, { abortEarly: false }).catch((error: object[]) => {
     const errors = {};
 
     get(error, 'inner', []).forEach(({ message, path }: IError) => {
