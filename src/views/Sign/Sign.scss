@@ -1,7 +1,18 @@
 @import '~@styles/colors';
+@import './Sign.transition.scss';
+
+@mixin coverPosition() {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
 
 .Root {
-  background: url('./assets/bg.svg') no-repeat center center / cover;
   display: flex;
   justify-content: center;
   max-height: 100vh;
@@ -17,9 +28,32 @@
   z-index: 2;
 }
 
+.Land {
+  &1 {
+    background-image: url('./assets/land-1.png');
+    z-index: 2;
+
+    @include coverPosition();
+  }
+
+  &2 {
+    background-image: url('./assets/land-2.png');
+    z-index: 1;
+
+    @include coverPosition();
+  }
+}
+
 .Title {
   color: $color-primary;
   text-shadow: 0 8px 4px rgba($color-primary, 0.1);
+}
+
+.Tree {
+  background-image: url('./assets/tree.png');
+  z-index: 3;
+
+  @include coverPosition();
 }
 
 .Welcome {
