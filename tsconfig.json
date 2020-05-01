@@ -22,7 +22,7 @@
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
-      "@views/*": ["compoviewsnents/*"]
+      "@views/*": ["views/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
