@@ -1,0 +1,65 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  display: flex;
+  flex-direction: column;
+
+  &Is {
+    &Failed .Input {
+      background: rgba($color-danger, .1);
+      border: solid 2px rgba($color-danger, .4);
+
+      &:focus {
+        background: rgba($color-text-secondary, .1);
+        border: solid 2px rgba($color-danger, .4);
+      }
+    }
+  }
+}
+
+.Input {
+  background: rgba($color-text-secondary, .1);
+  border: solid 2px rgba($color-text-secondary, .1);
+  border-radius: 20px;
+  color: rgba($color-text, .8);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  letter-spacing: -.2px;
+  padding: 0 20px;
+  transition: .2s;
+
+  &:hover {
+    background: rgba($color-primary, .1);
+    border: solid 2px rgba($color-primary, .4);
+  }
+
+  &:focus {
+    border: solid 2px rgba($color-primary, .5);
+    color: rgba($color-text, .8);
+  }
+
+  &:disabled {
+    color: rgba($color-text, .5);
+
+    &:hover {
+      background: rgba($color-text-secondary, .1);
+      border: solid 2px rgba rgba($color-text-secondary, .1);
+    }
+  }
+}
+
+.Label {
+  color: rgba($color-text-secondary, .8);
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  padding: 0 20px;
+}
+
+.Error {
+  color: rgba($color-danger, .8);
+  font-weight: 600;
+  margin: 12px 0 0 0;
+  padding: 0 40px 0 20px;
+}
