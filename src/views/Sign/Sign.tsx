@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
 // Components
@@ -7,7 +8,13 @@ import { H1, H2 } from '@components/Typography';
 // Styles
 import styles from './Sign.scss';
 
-const Sign = () => {
+// Views
+import In from './containers/In';
+
+// Utils
+import { resolve } from '@utils/url';
+
+const Sign = ({ match }: Sign.Props) => {
   const [isMounted, setMountState] = React.useState(false);
 
   React.useEffect(() => setMountState(true), []);
@@ -33,6 +40,12 @@ const Sign = () => {
           <div className={styles.Content}>
             <H2 className={styles.Welcome}>Welcome to</H2>
             <H1 className={styles.Title}>Fleetly</H1>
+
+            <div className={styles.Form}>
+              <Switch>
+                <Route component={In} path={resolve([match.url, 'in'])} />
+              </Switch>
+            </div>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 @import './Sign.transition.scss';
 
@@ -23,9 +24,27 @@
 
 .Content {
   height: 540px;
-  margin: 0 72px;
+  margin: 0 100px;
   position: relative;
   z-index: 2;
+
+  @include breakpoints(laptop) {
+    margin: 0 72px;
+  }
+}
+
+.Cover {
+  z-index: 1;
+
+  @include coverPosition();
+}
+
+.Form {
+  margin: 160px 0 0;
+
+  @include breakpoints(laptop) {
+    margin: 120px 0 0;
+  }
 }
 
 .Land {
@@ -63,6 +82,12 @@
 .Wrapper {
   align-items: center;
   display: flex;
-  max-width: 1240px;
+  max-width: 1680px;
+  position: relative;
   width: 100%;
+  z-index: 2;
+
+  @include breakpoints(laptop) {
+    max-width: 1240px;
+  }
 }
