@@ -113,7 +113,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "format": "prettier --write",
-    "lint:scss": "stylelint src/**/*.scss",
+    "lint:scss": "stylelint --fix src/**/*.scss",
     "lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx} --fix --format verbose",
     "test": "node scripts/test.js"
   },
@@ -124,12 +124,12 @@
   },
   "lint-staged": {
     "*.scss": [
-      "yarn lint:scss",
-      "yarn format"
+      "yarn format",
+      "yarn lint:scss"
     ],
     "*.{ts,tsx}": [
-      "yarn lint:ts",
-      "yarn format"
+      "yarn format",
+      "yarn lint:ts"
     ]
   },
   "eslintConfig": {
