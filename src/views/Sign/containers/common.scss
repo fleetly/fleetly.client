@@ -4,13 +4,17 @@
   margin: 8px 0 0;
 }
 
+.Error {
+  width: 260px;
+}
+
 .Fieldset {
   display: grid;
   grid-column-gap: 40px;
   grid-template-columns: repeat(2, 260px);
-  grid-template-rows: repeat(1, 132px);
+  grid-template-rows: 124px;
 
-  @include breakpoints(laptop) {
-    grid-template-columns: repeat(2, 240px);
+  &Multiple {
+    grid-template-rows: repeat(2, 124px);
   }
 }

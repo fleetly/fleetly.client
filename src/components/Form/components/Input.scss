@@ -6,6 +6,13 @@
   max-width: 260px;
 
   &Is {
+    &Disabled {
+      .Container {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    }
+
     &Failed {
       .Container {
         border-color: $color-red-200;

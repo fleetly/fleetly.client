@@ -3,11 +3,13 @@ import { WrappedFieldMetaProps, WrappedFieldInputProps } from 'redux-form';
 declare namespace Form {
   interface Classes extends ExtendedClasses {
     container?: string;
+    error?: string;
   }
 
   interface Props {
     children: React.Node;
     classes?: Classes;
+    error?: string;
     onSubmit(event: React.SyntheticEvent<HTMLFormElement>): void;
   }
 
@@ -19,6 +21,7 @@ declare namespace Form {
   }
 
   interface ReduxFieldProps extends WrappedFieldInputProps {
+    disabled?: boolean;
     id: string;
     error?: string;
     label?: string;

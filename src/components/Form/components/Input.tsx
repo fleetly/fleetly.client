@@ -10,6 +10,7 @@ import styles from './Input.scss';
 const FormInput: React.SFC<Form.Input.Props> = ({
   classes,
   error,
+  disabled,
   id,
   hint,
   label,
@@ -38,6 +39,10 @@ const FormInput: React.SFC<Form.Input.Props> = ({
         classes?.root,
         styles.Root,
         {
+          [classes?.isDisabled || '']: disabled,
+          [styles.RootIsDisabled]: disabled
+        },
+        {
           [classes?.isFocused || '']: isFocused,
           [styles.RootIsFocused]: isFocused
         },
@@ -63,6 +68,7 @@ const FormInput: React.SFC<Form.Input.Props> = ({
       <div className={classNames(classes?.container, styles.Container)}>
         <input
           className={classNames(classes?.input, styles.Input)}
+          disabled={disabled}
           id={id}
           name={name}
           onBlur={handleBlur}

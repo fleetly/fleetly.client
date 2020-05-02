@@ -1,12 +1,12 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import { InjectedFormProps, reduxForm } from 'redux-form';
-import { object, string } from 'yup';
+import { object, ref, string } from 'yup';
 
 // Components
 import Button from '@components/Button';
-import Link from '@components/Link';
 import Form, {
   asyncValidate,
   gqlErrorHandler,
@@ -15,12 +15,12 @@ import Form, {
 } from '@components/Form';
 
 // GraphQL
-import loginMutation from '@views/Sign/graphql/login.gql';
+import registerMutation from '@views/Sign/graphql/register.gql';
 
 // Styles
 import styles from './common.scss';
 
-const SignIn: React.SFC<InjectedFormProps> = ({
+const SignUp: React.SFC<InjectedFormProps> = ({
   error,
   handleSubmit,
   submitting
@@ -30,36 +30,52 @@ const SignIn: React.SFC<InjectedFormProps> = ({
     error={error || ' '}
     onSubmit={handleSubmit}
   >
-    <Fieldset classes={{ root: styles.Fieldset }}>
+    <Fieldset
+      classes={{ root: classNames(styles.Fieldset, styles.FieldsetMultiple) }}
+    >
       <Input disabled={submitting} label="Email" name="email" />
+      <Input disabled={submitting} label="Username" name="username" />
       <Input
         disabled={submitting}
-        hint={<Link>Forgot password?</Link>}
         label="Password"
         name="password"
+        type="password"
+      />
+
+      <Input
+        disabled={submitting}
+        label="Confirm password"
+        name="confirmation"
         type="password"
       />
     </Fieldset>
 
     <div className={styles.Actions}>
       <Button color="primary" loaded={submitting} type="submit">
-        Sign In
+        Sign Up
       </Button>
     </div>
   </Form>
 );
 
 export default compose<InjectedFormProps, any>(
-  graphql(loginMutation),
+  graphql(registerMutation),
   reduxForm({
-    form: 'signInForm',
+    form: 'signUpForm',
     asyncValidate: asyncValidate(
       object().shape({
         email: string().required(),
-        password: string().required()
+        confirmation: string()
+          .required()
+          .oneOf([ref('password')], 'Passwords must match'),
+        password: string().required(),
+        username: string().required()
       })
     ),
-    onSubmit: (variables, dispatch, { mutate }: { mutate: any }) =>
-      mutate({ variables }).catch(gqlErrorHandler)
+    onSubmit: (
+      { passwordConfirmation, ...variables }: any,
+      dispatch,
+      { mutate }: any
+    ) => mutate({ variables }).catch(gqlErrorHandler)
   })
-)(SignIn);
+)(SignUp);

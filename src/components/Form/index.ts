@@ -9,3 +9,4 @@ export { default as withReduxForm } from './decorators/withReduxForm';
 
 // Utils
 export { default as asyncValidate } from './utils/asyncValidate';
+export { default as gqlErrorHandler } from './utils/gqlErrorHandler';

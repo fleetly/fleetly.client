@@ -39,11 +39,31 @@
   @include coverPosition();
 }
 
-.Form {
-  margin: 160px 0 0;
+.Nav {
+  align-items: center;
+  display: flex;
+  margin: 40px 40px 24px;
 
-  @include breakpoints(laptop) {
-    margin: 120px 0 0;
+  &Link {
+    color: $color-blue-200;
+    text-decoration: none;
+    transform: scale(0.7);
+    transition: all 0.2s ease-out;
+
+    &:not(:first-child) {
+      margin: 0 0 0 16px;
+    }
+
+    & > h3 {
+      font-weight: 800;
+    }
+
+    &Is {
+      &Selected {
+        color: $color-primary;
+        transform: scale(1);
+      }
+    }
   }
 }
 
