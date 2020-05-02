@@ -47,8 +47,8 @@
   &Link {
     color: $color-blue-200;
     text-decoration: none;
-    transform: scale(0.7);
-    transition: all 0.2s ease-out;
+    transform: scale(.7);
+    transition: all .2s ease-out;
 
     &:not(:first-child) {
       margin: 0 0 0 16px;
@@ -85,7 +85,7 @@
 
 .Title {
   color: $color-primary;
-  text-shadow: 0 8px 4px rgba($color-primary, 0.1);
+  text-shadow: 0 8px 4px rgba($color-primary, .1);
 }
 
 .Tree {
