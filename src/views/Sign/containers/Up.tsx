@@ -25,11 +25,7 @@ const SignUp: React.SFC<InjectedFormProps> = ({
   handleSubmit,
   submitting
 }) => (
-  <Form
-    classes={{ error: styles.Error }}
-    error={error || ' '}
-    onSubmit={handleSubmit}
-  >
+  <Form classes={{ error: styles.Error }} error={error} onSubmit={handleSubmit}>
     <Fieldset
       classes={{ root: classNames(styles.Fieldset, styles.FieldsetMultiple) }}
     >

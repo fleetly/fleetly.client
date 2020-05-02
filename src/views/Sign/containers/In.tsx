@@ -26,8 +26,11 @@ const SignIn: React.SFC<InjectedFormProps> = ({
   submitting
 }) => (
   <Form
-    classes={{ error: styles.Error }}
-    error={error || ' '}
+    classes={{
+      container: !error ? styles.Container : undefined,
+      error: styles.Error
+    }}
+    error={error}
     onSubmit={handleSubmit}
   >
     <Fieldset classes={{ root: styles.Fieldset }}>
