@@ -1,0 +1,24 @@
+@import '~@styles/breakpoints';
+
+.Actions {
+  margin: 8px 0 0;
+}
+
+.Container {
+  padding: 40px 0 0;
+}
+
+.Error {
+  width: 260px;
+}
+
+.Fieldset {
+  display: grid;
+  grid-column-gap: 40px;
+  grid-template-columns: repeat(2, 260px);
+  grid-template-rows: 124px;
+
+  &Multiple {
+    grid-template-rows: repeat(2, 124px);
+  }
+}

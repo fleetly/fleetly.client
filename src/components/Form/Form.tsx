@@ -2,34 +2,23 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 // Components
-import { P } from '@components/Typography';
+import Transition from '@components/Transition';
 
 // Styles
 import styles from './Form.scss';
 
-interface FormProps {
-  children: React.ReactNode;
-  classes?: {
-    root?: string;
-    container?: string;
-    error?: string;
-  };
-  error?: string;
-  onSubmit(event: React.SyntheticEvent<HTMLFormElement>): void;
-}
-
-const Form: React.SFC<FormProps> = ({
+const Form: React.SFC<Form.Props> = ({
   children,
-  classes = {},
+  classes,
   error,
   onSubmit
 }) => (
-  <form className={classes.root} onSubmit={onSubmit}>
-    {error && (
-      <P className={classNames(classes.error, styles.Error)}>{error}</P>
-    )}
+  <form className={classes?.root} onSubmit={onSubmit}>
+    <Transition duration={400} enter="fadeInUp" in={!!error}>
+      <div className={classNames(classes?.error, styles.Error)}>{error}</div>
+    </Transition>
 
-    <div className={classes.container}>{children}</div>
+    <div className={classes?.container}>{children}</div>
   </form>
 );
 

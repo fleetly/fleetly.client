@@ -1,21 +1,20 @@
 import { get, set } from 'lodash';
+import { ValidationError, Schema } from 'yup';
 
-interface ISchema {
-  validate: (values: any, options: any) => Promise<any>;
-}
+// Utils
+import { capitalizeFirstLetter } from '@utils/string';
 
-interface IError {
-  message: string;
-  path: string;
-}
+export default (schema: Schema<any>) => (values: Map<string, any>) =>
+  schema
+    .validate(values, { abortEarly: false })
+    .catch((error: ValidationError) => {
+      const errors = {};
 
-export default (schema: ISchema) => (values: object) =>
-  schema.validate(values, { abortEarly: false }).catch((error: object[]) => {
-    const errors = {};
+      get(error, 'inner', []).forEach(
+        ({ message = '', path }: ValidationError) => {
+          set(errors, path, capitalizeFirstLetter(message.toLowerCase()));
+        }
+      );
 
-    get(error, 'inner', []).forEach(({ message, path }: IError) => {
-      set(errors, path, message);
+      throw errors;
     });
-
-    throw errors;
-  });

@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 @import './Sign.transition.scss';
 
@@ -23,9 +24,47 @@
 
 .Content {
   height: 540px;
-  margin: 0 72px;
+  margin: 0 100px;
   position: relative;
   z-index: 2;
+
+  @include breakpoints(laptop) {
+    margin: 0 72px;
+  }
+}
+
+.Cover {
+  z-index: 1;
+
+  @include coverPosition();
+}
+
+.Nav {
+  align-items: center;
+  display: flex;
+  margin: 40px 40px 24px;
+
+  &Link {
+    color: $color-blue-200;
+    text-decoration: none;
+    transform: scale(.7);
+    transition: all .2s ease-out;
+
+    &:not(:first-child) {
+      margin: 0 0 0 16px;
+    }
+
+    & > h3 {
+      font-weight: 800;
+    }
+
+    &Is {
+      &Selected {
+        color: $color-primary;
+        transform: scale(1);
+      }
+    }
+  }
 }
 
 .Land {
@@ -46,7 +85,7 @@
 
 .Title {
   color: $color-primary;
-  text-shadow: 0 8px 4px rgba($color-primary, 0.1);
+  text-shadow: 0 8px 4px rgba($color-primary, .1);
 }
 
 .Tree {
@@ -63,6 +102,12 @@
 .Wrapper {
   align-items: center;
   display: flex;
-  max-width: 1240px;
+  max-width: 1680px;
+  position: relative;
   width: 100%;
+  z-index: 2;
+
+  @include breakpoints(laptop) {
+    max-width: 1240px;
+  }
 }

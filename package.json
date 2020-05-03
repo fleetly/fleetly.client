@@ -4,21 +4,29 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^5.13.0",
+    "apollo-boost": "^0.4.7",
+    "apollo-cache-inmemory": "^1.6.5",
     "classnames": "^2.2.6",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
+    "react-apollo": "^3.1.5",
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-transition-group": "^4.3.0",
+    "recompose": "^0.30.0",
     "redux": "^4.0.5",
     "redux-form": "^8.3.5",
-    "uuid": "^7.0.3"
+    "uuid": "^8.0.0",
+    "yup": "^0.28.5"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -33,7 +41,10 @@
     "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.1.4",
     "@types/react-transition-group": "^4.2.4",
+    "@types/recompose": "^0.30.7",
     "@types/redux-form": "^8.2.3",
+    "@types/uuid": "^7.0.3",
+    "@types/yup": "^0.28.0",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
     "babel-eslint": "10.1.0",
@@ -102,7 +113,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "format": "prettier --write",
-    "lint:scss": "stylelint src/**/*.scss",
+    "lint:scss": "stylelint --fix src/**/*.scss",
     "lint:ts": "tslint -c tslint.json src/**/*.{ts,tsx} --fix --format verbose",
     "test": "node scripts/test.js"
   },
@@ -113,12 +124,12 @@
   },
   "lint-staged": {
     "*.scss": [
-      "yarn lint:scss",
-      "yarn format"
+      "yarn format",
+      "yarn lint:scss"
     ],
     "*.{ts,tsx}": [
-      "yarn lint:ts",
-      "yarn format"
+      "yarn format",
+      "yarn lint:ts"
     ]
   },
   "eslintConfig": {
@@ -187,6 +198,14 @@
     ]
   },
   "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
+    ],
     "presets": [
       "react-app"
     ]

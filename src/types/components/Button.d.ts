@@ -1,6 +1,7 @@
 declare namespace Button {
-  interface Classes {
-    root?: string;
+  interface Classes extends ExtendedClasses {
+    icon?: string;
+    spinner?: string;
   }
 
   interface Props {
@@ -10,6 +11,7 @@ declare namespace Button {
     color?: Color;
     disabled?: boolean;
     icon?: string;
+    loaded?: boolean;
     onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
     to?: string;
     type?: 'button' | 'reset' | 'submit';

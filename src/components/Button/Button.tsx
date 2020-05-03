@@ -13,10 +13,11 @@ import { getClassName } from '@utils/styles';
 const Button: React.SFC<Button.Props> = ({
   children,
   className,
-  classes = {},
+  classes,
   color = 'default',
   disabled,
   icon,
+  loaded,
   onClick,
   to,
   type = 'button',
@@ -29,7 +30,7 @@ const Button: React.SFC<Button.Props> = ({
     <Component
       className={classNames(
         className,
-        classes.root,
+        classes?.root,
         styles.Root,
         getClassName('color', { collection: styles, value: color }),
         getClassName('variant', { collection: styles, value: variant })
@@ -38,8 +39,22 @@ const Button: React.SFC<Button.Props> = ({
       onClick={onClick}
       type={type}
     >
-      {icon && <i className={classNames(styles.Icon, icon)} />}
-      {children}
+      {loaded ? (
+        <i
+          className={classNames(
+            classes?.spinner,
+            styles.Spinner,
+            'far fa-spinner-third'
+          )}
+        />
+      ) : (
+        <>
+          {icon && (
+            <i className={classNames(classes?.icon, styles.Icon, icon)} />
+          )}
+          {children}
+        </>
+      )}
     </Component>
   );
 };

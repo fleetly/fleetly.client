@@ -1,77 +1,89 @@
 import classNames from 'classnames';
 import * as React from 'react';
 
-// Components
-import { P, Span } from '@components/Typography';
+// Decorators
+import withReduxForm from '../hocs/withReduxForm';
 
 // Styles
 import styles from './Input.scss';
 
-interface InputProps {
-  classes?: {
-    root?: string;
-    description?: string;
-    header?: string;
-    error?: string;
-    label?: string;
-    info?: string;
-    input?: string;
-  };
-  disabled?: boolean;
-  error?: string;
-  id: string;
-  label?: string;
-  name: string;
-  placeholder?: string;
-  // TODO: return required attribute for onChange field before merging pull request
-  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
-  type?: string;
-  value: number | string;
-  autoComplete?: React.ReactNode;
-}
-
-const Input: React.SFC<InputProps> = ({
-  classes = {},
-  disabled,
+const FormInput: React.SFC<Form.Input.Props> = ({
+  classes,
   error,
+  disabled,
   id,
+  hint,
   label,
   name,
+  onBlur,
   onChange,
+  onFocus,
   placeholder,
-  type = 'text',
-  value
-}) => (
-  <div
-    className={classNames(classes.root, styles.Root, {
-      [styles.RootIsFailed]: !!error
-    })}
-  >
-    {label && (
-      <P
-        className={classNames(classes.root, styles.Label)}
-        component="label"
-        htmlFor={id}
-      >
-        {label}
-      </P>
-    )}
+  type = 'text'
+}) => {
+  const [isFocused, setFocusState] = React.useState(false);
 
-    <input
-      className={classNames(classes.input, styles.Input)}
-      disabled={disabled}
-      id={id}
-      name={name}
-      onChange={onChange}
-      placeholder={placeholder}
-      type={type}
-      value={value}
-    />
+  const handleBlur = (event: React.FocusEvent) => {
+    onBlur(event);
+    setFocusState(false);
+  };
 
-    {error && (
-      <Span className={classNames(classes.error, styles.Error)}>{error}</Span>
-    )}
-  </div>
-);
+  const handleFocus = (event: React.FocusEvent) => {
+    onFocus(event);
+    setFocusState(true);
+  };
 
-export default Input;
+  return (
+    <div
+      className={classNames(
+        classes?.root,
+        styles.Root,
+        {
+          [classes?.isDisabled || '']: disabled,
+          [styles.RootIsDisabled]: disabled
+        },
+        {
+          [classes?.isFocused || '']: isFocused,
+          [styles.RootIsFocused]: isFocused
+        },
+        {
+          [classes?.isFailed || '']: !!error,
+          [styles.RootIsFailed]: !!error
+        }
+      )}
+    >
+      {(label || hint) && (
+        <div className={classNames(classes?.header, styles.Header)}>
+          <label
+            className={classNames(classes?.label, styles.Label)}
+            htmlFor={id}
+          >
+            {label}
+          </label>
+
+          <div className={classNames(classes?.hint, styles.Hint)}>{hint}</div>
+        </div>
+      )}
+
+      <div className={classNames(classes?.container, styles.Container)}>
+        <input
+          className={classNames(classes?.input, styles.Input)}
+          disabled={disabled}
+          id={id}
+          name={name}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onChange={onChange}
+          placeholder={placeholder}
+          type={type}
+        />
+      </div>
+
+      {error && (
+        <div className={classNames(classes?.error, styles.Error)}>{error}</div>
+      )}
+    </div>
+  );
+};
+
+export default withReduxForm<Form.Input.Props>()(FormInput);

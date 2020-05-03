@@ -1,26 +1,27 @@
 import { set } from 'lodash';
+import { GraphQLFormattedError } from 'graphql';
 import { SubmissionError } from 'redux-form';
 
-interface IError {
-  graphQLErrors: {
-    message: string;
-  }[];
-  message: string;
-}
+// Utils
+import { capitalizeFirstLetter } from '@utils/string';
 
-interface IGraphQLError {
-  message: string;
-}
-
-export default ({ graphQLErrors, message }: IError): void => {
+export default ({ graphQLErrors, message }: any): void => {
   const errors = {};
 
   if (graphQLErrors && graphQLErrors.length > 0) {
-    graphQLErrors.forEach((gqlError: IGraphQLError) => {
-      set(errors, '_error', gqlError.message);
+    graphQLErrors.forEach(({ message: error }: GraphQLFormattedError) => {
+      const { message, validationErrors }: any = error;
+
+      if (validationErrors) {
+        Object.keys(validationErrors).forEach((key: string) => {
+          set(errors, key, capitalizeFirstLetter(validationErrors[key]));
+        });
+      } else if (message) {
+        set(errors, '_error', capitalizeFirstLetter(message));
+      }
     });
   } else if (message) {
-    set(errors, '_error', message);
+    set(errors, '_error', capitalizeFirstLetter(message));
   }
 
   throw new SubmissionError(errors);

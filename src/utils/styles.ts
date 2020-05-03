@@ -1,4 +1,4 @@
-import { has } from 'lodash';
+import { has, set } from 'lodash';
 
 // Utils
 import { capitalizeFirstLetter } from './string';
@@ -20,4 +20,32 @@ export const getClassName = (
     .join('');
 
   return has(collection, path) ? collection[path] : null;
+};
+
+export const getTransitionClassNames = (
+  prefix: string = 'root',
+  styles: any
+) => {
+  const CLASS_LIST = [
+    'appear',
+    'appearActive',
+    'enter',
+    'enterActive',
+    'exit',
+    'exitActive'
+  ];
+
+  const classNames = {};
+
+  CLASS_LIST.forEach((key: string) => {
+    const path: string = `${capitalizeFirstLetter(
+      prefix
+    )}Transition${capitalizeFirstLetter(key)}`;
+
+    if (has(styles, path)) {
+      set(classNames, key, styles[path]);
+    }
+  });
+
+  return classNames;
 };
