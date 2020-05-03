@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 // Decorators
-import withReduxForm from '../decorators/withReduxForm';
+import withReduxForm from '../hocs/withReduxForm';
 
 // Styles
 import styles from './Input.scss';
@@ -86,4 +86,4 @@ const FormInput: React.SFC<Form.Input.Props> = ({
   );
 };
 
-export default withReduxForm<Form.Input.Props>(FormInput);
+export default withReduxForm<Form.Input.Props>()(FormInput);

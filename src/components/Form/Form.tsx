@@ -7,9 +7,14 @@ import Transition from '@components/Transition';
 // Styles
 import styles from './Form.scss';
 
-const Form = ({ children, classes, error, onSubmit }: Form.Props) => (
+const Form: React.SFC<Form.Props> = ({
+  children,
+  classes,
+  error,
+  onSubmit
+}) => (
   <form className={classes?.root} onSubmit={onSubmit}>
-    <Transition duration={400} enter="fadeInUp" in={!!error} timeout={400}>
+    <Transition duration={400} enter="fadeInUp" in={!!error}>
       <div className={classNames(classes?.error, styles.Error)}>{error}</div>
     </Transition>
 

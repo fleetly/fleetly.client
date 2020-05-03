@@ -10,9 +10,8 @@ const reduxFieldAdapter = ({
 }: Form.ReduxFieldAdapter) =>
   children({ ...input, ...props, error: touched && error });
 
-const withReduxForm = <T extends {}>(
-  FieldComponent: React.SFC<T>,
-  extraProps?: T
+const withReduxForm = <T extends {}>(extraProps?: Form.ReduxFieldProps) => (
+  FieldComponent: React.SFC<T>
 ) => (props: any) => {
   const { children, id: propId, name } = props;
   const id: string = propId || uuidv5(name, uuidv5.URL);

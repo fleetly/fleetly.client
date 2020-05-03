@@ -7,32 +7,44 @@ import './Transition.scss';
 
 const Transition: React.SFC<Transition.Props> = ({
   children,
-  delay,
-  duration,
+  delay = 0,
+  duration = 0,
   in: propIn,
   enter,
-  exit,
-  timeout
+  exit
 }) => {
+  const formattedDelay: Transition.Timing = {
+    enter: get(delay, 'enter', delay || 0),
+    exit: get(delay, 'exit', delay || 0)
+  };
+
+  const formattedDuration: Transition.Timing = {
+    enter: get(duration, 'enter', duration || 0),
+    exit: get(duration, 'exit', duration || 0)
+  };
+
   const getAnimationStyle = (state: string) => {
     let animation = null;
 
     if ((state === 'entering' && enter) || (state === 'exiting' && exit)) {
       const type = state === 'entering' ? 'enter' : 'exit';
 
-      // Timing
-      const currentDelay = get(delay, type, delay || 0) / 1000;
-      const currentDuration = get(duration, type, duration || 1000) / 1000;
-      const currentName = type === 'enter' ? enter : exit;
-
-      animation = `${currentName} ${currentDuration}s ${currentDelay}s both`;
+      animation = `${type === 'enter' ? enter : exit} ${
+        get(formattedDuration, type) / 1000
+      }s ${get(formattedDelay, type) / 1000}s both`;
     }
 
     return animation;
   };
 
   return (
-    <ReactTransition in={propIn} timeout={timeout}>
+    <ReactTransition
+      in={propIn}
+      timeout={{
+        enter: formattedDelay.enter + formattedDuration.enter,
+        exit: formattedDelay.exit + formattedDuration.exit
+      }}
+    >
       {(state) =>
         React.cloneElement(children, {
           style: {

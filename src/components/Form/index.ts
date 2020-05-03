@@ -4,8 +4,8 @@ export { default } from './Form';
 export { default as Fieldset } from './components/Fieldset';
 export { default as Input } from './components/Input';
 
-// Decorators
-export { default as withReduxForm } from './decorators/withReduxForm';
+// HOCs
+export { default as withReduxForm } from './hocs/withReduxForm';
 
 // Utils
 export { default as asyncValidate } from './utils/asyncValidate';
