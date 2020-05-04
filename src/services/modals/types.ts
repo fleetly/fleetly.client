@@ -1,0 +1,3 @@
+export const CLOSE_MODAL: string = 'SERVICES/MODALS/CLOSE_MODAL';
+export const CLOSE_MODALS: string = 'SERVICES/MODALS/CLOSE_MODALS';
+export const OPEN_MODAL: string = 'SERVICES/MODALS/OPEN_MODAL';

@@ -2,6 +2,7 @@ import { combineReducers, compose, createStore } from 'redux';
 
 // Reducer
 import { reducer as form } from 'redux-form';
+import modals from '@services/modals';
 
 declare global {
   interface Window {
@@ -10,7 +11,8 @@ declare global {
 }
 
 const reducer = combineReducers({
-  form
+  form,
+  modals
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
