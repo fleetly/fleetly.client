@@ -17,29 +17,21 @@ import { IModalState } from '@services/modals/reducer';
 // Styles
 import styles from './Modal.scss';
 
-interface IHandleCloseProps {
-  closeModal(id: string): void;
-  id: string;
-  onClose(): void;
-}
-
-const Modal: ({
+const Modal: React.ComponentClass<Modal.Props> = ({
   children,
   classes,
-  isOpened,
+  isOpened = false,
+  handleClose,
   title,
-  ...props
-}: Modal.Props) => false | any = ({
-  children,
-  classes,
-  isOpened,
-  title = 'hallo',
   ...props
 }) =>
   isOpened && (
     <Portal>
       <div className={classNames(classes?.root, styles.Root)}>
-        <div className={classNames(classes?.backdrop, styles.Backdrop)} />
+        <div
+          className={classNames(classes?.backdrop, styles.Backdrop)}
+          onClick={handleClose}
+        />
 
         <div className={classNames(classes?.container, styles.Container)}>
           {title && (
@@ -56,12 +48,11 @@ const Modal: ({
     </Portal>
   );
 
-const mapStateToProps: MapStateToProps<
-  Modal.Props,
-  IModalState,
-  { services: any }
-> = ({ services }, { id, isOpened }) => {
-  const modal = get(services, `modals.${id}`);
+const mapStateToProps: MapStateToProps<Modal.Props, IModalState> = (
+  state,
+  { id, isOpened }
+) => {
+  const modal = get(state, `modals.${id}`);
 
   return {
     ...modal,
@@ -72,13 +63,8 @@ const mapStateToProps: MapStateToProps<
 export default compose(
   connect(mapStateToProps, { closeModal }),
   withHandlers({
-    handleClose: ({
-      closeModal,
-      id,
-      onClose
-    }: IHandleCloseProps) => (): void => {
+    handleClose: ({ closeModal, id }: Modal.IHandleCloseProps) => (): void => {
       closeModal(id);
-      onClose();
     }
   })
 )(Modal);

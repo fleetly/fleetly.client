@@ -17,6 +17,11 @@ declare namespace Modal {
     isOpened: boolean;
     handleClose(): void;
   }
+
+  interface IHandleCloseProps {
+    closeModal(id: string): void;
+    id: string;
+  }
 }
 
 export = Modal;

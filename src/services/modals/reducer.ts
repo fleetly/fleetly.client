@@ -18,11 +18,11 @@ export default (
   const id = get(action, 'id', '');
   switch (action.type) {
     case CLOSE_MODAL:
-      return { ...state, id };
+      return { ...state, [id]: action.payload || false };
     case CLOSE_MODALS:
       return initialState;
     case OPEN_MODAL:
-      return { ...state, id };
+      return { ...state, [id]: action.payload || true };
     default:
       return state;
   }
