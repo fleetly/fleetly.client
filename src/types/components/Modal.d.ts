@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 declare namespace Modal {
-  interface Classes {
-    root?: string;
+  interface Classes extends ExtendedClasses {
     backdrop?: string;
     container?: string;
     title?: string;
@@ -11,11 +10,13 @@ declare namespace Modal {
 
   interface Props {
     children: React.ReactNode;
-    node?: Element | null;
+    data?: Map<string, any>;
     classes?: Classes;
+    id: string;
+    isOpened?: boolean;
+    onClose?(event: React.SyntheticEvent<HTMLDivElement>): void;
+    // handleClose(): void;
     title?: string;
-    isOpened: boolean;
-    handleClose(): void;
   }
 
   interface IHandleCloseProps {

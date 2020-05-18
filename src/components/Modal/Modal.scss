@@ -1,4 +1,5 @@
 @import '~@styles/colors';
+@import './Modal.transition.scss';
 
 .Root {
   align-items: center;
@@ -9,31 +10,31 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 12;
+  z-index: 10;
 }
 
 .Backdrop {
   background: rgba($color-gray-1000, .1);
   height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: 1;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .Container {
   background: $color-gray-0;
   border-radius: 20px;
   box-shadow: 0 40px 80px 0 rgba(0, 0, 0, .06);
-  padding: 40px;
+  min-width: 380px;
+  padding: 60px 40px;
   position: relative;
   z-index: 2;
 }
 
 .Title {
-  margin: 0 0 16px;
+  margin: 0 0 20px;
+  text-align: center;
+  white-space: nowrap;
 }
