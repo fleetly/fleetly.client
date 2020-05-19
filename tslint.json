@@ -8,6 +8,7 @@
     "tslint-plugin-prettier"
   ],
   "rules": {
+    "jsx-boolean-value": false,
     "prettier": true,
     "interface-name": false,
     "no-namespace": false,
