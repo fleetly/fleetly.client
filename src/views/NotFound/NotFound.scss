@@ -4,6 +4,7 @@
 .Root {
   background: url('./assets/bg-desktop.png') no-repeat center center / contain;
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
