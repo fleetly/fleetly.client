@@ -1,0 +1,45 @@
+@import '~@styles/colors';
+
+.Root {
+  display: flex;
+  width: 100%;
+}
+
+.Companies {
+  background: $color-gray-0;
+  border-radius: 0 30px 30px 0;
+  flex: 1 1 auto;
+  max-height: calc(100% - 180px);
+  padding: 32px 0;
+
+  & > *:not(:first-child) {
+    margin: 20px 0 0;
+  }
+}
+
+.Container {
+  flex: 1 1 auto;
+  max-width: calc(100% - 90px);
+}
+
+.Logo {
+  background: url('~@assets/logo.svg') no-repeat center center / contain;
+  display: block;
+  height: 57px;
+  width: 47px;
+}
+
+.Sidebar {
+  display: flex;
+  flex: 0 0 90px;
+  flex-direction: column;
+  width: 90px;
+
+  &Item {
+    align-items: center;
+    display: flex;
+    flex: 0 0 90px;
+    height: 90px;
+    justify-content: center;
+  }
+}
