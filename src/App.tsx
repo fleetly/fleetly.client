@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import styles from './App.scss';
 
 // Views
+import NotFound from '@views/NotFound';
 import Sign from '@views/Sign';
 
 // Utils
@@ -14,6 +15,7 @@ const App = () => (
   <div className={styles.Root}>
     <Switch>
       <Route component={Sign} path={resolve(['sign'])} />
+      <Route component={NotFound} path="*" />
     </Switch>
   </div>
 );
