@@ -2,7 +2,9 @@ import * as React from 'react';
 
 // Components
 import Link from '@components/Link';
-import Company from './components/Company';
+
+// Containers
+import Companies from './containers/Companies';
 
 // Styles
 import styles from './Main.scss';
@@ -15,8 +17,7 @@ const Main = () => (
       </div>
 
       <div className={styles.Companies}>
-        <Company id="1" notifications title="Fleetly" />
-        <Company id="2" title="Fleetly" />
+        <Companies />
       </div>
 
       <div className={styles.SidebarItem}>User</div>

@@ -25,3 +25,6 @@ export interface IState {
   modals: IModalState;
   session: ISessionState;
 }
+
+export * from './services/modals';
+export * from './services/session';

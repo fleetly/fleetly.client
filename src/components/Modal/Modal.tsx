@@ -9,7 +9,7 @@ import { createSelector } from 'reselect';
 import { H3 } from '@components/Typography';
 
 // Services
-import { closeModal } from '@store/services/modals';
+import { closeModal } from '@store';
 
 // Styles
 import styles from './Modal.scss';

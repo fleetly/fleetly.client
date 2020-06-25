@@ -1,0 +1,7 @@
+query {
+  companies {
+    id
+    name
+    title
+  }
+}

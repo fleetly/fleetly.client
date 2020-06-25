@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 // Store
-import createStore from '@store/index';
+import createStore from '@store';
 
 // Styles
 import '@fortawesome/fontawesome-pro/css/all.min.css';
