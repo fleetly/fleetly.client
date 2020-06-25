@@ -20,7 +20,6 @@
       "@components/*": ["components/*"],
       "@containers/*": ["containers/*"],
       "@graphql/*": ["graphql/*"],
-      "@services/*": ["services/*"],
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
