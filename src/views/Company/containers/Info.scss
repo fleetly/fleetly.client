@@ -1,0 +1,22 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  align-items: center;
+  display: flex;
+}
+
+.Content {
+  margin: 0 0 0 20px;
+}
+
+.Description {
+  color: $color-gray-500;
+}
+
+.Logo {
+  background: $color-red-300;
+  border-radius: 100%;
+  flex: 0 0 40px;
+  height: 40px;
+  width: 40px;
+}
