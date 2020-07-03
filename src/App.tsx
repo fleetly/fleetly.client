@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Store
 import { isAuthorized as getAuthState } from '@store';
@@ -29,6 +29,7 @@ const App = () => {
         ) : (
           <>
             <Route component={Sign} path={resolve(['sign'])} />
+            <Redirect to="/sign/in" />
           </>
         )}
 
