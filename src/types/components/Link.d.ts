@@ -4,7 +4,7 @@ declare namespace Link {
   }
 
   interface Props {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     className?: string;
     classes?: Classes;
     to?: string;

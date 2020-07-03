@@ -14,13 +14,14 @@
     "noEmit": true,
     "paths": {
       "@global": ["src/types/global.d.ts"],
+      "@routes": ["routes.ts"],
+      "@store": ["store/index.ts"],
 
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@containers/*": ["containers/*"],
+      "@interfaces/*": ["interfaces/*"],
       "@graphql/*": ["graphql/*"],
-      "@services/*": ["services/*"],
-      "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
       "@views/*": ["views/*"]

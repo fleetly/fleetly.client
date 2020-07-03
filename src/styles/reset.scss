@@ -1,8 +1,11 @@
+@import '~@styles/colors';
+
 :global html {
   box-sizing: border-box;
 }
 
 :global body {
+  background-color: $color-gray-100;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;

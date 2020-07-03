@@ -2,7 +2,9 @@
 @import '~@styles/colors';
 
 .Root {
-  background: url('./assets/bg-desktop.png') no-repeat center center / contain;
+  background:
+    $color-gray-0 url('./assets/bg-desktop.png') no-repeat center
+    center / contain;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -53,6 +55,7 @@
 
 .Description {
   color: $color-gray-600;
+  margin: 8px 0 0;
 }
 
 .Header {
@@ -85,6 +88,7 @@
 
 .Oops {
   color: $color-gray-800;
+  margin: 0 0 -8px;
 }
 
 .Title {

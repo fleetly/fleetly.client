@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 // Store
-import createStore from './store';
+import createStore, { logout } from '@store';
 
 // Styles
 import '@fortawesome/fontawesome-pro/css/all.min.css';
@@ -18,13 +18,24 @@ import '@fortawesome/fontawesome-pro/css/all.min.css';
 // Utils
 import * as serviceWorker from '@utils/serviceWorker';
 
+const store = createStore();
 const client: ApolloClient<InMemoryCache> = new ApolloClient({
   cache: new InMemoryCache(),
-  credentials: 'same-origin',
+  credentials: 'include',
+  onError: ({ graphQLErrors }) =>
+    graphQLErrors?.forEach(({ message }: any) => {
+      const { error } = message;
+
+      switch (error) {
+        case 'Unauthorized':
+          store.dispatch(logout());
+          break;
+        default:
+          break;
+      }
+    }),
   uri: 'http://api.fleetly.it/graphql'
 });
-
-const store = createStore();
 
 ReactDOM.render(
   <React.StrictMode>

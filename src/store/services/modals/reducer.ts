@@ -16,6 +16,7 @@ export default (
   action: IAction
 ): IModalState => {
   const id = get(action, 'id', '');
+
   switch (action.type) {
     case CLOSE_MODAL:
       return { ...state, [id]: action.payload || false };
