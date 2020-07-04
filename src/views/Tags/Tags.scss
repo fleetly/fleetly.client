@@ -1,0 +1,20 @@
+.Root {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+}
+
+.Container {
+  background: #fff;
+  border-radius: 20px;
+  flex: 1 1 auto;
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  flex: 0 0 90px;
+  justify-content: space-between;
+  padding: 0 32px;
+}

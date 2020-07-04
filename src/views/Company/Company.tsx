@@ -1,12 +1,19 @@
 import { get } from 'lodash';
 import * as React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 // Containers
 import Info from './containers/Info';
 import Menu from './containers/Menu';
 
+// Routes
+import ROUTES from '@routes';
+
 // Styles
 import styles from './Company.scss';
+
+// Views
+import Tags from '@views/Tags';
 
 const Company: React.FunctionComponent<Company.Props> = ({ match }) => {
   const companyId: string = get(match, 'params.companyId');
@@ -22,7 +29,12 @@ const Company: React.FunctionComponent<Company.Props> = ({ match }) => {
           <Menu companyId={companyId} />
         </div>
       </div>
-      <div className={styles.Content}>Content</div>
+
+      <div className={styles.Content}>
+        <Switch>
+          <Route component={Tags} path={ROUTES.COMPANY.TAGS.path} />
+        </Switch>
+      </div>
     </div>
   );
 };
