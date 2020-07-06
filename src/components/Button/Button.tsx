@@ -16,6 +16,7 @@ const Button: React.SFC<Button.Props> = ({
   classes,
   color = 'default',
   disabled,
+  fullWidth,
   icon,
   loaded,
   onClick,
@@ -33,7 +34,11 @@ const Button: React.SFC<Button.Props> = ({
         classes?.root,
         styles.Root,
         getClassName('color', { collection: styles, value: color }),
-        getClassName('variant', { collection: styles, value: variant })
+        getClassName('variant', { collection: styles, value: variant }),
+        {
+          [styles.RootModeFullWidth]: fullWidth,
+          [styles.RootModeIcon]: icon && !children
+        }
       )}
       disabled={disabled}
       onClick={onClick}

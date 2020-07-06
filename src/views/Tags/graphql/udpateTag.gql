@@ -1,0 +1,8 @@
+mutation updateTag($tagId: String!, $tag: TagInput!) {
+  updateTag(tagId: $tagId, tag: $tag) {
+    id
+    color
+    description
+    title
+  }
+}

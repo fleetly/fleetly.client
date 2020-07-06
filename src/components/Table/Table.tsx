@@ -7,9 +7,14 @@ import styles from './Table.scss';
 type PropTypes = {
   columns: any;
   data: any;
+  onTrClick: any;
 };
 
-const Table: React.FunctionComponent<PropTypes> = ({ columns, data }) => {
+const Table: React.FunctionComponent<PropTypes> = ({
+  columns,
+  data,
+  onTrClick
+}) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -22,51 +27,69 @@ const Table: React.FunctionComponent<PropTypes> = ({ columns, data }) => {
   });
 
   return (
-    <table {...getTableProps()} className={styles.Root}>
-      <thead className={styles.Thead}>
+    <div {...getTableProps()} className={styles.Root}>
+      <div className={styles.Thead}>
         {headerGroups.map((headerGroup, index) => (
-          <tr
+          <div
             {...headerGroup.getHeaderGroupProps()}
             className={styles.Tr}
             key={index}
           >
-            {headerGroup.headers.map((column, index) => (
-              <th
-                {...column.getHeaderProps()}
-                className={styles.Th}
-                key={index}
-                style={{ flex: `0 0 ${column.width}px` }}
-              >
-                {column.render('Header')}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
+            {headerGroup.headers.map((column) => {
+              const { key, role } = column.getHeaderProps();
 
-      <tbody {...getTableBodyProps()} className={styles.Tbody}>
+              return (
+                <div
+                  {...column.getHeaderProps()}
+                  className={styles.Th}
+                  key={key}
+                  role={role}
+                  style={{
+                    flex: `${column.width} 0 auto`,
+                    maxWidth: column.maxWidth,
+                    width: column.width
+                  }}
+                >
+                  {column.render('Header')}
+                </div>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      <div {...getTableBodyProps()} className={styles.Tbody}>
         {rows.map((row, index) => {
           prepareRow(row);
 
           return (
-            <tr {...row.getRowProps()} className={styles.Tr} key={index}>
+            <div
+              {...row.getRowProps()}
+              className={styles.Tr}
+              key={index}
+              onClick={onTrClick.bind(null, row.original)}
+            >
               {row.cells.map((cell, index) => {
                 return (
-                  <td
+                  <div
                     {...cell.getCellProps()}
                     className={styles.Td}
                     key={index}
-                    style={{ flex: `0 0 ${cell.column.width}px` }}
+                    style={{
+                      flex: `${cell.column.width} 0 auto`,
+                      maxWidth: cell.column.maxWidth,
+                      width: cell.column.width
+                    }}
                   >
                     {cell.render('Cell')}
-                  </td>
+                  </div>
                 );
               })}
-            </tr>
+            </div>
           );
         })}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 };
 

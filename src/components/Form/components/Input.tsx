@@ -19,7 +19,8 @@ const FormInput: React.SFC<Form.Input.Props> = ({
   onChange,
   onFocus,
   placeholder,
-  type = 'text'
+  type = 'text',
+  value
 }) => {
   const [isFocused, setFocusState] = React.useState(false);
 
@@ -76,6 +77,7 @@ const FormInput: React.SFC<Form.Input.Props> = ({
           onChange={onChange}
           placeholder={placeholder}
           type={type}
+          value={value}
         />
       </div>
 
