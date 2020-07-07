@@ -1,5 +1,6 @@
 .Root {
   display: flex;
+  width: 100%;
 }
 
 .Company {
@@ -16,7 +17,9 @@
 }
 
 .Content {
+  display: flex;
   flex: 1 1 auto;
+  flex-direction: column;
   max-width: calc(100% - 260px);
 }
 

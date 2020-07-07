@@ -47,6 +47,10 @@
   }
 
   &Mode {
+    &FullWidth {
+      width: 100%;
+    }
+
     &Icon {
       min-width: 40px;
       width: 40px;

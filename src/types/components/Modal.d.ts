@@ -12,7 +12,7 @@ declare namespace Modal {
     children: React.ReactNode;
     data?: Map<string, any>;
     classes?: Classes;
-    id: string;
+    id: string | symbol;
     isOpened?: boolean;
     onClose?(event: React.SyntheticEvent<HTMLDivElement>): void;
     // handleClose(): void;

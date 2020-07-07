@@ -17,7 +17,6 @@ import styles from './Modal.scss';
 const Modal: React.SFC<Modal.Props> = ({
   children,
   classes,
-  data,
   id,
   isOpened = false,
   onClose = () => null,
@@ -61,15 +60,15 @@ const Modal: React.SFC<Modal.Props> = ({
           />
 
           <div className={classNames(classes?.container, styles.Container)}>
-            {title && (
+            {(title || modal?.title) && (
               <H3 className={classNames(classes?.title, styles.Title)}>
-                {title}
+                {modal?.title || title}
               </H3>
             )}
 
             <div className={classNames(classes?.content, styles.Content)}>
               {typeof children === 'function'
-                ? children({ ...data })
+                ? children({ ...modal?.data })
                 : children}
             </div>
           </div>
