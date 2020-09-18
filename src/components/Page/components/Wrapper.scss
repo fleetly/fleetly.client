@@ -2,13 +2,20 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  max-height: 100%;
+  padding: 0 32px 32px 0;
   width: 100%;
 }
 
 .Container {
   background: #fff;
   border-radius: 20px;
+  display: flex;
   flex: 1 1 auto;
+  flex-direction: column;
+  max-height: calc(100% - 90px);
+  overflow-x: visible;
+  overflow-y: scroll;
 }
 
 .Header {

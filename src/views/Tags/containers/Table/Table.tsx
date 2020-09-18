@@ -11,11 +11,7 @@ const TagsTable = () => {
   const { companyId, handleDeleteClick, handleEditClick } = useTags();
   const { columns, data } = useTagsTable({ companyId, handleDeleteClick });
 
-  return (
-    <div>
-      <Table columns={columns} data={data} onTrClick={handleEditClick} />
-    </div>
-  );
+  return <Table columns={columns} data={data} onTrClick={handleEditClick} />;
 };
 
 export default TagsTable;

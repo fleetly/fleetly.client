@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useQuery } from 'react-apollo';
 
 // Components
-import { P, Span } from '@components/Typography';
+import { Caption, P } from '@components/Typography';
 
 // GraphQL
 import GET_COMPANY_BY_ID from '@graphql/getCompanyById.gql';
@@ -23,7 +23,7 @@ const CompanyInfo: React.FunctionComponent<Company.Info.Props> = ({
         <P className={styles.Title} component="div">
           {data?.company?.title}
         </P>
-        <Span className={styles.Description}>Software project</Span>
+        <Caption className={styles.Description}>Software project</Caption>
       </div>
     </div>
   );

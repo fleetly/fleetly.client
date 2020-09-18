@@ -4,13 +4,7 @@ import { useTable } from 'react-table';
 // Styles
 import styles from './Table.scss';
 
-type PropTypes = {
-  columns: any;
-  data: any;
-  onTrClick: any;
-};
-
-const Table: React.FunctionComponent<PropTypes> = ({
+const Table: React.FunctionComponent<Table.Props> = ({
   columns,
   data,
   onTrClick
@@ -63,12 +57,7 @@ const Table: React.FunctionComponent<PropTypes> = ({
           prepareRow(row);
 
           return (
-            <div
-              {...row.getRowProps()}
-              className={styles.Tr}
-              key={index}
-              onClick={onTrClick.bind(null, row.original)}
-            >
+            <div {...row.getRowProps()} className={styles.Tr} key={index}>
               {row.cells.map((cell, index) => {
                 return (
                   <div
@@ -94,3 +83,5 @@ const Table: React.FunctionComponent<PropTypes> = ({
 };
 
 export default Table;
+
+// onClick={onTrClick?.bind(null, row.original)}

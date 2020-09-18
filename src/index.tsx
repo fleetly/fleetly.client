@@ -24,9 +24,7 @@ const client: ApolloClient<InMemoryCache> = new ApolloClient({
   credentials: 'include',
   onError: ({ graphQLErrors }) =>
     graphQLErrors?.forEach(({ message }: any) => {
-      const { error } = message;
-
-      switch (error) {
+      switch (message) {
         case 'Unauthorized':
           store.dispatch(logout());
           break;

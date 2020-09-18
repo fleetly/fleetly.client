@@ -1,5 +1,10 @@
 .Root {
   &Variant {
+    &Caption {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
     &H1 {
       font-size: 60px;
       font-weight: 800;
@@ -44,11 +49,6 @@
       font-size: 14px;
       letter-spacing: -.2px;
       line-height: 24px;
-    }
-
-    &Span {
-      font-size: 12px;
-      line-height: 16px;
     }
   }
 }

@@ -57,6 +57,6 @@ export const H6: React.SFC<Typography.Props> = (props) => (
   <Typography component="h6" variant="h6" {...props} />
 );
 
-export const Span: React.SFC<Typography.Props> = (props) => (
-  <Typography component="div" variant="span" {...props} />
+export const Caption: React.SFC<Typography.Props> = (props) => (
+  <Typography component="div" variant="caption" {...props} />
 );

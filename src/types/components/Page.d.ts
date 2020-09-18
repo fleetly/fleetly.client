@@ -10,6 +10,22 @@ declare namespace Page {
     classes?: Classes;
     title?: string;
   }
+
+  namespace Wrapper {
+    interface Classes extends ExtendedClasses {
+      actions?: string;
+      container?: string;
+      header?: string;
+      title?: string;
+    }
+
+    interface Props {
+      actions?: React.ReactNode;
+      children: React.ReactNode;
+      classes?: Classes;
+      title?: string;
+    }
+  }
 }
 
 export = Page;
