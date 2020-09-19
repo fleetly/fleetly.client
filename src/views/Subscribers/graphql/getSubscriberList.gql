@@ -1,0 +1,13 @@
+query getSubscriberList($companyId: String!) {
+  subscribers(companyId: $companyId) {
+    id
+    source {
+      id
+      firstname
+      lastname
+      photo
+      type
+      username
+    }
+  }
+}

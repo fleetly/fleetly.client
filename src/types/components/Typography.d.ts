@@ -1,5 +1,5 @@
 declare namespace Typography {
-  type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'caption';
 
   interface Classes {
     root?: string;

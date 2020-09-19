@@ -1,4 +1,4 @@
-import { set } from 'lodash';
+import { get, set } from 'lodash';
 import { GraphQLFormattedError } from 'graphql';
 import { SubmissionError } from 'redux-form';
 
@@ -9,8 +9,11 @@ export default ({ graphQLErrors, message }: any): void => {
   const errors = {};
 
   if (graphQLErrors && graphQLErrors.length > 0) {
-    graphQLErrors.forEach(({ message: error }: GraphQLFormattedError) => {
-      const { message, validationErrors }: any = error;
+    graphQLErrors.forEach(({ extensions, message }: GraphQLFormattedError) => {
+      const validationErrors = get(
+        extensions,
+        'exception.response.message.validationErrors'
+      );
 
       if (validationErrors) {
         Object.keys(validationErrors).forEach((key: string) => {

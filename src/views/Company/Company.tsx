@@ -13,6 +13,7 @@ import ROUTES from '@routes';
 import styles from './Company.scss';
 
 // Views
+import Subscribers from '@views/Subscribers';
 import Tags from '@views/Tags';
 
 const Company: React.FunctionComponent<Company.Props> = ({ match }) => {
@@ -32,6 +33,10 @@ const Company: React.FunctionComponent<Company.Props> = ({ match }) => {
 
       <div className={styles.Content}>
         <Switch>
+          <Route
+            component={Subscribers}
+            path={ROUTES.COMPANY.SUBSCRIBERS.path}
+          />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS.path} />
         </Switch>
       </div>

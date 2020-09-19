@@ -49,7 +49,10 @@ const useTagsTable = ({ companyId, handleDeleteClick }: any) => {
     [handleDeleteClick]
   );
 
-  return { columns, data: data?.tags || [] };
+  return {
+    columns,
+    data: data?.tags || []
+  };
 };
 
 export { useTagsTable };

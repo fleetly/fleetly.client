@@ -1,7 +1,9 @@
-import * as React from 'react';
 import { useMutation } from 'react-apollo';
 import { useDispatch } from 'react-redux';
-import { matchPath, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+// Components
+import { gqlErrorHandler } from '@components/Form';
 
 // Data
 import { TAGS_MODAL } from './data';
@@ -12,25 +14,13 @@ import DELETE_TAG from './graphql/deleteTag.gql';
 import GET_TAG_LIST from './graphql/getTagList.gql';
 import UPDATE_TAG from './graphql/udpateTag.gql';
 
-// Routes
-import ROUTES from '@routes';
-
 // Store
 import { closeModal, openModal } from '@store';
 
 const useTags = () => {
   // Setup
+  const { companyId }: any = useParams();
   const dispatch = useDispatch();
-  const location = useLocation();
-
-  // Parse the company ID
-  const companyId: string = React.useMemo(() => {
-    const match: any = matchPath(location.pathname, {
-      path: ROUTES.COMPANY.TAGS.path
-    });
-
-    return match?.params?.companyId;
-  }, [location]);
 
   // Mutations
   const refetchQueries = [{ query: GET_TAG_LIST, variables: { companyId } }];
@@ -60,8 +50,11 @@ const useTags = () => {
       ? udpateTag({ variables: { tagId: id, tag } })
       : createTag({ variables: { companyId, tag } });
 
-    return mutate.then(() => dispatch(closeModal(TAGS_MODAL)));
+    return mutate
+      .then(() => dispatch(closeModal(TAGS_MODAL)))
+      .catch(gqlErrorHandler);
   };
+
   return {
     companyId,
     handleAddClick,
