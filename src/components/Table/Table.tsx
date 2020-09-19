@@ -53,12 +53,19 @@ const Table: React.FunctionComponent<Table.Props> = ({
       </div>
 
       <div {...getTableBodyProps()} className={styles.Tbody}>
-        {rows.map((row, index) => {
+        {rows.map((row: any, index) => {
           prepareRow(row);
 
+          const handleRowClick = () => onTrClick && onTrClick(row.original);
+
           return (
-            <div {...row.getRowProps()} className={styles.Tr} key={index}>
-              {row.cells.map((cell, index) => {
+            <div
+              {...row.getRowProps()}
+              className={styles.Tr}
+              key={index}
+              onClick={handleRowClick}
+            >
+              {row.cells.map((cell: any, index: number) => {
                 return (
                   <div
                     {...cell.getCellProps()}

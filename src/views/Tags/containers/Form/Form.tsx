@@ -25,11 +25,15 @@ const TagsForm: React.FunctionComponent<InjectedFormProps<
   },
   {},
   string
->> = ({ handleSubmit, initialValues, submitting }) => {
+>> = ({ error, handleSubmit, initialValues, submitting }) => {
   const isEditMode = initialValues?.id;
 
   return (
-    <Form classes={{ container: styles.Root }} onSubmit={handleSubmit}>
+    <Form
+      classes={{ container: styles.Root }}
+      error={error}
+      onSubmit={handleSubmit}
+    >
       {!isEditMode && (
         <P className={styles.Description} component="div">
           Created tags can be changed at any time.

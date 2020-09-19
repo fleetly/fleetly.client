@@ -2,6 +2,9 @@ import { useMutation } from 'react-apollo';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+// Components
+import { gqlErrorHandler } from '@components/Form';
+
 // Data
 import { TAGS_MODAL } from './data';
 
@@ -16,7 +19,7 @@ import { closeModal, openModal } from '@store';
 
 const useTags = () => {
   // Setup
-  const { companyId } = useParams();
+  const { companyId }: any = useParams();
   const dispatch = useDispatch();
 
   // Mutations
@@ -47,8 +50,11 @@ const useTags = () => {
       ? udpateTag({ variables: { tagId: id, tag } })
       : createTag({ variables: { companyId, tag } });
 
-    return mutate.then(() => dispatch(closeModal(TAGS_MODAL)));
+    return mutate
+      .then(() => dispatch(closeModal(TAGS_MODAL)))
+      .catch(gqlErrorHandler);
   };
+
   return {
     companyId,
     handleAddClick,

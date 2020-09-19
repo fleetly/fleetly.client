@@ -50,7 +50,7 @@ const Modal: React.SFC<Modal.Props> = ({
           enterActive: styles.RootTransitionEnterActive
         }}
         in={!!modal || isOpened}
-        timeout={700}
+        timeout={{ enter: 700 }}
         unmountOnExit
       >
         <div className={classNames(classes?.root, styles.Root)}>
