@@ -7,7 +7,7 @@ import withReduxForm from '../hocs/withReduxForm';
 // Styles
 import styles from './Input.scss';
 
-const FormInput: React.SFC<Form.Input.Props> = ({
+const FormInput: React.FunctionComponent<Form.Input.Props> = ({
   classes,
   error,
   disabled,
@@ -25,6 +25,7 @@ const FormInput: React.SFC<Form.Input.Props> = ({
   const [isFocused, setFocusState] = React.useState(false);
 
   const handleBlur = (event: React.FocusEvent) => {
+    // @todo - if you use it leads to a glitch with a double click on the button
     onBlur(event);
     setFocusState(false);
   };

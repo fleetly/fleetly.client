@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { useQuery } from 'react-apollo';
 
 // Components
 import Button from '@components/Button';
-import { ColorCell } from '../../components/Color';
+import Table from '@components/Table';
 
-// GraphQL
-import GET_TAG_LIST from '../../graphql/getTagList.gql';
+import { ColorCell } from '../components/Color';
 
-const useTagsTable = ({ companyId, handleDeleteClick }: any) => {
-  const { data } = useQuery(GET_TAG_LIST, { variables: { companyId } });
-
+const TagsTable: React.FunctionComponent<Tags.Table.Props> = ({
+  data,
+  onDelete,
+  onEdit
+}) => {
   const columns = React.useMemo(
     () => [
       {
@@ -38,7 +38,7 @@ const useTagsTable = ({ companyId, handleDeleteClick }: any) => {
           <Button
             color="danger"
             icon="far fa-trash-alt"
-            onClick={handleDeleteClick.bind(null, value)}
+            onClick={onDelete?.bind(null, value)}
             variant="outlined"
           />
         ),
@@ -46,13 +46,10 @@ const useTagsTable = ({ companyId, handleDeleteClick }: any) => {
         maxWidth: 40
       }
     ],
-    [handleDeleteClick]
+    [onDelete]
   );
 
-  return {
-    columns,
-    data: data?.tags || []
-  };
+  return <Table columns={columns} data={data} onTrClick={onEdit} />;
 };
 
-export { useTagsTable };
+export default TagsTable;

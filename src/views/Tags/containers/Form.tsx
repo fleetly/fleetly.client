@@ -8,10 +8,10 @@ import Button from '@components/Button';
 import Form, { asyncValidate, Fieldset, Input } from '@components/Form';
 import { P } from '@components/Typography';
 
-import { ColorField } from '../../components/Color';
+import { ColorField } from '../components/Color';
 
 // Data
-import { TAGS_FORM } from '../../data';
+import { TAGS_FORM } from '../data';
 
 // Styles
 import styles from './Form.scss';

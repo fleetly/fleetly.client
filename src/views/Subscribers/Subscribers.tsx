@@ -2,18 +2,20 @@ import * as React from 'react';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
-import Table from '@components/Table';
+
+// Containers
+import Table from './containers/Table';
 
 // Hooks
 import { useSubscribers } from './Subscribers.hooks';
 
 const Subscribers = () => {
-  const { columns, data } = useSubscribers();
+  const { subscribers } = useSubscribers();
 
   return (
     <Page title="Subscribers">
-      <Wrapper title={`Subscribers (${data.length})`}>
-        <Table columns={columns} data={data} />
+      <Wrapper title={`Subscribers (${subscribers.length})`}>
+        <Table data={subscribers} />
       </Wrapper>
     </Page>
   );

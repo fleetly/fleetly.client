@@ -16,7 +16,13 @@ import { TAGS_FORM, TAGS_MODAL } from './data';
 import { useTags } from './Tags.hooks';
 
 const Tags = () => {
-  const { handleAddClick, handleFormSubmit } = useTags();
+  const {
+    handleAddClick,
+    handleDeleteClick,
+    handleEditClick,
+    handleFormSubmit,
+    tags
+  } = useTags();
 
   return (
     <Page title="Tags">
@@ -26,9 +32,13 @@ const Tags = () => {
             Create Tag
           </Button>
         }
-        title="Tags"
+        title={`Tags (${tags.length})`}
       >
-        <Table />
+        <Table
+          data={tags}
+          onDelete={handleDeleteClick}
+          onEdit={handleEditClick}
+        />
 
         <Modal id={TAGS_MODAL} title="Create new tag">
           {({ id, initialValues }: any) => (

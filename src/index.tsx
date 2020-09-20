@@ -20,7 +20,7 @@ import * as serviceWorker from '@utils/serviceWorker';
 
 const store = createStore();
 const client: ApolloClient<InMemoryCache> = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({ addTypename: false }),
   credentials: 'include',
   onError: ({ graphQLErrors }) =>
     graphQLErrors?.forEach(({ message }: any) => {
