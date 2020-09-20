@@ -23,7 +23,7 @@ const Tags = () => {
       <Wrapper
         actions={
           <Button color="primary" onClick={handleAddClick}>
-            Add Tag
+            Create Tag
           </Button>
         }
         title="Tags"

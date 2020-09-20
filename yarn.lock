@@ -1026,10 +1026,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@fleetly/common@^0.0.57":
-  version "0.0.57"
-  resolved "https://npm.pkg.github.com/download/@fleetly/common/0.0.57/071dcde142236ce4e6dc8399d4e0ad4ea6cdc3f5dfe65591bb11f2290f30a8d5#6bd6fd068987f27bd5ab7e9732a415f34e137e44"
-  integrity sha512-J7MKfZxvQHscrGkeFISvSoLd7ZhJwzctrDIOdslyo9XlctgNhJKry2yHXIGbo4AV8izz4fW1jw7BM5nko5c4Pg==
+"@fleetly/common@^0.0.72":
+  version "0.0.72"
+  resolved "https://npm.pkg.github.com/download/@fleetly/common/0.0.72/8d26e81c548bfb47b55fc591c138aab8d02a18c1436d4908c56075505a376e7d#15ed1954ffab4640b40f910e5d921310b02df5e5"
+  integrity sha512-pZEzrukSkfbSYdTaTiqpOdYsQJZfMLJJoJzNBvFX7WlUYQcpsY/ChscWMrUzidzRrlKR/0S4EDtJRaRFv+hRzw==
   dependencies:
     factory-girl "^5.0.4"
 
@@ -3262,9 +3262,9 @@ chalk@^4.0.0:
     supports-color "^7.1.0"
 
 chance@^1.0.4:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/chance/-/chance-1.1.6.tgz#967a0a129e0f342f7c65cd5d20f5ae870a26b8af"
-  integrity sha512-DXLzaGjasDWbvlFAJyQBIwlzdQZuPdz4of9TTTxmHTjja88ZU/vBwUwxxjalSt43zWTPrhiJT0z0N4bZqfZS9w==
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.1.7.tgz#e99dde5ac16681af787b5ba94c8277c090d6cfe8"
+  integrity sha512-bua/2cZEfzS6qPm0vi3JEvGNbriDLcMj9lKxCQOjUcCJRcyjA7umP0zZm6bKWWlBN04vA0L99QGH/CZQawr0eg==
 
 change-emitter@^0.1.2:
   version "0.1.6"

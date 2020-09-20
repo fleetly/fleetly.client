@@ -1,3 +1,3 @@
-export const CLOSE_MODAL: symbol = Symbol('@@modals/CLOSE_MODAL');
-export const CLOSE_MODALS: symbol = Symbol('@@modals/CLOSE_MODALS');
-export const OPEN_MODAL: symbol = Symbol('@@modals/OPEN_MODAL');
+export const CLOSE_MODAL: string = '@@modals/CLOSE_MODAL';
+export const CLOSE_MODALS: string = '@@modals/CLOSE_MODALS';
+export const OPEN_MODAL: string = '@@modals/OPEN_MODAL';

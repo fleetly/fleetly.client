@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fleetly/common": "^0.0.57",
+    "@fleetly/common": "^0.0.72",
     "@fortawesome/fontawesome-pro": "^5.13.0",
     "@types/react-portal": "^4.0.2",
     "apollo-boost": "^0.4.7",
