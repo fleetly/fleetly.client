@@ -21,7 +21,7 @@
       cursor: pointer;
 
       .Td {
-        & > button {
+        & button {
           background: $color-gray-0;
           border-color: $color-gray-0;
         }
