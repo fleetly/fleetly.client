@@ -18,6 +18,7 @@ const Button: React.SFC<Button.Props> = ({
   disabled,
   fullWidth,
   icon,
+  id,
   loaded,
   onClick,
   to,
@@ -41,6 +42,7 @@ const Button: React.SFC<Button.Props> = ({
         }
       )}
       disabled={disabled}
+      id={id}
       onClick={onClick}
       type={type}
     >
