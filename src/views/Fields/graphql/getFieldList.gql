@@ -1,0 +1,8 @@
+query getFieldList($companyId: String!) {
+  fields(companyId: $companyId) {
+    id
+    description
+    title
+    type
+  }
+}
