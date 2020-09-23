@@ -11,7 +11,7 @@ import { P } from '@components/Typography';
 import { FIELDS_FORM } from '../data';
 
 // Infrastructures
-import IField from '@interfaces/field.interface';
+import { IField } from '@interfaces/field.interface';
 
 // Styles
 import styles from './Form.scss';
