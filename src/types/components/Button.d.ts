@@ -12,6 +12,7 @@ declare namespace Button {
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: string;
+    id?: number | string;
     loaded?: boolean;
     onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
     to?: string;

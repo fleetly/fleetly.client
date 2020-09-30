@@ -5,19 +5,19 @@ import Button from '@components/Button';
 import Modal from '@components/Modal';
 import Page, { Wrapper } from '@components/Page';
 
+// Constants
+import { CREATE_TAG_FORM, CREATE_TAG_MODAL } from '@constants';
+
 // Containers
 import Form from './containers/Form';
 import Table from './containers/Table';
-
-// Data
-import { TAGS_FORM, TAGS_MODAL } from './data';
 
 // Hooks
 import { useTags } from './Tags.hooks';
 
 const Tags = () => {
   const {
-    handleAddClick,
+    handleCreateClick,
     handleDeleteClick,
     handleEditClick,
     handleFormSubmit,
@@ -28,7 +28,7 @@ const Tags = () => {
     <Page title="Tags">
       <Wrapper
         actions={
-          <Button color="primary" onClick={handleAddClick}>
+          <Button color="primary" onClick={handleCreateClick}>
             Create Tag
           </Button>
         }
@@ -40,10 +40,10 @@ const Tags = () => {
           onEdit={handleEditClick}
         />
 
-        <Modal id={TAGS_MODAL} title="Create new tag">
+        <Modal id={CREATE_TAG_MODAL} title="Create new tag">
           {({ id, initialValues }: any) => (
             <Form
-              form={`${TAGS_FORM}-${id}`}
+              form={`${CREATE_TAG_FORM}${id ? `-${id}` : ''}`}
               initialValues={initialValues}
               onSubmit={handleFormSubmit}
             />
