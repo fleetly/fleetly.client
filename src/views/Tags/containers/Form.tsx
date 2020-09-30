@@ -1,4 +1,3 @@
-import { Color } from '@fleetly/common/dist/enums';
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
@@ -10,22 +9,21 @@ import { P } from '@components/Typography';
 
 import { ColorField } from '../components/Color';
 
-// Data
-import { TAGS_FORM } from '../data';
+// Constants
+import { CREATE_TAG_FORM } from '@constants';
+
+// Interfaces
+import { ITag } from '@interfaces/tag.interface';
 
 // Styles
 import styles from './Form.scss';
 
-const TagsForm: React.FunctionComponent<InjectedFormProps<
-  {
-    color: Color;
-    description: string;
-    id: string;
-    title: string;
-  },
-  {},
-  string
->> = ({ error, handleSubmit, initialValues, submitting }) => {
+const TagsForm: React.FunctionComponent<InjectedFormProps<ITag>> = ({
+  error,
+  handleSubmit,
+  initialValues,
+  submitting
+}) => {
   const isEditMode = initialValues?.id;
 
   return (
@@ -59,5 +57,5 @@ export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
     yup.object().shape({ title: yup.string().required() })
   ),
-  form: TAGS_FORM
+  form: CREATE_TAG_FORM
 })(TagsForm);

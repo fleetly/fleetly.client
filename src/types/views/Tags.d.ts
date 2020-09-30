@@ -15,8 +15,8 @@ declare namespace Tags {
   namespace Table {
     interface Props {
       data: ITag[];
-      onDelete?(id: string): void;
-      onEdit?(tag: ITag): void;
+      onDelete(id: string): void;
+      onEdit(tag: ITag): void;
     }
   }
 }
