@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, omit } from 'lodash';
 
 import { IAction } from './actions';
 
@@ -19,7 +19,7 @@ export default (
 
   switch (action.type) {
     case CLOSE_MODAL:
-      return { ...state, [id]: action.payload || false };
+      return omit(state, id);
     case CLOSE_MODALS:
       return initialState;
     case OPEN_MODAL:
