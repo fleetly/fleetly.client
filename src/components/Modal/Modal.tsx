@@ -14,7 +14,7 @@ import { closeModal } from '@store';
 // Styles
 import styles from './Modal.scss';
 
-const Modal: React.SFC<Modal.Props> = ({
+const Modal: React.FC<Modal.Props> = ({
   children,
   classes,
   id,
@@ -53,26 +53,32 @@ const Modal: React.SFC<Modal.Props> = ({
         timeout={{ enter: 700 }}
         unmountOnExit
       >
-        <div className={classNames(classes?.root, styles.Root)}>
-          <div
-            className={classNames(classes?.backdrop, styles.Backdrop)}
-            onClick={handleBackdropClick}
-          />
+        {(state: string) => (
+          <div className={classNames(classes?.root, styles.Root)}>
+            <div
+              className={classNames(classes?.backdrop, styles.Backdrop)}
+              onClick={handleBackdropClick}
+            />
 
-          <div className={classNames(classes?.container, styles.Container)}>
-            {(title || modal?.title) && (
-              <H3 className={classNames(classes?.title, styles.Title)}>
-                {modal?.title || title}
-              </H3>
-            )}
+            <div className={classNames(classes?.container, styles.Container)}>
+              {modal && (
+                <>
+                  {(title || modal?.title) && (
+                    <H3 className={classNames(classes?.title, styles.Title)}>
+                      {modal?.title || title}
+                    </H3>
+                  )}
 
-            <div className={classNames(classes?.content, styles.Content)}>
-              {typeof children === 'function'
-                ? children({ ...modal?.data })
-                : children}
+                  <div className={classNames(classes?.content, styles.Content)}>
+                    {typeof children === 'function'
+                      ? children({ ...modal?.data })
+                      : children}
+                  </div>
+                </>
+              )}
             </div>
           </div>
-        </div>
+        )}
       </CSSTransition>
     </Portal>
   );
