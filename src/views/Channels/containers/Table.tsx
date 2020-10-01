@@ -4,11 +4,16 @@ import * as React from 'react';
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
 import Link from '@components/Link';
+import Status from '@components/Status';
 import Table from '@components/Table';
 import { Caption, P } from '@components/Typography';
 
+// Interfaces
+import { IStatus } from '@interfaces/status.interface';
+
 // Styles
 import styles from './Table.scss';
+import { ChannelStatus } from '@fleetly/common';
 
 const ChannelsTable = ({ data }: any) => {
   const columns = React.useMemo(
@@ -38,7 +43,13 @@ const ChannelsTable = ({ data }: any) => {
         },
         Header: 'Name'
       },
-      { accessor: 'status', Header: 'Status' },
+      {
+        accessor: 'status',
+        Cell: ({ value }: { value: IStatus<ChannelStatus> }) => (
+          <Status color={value.color} title={value.type} />
+        ),
+        Header: 'Status'
+      },
       { accessor: 'messages', Cell: () => 0, Header: 'Messages' },
       { accessor: 'subscribers', Cell: () => 0, Header: 'Subscribers' },
       {

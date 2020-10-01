@@ -8,5 +8,10 @@ query getChannelList($companyId: String!) {
       title
       type
     }
+    status {
+      color
+      message
+      type
+    }
   }
 }
