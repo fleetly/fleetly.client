@@ -9,6 +9,14 @@ const FieldsTable: React.FunctionComponent<Fields.Table.Props> = ({
   onDelete,
   onEdit
 }) => {
+  const handleDeleteClick = React.useCallback(
+    (event: React.SyntheticEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      onDelete(event.currentTarget.getAttribute('id') || '');
+    },
+    [onDelete]
+  );
+
   const columns = React.useMemo(
     () => [
       {
@@ -34,7 +42,8 @@ const FieldsTable: React.FunctionComponent<Fields.Table.Props> = ({
           <Button
             color="danger"
             icon="far fa-trash-alt"
-            onClick={onDelete?.bind(null, value)}
+            id={value}
+            onClick={handleDeleteClick}
             variant="outlined"
           />
         ),
@@ -42,7 +51,7 @@ const FieldsTable: React.FunctionComponent<Fields.Table.Props> = ({
         maxWidth: 40
       }
     ],
-    [onDelete]
+    [handleDeleteClick]
   );
   return <Table columns={columns} data={data} onTrClick={onEdit} />;
 };

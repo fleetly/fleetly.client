@@ -9,15 +9,15 @@ import Page, { Wrapper } from '@components/Page';
 import Form from './containers/Form';
 import Table from './containers/Table';
 
-// Data
-import { FIELDS_FORM, FIELDS_MODAL } from './data';
+// Constants
+import { CREATE_FIELD_FORM, CREATE_FIELD_MODAL } from '@constants';
 
 // Hooks
 import { useFields } from './Fields.hooks';
 
 const Fields = () => {
   const {
-    handleAddClick,
+    handleCreateClick,
     handleDeleteClick,
     handleEditClick,
     handleFormSubmit,
@@ -28,7 +28,7 @@ const Fields = () => {
     <Page title="Fields">
       <Wrapper
         actions={
-          <Button color="primary" onClick={handleAddClick}>
+          <Button color="primary" onClick={handleCreateClick}>
             Create Field
           </Button>
         }
@@ -40,10 +40,10 @@ const Fields = () => {
           onEdit={handleEditClick}
         />
 
-        <Modal id={FIELDS_MODAL} title="Create new field">
+        <Modal id={CREATE_FIELD_MODAL} title="Create new field">
           {({ id, initialValues }: any) => (
             <Form
-              form={`${FIELDS_FORM}-${id}`}
+              form={`${CREATE_FIELD_FORM}${id ? `-${id}` : ''}`}
               initialValues={{ ...initialValues, type: 'TEXT' }}
               onSubmit={handleFormSubmit}
             />

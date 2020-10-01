@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom';
 // Components
 import { gqlErrorHandler } from '@components/Form';
 
-// Data
-import { FIELDS_MODAL } from './data';
+// Constants
+import { CREATE_FIELD_MODAL } from '@constants';
 
 // GraphQL
 import CREATE_FIELD from './graphql/createField.gql';
@@ -40,14 +40,14 @@ const useFields = () => {
   const [udpateField] = useMutation(UPDATE_FIELD, { refetchQueries });
 
   // Handlers
-  const handleAddClick = () => dispatch(openModal(FIELDS_MODAL));
+  const handleCreateClick = () => dispatch(openModal(CREATE_FIELD_MODAL));
 
   const handleDeleteClick = (fieldId: string) =>
     deleteField({ variables: { companyId, fieldId } });
 
   const handleEditClick = (initialValues: IField) =>
     dispatch(
-      openModal(FIELDS_MODAL, {
+      openModal(CREATE_FIELD_MODAL, {
         data: { id: initialValues.id, initialValues },
         title: 'Edit the Field'
       })
@@ -60,7 +60,7 @@ const useFields = () => {
 
     try {
       await mutate;
-      return dispatch(closeModal(FIELDS_MODAL));
+      return dispatch(closeModal(CREATE_FIELD_MODAL));
     } catch (error) {
       return gqlErrorHandler(error);
     }
@@ -68,7 +68,7 @@ const useFields = () => {
 
   return {
     companyId,
-    handleAddClick,
+    handleCreateClick,
     handleDeleteClick,
     handleEditClick,
     handleFormSubmit,

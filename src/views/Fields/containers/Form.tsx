@@ -8,7 +8,7 @@ import Form, { asyncValidate, Fieldset, Input } from '@components/Form';
 import { P } from '@components/Typography';
 
 // Data
-import { FIELDS_FORM } from '../data';
+import { CREATE_FIELD_FORM } from '@constants';
 
 // Infrastructures
 import { IField } from '@interfaces/field.interface';
@@ -16,11 +16,12 @@ import { IField } from '@interfaces/field.interface';
 // Styles
 import styles from './Form.scss';
 
-const FieldsForm: React.FunctionComponent<InjectedFormProps<
-  IField,
-  {},
-  string
->> = ({ error, handleSubmit, initialValues, submitting }) => {
+const FieldsForm: React.FunctionComponent<InjectedFormProps<IField>> = ({
+  error,
+  handleSubmit,
+  initialValues,
+  submitting
+}) => {
   const isEditMode = initialValues?.id;
 
   return (
@@ -42,7 +43,7 @@ const FieldsForm: React.FunctionComponent<InjectedFormProps<
 
       <div className={styles.Actions}>
         <Button color="primary" fullWidth loaded={submitting} type="submit">
-          {isEditMode ? 'Save' : 'Create'}
+          {isEditMode ? 'Update' : 'Create'}
         </Button>
       </div>
     </Form>
@@ -53,5 +54,5 @@ export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
     yup.object().shape({ title: yup.string().required() })
   ),
-  form: FIELDS_FORM
+  form: CREATE_FIELD_FORM
 })(FieldsForm);

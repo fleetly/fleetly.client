@@ -4,8 +4,8 @@ declare namespace Fields {
   namespace Table {
     interface Props {
       data: IField[];
-      onDelete?(id: string): void;
-      onEdit?(field: IField): void;
+      onDelete(id: string): void;
+      onEdit(field: IField): void;
     }
   }
 }
