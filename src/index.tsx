@@ -19,8 +19,9 @@ import '@fortawesome/fontawesome-pro/css/all.min.css';
 import * as serviceWorker from '@utils/serviceWorker';
 
 const store = createStore();
+
 const client: ApolloClient<InMemoryCache> = new ApolloClient({
-  cache: new InMemoryCache({ addTypename: false }),
+  cache: new InMemoryCache(),
   credentials: 'include',
   onError: ({ graphQLErrors }) =>
     graphQLErrors?.forEach(({ message }: any) => {
@@ -32,6 +33,14 @@ const client: ApolloClient<InMemoryCache> = new ApolloClient({
           break;
       }
     }),
+  request: (operation) => {
+    if (operation.variables) {
+      operation.variables = JSON.parse(
+        JSON.stringify(operation.variables),
+        (key: any, value: any) => (key === '__typename' ? undefined : value)
+      );
+    }
+  },
   uri: 'http://api.fleetly.it/graphql'
 });
 

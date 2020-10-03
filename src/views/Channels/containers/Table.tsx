@@ -1,3 +1,4 @@
+import { ChannelStatus } from '@fleetly/common/dist/interfaces';
 import * as React from 'react';
 
 // Components
@@ -8,14 +9,18 @@ import Status from '@components/Status';
 import Table from '@components/Table';
 import { Caption, P } from '@components/Typography';
 
+// Hooks
+import { useChannelsTable } from './Table.hooks';
+
 // Interfaces
 import { IStatus } from '@interfaces/status.interface';
 
 // Styles
 import styles from './Table.scss';
-import { ChannelStatus } from '@fleetly/common';
 
 const ChannelsTable = ({ data }: any) => {
+  const { handleEnableClick, handleDisableClick } = useChannelsTable();
+
   const columns = React.useMemo(
     () => [
       {
@@ -54,18 +59,38 @@ const ChannelsTable = ({ data }: any) => {
       { accessor: 'subscribers', Cell: () => 0, Header: 'Subscribers' },
       {
         accessor: 'id',
-        Cell: ({ value }: any) => (
-          <div className={styles.Actions}>
-            <Button icon="far fa-sync" variant="outlined" />
-            <Button icon="far fa-power-off" variant="outlined" />
-            <Button color="danger" icon="far fa-trash-alt" variant="outlined" />
-          </div>
-        ),
+        Cell: ({ row, value }: any) => {
+          const status: ChannelStatus = row.original.status.type;
+          const isActive = status.toLowerCase() === ChannelStatus.ACTIVE;
+
+          return (
+            <div className={styles.Actions}>
+              {isActive && <Button icon="far fa-sync" variant="outlined" />}
+
+              <Button
+                color={isActive ? 'danger' : 'success'}
+                icon="far fa-power-off"
+                id={value}
+                onClick={isActive ? handleDisableClick : handleEnableClick}
+                variant="outlined"
+              />
+
+              {!isActive && (
+                <Button
+                  color="danger"
+                  icon="far fa-trash-alt"
+                  id={value}
+                  variant="outlined"
+                />
+              )}
+            </div>
+          );
+        },
         Header: '',
-        maxWidth: 160
+        maxWidth: 92
       }
     ],
-    []
+    [handleDisableClick, handleEnableClick]
   );
 
   return <Table columns={columns} data={data} />;
