@@ -1,0 +1,7 @@
+mutation addCollaborator($collaboratorId: String!) {
+  addCollaborator(userId: $userId, companyId: $companyId) {
+    id
+    role
+    user
+  }
+}

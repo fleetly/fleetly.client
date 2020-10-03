@@ -18,16 +18,18 @@ const Avatar: React.FunctionComponent<Avatar.Props> = ({
       src={src}
     />
 
-    <i
-      className={classNames(
-        classes?.source,
-        styles.Source,
-        sourceType === Source.VK.toUpperCase() && {
-          'fab fa-vk': true,
-          [styles.SourceVariantVK]: true
-        }
-      )}
-    />
+    {sourceType && (
+      <i
+        className={classNames(
+          classes?.source,
+          styles.Source,
+          sourceType === Source.VK.toUpperCase() && {
+            'fab fa-vk': true,
+            [styles.SourceVariantVK]: true
+          }
+        )}
+      />
+    )}
   </div>
 );
 
