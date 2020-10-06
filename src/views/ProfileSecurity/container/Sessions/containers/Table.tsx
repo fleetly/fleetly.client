@@ -40,6 +40,10 @@ const SessionsTable: React.FunctionComponent<Sessions.Table.Props> = ({
         Header: 'Location'
       },
       {
+        accessor: 'ip',
+        Header: 'IP'
+      },
+      {
         accessor: 'id',
         Cell: ({ value }: any) => (
           <Button
