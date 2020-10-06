@@ -4,11 +4,7 @@ import { useTable } from 'react-table';
 // Styles
 import styles from './Table.scss';
 
-const Table: React.FunctionComponent<Table.Props> = ({
-  columns,
-  data,
-  onTrClick
-}) => {
+const Table: React.FC<Table.Props> = ({ columns, data, onTrClick }) => {
   const {
     getTableProps,
     getTableBodyProps,

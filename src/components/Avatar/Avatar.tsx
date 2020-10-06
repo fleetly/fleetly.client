@@ -5,7 +5,7 @@ import * as React from 'react';
 // Styles
 import styles from './Avatar.scss';
 
-const Avatar: React.FunctionComponent<Avatar.Props> = ({
+const Avatar: React.FC<Avatar.Props> = ({
   alt = 'avatar',
   classes,
   sourceType,

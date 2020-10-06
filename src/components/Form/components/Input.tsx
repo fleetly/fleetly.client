@@ -7,7 +7,7 @@ import withReduxForm from '../hocs/withReduxForm';
 // Styles
 import styles from './Input.scss';
 
-const FormInput: React.FunctionComponent<Form.Input.Props> = ({
+const FormInput: React.FC<Form.Input.Props> = ({
   classes,
   error,
   disabled,

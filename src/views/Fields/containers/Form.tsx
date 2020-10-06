@@ -4,7 +4,7 @@ import * as yup from 'yup';
 
 // Components
 import Button from '@components/Button';
-import Form, { asyncValidate, Fieldset, Input } from '@components/Form';
+import Form, { asyncValidate, Fieldset, Input, Select } from '@components/Form';
 import { P } from '@components/Typography';
 
 // Data
@@ -16,7 +16,7 @@ import { IField } from '@interfaces/field.interface';
 // Styles
 import styles from './Form.scss';
 
-const FieldsForm: React.FunctionComponent<InjectedFormProps<IField>> = ({
+const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
   error,
   handleSubmit,
   initialValues,
@@ -37,8 +37,13 @@ const FieldsForm: React.FunctionComponent<InjectedFormProps<IField>> = ({
       )}
 
       <Fieldset classes={{ root: styles.Fieldset }}>
-        <Input name="title" placeholder="Name" />
-        <Input name="description" placeholder="Description" />
+        <Input label="Title" name="title" placeholder="Name" />
+        <Input
+          label="Description"
+          name="description"
+          placeholder="Description"
+        />
+        <Select label="Type" name="type" />
       </Fieldset>
 
       <div className={styles.Actions}>

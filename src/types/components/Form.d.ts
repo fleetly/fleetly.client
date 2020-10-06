@@ -6,26 +6,27 @@ declare namespace Form {
     error?: string;
   }
 
-  interface Props {
-    children: React.Node;
-    classes?: Classes;
-    error?: string;
-    onSubmit(event: React.SyntheticEvent<HTMLFormElement>): void;
-  }
-
-  interface ReduxFieldAdapter {
+  interface FieldAdapter {
     // @todo - so bad
     children(props: any): React.SFC;
     input: WrappedFieldInputProps;
     meta: WrappedFieldMetaProps;
   }
 
-  interface ReduxFieldProps extends WrappedFieldInputProps {
+  interface FieldBase extends WrappedFieldInputProps {
     disabled?: boolean;
     id: string;
     error?: string;
     label?: string;
     name: string;
+    withoutRedux?: boolean;
+  }
+
+  interface Props {
+    children: React.Node;
+    classes?: Classes;
+    error?: string;
+    onSubmit(event: React.SyntheticEvent<HTMLFormElement>): void;
   }
 
   namespace Fieldset {
@@ -44,7 +45,7 @@ declare namespace Form {
       label?: string;
     }
 
-    interface Props extends ReduxFieldProps {
+    interface Props extends FieldBase {
       classes?: Classes;
       hint?: React.ReactNode;
       placeholder?: string;

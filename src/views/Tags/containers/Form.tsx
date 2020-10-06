@@ -18,7 +18,7 @@ import { ITag } from '@interfaces/tag.interface';
 // Styles
 import styles from './Form.scss';
 
-const TagsForm: React.FunctionComponent<InjectedFormProps<ITag>> = ({
+const TagsForm: React.FC<InjectedFormProps<ITag>> = ({
   error,
   handleSubmit,
   initialValues,

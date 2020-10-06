@@ -8,9 +8,7 @@ import { Caption, P } from '@components/Typography';
 // Styles
 import styles from './Table.scss';
 
-const SubscribersTable: React.FunctionComponent<Subscribers.Table.Props> = ({
-  data
-}: any) => {
+const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
   const columns = React.useMemo(
     () => [
       {

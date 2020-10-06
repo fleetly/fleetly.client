@@ -10,9 +10,7 @@ import GET_COMPANY_BY_ID from '@graphql/getCompanyById.gql';
 // Styles
 import styles from './Info.scss';
 
-const CompanyInfo: React.FunctionComponent<Company.Info.Props> = ({
-  companyId
-}) => {
+const CompanyInfo: React.FC<Company.Info.Props> = ({ companyId }) => {
   const { data } = useQuery(GET_COMPANY_BY_ID, { variables: { companyId } });
 
   return (

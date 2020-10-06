@@ -11,9 +11,7 @@ import styles from './Menu.scss';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const CompanyMenu: React.FunctionComponent<Company.Menu.Props> = ({
-  companyId
-}) => (
+const CompanyMenu: React.FC<Company.Menu.Props> = ({ companyId }) => (
   <div className={styles.Root}>
     {MENU.map(({ children, title }, index) => (
       <div className={styles.Category} key={index}>
