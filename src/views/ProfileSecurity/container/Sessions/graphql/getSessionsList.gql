@@ -1,0 +1,9 @@
+query {
+  sessions {
+    id
+    browser
+    ip
+    location
+    os
+  }
+}
