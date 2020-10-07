@@ -1,3 +1,4 @@
+import { Color } from '@fleetly/common/dist/enums';
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
@@ -15,6 +16,25 @@ import { IField } from '@interfaces/field.interface';
 
 // Styles
 import styles from './Form.scss';
+
+const colourOptions = [
+  {
+    value: 'ocean',
+    label: 'Ocean',
+    isFixed: true
+  },
+  {
+    value: 'blue',
+    label: 'Blue',
+    isDisabled: true
+  },
+  { value: 'purple', label: 'Purple' },
+  { value: 'red', label: 'Red', color: Color.RED, isFixed: true },
+  { value: 'orange', label: 'Orange' },
+  { value: 'yellow', label: 'Yellow' },
+  { value: 'green', label: 'Green' },
+  { value: 'forest', label: 'Pink' }
+];
 
 const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
   error,
@@ -43,7 +63,7 @@ const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
           name="description"
           placeholder="Description"
         />
-        <Select label="Type" name="type" />
+        <Select label="Type" name="type" options={colourOptions} />
       </Fieldset>
 
       <div className={styles.Actions}>

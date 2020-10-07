@@ -10,7 +10,7 @@ const reduxFieldAdapter = ({
 }: Form.FieldAdapter) =>
   children({ ...input, ...props, error: touched && error });
 
-const withReduxForm = <T extends any>(extraProps?: Form.FieldBase) => (
+const withReduxForm = <T extends any>(extraProps?: any) => (
   FieldComponent: React.FC<T>
   // @todo - defined types for props
 ) => (props: any) => {

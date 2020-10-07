@@ -1,6 +1,9 @@
 import classNames from 'classnames';
 import * as React from 'react';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
+
+// Components
+import Option from './components/Option';
 
 // HOCs
 import withReduxForm from '../../hocs/withReduxForm';
@@ -8,44 +11,44 @@ import withReduxForm from '../../hocs/withReduxForm';
 // Styles
 import styles from './Select.scss';
 
-export const colourOptions = [
-  { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
-  { value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true },
-  { value: 'purple', label: 'Purple', color: '#5243AA' },
-  { value: 'red', label: 'Red', color: '#FF5630', isFixed: true },
-  { value: 'orange', label: 'Orange', color: '#FF8B00' },
-  { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-  { value: 'green', label: 'Green', color: '#36B37E' },
-  { value: 'forest', label: 'Forest', color: '#00875A' },
-  { value: 'slate', label: 'Slate', color: '#253858' },
-  { value: 'silver', label: 'Silver', color: '#666666' }
-];
-
-const ControlComponent = ({ children, ...props }: any) => {
-  const { classes } = props.selectProps;
+const ControlComponent = ({
+  children,
+  innerProps,
+  isFocused,
+  selectProps
+}: any) => {
+  const { classes } = selectProps;
 
   return (
     <div
-      className={classNames(classes?.container, styles.Container)}
-      {...props}
+      {...innerProps}
+      className={classNames(classes?.container, styles.Container, {
+        [styles.ContainerIsFocused]: isFocused
+      })}
     >
       {children}
     </div>
   );
 };
 
-const DropdownIndicator = () => (
-  <div className={styles.Caret}>
+const DropdownIndicator = (props: any) => (
+  <div className={styles.Caret} {...props}>
     <div className={styles.CaretCircle} />
     <i className={classNames(styles.CaretIcon, 'fas fa-caret-down')} />
   </div>
 );
 
-const SelectContainer = ({ children, ...props }: any) => {
+const Menu = ({ children, innerProps }: any) => (
+  <div {...innerProps} className={styles.Menu}>
+    {children}
+  </div>
+);
+
+const SelectContainer = ({ children, innerProps, ...props }: any) => {
   const { classes, error, hint, id, label } = props.selectProps;
 
   return (
-    <div>
+    <div className={styles.Root} {...innerProps}>
       {(label || hint) && (
         <div className={classNames(classes?.header, styles.Header)}>
           <label
@@ -68,18 +71,50 @@ const SelectContainer = ({ children, ...props }: any) => {
   );
 };
 
-const FormSelect = ({ label, name }: any) => (
-  <Select
-    components={{
-      Control: ControlComponent,
-      DropdownIndicator,
-      IndicatorSeparator: null,
-      SelectContainer
-    }}
-    label={label}
-    name={name}
-    options={colourOptions}
-  />
+const SingleValue = ({ children, ...props }: any) => (
+  <components.SingleValue {...props} className={styles.ValueSingle}>
+    {children}
+  </components.SingleValue>
 );
 
-export default withReduxForm()(FormSelect);
+const ValueContainer = ({ children, innerProps, isFocused }: any) => (
+  <div {...innerProps} className={styles.ValueContainer}>
+    {children}
+  </div>
+);
+
+const FormSelect = ({ label, name, onChange, options, value }: any) => {
+  const displayedValue = React.useMemo(
+    () =>
+      Array.isArray(value)
+        ? value.map((value: any) =>
+            options.find((option: any) => option.value === value)
+          )
+        : options.find((option: any) => option.value === value),
+    [options, value]
+  );
+
+  return (
+    <Select
+      components={{
+        Control: ControlComponent,
+        DropdownIndicator,
+        IndicatorSeparator: null,
+        Menu,
+        Option,
+        SelectContainer,
+        SingleValue,
+        ValueContainer
+      }}
+      label={label}
+      name={name}
+      onChange={onChange}
+      options={options}
+      value={displayedValue}
+    />
+  );
+};
+
+export default withReduxForm<Form.FieldBase>({
+  parse: ({ value }: any) => value
+})(FormSelect);
