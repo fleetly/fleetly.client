@@ -1,6 +1,5 @@
 import { get } from 'lodash';
 import { useMutation, useQuery } from 'react-apollo';
-import { useParams } from 'react-router-dom';
 
 // GraphQL
 import DELETE_ALL_SESSIONS from './graphql/deleteAllSessions.gql';
@@ -11,15 +10,12 @@ import GET_SESSIONS_LIST from './graphql/getSessionsList.gql';
 import { ISession } from '@interfaces/session.interface';
 
 const useSessions = () => {
-  // Setup
-  const { userId } = useParams<{ userId: string }>();
-
   // Data
-  const { data } = useQuery(GET_SESSIONS_LIST, { variables: { userId } });
+  const { data } = useQuery(GET_SESSIONS_LIST);
   const sessions: ISession[] = get(data, 'sessions', []);
 
   // Mutations
-  const refetchQueries = [{ query: GET_SESSIONS_LIST, variables: { userId } }];
+  const refetchQueries = [{ query: GET_SESSIONS_LIST }];
 
   const [deleteSession] = useMutation(DELETE_SESSION, {
     refetchQueries
@@ -28,13 +24,11 @@ const useSessions = () => {
     refetchQueries
   });
 
-  const handleAllDeleteClick = () =>
-    deleteAllSession({ variables: { userId } });
+  const handleAllDeleteClick = () => deleteAllSession();
   const handleDeleteClick = (sessionId: string) =>
-    deleteSession({ variables: { userId, sessionId } });
+    deleteSession({ variables: { sessionId } });
 
   return {
-    userId,
     handleAllDeleteClick,
     handleDeleteClick,
     sessions
