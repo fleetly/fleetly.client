@@ -23,21 +23,19 @@ const colourOptions = [
       src: 'https://sun1-87.userapi.com/c627722/v627722659/3020/4YaYH8jJt6U.jpg'
     },
     value: 'ocean',
-    label: 'Ocean',
-    isDisabled: true,
-    isFixed: true
+    label: 'Ivan Vyatkin'
   },
   {
     value: 'blue',
     label: 'Blue',
     isDisabled: true
   },
-  { value: 'purple', label: 'Purple' },
+  { value: 'purple', label: 'Purple', color: Color.PURPLE },
   { value: 'red', label: 'Red', color: Color.RED, isFixed: true },
   { value: 'orange', label: 'Orange' },
   { value: 'yellow', label: 'Yellow' },
-  { value: 'green', label: 'Green' },
-  { value: 'forest', label: 'Pink' }
+  { value: 'green', label: 'Green', color: Color.GREEN },
+  { value: 'forest', label: 'Pink', color: Color.PINK }
 ];
 
 const FieldsForm: React.FC<InjectedFormProps<IField>> = ({

@@ -1,6 +1,7 @@
 import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
+import { OptionProps } from 'react-select';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -10,9 +11,8 @@ import styles from './Option.scss';
 
 // Utils
 import { getClassName } from '@utils/styles';
-import { SelectOptionProps } from 'types/components/Form';
 
-const FormSelectOption: React.FC<SelectOptionProps> = ({
+const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
   data: { avatar, color, description },
   innerProps,
   isDisabled,
