@@ -19,6 +19,9 @@ import styles from './Form.scss';
 
 const colourOptions = [
   {
+    avatar: {
+      src: 'https://sun1-87.userapi.com/c627722/v627722659/3020/4YaYH8jJt6U.jpg'
+    },
     value: 'ocean',
     label: 'Ocean',
     isFixed: true

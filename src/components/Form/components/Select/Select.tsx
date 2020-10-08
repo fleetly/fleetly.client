@@ -77,7 +77,7 @@ const SingleValue = ({ children, ...props }: any) => (
   </components.SingleValue>
 );
 
-const ValueContainer = ({ children, innerProps, isFocused }: any) => (
+const ValueContainer = ({ children, innerProps }: any) => (
   <div {...innerProps} className={styles.ValueContainer}>
     {children}
   </div>

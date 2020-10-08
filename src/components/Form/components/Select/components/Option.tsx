@@ -3,6 +3,9 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { OptionProps } from 'react-select';
 
+// Components
+import Avatar from '@components/Avatar';
+
 // Styles
 import styles from './Option.scss';
 
@@ -10,13 +13,15 @@ import styles from './Option.scss';
 import { getClassName } from '@utils/styles';
 
 const FormSelectOption: React.FC<OptionProps<any>> = ({
-  data: { color = Color.BLUE, description },
+  data: { avatar, color, description },
   innerProps,
   isDisabled,
   isSelected,
   label,
-  selectProps: { classes }
+  selectProps
 }) => {
+  const classes = selectProps.classes?.option;
+
   const {
     rootClassName,
     controlClassName,
@@ -28,10 +33,16 @@ const FormSelectOption: React.FC<OptionProps<any>> = ({
       rootClassName: classNames(
         classes?.root,
         styles.Root,
-        getClassName('color', { collection: styles, value: color }),
+        getClassName('color', {
+          collection: styles,
+          value: color || Color.BLUE
+        }),
         {
           [styles.RootIsDisabled]: isDisabled,
           [styles.RootIsSelected]: isSelected
+        },
+        {
+          [styles.RootVariantAvatar]: !!avatar
         }
       ),
       controlClassName: classNames(classes?.control, styles.Control),
@@ -42,13 +53,18 @@ const FormSelectOption: React.FC<OptionProps<any>> = ({
       iconClassName: classNames(classes?.icon, styles.Icon),
       labelClassName: classNames(classes?.label, styles.Label)
     }),
-    [classes, color, isDisabled, isSelected]
+    [avatar, classes, color, isDisabled, isSelected]
   );
 
   return (
-    <div className={rootClassName} {...innerProps}>
+    <div className={rootClassName}>
       <div className={controlClassName} {...innerProps}>
-        <div className={iconClassName} />
+        {avatar ? (
+          <Avatar {...avatar} classes={{ root: styles.Avatar }} />
+        ) : (
+          <div className={iconClassName} />
+        )}
+
         <div className={labelClassName}>{label}</div>
       </div>
 

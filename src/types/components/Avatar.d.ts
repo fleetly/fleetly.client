@@ -9,7 +9,7 @@ declare namespace Avatar {
   interface Props {
     alt?: string;
     classes?: Classes;
-    sourceType: string;
+    sourceType?: Source;
     src: string;
   }
 }

@@ -1,6 +1,12 @@
 @import '~@styles/colors';
 
 @mixin colorControl($color) {
+  &.RootIsSelected {
+    .Label {
+      color: $color;
+    }
+  }
+
   .Control {
     &:hover {
       background: rgba($color, .2);
@@ -77,6 +83,21 @@
       }
     }
   }
+
+  &Variant {
+    &Avatar {
+      .Control {
+        border-radius: 20px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+.Avatar {
+  height: 30px;
+  margin: 0 12px 0 0;
+  width: 30px;
 }
 
 .Control {
