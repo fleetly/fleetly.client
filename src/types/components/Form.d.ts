@@ -1,3 +1,4 @@
+import { ActionMeta, OptionProps, ValueType } from 'react-select';
 import { WrappedFieldMetaProps, WrappedFieldInputProps } from 'redux-form';
 
 declare namespace Form {
@@ -28,6 +29,44 @@ declare namespace Form {
     error?: string;
     onSubmit(event: React.SyntheticEvent<HTMLFormElement>): void;
   }
+
+  // Select
+  interface SelectClasses extends ExtendedClasses {
+    option?: SelectOptionClasses;
+  }
+
+  interface SelectProps extends FieldBase {
+    classes?: any;
+    onChange?(
+      value: ValueType<SelectOptionType>,
+      action: ActionMeta<SelectOptionType>
+    ): void;
+    options: SelectOptionType[];
+  }
+  // Select Option
+  interface SelectOptionClasses extends ExtendedClasses {
+    control?: string;
+    description?: string;
+    icon?: string;
+    label?: string;
+  }
+
+  interface SelectOptionProps extends OptionProps<SelectOptionType> {
+    selectProps: {
+      classes?: SelectClasses;
+    };
+  }
+
+  interface SelectOptionType {
+    avatar?: Avatar.Props;
+    color?: Color;
+    isDisabled?: boolean;
+    isFixed?: boolean;
+    label: string;
+    value: any;
+  }
+  // End Select Option
+  // End Select
 
   namespace Fieldset {
     interface Props {

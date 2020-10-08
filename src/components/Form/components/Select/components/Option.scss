@@ -62,6 +62,10 @@
 
   &Is {
     &Disabled {
+      .Avatar {
+        opacity: .5;
+      }
+
       .Control {
         pointer-events: none;
       }

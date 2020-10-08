@@ -1,7 +1,6 @@
 import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
-import { OptionProps } from 'react-select';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -11,8 +10,9 @@ import styles from './Option.scss';
 
 // Utils
 import { getClassName } from '@utils/styles';
+import { SelectOptionProps } from 'types/components/Form';
 
-const FormSelectOption: React.FC<OptionProps<any>> = ({
+const FormSelectOption: React.FC<SelectOptionProps> = ({
   data: { avatar, color, description },
   innerProps,
   isDisabled,
@@ -28,7 +28,7 @@ const FormSelectOption: React.FC<OptionProps<any>> = ({
     descriptionClassName,
     iconClassName,
     labelClassName
-  }: any = React.useMemo(
+  } = React.useMemo(
     () => ({
       rootClassName: classNames(
         classes?.root,

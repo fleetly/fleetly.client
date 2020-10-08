@@ -24,6 +24,7 @@ const colourOptions = [
     },
     value: 'ocean',
     label: 'Ocean',
+    isDisabled: true,
     isFixed: true
   },
   {

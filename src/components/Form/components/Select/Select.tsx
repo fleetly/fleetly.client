@@ -1,6 +1,13 @@
 import classNames from 'classnames';
 import * as React from 'react';
-import Select, { components } from 'react-select';
+import Select, {
+  components,
+  ControlProps,
+  IndicatorProps,
+  MenuProps,
+  SingleValueProps,
+  ValueContainerProps
+} from 'react-select';
 
 // Components
 import Option from './components/Option';
@@ -11,12 +18,12 @@ import withReduxForm from '../../hocs/withReduxForm';
 // Styles
 import styles from './Select.scss';
 
-const ControlComponent = ({
+const ControlComponent: React.FC<ControlProps<Form.SelectOptionType>> = ({
   children,
   innerProps,
   isFocused,
   selectProps
-}: any) => {
+}) => {
   const { classes } = selectProps;
 
   return (
@@ -31,14 +38,19 @@ const ControlComponent = ({
   );
 };
 
-const DropdownIndicator = (props: any) => (
+const DropdownIndicator: React.FC<IndicatorProps<Form.SelectOptionType>> = (
+  props
+) => (
   <div className={styles.Caret} {...props}>
     <div className={styles.CaretCircle} />
     <i className={classNames(styles.CaretIcon, 'fas fa-caret-down')} />
   </div>
 );
 
-const Menu = ({ children, innerProps }: any) => (
+const Menu: React.FC<MenuProps<Form.SelectOptionType>> = ({
+  children,
+  innerProps
+}) => (
   <div {...innerProps} className={styles.Menu}>
     {children}
   </div>
@@ -71,26 +83,32 @@ const SelectContainer = ({ children, innerProps, ...props }: any) => {
   );
 };
 
-const SingleValue = ({ children, ...props }: any) => (
+const SingleValue: React.FC<SingleValueProps<Form.SelectOptionType>> = ({
+  children,
+  ...props
+}) => (
   <components.SingleValue {...props} className={styles.ValueSingle}>
     {children}
   </components.SingleValue>
 );
 
-const ValueContainer = ({ children, innerProps }: any) => (
-  <div {...innerProps} className={styles.ValueContainer}>
-    {children}
-  </div>
-);
+const ValueContainer: React.FC<ValueContainerProps<Form.SelectOptionType>> = ({
+  children
+}) => <div className={styles.ValueContainer}>{children}</div>;
 
-const FormSelect = ({ label, name, onChange, options, value }: any) => {
-  const displayedValue = React.useMemo(
+const FormSelect: React.FC<Form.SelectProps> = ({
+  label,
+  name,
+  onChange,
+  options,
+  value
+}) => {
+  // @todo - fixed value type
+  const displayedValue: any = React.useMemo(
     () =>
       Array.isArray(value)
-        ? value.map((value: any) =>
-            options.find((option: any) => option.value === value)
-          )
-        : options.find((option: any) => option.value === value),
+        ? value.map((value) => options.find((option) => option.value === value))
+        : options.find((option) => option.value === value),
     [options, value]
   );
 
@@ -115,6 +133,6 @@ const FormSelect = ({ label, name, onChange, options, value }: any) => {
   );
 };
 
-export default withReduxForm<Form.FieldBase>({
-  parse: ({ value }: any) => value
+export default withReduxForm<Form.SelectProps>({
+  parse: ({ value }: Form.SelectOptionType) => value
 })(FormSelect);
