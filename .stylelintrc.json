@@ -8,7 +8,7 @@
   "rules": {
     "at-rule-no-unknown": null,
     "no-descending-specificity": null,
-    "number-leading-zero": null,
+    "number-leading-zero": "never",
     "order/order": [
       "declarations",
       {
