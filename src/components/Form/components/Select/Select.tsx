@@ -3,21 +3,23 @@ import Select from 'react-select';
 
 // Components
 import {
-  ControlComponent,
   DropdownIndicator,
-  Menu,
   NoOptionsMessage,
-  SelectContainer,
-  ValueContainer
+  SelectContainer
 } from './components';
 
 import Option from './components/Option';
-import SingleValue from './components/Value';
+import Value from './components/Value';
 
 // HOCs
 import withReduxForm from '../../hocs/withReduxForm';
 
+// Styles
+import styles from './Select.scss';
+
 const FormSelect: React.FC<Form.SelectProps> = ({
+  id,
+  isMulti,
   label,
   name,
   onChange,
@@ -35,19 +37,18 @@ const FormSelect: React.FC<Form.SelectProps> = ({
 
   return (
     <Select
+      className={styles.Root}
+      classNamePrefix="react-select"
       components={{
-        Control: ControlComponent,
         DropdownIndicator,
-        IndicatorSeparator: null,
-        Menu,
-        MultiValue: SingleValue,
-        NoOptionsMessage,
         Option,
+        MultiValue: Value,
+        NoOptionsMessage,
         SelectContainer,
-        SingleValue,
-        ValueContainer
+        SingleValue: Value
       }}
-      isMulti={true}
+      inputId={id}
+      isMulti={isMulti}
       label={label}
       name={name}
       onChange={onChange}

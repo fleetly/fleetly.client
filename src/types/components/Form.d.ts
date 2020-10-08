@@ -62,6 +62,7 @@ declare namespace Form {
 
   interface SelectProps extends FieldBase {
     classes?: any;
+    isMulti?: boolean;
     onChange?(
       value: ValueType<SelectOptionType>,
       action: ActionMeta<SelectOptionType>
