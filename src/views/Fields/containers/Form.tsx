@@ -20,40 +20,44 @@ import styles from './Form.scss';
 // @todo - remove mocks
 const groupedOptions = [
   {
-    label: null,
-    options: [
-      {
-        color: Color.RED,
-        label: 'Owner',
-        description:
-          'Can read, clone, and push to this repository. They can also manage issues, pull request, and some repository settings.',
-        value: 0
-      }
-    ]
+    color: Color.BLUE,
+    label: 'Boolean',
+    value: 'BOOLEAN'
   },
   {
-    label: null,
-    options: [
-      {
-        color: Color.PURPLE,
-        label: 'Admin',
-        description:
-          'Can read, clone, and push to this repository. They can also manage issues, pull request, and some repository settings.',
-        value: 1
-      }
-    ]
+    color: Color.GREEN,
+    label: 'Big Text',
+    value: 'BIGTEXT'
   },
   {
-    label: null,
-    options: [
-      {
-        color: Color.BLUE,
-        label: 'Member',
-        description:
-          'Can read, clone, and push to this repository. They can also manage issues, pull request, and some repository settings.',
-        value: 2
-      }
-    ]
+    color: Color.ORANGE,
+    label: 'Date',
+    value: 'DATE'
+  },
+  {
+    color: Color.PINK,
+    label: 'Date Time',
+    value: 'DATETIME'
+  },
+  {
+    color: Color.PURPLE,
+    label: 'Email',
+    value: 'EMAIL'
+  },
+  {
+    color: Color.RED,
+    label: 'Number',
+    value: 'NUMBER'
+  },
+  {
+    color: Color.SKY,
+    label: 'Phone',
+    value: 'PHONE'
+  },
+  {
+    color: Color.YELLOW,
+    label: 'Text',
+    value: 'TEXT'
   }
 ];
 
