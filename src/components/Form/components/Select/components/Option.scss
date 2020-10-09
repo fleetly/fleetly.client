@@ -123,9 +123,11 @@
 }
 
 .Description {
+  color: $color-gray-600;
+  composes: OptionDescription from '../Select.scss';
   font-weight: 500;
   line-height: 22px;
-  margin: 8px 12px;
+  margin: 8px;
 }
 
 .Icon {

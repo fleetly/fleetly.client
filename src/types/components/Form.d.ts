@@ -62,6 +62,7 @@ declare namespace Form {
 
   interface SelectProps extends FieldBase {
     classes?: any;
+    hint?: React.ReactNode;
     isMulti?: boolean;
     onChange?(
       value: ValueType<SelectOptionType>,

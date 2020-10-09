@@ -18,6 +18,7 @@ import withReduxForm from '../../hocs/withReduxForm';
 import styles from './Select.scss';
 
 const FormSelect: React.FC<Form.SelectProps> = ({
+  hint,
   id,
   isMulti,
   label,
@@ -47,6 +48,7 @@ const FormSelect: React.FC<Form.SelectProps> = ({
         SelectContainer,
         SingleValue: Value
       }}
+      hint={hint}
       inputId={id}
       isMulti={isMulti}
       label={label}

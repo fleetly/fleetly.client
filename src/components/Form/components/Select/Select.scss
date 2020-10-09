@@ -27,6 +27,29 @@
       }
     }
 
+    &__group {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0 12px;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      &:not(:first-child) {
+        border-top: 2px solid rgba($color-primary, .1);
+      }
+
+      :local .OptionDescription {
+        margin-bottom: 0;
+      }
+    }
+
+    &__group-heading {
+      display: none;
+    }
+
     &__indicator-separator {
       display: none;
     }
@@ -53,7 +76,7 @@
       padding: 0;
 
       &--has-value {
-        margin: 0 0 0 2px;
+        margin: 0 0 0 1px;
       }
     }
   }
@@ -61,4 +84,8 @@
 
 .CaretIcon {
   transform: scale(.84);
+}
+
+.OptionDescription {
+  margin-bottom: 8px;
 }

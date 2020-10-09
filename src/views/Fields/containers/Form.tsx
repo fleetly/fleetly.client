@@ -6,7 +6,7 @@ import * as yup from 'yup';
 // Components
 import Button from '@components/Button';
 import Form, { asyncValidate, Fieldset, Input, Select } from '@components/Form';
-import { P } from '@components/Typography';
+import Link from '@components/Link';
 
 // Data
 import { CREATE_FIELD_FORM } from '@constants';
@@ -17,25 +17,44 @@ import { IField } from '@interfaces/field.interface';
 // Styles
 import styles from './Form.scss';
 
-const colourOptions = [
+// @todo - remove mocks
+const groupedOptions = [
   {
-    avatar: {
-      src: 'https://sun1-87.userapi.com/c627722/v627722659/3020/4YaYH8jJt6U.jpg'
-    },
-    value: 'ocean',
-    label: 'Ivan Vyatkin'
+    label: null,
+    options: [
+      {
+        color: Color.RED,
+        label: 'Owner',
+        description:
+          'Can read, clone, and push to this repository. They can also manage issues, pull request, and some repository settings.',
+        value: 0
+      }
+    ]
   },
   {
-    value: 'blue',
-    label: 'Blue',
-    isDisabled: true
+    label: null,
+    options: [
+      {
+        color: Color.PURPLE,
+        label: 'Admin',
+        description:
+          'Can read, clone, and push to this repository. They can also manage issues, pull request, and some repository settings.',
+        value: 1
+      }
+    ]
   },
-  { value: 'purple', label: 'Purple', color: Color.PURPLE },
-  { value: 'red', label: 'Red', color: Color.RED, isFixed: true },
-  { value: 'orange', label: 'Orange' },
-  { value: 'yellow', label: 'Yellow' },
-  { value: 'green', label: 'Green', color: Color.GREEN },
-  { value: 'forest', label: 'Pink', color: Color.PINK }
+  {
+    label: null,
+    options: [
+      {
+        color: Color.BLUE,
+        label: 'Member',
+        description:
+          'Can read, clone, and push to this repository. They can also manage issues, pull request, and some repository settings.',
+        value: 2
+      }
+    ]
+  }
 ];
 
 const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
@@ -48,24 +67,27 @@ const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
 
   return (
     <Form
-      classes={{ container: styles.Root }}
+      classes={{ container: styles.Container }}
       error={error}
       onSubmit={handleSubmit}
     >
-      {!isEditMode && (
-        <P className={styles.Description} component="div">
-          Be careful, the wrong key can stop the channel.
-        </P>
-      )}
-
       <Fieldset classes={{ root: styles.Fieldset }}>
         <Input label="Title" name="title" placeholder="Name" />
+
         <Input
           label="Description"
           name="description"
           placeholder="Description"
         />
-        <Select label="Type" name="type" options={colourOptions} />
+
+        {!isEditMode && (
+          <Select
+            hint={<Link>About field types</Link>}
+            label="Type"
+            name="type"
+            options={groupedOptions}
+          />
+        )}
       </Fieldset>
 
       <div className={styles.Actions}>
