@@ -5,7 +5,7 @@ import { SubmissionError } from 'redux-form';
 // Utils
 import { capitalizeFirstLetter } from '@utils/string';
 
-export default ({ graphQLErrors, message }: any): void => {
+export default ({ graphQLErrors, message, networkError }: any): void => {
   const errors = {};
 
   if (graphQLErrors && graphQLErrors.length > 0) {
@@ -25,6 +25,10 @@ export default ({ graphQLErrors, message }: any): void => {
     });
   } else if (message) {
     set(errors, '_error', capitalizeFirstLetter(message));
+  }
+
+  if (networkError) {
+    set(errors, '_error', capitalizeFirstLetter(networkError.message));
   }
 
   throw new SubmissionError(errors);

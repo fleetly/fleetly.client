@@ -18,7 +18,7 @@ import Subscribers from '@views/Subscribers';
 import Fields from '@views/Fields';
 import Tags from '@views/Tags';
 
-const Company: React.FunctionComponent<Company.Props> = ({ match }) => {
+const Company: React.FC<Company.Props> = ({ match }) => {
   const companyId: string = get(match, 'params.companyId');
 
   return (

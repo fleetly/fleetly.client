@@ -4,6 +4,7 @@ import * as React from 'react';
 import Button from '@components/Button';
 import Modal from '@components/Modal';
 import Page, { Wrapper } from '@components/Page';
+import { P } from '@components/Typography';
 
 // Constants
 import { CREATE_TAG_FORM, CREATE_TAG_MODAL } from '@constants';
@@ -14,6 +15,9 @@ import Table from './containers/Table';
 
 // Hooks
 import { useTags } from './Tags.hooks';
+
+// Styles
+import styles from './Tags.scss';
 
 const Tags = () => {
   const {
@@ -40,13 +44,25 @@ const Tags = () => {
           onEdit={handleEditClick}
         />
 
-        <Modal id={CREATE_TAG_MODAL} title="Create new tag">
+        <Modal
+          classes={{ container: styles.Container }}
+          id={CREATE_TAG_MODAL}
+          title="Create new tag"
+        >
           {({ id, initialValues }: any) => (
-            <Form
-              form={`${CREATE_TAG_FORM}${id ? `-${id}` : ''}`}
-              initialValues={initialValues}
-              onSubmit={handleFormSubmit}
-            />
+            <>
+              {!id && (
+                <P className={styles.Description} component="dib">
+                  Group your followers with unique tags!
+                </P>
+              )}
+
+              <Form
+                form={`${CREATE_TAG_FORM}${id ? `-${id}` : ''}`}
+                initialValues={initialValues}
+                onSubmit={handleFormSubmit}
+              />
+            </>
           )}
         </Modal>
       </Wrapper>

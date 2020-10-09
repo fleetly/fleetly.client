@@ -1,13 +1,16 @@
 import classNames from 'classnames';
 import * as React from 'react';
 
+// Components
+import { FieldError, FieldHeader } from './common';
+
 // Decorators
 import withReduxForm from '../hocs/withReduxForm';
 
 // Styles
 import styles from './Input.scss';
 
-const FormInput: React.FunctionComponent<Form.Input.Props> = ({
+const FormInput: React.FC<Form.InputProps> = ({
   classes,
   error,
   disabled,
@@ -54,18 +57,7 @@ const FormInput: React.FunctionComponent<Form.Input.Props> = ({
         }
       )}
     >
-      {(label || hint) && (
-        <div className={classNames(classes?.header, styles.Header)}>
-          <label
-            className={classNames(classes?.label, styles.Label)}
-            htmlFor={id}
-          >
-            {label}
-          </label>
-
-          <div className={classNames(classes?.hint, styles.Hint)}>{hint}</div>
-        </div>
-      )}
+      <FieldHeader classes={classes} hint={hint} id={id} label={label} />
 
       <div className={classNames(classes?.container, styles.Container)}>
         <input
@@ -82,11 +74,9 @@ const FormInput: React.FunctionComponent<Form.Input.Props> = ({
         />
       </div>
 
-      {error && (
-        <div className={classNames(classes?.error, styles.Error)}>{error}</div>
-      )}
+      <FieldError classes={classes} error={error} />
     </div>
   );
 };
 
-export default withReduxForm<Form.Input.Props>()(FormInput);
+export default withReduxForm<Form.InputProps>()(FormInput);

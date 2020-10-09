@@ -4,7 +4,7 @@ import * as React from 'react';
 import Button from '@components/Button';
 import Table from '@components/Table';
 
-const FieldsTable: React.FunctionComponent<Fields.Table.Props> = ({
+const FieldsTable: React.FC<Fields.Table.Props> = ({
   data,
   onDelete,
   onEdit

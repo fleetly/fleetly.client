@@ -3,9 +3,6 @@ import classNames from 'classnames';
 import { keys } from 'lodash';
 import * as React from 'react';
 
-// Components
-import Form from '@components/Form';
-
 // Decorators
 import { withReduxForm } from '@components/Form';
 
@@ -15,7 +12,7 @@ import styles from './Field.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-const TagsColorField: React.FunctionComponent<Form.ReduxFieldProps> = ({
+const TagsColorField: React.FC<Form.FieldBase> = ({
   name,
   onChange,
   value
@@ -51,4 +48,4 @@ const TagsColorField: React.FunctionComponent<Form.ReduxFieldProps> = ({
   </div>
 );
 
-export default withReduxForm<Form.ReduxFieldProps>()(TagsColorField);
+export default withReduxForm<Form.FieldBase>()(TagsColorField);
