@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import { useQuery } from 'react-apollo';
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
@@ -13,7 +12,7 @@ import Link from '@components/Link';
 import { CREATE_FIELD_FORM } from '@constants';
 
 // GraphQL
-import GET_FIELD_TYPE from '../graphql/getFieldType.gql';
+import GET_FIELD_TYPES from '../graphql/getFieldTypes.gql';
 
 // Infrastructures
 import { IField } from '@interfaces/field.interface';
@@ -27,8 +26,8 @@ const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
   initialValues,
   submitting
 }) => {
-  const { data: option } = useQuery(GET_FIELD_TYPE);
-  const options = get(option, 'fieldTypes', []);
+  const { data } = useQuery(GET_FIELD_TYPES);
+  const fieldTypes = data?.fieldTypes || [];
 
   const isEditMode = initialValues?.id;
 
@@ -52,7 +51,7 @@ const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
             hint={<Link>About field types</Link>}
             label="Type"
             name="type"
-            options={options}
+            options={fieldTypes}
           />
         )}
       </Fieldset>
