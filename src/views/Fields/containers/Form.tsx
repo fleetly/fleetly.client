@@ -1,4 +1,5 @@
-import { Color } from '@fleetly/common/dist/enums';
+import { get } from 'lodash';
+import { useQuery } from 'react-apollo';
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
@@ -11,55 +12,14 @@ import Link from '@components/Link';
 // Data
 import { CREATE_FIELD_FORM } from '@constants';
 
+// GraphQL
+import GET_FIELD_TYPE from '../graphql/getFieldType.gql';
+
 // Infrastructures
 import { IField } from '@interfaces/field.interface';
 
 // Styles
 import styles from './Form.scss';
-
-// @todo - remove mocks
-const groupedOptions = [
-  {
-    color: Color.BLUE,
-    label: 'Boolean',
-    value: 'BOOLEAN'
-  },
-  {
-    color: Color.GREEN,
-    label: 'Big Text',
-    value: 'BIGTEXT'
-  },
-  {
-    color: Color.ORANGE,
-    label: 'Date',
-    value: 'DATE'
-  },
-  {
-    color: Color.PINK,
-    label: 'Date Time',
-    value: 'DATETIME'
-  },
-  {
-    color: Color.PURPLE,
-    label: 'Email',
-    value: 'EMAIL'
-  },
-  {
-    color: Color.RED,
-    label: 'Number',
-    value: 'NUMBER'
-  },
-  {
-    color: Color.SKY,
-    label: 'Phone',
-    value: 'PHONE'
-  },
-  {
-    color: Color.YELLOW,
-    label: 'Text',
-    value: 'TEXT'
-  }
-];
 
 const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
   error,
@@ -67,6 +27,9 @@ const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
   initialValues,
   submitting
 }) => {
+  const { data: option } = useQuery(GET_FIELD_TYPE);
+  const options = get(option, 'fieldTypes', []);
+
   const isEditMode = initialValues?.id;
 
   return (
@@ -89,7 +52,7 @@ const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
             hint={<Link>About field types</Link>}
             label="Type"
             name="type"
-            options={groupedOptions}
+            options={options}
           />
         )}
       </Fieldset>
