@@ -7,7 +7,7 @@ import { H3 } from '@components/Typography';
 // Styles
 import styles from './Wrapper.scss';
 
-const PageWrapper: React.FunctionComponent<Page.Wrapper.Props> = ({
+const PageWrapper: React.FC<Page.Wrapper.Props> = ({
   actions,
   children,
   classes,

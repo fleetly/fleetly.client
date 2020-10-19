@@ -54,37 +54,6 @@
   }
 }
 
-.Error {
-  color: $color-danger;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 18px;
-  margin: 8px 0 0;
-  padding: 0 20px;
-}
-
-.Header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 0 12px;
-  padding: 0 20px;
-}
-
-.Hint {
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.Label {
-  color: $color-text-secondary;
-  font-weight: 600;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 .Input {
   background: transparent;
   border: 0;

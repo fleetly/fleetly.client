@@ -12,7 +12,7 @@ type PropTypes = {
   color: Color;
 };
 
-const TagsColorCell: React.FunctionComponent<PropTypes> = ({ color }) => (
+const TagsColorCell: React.FC<PropTypes> = ({ color }) => (
   <div
     className={classNames(
       styles.Root,

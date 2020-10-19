@@ -4,6 +4,7 @@ import * as React from 'react';
 import Button from '@components/Button';
 import Modal from '@components/Modal';
 import Page, { Wrapper } from '@components/Page';
+import { P } from '@components/Typography';
 
 // Containers
 import Form from './containers/Form';
@@ -14,6 +15,9 @@ import { CREATE_FIELD_FORM, CREATE_FIELD_MODAL } from '@constants';
 
 // Hooks
 import { useFields } from './Fields.hooks';
+
+// Styles
+import styles from './Fields.scss';
 
 const Fields = () => {
   const {
@@ -40,13 +44,32 @@ const Fields = () => {
           onEdit={handleEditClick}
         />
 
-        <Modal id={CREATE_FIELD_MODAL} title="Create new field">
+        <Modal
+          classes={{ container: styles.Container }}
+          id={CREATE_FIELD_MODAL}
+          title="Create new field"
+        >
           {({ id, initialValues }: any) => (
-            <Form
-              form={`${CREATE_FIELD_FORM}${id ? `-${id}` : ''}`}
-              initialValues={{ ...initialValues, type: 'TEXT' }}
-              onSubmit={handleFormSubmit}
-            />
+            <>
+              {!id && (
+                <div className={styles.Description}>
+                  <P>
+                    Store important information about your subscribers in
+                    special fields.
+                  </P>
+
+                  <P className={styles.Careful}>
+                    Be careful, the data type of the field cannot be changed!
+                  </P>
+                </div>
+              )}
+
+              <Form
+                form={`${CREATE_FIELD_FORM}${id ? `-${id}` : ''}`}
+                initialValues={{ ...initialValues, type: 'TEXT' }}
+                onSubmit={handleFormSubmit}
+              />
+            </>
           )}
         </Modal>
       </Wrapper>

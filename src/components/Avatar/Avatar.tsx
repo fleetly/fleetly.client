@@ -5,32 +5,34 @@ import * as React from 'react';
 // Styles
 import styles from './Avatar.scss';
 
-const Avatar: React.FunctionComponent<Avatar.Props> = ({
+const Avatar: React.FC<Avatar.Props> = ({
   alt = 'avatar',
   classes,
   sourceType,
   src
-}) => (
-  <div className={classNames(classes?.root, styles.Root)}>
-    <img
-      alt={alt}
-      className={classNames(classes?.photo, styles.Photo)}
-      src={src}
-    />
+}) => {
+  const { rootClassName, photoClassName, sourceClassName } = React.useMemo(
+    () => ({
+      rootClassName: classNames(classes?.root, styles.Root),
+      photoClassName: classNames(classes?.photo, styles.Photo),
+      sourceClassName: classNames(
+        classes?.source,
+        styles.Source,
+        sourceType === Source.VK.toUpperCase() && {
+          'fab fa-vk': true,
+          [styles.SourceVariantVK]: true
+        }
+      )
+    }),
+    [classes, sourceType]
+  );
 
-    {sourceType && (
-      <i
-        className={classNames(
-          classes?.source,
-          styles.Source,
-          sourceType === Source.VK.toUpperCase() && {
-            'fab fa-vk': true,
-            [styles.SourceVariantVK]: true
-          }
-        )}
-      />
-    )}
-  </div>
-);
+  return (
+    <div className={rootClassName}>
+      <img alt={alt} className={photoClassName} src={src} />
+      {sourceType && <i className={sourceClassName} />}
+    </div>
+  );
+};
 
 export default Avatar;
