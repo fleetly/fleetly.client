@@ -1,11 +1,4 @@
-interface SourceListItem {
-  id: string;
-  icon: string;
-  isDisabled?: boolean;
-  title: string;
-}
-
-export const SOURCE_LIST: SourceListItem[] = [
+export const SOURCE_LIST: Channels.SourceListItem[] = [
   {
     id: 'FB',
     icon: 'fab fa-facebook-f',

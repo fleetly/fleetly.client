@@ -27,7 +27,9 @@ const useChannels = () => {
   const channels: IChannel[] = get(data, 'channels', []);
 
   // Mutations
-  const [createChannel] = useMutation(CREATE_CHANNEL);
+  const [createChannel] = useMutation(CREATE_CHANNEL, {
+    refetchQueries: [{ query: GET_CHANNEL_LIST, variables: { companyId } }]
+  });
 
   // Handlers
   const handleAddClick = () => dispatch(openModal(ADD_CHANNEL_MODAL));

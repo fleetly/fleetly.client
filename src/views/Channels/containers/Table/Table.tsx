@@ -19,7 +19,11 @@ import { IStatus } from '@interfaces/status.interface';
 import styles from './Table.scss';
 
 const ChannelsTable = ({ data }: any) => {
-  const { handleEnableClick, handleDisableClick } = useChannelsTable();
+  const {
+    handleEnableClick,
+    handleDisableClick,
+    handleDeleteClick
+  } = useChannelsTable();
 
   const columns = React.useMemo(
     () => [
@@ -35,12 +39,12 @@ const ChannelsTable = ({ data }: any) => {
       {
         accessor: 'title',
         Cell: ({ row }: any) => {
-          const { id, name, title } = row?.original?.source;
+          const { id, link, name, title } = row?.original?.source;
 
           return (
             <div className={styles.Channel}>
               <P component="div">{title}</P>
-              <Link to={`https://vk.com/club${id}`}>
+              <Link to={link}>
                 <Caption component="span">@{name || id}</Caption>
               </Link>
             </div>
@@ -80,6 +84,7 @@ const ChannelsTable = ({ data }: any) => {
                   color="danger"
                   icon="far fa-trash-alt"
                   id={value}
+                  onClick={handleDeleteClick}
                   variant="outlined"
                 />
               )}
@@ -90,7 +95,7 @@ const ChannelsTable = ({ data }: any) => {
         maxWidth: 92
       }
     ],
-    [handleDisableClick, handleEnableClick]
+    [handleDeleteClick, handleDisableClick, handleEnableClick]
   );
 
   return <Table columns={columns} data={data} />;

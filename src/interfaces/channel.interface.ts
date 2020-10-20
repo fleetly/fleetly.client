@@ -11,8 +11,9 @@ export interface IChannel {
 
 export interface IChannelSource {
   id: string;
+  link: string;
   name: string;
-  photo: string;
-  title: string;
+  photo?: string;
+  title?: string;
   type: Source;
 }

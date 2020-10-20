@@ -14,7 +14,7 @@ import { ADD_CHANNEL_FORM } from '@constants';
 // Styles
 import styles from './Form.scss';
 
-const ChannelsForm: React.FC<InjectedFormProps<any, any>> = ({
+const ChannelsForm: React.FC<InjectedFormProps<Channels.FormValues>> = ({
   error,
   handleSubmit,
   submitting
