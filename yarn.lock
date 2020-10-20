@@ -1131,10 +1131,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@fleetly/common@^0.0.75":
-  version "0.0.75"
-  resolved "https://npm.pkg.github.com/download/@fleetly/common/0.0.75/877d199b0ef3215fe1455a365c5e0681755ce4c22558049e8cfdbf515774c06e#6edbd2b9c12a12e68b66545ecf57e17205f83099"
-  integrity sha512-ZC/FWjpB5+NXJIbNxRq6k72O+a2EVTjYLbLwnwU79tVKtv9FWD8wAWV3SRfjH+MQaBY8fEBa7CqAnG/2pqqbpw==
+"@fleetly/common@^0.0.77":
+  version "0.0.77"
+  resolved "https://npm.pkg.github.com/download/@fleetly/common/0.0.77/e42b45682b63a1746661b3897841a4bb17c505b2c641d32f2f5807a361ea18ce#598c593ffc9c0873aade6298a75a88b25808d1e0"
+  integrity sha512-pJP1ZhfbINNB4hJNKY6uSodL975SNYBnu3ELBVM+Bc+iSD4U7vQibpj8DVd/JnevtMufSb4JLRIhsXrlcxE3kw==
   dependencies:
     factory-girl "^5.0.4"
 

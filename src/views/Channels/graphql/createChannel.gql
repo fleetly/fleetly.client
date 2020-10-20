@@ -1,0 +1,21 @@
+mutation createChannel(
+  $companyId: String!
+  $sourceType: SourceType!
+  $token: String!
+) {
+  createChannel(companyId: $companyId, sourceType: $sourceType, token: $token) {
+    id
+    source {
+      id
+      name
+      photo
+      title
+      type
+    }
+    status {
+      color
+      message
+      type
+    }
+  }
+}

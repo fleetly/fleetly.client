@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 import { useMutation } from 'react-apollo';
 
 // GraphQL
-import DISABLE_CHANNEL from '../graphql/disableChannel.gql';
-import ENABLE_CHANNEL from '../graphql/enableChannel.gql';
+import DISABLE_CHANNEL from '../../graphql/disableChannel.gql';
+import ENABLE_CHANNEL from '../../graphql/enableChannel.gql';
 
 const useChannelsTable = () => {
   // Mutations
