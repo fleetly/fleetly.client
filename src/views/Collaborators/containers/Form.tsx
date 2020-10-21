@@ -1,14 +1,18 @@
+import { useQuery } from 'react-apollo';
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
 
 // Components
 import Button from '@components/Button';
-import Form, { asyncValidate, Fieldset, Input } from '@components/Form';
+import Form, { asyncValidate, Fieldset, Select } from '@components/Form';
 import { P } from '@components/Typography';
 
 // Data
 import { ADD_COLLABORATOR_FORM } from '@constants';
+
+// GraphQL
+import GET_USER_LIST from '../graphql/getUserList.gql';
 
 // Infrastructures
 import { ICollaborator } from '@interfaces/collaborator.interface';
@@ -19,6 +23,9 @@ import styles from './Form.scss';
 const CollaboratorsForm: React.FunctionComponent<InjectedFormProps<
   ICollaborator
 >> = ({ error, handleSubmit, initialValues, submitting }) => {
+  const { data } = useQuery(GET_USER_LIST);
+  const users = data?.users || [];
+
   return (
     <Form
       classes={{ container: styles.Root }}
@@ -31,7 +38,7 @@ const CollaboratorsForm: React.FunctionComponent<InjectedFormProps<
       </P>
 
       <Fieldset classes={{ root: styles.Fieldset }}>
-        <Input name="userId" />
+        <Select name="username" options={users} />
       </Fieldset>
 
       <div className={styles.Actions}>
