@@ -7,7 +7,7 @@ import * as React from 'react';
 import { withReduxForm } from '@components/Form';
 
 // Styles
-import styles from './Field.scss';
+import styles from './ColorField.scss';
 
 // Utils
 import { getClassName } from '@utils/styles';

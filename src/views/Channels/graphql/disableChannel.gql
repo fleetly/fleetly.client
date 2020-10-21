@@ -1,0 +1,10 @@
+mutation disableChannel($channelId: String!) {
+  disableChannel(channelId: $channelId) {
+    id
+    status {
+      color
+      message
+      type
+    }
+  }
+}

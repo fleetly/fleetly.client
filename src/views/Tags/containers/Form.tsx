@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import Button from '@components/Button';
 import Form, { asyncValidate, Fieldset, Input } from '@components/Form';
 
-import { ColorField } from '../components/Color';
+import ColorField from '../components/ColorField';
 
 // Constants
 import { CREATE_TAG_FORM } from '@constants';
