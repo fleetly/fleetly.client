@@ -11,10 +11,7 @@ import { SOURCE_LIST } from '../data';
 // Styles
 import styles from './SourceType.scss';
 
-const ChannelsSourceType: React.FC<Form.ReduxFieldProps> = ({
-  onChange,
-  value
-}) => {
+const ChannelsSourceType: React.FC<Form.FieldBase> = ({ onChange, value }) => {
   const handleClick = React.useCallback(
     (event: React.SyntheticEvent<HTMLDivElement>) =>
       onChange(event.currentTarget.dataset.sourceType),
@@ -43,4 +40,4 @@ const ChannelsSourceType: React.FC<Form.ReduxFieldProps> = ({
   );
 };
 
-export default withReduxForm<Form.ReduxFieldProps>()(ChannelsSourceType);
+export default withReduxForm<Form.FieldBase>()(ChannelsSourceType);
