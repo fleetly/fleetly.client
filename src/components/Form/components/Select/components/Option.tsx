@@ -5,6 +5,7 @@ import { OptionProps } from 'react-select';
 
 // Components
 import Avatar from '@components/Avatar';
+import { Caption } from '@components/Typography';
 
 // Styles
 import styles from './Option.scss';
@@ -13,7 +14,7 @@ import styles from './Option.scss';
 import { getClassName } from '@utils/styles';
 
 const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
-  data: { avatar, color, description },
+  data: { avatar, color, description, info },
   innerProps,
   isDisabled,
   isSelected,
@@ -27,6 +28,7 @@ const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
     controlClassName,
     descriptionClassName,
     iconClassName,
+    infoClassName,
     labelClassName
   } = React.useMemo(
     () => ({
@@ -42,7 +44,8 @@ const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
           [styles.RootIsSelected]: isSelected
         },
         {
-          [styles.RootVariantAvatar]: !!avatar
+          [styles.RootVariantAvatar]: !!avatar,
+          [styles.RootVariantDescription]: !!description
         }
       ),
       controlClassName: classNames(classes?.control, styles.Control),
@@ -50,25 +53,31 @@ const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
         classes?.description,
         styles.Description
       ),
+      infoClassName: classNames(classes?.info, styles.Info),
       iconClassName: classNames(classes?.icon, styles.Icon),
       labelClassName: classNames(classes?.label, styles.Label)
     }),
-    [avatar, classes, color, isDisabled, isSelected]
+    [avatar, classes, color, description, isDisabled, isSelected]
   );
 
   return (
     <div className={rootClassName}>
       <div className={controlClassName} {...innerProps}>
         {avatar ? (
-          <Avatar {...avatar} classes={{ root: styles.Avatar }} />
+          <Avatar {...avatar} classes={{ root: styles.Avatar }} color={color} />
         ) : (
           <div className={iconClassName} />
         )}
 
-        <div className={labelClassName}>{label}</div>
+        <div className={labelClassName}>
+          {label}
+          {description && (
+            <Caption className={descriptionClassName}>{description}</Caption>
+          )}
+        </div>
       </div>
 
-      {description && <div className={descriptionClassName}>{description}</div>}
+      {info && <div className={infoClassName}>{info}</div>}
     </div>
   );
 };

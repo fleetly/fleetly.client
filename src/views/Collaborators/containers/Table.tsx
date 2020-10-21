@@ -9,7 +9,10 @@ import { P } from '@components/Typography';
 // Styles
 import styles from './Table.scss';
 
-const CollaboratorsTable: React.FunctionComponent<Collaborators.Table.Props> = ({
+// Utils
+import { convertToColor } from '@utils/string';
+
+const CollaboratorsTable: React.FC<Collaborators.Table.Props> = ({
   data,
   onDelete
 }) => {
@@ -25,9 +28,12 @@ const CollaboratorsTable: React.FunctionComponent<Collaborators.Table.Props> = (
     () => [
       {
         accessor: 'avatar',
-        Cell: ({ alt, src }: any) => <Avatar alt={alt} src={src} />,
+        Cell: ({ row }: any) => {
+          const { id, username } = row?.original?.user;
+          return <Avatar alt={username} color={convertToColor(id)} />;
+        },
         Header: '',
-        maxWidth: 40
+        maxWidth: 52
       },
       {
         accessor: 'user.firstname',

@@ -1,20 +1,37 @@
-import { Source } from '@fleetly/common/dist/enums';
+import { Color, Source } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
 
 // Styles
 import styles from './Avatar.scss';
 
+// Utils
+import { getClassName } from '@utils/styles';
+
 const Avatar: React.FC<Avatar.Props> = ({
   alt = 'avatar',
   classes,
+  color,
   sourceType,
   src
 }) => {
-  const { rootClassName, photoClassName, sourceClassName } = React.useMemo(
+  const {
+    rootClassName,
+    photoClassName,
+    plugClassName,
+    sourceClassName
+  } = React.useMemo(
     () => ({
-      rootClassName: classNames(classes?.root, styles.Root),
+      rootClassName: classNames(
+        classes?.root,
+        styles.Root,
+        getClassName('color', {
+          collection: styles,
+          value: color || Color.BLUE
+        })
+      ),
       photoClassName: classNames(classes?.photo, styles.Photo),
+      plugClassName: classNames(classes?.plug, styles.Plug),
       sourceClassName: classNames(
         classes?.source,
         styles.Source,
@@ -24,12 +41,17 @@ const Avatar: React.FC<Avatar.Props> = ({
         }
       )
     }),
-    [classes, sourceType]
+    [classes, color, sourceType]
   );
 
   return (
     <div className={rootClassName}>
-      <img alt={alt} className={photoClassName} src={src} />
+      {src ? (
+        <img alt={alt} className={photoClassName} src={src} />
+      ) : (
+        <div className={plugClassName}>{alt.substr(0, 1)}</div>
+      )}
+
       {sourceType && <i className={sourceClassName} />}
     </div>
   );

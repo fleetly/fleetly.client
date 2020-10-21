@@ -5,8 +5,7 @@ import * as yup from 'yup';
 
 // Components
 import Button from '@components/Button';
-import Form, { asyncValidate, Fieldset, Select } from '@components/Form';
-import { P } from '@components/Typography';
+import Form, { asyncValidate, Select } from '@components/Form';
 
 // Data
 import { ADD_COLLABORATOR_FORM } from '@constants';
@@ -16,34 +15,40 @@ import GET_USER_LIST from '../graphql/getUserList.gql';
 
 // Infrastructures
 import { ICollaborator } from '@interfaces/collaborator.interface';
+import { IUser } from '@interfaces/user.interface';
 
 // Styles
 import styles from './Form.scss';
 
+// Utils
+import { convertToColor } from '@utils/string';
+
 const CollaboratorsForm: React.FunctionComponent<InjectedFormProps<
   ICollaborator
->> = ({ error, handleSubmit, initialValues, submitting }) => {
-  const { data } = useQuery(GET_USER_LIST);
-  const users = data?.users || [];
+>> = ({ error, handleSubmit, submitting }) => {
+  const { data } = useQuery<{ users: IUser[] }>(GET_USER_LIST);
+
+  const users = React.useMemo(
+    () =>
+      (data?.users || []).map(({ id, email, username }) => ({
+        avatar: {
+          alt: username
+        },
+        color: convertToColor(id),
+        description: username,
+        label: email,
+        value: id
+      })),
+    [data]
+  );
 
   return (
-    <Form
-      classes={{ container: styles.Root }}
-      error={error}
-      onSubmit={handleSubmit}
-    >
-      <P className={styles.Description} component="div">
-        You can only find a Fleetly user by their email address or username.
-        Invitation of participants to the company affects the number of seats.
-      </P>
-
-      <Fieldset classes={{ root: styles.Fieldset }}>
-        <Select name="username" options={users} />
-      </Fieldset>
+    <Form classes={{ root: styles.Root }} error={error} onSubmit={handleSubmit}>
+      <Select name="username" options={users} />
 
       <div className={styles.Actions}>
         <Button color="primary" fullWidth loaded={submitting} type="submit">
-          Add
+          Add Collaborator
         </Button>
       </div>
     </Form>

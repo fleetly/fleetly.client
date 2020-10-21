@@ -4,6 +4,7 @@ import * as React from 'react';
 import Button from '@components/Button';
 import Modal from '@components/Modal';
 import Page, { Wrapper } from '@components/Page';
+import { P } from '@components/Typography';
 
 // Containers
 import Form from './containers/Form';
@@ -15,12 +16,15 @@ import { ADD_COLLABORATOR_FORM, ADD_COLLABORATOR_MODAL } from '@constants';
 // Hook
 import { useCollaborators } from './Collaborators.hooks';
 
+// Styles
+import styles from './Collaborators.scss';
+
 const Collaborators = () => {
   const {
+    collaborators,
     handleAddClick,
     handleRemoveClick,
-    handleFormSubmit,
-    collaborators
+    handleFormSubmit
   } = useCollaborators();
 
   return (
@@ -35,13 +39,24 @@ const Collaborators = () => {
       >
         <Table data={collaborators} onDelete={handleRemoveClick} />
 
-        <Modal id={ADD_COLLABORATOR_MODAL} title="Create new field">
+        <Modal
+          classes={{ container: styles.Container }}
+          id={ADD_COLLABORATOR_MODAL}
+          title="Add Collaborator"
+        >
           {({ id, initialValues }: any) => (
-            <Form
-              form={`${ADD_COLLABORATOR_FORM}${id ? `-${id}` : ''}`}
-              initialValues={{ ...initialValues, type: 'TEXT' }}
-              onSubmit={handleFormSubmit}
-            />
+            <>
+              <P className={styles.Description} component="div">
+                You can only find a Fleetly user by their email address or
+                username
+              </P>
+
+              <Form
+                form={`${ADD_COLLABORATOR_FORM}${id ? `-${id}` : ''}`}
+                initialValues={{ ...initialValues, type: 'TEXT' }}
+                onSubmit={handleFormSubmit}
+              />
+            </>
           )}
         </Modal>
       </Wrapper>

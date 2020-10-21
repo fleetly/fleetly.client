@@ -1,18 +1,72 @@
 @import '~@styles/colors.scss';
 
+@mixin colorPlug($color) {
+  .Plug {
+    background: $color;
+    color: $color-gray-0;
+    text-shadow: 0 4px 4px rgba($color-gray-0, .4);
+  }
+}
+
 .Root {
   align-items: center;
   display: flex;
   height: 40px;
   justify-content: center;
+  overflow: hidden;
   position: relative;
   width: 40px;
+
+  &Color {
+    &Blue {
+      @include colorPlug($color-primary);
+    }
+
+    &Green {
+      @include colorPlug($color-green-500);
+    }
+
+    &Orange {
+      @include colorPlug($color-orange-500);
+    }
+
+    &Pink {
+      @include colorPlug($color-pink-500);
+    }
+
+    &Purple {
+      @include colorPlug($color-purple-500);
+    }
+
+    &Red {
+      @include colorPlug($color-red-500);
+    }
+
+    &Sky {
+      @include colorPlug($color-sky-500);
+    }
+
+    &Yellow {
+      @include colorPlug($color-yellow-500);
+    }
+  }
 }
 
 .Photo {
   border-radius: 100%;
   height: 100%;
   object-fit: cover;
+  width: 100%;
+}
+
+.Plug {
+  align-items: center;
+  background: #f00;
+  border-radius: 100%;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  text-transform: uppercase;
   width: 100%;
 }
 
