@@ -2,6 +2,12 @@ mutation addCollaborator($userId: String!, $companyId: String!) {
   addCollaborator(userId: $userId, companyId: $companyId) {
     id
     role
-    user
+    user {
+      id
+      email
+      firstname
+      lastname
+      username
+    }
   }
 }

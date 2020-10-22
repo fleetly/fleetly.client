@@ -44,7 +44,7 @@ const CollaboratorsForm: React.FunctionComponent<InjectedFormProps<
 
   return (
     <Form classes={{ root: styles.Root }} error={error} onSubmit={handleSubmit}>
-      <Select name="username" options={users} />
+      <Select name="userId" options={users} />
 
       <div className={styles.Actions}>
         <Button color="primary" fullWidth loaded={submitting} type="submit">
@@ -56,8 +56,5 @@ const CollaboratorsForm: React.FunctionComponent<InjectedFormProps<
 };
 
 export default reduxForm<any, any>({
-  asyncValidate: asyncValidate(
-    yup.object().shape({ title: yup.string().required() })
-  ),
   form: ADD_COLLABORATOR_FORM
 })(CollaboratorsForm);

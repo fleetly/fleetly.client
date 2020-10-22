@@ -53,7 +53,7 @@ const Collaborators = () => {
 
               <Form
                 form={`${ADD_COLLABORATOR_FORM}${id ? `-${id}` : ''}`}
-                initialValues={{ ...initialValues, type: 'TEXT' }}
+                initialValues={initialValues}
                 onSubmit={handleFormSubmit}
               />
             </>

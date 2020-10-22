@@ -47,9 +47,9 @@ const useCollaborators = () => {
   const handleRemoveClick = (collaboratorId: string) =>
     removeCollaborator({ variables: { companyId, collaboratorId } });
 
-  const handleFormSubmit = async ({ id, ...collaborator }: ICollaborator) => {
+  const handleFormSubmit = async ({ userId }: any) => {
     try {
-      await addCollaborator({ variables: { companyId, collaborator } });
+      await addCollaborator({ variables: { companyId, userId } });
       return dispatch(closeModal(ADD_COLLABORATOR_MODAL));
     } catch (error) {
       return gqlErrorHandler(error);

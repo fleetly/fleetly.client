@@ -65,7 +65,7 @@ const CollaboratorsTable: React.FC<Collaborators.Table.Props> = ({
         Cell: ({ value }: any) => (
           <Button
             color="danger"
-            icon="far fa-trash-alt"
+            icon="far fa-times"
             id={value}
             onClick={handleRemoveClick}
             variant="outlined"
