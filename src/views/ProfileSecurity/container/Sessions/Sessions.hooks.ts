@@ -20,16 +20,15 @@ const useSessions = () => {
   const [deleteSession] = useMutation(DELETE_SESSION, {
     refetchQueries
   });
-  const [deleteAllSession] = useMutation(DELETE_ALL_SESSIONS, {
+  const [deleteAllSessions] = useMutation(DELETE_ALL_SESSIONS, {
     refetchQueries
   });
 
-  const handleAllDeleteClick = () => deleteAllSession();
   const handleDeleteClick = (sessionId: string) =>
     deleteSession({ variables: { sessionId } });
 
   return {
-    handleAllDeleteClick,
+    handleAllDeleteClick: deleteAllSessions,
     handleDeleteClick,
     sessions
   };

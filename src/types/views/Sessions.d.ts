@@ -1,11 +1,9 @@
 declare namespace Sessions {
   import ISession from '@interface/session.interface';
 
-  namespace Table {
-    interface Props {
-      data: ISession[];
-      onDelete(id: string): void;
-    }
+  interface TableProps {
+    data: ISession[];
+    onDelete(id: string): void;
   }
 }
 
