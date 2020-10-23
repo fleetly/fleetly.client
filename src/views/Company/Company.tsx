@@ -18,6 +18,8 @@ import Subscribers from '@views/Subscribers';
 import Fields from '@views/Fields';
 import Tags from '@views/Tags';
 
+import Sessions from '@views/ProfileSecurity/container/Sessions';
+
 const Company: React.FC<Company.Props> = ({ match }) => {
   const companyId: string = get(match, 'params.companyId');
 
