@@ -1,43 +1,33 @@
-import { useQuery } from 'react-apollo';
 import * as React from 'react';
-import { InjectedFormProps, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import * as yup from 'yup';
 
 // Components
 import Button from '@components/Button';
-import Form, { asyncValidate, Fieldset, Input, Select } from '@components/Form';
+import Form, {
+  asyncValidate,
+  Actions,
+  Fieldset,
+  Input,
+  Select
+} from '@components/Form';
 import Link from '@components/Link';
 
 // Data
 import { CREATE_FIELD_FORM } from '@constants';
 
-// GraphQL
-import GET_FIELD_TYPES from '../graphql/getFieldTypes.gql';
-
-// Infrastructures
-import { IField } from '@interfaces/field.interface';
-
-// Styles
-import styles from './Form.scss';
-
-const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
+const FieldsForm: React.FC<Fields.FormProps> = ({
   error,
+  fieldTypes,
   handleSubmit,
   initialValues,
   submitting
 }) => {
-  const { data } = useQuery(GET_FIELD_TYPES);
-  const fieldTypes = data?.fieldTypes || [];
-
   const isEditMode = initialValues?.id;
 
   return (
-    <Form
-      classes={{ container: styles.Container }}
-      error={error}
-      onSubmit={handleSubmit}
-    >
-      <Fieldset classes={{ root: styles.Fieldset }}>
+    <Form error={error} onSubmit={handleSubmit}>
+      <Fieldset>
         <Input label="Title" name="title" placeholder="Name" />
 
         <Input
@@ -56,11 +46,11 @@ const FieldsForm: React.FC<InjectedFormProps<IField>> = ({
         )}
       </Fieldset>
 
-      <div className={styles.Actions}>
+      <Actions>
         <Button color="primary" fullWidth loaded={submitting} type="submit">
           {isEditMode ? 'Update' : 'Create'}
         </Button>
-      </div>
+      </Actions>
     </Form>
   );
 };

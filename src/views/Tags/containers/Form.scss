@@ -1,18 +1,1 @@
 @import '~@styles/colors.scss';
-
-.Root {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.Actions {
-  margin: 40px 0 0;
-  width: 100%;
-}
-
-.Fieldset {
-  display: grid;
-  grid-row-gap: 20px;
-  width: 100%;
-}

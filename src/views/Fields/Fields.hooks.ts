@@ -1,4 +1,4 @@
-import { get, omit } from 'lodash';
+import { omit } from 'lodash';
 import { useMutation, useQuery } from 'react-apollo';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ import GET_FIELD_LIST from './graphql/getFieldList.gql';
 import UPDATE_FIELD from './graphql/updateField.gql';
 
 // Interfaces
-import { IField } from '@interfaces/field.interface';
+import { IField, IFieldTypeOption } from '@interfaces/field.interface';
 
 // Store
 import { closeModal, openModal } from '@store';
@@ -27,8 +27,15 @@ const useFields = () => {
   const dispatch = useDispatch();
 
   // Data
-  const { data } = useQuery(GET_FIELD_LIST, { variables: { companyId } });
-  const fields: IField[] = get(data, 'fields', []);
+  const { data } = useQuery<{
+    fields: IField[];
+    fieldTypes: IFieldTypeOption[];
+  }>(GET_FIELD_LIST, {
+    variables: { companyId }
+  });
+
+  const fields = data?.fields || [];
+  const fieldTypes = data?.fieldTypes || [];
 
   // Mutations
   const refetchQueries = [{ query: GET_FIELD_LIST, variables: { companyId } }];
@@ -72,7 +79,8 @@ const useFields = () => {
     handleDeleteClick,
     handleEditClick,
     handleFormSubmit,
-    fields
+    fields,
+    fieldTypes
   };
 };
 

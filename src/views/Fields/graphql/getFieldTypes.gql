@@ -1,8 +1,0 @@
-query {
-  fieldTypes {
-    color
-    description
-    label
-    value
-  }
-}

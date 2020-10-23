@@ -4,15 +4,17 @@ import * as yup from 'yup';
 
 // Components
 import Button from '@components/Button';
-import Form, { asyncValidate, Fieldset, Input } from '@components/Form';
+import Form, {
+  asyncValidate,
+  Actions,
+  Fieldset,
+  Input
+} from '@components/Form';
 
 import SourceType from '../components/SourceType';
 
 // Constants
 import { ADD_CHANNEL_FORM } from '@constants';
-
-// Styles
-import styles from './Form.scss';
 
 const ChannelsForm: React.FC<InjectedFormProps<Channels.FormValues>> = ({
   error,
@@ -20,16 +22,16 @@ const ChannelsForm: React.FC<InjectedFormProps<Channels.FormValues>> = ({
   submitting
 }) => (
   <Form error={error} onSubmit={handleSubmit}>
-    <Fieldset classes={{ root: styles.Fieldset }}>
+    <Fieldset>
       <SourceType name="sourceType" />
       <Input name="token" placeholder="Token" />
     </Fieldset>
 
-    <div className={styles.Actions}>
+    <Actions>
       <Button color="primary" fullWidth loaded={submitting} type="submit">
         Add Channel
       </Button>
-    </div>
+    </Actions>
   </Form>
 );
 

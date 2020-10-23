@@ -23,7 +23,8 @@ const Button: React.SFC<Button.Props> = ({
   onClick,
   to,
   type = 'button',
-  variant = 'filled'
+  variant = 'filled',
+  ...props
 }) => {
   const Component = (props: any) =>
     to ? <Link {...props} to={to} /> : <button {...props} />;
@@ -45,6 +46,7 @@ const Button: React.SFC<Button.Props> = ({
       id={id}
       onClick={onClick}
       type={type}
+      {...props}
     >
       {loaded ? (
         <i

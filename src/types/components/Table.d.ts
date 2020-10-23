@@ -12,7 +12,7 @@ declare namespace Table {
     classes?: Classes;
     columns: Column[];
     data: any[];
-    onTrClick?(event: React.SyntheticEvent<HTMLDivElement>): void;
+    onTrClick?(event: any): void;
   }
 }
 

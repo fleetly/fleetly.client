@@ -12,6 +12,7 @@
     "prettier": true,
     "interface-name": false,
     "no-namespace": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "no-unused-expression": [true, "allow-fast-null-checks"]
   }
 }

@@ -2,17 +2,20 @@ import * as React from 'react';
 
 // Components
 import Button from '@components/Button';
+import Status from '@components/Status';
 import Table from '@components/Table';
 
-const FieldsTable: React.FC<Fields.Table.Props> = ({
+const FieldsTable: React.FC<Fields.TableProps> = ({
   data,
+  fieldTypes,
   onDelete,
   onEdit
 }) => {
   const handleDeleteClick = React.useCallback(
     (event: React.SyntheticEvent<HTMLButtonElement>) => {
       event.stopPropagation();
-      onDelete(event.currentTarget.getAttribute('id') || '');
+      event.currentTarget.dataset.fieldId &&
+        onDelete(event.currentTarget.dataset.fieldId);
     },
     [onDelete]
   );
@@ -20,12 +23,20 @@ const FieldsTable: React.FC<Fields.Table.Props> = ({
   const columns = React.useMemo(
     () => [
       {
-        accessor: 'title',
-        Header: 'Name'
+        accessor: 'type',
+        Cell: ({ value }: any) => {
+          const { color, label } =
+            fieldTypes.find((fieldType) => fieldType.value === value) ||
+            fieldTypes[0];
+
+          return <Status color={color} title={label} />;
+        },
+        Header: 'Type',
+        maxWidth: 160
       },
       {
-        accessor: 'type',
-        Header: 'Type'
+        accessor: 'title',
+        Header: 'Name'
       },
       {
         accessor: 'description',
@@ -40,9 +51,9 @@ const FieldsTable: React.FC<Fields.Table.Props> = ({
         accessor: 'id',
         Cell: ({ value }: any) => (
           <Button
+            data-field-id={value}
             color="danger"
             icon="far fa-trash-alt"
-            id={value}
             onClick={handleDeleteClick}
             variant="outlined"
           />
@@ -51,7 +62,7 @@ const FieldsTable: React.FC<Fields.Table.Props> = ({
         maxWidth: 40
       }
     ],
-    [handleDeleteClick]
+    [fieldTypes, handleDeleteClick]
   );
   return <Table columns={columns} data={data} onTrClick={onEdit} />;
 };

@@ -31,6 +31,16 @@ declare namespace Form {
     onSubmit(event: React.SyntheticEvent<HTMLFormElement>): void;
   }
 
+  // Actions
+  type ActionsOrientation = 'horizontal' | 'vertical';
+
+  interface ActionsProps {
+    children: React.ReactNode;
+    classes?: ExtendedClasses;
+    orientation?: ActionsOrientation;
+  }
+  // End Actions
+
   // Fieldset
   interface FieldsetProps {
     classes?: ExtendedClasses;

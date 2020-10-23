@@ -5,4 +5,11 @@ query getFieldList($companyId: String!) {
     title
     type
   }
+
+  fieldTypes {
+    color
+    description
+    label
+    value
+  }
 }

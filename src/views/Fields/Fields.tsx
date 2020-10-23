@@ -25,7 +25,8 @@ const Fields = () => {
     handleDeleteClick,
     handleEditClick,
     handleFormSubmit,
-    fields
+    fields,
+    fieldTypes
   } = useFields();
 
   return (
@@ -40,6 +41,7 @@ const Fields = () => {
       >
         <Table
           data={fields}
+          fieldTypes={fieldTypes}
           onDelete={handleDeleteClick}
           onEdit={handleEditClick}
         />
@@ -65,6 +67,7 @@ const Fields = () => {
               )}
 
               <Form
+                fieldTypes={fieldTypes}
                 form={`${CREATE_FIELD_FORM}${id ? `-${id}` : ''}`}
                 initialValues={{ ...initialValues, type: 'TEXT' }}
                 onSubmit={handleFormSubmit}

@@ -9,7 +9,8 @@ const TagsTable: React.FC<Tags.Table.Props> = ({ data, onDelete, onEdit }) => {
   const handleDeleteClick = React.useCallback(
     (event: React.SyntheticEvent<HTMLButtonElement>) => {
       event.stopPropagation();
-      onDelete(event.currentTarget.getAttribute('id') || '');
+      event.currentTarget.dataset.tagId &&
+        onDelete(event.currentTarget.dataset.tagId);
     },
     [onDelete]
   );
@@ -39,9 +40,9 @@ const TagsTable: React.FC<Tags.Table.Props> = ({ data, onDelete, onEdit }) => {
         accessor: 'id',
         Cell: ({ value }: any) => (
           <Button
+            data-tag-id={value}
             color="danger"
             icon="far fa-trash-alt"
-            id={value}
             onClick={handleDeleteClick}
             variant="outlined"
           />
