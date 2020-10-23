@@ -1,0 +1,11 @@
+@import '~@styles/colors.scss';
+
+.Container {
+  width: 360px;
+}
+
+.Description {
+  color: $color-gray-600;
+  max-width: 300px;
+  text-align: center;
+}

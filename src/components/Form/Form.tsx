@@ -7,19 +7,25 @@ import Transition from '@components/Transition';
 // Styles
 import styles from './Form.scss';
 
-const Form: React.SFC<Form.Props> = ({
-  children,
-  classes,
-  error,
-  onSubmit
-}) => (
-  <form className={classes?.root} onSubmit={onSubmit}>
-    <Transition duration={400} enter="fadeInUp" in={!!error}>
-      <div className={classNames(classes?.error, styles.Error)}>{error}</div>
-    </Transition>
+const Form: React.FC<Form.Props> = ({ children, classes, error, onSubmit }) => {
+  const { rootClassName, errorClassName, containerClassName } = React.useMemo(
+    () => ({
+      rootClassName: classNames(classes?.root, styles.Root),
+      errorClassName: classNames(classes?.error, styles.Error),
+      containerClassName: classNames(classes?.container, styles.Container)
+    }),
+    [classes]
+  );
 
-    <div className={classes?.container}>{children}</div>
-  </form>
-);
+  return (
+    <form className={rootClassName} onSubmit={onSubmit}>
+      <Transition duration={400} enter="fadeInUp" in={!!error}>
+        <div className={errorClassName}>{error}</div>
+      </Transition>
+
+      <div className={containerClassName}>{children}</div>
+    </form>
+  );
+};
 
 export default Form;

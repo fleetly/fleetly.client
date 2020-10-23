@@ -1,4 +1,5 @@
 export * from './Channels';
+export * from './Collaborators';
 export * from './Company';
 export * from './Sign';
 export * from './Subscribers';

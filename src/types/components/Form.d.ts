@@ -1,3 +1,4 @@
+import { Color } from '@fleetly/common/dist/enums';
 import { ActionMeta, ValueType } from 'react-select';
 import { WrappedFieldMetaProps, WrappedFieldInputProps } from 'redux-form';
 
@@ -82,6 +83,8 @@ declare namespace Form {
   interface SelectOptionType {
     avatar?: Avatar.Props;
     color?: Color;
+    description?: string;
+    info?: string;
     isDisabled?: boolean;
     isFixed?: boolean;
     label: string;

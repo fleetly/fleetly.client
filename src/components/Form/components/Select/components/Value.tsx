@@ -50,7 +50,9 @@ const FormSelectValue: React.FC<
 
   return (
     <div className={rootClassName}>
-      {avatar && <Avatar {...avatar} classes={{ root: styles.Avatar }} />}
+      {avatar && (
+        <Avatar {...avatar} classes={{ root: styles.Avatar }} color={color} />
+      )}
 
       <div className={labelClassName}>{label}</div>
 

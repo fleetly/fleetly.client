@@ -1,5 +1,9 @@
 @import '~@styles/colors';
 
+.Container {
+  width: 100%;
+}
+
 .Error {
   color: $color-danger;
   line-height: 20px;

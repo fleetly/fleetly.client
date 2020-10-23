@@ -14,6 +14,7 @@ import styles from './Company.scss';
 
 // Views
 import Channels from '@views/Channels';
+import Collaborators from '@views/Collaborators';
 import Subscribers from '@views/Subscribers';
 import Fields from '@views/Fields';
 import Tags from '@views/Tags';
@@ -39,6 +40,10 @@ const Company: React.FC<Company.Props> = ({ match }) => {
           <Route
             component={Subscribers}
             path={ROUTES.COMPANY.SUBSCRIBERS.path}
+          />
+          <Route
+            component={Collaborators}
+            path={ROUTES.COMPANY.COLLABORATORS.path}
           />
           <Route component={Fields} path={ROUTES.COMPANY.FIELDS.path} />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS.path} />
