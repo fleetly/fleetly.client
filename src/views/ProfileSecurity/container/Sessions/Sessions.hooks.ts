@@ -28,7 +28,7 @@ const useSessions = () => {
     deleteSession({ variables: { sessionId } });
 
   return {
-    handleAllDeleteClick: deleteAllSessions,
+    handleAllDeleteClick: () => deleteAllSessions(),
     handleDeleteClick,
     sessions
   };

@@ -4,7 +4,7 @@ import * as React from 'react';
 import Button from '@components/Button';
 import Table from '@components/Table';
 
-const SessionsTable: React.FunctionComponent<Sessions.Table.Props> = ({
+const SessionsTable: React.FunctionComponent<Sessions.TableProps> = ({
   data,
   onDelete
 }) => {
