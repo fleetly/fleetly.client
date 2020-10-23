@@ -18,10 +18,7 @@ import Subscribers from '@views/Subscribers';
 import Fields from '@views/Fields';
 import Tags from '@views/Tags';
 
-// Delete and 49 line
-import Sessions from '@views/ProfileSecurity/container/Sessions';
-
-const Company: React.FunctionComponent<Company.Props> = ({ match }) => {
+const Company: React.FC<Company.Props> = ({ match }) => {
   const companyId: string = get(match, 'params.companyId');
 
   return (

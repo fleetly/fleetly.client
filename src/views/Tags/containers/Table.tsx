@@ -2,15 +2,10 @@ import * as React from 'react';
 
 // Components
 import Button from '@components/Button';
+import Status from '@components/Status';
 import Table from '@components/Table';
 
-import { ColorCell } from '../components/Color';
-
-const TagsTable: React.FunctionComponent<Tags.Table.Props> = ({
-  data,
-  onDelete,
-  onEdit
-}) => {
+const TagsTable: React.FC<Tags.Table.Props> = ({ data, onDelete, onEdit }) => {
   const handleDeleteClick = React.useCallback(
     (event: React.SyntheticEvent<HTMLButtonElement>) => {
       event.stopPropagation();
@@ -23,7 +18,7 @@ const TagsTable: React.FunctionComponent<Tags.Table.Props> = ({
     () => [
       {
         accessor: 'color',
-        Cell: ({ value }: any) => <ColorCell color={value} />,
+        Cell: ({ value }: any) => <Status color={value} />,
         Header: '',
         maxWidth: 32
       },

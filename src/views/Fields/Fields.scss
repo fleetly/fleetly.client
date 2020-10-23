@@ -1,0 +1,18 @@
+@import '~@styles/colors.scss';
+
+.Careful {
+  color: $color-warning;
+  font-weight: 600;
+  margin: 12px 0 0;
+}
+
+.Container {
+  max-width: 300px;
+}
+
+.Description {
+  color: $color-gray-600;
+  font-weight: 500;
+  margin: 0 0 24px;
+  text-align: center;
+}

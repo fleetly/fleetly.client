@@ -13,7 +13,7 @@ type PropTypes = {
   title: string;
 };
 
-const MainCompany: React.FunctionComponent<PropTypes> = ({
+const MainCompany: React.FC<PropTypes> = ({
   id,
   notifications = false,
   title = ''
