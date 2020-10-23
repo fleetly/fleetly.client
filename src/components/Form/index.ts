@@ -3,6 +3,7 @@ export { default } from './Form';
 // Components
 export { default as Fieldset } from './components/Fieldset';
 export { default as Input } from './components/Input';
+export { default as Select } from './components/Select';
 
 // HOCs
 export { default as withReduxForm } from './hocs/withReduxForm';

@@ -3,9 +3,15 @@ query getChannelList($companyId: String!) {
     id
     source {
       id
+      link
       name
       photo
       title
+      type
+    }
+    status {
+      color
+      message
       type
     }
   }

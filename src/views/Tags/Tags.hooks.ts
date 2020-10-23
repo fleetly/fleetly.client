@@ -33,11 +33,13 @@ const useTags = () => {
   // Mutations
   const refetchQueries = [{ query: GET_TAG_LIST, variables: { companyId } }];
 
-  const [createTag] = useMutation(CREATE_TAG, { refetchQueries });
+  const [createTag] = useMutation(CREATE_TAG, {
+    refetchQueries
+  });
   const [deleteTag] = useMutation(DELETE_TAG, {
     refetchQueries
   });
-  const [udpateTag] = useMutation(UPDATE_TAG, { refetchQueries });
+  const [udpateTag] = useMutation(UPDATE_TAG);
 
   // Handlers
   const handleCreateClick = () => dispatch(openModal(CREATE_TAG_MODAL));
