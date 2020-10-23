@@ -57,11 +57,11 @@ const useCollaborators = () => {
   };
 
   return {
+    collaborators,
     companyId,
     handleAddClick,
     handleRemoveClick,
-    handleFormSubmit,
-    collaborators
+    handleFormSubmit
   };
 };
 

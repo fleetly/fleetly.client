@@ -23,8 +23,8 @@ import styles from './Form.scss';
 // Utils
 import { convertToColor } from '@utils/string';
 
-const CollaboratorsForm: React.FunctionComponent<InjectedFormProps<
-  ICollaborator
+const CollaboratorsForm: React.FC<InjectedFormProps<
+  Collaborators.FormValues
 >> = ({ error, handleSubmit, submitting }) => {
   const { data } = useQuery<{ users: IUser[] }>(GET_USER_LIST);
 

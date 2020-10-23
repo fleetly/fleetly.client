@@ -23,8 +23,8 @@ const Collaborators = () => {
   const {
     collaborators,
     handleAddClick,
-    handleRemoveClick,
-    handleFormSubmit
+    handleFormSubmit,
+    handleRemoveClick
   } = useCollaborators();
 
   return (
@@ -44,20 +44,11 @@ const Collaborators = () => {
           id={ADD_COLLABORATOR_MODAL}
           title="Add Collaborator"
         >
-          {({ id, initialValues }: any) => (
-            <>
-              <P className={styles.Description} component="div">
-                You can only find a Fleetly user by their email address or
-                username
-              </P>
+          <P className={styles.Description} component="div">
+            You can only find a Fleetly user by their email address or username
+          </P>
 
-              <Form
-                form={`${ADD_COLLABORATOR_FORM}${id ? `-${id}` : ''}`}
-                initialValues={initialValues}
-                onSubmit={handleFormSubmit}
-              />
-            </>
-          )}
+          <Form form={ADD_COLLABORATOR_FORM} onSubmit={handleFormSubmit} />
         </Modal>
       </Wrapper>
     </Page>

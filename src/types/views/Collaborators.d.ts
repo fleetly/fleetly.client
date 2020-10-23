@@ -7,6 +7,10 @@ declare namespace Collaborators {
       onDelete(id: string): void;
     }
   }
+
+  interface FormValues {
+    userId: string;
+  }
 }
 
 export = Collaborators;
