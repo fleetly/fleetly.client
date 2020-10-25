@@ -10,7 +10,7 @@ import styles from './Button.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-const Button: React.SFC<Button.Props> = ({
+const Button: React.FC<Button.Props> = ({
   children,
   className,
   classes,
