@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import * as React from 'react';
+import { WrappedFieldInputProps } from 'redux-form';
 
 // Components
 import { withReduxForm } from '@components/Form';
@@ -11,7 +12,10 @@ import { SOURCE_LIST } from '../data';
 // Styles
 import styles from './SourceType.scss';
 
-const ChannelsSourceType: React.FC<Form.FieldBase> = ({ onChange, value }) => {
+const ChannelsSourceType: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
+  onChange,
+  value
+}) => {
   const handleClick = React.useCallback(
     (event: React.SyntheticEvent<HTMLDivElement>) =>
       onChange(event.currentTarget.dataset.sourceType),

@@ -1,5 +1,5 @@
 import { Color } from '@fleetly/common/dist/enums';
-import { ActionMeta, ValueType } from 'react-select';
+import { GroupType } from 'react-select';
 import { WrappedFieldMetaProps, WrappedFieldInputProps } from 'redux-form';
 
 declare namespace Form {
@@ -15,11 +15,13 @@ declare namespace Form {
     meta: WrappedFieldMetaProps;
   }
 
-  interface FieldBase extends WrappedFieldInputProps {
+  interface FieldBase {
+    children?: React.Node;
     disabled?: boolean;
-    id: string;
+    id?: string;
     error?: string;
     label?: string;
+    loaded?: boolean;
     name: string;
     withoutRedux?: boolean;
   }
@@ -74,12 +76,9 @@ declare namespace Form {
   interface SelectProps extends FieldBase {
     classes?: any;
     hint?: React.ReactNode;
-    isMulti?: boolean;
-    onChange?(
-      value: ValueType<SelectOptionType>,
-      action: ActionMeta<SelectOptionType>
-    ): void;
-    options: SelectOptionType[];
+    multiplied?: boolean;
+    options: SelectOptionType[] | GroupType<SelectOptionType>[];
+    variant?: 'filled' | 'outlined';
   }
 
   // Select Option

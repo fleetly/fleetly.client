@@ -34,7 +34,9 @@ const FormSelectValue: React.FC<
           value: color || Color.BLUE
         }),
         {
-          [styles.RootVariantFilled]: !!avatar || !!color || isMulti
+          [styles.RootVariantFilled]: selectProps?.isFilled,
+          [styles.RootVariantOutlined]:
+            !selectProps?.isFilled && (!!avatar || !!color || isMulti)
         }
       ),
       labelClassName: classNames(classes?.label, styles.Label),
@@ -45,7 +47,7 @@ const FormSelectValue: React.FC<
         'fas fa-times'
       )
     }),
-    [avatar, classes, color, isMulti]
+    [avatar, classes, color, isMulti, selectProps]
   );
 
   return (

@@ -2,6 +2,15 @@
 
 @mixin coloredFormSelectValue($color) {
   &.RootVariantFilled {
+    .Label {
+      color: $color;
+      font-size: 14px;
+      letter-spacing: -.2px;
+      margin: 0 6px 0 16px;
+    }
+  }
+
+  &.RootVariantOutlined {
     background: rgba($color, .1);
 
     &:hover {
@@ -70,7 +79,7 @@
   }
 
   &Variant {
-    &Filled {
+    &Outlined {
       border-radius: 15px;
       font-size: 12px;
       height: 30px;

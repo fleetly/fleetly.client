@@ -44,6 +44,7 @@ const Transition: React.SFC<Transition.Props> = ({
         enter: formattedDelay.enter + formattedDuration.enter,
         exit: formattedDelay.exit + formattedDuration.exit
       }}
+      unmountOnExit
     >
       {(state) =>
         React.cloneElement(children, {

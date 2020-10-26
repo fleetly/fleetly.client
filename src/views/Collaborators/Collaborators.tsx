@@ -7,7 +7,7 @@ import Page, { Wrapper } from '@components/Page';
 import { P } from '@components/Typography';
 
 // Containers
-import Form from './containers/Form';
+import AddForm from './containers/AddForm';
 import Table from './containers/Table';
 
 // Constants
@@ -20,12 +20,7 @@ import { useCollaborators } from './Collaborators.hooks';
 import styles from './Collaborators.scss';
 
 const Collaborators = () => {
-  const {
-    collaborators,
-    handleAddClick,
-    handleFormSubmit,
-    handleRemoveClick
-  } = useCollaborators();
+  const { handleAddClick, handleAddFormSubmit } = useCollaborators();
 
   return (
     <Page title="Collaborators">
@@ -37,7 +32,7 @@ const Collaborators = () => {
         }
         title="Collaborators"
       >
-        <Table data={collaborators} onDelete={handleRemoveClick} />
+        <Table />
 
         <Modal
           classes={{ container: styles.Container }}
@@ -48,7 +43,10 @@ const Collaborators = () => {
             You can only find a Fleetly user by their email address or username
           </P>
 
-          <Form form={ADD_COLLABORATOR_FORM} onSubmit={handleFormSubmit} />
+          <AddForm
+            form={ADD_COLLABORATOR_FORM}
+            onSubmit={handleAddFormSubmit}
+          />
         </Modal>
       </Wrapper>
     </Page>

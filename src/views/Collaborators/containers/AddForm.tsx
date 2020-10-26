@@ -18,8 +18,8 @@ import { IUser } from '@interfaces/user.interface';
 // Utils
 import { convertToColor } from '@utils/string';
 
-const CollaboratorsForm: React.FC<InjectedFormProps<
-  Collaborators.FormValues
+const CollaboratorsAddForm: React.FC<InjectedFormProps<
+  Collaborators.AddFormValues
 >> = ({ error, handleSubmit, submitting }) => {
   const { data } = useQuery<{ users: IUser[] }>(GET_USER_LIST);
 
@@ -52,4 +52,4 @@ const CollaboratorsForm: React.FC<InjectedFormProps<
 
 export default reduxForm<any, any>({
   form: ADD_COLLABORATOR_FORM
-})(CollaboratorsForm);
+})(CollaboratorsAddForm);

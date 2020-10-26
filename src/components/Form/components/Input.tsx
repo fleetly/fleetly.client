@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import * as React from 'react';
+import { WrappedFieldInputProps } from 'redux-form';
 
 // Components
 import { FieldError, FieldHeader } from './common';
@@ -10,7 +11,7 @@ import withReduxForm from '../hocs/withReduxForm';
 // Styles
 import styles from './Input.scss';
 
-const FormInput: React.FC<Form.InputProps> = ({
+const FormInput: React.FC<Form.InputProps & WrappedFieldInputProps> = ({
   classes,
   error,
   disabled,
