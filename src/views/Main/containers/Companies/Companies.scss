@@ -13,8 +13,21 @@
   }
 }
 
+.Container {
+  max-width: 300px;
+}
+
 .Create {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+.Description {
+  color: $color-gray-600;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  margin: 0 0 40px;
+  text-align: center;
 }

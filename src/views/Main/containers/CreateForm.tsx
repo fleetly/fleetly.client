@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { reduxForm } from 'redux-form';
+import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
 
 // Components
@@ -14,11 +14,14 @@ import Form, {
 // Constants
 import { CREATE_COMPANY_FORM } from '@constants';
 
-const MainCreateForm: React.FC<any> = ({ error, handleSubmit }) => (
+const MainCreateForm: React.FC<InjectedFormProps<Main.CreateFormValues>> = ({
+  error,
+  handleSubmit
+}) => (
   <Form error={error} onSubmit={handleSubmit}>
     <Fieldset>
-      <Input label="Name" name="name" />
-      <Input label="Title" name="title" />
+      <Input label="Name" name="name" placeholder="Unique company name" />
+      <Input label="Title" name="title" placeholder="Public display name" />
     </Fieldset>
 
     <Actions>
@@ -29,7 +32,7 @@ const MainCreateForm: React.FC<any> = ({ error, handleSubmit }) => (
   </Form>
 );
 
-export default reduxForm({
+export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
     yup.object().shape({
       name: yup.string().required(),

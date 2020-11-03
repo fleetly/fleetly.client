@@ -10,7 +10,10 @@ import { CREATE_COMPANY_MODAL } from '@constants';
 
 // GraphQL
 import CREATE_COMPANY from '../../graphql/createCompany.gql';
-import GET_COMPANY_LIST from '@graphql/getCompanyList.gql';
+import GET_COMPANY_LIST from '../../graphql/getCompanyList.gql';
+
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
 
 // Store
 import { closeModal, openModal } from '@store';
@@ -20,7 +23,7 @@ const useCompanies = () => {
   const dispatch = useDispatch();
 
   // Data
-  const { data } = useQuery(GET_COMPANY_LIST);
+  const { data } = useQuery<{ companies: ICompany[] }>(GET_COMPANY_LIST);
   const companies = data?.companies || [];
 
   // Mutations
