@@ -30,7 +30,9 @@ const useCollaborators = () => {
   // Handlers
   const handleAddClick = () => dispatch(openModal(ADD_COLLABORATOR_MODAL));
 
-  const handleAddFormSubmit = async ({ userId }: any) => {
+  const handleAddFormSubmit = async ({
+    userId
+  }: Collaborators.AddFormValues) => {
     try {
       await addCollaborator({ variables: { companyId, userId } });
       return dispatch(closeModal(ADD_COLLABORATOR_MODAL));

@@ -1,5 +1,4 @@
 import { Role } from '@fleetly/common/dist/enums';
-import { InjectedFormProps } from 'redux-form';
 
 // Interfaces
 import { ICollaborator } from '@interfaces/collaborator.interface';
@@ -16,7 +15,7 @@ declare namespace Collaborators {
     userId: string;
   }
 
-  interface RoleFormProps extends InjectedFormProps<RoleFormValues> {
+  interface RoleFormProps {
     disabled?: boolean;
   }
 

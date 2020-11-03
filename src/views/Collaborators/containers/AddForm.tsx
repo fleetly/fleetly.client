@@ -50,6 +50,6 @@ const CollaboratorsAddForm: React.FC<InjectedFormProps<
   );
 };
 
-export default reduxForm<any, any>({
+export default reduxForm<Collaborators.AddFormValues>({
   form: ADD_COLLABORATOR_FORM
 })(CollaboratorsAddForm);

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import { useTable } from 'react-table';
 
@@ -57,7 +58,9 @@ const Table: React.FC<Table.Props> = ({ columns, data, onTrClick }) => {
           return (
             <div
               {...row.getRowProps()}
-              className={styles.Tr}
+              className={classNames(styles.Tr, {
+                [styles.TrHasAction]: !!onTrClick
+              })}
               key={index}
               onClick={handleRowClick}
             >
@@ -86,5 +89,3 @@ const Table: React.FC<Table.Props> = ({ columns, data, onTrClick }) => {
 };
 
 export default Table;
-
-// onClick={onTrClick?.bind(null, row.original)}
