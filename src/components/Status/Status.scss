@@ -24,6 +24,10 @@
       @include colorTag($color-primary);
     }
 
+    &Gray {
+      @include colorTag($color-gray-500);
+    }
+
     &Green {
       @include colorTag($color-green-500);
     }

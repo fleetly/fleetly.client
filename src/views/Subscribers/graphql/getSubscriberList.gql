@@ -1,6 +1,8 @@
 query getSubscriberList($companyId: String!) {
   subscribers(companyId: $companyId) {
     id
+    createdAt
+    messagePolicy
     source {
       id
       firstname
