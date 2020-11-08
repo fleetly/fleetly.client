@@ -8,23 +8,11 @@ import Status from '@components/Status';
 import Table from '@components/Table';
 import { Caption, P } from '@components/Typography';
 
+// Constants
+import { MESSAGE_POLICY_STATUS } from '@constants';
+
 // Styles
 import styles from './Table.scss';
-
-const MESSAGE_POLICY: any = {
-  [MessagePolicy.ALLOWED]: {
-    color: Color.GREEN,
-    title: 'Allowed'
-  },
-  [MessagePolicy.DENIED]: {
-    color: Color.RED,
-    title: 'Denied'
-  },
-  [MessagePolicy.NOT_ALLOWED]: {
-    color: Color.GRAY,
-    title: 'Not Allowed'
-  }
-};
 
 const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
   const columns = React.useMemo(
@@ -69,7 +57,7 @@ const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
       },
       {
         accessor: 'messagePolicy',
-        Cell: ({ value }) => <Status {...MESSAGE_POLICY[value]} />,
+        Cell: ({ value }) => <Status {...MESSAGE_POLICY_STATUS[value]} />,
         Header: 'Message policy'
       },
       {

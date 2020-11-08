@@ -1,0 +1,14 @@
+query getSubscriberById($subscriberId: String!) {
+  subscriber(subscriberId: $subscriberId) {
+    id
+    messagePolicy
+    source {
+      id
+      firstname
+      lastname
+      photo
+      type
+      username
+    }
+  }
+}
