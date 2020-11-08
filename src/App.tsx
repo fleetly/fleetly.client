@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
+// Components
+import Notification from '@components/Notification';
+
 // Store
 import { isAuthorized as getAuthState } from '@store';
 
@@ -21,6 +24,8 @@ const App = () => {
 
   return (
     <div className={styles.Root}>
+      <Notification />
+
       <Switch>
         {isAuthorized ? (
           <>
