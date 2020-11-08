@@ -27,24 +27,4 @@ const Notification: React.FC<any> = ({ description, title = 'Fleetly' }) => (
   </div>
 );
 
-const NotificationSuccess: React.FC<any> = ({
-  description,
-  title = 'Fleetly'
-}) => (
-  <div className={styles.Root}>
-    <div className={styles.Icon} />
-
-    <div className={styles.Info}>
-      <div className={styles.Title}>Notification system</div>
-      <div className={styles.Description}>
-        Also on Fleetly, you need to add pop-up notifications in any corner.
-      </div>
-    </div>
-
-    <div className={styles.Actions}>
-      <Button icon="fas fa-times" variant="outlined" />
-    </div>
-  </div>
-);
-
 export default Notification;
