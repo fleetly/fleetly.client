@@ -6,5 +6,6 @@ export * from './Modal';
 export * from './Page';
 export * from './Status';
 export * from './Table';
+export * from './Tabs';
 export * from './Transition';
 export * from './Typography';

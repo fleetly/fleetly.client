@@ -1,8 +1,15 @@
-import { Source } from '@fleetly/common';
+import { MessagePolicy, Source } from '@fleetly/common';
 
 export interface ISubscriber {
   id: string;
+  fields: ISubscriberField[];
+  messagePolicy: MessagePolicy;
   source: ISubscriberSource;
+}
+
+export interface ISubscriberField {
+  fieldId: string;
+  value: string;
 }
 
 export interface ISubscriberSource {

@@ -1,6 +1,21 @@
-query getSubscriberById($subscriberId: String!) {
+query getSubscriberById($companyId: String!, $subscriberId: String!) {
+  fields(companyId: $companyId) {
+    id
+    title
+    type
+  }
+
+  fieldTypes {
+    color
+    value
+  }
+
   subscriber(subscriberId: $subscriberId) {
     id
+    fields {
+      fieldId
+      value
+    }
     messagePolicy
     source {
       id
