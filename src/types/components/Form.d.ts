@@ -23,6 +23,7 @@ declare namespace Form {
     label?: string;
     loaded?: boolean;
     name: string;
+    placeholder?: string;
     withoutRedux?: boolean;
   }
 

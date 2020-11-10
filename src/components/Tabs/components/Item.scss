@@ -9,6 +9,7 @@
   transition: all .2s;
 
   &:hover {
+    color: $color-gray-700;
     cursor: pointer;
   }
 

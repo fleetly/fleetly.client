@@ -67,6 +67,8 @@
 }
 
 .Status {
+  white-space: nowrap;
+
   & > div:first-child {
     display: none;
   }

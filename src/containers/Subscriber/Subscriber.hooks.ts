@@ -8,21 +8,28 @@ import GET_SUBSCRIBER_BY_ID from './graphql/getSubscriberById.gql';
 // Interface
 import { IField, IFieldTypeOption } from '@interfaces/field.interface';
 import { ISubscriber } from '@interfaces/subscriber.interface';
+import { ITag } from '@interfaces/tag.interface';
+
+const VIEW = {
+  FIELDS: 'fields',
+  TAGS: 'tags'
+};
 
 const useSubscriber = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
 
   // State
-  const [currentTab, setCurrentTab] = React.useState('tags');
+  const [currentView, setCurrentView] = React.useState(VIEW.TAGS);
 
   // Data
   const { data } = useQuery<{
     fields: IField[];
     fieldTypes: IFieldTypeOption[];
     subscriber: ISubscriber;
+    tags: ITag[];
   }>(GET_SUBSCRIBER_BY_ID, {
-    variables: { companyId, subscriberId: '5fa43a8c772c06518c761998' }
+    variables: { companyId, subscriberId: '5faa9d528510514cb8d39f70' }
   });
 
   const fields = React.useMemo(
@@ -51,11 +58,14 @@ const useSubscriber = () => {
   );
 
   return {
-    currentTab,
-    handleSelectTab: setCurrentTab,
+    companyId,
+    currentView,
+    handleSelectTab: setCurrentView,
     fields,
-    subscriber: data?.subscriber
+    subscriber: data?.subscriber,
+    tags: data?.tags
   };
 };
 
 export { useSubscriber };
+export { VIEW };

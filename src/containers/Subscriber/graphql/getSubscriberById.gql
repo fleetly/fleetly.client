@@ -25,5 +25,12 @@ query getSubscriberById($companyId: String!, $subscriberId: String!) {
       type
       username
     }
+    tags
+  }
+
+  tags(companyId: $companyId) {
+    id
+    color
+    title
   }
 }

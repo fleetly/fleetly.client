@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { useMutation } from 'react-apollo';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 // Components
 import { gqlErrorHandler } from '@components/Form';
 
 // Constants
 import { SET_FIELD_MODAL } from '@constants';
+
+// Containers
+import { SubscriberContext } from '@containers/Subscriber';
 
 // GraphQL
 import GET_SUBSCRIBER_BY_ID from '../../graphql/getSubscriberById.gql';
@@ -19,9 +21,8 @@ import { closeModal, openModal } from '@store';
 
 const useSubscriberFields = () => {
   // Setup
-  const { companyId } = useParams<{ companyId: string }>();
+  const { companyId, subscriberId } = React.useContext(SubscriberContext);
   const dispatch = useDispatch();
-  const subscriberId = '5fa43a8c772c06518c761998';
 
   // Mutations
   const refetchQueries = [
@@ -53,7 +54,7 @@ const useSubscriberFields = () => {
         return error;
       }
     },
-    [dispatch, unsetField]
+    [dispatch, subscriberId, unsetField]
   );
 
   const handleFieldSubmit = React.useCallback(
@@ -67,7 +68,7 @@ const useSubscriberFields = () => {
         return gqlErrorHandler(error);
       }
     },
-    [dispatch, setField]
+    [dispatch, setField, subscriberId]
   );
 
   return { handleFieldClick, handleFieldRemove, handleFieldSubmit };

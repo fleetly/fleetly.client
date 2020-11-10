@@ -4,6 +4,18 @@ import { Color, MessagePolicy } from '@fleetly/common/dist/enums';
 import { ISubscriberSource } from '@interfaces/subscriber.interface';
 
 declare namespace Subscriber {
+  interface AddTagFormProps {
+    options: {
+      color: Color;
+      label: string;
+      value: string;
+    }[];
+  }
+
+  interface AddTagFormValues {
+    tagId: string;
+  }
+
   interface FieldProps {
     color?: Color;
     id: string;
@@ -32,6 +44,18 @@ declare namespace Subscriber {
     id: string;
     messagePolicy: MessagePolicy;
     source: ISubscriberSource;
+  }
+
+  interface TagProps {
+    id: string;
+    color: Color;
+    onRemove?(event: React.SyntheticEvent<HTMLButtonElement>): void;
+    title: string;
+  }
+
+  interface TagsProps {
+    tags: ITag[];
+    value: string[];
   }
 }
 

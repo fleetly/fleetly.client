@@ -1,4 +1,3 @@
-import { Color, MessagePolicy } from '@fleetly/common/dist/enums';
 import moment from 'moment';
 import * as React from 'react';
 

@@ -5,6 +5,7 @@ export interface ISubscriber {
   fields: ISubscriberField[];
   messagePolicy: MessagePolicy;
   source: ISubscriberSource;
+  tags: string[];
 }
 
 export interface ISubscriberField {
