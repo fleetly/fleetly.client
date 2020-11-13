@@ -12,13 +12,13 @@ import { useSubscriberTags } from './Tags.hooks';
 // Styles
 import styles from './Tags.scss';
 
-const SubscriberTags: React.FC<Subscriber.TagsProps> = ({ tags, value }) => {
+const SubscriberTags: React.FC<Subscriber.TagsProps> = ({ tags, values }) => {
   const {
     displayedTags,
     handleFormSubmit,
     handleRemoveClick,
     options
-  } = useSubscriberTags(tags, value);
+  } = useSubscriberTags(tags, values);
 
   return (
     <div className={styles.Root}>

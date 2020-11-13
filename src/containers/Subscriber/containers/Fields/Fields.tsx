@@ -17,17 +17,20 @@ import { useSubscriberFields } from './Fields.hooks';
 import styles from './Fields.scss';
 
 const SubscriberFields: React.FC<Subscriber.FieldsProps> = ({
-  fields = []
+  fields = [],
+  fieldTypes,
+  values
 }) => {
   const {
+    displayedFields,
     handleFieldClick,
     handleFieldRemove,
     handleFieldSubmit
-  } = useSubscriberFields();
+  } = useSubscriberFields({ fields, fieldTypes, values });
 
   return (
     <div className={styles.Root}>
-      {fields.map((field) => (
+      {displayedFields.map((field) => (
         <Field
           key={field.id}
           {...field}

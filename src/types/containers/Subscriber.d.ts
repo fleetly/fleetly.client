@@ -1,7 +1,11 @@
 import { Color, MessagePolicy } from '@fleetly/common/dist/enums';
 
 // Interfaces
-import { ISubscriberSource } from '@interfaces/subscriber.interface';
+import { IField, IFieldTypeOption } from '@interfaces/field.interface';
+import {
+  ISubscriberField,
+  ISubscriberSource
+} from '@interfaces/subscriber.interface';
 
 declare namespace Subscriber {
   interface AddTagFormProps {
@@ -32,12 +36,9 @@ declare namespace Subscriber {
   }
 
   interface FieldsProps {
-    fields: {
-      id: string;
-      color?: Color;
-      title: string;
-      value?: string;
-    }[];
+    fields: IField[];
+    fieldTypes: IFieldTypeOption[];
+    values: ISubscriberField[];
   }
 
   interface SourceProps {
@@ -55,7 +56,7 @@ declare namespace Subscriber {
 
   interface TagsProps {
     tags: ITag[];
-    value: string[];
+    values: string[];
   }
 }
 

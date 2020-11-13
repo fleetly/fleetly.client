@@ -17,6 +17,7 @@ export interface ISubscriberSource {
   id: string;
   firstname?: string;
   lastname?: string;
+  link: string;
   photo?: string;
   type: Source;
   username: string;

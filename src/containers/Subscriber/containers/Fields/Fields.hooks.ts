@@ -18,11 +18,45 @@ import UNSET_FIELD from '../../graphql/unsetField.gql';
 
 // Store
 import { closeModal, openModal } from '@store';
+import { IField, IFieldTypeOption } from '@interfaces/field.interface';
+import { ISubscriberField } from '@interfaces/subscriber.interface';
 
-const useSubscriberFields = () => {
+const useSubscriberFields = ({
+  fields = [],
+  fieldTypes = [],
+  values = []
+}: {
+  fields: IField[];
+  fieldTypes: IFieldTypeOption[];
+  values: ISubscriberField[];
+}) => {
   // Setup
   const { companyId, subscriberId } = React.useContext(SubscriberContext);
   const dispatch = useDispatch();
+
+  // Data
+  const displayedFields = React.useMemo(
+    () =>
+      fields
+        .map(({ id, title, type }: any) => {
+          const { color } =
+            fieldTypes.find(({ value }: any) => value === type) || {};
+
+          const { value } =
+            values.find(({ fieldId }: any) => fieldId === id) || {};
+
+          return {
+            id,
+            color,
+            title,
+            value
+          };
+        })
+        .sort((a: any, b: any) =>
+          a.value && !b.value ? -1 : !a.value && b.value ? 1 : 0
+        ) || [],
+    [fields, fieldTypes, values]
+  );
 
   // Mutations
   const refetchQueries = [
@@ -71,7 +105,12 @@ const useSubscriberFields = () => {
     [dispatch, setField, subscriberId]
   );
 
-  return { handleFieldClick, handleFieldRemove, handleFieldSubmit };
+  return {
+    displayedFields,
+    handleFieldClick,
+    handleFieldRemove,
+    handleFieldSubmit
+  };
 };
 
 export { useSubscriberFields };

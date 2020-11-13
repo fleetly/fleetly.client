@@ -21,6 +21,7 @@ query getSubscriberById($companyId: String!, $subscriberId: String!) {
       id
       firstname
       lastname
+      link
       photo
       type
       username

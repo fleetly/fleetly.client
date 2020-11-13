@@ -15,7 +15,7 @@ import REMOVE_TAG from '../../graphql/removeTag.gql';
 // Interfaces
 import { ITag } from '@interfaces/tag.interface';
 
-const useSubscriberTags = (tags: ITag[] = [], value: string[] = []) => {
+const useSubscriberTags = (tags: ITag[] = [], values: string[] = []) => {
   // Setup
   const { companyId, subscriberId } = React.useContext(SubscriberContext);
 
@@ -32,16 +32,16 @@ const useSubscriberTags = (tags: ITag[] = [], value: string[] = []) => {
 
   // Data
   const displayedTags = React.useMemo(
-    () => value.map((id) => tags.find((tag) => tag.id === id)),
-    [tags, value]
+    () => values.map((id) => tags.find((tag) => tag.id === id)),
+    [tags, values]
   );
 
   const options = React.useMemo(
     () =>
       tags
-        .filter(({ id }) => value.indexOf(id) === -1)
+        .filter(({ id }) => values.indexOf(id) === -1)
         .map(({ id, color, title }) => ({ color, label: title, value: id })),
-    [tags, value]
+    [tags, values]
   );
 
   // Handlers

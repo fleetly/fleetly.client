@@ -56,9 +56,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
         </Switch>
       </div>
 
-      <div className={styles.Subscriber}>
-        <Subscriber />
-      </div>
+      <Subscriber />
     </div>
   );
 };

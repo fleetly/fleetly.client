@@ -30,59 +30,84 @@ const Subscriber = () => {
     companyId,
     currentView,
     fields,
+    fieldTypes,
+    handleCloseClick,
     handleSelectTab,
+    isOpened,
     subscriber,
     tags
   } = useSubscriber();
+
+  const { rootClassName } = React.useMemo(
+    () => ({
+      rootClassName: classNames(styles.Root, {
+        [styles.RootIsOpened]: isOpened
+      })
+    }),
+    [isOpened]
+  );
 
   return (
     <SubscriberContext.Provider
       value={{ companyId, subscriberId: subscriber?.id }}
     >
-      <div className={styles.Root}>
-        <Button
-          classes={{ root: styles.Close }}
-          icon="fas fa-times"
-          variant="outlined"
-        />
+      <div className={rootClassName}>
+        <div className={styles.Wrapper}>
+          {isOpened && (
+            <>
+              <Button
+                classes={{ root: styles.Close }}
+                icon="fas fa-times"
+                onClick={handleCloseClick}
+                variant="outlined"
+              />
 
-        {!subscriber ? (
-          <Loader />
-        ) : (
-          <div className={styles.Content}>
-            {subscriber && <Source {...subscriber} />}
+              {!subscriber ? (
+                <Loader />
+              ) : (
+                <div className={styles.Content}>
+                  {subscriber && <Source {...subscriber} />}
 
-            <div className={styles.Actions}>
-              <Button color="primary" fullWidth>
-                Start Chat
-              </Button>
+                  <div className={styles.Actions}>
+                    <Button color="primary" fullWidth>
+                      Start Chat
+                    </Button>
 
-              <Button color="danger" disabled fullWidth>
-                Block
-              </Button>
-            </div>
+                    <Button color="danger" disabled fullWidth>
+                      Block
+                    </Button>
+                  </div>
 
-            <Tabs
-              classes={{ root: styles.Tabs }}
-              onSelect={handleSelectTab}
-              value={currentView}
-            >
-              <Tab label="Tags" value={VIEW.TAGS} />
-              <Tab label="Fields" value={VIEW.FIELDS} />
-            </Tabs>
+                  <Tabs
+                    classes={{ root: styles.Tabs }}
+                    onSelect={handleSelectTab}
+                    value={currentView}
+                  >
+                    <Tab label="Tags" value={VIEW.TAGS} />
+                    <Tab label="Fields" value={VIEW.FIELDS} />
+                  </Tabs>
 
-            <div
-              className={classNames(styles.Slider, {
-                [styles.SliderVariantFields]: currentView === VIEW.FIELDS
-              })}
-            >
-              <div className={styles.Track}>
-                {tags && <Tags tags={tags} value={subscriber?.tags} />}
-                <Fields fields={fields} />
-              </div>
-            </div>
-          </div>
-        )}
+                  <div
+                    className={classNames(styles.Slider, {
+                      [styles.SliderVariantFields]: currentView === VIEW.FIELDS
+                    })}
+                  >
+                    <div className={styles.Track}>
+                      {tags && <Tags tags={tags} values={subscriber?.tags} />}
+                      {fields && fieldTypes && (
+                        <Fields
+                          fields={fields}
+                          fieldTypes={fieldTypes}
+                          values={subscriber?.fields}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </SubscriberContext.Provider>
   );

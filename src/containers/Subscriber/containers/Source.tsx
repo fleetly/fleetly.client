@@ -45,7 +45,7 @@ const SubscriberSource: React.FC<Subscriber.SourceProps> = ({
 
       <div>
         <Caption className={styles.Label}>Source</Caption>
-        <Link to="/">{source?.type}</Link>
+        <Link to={source?.link}>{source?.type}</Link>
       </div>
     </div>
   </div>
