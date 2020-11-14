@@ -36,6 +36,7 @@ const FormSelect: React.FC<Form.SelectProps & WrappedFieldInputProps> = ({
   name,
   onChange,
   options,
+  placeholder,
   value,
   variant = 'outlined'
 }) => {
@@ -44,9 +45,11 @@ const FormSelect: React.FC<Form.SelectProps & WrappedFieldInputProps> = ({
   const displayedValue: any = React.useMemo(() => {
     const collection = chain(options).map('options').flatten();
 
-    return multiplied
-      ? collection.keyBy('value').at(value).value()
-      : collection.filter({ value }).value()[0];
+    return value
+      ? multiplied
+        ? collection.keyBy('value').at(value).value()
+        : collection.filter({ value }).value()[0]
+      : '';
   }, [multiplied, options, value]);
 
   const isFilled = React.useMemo(() => variant === 'filled', [variant]);
@@ -111,6 +114,7 @@ const FormSelect: React.FC<Form.SelectProps & WrappedFieldInputProps> = ({
         name={name}
         onChange={handleChange}
         options={options}
+        placeholder={placeholder}
         value={displayedValue}
       />
 

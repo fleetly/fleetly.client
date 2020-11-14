@@ -1,0 +1,7 @@
+mutation createCompany($name: String!, $title: String!) {
+  createCompany(name: $name, title: $title) {
+    id
+    name
+    title
+  }
+}

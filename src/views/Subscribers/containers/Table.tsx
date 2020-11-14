@@ -1,14 +1,26 @@
+import moment from 'moment';
 import * as React from 'react';
 
 // Components
 import Avatar from '@components/Avatar';
+import Status from '@components/Status';
 import Table from '@components/Table';
 import { Caption, P } from '@components/Typography';
+
+// Constants
+import { MESSAGE_POLICY_STATUS, SUBSCRIBER_MODAL } from '@constants';
+
+// Store
+import { useModals } from '@store';
 
 // Styles
 import styles from './Table.scss';
 
 const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
+  // Setup
+  const { openModal } = useModals(SUBSCRIBER_MODAL);
+
+  // Data
   const columns = React.useMemo(
     () => [
       {
@@ -50,18 +62,26 @@ const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
         Header: 'Subscriber'
       },
       {
-        accessor: 'status',
-        Header: 'Status'
+        accessor: 'messagePolicy',
+        Cell: ({ value }) => <Status {...MESSAGE_POLICY_STATUS[value]} />,
+        Header: 'Message policy'
       },
       {
-        accessor: 'creadedAt',
+        accessor: 'createdAt',
+        Cell: ({ value }) => moment(value).fromNow(),
         Header: 'Date'
       }
     ],
     []
   );
 
-  return <Table columns={columns} data={data} />;
+  // Handlers
+  const handleTrClick = React.useCallback(
+    ({ id }) => openModal({ subscriberId: id }),
+    [openModal]
+  );
+
+  return <Table columns={columns} data={data} onTrClick={handleTrClick} />;
 };
 
 export default SubscribersTable;

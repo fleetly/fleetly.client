@@ -65,7 +65,7 @@ const ChannelsTable = ({ data }: any) => {
         accessor: 'id',
         Cell: ({ row, value }: any) => {
           const status: ChannelStatus = row.original.status.type;
-          const isActive = status.toLowerCase() === ChannelStatus.ACTIVE;
+          const isActive = status === ChannelStatus.ACTIVE;
 
           return (
             <div className={styles.Actions}>

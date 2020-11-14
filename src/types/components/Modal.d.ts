@@ -12,10 +12,16 @@ declare namespace Modal {
     children: React.ReactNode;
     data?: Map<string, any>;
     classes?: Classes;
-    id: string | symbol;
+    id: string;
     isOpened?: boolean;
     onClose?(event: React.SyntheticEvent<HTMLDivElement>): void;
     // handleClose(): void;
+    title?: string;
+  }
+
+  interface Options<Data> {
+    data?: Data;
+    id?: string;
     title?: string;
   }
 

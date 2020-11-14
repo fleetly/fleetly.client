@@ -64,7 +64,7 @@ const useCollaboratorsTable = () => {
   );
 
   const handleRoleFormSubmit = React.useCallback(
-    async (variables: any, dispatch, { reset }) => {
+    async (variables: Collaborators.RoleFormValues, dispatch, { reset }) => {
       try {
         await updateCollaboratorRole({ variables });
       } catch (error) {

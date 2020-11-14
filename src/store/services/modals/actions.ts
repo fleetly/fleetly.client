@@ -11,7 +11,7 @@ export interface IAction {
   payload?: IPayload;
 }
 
-export const closeModal = (id: string | symbol): IAction => ({
+export const closeModal = (id?: string | symbol): IAction => ({
   type: CLOSE_MODAL,
   id
 });
@@ -19,7 +19,7 @@ export const closeModal = (id: string | symbol): IAction => ({
 export const closeModals = (): IAction => ({ type: CLOSE_MODALS });
 
 export const openModal = (
-  id: string | symbol,
+  id?: string | symbol,
   payload?: IPayload
 ): IAction => ({
   type: OPEN_MODAL,

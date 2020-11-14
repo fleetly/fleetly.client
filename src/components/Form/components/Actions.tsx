@@ -23,7 +23,16 @@ const FormActions: React.FC<Form.ActionsProps> = ({
     [classes, orientation]
   );
 
-  return <div className={rootClassName}>{children}</div>;
+  return (
+    <div
+      className={rootClassName}
+      style={{
+        gridTemplateColumns: `repeat(${React.Children.count(children)}, 1fr)`
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default FormActions;
