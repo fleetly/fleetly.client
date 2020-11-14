@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
-import { useQuery } from 'react-apollo';
-import { useParams } from 'react-router-dom';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -16,10 +14,7 @@ import Form, {
 } from '@components/Form';
 
 // Constants
-import { RENAME_COMPANY_FORM } from '@constants';
-
-// GraphQL
-import GET_COMPANY_BY_ID from '@graphql/getCompanyById.gql';
+import { UPDATE_COMPANY_NAME_FROM } from '@constants';
 
 // Styles
 import styles from './Form.scss';
@@ -27,10 +22,10 @@ import styles from './Form.scss';
 const GeneralForm: React.FC<InjectedFormProps> = ({
   error,
   handleSubmit,
-  submitting
+  submitting,
+  ...props
 }) => {
-  const { companyId } = useParams<{ companyId: string }>();
-  const { data } = useQuery(GET_COMPANY_BY_ID, { variables: { companyId } });
+  const { title }: any = props;
 
   return (
     <Form
@@ -41,7 +36,7 @@ const GeneralForm: React.FC<InjectedFormProps> = ({
       <FieldHeader label="Avatar" />
 
       <div className={styles.AvatarBlock}>
-        <Avatar alt={data?.company?.title} classes={{ root: styles.Avatar }} />
+        <Avatar alt={title} classes={{ root: styles.Avatar }} />
         <Button
           className={styles.Button}
           color="primary"
@@ -52,11 +47,7 @@ const GeneralForm: React.FC<InjectedFormProps> = ({
         </Button>
       </div>
       <Fieldset>
-        <Input
-          label="Company Name"
-          name="companyName"
-          placeholder={data?.company?.title}
-        />
+        <Input label="Company Name" name="companyName" placeholder={title} />
         <Input
           label="Location"
           name="location"
@@ -86,5 +77,5 @@ export default reduxForm<any, any>({
       timezone: yup.string()
     })
   ),
-  form: RENAME_COMPANY_FORM
+  form: UPDATE_COMPANY_NAME_FROM
 })(GeneralForm);

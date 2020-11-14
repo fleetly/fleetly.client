@@ -1,5 +1,5 @@
-mutation updateCompanyName($newName: String!, $companyId: String!) {
-  updateCompanyName(newName: $newName, companyId: $companyId) {
+mutation updateCompanyName($companyId: String!, $newName: String!) {
+  updateCompanyName(companyId: $companyId, newName: $newName) {
     id
     name
     title

@@ -1,6 +1,26 @@
+@import '~@styles/colors.scss';
+
 .Container {
   display: flex;
   flex-direction: row;
+}
+
+.CompanyName {
+  color: $color-blue-300;
+}
+
+.CompanyNameBlock {
+  margin-top: 12px;
+}
+
+.CompanyNameBlock,
+.Description,
+.Title {
+  margin-left: 20px;
+}
+
+.Description {
+  margin-top: 8px;
 }
 
 .General {
@@ -13,4 +33,9 @@
   align-items: center;
   display: flex;
   padding: 76px 0 0 0;
+}
+
+.Title,
+.Description {
+  color: $color-gray-600;
 }

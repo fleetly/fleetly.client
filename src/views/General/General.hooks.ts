@@ -1,33 +1,34 @@
 import { useMutation } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // Components
 import { gqlErrorHandler } from '@components/Form';
 
 // GraphQL
-import RENAME_COMPANY from './graphql/renameCompany.gql';
-
-// Interfaces
-import { IGeneral } from '@interfaces/general.interface';
+import GET_COMPANY_BY_ID from '@graphql/getCompanyById.gql';
+import UPDATE_COMPANY_NAME from './graphql/renameCompany.gql';
 
 const useGenerals = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
+  const { data } = useQuery(GET_COMPANY_BY_ID, { variables: { companyId } });
 
-  const [renameCompany] = useMutation(RENAME_COMPANY);
+  // Mutations
+  const [updateCompanyName] = useMutation(UPDATE_COMPANY_NAME);
 
-  const handleFormSubmit = async ({ newName }: IGeneral) => {
-    const mutate = renameCompany({ variables: { companyId, newName } });
-
+  const handleUCNFormSubmit = async ({ newName }: General.UCNFormValues) => {
     try {
-      return await mutate;
+      return await updateCompanyName({ variables: { companyId, newName } });
     } catch (error) {
       return gqlErrorHandler(error);
     }
   };
 
   return {
-    handleFormSubmit
+    companyId,
+    data,
+    handleUCNFormSubmit
   };
 };
 
