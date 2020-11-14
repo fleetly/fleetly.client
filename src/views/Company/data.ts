@@ -44,8 +44,8 @@ export const MENU = [
     children: [
       {
         icon: 'far fa-home-alt',
-        title: 'Profile',
-        to: ROUTES.COMPANY.PROFILE.path
+        title: 'General',
+        to: ROUTES.COMPANY.GENERAL.path
       },
       {
         icon: 'far fa-wallet',

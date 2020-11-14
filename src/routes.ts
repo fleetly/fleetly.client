@@ -18,8 +18,8 @@ export default {
     NOTIFICATIONS: {
       path: '/:companyId/notifications'
     },
-    PROFILE: {
-      path: '/:companyId/profile'
+    GENERAL: {
+      path: '/:companyId/general'
     },
     SUBSCRIBERS: {
       path: '/:companyId/subscribers'

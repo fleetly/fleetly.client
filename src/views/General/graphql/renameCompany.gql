@@ -1,0 +1,7 @@
+mutation updateCompanyName($newName: String!, $companyId: String!) {
+  updateCompanyName(newName: $newName, companyId: $companyId) {
+    id
+    name
+    title
+  }
+}

@@ -19,7 +19,7 @@ import Subscribers from '@views/Subscribers';
 import Fields from '@views/Fields';
 import Tags from '@views/Tags';
 
-import Security from '@views/ProfileSecurity';
+import General from '@views/General';
 
 const Company: React.FC<Company.Props> = ({ match }) => {
   const companyId: string = get(match, 'params.companyId');
@@ -50,7 +50,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
           <Route component={Fields} path={ROUTES.COMPANY.FIELDS.path} />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS.path} />
 
-          <Route component={Security} path={ROUTES.COMPANY.PROFILE.path} />
+          <Route component={General} path={ROUTES.COMPANY.GENERAL.path} />
         </Switch>
       </div>
     </div>
