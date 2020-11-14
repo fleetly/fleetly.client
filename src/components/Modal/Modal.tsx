@@ -1,15 +1,13 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { Portal } from 'react-portal';
-import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { createSelector } from 'reselect';
 
 // Components
 import { H3 } from '@components/Typography';
 
-// Services
-import { closeModal } from '@store';
+// Store
+import { useModals } from '@store';
 
 // Styles
 import styles from './Modal.scss';
@@ -18,28 +16,17 @@ const Modal: React.FC<Modal.Props> = ({
   children,
   classes,
   id,
-  isOpened = false,
   onClose = () => null,
   title
 }) => {
-  const dispatch = useDispatch();
-  const modal = useSelector(
-    React.useMemo(
-      () =>
-        createSelector(
-          (state: any) => state.modals,
-          (modals) => modals[id]
-        ),
-      [id]
-    )
-  );
+  const { closeModal, isOpened, modal } = useModals(id);
 
   const handleBackdropClick = React.useCallback(
     (event) => {
-      dispatch(closeModal(id));
+      closeModal();
       onClose(event);
     },
-    [dispatch, id, onClose]
+    [closeModal, onClose]
   );
 
   return (
@@ -49,7 +36,7 @@ const Modal: React.FC<Modal.Props> = ({
           enter: styles.RootTransitionEnter,
           enterActive: styles.RootTransitionEnterActive
         }}
-        in={!!modal || isOpened}
+        in={isOpened}
         timeout={{ enter: 700 }}
         unmountOnExit
       >

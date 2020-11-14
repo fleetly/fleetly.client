@@ -19,21 +19,17 @@
       margin: 12px 0 0;
     }
 
-    &Has {
-      &Action {
-        &:hover {
-          background: $color-blue-50;
-          border-radius: 8px;
-          cursor: pointer;
+    &:hover {
+      background: $color-blue-50;
+      border-radius: 8px;
+      cursor: pointer;
 
-          .Td {
-            & button:not(:hover) {
-              border-color: $color-gray-0;
+      .Td {
+        & button:not(:hover) {
+          border-color: $color-gray-0;
 
-              &:not(:hover) {
-                background: $color-gray-0;
-              }
-            }
+          &:not(:hover) {
+            background: $color-gray-0;
           }
         }
       }

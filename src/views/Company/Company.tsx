@@ -3,6 +3,8 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // Containers
+import Subscriber from '@containers/Subscriber';
+
 import Info from './containers/Info';
 import Menu from './containers/Menu';
 
@@ -53,6 +55,8 @@ const Company: React.FC<Company.Props> = ({ match }) => {
           <Route component={Security} path={ROUTES.COMPANY.PROFILE.path} />
         </Switch>
       </div>
+
+      <Subscriber />
     </div>
   );
 };

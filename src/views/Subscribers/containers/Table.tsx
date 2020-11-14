@@ -1,4 +1,3 @@
-import { Color, MessagePolicy } from '@fleetly/common/dist/enums';
 import moment from 'moment';
 import * as React from 'react';
 
@@ -8,25 +7,20 @@ import Status from '@components/Status';
 import Table from '@components/Table';
 import { Caption, P } from '@components/Typography';
 
+// Constants
+import { MESSAGE_POLICY_STATUS, SUBSCRIBER_MODAL } from '@constants';
+
+// Store
+import { useModals } from '@store';
+
 // Styles
 import styles from './Table.scss';
 
-const MESSAGE_POLICY: any = {
-  [MessagePolicy.ALLOWED]: {
-    color: Color.GREEN,
-    title: 'Allowed'
-  },
-  [MessagePolicy.DENIED]: {
-    color: Color.RED,
-    title: 'Denied'
-  },
-  [MessagePolicy.NOT_ALLOWED]: {
-    color: Color.GRAY,
-    title: 'Not Allowed'
-  }
-};
-
 const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
+  // Setup
+  const { openModal } = useModals(SUBSCRIBER_MODAL);
+
+  // Data
   const columns = React.useMemo(
     () => [
       {
@@ -69,7 +63,7 @@ const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
       },
       {
         accessor: 'messagePolicy',
-        Cell: ({ value }) => <Status {...MESSAGE_POLICY[value]} />,
+        Cell: ({ value }) => <Status {...MESSAGE_POLICY_STATUS[value]} />,
         Header: 'Message policy'
       },
       {
@@ -81,7 +75,13 @@ const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
     []
   );
 
-  return <Table columns={columns} data={data} />;
+  // Handlers
+  const handleTrClick = React.useCallback(
+    ({ id }) => openModal({ subscriberId: id }),
+    [openModal]
+  );
+
+  return <Table columns={columns} data={data} onTrClick={handleTrClick} />;
 };
 
 export default SubscribersTable;

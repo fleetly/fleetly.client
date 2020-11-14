@@ -12,7 +12,7 @@ export default ({ graphQLErrors, message, networkError }: any): void => {
     graphQLErrors.forEach(({ extensions, message }: GraphQLFormattedError) => {
       const validationErrors = get(
         extensions,
-        'exception.response.message.validationErrors'
+        'exception.response.validationErrors'
       );
 
       if (validationErrors) {

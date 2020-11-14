@@ -21,6 +21,10 @@
       @include colorPlug($color-primary);
     }
 
+    &Gray {
+      @include colorPlug($color-gray-500);
+    }
+
     &Green {
       @include colorPlug($color-green-500);
     }
