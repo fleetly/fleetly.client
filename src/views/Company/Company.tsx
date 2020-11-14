@@ -17,11 +17,10 @@ import styles from './Company.scss';
 // Views
 import Channels from '@views/Channels';
 import Collaborators from '@views/Collaborators';
-import Subscribers from '@views/Subscribers';
+import General from '@views/General';
 import Fields from '@views/Fields';
+import Subscribers from '@views/Subscribers';
 import Tags from '@views/Tags';
-
-import Security from '@views/ProfileSecurity';
 
 const Company: React.FC<Company.Props> = ({ match }) => {
   const companyId: string = get(match, 'params.companyId');
@@ -42,17 +41,16 @@ const Company: React.FC<Company.Props> = ({ match }) => {
         <Switch>
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS.path} />
           <Route
-            component={Subscribers}
-            path={ROUTES.COMPANY.SUBSCRIBERS.path}
-          />
-          <Route
             component={Collaborators}
             path={ROUTES.COMPANY.COLLABORATORS.path}
           />
           <Route component={Fields} path={ROUTES.COMPANY.FIELDS.path} />
+          <Route component={General} path={ROUTES.COMPANY.GENERAL.path} />
+          <Route
+            component={Subscribers}
+            path={ROUTES.COMPANY.SUBSCRIBERS.path}
+          />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS.path} />
-
-          <Route component={Security} path={ROUTES.COMPANY.PROFILE.path} />
         </Switch>
       </div>
 

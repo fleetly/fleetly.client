@@ -3,7 +3,7 @@ import { useQuery } from 'react-apollo';
 
 // Components
 import Avatar from '@components/Avatar';
-import { Caption, P } from '@components/Typography';
+import { Caption, H5 } from '@components/Typography';
 
 // GraphQL
 import GET_COMPANY_BY_ID from '@graphql/getCompanyById.gql';
@@ -30,9 +30,9 @@ const CompanyInfo: React.FC<Company.Info.Props> = ({ companyId }) => {
       <Avatar alt={title} color={color} />
 
       <div className={styles.Content}>
-        <P className={styles.Title} component="div">
-          {title}
-        </P>
+        <H5 className={styles.Title} component="div">
+          {data?.company?.title}
+        </H5>
         <Caption className={styles.Description}>Software project</Caption>
       </div>
     </div>

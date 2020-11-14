@@ -15,11 +15,11 @@ export default {
     FIELDS: {
       path: '/:companyId/fields'
     },
+    GENERAL: {
+      path: '/:companyId/general'
+    },
     NOTIFICATIONS: {
       path: '/:companyId/notifications'
-    },
-    PROFILE: {
-      path: '/:companyId/profile'
     },
     SUBSCRIBERS: {
       path: '/:companyId/subscribers'
