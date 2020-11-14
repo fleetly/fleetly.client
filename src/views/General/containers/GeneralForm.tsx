@@ -19,12 +19,9 @@ import { UPDATE_COMPANY_NAME_FROM } from '@constants';
 // Styles
 import styles from './Form.scss';
 
-const GeneralForm: React.FC<InjectedFormProps> = ({
-  error,
-  handleSubmit,
-  submitting,
-  ...props
-}) => {
+const GeneralUpdateForm: React.FC<InjectedFormProps<
+  General.UpdateFormValues
+>> = ({ error, handleSubmit, submitting, ...props }) => {
   const { title }: any = props;
 
   return (
@@ -37,31 +34,26 @@ const GeneralForm: React.FC<InjectedFormProps> = ({
 
       <div className={styles.AvatarBlock}>
         <Avatar alt={title} classes={{ root: styles.Avatar }} />
-        <Button
-          className={styles.Button}
-          color="primary"
-          type="submit"
-          variant="outlined"
-        >
+        <Button className={styles.Button} color="primary" variant="outlined">
           Upload
         </Button>
       </div>
       <Fieldset>
-        <Input label="Company Name" name="companyName" placeholder={title} />
+        <Input label="Company Name" name="title" placeholder={title} />
         <Input
           label="Location"
           name="location"
           placeholder="COMPANY_LOCATION"
         />
         <Input
-          label="CTimezone"
+          label="Timezone"
           name="timezone"
           placeholder="COMPANY_TIMEZONE"
         />
       </Fieldset>
 
       <Actions>
-        <Button color="primary" variant="outlined">
+        <Button color="primary" fullWidth variant="outlined">
           Save
         </Button>
       </Actions>
@@ -78,4 +70,4 @@ export default reduxForm<any, any>({
     })
   ),
   form: UPDATE_COMPANY_NAME_FROM
-})(GeneralForm);
+})(GeneralUpdateForm);

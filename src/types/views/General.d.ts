@@ -3,6 +3,13 @@ declare namespace General {
     companyId: string;
     newName: string;
   }
+
+  interface UpdateFormValues {
+    companiId: string;
+    location: string;
+    timezone: string;
+    title: string;
+  }
 }
 
 export = General;

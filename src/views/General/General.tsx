@@ -1,21 +1,11 @@
 import * as React from 'react';
 
 // Components
-import { Caption, H4, H5 } from '@components/Typography';
+import { P, H4, H5 } from '@components/Typography';
 import Page, { Wrapper } from '@components/Page';
 
-// Constants
-import {
-  DELETE_COMPANY_FORM,
-  DISABLE_COMPANY_FORM,
-  UPDATE_COMPANY_NAME_FROM
-} from '@constants';
-
 // Containers
-import DeleteForm from './containers/deleteForm';
-import DisableForm from './containers/disableForm';
 import GeneralForm from './containers/GeneralForm';
-import RenameForm from './containers/renameForm';
 
 // Hooks
 import { useGenerals } from './General.hooks';
@@ -24,44 +14,29 @@ import { useGenerals } from './General.hooks';
 import styles from './General.scss';
 
 const General = () => {
-  const { data, handleUCNFormSubmit } = useGenerals();
+  const { data, forms } = useGenerals();
   const title = data?.company?.title;
+
   return (
-    <Page classes={{ container: styles.Container }} title="General">
-      <Wrapper classes={{ container: styles.General }} title="General">
-        <GeneralForm form={UPDATE_COMPANY_NAME_FROM} title={title} />
+    <Page classes={{ container: styles.Root }} title="General">
+      <Wrapper classes={{ container: styles.Container }} title="General">
+        <GeneralForm title={title} />
       </Wrapper>
-      <Wrapper classes={{ container: styles.Forms }}>
-        <div>
-          <H5 className={styles.Title}>Disable</H5>
-          <H4 className={styles.CompanyNameBlock}>Disable this company</H4>
-          <Caption className={styles.Description}>
-            All incoming information will no longer be processed.
-          </Caption>
-          <DisableForm form={DISABLE_COMPANY_FORM} />
+      <Wrapper classes={{ container: styles.Container }}>
+        <div className={styles.Wrapper}>
+          {forms.map(
+            ({ description, label, title, FormComponent, onSubmit }, index) => (
+              <div className={styles.Section} key={index}>
+                <div className={styles.Info}>
+                  <H5 className={styles.Label}>{label}</H5>
+                  <H4 className={styles.Title}>{title}</H4>
+                  <P className={styles.Description}>{description}</P>
+                </div>
 
-          <H5 className={styles.Title}>Rename</H5>
-          <H4 className={styles.CompanyNameBlock}>
-            Rename <span className={styles.CompanyName}>«{title}»</span> to
-            something new
-          </H4>
-          <Caption className={styles.Description}>
-            Renaming your company can have unintended side effects.
-          </Caption>
-          <RenameForm
-            form={UPDATE_COMPANY_NAME_FROM}
-            onSubmit={handleUCNFormSubmit}
-            title={data?.company?.title}
-          />
-
-          <H5 className={styles.Title}>Delete</H5>
-          <H4 className={styles.CompanyNameBlock}>
-            Delete <span className={styles.CompanyName}>«{title}»</span>
-          </H4>
-          <Caption className={styles.Description}>
-            Delete your company can have unintended side effect.
-          </Caption>
-          <DeleteForm form={DELETE_COMPANY_FORM} />
+                <FormComponent onSubmit={onSubmit} />
+              </div>
+            )
+          )}
         </div>
       </Wrapper>
     </Page>
