@@ -9,4 +9,3 @@ export const UPDATE_COMPANY_NAME_FROM = 'updateCompanyName';
 export const CREATE_TAG_FORM = 'createTagForm';
 export const CREATE_FIELD_FORM = 'createFieldForm';
 export const SET_FIELD_FORM = 'setField';
-export const UPDATE_COLLABORATOR_ROLE_FORM = 'updateCollaboratorRoleForm';
