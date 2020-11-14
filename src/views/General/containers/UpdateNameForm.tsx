@@ -10,17 +10,16 @@ import Form, { asyncValidate, Input } from '@components/Form';
 import { UPDATE_COMPANY_NAME_FROM } from '@constants';
 
 // Styles
-import styles from './Form.scss';
+import styles from './UpdateNameForm.scss';
 
 const GeneralUpdateNameForm: React.FC<InjectedFormProps<
-  General.UCNFormValues
+  General.UpdateNameFormValues
 >> = ({ error, handleSubmit, submitting }) => (
   <Form error={error} onSubmit={handleSubmit}>
-    <div className={styles.Container}>
+    <div className={styles.Fieldset}>
       <Input name="newName" placeholder="New name" />
 
       <Button
-        className={styles.Button}
         color="danger"
         loaded={submitting}
         type="submit"

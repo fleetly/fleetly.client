@@ -9,29 +9,17 @@
   align-items: center;
   display: flex;
   justify-content: center;
-}
+  padding: 24px;
 
-.Description {
-  margin: 4px 0 0;
-}
-
-.Description,
-.Label {
-  color: $color-gray-600;
-}
-
-.Info {
-  margin: 0 0 28px;
-  padding: 0 20px;
+  &ColorType {
+    &Danger {
+      box-shadow: 0 0 0 2px rgba($color-danger, .4);
+    }
+  }
 }
 
 .Name {
   color: $color-primary;
-}
-
-.Title {
-  color: $color-gray-900;
-  margin: 4px 0 0;
 }
 
 .Wrapper {

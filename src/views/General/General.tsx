@@ -1,11 +1,16 @@
+import classNames from 'classnames';
 import * as React from 'react';
 
 // Components
-import { P, H4, H5 } from '@components/Typography';
 import Page, { Wrapper } from '@components/Page';
 
+import Section from './components/Section';
+
 // Containers
-import GeneralForm from './containers/GeneralForm';
+import DeleteForm from './containers/DeleteForm';
+import DisableForm from './containers/DisableForm';
+import UpdateForm from './containers/UpdateForm';
+import UpdateNameForm from './containers/UpdateNameForm';
 
 // Hooks
 import { useGenerals } from './General.hooks';
@@ -14,29 +19,72 @@ import { useGenerals } from './General.hooks';
 import styles from './General.scss';
 
 const General = () => {
-  const { data, forms } = useGenerals();
-  const title = data?.company?.title;
+  const { company, handleUpdateNameFormSubmit } = useGenerals();
+
+  // Class names
+  const { dangerContainerClassName } = React.useMemo(
+    () => ({
+      dangerContainerClassName: classNames(
+        styles.Container,
+        styles.ContainerColorTypeDanger
+      )
+    }),
+    []
+  );
+
+  // Sections
+  const SECTIONS = React.useMemo(
+    () => [
+      {
+        children: <DisableForm />,
+        description: 'All incoming information will no longer be processed.',
+        label: 'Disable',
+        title: 'Disable this company'
+      },
+      {
+        children: <UpdateNameForm onSubmit={handleUpdateNameFormSubmit} />,
+        description: 'Renaming your company can have unintended side effects.',
+        label: 'Rename',
+        title: (
+          <>
+            {`Rename `}
+            <span className={styles.Name}>«{company?.name}»</span>
+            {` to something new`}
+          </>
+        )
+      },
+      {
+        children: <DeleteForm />,
+        description: 'Delete your company can have unintended side effect.',
+        label: 'Delete',
+        title: (
+          <>
+            Delete <span className={styles.Name}>«{company?.title}»</span>
+          </>
+        )
+      }
+    ],
+    [company, handleUpdateNameFormSubmit]
+  );
 
   return (
     <Page classes={{ container: styles.Root }} title="General">
       <Wrapper classes={{ container: styles.Container }} title="General">
-        <GeneralForm title={title} />
+        {company && (
+          <UpdateForm
+            initialValues={{ companyId: company?.id, title: company?.title }}
+          />
+        )}
       </Wrapper>
-      <Wrapper classes={{ container: styles.Container }}>
-        <div className={styles.Wrapper}>
-          {forms.map(
-            ({ description, label, title, FormComponent, onSubmit }, index) => (
-              <div className={styles.Section} key={index}>
-                <div className={styles.Info}>
-                  <H5 className={styles.Label}>{label}</H5>
-                  <H4 className={styles.Title}>{title}</H4>
-                  <P className={styles.Description}>{description}</P>
-                </div>
 
-                <FormComponent onSubmit={onSubmit} />
-              </div>
-            )
-          )}
+      <Wrapper
+        classes={{ container: dangerContainerClassName }}
+        title="Danger section"
+      >
+        <div className={styles.Wrapper}>
+          {SECTIONS.map((section, index) => (
+            <Section {...section} key={index} />
+          ))}
         </div>
       </Wrapper>
     </Page>
