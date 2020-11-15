@@ -1,6 +1,6 @@
 @import '~@styles/colors.scss';
 
-@mixin colorPlug($color) {
+@mixin color($color) {
   .Plug {
     background: $color;
     color: $color-gray-0;
@@ -16,43 +16,7 @@
   position: relative;
   width: 40px;
 
-  &Color {
-    &Blue {
-      @include colorPlug($color-primary);
-    }
-
-    &Gray {
-      @include colorPlug($color-gray-500);
-    }
-
-    &Green {
-      @include colorPlug($color-green-500);
-    }
-
-    &Orange {
-      @include colorPlug($color-orange-500);
-    }
-
-    &Pink {
-      @include colorPlug($color-pink-500);
-    }
-
-    &Purple {
-      @include colorPlug($color-purple-500);
-    }
-
-    &Red {
-      @include colorPlug($color-red-500);
-    }
-
-    &Sky {
-      @include colorPlug($color-sky-500);
-    }
-
-    &Yellow {
-      @include colorPlug($color-yellow-500);
-    }
-  }
+  @include coloring;
 }
 
 .Photo {

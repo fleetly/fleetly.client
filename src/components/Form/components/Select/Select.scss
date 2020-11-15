@@ -1,6 +1,6 @@
 @import '~@styles/colors';
 
-@mixin colorFilled($color) {
+@mixin color($color) {
   &.RootVariantFilled {
     :global .react-select {
       &__control {
@@ -13,39 +13,7 @@
 .Root {
   width: 100%;
 
-  &Color {
-    &Blue {
-      @include colorFilled($color-primary);
-    }
-
-    &Green {
-      @include colorFilled($color-green-500);
-    }
-
-    &Orange {
-      @include colorFilled($color-orange-500);
-    }
-
-    &Pink {
-      @include colorFilled($color-pink-500);
-    }
-
-    &Purple {
-      @include colorFilled($color-purple-500);
-    }
-
-    &Red {
-      @include colorFilled($color-red-500);
-    }
-
-    &Sky {
-      @include colorFilled($color-sky-500);
-    }
-
-    &Yellow {
-      @include colorFilled($color-yellow-500);
-    }
-  }
+  @include coloring;
 
   &Is {
     &Disabled {

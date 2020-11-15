@@ -1,6 +1,6 @@
 @import '~@styles/colors.scss';
 
-@mixin colorItem($color) {
+@mixin color($color) {
   background: $color;
 
   &.ItemIsSelected {
@@ -11,8 +11,8 @@
 
 .Root {
   display: grid;
-  grid-column-gap: 12px;
-  grid-template-columns: repeat(8, 24px);
+  grid-column-gap: 8px;
+  grid-template-columns: repeat(9, 24px);
 }
 
 .Item {
@@ -24,43 +24,11 @@
   transition: all .2s;
   width: 24px;
 
+  @include coloring;
+
   &:hover {
     cursor: pointer;
     opacity: 1;
-  }
-
-  &Color {
-    &Blue {
-      @include colorItem($color-primary);
-    }
-
-    &Green {
-      @include colorItem($color-green-500);
-    }
-
-    &Orange {
-      @include colorItem($color-orange-500);
-    }
-
-    &Pink {
-      @include colorItem($color-pink-500);
-    }
-
-    &Purple {
-      @include colorItem($color-purple-500);
-    }
-
-    &Red {
-      @include colorItem($color-red-500);
-    }
-
-    &Sky {
-      @include colorItem($color-sky-500);
-    }
-
-    &Yellow {
-      @include colorItem($color-yellow-500);
-    }
   }
 }
 

@@ -1,6 +1,6 @@
 @import '~@styles/colors';
 
-@mixin coloredFormSelectValue($color) {
+@mixin color($color) {
   &.RootVariantFilled {
     .Label {
       color: $color;
@@ -44,39 +44,7 @@
   display: flex;
   transition: all .2s;
 
-  &Color {
-    &Blue {
-      @include coloredFormSelectValue($color-primary);
-    }
-
-    &Green {
-      @include coloredFormSelectValue($color-green-500);
-    }
-
-    &Orange {
-      @include coloredFormSelectValue($color-orange-500);
-    }
-
-    &Pink {
-      @include coloredFormSelectValue($color-pink-500);
-    }
-
-    &Purple {
-      @include coloredFormSelectValue($color-purple-500);
-    }
-
-    &Red {
-      @include coloredFormSelectValue($color-red-500);
-    }
-
-    &Sky {
-      @include coloredFormSelectValue($color-sky-500);
-    }
-
-    &Yellow {
-      @include coloredFormSelectValue($color-yellow-500);
-    }
-  }
+  @include coloring;
 
   &Variant {
     &Outlined {

@@ -6,12 +6,11 @@ import * as yup from 'yup';
 import Button from '@components/Button';
 import Form, {
   Actions,
+  Avatar,
   asyncValidate,
   Fieldset,
   Input
 } from '@components/Form';
-
-import Logo from '../components/LogoField';
 
 // Constants
 import { UPDATE_COMPANY_NAME_FROM } from '@constants';
@@ -22,7 +21,7 @@ const GeneralUpdateForm: React.FC<InjectedFormProps<
 >> = ({ error, handleSubmit, initialValues, submitting }) => (
   <Form error={error} onSubmit={handleSubmit}>
     <Fieldset>
-      <Logo
+      <Avatar
         alt={initialValues.title}
         color={convertToColor(initialValues.companyId)}
         label="Logo"

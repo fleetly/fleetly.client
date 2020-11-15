@@ -1,6 +1,6 @@
 @import '~@styles/colors';
 
-@mixin colorSubscriberTag($color) {
+@mixin color($color) {
   background: rgba($color, .1);
 
   .Label {
@@ -23,39 +23,7 @@
   height: 32px;
   padding: 6px;
 
-  &Color {
-    &Blue {
-      @include colorSubscriberTag($color-primary);
-    }
-
-    &Green {
-      @include colorSubscriberTag($color-green-500);
-    }
-
-    &Orange {
-      @include colorSubscriberTag($color-orange-500);
-    }
-
-    &Pink {
-      @include colorSubscriberTag($color-pink-500);
-    }
-
-    &Purple {
-      @include colorSubscriberTag($color-purple-500);
-    }
-
-    &Red {
-      @include colorSubscriberTag($color-red-500);
-    }
-
-    &Sky {
-      @include colorSubscriberTag($color-sky-500);
-    }
-
-    &Yellow {
-      @include colorSubscriberTag($color-yellow-500);
-    }
-  }
+  @include coloring;
 }
 
 .Label {

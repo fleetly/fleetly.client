@@ -54,3 +54,26 @@ $color-text-secondary: $color-gray-700;
 
 // Sources
 $color-vk: #4a76a8;
+
+// @todo - can be generated using a loop
+$coloring-variants: (
+  Blue: $color-primary,
+  Gray: $color-gray-500,
+  Green: $color-green-500,
+  Orange: $color-orange-500,
+  Pink: $color-pink-500,
+  Purple: $color-purple-500,
+  Red: $color-red-500,
+  Sky: $color-sky-500,
+  Yellow: $color-yellow-500
+);
+
+@mixin coloring {
+  &Color {
+    @each $name, $value in $coloring-variants {
+      &#{$name} {
+        @include color($value);
+      }
+    }
+  }
+}

@@ -44,6 +44,14 @@ declare namespace Form {
   }
   // End Actions
 
+  // Avatar
+  interface AvatarProps extends FieldBase {
+    alt?: string;
+    color?: Color;
+  }
+
+  // End Avatar
+
   // Fieldset
   interface FieldsetProps {
     classes?: ExtendedClasses;

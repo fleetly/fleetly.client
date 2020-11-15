@@ -3,12 +3,15 @@ import * as React from 'react';
 // Components
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
-import { FieldHeader, withReduxForm } from '@components/Form';
+import { FieldHeader } from '@components/Form';
+
+// HOCs
+import withReduxForm from '../hocs/withReduxForm';
 
 // Styles
-import styles from './LogoField.scss';
+import styles from './Avatar.scss';
 
-const GeneralLogo: React.FC<General.LogoFieldProps> = ({
+const FormAvatar: React.FC<Form.AvatarProps> = ({
   alt = 'Logo',
   color,
   label
@@ -30,4 +33,4 @@ const GeneralLogo: React.FC<General.LogoFieldProps> = ({
   </div>
 );
 
-export default withReduxForm<General.LogoFieldProps>()(GeneralLogo);
+export default withReduxForm<Form.AvatarProps>()(FormAvatar);

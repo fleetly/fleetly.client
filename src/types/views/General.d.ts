@@ -1,11 +1,4 @@
-import { Color } from '@fleetly/common/dist/enums';
-
 declare namespace General {
-  interface LogoFieldProps extends Form.FieldBase {
-    alt?: string;
-    color?: Color;
-  }
-
   interface SectionProps {
     children?: React.ReactNode;
     description?: string;
