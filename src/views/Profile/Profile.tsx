@@ -24,17 +24,17 @@ const Profile = () => {
             exact: true,
             icon: 'fas fa-user-circle',
             title: 'Profile',
-            to: ROUTES.PROFILE.GENERAL.path
+            to: ROUTES.PROFILE.GENERAL
           },
           {
             icon: 'far fa-users',
             title: 'Collaboration',
-            to: ROUTES.PROFILE.COLLABORATION.path
+            to: ROUTES.PROFILE.COLLABORATION
           },
           {
             icon: 'far fa-shield-alt',
             title: 'Security',
-            to: ROUTES.PROFILE.SECURITY.path
+            to: ROUTES.PROFILE.SECURITY
           }
         ]
       }
@@ -59,7 +59,7 @@ const Profile = () => {
 
       <div className={styles.Container}>
         <Switch>
-          <Route component={Security} path={ROUTES.PROFILE.SECURITY.path} />
+          <Route component={Security} path={ROUTES.PROFILE.SECURITY} />
         </Switch>
       </div>
     </div>

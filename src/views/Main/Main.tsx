@@ -1,12 +1,15 @@
 import classNames from 'classnames';
 import * as React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Components
 import Link from '@components/Link';
 
 // Containers
 import Companies from './containers/Companies';
+
+// Hooks
+import { useMainView } from './Main.hooks';
 
 // Routes
 import ROUTES from '@routes';
@@ -18,9 +21,12 @@ import styles from './Main.scss';
 import Company from '@views/Company';
 import Profile from '@views/Profile';
 
+// Utils
+import { fillUrl } from '@utils/url';
+
 const Main: React.FC<{}> = () => {
-  // const isCompany = useRouteMatch(ROUTES.COMPANY.path);
-  const isProfile = !!useRouteMatch(ROUTES.PROFILE.path);
+  const { companies, isCompany, isProfile } = useMainView();
+  const companyId = companies[0]?.id;
 
   const { rootClassName } = React.useMemo(
     () => ({
@@ -33,6 +39,10 @@ const Main: React.FC<{}> = () => {
 
   return (
     <div className={rootClassName}>
+      {companyId && !isCompany && (
+        <Redirect to={fillUrl(ROUTES.COMPANY.DASHBOARD, { companyId })} />
+      )}
+
       {!isProfile && (
         <div className={styles.Sidebar}>
           <div className={styles.SidebarItem}>
@@ -40,19 +50,19 @@ const Main: React.FC<{}> = () => {
           </div>
 
           <div className={styles.Companies}>
-            <Companies />
+            <Companies data={companies} />
           </div>
 
           <div className={styles.SidebarItem}>
-            <Link className={styles.User} to={ROUTES.PROFILE.GENERAL.path} />
+            <Link className={styles.User} to={ROUTES.PROFILE.GENERAL} />
           </div>
         </div>
       )}
 
       <div className={styles.Container}>
         <Switch>
-          <Route component={Profile} path={ROUTES.PROFILE.path} />
-          <Route component={Company} path={ROUTES.COMPANY.path} />
+          <Route component={Profile} path={ROUTES.PROFILE.GENERAL} />
+          <Route component={Company} path={ROUTES.COMPANY.ROOT} />
         </Switch>
       </div>
     </div>

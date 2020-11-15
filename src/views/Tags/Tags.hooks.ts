@@ -47,17 +47,17 @@ const useTags = () => {
   const handleDeleteClick = (tagId: string) =>
     deleteTag({ variables: { companyId, tagId } });
 
-  const handleEditClick = (initialValues: ITag) =>
+  const handleEditClick = ({ id, ...tag }: ITag) =>
     dispatch(
       openModal(CREATE_TAG_MODAL, {
-        data: { id: initialValues.id, initialValues },
+        data: { initialValues: { tagId: id, tag } },
         title: 'Edit the Tag'
       })
     );
 
-  const handleFormSubmit = async ({ id, ...tag }: ITag) => {
-    const mutate = id
-      ? udpateTag({ variables: { tagId: id, tag } })
+  const handleFormSubmit = async ({ tag, tagId }: Tags.FormValues) => {
+    const mutate = tagId
+      ? udpateTag({ variables: { tagId, tag } })
       : createTag({ variables: { companyId, tag } });
 
     try {

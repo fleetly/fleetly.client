@@ -49,16 +49,18 @@ const Tags = () => {
           id={CREATE_TAG_MODAL}
           title="Create new tag"
         >
-          {({ id, initialValues }: any) => (
+          {({ initialValues }: Tags.ModalProps) => (
             <>
-              {!id && (
+              {!initialValues?.tagId && (
                 <P className={styles.Description} component="dib">
                   Group your followers with unique tags!
                 </P>
               )}
 
               <Form
-                form={`${CREATE_TAG_FORM}${id ? `-${id}` : ''}`}
+                form={`${CREATE_TAG_FORM}${
+                  initialValues?.tagId ? `-${initialValues?.tagId}` : ''
+                }`}
                 initialValues={initialValues}
                 onSubmit={handleFormSubmit}
               />
