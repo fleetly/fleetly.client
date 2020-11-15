@@ -2,6 +2,7 @@ export * from './Avatar';
 export * from './Button';
 export * from './Form';
 export * from './Link';
+export * from './Menu';
 export * from './Modal';
 export * from './Page';
 export * from './Status';

@@ -30,6 +30,18 @@ export default {
     path: '/:companyId',
     to: (id: string) => `/${id}`
   },
+  PROFILE: {
+    GENERAL: {
+      path: '/profile'
+    },
+    COLLABORATION: {
+      path: '/profile/collaboration'
+    },
+    SECURITY: {
+      path: '/profile/security'
+    },
+    path: '/profile'
+  },
   CHAT: {
     path: '/chat/:companyId'
   },

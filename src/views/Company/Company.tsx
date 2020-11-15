@@ -2,11 +2,12 @@ import { get } from 'lodash';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+// Components
+import Menu from '@components/Menu';
+
 // Containers
 import Subscriber from '@containers/Subscriber';
-
 import Info from './containers/Info';
-import Menu from './containers/Menu';
 
 // Routes
 import ROUTES from '@routes';
@@ -22,8 +23,91 @@ import Fields from '@views/Fields';
 import Subscribers from '@views/Subscribers';
 import Tags from '@views/Tags';
 
+// Utils
+import { fillUrl } from '@utils/url';
+
 const Company: React.FC<Company.Props> = ({ match }) => {
   const companyId: string = get(match, 'params.companyId');
+
+  const MENU = React.useMemo<Menu.Group[]>(
+    () => [
+      {
+        children: [
+          {
+            icon: 'far fa-tachometer-alt',
+            title: 'Dashboard',
+            to: fillUrl(ROUTES.COMPANY.DASHBOARD.path, { companyId })
+          }
+        ]
+      },
+      {
+        children: [
+          {
+            icon: 'far fa-comment',
+            title: 'Chat',
+            to: fillUrl(ROUTES.CHAT.path, { companyId })
+          },
+          {
+            icon: 'far fa-code-merge',
+            title: 'Flow',
+            to: fillUrl(ROUTES.FLOW.path, { companyId })
+          }
+        ],
+        title: 'Apps'
+      },
+      {
+        children: [
+          {
+            icon: 'far fa-database',
+            title: 'Channels',
+            to: fillUrl(ROUTES.COMPANY.CHANNELS.path, { companyId })
+          },
+          {
+            icon: 'far fa-users',
+            title: 'Subscribers',
+            to: fillUrl(ROUTES.COMPANY.SUBSCRIBERS.path, { companyId })
+          }
+        ],
+        title: 'General'
+      },
+      {
+        children: [
+          {
+            icon: 'far fa-home-alt',
+            title: 'General',
+            to: fillUrl(ROUTES.COMPANY.GENERAL.path, { companyId })
+          },
+          {
+            icon: 'far fa-wallet',
+            title: 'Billing',
+            to: fillUrl(ROUTES.COMPANY.BILLING.path, { companyId })
+          },
+          {
+            icon: 'far fa-user-friends',
+            title: 'Collaborators',
+            to: fillUrl(ROUTES.COMPANY.COLLABORATORS.path, { companyId })
+          },
+          {
+            icon: 'far fa-table',
+            title: 'Fields',
+            to: fillUrl(ROUTES.COMPANY.FIELDS.path, { companyId })
+          },
+          {
+            icon: 'far fa-bells',
+            title: 'Notifications',
+            to: fillUrl(ROUTES.COMPANY.NOTIFICATIONS.path, { companyId })
+          },
+          {
+            icon: 'far fa-tags',
+            title: 'Tags',
+            to: fillUrl(ROUTES.COMPANY.TAGS.path, { companyId })
+          }
+        ],
+        title: 'Settings'
+      }
+    ],
+    [companyId]
+  );
 
   return (
     <div className={styles.Root}>
@@ -33,7 +117,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
         </div>
 
         <div className={styles.Menu}>
-          <Menu companyId={companyId} />
+          <Menu data={MENU} />
         </div>
       </div>
 
