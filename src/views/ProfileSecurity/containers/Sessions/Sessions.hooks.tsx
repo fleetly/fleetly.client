@@ -1,9 +1,5 @@
-import { get } from 'lodash';
 import * as React from 'react';
 import { useMutation, useQuery } from 'react-apollo';
-
-// Components
-import Button from '@components/Button';
 
 // GraphQL
 import DELETE_ALL_SESSIONS from '../../graphql/deleteAllSessions.gql';
@@ -15,8 +11,12 @@ import { ISession } from '@interfaces/session.interface';
 
 const useSessions = () => {
   // Data
-  const { data } = useQuery(GET_SESSIONS_LIST);
-  const sessions: ISession[] = get(data, 'sessions', []);
+  const { data } = useQuery<{ sessions: ISession[] }>(GET_SESSIONS_LIST);
+  const sessions =
+    data?.sessions.sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    ) || [];
 
   // Mutations
   const refetchQueries = [{ query: GET_SESSIONS_LIST }];
@@ -28,6 +28,7 @@ const useSessions = () => {
     refetchQueries
   });
 
+  // Handlers
   const handleDeleteClick = React.useCallback(
     (event: React.SyntheticEvent<HTMLButtonElement>) => {
       deleteSession({
@@ -37,54 +38,8 @@ const useSessions = () => {
     [deleteSession]
   );
 
-  // Columns
-  const columns = React.useMemo(
-    () => [
-      {
-        accessor: 'device',
-        Header: '',
-        maxWidth: 24
-      },
-      {
-        accessor: 'browser',
-        Header: 'Device & Browser'
-      },
-      {
-        accessor: 'updatedAt',
-        Header: 'Date'
-      },
-      {
-        accessor: 'os',
-        Header: 'Os'
-      },
-      {
-        accessor: 'location',
-        Header: 'Location'
-      },
-      {
-        accessor: 'ip',
-        Header: 'IP'
-      },
-      {
-        accessor: 'id',
-        Cell: ({ value }: any) => (
-          <Button
-            data-session-id={value}
-            color="danger"
-            icon="far fa-trash-alt"
-            onClick={handleDeleteClick}
-            variant="outlined"
-          />
-        ),
-        Header: '',
-        maxWidth: 40
-      }
-    ],
-    [handleDeleteClick]
-  );
-
   return {
-    columns,
+    handleDeleteClick,
     handleDeleteAllClick: () => deleteAllSessions(),
     sessions
   };

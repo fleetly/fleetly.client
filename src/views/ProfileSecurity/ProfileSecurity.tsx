@@ -1,13 +1,17 @@
 import * as React from 'react';
 
 // Components
-import Page from '@components/Page';
+import Page, { Wrapper } from '@components/Page';
 
 // Containers
 import Sessions from './containers/Sessions';
 
+// Styles
+import styles from './ProfileSecurity.scss';
+
 const ProfileSecurity = () => (
-  <Page title="Security">
+  <Page classes={{ container: styles.Root }} title="Security">
+    <Wrapper title="Change password">123</Wrapper>
     <Sessions />
   </Page>
 );
