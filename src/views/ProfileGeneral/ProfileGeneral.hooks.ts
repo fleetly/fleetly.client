@@ -1,32 +1,33 @@
+import * as React from 'react';
 import { useMutation, useQuery } from 'react-apollo';
-import { useParams } from 'react-router-dom';
 
 // Components
 import { gqlErrorHandler } from '@components/Form';
 
 // GraphQL
 import GET_USER_BY_ID from '@graphql/getUserById.gql';
-import UPDATE_USER from './graphql/UpdateUser.glq';
+import UPDATE_USER from './graphql/UpdateUser.gql';
 
 const useProfileGenerals = () => {
-  const { userId } = useParams<{ userId: string }>();
+  // Data
+  const { data } = useQuery(GET_USER_BY_ID);
 
-  const { data } = useQuery(GET_USER_BY_ID, { variables: { userId } });
+  // Mutation
+  const [updateUser] = useMutation(UPDATE_USER);
 
-  const [updateUserName] = useMutation(UPDATE_USER);
-
-  const handleUpdateNameFormSubmit = React.useCallback(
-    async ({ newName }: General.UpdateNameFormValues) => {
+  // Handlers
+  const handleUpdateUserFormSubmit = React.useCallback(
+    async (variables: ProfileGeneral.UpdateUserFormValues) => {
       try {
-        return await updateUserName({ variables: { userId, newName } });
+        return await updateUser({ variables });
       } catch (error) {
         return gqlErrorHandler(error);
       }
     },
-    [userId, updateUserName]
+    [userId, updateUser]
   );
 
-  return { data, handleUpdateNameFormSubmit };
+  return { data, handleUpdateUserFormSubmit };
 };
 
 export { useProfileGenerals };

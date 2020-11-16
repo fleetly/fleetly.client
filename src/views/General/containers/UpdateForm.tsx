@@ -13,7 +13,7 @@ import Form, {
 } from '@components/Form';
 
 // Constants
-import { UPDATE_COMPANY_NAME_FORM } from '@constants';
+import { UPDATE_COMPANY_FORM } from '@constants';
 import { convertToColor } from '@utils/string';
 
 const GeneralUpdateForm: React.FC<InjectedFormProps<
@@ -49,5 +49,5 @@ export default reduxForm<General.UpdateFormValues>({
       timezone: yup.string()
     })
   ) as any,
-  form: UPDATE_COMPANY_NAME_FORM
+  form: UPDATE_COMPANY_FORM
 })(GeneralUpdateForm);

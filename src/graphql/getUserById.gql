@@ -1,5 +1,5 @@
-query getCompanyById($userId: String!) {
-  company(userId: $userId) {
+query getUserById($userId: String!) {
+  user(userId: $userId) {
     id
     email
     firstname

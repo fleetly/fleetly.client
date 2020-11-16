@@ -4,7 +4,7 @@ declare namespace ProfileGeneral {
       firstname?: string;
       lastname?: string;
     };
-    username: string;
+    username?: string;
   }
 }
 
