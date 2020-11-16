@@ -9,22 +9,29 @@ import { getClassName } from '@utils/styles';
 
 // Components
 import Button from '@components/Button';
+import { Caption, H4, H5, P } from '@components/Typography';
 
 const Notification: React.FC<any> = ({ description, title = 'Fleetly' }) => (
-  <div className={styles.Root}>
-    <div className={styles.Icon} />
+  <P className={styles.Root} component="div">
+    <P className={styles.Icon} component="div" children />
 
-    <div className={styles.Info}>
-      <div className={styles.Title}>Notification system</div>
-      <div className={styles.Description}>
-        Also on Fleetly, you need to add pop-up notifications in any corner.
-      </div>
-    </div>
+    <H4 className={styles.Info} component="div">
+      <H5 className={styles.Title} component="div">
+        {(title = 'Notification system')}
+      </H5>
 
-    <div className={styles.Actions}>
+      <Caption className={styles.Description} component="div">
+        {
+          (description =
+            'Also on Fleetly you need to add pop-up notifications in any corner.')
+        }
+      </Caption>
+    </H4>
+
+    <P className={styles.Actions} component="div">
       <Button icon="fas fa-times" variant="outlined" />
-    </div>
-  </div>
+    </P>
+  </P>
 );
 
 export default Notification;
