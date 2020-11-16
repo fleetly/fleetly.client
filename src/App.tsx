@@ -24,7 +24,10 @@ const App = () => {
 
   return (
     <div className={styles.Root}>
-      <Notification />
+      <Notification
+        description="Also on Fleetly you need to add pop-up notifications in any corner."
+        title="Notification system"
+      />
 
       <Switch>
         {isAuthorized ? (
