@@ -13,6 +13,7 @@ import ROUTES from '@routes';
 import styles from './Profile.scss';
 
 // Views
+import General from '@views/ProfileGeneral';
 import Security from '@views/ProfileSecurity';
 
 const Profile = () => {
@@ -60,6 +61,7 @@ const Profile = () => {
       <div className={styles.Container}>
         <Switch>
           <Route component={Security} path={ROUTES.PROFILE.SECURITY.path} />
+          <Route component={General} path={ROUTES.PROFILE.GENERAL.path} />
         </Switch>
       </div>
     </div>

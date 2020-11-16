@@ -4,6 +4,7 @@ export * from './Company';
 export * from './General';
 export * from './Fields';
 export * from './Main';
+export * from './ProfileGeneral';
 export * from './Sign';
 export * from './Subscribers';
 export * from './Tags';
