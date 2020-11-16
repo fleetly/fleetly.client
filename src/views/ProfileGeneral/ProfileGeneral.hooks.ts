@@ -6,28 +6,28 @@ import { gqlErrorHandler } from '@components/Form';
 
 // GraphQL
 import GET_USER_BY_ID from '@graphql/getUserById.gql';
-import UPDATE_USER from './graphql/UpdateUser.gql';
+import UPDATE_PROFILE from './graphql/updateProfile.gql';
 
-const useProfileGenerals = () => {
+const useProfileGeneralsView = () => {
   // Data
   const { data } = useQuery(GET_USER_BY_ID);
 
   // Mutation
-  const [updateUser] = useMutation(UPDATE_USER);
+  const [updateProfile] = useMutation(UPDATE_PROFILE);
 
   // Handlers
-  const handleUpdateUserFormSubmit = React.useCallback(
-    async (variables: ProfileGeneral.UpdateUserFormValues) => {
+  const handleFormSubmit = React.useCallback(
+    async (variables: ProfileGeneral.FormValues) => {
       try {
-        return await updateUser({ variables });
+        return await updateProfile({ variables });
       } catch (error) {
         return gqlErrorHandler(error);
       }
     },
-    [userId, updateUser]
+    [updateProfile]
   );
 
-  return { data, handleUpdateUserFormSubmit };
+  return { handleFormSubmit, user: data?.user };
 };
 
-export { useProfileGenerals };
+export { useProfileGeneralsView };

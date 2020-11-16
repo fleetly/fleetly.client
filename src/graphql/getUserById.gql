@@ -1,4 +1,4 @@
-query getUserById($userId: String!) {
+query getUserById($userId: String) {
   user(userId: $userId) {
     id
     email
