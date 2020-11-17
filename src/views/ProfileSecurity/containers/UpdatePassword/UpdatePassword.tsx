@@ -12,13 +12,13 @@ import Form, {
 } from '@components/Form';
 
 // Constants
-import { CHANGE_PASSWORD_FORM } from '@constants';
+import { UPDATE_PASSWORD_FORM } from '@constants';
 
 // Styles
 import styles from './UpdatePassword.scss';
 
 const UpdatePassword: React.FC<InjectedFormProps<
-  Security.UpdatePasswordFormValues
+  ProfileSecurity.UpdatePasswordFormValues
 >> = ({ error, handleSubmit, submitting }) => {
   return (
     <Form
@@ -73,5 +73,5 @@ export default reduxForm<any, any>({
         .oneOf([yup.ref('newPassword')], 'Passwords must match')
     })
   ),
-  form: CHANGE_PASSWORD_FORM
+  form: UPDATE_PASSWORD_FORM
 })(UpdatePassword);
