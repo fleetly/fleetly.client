@@ -8,7 +8,7 @@ import Table from '@components/Table';
 // Utils
 import { convertToColor } from '@utils/string';
 
-const CollaborationsTable: React.FC<ProfileCollaboration.Table.Props> = ({
+const CollaborationTable: React.FC<ProfileCollaboration.TableProps> = ({
   data
 }) => {
   const columns = React.useMemo(
@@ -48,4 +48,4 @@ const CollaborationsTable: React.FC<ProfileCollaboration.Table.Props> = ({
   return <Table columns={columns} data={data} />;
 };
 
-export default CollaborationsTable;
+export default CollaborationTable;

@@ -5,3 +5,6 @@ declare namespace ProfileCollaboration {
     data: ICompany[];
   }
 }
+
+export = ProfileCollaboration;
+export as namespace ProfileCollaboration;
