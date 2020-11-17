@@ -51,9 +51,9 @@ const Fields = () => {
           id={CREATE_FIELD_MODAL}
           title="Create new field"
         >
-          {({ id, initialValues }: any) => (
+          {({ initialValues }: Fields.ModalProps) => (
             <>
-              {!id && (
+              {!initialValues?.fieldId && (
                 <div className={styles.Description}>
                   <P>
                     Store important information about your subscribers in
@@ -68,7 +68,9 @@ const Fields = () => {
 
               <Form
                 fieldTypes={fieldTypes}
-                form={`${CREATE_FIELD_FORM}${id ? `-${id}` : ''}`}
+                form={`${CREATE_FIELD_FORM}${
+                  initialValues?.fieldId ? `-${initialValues.fieldId}` : ''
+                }`}
                 initialValues={{ ...initialValues, type: 'TEXT' }}
                 onSubmit={handleFormSubmit}
               />

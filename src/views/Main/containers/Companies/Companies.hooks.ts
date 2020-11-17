@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useMutation, useQuery } from 'react-apollo';
+import { useMutation } from 'react-apollo';
 import { useDispatch } from 'react-redux';
 
 // Components
@@ -12,19 +12,12 @@ import { CREATE_COMPANY_MODAL } from '@constants';
 import CREATE_COMPANY from '../../graphql/createCompany.gql';
 import GET_COMPANY_LIST from '../../graphql/getCompanyList.gql';
 
-// Interfaces
-import { ICompany } from '@interfaces/company.interface';
-
 // Store
 import { closeModal, openModal } from '@store';
 
 const useCompanies = () => {
   // Setup
   const dispatch = useDispatch();
-
-  // Data
-  const { data } = useQuery<{ companies: ICompany[] }>(GET_COMPANY_LIST);
-  const companies = data?.companies || [];
 
   // Mutations
   const [createCompany] = useMutation(CREATE_COMPANY, {
@@ -50,7 +43,6 @@ const useCompanies = () => {
   );
 
   return {
-    companies,
     handleClick,
     handleSubmit
   };

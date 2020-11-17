@@ -19,12 +19,12 @@ import { useCompanies } from './Companies.hooks';
 // Styles
 import styles from './Companies.scss';
 
-const MainCompanies: React.FC<{}> = () => {
-  const { companies, handleClick, handleSubmit } = useCompanies();
+const MainCompanies: React.FC<Main.CompaniesProps> = ({ data = [] }) => {
+  const { handleClick, handleSubmit } = useCompanies();
 
   return (
     <div className={styles.Root}>
-      {companies.map((company) => (
+      {data.map((company) => (
         <Company {...company} key={company.id} />
       ))}
 

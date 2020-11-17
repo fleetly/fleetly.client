@@ -1,51 +1,26 @@
 export default {
   COMPANY: {
-    BILLING: {
-      path: '/:companyId/billing'
-    },
-    CHANNELS: {
-      path: '/:companyId/channels'
-    },
-    COLLABORATORS: {
-      path: '/:companyId/collaborators'
-    },
-    DASHBOARD: {
-      path: '/:companyId/dashboard'
-    },
-    FIELDS: {
-      path: '/:companyId/fields'
-    },
-    GENERAL: {
-      path: '/:companyId/general'
-    },
-    NOTIFICATIONS: {
-      path: '/:companyId/notifications'
-    },
-    SUBSCRIBERS: {
-      path: '/:companyId/subscribers'
-    },
-    TAGS: {
-      path: '/:companyId/tags'
-    },
-    path: '/:companyId',
-    to: (id: string) => `/${id}`
+    ROOT: '/:companyId',
+    BILLING: '/:companyId/billing',
+    CHANNELS: '/:companyId/channels',
+    CHAT: '/:companyId/chat',
+    COLLABORATORS: '/:companyId/collaborators',
+    DASHBOARD: '/:companyId/dashboard',
+    FIELDS: '/:companyId/fields',
+    FLOW: '/:companyId/flow',
+    GENERAL: '/:companyId/general',
+    NOTIFICATIONS: '/:companyId/notifications',
+    SUBSCRIBERS: '/:companyId/subscribers',
+    TAGS: '/:companyId/tags'
   },
   PROFILE: {
-    GENERAL: {
-      path: '/profile'
-    },
-    COLLABORATION: {
-      path: '/profile/collaboration'
-    },
-    SECURITY: {
-      path: '/profile/security'
-    },
-    path: '/profile'
+    GENERAL: '/profile',
+    COLLABORATION: '/profile/collaboration',
+    SECURITY: '/profile/security'
   },
-  CHAT: {
-    path: '/chat/:companyId'
-  },
-  FLOW: {
-    path: '/flow/:companyId'
+  SIGN: {
+    ROOT: '/sign',
+    IN: '/sign/in',
+    UP: '/sign/up'
   }
 };

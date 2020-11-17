@@ -12,6 +12,7 @@ import styles from './Company.scss';
 
 // Utils
 import { convertToColor } from '@utils/string';
+import { fillUrl } from '@utils/url';
 
 type PropTypes = {
   id: string;
@@ -30,7 +31,7 @@ const MainCompany: React.FC<PropTypes> = ({
     <NavLink
       activeClassName={styles.RootIsSelected}
       className={styles.Root}
-      to={ROUTES.COMPANY.to(id)}
+      to={fillUrl(ROUTES.COMPANY.ROOT, { companyId: id })}
     >
       {notifications && <div className={styles.Notifications} />}
       <Avatar alt={title} classes={{ root: styles.Avatar }} color={color} />

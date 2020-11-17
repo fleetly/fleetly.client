@@ -1,9 +1,10 @@
 export interface ISession {
   id: string;
   browser: string;
-  createdAt: Date;
+  createdAt: string;
   ip: string;
+  isOnline: boolean;
   location: string;
   os: string;
-  updateAt: Date;
+  updatedAt: string;
 }

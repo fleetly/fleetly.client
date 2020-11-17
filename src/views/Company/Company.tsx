@@ -36,7 +36,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
           {
             icon: 'far fa-tachometer-alt',
             title: 'Dashboard',
-            to: fillUrl(ROUTES.COMPANY.DASHBOARD.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.DASHBOARD, { companyId })
           }
         ]
       },
@@ -45,12 +45,12 @@ const Company: React.FC<Company.Props> = ({ match }) => {
           {
             icon: 'far fa-comment',
             title: 'Chat',
-            to: fillUrl(ROUTES.CHAT.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.CHAT, { companyId })
           },
           {
             icon: 'far fa-code-merge',
             title: 'Flow',
-            to: fillUrl(ROUTES.FLOW.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.FLOW, { companyId })
           }
         ],
         title: 'Apps'
@@ -60,12 +60,12 @@ const Company: React.FC<Company.Props> = ({ match }) => {
           {
             icon: 'far fa-database',
             title: 'Channels',
-            to: fillUrl(ROUTES.COMPANY.CHANNELS.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.CHANNELS, { companyId })
           },
           {
             icon: 'far fa-users',
             title: 'Subscribers',
-            to: fillUrl(ROUTES.COMPANY.SUBSCRIBERS.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.SUBSCRIBERS, { companyId })
           }
         ],
         title: 'General'
@@ -75,32 +75,32 @@ const Company: React.FC<Company.Props> = ({ match }) => {
           {
             icon: 'far fa-home-alt',
             title: 'General',
-            to: fillUrl(ROUTES.COMPANY.GENERAL.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.GENERAL, { companyId })
           },
           {
             icon: 'far fa-wallet',
             title: 'Billing',
-            to: fillUrl(ROUTES.COMPANY.BILLING.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.BILLING, { companyId })
           },
           {
             icon: 'far fa-user-friends',
             title: 'Collaborators',
-            to: fillUrl(ROUTES.COMPANY.COLLABORATORS.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.COLLABORATORS, { companyId })
           },
           {
             icon: 'far fa-table',
             title: 'Fields',
-            to: fillUrl(ROUTES.COMPANY.FIELDS.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.FIELDS, { companyId })
           },
           {
             icon: 'far fa-bells',
             title: 'Notifications',
-            to: fillUrl(ROUTES.COMPANY.NOTIFICATIONS.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.NOTIFICATIONS, { companyId })
           },
           {
             icon: 'far fa-tags',
             title: 'Tags',
-            to: fillUrl(ROUTES.COMPANY.TAGS.path, { companyId })
+            to: fillUrl(ROUTES.COMPANY.TAGS, { companyId })
           }
         ],
         title: 'Settings'
@@ -123,18 +123,15 @@ const Company: React.FC<Company.Props> = ({ match }) => {
 
       <div className={styles.Content}>
         <Switch>
-          <Route component={Channels} path={ROUTES.COMPANY.CHANNELS.path} />
+          <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
           <Route
             component={Collaborators}
-            path={ROUTES.COMPANY.COLLABORATORS.path}
+            path={ROUTES.COMPANY.COLLABORATORS}
           />
-          <Route component={Fields} path={ROUTES.COMPANY.FIELDS.path} />
-          <Route component={General} path={ROUTES.COMPANY.GENERAL.path} />
-          <Route
-            component={Subscribers}
-            path={ROUTES.COMPANY.SUBSCRIBERS.path}
-          />
-          <Route component={Tags} path={ROUTES.COMPANY.TAGS.path} />
+          <Route component={Fields} path={ROUTES.COMPANY.FIELDS} />
+          <Route component={General} path={ROUTES.COMPANY.GENERAL} />
+          <Route component={Subscribers} path={ROUTES.COMPANY.SUBSCRIBERS} />
+          <Route component={Tags} path={ROUTES.COMPANY.TAGS} />
         </Switch>
       </div>
 

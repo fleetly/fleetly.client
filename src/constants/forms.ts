@@ -1,6 +1,7 @@
 export const ADD_CHANNEL_FORM = 'addChannelForm';
 export const ADD_COLLABORATOR_FORM = 'addCollaboratorForm';
 export const ADD_TAG_FORM = 'addTagForm';
+export const CHANGE_PASSWORD_FORM = 'changePaswordForm';
 export const CREATE_COMPANY_FORM = 'createCompanyForm';
 export const CREATE_FIELD_FORM = 'createFieldForm';
 export const CREATE_TAG_FORM = 'createTagForm';

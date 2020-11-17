@@ -23,16 +23,16 @@ const FieldsForm: React.FC<Fields.FormProps> = ({
   initialValues,
   submitting
 }) => {
-  const isEditMode = initialValues?.id;
+  const isEditMode = initialValues?.fieldId;
 
   return (
     <Form error={error} onSubmit={handleSubmit}>
       <Fieldset>
-        <Input label="Title" name="title" placeholder="Name" />
+        <Input label="Title" name="field.title" placeholder="Name" />
 
         <Input
           label="Description"
-          name="description"
+          name="field.description"
           placeholder="Description"
         />
 
@@ -40,7 +40,7 @@ const FieldsForm: React.FC<Fields.FormProps> = ({
           <Select
             hint={<Link>About field types</Link>}
             label="Type"
-            name="type"
+            name="field.type"
             options={fieldTypes}
           />
         )}
@@ -57,7 +57,9 @@ const FieldsForm: React.FC<Fields.FormProps> = ({
 
 export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
-    yup.object().shape({ title: yup.string().required() })
+    yup
+      .object()
+      .shape({ field: yup.object().shape({ title: yup.string().required() }) })
   ),
   form: CREATE_FIELD_FORM
 })(FieldsForm);
