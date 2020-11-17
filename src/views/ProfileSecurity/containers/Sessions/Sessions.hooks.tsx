@@ -11,7 +11,10 @@ import { ISession } from '@interfaces/session.interface';
 
 const useSessions = () => {
   // Data
-  const { data } = useQuery<{ sessions: ISession[] }>(GET_SESSIONS_LIST);
+  const { data, refetch } = useQuery<{ sessions: ISession[] }>(
+    GET_SESSIONS_LIST
+  );
+
   const sessions =
     data?.sessions.sort(
       (a, b) =>
@@ -19,28 +22,40 @@ const useSessions = () => {
     ) || [];
 
   // Mutations
-  const refetchQueries = [{ query: GET_SESSIONS_LIST }];
+  // @todo - fucking apollo rejected refetch bug
+  // const refetchQueries: PureQueryOptions[] = [{ query: GET_SESSIONS_LIST }];
 
-  const [deleteSession] = useMutation(DELETE_SESSION, {
-    refetchQueries
-  });
-  const [deleteAllSessions] = useMutation(DELETE_ALL_SESSIONS, {
-    refetchQueries
-  });
+  const [deleteSession] = useMutation(DELETE_SESSION);
+  const [deleteAllSessions] = useMutation(DELETE_ALL_SESSIONS);
 
   // Handlers
   const handleDeleteClick = React.useCallback(
-    (event: React.SyntheticEvent<HTMLButtonElement>) => {
-      deleteSession({
-        variables: { sessionId: event.currentTarget.dataset.sessionId }
-      });
+    async (event: React.SyntheticEvent<HTMLButtonElement>) => {
+      try {
+        await deleteSession({
+          variables: { sessionId: event.currentTarget.dataset.sessionId }
+        });
+
+        return refetch();
+      } catch (error) {
+        return false;
+      }
     },
-    [deleteSession]
+    [deleteSession, refetch]
   );
+
+  const handleDeleteAllClick = React.useCallback(async () => {
+    try {
+      await deleteAllSessions();
+      return refetch();
+    } catch (error) {
+      return false;
+    }
+  }, [deleteAllSessions, refetch]);
 
   return {
     handleDeleteClick,
-    handleDeleteAllClick: () => deleteAllSessions(),
+    handleDeleteAllClick,
     sessions
   };
 };

@@ -1,28 +1,16 @@
 export {};
 
 declare global {
-  type ColorType =
-    | 'danger'
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning';
-
-  interface PseudoClasses extends BaseClasses {
-    isChecked?: string;
-    isDisabled?: string;
-    isExpanded?: string;
-    isFailed?: string;
-    isFocused?: string;
-    isSelected?: string;
-  }
-
-  interface ExtendedClasses extends PseudoClasses {
-    root?: string;
-  }
-
   namespace Store {
+    interface ModalsPayload {
+      data?: Record<string, any>;
+      title?: string;
+    }
+
+    interface ModalsState {
+      [key: string]: boolean | ModalsPayload;
+    }
+
     interface NotificationsPayload {
       colorType?: ColorType;
       description?: string;
@@ -36,8 +24,14 @@ declare global {
       [key: string]: NotificationsPayload;
     }
 
+    interface SessionState {
+      isAuthorized: boolean;
+    }
+
     interface State {
+      modals: ModalsState;
       notifications: NotificationsState;
+      session: SessionState;
     }
   }
 }

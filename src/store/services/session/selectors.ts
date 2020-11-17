@@ -1,5 +1,2 @@
-// Store
-import { IState } from '@store';
-
-export const isAuthorized = (state: IState): boolean =>
+export const isAuthorized = (state: Store.State): boolean =>
   state.session.isAuthorized;

@@ -2,8 +2,9 @@ import { combineReducers, compose, createStore } from 'redux';
 import { reducer as form } from 'redux-form';
 
 // Reducers
-import modals, { IModalState } from './services/modals';
-import session, { ISessionState } from './services/session';
+import modals from './services/modals';
+import notifications from './services/notifications';
+import session from './services/session';
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ declare global {
 const reducer = combineReducers({
   form,
   modals,
+  notifications,
   session
 });
 
@@ -21,10 +23,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => createStore(reducer, composeEnhancers());
 
-export interface IState {
-  modals: IModalState;
-  session: ISessionState;
-}
-
 export * from './services/modals';
+export * from './services/notifications';
 export * from './services/session';

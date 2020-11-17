@@ -1,18 +1,9 @@
 import { LOGIN, LOGOUT } from './types';
 
-export interface ISessionAction {
-  type: typeof LOGIN | typeof LOGOUT;
-  payload?: ISessionPayload;
-}
-
-export interface ISessionPayload {
-  isAuthorized?: boolean;
-}
-
-export const login = (): ISessionAction => ({
+export const login = () => ({
   type: LOGIN
 });
 
-export const logout = (): ISessionAction => ({
+export const logout = () => ({
   type: LOGOUT
 });

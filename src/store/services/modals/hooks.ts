@@ -15,7 +15,7 @@ const useModals = <T = {}>(currentModalId?: string) => {
       () =>
         createSelector(
           (state: any) => state?.modals,
-          (modals) => currentModalId && modals[currentModalId]
+          (modals) => (currentModalId ? modals[currentModalId] : modals)
         ),
       [currentModalId]
     )

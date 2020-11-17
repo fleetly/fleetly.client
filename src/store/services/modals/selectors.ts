@@ -1,7 +1,4 @@
 import { get } from 'lodash';
 
-// Store
-import { IState } from '@store';
-
-export const getModalById = (state: IState, id: string): any =>
+export const getModalById = (state: Store.State, id: string): any =>
   get(state, `modals.${id}`);
