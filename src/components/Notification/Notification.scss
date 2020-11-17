@@ -1,0 +1,25 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  background: $color-gray-0;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px 0 rgba($color-gray-1000, .1);
+  display: flex;
+  height: fit-content;
+  justify-content: space-evenly;
+  margin: 20px;
+  padding: 20px;
+}
+
+.Description {
+  color: $color-gray-600;
+}
+
+.Icon {
+  border: 2px solid $color-blue-200;
+  border-radius: 100%;
+  flex: 0 0 40px;
+  height: 40px;
+  margin: 0 20px 0 0;
+  width: 40px;
+}
