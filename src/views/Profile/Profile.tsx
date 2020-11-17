@@ -61,13 +61,12 @@ const Profile = () => {
 
       <div className={styles.Container}>
         <Switch>
-          <Route component={Security} path={ROUTES.PROFILE.SECURITY} />
           <Route
             component={Collaboration}
             path={ROUTES.PROFILE.COLLABORATION}
           />
-
-          <Route component={General} path={ROUTES.PROFILE.GENERAL} exact />
+          <Route component={Security} path={ROUTES.PROFILE.SECURITY} />
+          <Route component={General} path={ROUTES.PROFILE.GENERAL} />
         </Switch>
       </div>
     </div>

@@ -7,15 +7,15 @@ import Page, { Wrapper } from '@components/Page';
 import Table from './containers/CompaniesTable';
 
 // Hooks
-import { useCollaboration } from './ProfileCollaboration.hooks';
+import { useProfileCollaborationView } from './ProfileCollaboration.hooks';
 
 const ProfileCollaboration = () => {
-  const { collabotaions } = useCollaboration();
+  const { companies } = useProfileCollaborationView();
   return (
     <Page title="Collaboration">
       <Wrapper title="New invitations">1234</Wrapper>
       <Wrapper title="Companies">
-        <Table data={collabotaions} />
+        <Table data={companies} />
       </Wrapper>
     </Page>
   );

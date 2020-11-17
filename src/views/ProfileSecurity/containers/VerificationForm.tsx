@@ -10,9 +10,9 @@ import { P, H4, H5 } from '@components/Typography';
 import { TWO_STEP_VERIFICATION_FORM } from '@constants';
 
 // Styles
-import styles from './TwoStepVerification.scss';
+import styles from './VerificationForm.scss';
 
-const TwoStapVerificaton: React.FC<InjectedFormProps> = ({
+const ProfileSecurityVerificationForm: React.FC<InjectedFormProps> = ({
   error,
   handleSubmit,
   submitting
@@ -47,4 +47,4 @@ const TwoStapVerificaton: React.FC<InjectedFormProps> = ({
 
 export default reduxForm<any, any>({
   form: TWO_STEP_VERIFICATION_FORM
-})(TwoStapVerificaton);
+})(ProfileSecurityVerificationForm);

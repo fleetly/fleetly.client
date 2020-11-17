@@ -1,5 +1,5 @@
 export * from './Channels';
-export * from './Collaboration';
+export * from './ProfileCollaboration';
 export * from './Collaborators';
 export * from './Company';
 export * from './General';

@@ -15,9 +15,9 @@ import Form, {
 import { UPDATE_PASSWORD_FORM } from '@constants';
 
 // Styles
-import styles from './UpdatePassword.scss';
+import styles from './UpdatePasswordForm.scss';
 
-const UpdatePassword: React.FC<InjectedFormProps<
+const ProfileSecurityUpdatePasswordForm: React.FC<InjectedFormProps<
   ProfileSecurity.UpdatePasswordFormValues
 >> = ({ error, handleSubmit, submitting }) => {
   return (
@@ -74,4 +74,4 @@ export default reduxForm<any, any>({
     })
   ),
   form: UPDATE_PASSWORD_FORM
-})(UpdatePassword);
+})(ProfileSecurityUpdatePasswordForm);

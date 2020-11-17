@@ -4,9 +4,9 @@ import * as React from 'react';
 import Page, { Wrapper } from '@components/Page';
 
 // Containers
-import UpdatePassword from './containers/UpdatePassword';
+import UpdatePasswordForm from './containers/UpdatePasswordForm';
 import Sessions from './containers/Sessions';
-import TwoStepVerification from './containers/TwoStepVerification';
+import VerificationForm from './containers/VerificationForm';
 
 // Hooks
 import { useProfileSecurity } from './ProfileSecurity.hooks';
@@ -23,14 +23,14 @@ const ProfileSecurity = () => {
         classes={{ container: styles.Container }}
         title="Change password"
       >
-        <UpdatePassword onSubmit={handleFormSubmit} />
+        <UpdatePasswordForm onSubmit={handleFormSubmit} />
       </Wrapper>
       <div>
         <Wrapper
           classes={{ container: styles.Verification }}
           title="Two-Step Verification"
         >
-          <TwoStepVerification />
+          <VerificationForm />
         </Wrapper>
         <Sessions />
       </div>

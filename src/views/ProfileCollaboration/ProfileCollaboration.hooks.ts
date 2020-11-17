@@ -3,14 +3,17 @@ import { useQuery } from 'react-apollo';
 // GraphQL
 import GET_COMPANY_LIST from '@graphql/getCompanyList.gql';
 
-const useCollaboration = () => {
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
+
+const useProfileCollaborationView = () => {
   // Data
-  const { data } = useQuery(GET_COMPANY_LIST);
-  const collabotaions = data?.companies || [];
+  const { data } = useQuery<{ companies: ICompany[] }>(GET_COMPANY_LIST);
+  const companies = data?.companies || [];
 
   return {
-    collabotaions
+    companies
   };
 };
 
-export { useCollaboration };
+export { useProfileCollaborationView };

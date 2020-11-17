@@ -8,7 +8,9 @@ import Table from '@components/Table';
 // Utils
 import { convertToColor } from '@utils/string';
 
-const CollaborationsTable: React.FC<Collaboration.Table.Props> = ({ data }) => {
+const CollaborationsTable: React.FC<ProfileCollaboration.Table.Props> = ({
+  data
+}) => {
   const columns = React.useMemo(
     () => [
       {
@@ -31,13 +33,13 @@ const CollaborationsTable: React.FC<Collaboration.Table.Props> = ({ data }) => {
         Header: 'Role'
       },
       {
-        accessor: 'action',
+        accessor: 'leave',
         Cell: ({ value }: any) => (
-          <Button data-tag-id={value} color="danger" variant="outlined">
+          <Button data-company-id={value} color="danger" variant="outlined">
             Leave
           </Button>
         ),
-        Header: 'Acrion',
+        Header: 'Leave',
         maxWidth: 120
       }
     ],
