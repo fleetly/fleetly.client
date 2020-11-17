@@ -5,15 +5,37 @@ import Page, { Wrapper } from '@components/Page';
 
 // Containers
 import Sessions from './containers/Sessions';
+import UpdatePasswordForm from './containers/UpdatePasswordForm';
+import VerificationForm from './containers/VerificationForm';
+
+// Hooks
+import { useProfileSecurity } from './ProfileSecurity.hooks';
 
 // Styles
 import styles from './ProfileSecurity.scss';
 
-const ProfileSecurity = () => (
-  <Page classes={{ container: styles.Root }} title="Security">
-    <Wrapper title="Change password">123</Wrapper>
-    <Sessions />
-  </Page>
-);
+const ProfileSecurity = () => {
+  const { handleFormSubmit } = useProfileSecurity();
+
+  return (
+    <Page classes={{ container: styles.Root }} title="Security">
+      <Wrapper
+        classes={{ container: styles.Container }}
+        title="Change password"
+      >
+        <UpdatePasswordForm onSubmit={handleFormSubmit} />
+      </Wrapper>
+      <div>
+        <Wrapper
+          classes={{ container: styles.Verification }}
+          title="Two-Step Verification"
+        >
+          <VerificationForm />
+        </Wrapper>
+        <Sessions />
+      </div>
+    </Page>
+  );
+};
 
 export default ProfileSecurity;

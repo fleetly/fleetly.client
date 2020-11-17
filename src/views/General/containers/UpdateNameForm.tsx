@@ -7,7 +7,7 @@ import Button from '@components/Button';
 import Form, { asyncValidate, Input } from '@components/Form';
 
 // Constants
-import { UPDATE_COMPANY_NAME_FROM } from '@constants';
+import { UPDATE_COMPANY_NAME_FORM } from '@constants';
 
 // Styles
 import styles from './UpdateNameForm.scss';
@@ -35,5 +35,5 @@ export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
     yup.object().shape({ newName: yup.string().required() })
   ),
-  form: UPDATE_COMPANY_NAME_FROM
+  form: UPDATE_COMPANY_NAME_FORM
 })(GeneralUpdateNameForm);

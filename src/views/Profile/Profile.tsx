@@ -13,6 +13,8 @@ import ROUTES from '@routes';
 import styles from './Profile.scss';
 
 // Views
+import Collaboration from '@views/ProfileCollaboration';
+import General from '@views/ProfileGeneral';
 import Security from '@views/ProfileSecurity';
 
 const Profile = () => {
@@ -59,7 +61,12 @@ const Profile = () => {
 
       <div className={styles.Container}>
         <Switch>
+          <Route
+            component={Collaboration}
+            path={ROUTES.PROFILE.COLLABORATION}
+          />
           <Route component={Security} path={ROUTES.PROFILE.SECURITY} />
+          <Route component={General} path={ROUTES.PROFILE.GENERAL} />
         </Switch>
       </div>
     </div>

@@ -10,7 +10,7 @@ import { CREATE_COMPANY_MODAL } from '@constants';
 
 // GraphQL
 import CREATE_COMPANY from '../../graphql/createCompany.gql';
-import GET_COMPANY_LIST from '../../graphql/getCompanyList.gql';
+import GET_COMPANY_LIST from '@graphql/getCompanyList.gql';
 
 // Store
 import { closeModal, openModal } from '@store';
