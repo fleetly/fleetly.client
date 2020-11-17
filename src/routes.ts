@@ -1,39 +1,26 @@
 export default {
   COMPANY: {
-    BILLING: {
-      path: '/:companyId/billing'
-    },
-    CHANNELS: {
-      path: '/:companyId/channels'
-    },
-    COLLABORATORS: {
-      path: '/:companyId/collaborators'
-    },
-    DASHBOARD: {
-      path: '/:companyId/dashboard'
-    },
-    FIELDS: {
-      path: '/:companyId/fields'
-    },
-    NOTIFICATIONS: {
-      path: '/:companyId/notifications'
-    },
-    PROFILE: {
-      path: '/:companyId/profile'
-    },
-    SUBSCRIBERS: {
-      path: '/:companyId/subscribers'
-    },
-    TAGS: {
-      path: '/:companyId/tags'
-    },
-    path: '/:companyId',
-    to: (id: string) => `/${id}`
+    ROOT: '/:companyId',
+    BILLING: '/:companyId/billing',
+    CHANNELS: '/:companyId/channels',
+    CHAT: '/:companyId/chat',
+    COLLABORATORS: '/:companyId/collaborators',
+    DASHBOARD: '/:companyId/dashboard',
+    FIELDS: '/:companyId/fields',
+    FLOW: '/:companyId/flow',
+    GENERAL: '/:companyId/general',
+    NOTIFICATIONS: '/:companyId/notifications',
+    SUBSCRIBERS: '/:companyId/subscribers',
+    TAGS: '/:companyId/tags'
   },
-  CHAT: {
-    path: '/chat/:companyId'
+  PROFILE: {
+    GENERAL: '/profile',
+    COLLABORATION: '/profile/collaboration',
+    SECURITY: '/profile/security'
   },
-  FLOW: {
-    path: '/flow/:companyId'
+  SIGN: {
+    ROOT: '/sign',
+    IN: '/sign/in',
+    UP: '/sign/up'
   }
 };

@@ -1,13 +1,10 @@
 @import '~@styles/colors';
 
-@mixin caretFilledColor($color) {
+// Caret color
+@mixin color($color) {
   &.CaretVariantFilled {
     background: $color;
   }
-}
-
-@mixin spinnerColor($color) {
-  color: $color;
 }
 
 .Caret {
@@ -18,39 +15,7 @@
   justify-content: center;
   margin: 0 4px;
 
-  &Color {
-    &Blue {
-      @include caretFilledColor($color-primary);
-    }
-
-    &Green {
-      @include caretFilledColor($color-green-500);
-    }
-
-    &Orange {
-      @include caretFilledColor($color-orange-500);
-    }
-
-    &Pink {
-      @include caretFilledColor($color-pink-500);
-    }
-
-    &Purple {
-      @include caretFilledColor($color-purple-500);
-    }
-
-    &Red {
-      @include caretFilledColor($color-red-500);
-    }
-
-    &Sky {
-      @include caretFilledColor($color-sky-500);
-    }
-
-    &Yellow {
-      @include caretFilledColor($color-yellow-500);
-    }
-  }
+  @include coloring;
 
   &Variant {
     &Filled {
@@ -119,45 +84,18 @@
   }
 }
 
+// Spinner color
+@mixin color($color) {
+  color: $color;
+}
+
 .Spinner {
   animation: spin .8s linear infinite;
   color: $color-primary;
   font-size: 20px;
-  margin: 0 4px;
+  margin: 0 6px;
 
-  &Color {
-    &Blue {
-      @include spinnerColor($color-primary);
-    }
-
-    &Green {
-      @include spinnerColor($color-green-500);
-    }
-
-    &Orange {
-      @include spinnerColor($color-orange-500);
-    }
-
-    &Pink {
-      @include spinnerColor($color-pink-500);
-    }
-
-    &Purple {
-      @include spinnerColor($color-purple-500);
-    }
-
-    &Red {
-      @include spinnerColor($color-red-500);
-    }
-
-    &Sky {
-      @include spinnerColor($color-sky-500);
-    }
-
-    &Yellow {
-      @include spinnerColor($color-yellow-500);
-    }
-  }
+  @include coloring;
 }
 
 @keyframes spin {

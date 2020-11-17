@@ -5,21 +5,35 @@ import { SubmissionError } from 'redux-form';
 // Utils
 import { capitalizeFirstLetter } from '@utils/string';
 
+const formatValidationErrors = (validationErrors: any[]) => {
+  const result: any = {};
+
+  Object.keys(validationErrors).forEach((key: any) => {
+    const error = validationErrors[key];
+
+    result[key] =
+      typeof error === 'string' ? error : formatValidationErrors(error);
+  });
+
+  return result;
+};
+
 export default ({ graphQLErrors, message, networkError }: any): void => {
-  const errors = {};
+  let errors = {};
 
   if (graphQLErrors && graphQLErrors.length > 0) {
     graphQLErrors.forEach(({ extensions, message }: GraphQLFormattedError) => {
       const validationErrors = get(
         extensions,
-        'exception.response.message.validationErrors'
+        'exception.response.validationErrors'
       );
 
       if (validationErrors) {
-        Object.keys(validationErrors).forEach((key: string) => {
-          set(errors, key, capitalizeFirstLetter(validationErrors[key]));
-        });
-      } else if (message) {
+        const formattedErrors = formatValidationErrors(validationErrors);
+        errors = { ...errors, ...formattedErrors };
+      }
+
+      if (message) {
         set(errors, '_error', capitalizeFirstLetter(message));
       }
     });

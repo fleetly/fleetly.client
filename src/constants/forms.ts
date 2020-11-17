@@ -1,5 +1,15 @@
 export const ADD_CHANNEL_FORM = 'addChannelForm';
 export const ADD_COLLABORATOR_FORM = 'addCollaboratorForm';
-export const UPDATE_COLLABORATOR_ROLE_FORM = 'updateCollaboratorRoleForm';
-export const CREATE_TAG_FORM = 'createTagForm';
+export const ADD_TAG_FORM = 'addTagForm';
+export const CREATE_COMPANY_FORM = 'createCompanyForm';
 export const CREATE_FIELD_FORM = 'createFieldForm';
+export const CREATE_TAG_FORM = 'createTagForm';
+export const DELETE_COMPANY_FORM = 'deleteCompany';
+export const DISABLE_COMPANY_FORM = 'disableCompany';
+export const SET_FIELD_FORM = 'setField';
+export const TWO_STEP_VERIFICATION_FORM = 'twoStepVerificationForm';
+export const UPDATE_COLLABORATOR_ROLE_FORM = 'updateCollaboratorRoleForm';
+export const UPDATE_COMPANY_FORM = 'updateCompanyForm';
+export const UPDATE_COMPANY_NAME_FORM = 'updateCompanyNameForm';
+export const UPDATE_PASSWORD_FORM = 'updatePasswordForm';
+export const UPDATE_PROFILE_FORM = 'updateProfileForm';

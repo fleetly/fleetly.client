@@ -2,8 +2,16 @@
 
 .Root {
   display: flex;
-  height: 100vh;
+  // height: 100vh;
   width: 100%;
+
+  &With {
+    &Sidebar {
+      .Container {
+        max-width: calc(100% - 90px);
+      }
+    }
+  }
 }
 
 .Companies {
@@ -13,7 +21,6 @@
 .Container {
   display: flex;
   flex: 1 1 auto;
-  max-width: calc(100% - 90px);
 }
 
 .Logo {
@@ -35,5 +42,18 @@
     flex: 0 0 90px;
     height: 90px;
     justify-content: center;
+  }
+}
+
+.User {
+  background: url('https://vnnews.ru/images/wsscontent/articles/2018/12/bluzhdavshij-po-staroj-russe-bomzh-andryushin-vernjotsya-tuda-gde-teplo-i-kormyat.jpg');
+  background-size: cover;
+  border-radius: 100%;
+  height: 40px;
+  transition: all .2s;
+  width: 40px;
+
+  &:hover {
+    transform: scale(4);
   }
 }

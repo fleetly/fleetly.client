@@ -4,6 +4,19 @@ declare namespace Tags {
   import Form from '../components/Form.d.ts';
   import ITag from '@interfaces/tag.interface';
 
+  interface FormValues {
+    tag: {
+      color?: Color;
+      description?: string;
+      title: string;
+    };
+    tagId: string;
+  }
+
+  interface ModalProps {
+    initialValues?: FormValues;
+  }
+
   namespace Color {
     namespace Cell {
       interface Props {

@@ -3,7 +3,9 @@ query {
     id
     browser
     ip
+    isOnline
     location
     os
+    updatedAt
   }
 }

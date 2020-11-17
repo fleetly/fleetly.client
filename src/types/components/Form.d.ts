@@ -23,6 +23,7 @@ declare namespace Form {
     label?: string;
     loaded?: boolean;
     name: string;
+    placeholder?: string;
     withoutRedux?: boolean;
   }
 
@@ -42,6 +43,14 @@ declare namespace Form {
     orientation?: ActionsOrientation;
   }
   // End Actions
+
+  // Avatar
+  interface AvatarProps extends FieldBase {
+    alt?: string;
+    color?: Color;
+  }
+
+  // End Avatar
 
   // Fieldset
   interface FieldsetProps {

@@ -23,7 +23,7 @@ const store = createStore();
 const client: ApolloClient<InMemoryCache> = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'include',
-  onError: ({ graphQLErrors }) =>
+  onError: ({ graphQLErrors, response }) =>
     graphQLErrors?.forEach(({ message }: any) => {
       switch (message) {
         case 'Unauthorized':

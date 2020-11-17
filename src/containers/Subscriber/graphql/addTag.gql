@@ -1,0 +1,6 @@
+mutation addTag($subscriberId: String!, $tagId: String!) {
+  addTag(subscriberId: $subscriberId, tagId: $tagId) {
+    id
+    tags
+  }
+}

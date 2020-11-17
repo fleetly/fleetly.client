@@ -1,29 +1,25 @@
-import { get, omit } from 'lodash';
-
-import { IAction } from './actions';
+import { omit } from 'lodash';
 
 import { CLOSE_MODAL, CLOSE_MODALS, OPEN_MODAL } from './types';
 
-export interface IModalState {
-  id?: string;
-  isOpened?: boolean;
+export interface Action {
+  modalId?: string;
+  payload?: Store.ModalsPayload;
+  type: typeof CLOSE_MODAL | typeof CLOSE_MODALS | typeof OPEN_MODAL;
 }
 
-const initialState: IModalState = {};
+const initialState: Store.ModalsState = {};
 
-export default (
-  state: IModalState = initialState,
-  action: IAction
-): IModalState => {
-  const id = get(action, 'id', '');
+export default (state = initialState, action: Action): Store.ModalsState => {
+  const modalId = action?.modalId;
 
   switch (action.type) {
     case CLOSE_MODAL:
-      return omit(state, id);
+      return modalId ? omit(state, modalId) : state;
     case CLOSE_MODALS:
       return initialState;
     case OPEN_MODAL:
-      return { ...state, [id]: action.payload || true };
+      return modalId ? { ...state, [modalId]: action.payload || true } : state;
     default:
       return state;
   }

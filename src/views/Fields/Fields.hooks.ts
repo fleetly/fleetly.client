@@ -52,17 +52,17 @@ const useFields = () => {
   const handleDeleteClick = (fieldId: string) =>
     deleteField({ variables: { companyId, fieldId } });
 
-  const handleEditClick = (initialValues: IField) =>
+  const handleEditClick = ({ id, ...field }: IField) =>
     dispatch(
       openModal(CREATE_FIELD_MODAL, {
-        data: { id: initialValues.id, initialValues },
+        data: { initialValues: { fieldId: id, field } },
         title: 'Edit the Field'
       })
     );
 
-  const handleFormSubmit = async ({ id, ...field }: IField) => {
-    const mutate = id
-      ? udpateField({ variables: { fieldId: id, field: omit(field, 'type') } })
+  const handleFormSubmit = async ({ fieldId, field }: Fields.FormValues) => {
+    const mutate = fieldId
+      ? udpateField({ variables: { fieldId, field: omit(field, 'type') } })
       : createField({ variables: { companyId, field } });
 
     try {

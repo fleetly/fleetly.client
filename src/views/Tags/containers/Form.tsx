@@ -16,29 +16,26 @@ import ColorField from '../components/ColorField';
 // Constants
 import { CREATE_TAG_FORM } from '@constants';
 
-// Interfaces
-import { ITag } from '@interfaces/tag.interface';
-
-const TagsForm: React.FC<InjectedFormProps<ITag>> = ({
+const TagsForm: React.FC<InjectedFormProps<Tags.FormValues>> = ({
   error,
   handleSubmit,
   initialValues,
   submitting
 }) => {
-  const isEditMode = initialValues?.id;
+  const isEditMode = initialValues?.tagId;
 
   return (
     <Form error={error} onSubmit={handleSubmit}>
       <Fieldset>
-        <Input label="Title" name="title" placeholder="Title" />
+        <Input label="Title" name="tag.title" placeholder="Title" />
 
         <Input
           label="Description"
-          name="description"
+          name="tag.description"
           placeholder="Description"
         />
 
-        <ColorField name="color" />
+        <ColorField name="tag.color" />
       </Fieldset>
 
       <Actions>
@@ -52,7 +49,9 @@ const TagsForm: React.FC<InjectedFormProps<ITag>> = ({
 
 export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
-    yup.object().shape({ title: yup.string().required() })
+    yup
+      .object()
+      .shape({ tag: yup.object().shape({ title: yup.string().required() }) })
   ),
   form: CREATE_TAG_FORM
 })(TagsForm);

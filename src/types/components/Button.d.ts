@@ -8,7 +8,7 @@ declare namespace Button {
     children?: React.ReactNode;
     className?: string;
     classes?: Classes;
-    color?: Color;
+    color?: ColorType;
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: string;

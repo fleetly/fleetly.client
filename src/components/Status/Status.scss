@@ -1,6 +1,6 @@
 @import '~@styles/colors.scss';
 
-@mixin colorTag($color) {
+@mixin color($color) {
   .Dot {
     box-shadow: 0 0 0 3px rgba($color, .2);
 
@@ -19,39 +19,7 @@
   align-items: center;
   display: flex;
 
-  &Color {
-    &Blue {
-      @include colorTag($color-primary);
-    }
-
-    &Green {
-      @include colorTag($color-green-500);
-    }
-
-    &Orange {
-      @include colorTag($color-orange-500);
-    }
-
-    &Pink {
-      @include colorTag($color-pink-500);
-    }
-
-    &Purple {
-      @include colorTag($color-purple-500);
-    }
-
-    &Red {
-      @include colorTag($color-red-500);
-    }
-
-    &Sky {
-      @include colorTag($color-sky-500);
-    }
-
-    &Yellow {
-      @include colorTag($color-yellow-500);
-    }
-  }
+  @include coloring;
 }
 
 .Dot {
@@ -74,6 +42,7 @@
 }
 
 .Title {
+  font-weight: 600;
   margin: 0 0 0 12px;
   text-transform: capitalize;
 }
