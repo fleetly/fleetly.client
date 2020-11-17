@@ -7,6 +7,7 @@ export const CREATE_TAG_FORM = 'createTagForm';
 export const DELETE_COMPANY_FORM = 'deleteCompany';
 export const DISABLE_COMPANY_FORM = 'disableCompany';
 export const SET_FIELD_FORM = 'setField';
+export const TWO_STEP_VERIFICATION_FORM = 'twoStepVerificationForm';
 export const UPDATE_COLLABORATOR_ROLE_FORM = 'updateCollaboratorRoleForm';
 export const UPDATE_COMPANY_FORM = 'updateCompanyForm';
 export const UPDATE_COMPANY_NAME_FORM = 'updateCompanyNameForm';

@@ -6,6 +6,7 @@ import Page, { Wrapper } from '@components/Page';
 // Containers
 import UpdatePassword from './containers/UpdatePassword';
 import Sessions from './containers/Sessions';
+import TwoStepVerification from './containers/TwoStepVerification';
 
 // Hooks
 import { useProfileSecurity } from './ProfileSecurity.hooks';
@@ -25,7 +26,12 @@ const ProfileSecurity = () => {
         <UpdatePassword onSubmit={handleFormSubmit} />
       </Wrapper>
       <div>
-        <Wrapper title="Two-Step Verification">123</Wrapper>
+        <Wrapper
+          classes={{ container: styles.Verification }}
+          title="Two-Step Verification"
+        >
+          <TwoStepVerification />
+        </Wrapper>
         <Sessions />
       </div>
     </Page>
