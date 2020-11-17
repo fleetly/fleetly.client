@@ -4,8 +4,8 @@ import * as React from 'react';
 import Page, { Wrapper } from '@components/Page';
 
 // Containers
-import UpdatePasswordForm from './containers/UpdatePasswordForm';
 import Sessions from './containers/Sessions';
+import UpdatePasswordForm from './containers/UpdatePasswordForm';
 import VerificationForm from './containers/VerificationForm';
 
 // Hooks

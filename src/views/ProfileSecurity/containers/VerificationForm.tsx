@@ -16,34 +16,30 @@ const ProfileSecurityVerificationForm: React.FC<InjectedFormProps> = ({
   error,
   handleSubmit,
   submitting
-}) => {
-  return (
-    <Form
-      classes={{ container: styles.Root }}
-      error={error}
-      onSubmit={handleSubmit}
+}) => (
+  <Form
+    classes={{ container: styles.Root }}
+    error={error}
+    onSubmit={handleSubmit}
+  >
+    <div className={styles.Container}>
+      <H5 className={styles.Label}>Verification</H5>
+      <H4 className={styles.Title}>Two-Step verification is not enabled yet</H4>
+      <P className={styles.Description}>
+        Two-Step verification adds and an additional layer of security to your
+        account by requiring more than just a password to Log In.
+      </P>
+    </div>
+    <Button
+      color="primary"
+      loaded={submitting}
+      type="submit"
+      variant="outlined"
     >
-      <div className={styles.Container}>
-        <H5 className={styles.Label}>Verification</H5>
-        <H4 className={styles.Title}>
-          Two-Step verification is not enabled yet
-        </H4>
-        <P className={styles.Description}>
-          Two-Step verification adds and an additional layer of security to your
-          account by requiring more than just a password to Log In.
-        </P>
-      </div>
-      <Button
-        color="primary"
-        loaded={submitting}
-        type="submit"
-        variant="outlined"
-      >
-        Enable
-      </Button>
-    </Form>
-  );
-};
+      Enable
+    </Button>
+  </Form>
+);
 
 export default reduxForm<any, any>({
   form: TWO_STEP_VERIFICATION_FORM

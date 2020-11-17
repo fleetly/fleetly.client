@@ -19,48 +19,46 @@ import styles from './UpdatePasswordForm.scss';
 
 const ProfileSecurityUpdatePasswordForm: React.FC<InjectedFormProps<
   ProfileSecurity.UpdatePasswordFormValues
->> = ({ error, handleSubmit, submitting }) => {
-  return (
-    <Form
-      classes={{ container: styles.Root }}
-      error={error}
-      onSubmit={handleSubmit}
-    >
-      <Fieldset>
-        <Input
-          label="Current Password"
-          name="oldPassword"
-          placeholder="Enter Current Password"
-          type="password"
-        />
-        <Input
-          label="New Password"
-          name="newPassword"
-          placeholder="Enter New Password"
-          type="password"
-        />
-        <Input
-          label="Confirm New Password"
-          name="confirmNewPassword"
-          placeholder="Enter New Password"
-          type="password"
-        />
-      </Fieldset>
+>> = ({ error, handleSubmit, submitting }) => (
+  <Form
+    classes={{ container: styles.Root }}
+    error={error}
+    onSubmit={handleSubmit}
+  >
+    <Fieldset>
+      <Input
+        label="Current Password"
+        name="oldPassword"
+        placeholder="Enter Current Password"
+        type="password"
+      />
+      <Input
+        label="New Password"
+        name="newPassword"
+        placeholder="Enter New Password"
+        type="password"
+      />
+      <Input
+        label="Confirm New Password"
+        name="confirmNewPassword"
+        placeholder="Enter New Password"
+        type="password"
+      />
+    </Fieldset>
 
-      <Actions>
-        <Button
-          color="primary"
-          fullWidth
-          loaded={submitting}
-          type="submit"
-          variant="outlined"
-        >
-          Save
-        </Button>
-      </Actions>
-    </Form>
-  );
-};
+    <Actions>
+      <Button
+        color="primary"
+        fullWidth
+        loaded={submitting}
+        type="submit"
+        variant="outlined"
+      >
+        Save
+      </Button>
+    </Actions>
+  </Form>
+);
 
 export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
