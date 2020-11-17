@@ -4,7 +4,6 @@ declare namespace Collaboration {
   namespace Table {
     interface Props {
       data: ICompany[];
-      onLeave(id: string): void;
     }
   }
 }
