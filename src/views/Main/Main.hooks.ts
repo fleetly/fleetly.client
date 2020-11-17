@@ -2,7 +2,7 @@ import { useQuery } from 'react-apollo';
 import { useRouteMatch } from 'react-router-dom';
 
 // GraphQL
-import GET_COMPANY_LIST from './graphql/getCompanyList.gql';
+import GET_COMPANY_LIST from '@graphql/getCompanyList.gql';
 
 // Interfaces
 import { ICompany } from '@interfaces/company.interface';
