@@ -9,7 +9,7 @@ import Notifications from '@containers/Notifications';
 import ROUTES from '@routes';
 
 // Store
-import { isAuthorized as getAuthState } from '@store';
+import { isAuthorized as getAuthState, useNotifications } from '@store';
 
 // Styles
 import styles from './App.scss';
@@ -22,10 +22,15 @@ const App = () => {
   const isAuthorized = useSelector(getAuthState);
 
   // @todo - remove test
-  // const { createNotification } = useNotifications();
-  // React.useEffect(() => {
-  //   createNotification({ title: '123' });
-  // }, [createNotification]);
+  const { createNotification } = useNotifications();
+
+  React.useEffect(() => {
+    createNotification({
+      description:
+        'Also on Fleetly, you need to add pop-up notifications in any corner.',
+      title: 'Notification System'
+    });
+  }, [createNotification]);
 
   return (
     <div className={styles.Root}>

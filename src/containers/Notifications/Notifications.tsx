@@ -1,6 +1,9 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
+// Components
+import Bar from './components/Bar';
+
 // Store
 import { useNotifications } from '@store';
 
@@ -13,8 +16,8 @@ const Notifications: React.FC<{}> = () => {
   return ReactDOM.createPortal(
     notifications && notifications.length > 0 && (
       <div className={styles.Root}>
-        {notifications.map(({ id, title }) => (
-          <div key={id}>{title}</div>
+        {notifications.map((notification) => (
+          <Bar key={notification.id} {...notification} />
         ))}
       </div>
     ),

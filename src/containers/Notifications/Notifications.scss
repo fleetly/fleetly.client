@@ -1,6 +1,10 @@
 .Root {
-  left: 0;
   position: absolute;
+  right: 0;
   top: 0;
-  width: 0%;
+  z-index: 12;
+
+  & > * {
+    margin: 20px;
+  }
 }

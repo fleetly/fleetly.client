@@ -12,12 +12,11 @@ declare global {
     }
 
     interface NotificationsPayload {
-      colorType?: ColorType;
       description?: string;
-      icon?: string;
       position?: 'left-bottom' | 'left-top' | 'right-bottom' | 'right-top';
+      timeout?: number;
       title: string;
-      variant?: 'list' | 'single';
+      variant?: 'alert' | 'danger' | 'info' | 'success';
     }
 
     interface NotificationsState {
