@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import * as React from 'react';
-import { Portal } from 'react-portal';
+import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 // Components
@@ -29,45 +29,43 @@ const Modal: React.FC<Modal.Props> = ({
     [closeModal, onClose]
   );
 
-  return (
-    <Portal>
-      <CSSTransition
-        classNames={{
-          enter: styles.RootTransitionEnter,
-          enterActive: styles.RootTransitionEnterActive
-        }}
-        in={isOpened}
-        timeout={{ enter: 700 }}
-        unmountOnExit
-      >
-        {(state: string) => (
-          <div className={classNames(classes?.root, styles.Root)}>
-            <div
-              className={classNames(classes?.backdrop, styles.Backdrop)}
-              onClick={handleBackdropClick}
-            />
+  // @todo - refactored for Transition
+  return ReactDOM.createPortal(
+    <CSSTransition
+      classNames={{
+        enter: styles.RootTransitionEnter,
+        enterActive: styles.RootTransitionEnterActive
+      }}
+      in={isOpened}
+      timeout={{ enter: 700 }}
+      unmountOnExit
+    >
+      <div className={classNames(classes?.root, styles.Root)}>
+        <div
+          className={classNames(classes?.backdrop, styles.Backdrop)}
+          onClick={handleBackdropClick}
+        />
 
-            <div className={classNames(classes?.container, styles.Container)}>
-              {modal && (
-                <>
-                  {(title || modal?.title) && (
-                    <H3 className={classNames(classes?.title, styles.Title)}>
-                      {modal?.title || title}
-                    </H3>
-                  )}
-
-                  <div className={classNames(classes?.content, styles.Content)}>
-                    {typeof children === 'function'
-                      ? children({ ...modal?.data })
-                      : children}
-                  </div>
-                </>
+        <div className={classNames(classes?.container, styles.Container)}>
+          {modal && (
+            <>
+              {(title || modal?.title) && (
+                <H3 className={classNames(classes?.title, styles.Title)}>
+                  {modal?.title || title}
+                </H3>
               )}
-            </div>
-          </div>
-        )}
-      </CSSTransition>
-    </Portal>
+
+              <div className={classNames(classes?.content, styles.Content)}>
+                {typeof children === 'function'
+                  ? children({ ...modal?.data })
+                  : children}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </CSSTransition>,
+    document.getElementById('portal') as HTMLElement
   );
 };
 
