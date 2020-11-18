@@ -5,10 +5,13 @@ import Avatar from '@components/Avatar';
 import Button from '@components/Button';
 import Table from '@components/Table';
 
+// Components
+import { Wrapper } from '@components/Page';
+
 // Utils
 import { convertToColor } from '@utils/string';
 
-const ProfileCollaborationCompaniesTable: React.FC<ProfileCollaboration.TableProps> = ({
+const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
   data
 }) => {
   const columns = React.useMemo(
@@ -45,7 +48,12 @@ const ProfileCollaborationCompaniesTable: React.FC<ProfileCollaboration.TablePro
     ],
     []
   );
-  return <Table columns={columns} data={data} />;
+
+  return (
+    <Wrapper title="Companies">
+      <Table columns={columns} data={data} />
+    </Wrapper>
+  );
 };
 
-export default ProfileCollaborationCompaniesTable;
+export default CollaborationCompanies;
