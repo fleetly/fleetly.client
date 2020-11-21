@@ -14,12 +14,14 @@ const PageWrapper: React.FC<Page.Wrapper.Props> = ({
   title
 }) => (
   <div className={classNames(classes?.root, styles.Root)}>
-    <div className={classNames(classes?.header, styles.Header)}>
-      {title && <H3>{title}</H3>}
-      <div className={classNames(classes?.actions, styles.Actions)}>
-        {actions}
+    {(actions || title) && (
+      <div className={classNames(classes?.header, styles.Header)}>
+        {title && <H3>{title}</H3>}
+        <div className={classNames(classes?.actions, styles.Actions)}>
+          {actions}
+        </div>
       </div>
-    </div>
+    )}
 
     <div className={classNames(classes?.container, styles.Container)}>
       {children}

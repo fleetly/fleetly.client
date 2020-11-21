@@ -16,6 +16,7 @@ import ROUTES from '@routes';
 import styles from './Company.scss';
 
 // Views
+import Channel from '@views/Channel';
 import Channels from '@views/Channels';
 import Collaborators from '@views/Collaborators';
 import General from '@views/General';
@@ -123,6 +124,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
 
       <div className={styles.Content}>
         <Switch>
+          <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
           <Route
             component={Collaborators}
