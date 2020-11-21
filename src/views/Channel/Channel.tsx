@@ -15,11 +15,11 @@ const Channel = () => {
     <Page classes={{ container: styles.Root }} title="Statistic">
       <Wrapper
         actions={
-          <Tabs>
-            <Tab label="Messages" />
-            <Tab label="Subscribers" />
-            <Tab label="Subscribed" />
-            <Tab label="Unsubscribed" />
+          <Tabs value="1">
+            <Tab label="Messages" value="1" />
+            <Tab label="Subscribers" value="2" />
+            <Tab label="Subscribed" value="3" />
+            <Tab label="Unsubscribed" value="4" />
           </Tabs>
         }
         classes={{ container: styles.Statistic }}
