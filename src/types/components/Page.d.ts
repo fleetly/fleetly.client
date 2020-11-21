@@ -5,26 +5,41 @@ declare namespace Page {
     container?: string;
   }
 
+  interface Breadcrumbs {
+    title: string;
+    to: string;
+  }
+
   interface Props {
     children: React.ReactNode;
     classes?: Classes;
     title?: string;
   }
 
-  namespace Wrapper {
-    interface Classes extends ExtendedClasses {
-      actions?: string;
-      container?: string;
-      header?: string;
-      title?: string;
-    }
+  interface BreadcrumbsClasses extends ExtendedClasses {
+    icon?: string;
+    link?: string;
+  }
 
-    interface Props {
-      actions?: React.ReactNode;
-      children: React.ReactNode;
-      classes?: Classes;
-      title?: string;
-    }
+  interface BreadcrumbsProps {
+    classes?: BreadcrumbsClasses;
+    data: Breadcrumbs[];
+  }
+
+  interface WrapperClasses extends ExtendedClasses {
+    actions?: string;
+    breadcrumbs?: BreadcrumbsClasses;
+    container?: string;
+    header?: string;
+    title?: string;
+  }
+
+  interface WrapperProps {
+    actions?: React.ReactNode;
+    children: React.ReactNode;
+    classes?: WrapperClasses;
+    breadcrumbs?: Breadcrumbs[];
+    title?: string;
   }
 }
 
