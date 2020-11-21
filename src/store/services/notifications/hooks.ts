@@ -10,10 +10,6 @@ import {
   DELETE_NOTIFICATION
 } from './types';
 
-interface INotification extends Store.NotificationsPayload {
-  timeout?: number;
-}
-
 const useNotifications = (currentNotificationId?: string) => {
   // Setup
   const dispatch = useDispatch();
@@ -42,18 +38,10 @@ const useNotifications = (currentNotificationId?: string) => {
   );
 
   // Handlers
-  const deleteNotification = React.useCallback<
-    (notificationId?: string) => void
-  >(
-    (notificationId = currentNotificationId) =>
-      dispatch({ notificationId, type: DELETE_NOTIFICATION }),
-    [currentNotificationId, dispatch]
-  );
-
   const createNotification = React.useCallback<
-    (notification: INotification) => void
+    (notification: Store.NotificationsPayload) => void
   >(
-    (notification: INotification) => {
+    (notification: Store.NotificationsPayload) => {
       const notificationId = v1();
 
       dispatch({
@@ -61,20 +49,21 @@ const useNotifications = (currentNotificationId?: string) => {
         payload: notification,
         type: CREATE_NOTIFICATION
       });
-
-      if (notification.timeout) {
-        setTimeout(
-          () => deleteNotification(notificationId),
-          notification.timeout
-        );
-      }
     },
-    [deleteNotification, dispatch]
+    [dispatch]
   );
 
   const deleteAllNotifications = React.useCallback(
     () => dispatch({ type: DELETE_ALL_NOTIFICATIONS }),
     [dispatch]
+  );
+
+  const deleteNotification = React.useCallback<
+    (notificationId?: string) => void
+  >(
+    (notificationId = currentNotificationId) =>
+      dispatch({ notificationId, type: DELETE_NOTIFICATION }),
+    [currentNotificationId, dispatch]
   );
 
   return {

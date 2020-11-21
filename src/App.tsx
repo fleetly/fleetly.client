@@ -20,10 +20,10 @@ import Sign from '@views/Sign';
 
 const App = () => {
   const isAuthorized = useSelector(getAuthState);
-
+  
   // @todo - remove test
-
   const { createNotification } = useNotifications();
+  
   React.useEffect(() => {
     createNotification({
       description:
