@@ -1,0 +1,125 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  background: $color-gray-0;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px 0 rgba($color-gray-1000, .1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px 20px 0 20px;
+  position: relative;
+  width: 440px;
+
+  &Variant {
+    &Alert {
+      .Icon {
+        border-color: rgba($color-warning, .4);
+        color: $color-warning;
+      }
+
+      .Title {
+        color: $color-warning;
+      }
+
+      .Countdown {
+        border-color: $color-warning;
+      }
+    }
+
+    &Danger {
+      .Icon {
+        border-color: rgba($color-danger, .4);
+        color: $color-danger;
+      }
+
+      .Title {
+        color: $color-danger;
+      }
+
+      .Countdown {
+        border-color: $color-danger;
+      }
+    }
+
+    &Info {
+      .Icon {
+        border-color: rgba($color-primary, .4);
+        color: $color-primary;
+      }
+
+      .Title {
+        color: $color-primary;
+      }
+
+      .Countdown {
+        border-color: $color-primary;
+      }
+    }
+
+    &Success {
+      .Icon {
+        border-color: rgba($color-success, .4);
+        color: $color-success;
+      }
+
+      .Title {
+        color: $color-success;
+      }
+
+      .Countdown {
+        border-color: $color-success;
+      }
+    }
+  }
+}
+
+.InfoBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Actions {
+  margin: 0 0 0 20px;
+}
+
+.Description {
+  color: $color-gray-600;
+  margin: 4px 0 15px 0;
+}
+
+.Icon {
+  align-content: center;
+  align-items: center;
+  border: 2px solid;
+  border-radius: 100%;
+  display: flex;
+  flex: 0 0 40px;
+  height: 40px;
+  justify-content: center;
+  margin: 0 20px 0 0;
+  width: 40px;
+}
+
+.Icon:nth-child(1) {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.Info {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Countdown {
+  align-items: flex-end;
+  border: solid 2px;
+  display: block;
+  justify-content: flex-end;
+  margin: 0 0 0 -20px;
+  width: 120%;
+}
