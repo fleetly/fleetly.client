@@ -13,6 +13,7 @@ import App from './App';
 import createStore, { logout } from '@store';
 
 // Styles
+import 'animate.css';
 import '@fortawesome/fontawesome-pro/css/all.min.css';
 
 // Utils

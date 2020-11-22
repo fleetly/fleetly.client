@@ -12,7 +12,7 @@ import Table from '@components/Table';
 import { Caption, H5 } from '@components/Typography';
 
 // Hooks
-import { useSessions } from './Sessions.hooks';
+import { useSecuritySessionsView } from './Sessions.hooks';
 
 // Styles
 import styles from './Sessions.scss';
@@ -20,8 +20,12 @@ import styles from './Sessions.scss';
 // Utils
 import { parseOS } from './utils/parseOs';
 
-const Session = () => {
-  const { handleDeleteClick, handleDeleteAllClick, sessions } = useSessions();
+const SecuritySessions = () => {
+  const {
+    handleDeleteClick,
+    handleDeleteAllClick,
+    sessions
+  } = useSecuritySessionsView();
 
   const columns = React.useMemo(
     () => [
@@ -135,4 +139,4 @@ const Session = () => {
   );
 };
 
-export default Session;
+export default SecuritySessions;

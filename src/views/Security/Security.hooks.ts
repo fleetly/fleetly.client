@@ -7,7 +7,7 @@ import { gqlErrorHandler } from '@components/Form';
 // GraphQL
 import UPDATE_PASSWORD from './graphql/updatePassword.gql';
 
-const useProfileSecurity = () => {
+const useSecurityView = () => {
   // Mutations
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
 
@@ -30,4 +30,4 @@ const useProfileSecurity = () => {
   };
 };
 
-export { useProfileSecurity };
+export { useSecurityView };

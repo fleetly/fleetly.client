@@ -9,7 +9,7 @@ import GET_SESSIONS_LIST from '../../graphql/getSessionsList.gql';
 // Interfaces
 import { ISession } from '@interfaces/session.interface';
 
-const useSessions = () => {
+const useSecuritySessionsView = () => {
   // Data
   const { data, refetch } = useQuery<{ sessions: ISession[] }>(
     GET_SESSIONS_LIST
@@ -60,4 +60,4 @@ const useSessions = () => {
   };
 };
 
-export { useSessions };
+export { useSecuritySessionsView };

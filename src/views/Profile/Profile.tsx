@@ -1,10 +1,17 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 
 // Components
 import Link from '@components/Link';
 import Menu from '@components/Menu';
 import { H4 } from '@components/Typography';
+
+// Containers
+import Account from './containers/Account';
+import Update from './containers/Update';
+
+// Hooks
+import { useProfileView } from './Profile.hooks';
 
 // Routes
 import ROUTES from '@routes';
@@ -13,11 +20,14 @@ import ROUTES from '@routes';
 import styles from './Profile.scss';
 
 // Views
-import Collaboration from '@views/ProfileCollaboration';
-import General from '@views/ProfileGeneral';
-import Security from '@views/ProfileSecurity';
+import Collaboration from '@views/Collaboration';
+import Security from '@views/Security';
 
-const Profile = () => {
+const Profile: React.FC<RouteComponentProps> = ({ match }) => {
+  // Setup
+  const { user } = useProfileView();
+
+  // Menu
   const MENU = React.useMemo(
     () => [
       {
@@ -60,14 +70,20 @@ const Profile = () => {
       </div>
 
       <div className={styles.Container}>
-        <Switch>
-          <Route
-            component={Collaboration}
-            path={ROUTES.PROFILE.COLLABORATION}
-          />
-          <Route component={Security} path={ROUTES.PROFILE.SECURITY} />
-          <Route component={General} path={ROUTES.PROFILE.GENERAL} />
-        </Switch>
+        {match.isExact ? (
+          <div className={styles.Grid}>
+            <Update initialValues={user} />
+            <Account />
+          </div>
+        ) : (
+          <Switch>
+            <Route
+              component={Collaboration}
+              path={ROUTES.PROFILE.COLLABORATION}
+            />
+            <Route component={Security} path={ROUTES.PROFILE.SECURITY} />
+          </Switch>
+        )}
       </div>
     </div>
   );

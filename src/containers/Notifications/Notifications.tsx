@@ -1,7 +1,9 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import { TransitionGroup } from 'react-transition-group';
 
 // Components
+import Transition from '@components/Transition';
 import Bar from './components/Bar';
 
 // Store
@@ -14,13 +16,20 @@ const Notifications: React.FC<{}> = () => {
   const { notifications } = useNotifications();
 
   return ReactDOM.createPortal(
-    notifications && notifications.length > 0 && (
-      <div className={styles.Root}>
-        {notifications.map((notification) => (
-          <Bar key={notification.id} {...notification} />
-        ))}
-      </div>
-    ),
+    <TransitionGroup className={styles.Root}>
+      {notifications.map((notification) => (
+        <Transition
+          key={notification.id}
+          duration={400}
+          enter="zoomIn"
+          exit="zoomOut"
+        >
+          <div>
+            <Bar key={notification.id} {...notification} />
+          </div>
+        </Transition>
+      ))}
+    </TransitionGroup>,
     document.getElementById('portal') as HTMLElement
   );
 };

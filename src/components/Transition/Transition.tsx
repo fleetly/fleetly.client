@@ -1,59 +1,71 @@
-import { get } from 'lodash';
+import classNames from 'classnames';
 import * as React from 'react';
-import { Transition as ReactTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 // Styles
 import './Transition.scss';
 
-const Transition: React.SFC<Transition.Props> = ({
+// @todo - refactored enter/exit timing
+const Transition: React.FC<Transition.Props> = ({
   children,
-  delay = 0,
-  duration = 0,
+  delay,
+  duration,
   in: propIn,
   enter,
   exit
 }) => {
   const formattedDelay: Transition.Timing = {
-    enter: get(delay, 'enter', delay || 0),
-    exit: get(delay, 'exit', delay || 0)
+    enter: (delay as Transition.Timing)?.enter || (delay as number) || 0,
+    exit: (delay as Transition.Timing)?.exit || (delay as number) || 0
   };
 
   const formattedDuration: Transition.Timing = {
-    enter: get(duration, 'enter', duration || 0),
-    exit: get(duration, 'exit', duration || 0)
-  };
-
-  const getAnimationStyle = (state: string) => {
-    let animation = null;
-
-    if ((state === 'entering' && enter) || (state === 'exiting' && exit)) {
-      const type = state === 'entering' ? 'enter' : 'exit';
-
-      animation = `${type === 'enter' ? enter : exit} ${
-        get(formattedDuration, type) / 1000
-      }s ${get(formattedDelay, type) / 1000}s both`;
-    }
-
-    return animation;
+    enter: (duration as Transition.Timing)?.enter || (duration as number) || 0,
+    exit: (duration as Transition.Timing)?.exit || (duration as number) || 0
   };
 
   return (
-    <ReactTransition
+    <CSSTransition
       in={propIn}
       timeout={{
-        enter: formattedDelay.enter + formattedDuration.enter,
-        exit: formattedDelay.exit + formattedDuration.exit
+        enter: enter ? formattedDelay.enter + formattedDuration.enter : 0,
+        exit: exit ? formattedDelay.exit + formattedDuration.exit : 0
       }}
       unmountOnExit
     >
-      {(state) =>
-        React.cloneElement(children, {
-          style: {
-            animation: getAnimationStyle(state)
-          }
-        })
-      }
-    </ReactTransition>
+      {(status) => {
+        const isExist =
+          (status === 'entering' && enter) || (status === 'exiting' && exit);
+
+        return React.cloneElement(children, {
+          className: classNames(
+            children.props.className,
+            isExist &&
+              `animate__animated animate__${
+                status === 'entering' ? enter : exit
+              }`
+          ),
+          style: isExist
+            ? {
+                animationDelay: `${
+                  (status === 'entering'
+                    ? formattedDelay.enter
+                    : status === 'exiting'
+                    ? formattedDelay.exit
+                    : 0) / 1000
+                }s`,
+                animationDuration: `${
+                  (status === 'entering'
+                    ? formattedDuration.enter
+                    : status === 'exiting'
+                    ? formattedDuration.exit
+                    : 0) / 1000
+                }s`
+              }
+            : undefined
+        });
+      }}
+    </CSSTransition>
   );
 };
 

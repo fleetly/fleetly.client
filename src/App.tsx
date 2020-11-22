@@ -25,11 +25,21 @@ const App = () => {
   const { createNotification } = useNotifications();
 
   React.useEffect(() => {
-    createNotification({
-      description:
-        'Also on Fleetly, you need to add pop-up notifications in any corner.',
-      title: 'Notification System'
-    });
+    setTimeout(() => {
+      createNotification({
+        description:
+          'Also on Fleetly, you need to add pop-up notifications in any corner.',
+        title: 'Notification System'
+      });
+    }, 1000);
+
+    setTimeout(() => {
+      createNotification({
+        description:
+          'Also on Fleetly, you need to add pop-up notifications in any corner.',
+        title: 'Notification System'
+      });
+    }, 2000);
   }, [createNotification]);
 
   return (
