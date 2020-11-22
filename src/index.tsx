@@ -24,7 +24,7 @@ const store = createStore();
 const client: ApolloClient<InMemoryCache> = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'include',
-  onError: ({ graphQLErrors, response }) =>
+  onError: ({ graphQLErrors }) =>
     graphQLErrors?.forEach(({ message }: any) => {
       switch (message) {
         case 'Unauthorized':
@@ -42,7 +42,9 @@ const client: ApolloClient<InMemoryCache> = new ApolloClient({
       );
     }
   },
-  uri: 'http://api.fleetly.it/graphql'
+  uri: `http${
+    process.env.NODE_ENV === 'production' ? 's' : ''
+  }://api.fleetly.it/graphql`
 });
 
 ReactDOM.render(
