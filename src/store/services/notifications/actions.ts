@@ -7,16 +7,14 @@ import {
   DELETE_NOTIFICATION
 } from './types';
 
-interface INotificationsPayload {
-  description?: string;
-  icon?: string;
-  title?: string;
-}
-
-export const createNotification = (payload: INotificationsPayload) => ({
-  id: v1(),
+export const createNotification = (payload: Store.NotificationsPayload) => ({
+  notificationId: v1(),
   payload,
   type: CREATE_NOTIFICATION
+});
+
+export const deleteAllNotifications = () => ({
+  type: DELETE_ALL_NOTIFICATIONS
 });
 
 export const deleteNotification = (id: string) => ({

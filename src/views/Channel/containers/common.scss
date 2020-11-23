@@ -1,3 +1,13 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 76px 24px;
+}
+
 .Actions {
   display: flex;
   margin: 28px 0 0;

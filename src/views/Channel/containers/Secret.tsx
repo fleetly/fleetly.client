@@ -1,22 +1,17 @@
-import { Color } from '@fleetly/common/dist/enums';
 import * as React from 'react';
 
 // Components
 import Button from '@components/Button';
-import Status from '@components/Status';
-import { H5, P } from '@components/Typography';
-
-// Interfaces
-import { IWebhook } from '@interfaces/webhook.interface';
+import { H4, H5, P } from '@components/Typography';
 
 // Status
-import styles from './Webhook.scss';
+import styles from './common.scss';
 
-const ChannelInfoWebhook: React.FC<IWebhook> = ({ status }) => (
+const ChannelInfoSecret = () => (
   <div>
     <div className={styles.Content}>
-      <H5 className={styles.Label}>Webhook</H5>
-      <Status color={Color.GREEN} title={status?.type} />
+      <H5 className={styles.Label}>Secret Key</H5>
+      <H4>Never pass this key to anyone</H4>
       <P className={styles.Description}>
         This is a secret key that gives access to your instant messengers or
         social networks
@@ -25,7 +20,7 @@ const ChannelInfoWebhook: React.FC<IWebhook> = ({ status }) => (
 
     <div className={styles.Actions}>
       <Button color="primary" variant="outlined">
-        Copy
+        Set Token
       </Button>
 
       <Button icon="fas fa-eye" variant="outlined" />
@@ -33,4 +28,4 @@ const ChannelInfoWebhook: React.FC<IWebhook> = ({ status }) => (
   </div>
 );
 
-export default ChannelInfoWebhook;
+export default ChannelInfoSecret;

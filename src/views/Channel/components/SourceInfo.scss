@@ -1,5 +1,9 @@
 @import '~@styles/colors';
-@import './common.scss';
+
+.Root {
+  align-items: center;
+  display: flex;
+}
 
 .Avatar {
   height: 80px;
@@ -14,11 +18,6 @@
     font-weight: 500;
     margin: 0 8px 0 0;
   }
-}
-
-.Grid {
-  align-items: center;
-  display: flex;
 }
 
 .Info {

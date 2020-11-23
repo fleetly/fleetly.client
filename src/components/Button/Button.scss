@@ -47,6 +47,13 @@
     cursor: pointer;
   }
 
+  &Is {
+    &Disabled {
+      opacity: .6;
+      pointer-events: none;
+    }
+  }
+
   &Mode {
     &FullWidth {
       width: 100%;
@@ -56,6 +63,10 @@
       min-width: 40px;
       padding: 0;
       width: 40px;
+
+      .Icon {
+        margin: 0;
+      }
     }
   }
 
@@ -150,6 +161,7 @@
 
 .Icon {
   font-size: 14px;
+  margin: 0 8px 0 0;
 }
 
 .Spinner {

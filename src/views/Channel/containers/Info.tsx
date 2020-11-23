@@ -4,19 +4,19 @@ import * as React from 'react';
 import { Wrapper } from '@components/Page';
 
 // Containers
-import Secret from './containers/Secret';
-import Source from './containers/Source';
-import Webhook from './containers/Webhook';
+import Secret from './Secret';
+import Source from './Source';
+import Webhook from './Webhook';
 
 // Interfaces
 import { IChannel } from '@interfaces/channel.interface';
 
 // Styles
-import styles from './Info.scss';
+import styles from './common.scss';
 
-const ChannelInfo: React.FC<IChannel> = ({ source, webhook }) => (
+const ChannelInfo: React.FC<IChannel> = ({ source, status, webhook }) => (
   <Wrapper classes={{ container: styles.Root }} title="Information">
-    <Source {...source} />
+    <Source source={source} status={status} />
     <Secret />
     <Webhook {...webhook} />
   </Wrapper>

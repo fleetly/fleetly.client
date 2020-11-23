@@ -1,11 +1,14 @@
+import { ChannelStatus } from '@fleetly/common/dist/interfaces';
+
 // Interfaces
-// import { IChannel, IChannelSource } from '@interfaces/channel.interface';
-// import { IWebhook } from '@interfaces/webhook.interface';
+import { IChannelSource } from '@interfaces/channel.interface';
+import { IStatus } from '@interfaces/status.interface';
 
 declare namespace Channel {
-  // interface InfoProps extends IChannel {}
-  // interface InfoSourceProps extends IChannelSource {}
-  // interface InfoWebhookProps extends IWebhook {}
+  interface SourceProps extends IChannel {
+    source: IChannelSource;
+    status: IStatus<ChannelStatus>;
+  }
 
   interface FormValues {
     sourceType: string;

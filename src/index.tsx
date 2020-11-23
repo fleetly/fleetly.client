@@ -13,7 +13,12 @@ import App from './App';
 import { SUDO_MODAL } from '@constants';
 
 // Store
-import createStore, { closeModal, logout, openModal } from '@store';
+import createStore, {
+  closeModal,
+  createNotification,
+  logout,
+  openModal
+} from '@store';
 
 // Styles
 import 'animate.css';
@@ -28,6 +33,7 @@ const client: ApolloClient<InMemoryCache> = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'include',
   onError: ({ forward, graphQLErrors, operation }) => {
+    let isUnauthorized = false;
     let isForbidden = false;
 
     graphQLErrors?.forEach(({ message }: any) => {
@@ -36,15 +42,26 @@ const client: ApolloClient<InMemoryCache> = new ApolloClient({
           isForbidden = true;
           break;
         case 'Unauthorized':
-          store.dispatch(logout());
+          isUnauthorized = true;
           break;
         default:
           break;
       }
     });
 
-    if (isForbidden) {
-      return new Observable((subscriber): any => {
+    return new Observable((subscriber): any => {
+      if (isUnauthorized) {
+        store.dispatch(
+          createNotification({
+            description: 'You must log in to continue',
+            title: 'Unauthorized!',
+            timeout: 5000,
+            variant: 'danger'
+          })
+        );
+
+        store.dispatch(logout());
+      } else if (isForbidden) {
         new Promise((resolve, reject) => {
           const unsubscribe = store.subscribe(() => {
             const state = store.getState();
@@ -70,10 +87,13 @@ const client: ApolloClient<InMemoryCache> = new ApolloClient({
             subscriber.next({ errors });
             subscriber.complete();
           });
+      } else {
+        subscriber.next({ errors: graphQLErrors });
+        subscriber.complete();
+      }
 
-        return subscriber;
-      });
-    }
+      return subscriber;
+    });
   },
   request: (operation) => {
     if (operation.variables) {
