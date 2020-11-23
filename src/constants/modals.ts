@@ -5,3 +5,4 @@ export const CREATE_TAG_MODAL = 'createTagModal';
 export const CREATE_FIELD_MODAL = 'createFieldModal';
 export const SET_FIELD_MODAL = 'setFieldModal';
 export const SUBSCRIBER_MODAL = 'subscriberModal';
+export const SUDO_MODAL = 'sudoModal';

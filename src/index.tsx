@@ -1,4 +1,4 @@
-import ApolloClient from 'apollo-boost';
+import ApolloClient, { Observable } from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
@@ -9,8 +9,11 @@ import { BrowserRouter } from 'react-router-dom';
 // App
 import App from './App';
 
+// Constants
+import { SUDO_MODAL } from '@constants';
+
 // Store
-import createStore, { logout } from '@store';
+import createStore, { closeModal, logout, openModal } from '@store';
 
 // Styles
 import 'animate.css';
@@ -24,16 +27,54 @@ const store = createStore();
 const client: ApolloClient<InMemoryCache> = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'include',
-  onError: ({ graphQLErrors }) =>
+  onError: ({ forward, graphQLErrors, operation }) => {
+    let isForbidden = false;
+
     graphQLErrors?.forEach(({ message }: any) => {
       switch (message) {
+        case 'Forbidden':
+          isForbidden = true;
+          break;
         case 'Unauthorized':
           store.dispatch(logout());
           break;
         default:
           break;
       }
-    }),
+    });
+
+    if (isForbidden) {
+      return new Observable((subscriber): any => {
+        new Promise((resolve, reject) => {
+          const unsubscribe = store.subscribe(() => {
+            const state = store.getState();
+            !state.modals[SUDO_MODAL] && reject(graphQLErrors);
+          });
+
+          store.dispatch(
+            openModal(SUDO_MODAL, {
+              data: {
+                onSubmitSuccess: () => {
+                  unsubscribe();
+                  store.dispatch(closeModal(SUDO_MODAL));
+                  resolve(true);
+                }
+              }
+            })
+          );
+        })
+          .then(() => {
+            forward(operation).subscribe(subscriber);
+          })
+          .catch((errors) => {
+            subscriber.next({ errors });
+            subscriber.complete();
+          });
+
+        return subscriber;
+      });
+    }
+  },
   request: (operation) => {
     if (operation.variables) {
       operation.variables = JSON.parse(

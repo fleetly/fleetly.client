@@ -25,9 +25,11 @@ const useGenerals = () => {
   const [updateCompanyName] = useMutation(UPDATE_COMPANY_NAME);
 
   const handleUpdateNameFormSubmit = React.useCallback(
-    async ({ newName }: General.UpdateNameFormValues) => {
+    async ({ newName }: General.UpdateNameFormValues, dispatch, { reset }) => {
       try {
-        return await updateCompanyName({ variables: { companyId, newName } });
+        await updateCompanyName({ variables: { companyId, newName } });
+        reset();
+        return true;
       } catch (error) {
         return gqlErrorHandler(error);
       }
