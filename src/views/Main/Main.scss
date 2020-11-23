@@ -34,6 +34,9 @@
   display: flex;
   flex: 0 0 90px;
   flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
   width: 90px;
 
   &Item {
@@ -52,8 +55,4 @@
   height: 40px;
   transition: all .2s;
   width: 40px;
-
-  &:hover {
-    transform: scale(4);
-  }
 }
