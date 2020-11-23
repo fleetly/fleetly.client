@@ -1,6 +1,5 @@
-import { get } from 'lodash';
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useParams } from 'react-router-dom';
 
 // Components
 import Menu from '@components/Menu';
@@ -27,8 +26,8 @@ import Tags from '@views/Tags';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Company: React.FC<Company.Props> = ({ match }) => {
-  const companyId: string = get(match, 'params.companyId');
+const Company: React.FC<{}> = () => {
+  const { companyId } = useParams<{ companyId: string }>();
 
   const MENU = React.useMemo<Menu.Group[]>(
     () => [
@@ -114,7 +113,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
     <div className={styles.Root}>
       <div className={styles.Sidebar}>
         <div className={styles.Company}>
-          <Info companyId={companyId} />
+          <Info />
         </div>
 
         <div className={styles.Menu}>

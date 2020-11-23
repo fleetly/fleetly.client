@@ -10,6 +10,8 @@ import GET_CHANNEL_LIST from '../../graphql/getChannelList.gql';
 
 // Routes
 import ROUTES from '@routes';
+
+// Utils
 import { fillUrl } from '@utils/url';
 
 const useChannelsTable = () => {

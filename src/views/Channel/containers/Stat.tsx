@@ -1,11 +1,21 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
 
 // Components
 import { Wrapper } from '@components/Page';
 import Tabs, { Tab } from '@components/Tabs';
 
+// Interfaces
+import { IChannel } from '@interfaces/channel.interface';
+
+// Routes
+import ROUTES from '@routes';
+
 // Styles
 import styles from './Stat.scss';
+
+// Utils
+import { fillUrl } from '@utils/url';
 
 const TABS = [
   {
@@ -26,7 +36,14 @@ const TABS = [
   }
 ];
 
-const ChannelStat = () => {
+const ChannelStat: React.FC<IChannel> = ({ source }) => {
+  // Setup
+  const { channelId, companyId } = useParams<{
+    channelId: string;
+    companyId: string;
+  }>();
+
+  // State
   const [currentTab, setCurrentTab] = React.useState(TABS[0].value);
 
   return (
@@ -42,8 +59,17 @@ const ChannelStat = () => {
           ))}
         </Tabs>
       }
+      breadcrumbs={[
+        {
+          title: 'Channels',
+          to: fillUrl(ROUTES.COMPANY.CHANNELS, { companyId })
+        },
+        {
+          title: source.title,
+          to: fillUrl(ROUTES.COMPANY.CHANNEL, { channelId, companyId })
+        }
+      ]}
       classes={{ actions: styles.Actions, container: styles.Container }}
-      title="Channels"
     >
       <div>Messages</div>
       <div>Subscribers</div>

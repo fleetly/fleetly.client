@@ -29,8 +29,12 @@ const Channel = () => {
 
   return (
     <Page classes={{ container: styles.Root }} title="Channels">
-      <Stat />
-      {data?.channel && <Info {...data?.channel} />}
+      {data?.channel && (
+        <>
+          <Stat {...data?.channel} />
+          <Info {...data?.channel} />
+        </>
+      )}
     </Page>
   );
 };

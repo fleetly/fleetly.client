@@ -13,7 +13,7 @@ import styles from './RoleForm.scss';
 
 // @todo - move roles to API
 const OPTIONS = ROLES.map((role) => ({
-  options: [{ ...role, isDisabled: role.value === Role.OWNER }]
+  options: [{ ...role, isDisabled: role.value === Role.OWNER.toUpperCase() }]
 }));
 
 const CollaboratorsRoleForm: React.FC<InjectedFormProps<

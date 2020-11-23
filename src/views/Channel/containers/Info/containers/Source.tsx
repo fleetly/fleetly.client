@@ -24,7 +24,7 @@ const ChannelInfoSource: React.FC<IChannelSource> = ({
       <H5 className={styles.Label}>Source</H5>
 
       <div className={styles.Grid}>
-        <Avatar alt="logo" classes={{ root: styles.Avatar }} src={photo} />
+        <Avatar alt="logo" aura classes={{ root: styles.Avatar }} src={photo} />
 
         <div className={styles.Info}>
           <P className={styles.Field}>

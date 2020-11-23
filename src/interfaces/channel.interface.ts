@@ -16,6 +16,6 @@ export interface IChannelSource {
   link: string;
   name: string;
   photo?: string;
-  title?: string;
+  title: string;
   type: Source;
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useQuery } from 'react-apollo';
+import { useParams } from 'react-router-dom';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -17,7 +18,8 @@ import styles from './Info.scss';
 // Utils
 import { convertToColor } from '@utils/string';
 
-const CompanyInfo: React.FC<Company.Info.Props> = ({ companyId }) => {
+const CompanyInfo: React.FC<{}> = () => {
+  const { companyId } = useParams<{ companyId: string }>();
   const { data } = useQuery<{ company: ICompany }>(GET_COMPANY_BY_ID, {
     variables: { companyId }
   });
@@ -27,7 +29,7 @@ const CompanyInfo: React.FC<Company.Info.Props> = ({ companyId }) => {
 
   return (
     <div className={styles.Root}>
-      <Avatar alt={title} color={color} />
+      <Avatar alt={title} classes={{ root: styles.Avatar }} color={color} />
 
       <div className={styles.Content}>
         <H5 className={styles.Title} component="div">
