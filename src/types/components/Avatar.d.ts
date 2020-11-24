@@ -9,6 +9,7 @@ declare namespace Avatar {
 
   interface Props {
     alt?: string;
+    aura?: boolean;
     classes?: Classes;
     color?: Color;
     sourceType?: Source;

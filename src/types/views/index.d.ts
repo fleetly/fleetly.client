@@ -1,3 +1,4 @@
+export * from './Channel';
 export * from './Channels';
 export * from './Collaboration';
 export * from './Collaborators';

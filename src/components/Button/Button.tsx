@@ -38,6 +38,9 @@ const Button: React.FC<Button.Props> = ({
         getClassName('color', { collection: styles, value: color }),
         getClassName('variant', { collection: styles, value: variant }),
         {
+          [styles.RootIsDisabled]: disabled
+        },
+        {
           [styles.RootModeFullWidth]: fullWidth,
           [styles.RootModeIcon]: icon && !children
         }

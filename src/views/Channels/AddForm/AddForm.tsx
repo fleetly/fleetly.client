@@ -11,12 +11,12 @@ import Form, {
   Input
 } from '@components/Form';
 
-import SourceType from '../components/SourceType';
+import SourceType from './components/SourceType';
 
 // Constants
 import { ADD_CHANNEL_FORM } from '@constants';
 
-const ChannelsForm: React.FC<InjectedFormProps<Channels.FormValues>> = ({
+const ChannelsAddForm: React.FC<InjectedFormProps<Channels.AddFormValues>> = ({
   error,
   handleSubmit,
   submitting
@@ -40,4 +40,4 @@ export default reduxForm<any, any>({
     yup.object().shape({ token: yup.string().required() })
   ),
   form: ADD_CHANNEL_FORM
-})(ChannelsForm);
+})(ChannelsAddForm);

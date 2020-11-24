@@ -1,6 +1,5 @@
-import { get } from 'lodash';
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useParams } from 'react-router-dom';
 
 // Components
 import Menu from '@components/Menu';
@@ -16,6 +15,7 @@ import ROUTES from '@routes';
 import styles from './Company.scss';
 
 // Views
+import Channel from '@views/Channel';
 import Channels from '@views/Channels';
 import Collaborators from '@views/Collaborators';
 import General from '@views/General';
@@ -26,8 +26,8 @@ import Tags from '@views/Tags';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Company: React.FC<Company.Props> = ({ match }) => {
-  const companyId: string = get(match, 'params.companyId');
+const Company: React.FC<{}> = () => {
+  const { companyId } = useParams<{ companyId: string }>();
 
   const MENU = React.useMemo<Menu.Group[]>(
     () => [
@@ -113,7 +113,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
     <div className={styles.Root}>
       <div className={styles.Sidebar}>
         <div className={styles.Company}>
-          <Info companyId={companyId} />
+          <Info />
         </div>
 
         <div className={styles.Menu}>
@@ -123,6 +123,7 @@ const Company: React.FC<Company.Props> = ({ match }) => {
 
       <div className={styles.Content}>
         <Switch>
+          <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
           <Route
             component={Collaborators}

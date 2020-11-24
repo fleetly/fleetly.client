@@ -1,4 +1,4 @@
-import { Color } from '@fleetly/common/dist/enums';
+import { Role } from '@fleetly/common/dist/enums';
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 
@@ -6,46 +6,15 @@ import { InjectedFormProps, reduxForm } from 'redux-form';
 import Form, { Select } from '@components/Form';
 
 // Constants
-import { UPDATE_COLLABORATOR_ROLE_FORM } from '@constants';
+import { UPDATE_COLLABORATOR_ROLE_FORM, ROLES } from '@constants';
 
 // Styles
 import styles from './RoleForm.scss';
 
 // @todo - move roles to API
-const OPTIONS = [
-  {
-    options: [
-      {
-        color: Color.ORANGE,
-        info: 'Can disable and delete the company!',
-        isDisabled: true,
-        label: 'Owner',
-        value: 'OWNER'
-      }
-    ]
-  },
-  {
-    options: [
-      {
-        color: Color.PURPLE,
-        info:
-          'Can edit company resources: channels, fields, tags. Can edit and block subscribers.',
-        label: 'Admin',
-        value: 'ADMIN'
-      }
-    ]
-  },
-  {
-    options: [
-      {
-        color: Color.BLUE,
-        info: 'Can read company resources. Can send messages in Fleetly.Chat.',
-        label: 'Member',
-        value: 'MEMBER'
-      }
-    ]
-  }
-];
+const OPTIONS = ROLES.map((role) => ({
+  options: [{ ...role, isDisabled: role.value === Role.OWNER.toUpperCase() }]
+}));
 
 const CollaboratorsRoleForm: React.FC<InjectedFormProps<
   Collaborators.RoleFormValues

@@ -7,8 +7,8 @@ import Page, { Wrapper } from '@components/Page';
 import { P } from '@components/Typography';
 
 // Containers
-import Form from './containers/Form';
-import Table from './containers/Table';
+import AddForm from './AddForm';
+import Table from './Table';
 
 // Constants
 import { ADD_CHANNEL_MODAL } from '@constants';
@@ -47,7 +47,8 @@ const Channels = () => {
               Do not give the token to third parties!
             </P>
           </div>
-          <Form onSubmit={handleSubmit} />
+
+          <AddForm onSubmit={handleSubmit} />
         </Modal>
       </Wrapper>
     </Page>

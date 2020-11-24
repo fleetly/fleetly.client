@@ -1,0 +1,36 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 76px 24px;
+}
+
+.Actions {
+  display: flex;
+  margin: 28px 0 0;
+
+  & > * {
+    &:not(:first-child) {
+      margin: 0 0 0 12px;
+    }
+  }
+}
+
+.Content {
+  max-width: 360px;
+  min-height: 152px;
+  padding: 0 20px;
+}
+
+.Description {
+  color: $color-gray-600;
+  margin: 8px 0 0;
+}
+
+.Label {
+  color: $color-gray-600;
+  margin: 0 0 12px;
+}

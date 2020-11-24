@@ -1,0 +1,13 @@
+mutation setWebhook($channelId: String!) {
+  setWebhook(channelId: $channelId) {
+    id
+    webhook {
+      id
+      status {
+        color
+        message
+        type
+      }
+    }
+  }
+}
