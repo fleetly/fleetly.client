@@ -4,9 +4,9 @@ import { useMutation } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // GraphQL
-import DISABLE_CHANNEL from '@views/Channels/graphql/disableChannel.gql';
-import ENABLE_CHANNEL from '@views/Channels/graphql/enableChannel.gql';
-import SYNC_CHANNEL from '@views/Channel/graphql/syncChannel.gql';
+import DISABLE_CHANNEL from '@graphql/disableChannel.gql';
+import ENABLE_CHANNEL from '@graphql/enableChannel.gql';
+import SYNC_CHANNEL from '@graphql/syncChannel.gql';
 
 const useChannelInfoSourceView = (status: ChannelStatus) => {
   // Setup

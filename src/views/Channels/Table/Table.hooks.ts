@@ -3,10 +3,10 @@ import { useMutation } from 'react-apollo';
 import { useHistory, useParams } from 'react-router-dom';
 
 // GraphQL
-import DELETE_CHANNEL from '../../graphql/deleteChannel.gql';
-import DISABLE_CHANNEL from '../../graphql/disableChannel.gql';
-import ENABLE_CHANNEL from '../../graphql/enableChannel.gql';
-import GET_CHANNEL_LIST from '../../graphql/getChannelList.gql';
+import DELETE_CHANNEL from '@graphql/deleteChannel.gql';
+import DISABLE_CHANNEL from '@graphql/disableChannel.gql';
+import ENABLE_CHANNEL from '@graphql/enableChannel.gql';
+import GET_CHANNEL_LIST from '@graphql/getChannelList.gql';
 
 // Routes
 import ROUTES from '@routes';

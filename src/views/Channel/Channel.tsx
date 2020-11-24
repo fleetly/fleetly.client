@@ -6,11 +6,11 @@ import { useParams } from 'react-router-dom';
 import Page from '@components/Page';
 
 // Container
-import Info from './containers/Info';
-import Stat from './containers/Stat';
+import Info from './Info';
+import Stat from './Stat';
 
 // GraphQL
-import GET_CHANNEL_BY_ID from './graphql/getChannelById.gql';
+import GET_CHANNEL_BY_ID from '@graphql/getChannelById.gql';
 
 // Interfaces
 import { IChannel } from '@interfaces/channel.interface.ts';

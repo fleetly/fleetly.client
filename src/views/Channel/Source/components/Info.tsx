@@ -8,7 +8,7 @@ import { P } from '@components/Typography';
 import { IChannelSource } from '@interfaces/channel.interface';
 
 // Status
-import styles from './SourceInfo.scss';
+import styles from './Info.scss';
 
 const ChannelSourceInfo: React.FC<IChannelSource> = ({
   id,

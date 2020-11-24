@@ -13,10 +13,10 @@ import { H5, P } from '@components/Typography';
 import { IWebhook } from '@interfaces/webhook.interface';
 
 // GraphQL
-import SET_WEBHOOK from '@views/Channel/graphql/setWebhook.gql';
+import SET_WEBHOOK from '@graphql/setWebhook.gql';
 
 // Status
-import styles from './common.scss';
+import styles from '../common.scss';
 
 // Utils
 import { copyToClipboard } from '@utils/clipboard';

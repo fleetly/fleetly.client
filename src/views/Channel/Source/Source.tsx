@@ -4,7 +4,7 @@ import * as React from 'react';
 import Button from '@components/Button';
 import { H5 } from '@components/Typography';
 
-import SourceInfo from '../../components/SourceInfo';
+import SourceInfo from './components/Info';
 
 // Hooks
 import { useChannelInfoSourceView } from './Source.hooks';

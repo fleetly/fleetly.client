@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom';
 import { ADD_CHANNEL_MODAL } from '@constants';
 
 // GraphQL
-import CREATE_CHANNEL from './graphql/createChannel.gql';
-import GET_CHANNEL_LIST from './graphql/getChannelList.gql';
+import CREATE_CHANNEL from '@graphql/createChannel.gql';
+import GET_CHANNEL_LIST from '@graphql/getChannelList.gql';
 
 // Interfaces
 import { IChannel } from '@interfaces/channel.interface.ts';

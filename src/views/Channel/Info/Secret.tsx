@@ -5,7 +5,7 @@ import Button from '@components/Button';
 import { H4, H5, P } from '@components/Typography';
 
 // Status
-import styles from './common.scss';
+import styles from '../common.scss';
 
 const ChannelInfoSecret = () => (
   <div>
