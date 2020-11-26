@@ -42,6 +42,10 @@ const Avatar: React.FC<Avatar.Props> = ({
         sourceType === Source.VK.toUpperCase() && {
           'fab fa-vk': true,
           [styles.SourceVariantVK]: true
+        },
+        sourceType === Source.TELEGRAM.toUpperCase() && {
+          'fab fa-telegram-plane': true,
+          [styles.SourceVariantTelegram]: true
         }
       )
     }),

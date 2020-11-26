@@ -8,7 +8,7 @@ import {
 } from './types';
 
 export const createNotification = (payload: Store.NotificationsPayload) => ({
-  notificationId: v1(),
+  notificationId: payload.id || v1(),
   payload,
   type: CREATE_NOTIFICATION
 });

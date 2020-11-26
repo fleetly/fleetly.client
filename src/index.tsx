@@ -54,6 +54,7 @@ const client: ApolloClient<InMemoryCache> = new ApolloClient({
         store.dispatch(
           createNotification({
             description: 'You must log in to continue',
+            id: 'unauthorized',
             title: 'Unauthorized!',
             timeout: 5000,
             variant: 'danger'

@@ -69,6 +69,10 @@
   width: 20px;
 
   &Variant {
+    &Telegram {
+      color: $color-telegram;
+    }
+
     &VK {
       color: $color-vk;
     }

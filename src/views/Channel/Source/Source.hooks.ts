@@ -7,16 +7,19 @@ import { useParams } from 'react-router-dom';
 import DISABLE_CHANNEL from '@graphql/disableChannel.gql';
 import ENABLE_CHANNEL from '@graphql/enableChannel.gql';
 import SYNC_CHANNEL from '@graphql/syncChannel.gql';
+import { useNotifications } from '@store';
 
 const useChannelInfoSourceView = (status: ChannelStatus) => {
   // Setup
   const { channelId } = useParams<{ channelId: string }>();
-  const variables = { channelId };
+  const { pushError } = useNotifications();
 
   // Data
   const isActive = status === ChannelStatus.ACTIVE;
 
   // Mutations
+  const variables = { channelId };
+
   const [
     disableChannel,
     { loading: disableIsLoading }
@@ -28,6 +31,7 @@ const useChannelInfoSourceView = (status: ChannelStatus) => {
   ] = useMutation(ENABLE_CHANNEL, { variables });
 
   const [syncChannel, { loading: syncIsLoading }] = useMutation(SYNC_CHANNEL, {
+    onError: pushError,
     variables
   });
 

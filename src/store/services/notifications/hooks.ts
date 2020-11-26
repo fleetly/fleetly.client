@@ -1,3 +1,4 @@
+import { create } from 'lodash';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -42,7 +43,7 @@ const useNotifications = (currentNotificationId?: string) => {
     (notification: Store.NotificationsPayload) => void
   >(
     (notification: Store.NotificationsPayload) => {
-      const notificationId = v1();
+      const notificationId = notification.id || v1();
 
       dispatch({
         notificationId,
@@ -66,12 +67,20 @@ const useNotifications = (currentNotificationId?: string) => {
     [currentNotificationId, dispatch]
   );
 
+  // Custom handlers
+  const pushError = React.useCallback<(error: Error) => void>(
+    (error: Error) =>
+      createNotification({ title: error.message, variant: 'danger' }),
+    [createNotification]
+  );
+
   return {
     createNotification,
     data,
     deleteAllNotifications,
     deleteNotification,
-    notifications
+    notifications,
+    pushError
   };
 };
 

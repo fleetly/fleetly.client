@@ -13,6 +13,7 @@ declare global {
 
     interface NotificationsPayload {
       description?: string;
+      id?: string;
       position?: 'left-bottom' | 'left-top' | 'right-bottom' | 'right-top';
       timeout?: number;
       title: string;
