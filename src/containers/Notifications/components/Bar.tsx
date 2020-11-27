@@ -30,7 +30,10 @@ const NotificationsBar: React.FC<Notifications.BarProps> = ({
         getClassName('variant', { collection: styles, value: variant })
       ),
       iconClassName: classNames(styles.Icon, 'fas', {
-        'fa-check': variant === 'info'
+        'fa-bell': variant === 'info',
+        'fa-check': variant === 'success',
+        'fa-exclamation': variant === 'alert',
+        'fa-exclamation-triangle': variant === 'danger'
       })
     }),
     [variant]
@@ -60,6 +63,13 @@ const NotificationsBar: React.FC<Notifications.BarProps> = ({
       <div className={styles.Actions}>
         <Button icon="fas fa-times" onClick={handleClick} variant="outlined" />
       </div>
+
+      {timeout && (
+        <div
+          className={styles.Countdown}
+          style={{ animationDuration: `${timeout / 1000}s` }}
+        />
+      )}
     </div>
   );
 };
