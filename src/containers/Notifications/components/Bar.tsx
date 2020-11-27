@@ -30,10 +30,10 @@ const NotificationsBar: React.FC<Notifications.BarProps> = ({
         getClassName('variant', { collection: styles, value: variant })
       ),
       iconClassName: classNames(styles.Icon, 'fas', {
-        'fa-exclamation-triangle': variant === 'danger',
         'fa-bell': variant === 'info',
+        'fa-check': variant === 'success',
         'fa-exclamation': variant === 'alert',
-        'fa-check': variant === 'success'
+        'fa-exclamation-triangle': variant === 'danger'
       })
     }),
     [variant]
@@ -46,30 +46,30 @@ const NotificationsBar: React.FC<Notifications.BarProps> = ({
 
   return (
     <div className={rootClassName}>
-      <div className={styles.InfoBox}>
-        <i className={iconClassName} />
+      <i className={iconClassName} />
 
-        <div className={styles.Info}>
-          <H5 className={styles.Title} component="div">
-            {title}
-          </H5>
+      <div className={styles.Info}>
+        <H5 className={styles.Title} component="div">
+          {title}
+        </H5>
 
-          {description && (
-            <Caption className={styles.Description} component="div">
-              {description}
-            </Caption>
-          )}
-        </div>
-
-        <div className={styles.Actions}>
-          <Button
-            icon="fas fa-times"
-            onClick={handleClick}
-            variant="outlined"
-          />
-        </div>
+        {description && (
+          <Caption className={styles.Description} component="div">
+            {description}
+          </Caption>
+        )}
       </div>
-      <div className={styles.Countdown} />
+
+      <div className={styles.Actions}>
+        <Button icon="fas fa-times" onClick={handleClick} variant="outlined" />
+      </div>
+
+      {timeout && (
+        <div
+          className={styles.Countdown}
+          style={{ animationDuration: `${timeout / 1000}s` }}
+        />
+      )}
     </div>
   );
 };

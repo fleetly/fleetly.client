@@ -20,16 +20,16 @@ import Sign from '@views/Sign';
 
 const App = () => {
   const isAuthorized = useSelector(getAuthState);
-  
+
   // @todo - remove test
   const { createNotification } = useNotifications();
-  
+
   React.useEffect(() => {
     createNotification({
       description:
         'Also on Fleetly, you need to add pop-up notifications in any corner.',
       title: 'Notification System',
-      variant: 'danger',
+      variant: 'info',
       timeout: 5000
     });
   }, [createNotification]);

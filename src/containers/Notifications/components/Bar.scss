@@ -1,112 +1,78 @@
 @import '~@styles/colors.scss';
 
+@mixin variant($color) {
+  .Countdown {
+    background: $color;
+  }
+
+  .Icon {
+    border-color: rgba($color, .4);
+    color: $color;
+  }
+
+  .Title {
+    color: $color;
+  }
+}
+
 .Root {
   background: $color-gray-0;
   border-radius: 20px;
   box-shadow: 0 20px 40px 0 rgba($color-gray-1000, .1);
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  padding: 20px 20px 0 20px;
+  padding: 20px;
   position: relative;
   width: 440px;
 
   &Variant {
     &Alert {
-      .Icon {
-        border-color: rgba($color-warning, .4);
-        color: $color-warning;
-      }
-
-      .Title {
-        color: $color-warning;
-      }
-
-      .Countdown {
-        border-color: $color-warning;
-      }
+      @include variant($color-warning);
     }
 
     &Danger {
-      .Icon {
-        border-color: rgba($color-danger, .4);
-        color: $color-danger;
-      }
-
-      .Title {
-        color: $color-danger;
-      }
-
-      .Countdown {
-        border-color: $color-danger;
-      }
+      @include variant($color-danger);
     }
 
     &Info {
-      .Icon {
-        border-color: rgba($color-primary, .4);
-        color: $color-primary;
-      }
-
-      .Title {
-        color: $color-primary;
-      }
-
-      .Countdown {
-        border-color: $color-primary;
-      }
+      @include variant($color-primary);
     }
 
     &Success {
-      .Icon {
-        border-color: rgba($color-success, .4);
-        color: $color-success;
-      }
-
-      .Title {
-        color: $color-success;
-      }
-
-      .Countdown {
-        border-color: $color-success;
-      }
+      @include variant($color-success);
     }
   }
-}
-
-.InfoBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
 .Actions {
   margin: 0 0 0 20px;
 }
 
+.Countdown {
+  animation: countdown 1s;
+  bottom: 0;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
 .Description {
   color: $color-gray-600;
-  margin: 4px 0 15px 0;
+  margin: 4px 0 0;
 }
 
 .Icon {
-  align-content: center;
   align-items: center;
   border: 2px solid;
   border-radius: 100%;
-  display: flex;
+  display: flex !important;
   flex: 0 0 40px;
   height: 40px;
   justify-content: center;
   margin: 0 20px 0 0;
   width: 40px;
-}
-
-.Icon:nth-child(1) {
-  align-content: center;
-  align-items: center;
-  justify-content: center;
 }
 
 .Info {
@@ -116,11 +82,12 @@
   justify-content: center;
 }
 
-.Countdown {
-  align-items: flex-end;
-  border: solid 2px;
-  display: block;
-  justify-content: flex-end;
-  margin: 0 0 0 -20px;
-  width: 120%;
+@keyframes countdown {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
 }
