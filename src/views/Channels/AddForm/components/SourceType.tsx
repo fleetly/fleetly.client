@@ -6,13 +6,41 @@ import { WrappedFieldInputProps } from 'redux-form';
 import { withReduxForm } from '@components/Form';
 import { Caption } from '@components/Typography';
 
-// Data
-import { SOURCE_LIST } from '../data';
-
 // Styles
 import styles from './SourceType.scss';
 
-const ChannelsSourceType: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
+const SOURCE_LIST = [
+  {
+    id: 'FB',
+    icon: 'fab fa-facebook-f',
+    isDisabled: true,
+    title: 'Facebook'
+  },
+  {
+    id: 'TELEGRAM',
+    icon: 'fab fa-telegram-plane',
+    title: 'Telegram'
+  },
+  {
+    id: 'VK',
+    icon: 'fab fa-vk',
+    title: 'VK'
+  },
+  {
+    id: 'TWITCH',
+    icon: 'fab fa-twitch',
+    isDisabled: true,
+    title: 'Twitch'
+  },
+  {
+    id: 'DISCORD',
+    icon: 'fab fa-discord',
+    isDisabled: true,
+    title: 'Discord'
+  }
+];
+
+const SourceType: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
   onChange,
   value
 }) => {
@@ -44,4 +72,4 @@ const ChannelsSourceType: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
   );
 };
 
-export default withReduxForm<Form.FieldBase>()(ChannelsSourceType);
+export default withReduxForm<Form.FieldBase>()(SourceType);

@@ -1,16 +1,24 @@
 import * as React from 'react';
+import { useQuery } from 'react-apollo';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
 
 // Containers
-import Companies from './containers/Companies';
+import Companies from './Companies';
 
-// Hooks
-import { useCollaborationView } from './Collaboration.hooks';
+// GraphQL
+import GET_COMPANY_LIST from '@graphql/getCompanyList.gql';
+
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
 
 const Collaboration = () => {
-  const { companies, invitations } = useCollaborationView();
+  // Data
+  const { data } = useQuery<{ companies: ICompany[] }>(GET_COMPANY_LIST);
+
+  const companies = data?.companies || [];
+  const invitations = [];
 
   return (
     <Page title="Collaboration">

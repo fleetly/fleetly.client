@@ -19,12 +19,15 @@ import { IStatus } from '@interfaces/status.interface';
 import styles from './Table.scss';
 
 const ChannelsTable = ({ data }: any) => {
+  // Setup
   const {
     handleEnableClick,
     handleDisableClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleRowClick
   } = useChannelsTable();
 
+  // Data
   const columns = React.useMemo(
     () => [
       {
@@ -98,7 +101,7 @@ const ChannelsTable = ({ data }: any) => {
     [handleDeleteClick, handleDisableClick, handleEnableClick]
   );
 
-  return <Table columns={columns} data={data} />;
+  return <Table columns={columns} data={data} onTrClick={handleRowClick} />;
 };
 
 export default ChannelsTable;

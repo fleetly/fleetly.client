@@ -4,12 +4,13 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Containers
 import Notifications from '@containers/Notifications';
+import Sudo from '@containers/Sudo';
 
 // Routes
 import ROUTES from '@routes';
 
 // Store
-import { isAuthorized as getAuthState, useNotifications } from '@store';
+import { isAuthorized as getAuthState } from '@store';
 
 // Styles
 import styles from './App.scss';
@@ -20,19 +21,6 @@ import Sign from '@views/Sign';
 
 const App = () => {
   const isAuthorized = useSelector(getAuthState);
-
-  // @todo - remove test
-  const { createNotification } = useNotifications();
-
-  React.useEffect(() => {
-    createNotification({
-      description:
-        'Also on Fleetly, you need to add pop-up notifications in any corner.',
-      title: 'Notification System',
-      variant: 'info',
-      timeout: 5000
-    });
-  }, [createNotification]);
 
   return (
     <div className={styles.Root}>
@@ -49,6 +37,7 @@ const App = () => {
       )}
 
       <Notifications />
+      {isAuthorized && <Sudo />}
     </div>
   );
 };

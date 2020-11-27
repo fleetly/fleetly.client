@@ -20,7 +20,7 @@ const SubscriberSource: React.FC<Subscriber.SourceProps> = ({
   source
 }) => (
   <div className={styles.Root}>
-    <Avatar classes={{ root: styles.Avatar }} src={source?.photo} />
+    <Avatar aura classes={{ root: styles.Avatar }} src={source?.photo} />
 
     <H3
       className={styles.Name}

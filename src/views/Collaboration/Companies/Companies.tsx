@@ -3,10 +3,12 @@ import * as React from 'react';
 // Components
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
+import Status from '@components/Status';
 import Table from '@components/Table';
-
-// Components
 import { Wrapper } from '@components/Page';
+
+// Constants
+import { ROLES } from '@constants';
 
 // Utils
 import { convertToColor } from '@utils/string';
@@ -33,6 +35,11 @@ const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
       },
       {
         accessor: 'role',
+        Cell: ({ value }: any) => {
+          const { color, label } =
+            ROLES.find((role) => role.value === value) || ROLES[2];
+          return <Status color={color} title={label} />;
+        },
         Header: 'Role'
       },
       {

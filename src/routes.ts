@@ -2,6 +2,7 @@ export default {
   COMPANY: {
     ROOT: '/:companyId',
     BILLING: '/:companyId/billing',
+    CHANNEL: '/:companyId/channels/:channelId',
     CHANNELS: '/:companyId/channels',
     CHAT: '/:companyId/chat',
     COLLABORATORS: '/:companyId/collaborators',
@@ -9,6 +10,7 @@ export default {
     FIELDS: '/:companyId/fields',
     FLOW: '/:companyId/flow',
     GENERAL: '/:companyId/general',
+    STATS: '/:companyId/channels/stats',
     NOTIFICATIONS: '/:companyId/notifications',
     SUBSCRIBERS: '/:companyId/subscribers',
     TAGS: '/:companyId/tags'

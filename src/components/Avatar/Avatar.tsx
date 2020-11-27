@@ -10,6 +10,7 @@ import { getClassName } from '@utils/styles';
 
 const Avatar: React.FC<Avatar.Props> = ({
   alt = 'avatar',
+  aura,
   classes,
   color,
   sourceType,
@@ -28,7 +29,10 @@ const Avatar: React.FC<Avatar.Props> = ({
         getClassName('color', {
           collection: styles,
           value: color || Color.BLUE
-        })
+        }),
+        {
+          [styles.RootWithAura]: aura
+        }
       ),
       photoClassName: classNames(classes?.photo, styles.Photo),
       plugClassName: classNames(classes?.plug, styles.Plug),
@@ -38,10 +42,14 @@ const Avatar: React.FC<Avatar.Props> = ({
         sourceType === Source.VK.toUpperCase() && {
           'fab fa-vk': true,
           [styles.SourceVariantVK]: true
+        },
+        sourceType === Source.TELEGRAM.toUpperCase() && {
+          'fab fa-telegram-plane': true,
+          [styles.SourceVariantTelegram]: true
         }
       )
     }),
-    [classes, color, sourceType]
+    [aura, classes, color, sourceType]
   );
 
   return (

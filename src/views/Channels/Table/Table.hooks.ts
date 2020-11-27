@@ -1,15 +1,22 @@
 import { useCallback } from 'react';
 import { useMutation } from 'react-apollo';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 // GraphQL
-import DELETE_CHANNEL from '../../graphql/deleteChannel.gql';
-import DISABLE_CHANNEL from '../../graphql/disableChannel.gql';
-import ENABLE_CHANNEL from '../../graphql/enableChannel.gql';
-import GET_CHANNEL_LIST from '../../graphql/getChannelList.gql';
+import DELETE_CHANNEL from '@graphql/deleteChannel.gql';
+import DISABLE_CHANNEL from '@graphql/disableChannel.gql';
+import ENABLE_CHANNEL from '@graphql/enableChannel.gql';
+import GET_CHANNEL_LIST from '@graphql/getChannelList.gql';
+
+// Routes
+import ROUTES from '@routes';
+
+// Utils
+import { fillUrl } from '@utils/url';
 
 const useChannelsTable = () => {
   // Setup
+  const { push } = useHistory();
   const { companyId } = useParams<{ companyId: string }>();
 
   // Mutations
@@ -34,10 +41,18 @@ const useChannelsTable = () => {
     []
   );
 
+  const handleRowClick = useCallback(
+    ({ id }: any) => {
+      push(fillUrl(ROUTES.COMPANY.CHANNEL, { channelId: id, companyId }));
+    },
+    [companyId, push]
+  );
+
   return {
     handleDeleteClick: clickWrapper(deleteChannel),
     handleDisableClick: clickWrapper(disableChannel),
-    handleEnableClick: clickWrapper(enableChannel)
+    handleEnableClick: clickWrapper(enableChannel),
+    handleRowClick
   };
 };
 

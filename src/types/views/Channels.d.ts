@@ -1,14 +1,7 @@
 declare namespace Channels {
-  interface FormValues {
+  interface AddFormValues {
     sourceType: string;
     token: string;
-  }
-
-  interface SourceListItem {
-    id: string;
-    icon: string;
-    isDisabled?: boolean;
-    title: string;
   }
 }
 

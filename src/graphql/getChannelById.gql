@@ -1,0 +1,26 @@
+query channel($channelId: String!) {
+  channel(channelId: $channelId) {
+    id
+    source {
+      id
+      link
+      name
+      photo
+      title
+      type
+    }
+    status {
+      color
+      message
+      type
+    }
+    webhook {
+      id
+      status {
+        color
+        message
+        type
+      }
+    }
+  }
+}
