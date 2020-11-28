@@ -34,7 +34,7 @@ const useInfo = () => {
   const handleSetTokenClick = () => dispatch(openModal(SET_TOKEN_MODAL));
 
   const hadleSetTokenSubmit = React.useCallback(
-    async ({ newToken }: Channel.Token) => {
+    async ({ newToken }: Channel.SetToken) => {
       try {
         await setChannelToken({ variables: { channelId, newToken } });
         return true;
