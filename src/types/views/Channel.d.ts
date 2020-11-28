@@ -22,7 +22,7 @@ declare namespace Channel {
     title: string;
   }
 
-  interface Token {
+  interface SetToken {
     newToken: string;
   }
 }

@@ -14,7 +14,7 @@ import Form, {
 // Constants
 import { SET_TOKEN_FORM } from '@constants';
 
-const SetTokenForm: React.FC<InjectedFormProps<Channel.Token>> = ({
+const SetTokenForm: React.FC<InjectedFormProps<Channel.SetToken>> = ({
   error,
   handleSubmit,
   submitting
@@ -33,7 +33,7 @@ const SetTokenForm: React.FC<InjectedFormProps<Channel.Token>> = ({
   );
 };
 
-export default reduxForm<Channel.Token>({
+export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
     yup.object().shape({ newToken: yup.string().required() })
   ),
