@@ -8,6 +8,7 @@ import Page from '@components/Page';
 // Container
 import Info from './Info';
 import Stat from './Stat';
+import Token from './Token';
 
 // GraphQL
 import GET_CHANNEL_BY_ID from '@graphql/getChannelById.gql';
@@ -35,6 +36,8 @@ const Channel = () => {
           <Info {...data?.channel} />
         </>
       )}
+
+      <Token />
     </Page>
   );
 };

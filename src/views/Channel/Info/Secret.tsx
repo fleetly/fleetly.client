@@ -2,28 +2,30 @@ import * as React from 'react';
 
 // Components
 import Button from '@components/Button';
-import Modal from '@components/Modal';
 import { H4, H5, P } from '@components/Typography';
 
 // Constants
-import { COPY_TOKEN_MODAL, SET_TOKEN_FORM, SET_TOKEN_MODAL } from '@constants';
-
-// Containers
-import CopyForm from './containers/CopyTokenForm';
-import SetForm from './containers/SetTokenForm';
-
-// Hooks
-import { useInfo } from './Info.hooks';
+import { SET_CHANNEL_TOKEN_MODAL, SHOW_CHANNEL_TOKEN_MODAL } from '@constants';
 
 // Status
 import styles from '../common.scss';
 
+// Store
+import { useModals } from '@store';
+
 const ChannelInfoSecret = () => {
-  const {
-    handleCopyTokenClick,
-    handleSetTokenClick,
-    hadleSetTokenSubmit
-  } = useInfo();
+  const { openModal } = useModals();
+
+  // Handlers
+  const handleSetTokenClick = React.useCallback(
+    () => openModal(SET_CHANNEL_TOKEN_MODAL),
+    [openModal]
+  );
+
+  const handleShowTokenClick = React.useCallback(
+    () => openModal(SHOW_CHANNEL_TOKEN_MODAL),
+    [openModal]
+  );
 
   return (
     <div>
@@ -48,28 +50,9 @@ const ChannelInfoSecret = () => {
         <Button
           icon="fas fa-eye"
           variant="outlined"
-          onClick={handleCopyTokenClick}
+          onClick={handleShowTokenClick}
         />
       </div>
-
-      <Modal
-        classes={{ container: styles.Container }}
-        id={SET_TOKEN_MODAL}
-        title="Change Token"
-      >
-        <P className={styles.DescriptionForm}>
-          Be careful, the wrong key can stop the channel.
-        </P>
-        <SetForm form={SET_TOKEN_FORM} onSubmit={hadleSetTokenSubmit} />
-      </Modal>
-
-      <Modal
-        classes={{ container: styles.Container }}
-        id={COPY_TOKEN_MODAL}
-        title="Copy Token"
-      >
-        <CopyForm />
-      </Modal>
     </div>
   );
 };

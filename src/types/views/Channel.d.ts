@@ -22,7 +22,7 @@ declare namespace Channel {
     title: string;
   }
 
-  interface SetToken {
+  interface TokenSetFormValues {
     newToken: string;
   }
 }
