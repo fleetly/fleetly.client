@@ -7,6 +7,7 @@ query getSubscriberList($companyId: String!) {
       id
       firstname
       lastname
+      link
       photo
       type
       username

@@ -42,19 +42,25 @@ const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
       {
         accessor: 'source.firstname',
         Cell: ({ row }: any) => {
-          const { id, firstname, lastname, username } = row?.original?.source;
+          const {
+            id,
+            firstname,
+            lastname,
+            link,
+            username
+          } = row?.original?.source;
 
           return (
             <div className={styles.User}>
-              <P component="div">{`${firstname} ${lastname}`}</P>
+              <P component="div">{`${firstname || ''} ${lastname || ''}`}</P>
 
               <a
                 className={styles.UserLink}
-                href={`https://vk.com/id${id}`}
+                href={link}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Caption component="span">{`@${username}`}</Caption>
+                <Caption component="span">{`@${username || id}`}</Caption>
               </a>
             </div>
           );
