@@ -19,7 +19,16 @@
   }
 }
 
+.Container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 360px;
+}
+
 .Content {
+  align-items: center;
   max-width: 360px;
   min-height: 152px;
   padding: 0 20px;
@@ -28,6 +37,12 @@
 .Description {
   color: $color-gray-600;
   margin: 8px 0 0;
+
+  &Form {
+    margin: 0 0 52px 0;
+    text-align: center;
+    width: 220px;
+  }
 }
 
 .Label {

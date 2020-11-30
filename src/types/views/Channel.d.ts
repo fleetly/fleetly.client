@@ -21,6 +21,10 @@ declare namespace Channel {
     isDisabled?: boolean;
     title: string;
   }
+
+  interface TokenSetFormValues {
+    newToken: string;
+  }
 }
 
 export = Channel;

@@ -1,0 +1,20 @@
+@import '~@styles/colors';
+
+.Careful {
+  color: rgba($color-orange-500, .6);
+}
+
+.Container {
+  justify-content: center;
+  max-width: 280px;
+}
+
+.Description {
+  color: $color-gray-500;
+}
+
+.Careful,
+.Description {
+  margin: 0 0 40px;
+  text-align: center;
+}
