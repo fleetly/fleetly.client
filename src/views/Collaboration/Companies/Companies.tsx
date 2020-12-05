@@ -65,7 +65,7 @@ const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
         maxWidth: 120
       }
     ],
-    []
+    [handleLeaveClick]
   );
 
   return (
