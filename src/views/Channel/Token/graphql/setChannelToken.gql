@@ -1,0 +1,3 @@
+mutation setChannelToken($channelId: String!, $newToken: String!) {
+  setChannelToken(channelId: $channelId, newToken: $newToken)
+}

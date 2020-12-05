@@ -1,0 +1,3 @@
+query getChannelToken($channelId: String!) {
+  channelToken(channelId: $channelId)
+}

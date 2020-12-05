@@ -11,6 +11,7 @@ import { useNotifications } from '@store';
 // Styles
 import styles from './Bar.scss';
 import { getClassName } from '@utils/styles';
+import { time } from 'console';
 
 const NotificationsBar: React.FC<Notifications.BarProps> = ({
   description,
@@ -39,6 +40,11 @@ const NotificationsBar: React.FC<Notifications.BarProps> = ({
     [variant]
   );
 
+  // Effects
+  React.useEffect(() => {
+    timeout && setTimeout(deleteNotification, timeout);
+  }, [deleteNotification, timeout]);
+
   // Handlers
   const handleClick = React.useCallback(() => deleteNotification(), [
     deleteNotification
@@ -60,9 +66,14 @@ const NotificationsBar: React.FC<Notifications.BarProps> = ({
         )}
       </div>
 
-      <div className={styles.Actions}>
-        <Button icon="fas fa-times" onClick={handleClick} variant="outlined" />
-      </div>
+      {!timeout && (
+        <Button
+          className={styles.Close}
+          icon="fas fa-times"
+          onClick={handleClick}
+          variant="outlined"
+        />
+      )}
 
       {timeout && (
         <div

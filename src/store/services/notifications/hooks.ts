@@ -1,4 +1,5 @@
-import { create } from 'lodash';
+import { parseGQLError } from '@utils/graphql';
+import { ApolloError, isApolloError } from 'apollo-boost';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -68,9 +69,23 @@ const useNotifications = (currentNotificationId?: string) => {
   );
 
   // Custom handlers
-  const pushError = React.useCallback<(error: Error) => void>(
-    (error: Error) =>
-      createNotification({ title: error.message, variant: 'danger' }),
+  const pushError = React.useCallback<
+    (
+      error: ApolloError | Error,
+      notification?: Store.NotificationsPayload
+    ) => void
+  >(
+    (error: ApolloError | Error, notification?: Store.NotificationsPayload) => {
+      const message = isApolloError(error)
+        ? parseGQLError(error).message
+        : error.message;
+
+      createNotification({
+        title: message,
+        variant: 'danger',
+        ...notification
+      });
+    },
     [createNotification]
   );
 
