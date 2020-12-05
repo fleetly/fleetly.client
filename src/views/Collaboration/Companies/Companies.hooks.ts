@@ -1,34 +1,28 @@
 import * as React from 'react';
-import { useMutation, useQuery } from 'react-apollo';
+import { useMutation } from 'react-apollo';
 
 // GraphQl
 import GET_COMPANY_LIST from '@graphql/getCompanyList.gql';
 import LEAVE_COMPANY from './graphql/leaveCompany.gql';
 
-// Interfaces
-import { ICompany } from '@interfaces/company.interface';
-
-const useCompanies = () => {
-  // Data
-  const { refetch } = useQuery<{ company: ICompany[] }>(GET_COMPANY_LIST);
-
+const useCollaborationCompaniesView = () => {
   // Mutation
-  const [leaveCompany] = useMutation(LEAVE_COMPANY);
+  const [leaveCompany] = useMutation(LEAVE_COMPANY, {
+    refetchQueries: [{ query: GET_COMPANY_LIST }]
+  });
 
   // Handlers
   const handleLeaveClick = React.useCallback(
     async (event: React.SyntheticEvent<HTMLButtonElement>) => {
       try {
-        await leaveCompany({
+        return await leaveCompany({
           variables: { companyId: event.currentTarget.dataset.companyId }
         });
-
-        return refetch();
       } catch (error) {
         return false;
       }
     },
-    [leaveCompany, refetch]
+    [leaveCompany]
   );
 
   return {
@@ -36,4 +30,4 @@ const useCompanies = () => {
   };
 };
 
-export { useCompanies };
+export { useCollaborationCompaniesView };
