@@ -1,0 +1,64 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 0 0;
+
+  &Status {
+    &Delivered,
+    &Read,
+    &Sent {
+      flex-direction: row-reverse;
+
+      .Check {
+        margin: 0 0 0 4px;
+      }
+
+      .MessageBlock {
+        background-color: $color-blue-50;
+      }
+
+      .UserName {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    &Read {
+      .Check {
+        color: $color-blue-300;
+      }
+    }
+  }
+}
+
+.Avatar {
+  margin: 0 10px;
+}
+
+.Date {
+  align-items: flex-end;
+  color: $color-gray-600;
+  display: flex;
+  font-size: 12px;
+  margin: 0 0 0 10px;
+}
+
+.MessageBlock {
+  background-color: $color-gray-100;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0 0 0;
+  max-width: 788px;
+  padding: 4px 10px;
+}
+
+.UserName {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 10px;
+}
