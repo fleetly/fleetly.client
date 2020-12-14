@@ -11,8 +11,7 @@ import styles from './DialogMessage.scss';
 import { getClassName } from '@utils/styles';
 
 const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
-  firstname,
-  lastname,
+  user,
   date,
   text,
   status
@@ -26,7 +25,7 @@ const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
     <Avatar classes={{ root: styles.Avatar }} />
     <div className={styles.MessageTitle}>
       <div className={styles.UserName}>
-        {firstname} {lastname}
+        {user.firstname} {user.lastname}
       </div>
       <div className={styles.MessageBlock}>
         <div className={styles.Message}>{text}</div>
