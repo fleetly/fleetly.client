@@ -6,15 +6,9 @@
   flex-direction: row;
   margin: 10px 0 0 0;
 
-  &Status {
-    &Delivered,
-    &Read,
-    &Sent {
+  &Variant {
+    &Outcoming {
       flex-direction: row-reverse;
-
-      .Check {
-        margin: 0 0 0 4px;
-      }
 
       .MessageBlock {
         background-color: $color-blue-50;
@@ -25,11 +19,15 @@
         justify-content: flex-end;
       }
     }
+  }
+}
 
+.Status {
+  margin: 0 0 0 4px;
+
+  &Variant {
     &Read {
-      .Check {
-        color: $color-blue-300;
-      }
+      color: $color-blue-500;
     }
   }
 }
@@ -54,7 +52,7 @@
   justify-content: space-between;
   margin: 10px 0 0 0;
   max-width: 788px;
-  padding: 4px 10px;
+  padding: 8px 12px;
 }
 
 .UserName {

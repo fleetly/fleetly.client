@@ -16,7 +16,7 @@ const TEST = [
       lastname: 'Test'
     },
     text: '20 Freshest Web Designs, September 2019 | Webdesigner Depot',
-    date: '15:56'
+    date: new Date()
   },
   {
     user: {
@@ -24,7 +24,7 @@ const TEST = [
       lastname: 'Read'
     },
     text: 'Message test read',
-    date: '15:56',
+    date: new Date(),
     status: 'read'
   },
   {
@@ -33,7 +33,7 @@ const TEST = [
       lastname: 'Delivered'
     },
     text: 'Message test delivered',
-    date: '15:56',
+    date: new Date(),
     status: 'delivered'
   },
   {
@@ -42,7 +42,7 @@ const TEST = [
       lastname: 'Sent'
     },
     text: 'Message test sent',
-    date: '15:56',
+    date: new Date(),
     status: 'sent'
   }
 ];
