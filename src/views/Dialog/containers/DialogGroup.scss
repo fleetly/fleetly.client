@@ -1,0 +1,27 @@
+.Root {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 0 0;
+
+  &Variant {
+    &Outcoming {
+      flex-direction: row-reverse;
+
+      .UserName {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+
+.UserName {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.MessageBlock {
+  margin: 0 10px;
+}

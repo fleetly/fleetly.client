@@ -1,0 +1,37 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  align-items: center;
+  border-bottom: solid 1px $color-gray-100;
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  justify-content: space-between;
+  padding: 25px 0;
+}
+
+.ActionBlock {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.Icon {
+  border: none;
+  margin: 0 30px 0 0;
+}
+
+.Info {
+  margin: 0 0 0 20px;
+}
+
+.InfoBlock {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.Online {
+  color: $color-gray-600;
+  font-size: 12px;
+}
