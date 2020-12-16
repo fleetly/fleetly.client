@@ -9,10 +9,11 @@ import Avatar from '@components/Avatar';
 import styles from './DialogMessage.scss';
 
 const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
-  user,
   date,
+  status,
+  subscriber,
   text,
-  status
+  user
 }) => (
   <div
     className={classNames(styles.Root, {
@@ -22,7 +23,9 @@ const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
     <Avatar classes={{ root: styles.Avatar }} />
     <div className={styles.MessageTitle}>
       <div className={styles.UserName}>
-        {user.firstname} {user.lastname}
+        {user
+          ? user.firstname + ' ' + user.lastname
+          : subscriber.firstname + ' ' + subscriber.lastname}
       </div>
       <div className={styles.MessageBlock}>
         <div className={styles.Message}>{text}</div>

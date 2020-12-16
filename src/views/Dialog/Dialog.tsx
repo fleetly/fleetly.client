@@ -11,39 +11,39 @@ import styles from './Dialog.scss';
 
 const TEST = [
   {
+    date: new Date(),
+    text: '20 Freshest Web Designs, September 2019 | Webdesigner Depot',
     user: {
       firstname: 'Test',
       lastname: 'Test'
-    },
-    text: '20 Freshest Web Designs, September 2019 | Webdesigner Depot',
-    date: new Date()
+    }
   },
   {
-    user: {
+    date: new Date(),
+    status: 'read',
+    subscriber: {
       firstname: 'Test',
       lastname: 'Read'
     },
-    text: 'Message test read',
-    date: new Date(),
-    status: 'read'
+    text: 'Message test read'
   },
   {
-    user: {
+    date: new Date(),
+    status: 'delivered',
+    subscriber: {
       firstname: 'Test',
       lastname: 'Delivered'
     },
-    text: 'Message test delivered',
-    date: new Date(),
-    status: 'delivered'
+    text: 'Message test delivered'
   },
   {
-    user: {
+    date: new Date(),
+    status: 'sent',
+    subscriber: {
       firstname: 'Test',
       lastname: 'Sent'
     },
-    text: 'Message test sent',
-    date: new Date(),
-    status: 'sent'
+    text: 'Message test sent'
   }
 ];
 
@@ -51,13 +51,14 @@ const Dialog = () => (
   <Page title="Chat">
     <Wrapper classes={{ container: styles.Root }} title="Chat">
       <div className={styles.Chat}>
-        {TEST.map(({ user, text, date, status }, index: number) => (
+        {TEST.map(({ date, status, subscriber, text, user }, index: number) => (
           <Message
-            key={index}
-            user={user}
-            text={text}
             date={date}
+            key={index}
             status={status}
+            subscriber={subscriber}
+            text={text}
+            user={user}
           />
         ))}
       </div>
