@@ -1,22 +1,21 @@
 .Root {
   align-items: flex-end;
   display: flex;
-  flex-direction: row;
   margin: 10px 0 0;
 
   &Variant {
     &Outcoming {
       flex-direction: row-reverse;
 
-      .Author {
-        display: flex;
-        justify-content: flex-end;
+      .MessageBlock {
+        text-align: right;
       }
     }
   }
 }
 
 .Author {
+  display: inline;
   font-size: 12px;
   font-weight: 600;
   margin: 0 10px;
@@ -24,4 +23,9 @@
 
 .MessageBlock {
   margin: 0 10px;
+}
+
+.Messages {
+  display: flex;
+  flex-direction: column;
 }
