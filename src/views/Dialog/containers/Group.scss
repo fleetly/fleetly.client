@@ -2,13 +2,13 @@
   align-items: flex-end;
   display: flex;
   flex-direction: row;
-  margin: 10px 0 0 0;
+  margin: 10px 0 0;
 
   &Variant {
     &Outcoming {
       flex-direction: row-reverse;
 
-      .UserName {
+      .Author {
         display: flex;
         justify-content: flex-end;
       }
@@ -16,7 +16,7 @@
   }
 }
 
-.UserName {
+.Author {
   font-size: 12px;
   font-weight: 600;
   margin: 0 10px;

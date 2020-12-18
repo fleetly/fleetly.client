@@ -2,9 +2,6 @@ import classNames from 'classnames';
 import moment from 'moment';
 import * as React from 'react';
 
-// Components
-import Avatar from '@components/Avatar';
-
 // Styles
 import styles from './DialogMessage.scss';
 
@@ -18,7 +15,7 @@ const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
       [styles.RootVariantOutcoming]: status
     })}
   >
-    <div className={styles.Message}>{text}</div>
+    <div className={styles.Text}>{text}</div>
     <div className={styles.Date}>
       {moment(date).format('HH:mm')}
       {!!status && (
@@ -31,7 +28,7 @@ const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
               'fa-check-double': status !== 'sent'
             },
             {
-              [styles.StatusVariantRead]: status === 'read'
+              [styles.StatusIsRead]: status === 'read'
             }
           )}
         />

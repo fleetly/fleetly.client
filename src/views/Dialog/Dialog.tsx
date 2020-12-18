@@ -1,16 +1,14 @@
 import * as React from 'react';
 
 // Containers
-import Group from './containers/DialogGroup';
-import Message from './containers/DialogMessage';
-import Title from './containers/DialogTitle';
+import Header from './containers/DialogHeader';
+import Group from './containers/Group';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
 
 // Styles
 import styles from './Dialog.scss';
-import { groupCSS } from 'react-select/src/components/Group';
 
 const TEST = [
   {
@@ -144,8 +142,8 @@ const Dialog = () => (
   <Page title="Chat">
     <Wrapper classes={{ container: styles.Root }} title="Chat">
       <div className={styles.Chat}>
-        <Title />
-        <div className={styles.MessageBlock}>
+        <Header />
+        <div className={styles.Message}>
           {TEST.map(({ posts, user, subscriber, variant }, index: number) => (
             <Group
               key={index}

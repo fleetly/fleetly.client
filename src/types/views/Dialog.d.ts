@@ -6,8 +6,13 @@ declare namespace Dialog {
     date: Date;
     text?: string;
     status?: 'delivered' | 'read' | 'sent';
+  }
+
+  interface DialogGroupProps {
+    posts: DialogMessageProps;
     subscriber?: ICompanySubscriber;
     user?: IUser;
+    variant?: string;
   }
 }
 

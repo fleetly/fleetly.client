@@ -8,9 +8,14 @@ import Message from './DialogMessage';
 import Avatar from '@components/Avatar';
 
 // Styles
-import styles from './DialogGroup.scss';
+import styles from './Group.scss';
 
-const DialogGroup = ({ posts, user, subscriber, variant }) => (
+const DialogGroup: React.FC<Dialog.DialogGroupProps> = ({
+  posts,
+  user,
+  subscriber,
+  variant
+}) => (
   <div
     className={classNames(styles.Root, {
       [styles.RootVariantOutcoming]: variant
@@ -18,7 +23,7 @@ const DialogGroup = ({ posts, user, subscriber, variant }) => (
   >
     <Avatar classes={{ root: styles.Avatar }} />
     <div className={styles.MessageBlock}>
-      <div className={styles.UserName}>
+      <div className={styles.Author}>
         {user
           ? user.firstname + ' ' + user.lastname
           : subscriber.firstname + ' ' + subscriber.lastname}
