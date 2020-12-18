@@ -10,6 +10,10 @@
       .MessageBlock {
         text-align: right;
       }
+
+      .Messages {
+        align-items: flex-end;
+      }
     }
   }
 }
@@ -26,6 +30,7 @@
 }
 
 .Messages {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
