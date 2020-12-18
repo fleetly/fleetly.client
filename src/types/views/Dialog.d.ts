@@ -9,7 +9,7 @@ declare namespace Dialog {
   }
 
   interface DialogGroupProps {
-    posts: DialogMessageProps;
+    posts: DialogMessageProps[];
     subscriber?: ICompanySubscriber;
     user?: IUser;
     variant?: string;
