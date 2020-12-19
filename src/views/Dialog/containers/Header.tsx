@@ -5,29 +5,25 @@ import Avatar from '@components/Avatar';
 import Button from '@components/Button';
 
 // Styles
-import styles from './DialogHeader.scss';
+import styles from './Header.scss';
 
 const DialogHeader = () => (
   <div className={styles.Root}>
-    <div className={styles.InfoBlock}>
+    <div className={styles.Subscriber}>
       <Avatar />
       <div className={styles.Info}>
-        <div className={styles.Subscriber}>Firstname Lastname</div>
+        <div className={styles.SubscriberName}>Firstname Lastname</div>
         <div className={styles.Online}>Last online</div>
       </div>
     </div>
 
-    <div className={styles.Action}>
+    <div className={styles.Actions}>
       <Button
-        className={styles.Search}
+        className={styles.Action}
         icon="far fa-search"
         variant="outlined"
       />
-      <Button
-        className={styles.Notification}
-        icon="far fa-bell"
-        variant="outlined"
-      />
+      <Button className={styles.Action} icon="far fa-bell" variant="outlined" />
       <Button color="primary">Confirm</Button>
     </div>
   </div>

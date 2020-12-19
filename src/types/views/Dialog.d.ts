@@ -4,14 +4,17 @@ declare namespace Dialog {
 
   interface DialogMessageProps {
     date: Date;
+    id: number;
     text?: string;
     status?: 'delivered' | 'read' | 'sent';
   }
 
   interface DialogGroupProps {
+    author: {
+      subscriber?: ICompanySubscriber;
+      user?: IUser;
+    };
     posts: DialogMessageProps[];
-    subscriber?: ICompanySubscriber;
-    user?: IUser;
     variant?: string;
   }
 }

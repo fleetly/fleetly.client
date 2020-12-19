@@ -3,7 +3,7 @@ import moment from 'moment';
 import * as React from 'react';
 
 // Styles
-import styles from './DialogMessage.scss';
+import styles from './Message.scss';
 
 const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
   date,

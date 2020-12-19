@@ -7,7 +7,7 @@
     &Outcoming {
       flex-direction: row-reverse;
 
-      .MessageBlock {
+      .MessageGroup {
         text-align: right;
       }
 
@@ -25,7 +25,7 @@
   margin: 0 10px;
 }
 
-.MessageBlock {
+.MessageGroup {
   margin: 0 10px;
   width: 100%;
 }

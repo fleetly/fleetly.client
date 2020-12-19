@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 // Containers
-import Message from './DialogMessage';
+import Message from './Message';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -11,9 +11,8 @@ import Avatar from '@components/Avatar';
 import styles from './Group.scss';
 
 const DialogGroup: React.FC<Dialog.DialogGroupProps> = ({
+  author,
   posts,
-  user,
-  subscriber,
   variant
 }) => (
   <div
@@ -22,15 +21,15 @@ const DialogGroup: React.FC<Dialog.DialogGroupProps> = ({
     })}
   >
     <Avatar classes={{ root: styles.Avatar }} />
-    <div className={styles.MessageBlock}>
+    <div className={styles.MessageGroup}>
       <div className={styles.Author}>
-        {user
-          ? user.firstname + ' ' + user.lastname
-          : subscriber.firstname + ' ' + subscriber.lastname}
+        {author.user
+          ? author?.user?.firstname + ' ' + author?.user?.lastname
+          : author?.subscriber?.firstname + ' ' + author?.subscriber?.lastname}
       </div>
       <div className={styles.Messages}>
-        {posts.map(({ date, status, text }, index: number) => (
-          <Message date={date} key={index} text={text} status={status} />
+        {posts.map(({ ...message }) => (
+          <Message key={message.id} {...message} />
         ))}
       </div>
     </div>
