@@ -12,13 +12,8 @@ import styles from './Dialog.scss';
 
 const TEST = [
   {
-    author: {
-      user: {
-        firstname: 'Test',
-        lastname: 'Test'
-      }
-    },
-    posts: [
+    author: 'Test Test',
+    children: [
       {
         date: new Date(),
         id: 1,
@@ -44,16 +39,12 @@ const TEST = [
         id: 5,
         text: '123412341234'
       }
-    ]
+    ],
+    variant: 'incoming'
   },
   {
-    author: {
-      subscriber: {
-        firstname: 'Test',
-        lastname: 'Read'
-      }
-    },
-    posts: [
+    author: 'Test Read',
+    children: [
       {
         date: new Date(),
         id: 6,
@@ -86,16 +77,11 @@ const TEST = [
       }
     ],
 
-    variant: 'sent'
+    variant: 'outcoming'
   },
   {
-    author: {
-      subscriber: {
-        firstname: 'Test',
-        lastname: 'Delivered'
-      }
-    },
-    posts: [
+    author: 'Test Delivered',
+    children: [
       {
         date: new Date(),
         id: 11,
@@ -129,16 +115,11 @@ const TEST = [
           '123412341234 sadjfas dfas df asd fas df as df as f weqr fgsa dg sadf g sd fgsd fg sdf gs df g sdf gs dfgsd fg d 123412341234 sadjfas dfas df asd fas df as df as f weqr fgsa dg sadf g sd fgsd fg sdf gs df g sdf gs dfgsd fg d'
       }
     ],
-    variant: 'sent'
+    variant: 'outcoming'
   },
   {
-    author: {
-      subscriber: {
-        firstname: 'Test',
-        lastname: 'Sent'
-      }
-    },
-    posts: [
+    author: 'Test Sent',
+    children: [
       {
         date: new Date(),
         id: 16,
@@ -165,7 +146,20 @@ const TEST = [
         text:
           '123412341234 sadjfas dfas df asd fas df as df as f weqr fgsa dg sadf g sd fgsd fg sdf gs df g sdf gs dfgsd fg d 123412341234 sadjfas dfas df asd fas df as df as f weqr fgsa dg sadf g sd fgsd fg sdf gs df g sdf gs dfgsd fg d'
       }
-    ]
+    ],
+    variant: 'incoming'
+  },
+  {
+    author: 'Test Comment',
+    children: [
+      {
+        date: new Date(),
+        id: 21,
+        text:
+          '123412341234 sadjfas dfas df asd fas df as df as f weqr fgsa dg sadf g sd fgsd fg sdf gs df g sdf gs dfgsd fg d 123412341234 sadjfas dfas df asd fas df as df as f weqr fgsa dg sadf g sd fgsd fg sdf gs df g sdf gs dfgsd fg d'
+      }
+    ],
+    variant: 'comment'
   }
 ];
 

@@ -2,20 +2,21 @@ declare namespace Dialog {
   import ICompanySubscriber from '@fleetly/common';
   import IUser from '@interfaces/user.interfaces';
 
+  type Variant = 'comment' | 'incoming' | 'outcoming';
+
   interface DialogMessageProps {
     date: Date;
-    id: number;
+    id: string;
     text?: string;
     status?: 'delivered' | 'read' | 'sent';
+    variant: Variant;
   }
 
   interface DialogGroupProps {
-    author: {
-      subscriber?: ICompanySubscriber;
-      user?: IUser;
-    };
-    posts: DialogMessageProps[];
-    variant?: string;
+    avatar?: string;
+    author?: string;
+    children: DialogMessageProps[];
+    variant: Variant;
   }
 }
 
