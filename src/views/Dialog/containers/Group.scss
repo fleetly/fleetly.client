@@ -1,3 +1,5 @@
+@import '~@styles/colors.scss';
+
 .Root {
   align-items: flex-end;
   display: flex;
@@ -7,8 +9,10 @@
     &Comment {
       .Author {
         align-items: center;
+        border-bottom: 2px solid $color-green-500;
         display: flex;
         justify-content: flex-end;
+        padding: 0 0 10px 0;
       }
 
       .Avatar {
