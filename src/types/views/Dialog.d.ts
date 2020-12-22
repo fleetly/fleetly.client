@@ -14,7 +14,7 @@ declare namespace Dialog {
 
   interface DialogGroupProps {
     avatar?: string;
-    author?: string;
+    author: string;
     children: DialogMessageProps[];
     variant: Variant;
   }

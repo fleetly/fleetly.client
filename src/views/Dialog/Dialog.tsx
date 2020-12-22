@@ -175,7 +175,7 @@ const Dialog = () => (
       <div className={styles.Chat}>
         <Header />
         <div className={styles.Message}>
-          {TEST.map(({ ...item }, index: number) => (
+          {TEST.map((item: any, index: number) => (
             <Group {...item} key={index} />
           ))}
         </div>
