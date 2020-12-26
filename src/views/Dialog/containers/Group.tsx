@@ -10,7 +10,7 @@ import Avatar from '@components/Avatar';
 // Styles
 import styles from './Group.scss';
 
-const DialogGroup: React.FC<Dialog.DialogGroupProps> = ({
+const DialogGroup: React.FC<Dialog.GroupProps> = ({
   author,
   children,
   variant
@@ -22,13 +22,13 @@ const DialogGroup: React.FC<Dialog.DialogGroupProps> = ({
     })}
   >
     {variant !== 'comment' && <Avatar classes={{ root: styles.Avatar }} />}
-    <div className={styles.MessageGroup}>
+    <div className={styles.Messages}>
       <div className={styles.Author}>
         {variant === 'comment' && <div className={styles.Title}>Comment</div>}
         <div>{author}</div>
-        <Avatar classes={{ root: styles.Avatar }} />
+        {variant === 'comment' && <Avatar classes={{ root: styles.Avatar }} />}
       </div>
-      <div className={styles.Messages}>
+      <div className={styles.MessagesBlock}>
         {children.map(({ ...message }) => (
           <Message key={message.id} {...message} variant={variant} />
         ))}

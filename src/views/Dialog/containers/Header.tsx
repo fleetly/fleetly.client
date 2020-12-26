@@ -12,7 +12,7 @@ const DialogHeader = () => (
     <div className={styles.Subscriber}>
       <Avatar />
       <div className={styles.Info}>
-        <div className={styles.SubscriberName}>Firstname Lastname</div>
+        Firstname Lastname
         <div className={styles.Online}>Last online</div>
       </div>
     </div>

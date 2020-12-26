@@ -5,7 +5,7 @@ import * as React from 'react';
 // Styles
 import styles from './Message.scss';
 
-const DialogMessage: React.FC<Dialog.DialogMessageProps> = ({
+const DialogMessage: React.FC<Dialog.MessageProps> = ({
   date,
   status,
   text,
