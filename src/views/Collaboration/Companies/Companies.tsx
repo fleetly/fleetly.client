@@ -1,3 +1,4 @@
+import { Role } from '@fleetly/common/dist/enums';
 import * as React from 'react';
 
 // Components
@@ -10,12 +11,17 @@ import { Wrapper } from '@components/Page';
 // Constants
 import { ROLES } from '@constants';
 
+// Hooks
+import { useCollaborationCompaniesView } from './Companies.hooks';
+
 // Utils
 import { convertToColor } from '@utils/string';
 
 const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
   data
 }) => {
+  const { handleLeaveClick } = useCollaborationCompaniesView();
+
   const columns = React.useMemo(
     () => [
       {
@@ -43,17 +49,23 @@ const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
         Header: 'Role'
       },
       {
-        accessor: 'leave',
-        Cell: ({ value }: any) => (
-          <Button data-company-id={value} color="danger" variant="outlined">
-            Leave
-          </Button>
-        ),
+        accessor: 'id',
+        Cell: ({ row, value }: any) =>
+          row?.original?.role !== 'OWNER' && (
+            <Button
+              color="danger"
+              data-company-id={value}
+              onClick={handleLeaveClick}
+              variant="outlined"
+            >
+              Leave
+            </Button>
+          ),
         Header: 'Leave',
         maxWidth: 120
       }
     ],
-    []
+    [handleLeaveClick]
   );
 
   return (
