@@ -1,0 +1,50 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 0;
+}
+
+.Author {
+  font-weight: 600;
+  margin: 0 0 0 10px;
+}
+
+.Avatar {
+  margin: 0 0 0 20px;
+}
+
+.Date {
+  color: $color-gray-600;
+  font-size: 12px;
+}
+
+.Header {
+  border-bottom: 2px solid $color-green-500;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 0 22px 0;
+  position: relative;
+  width: 100%;
+}
+
+.Info {
+  align-items: center;
+  bottom: 10px;
+  display: flex;
+  position: absolute;
+}
+
+.Text {
+  margin: 16px 0 0 0;
+  max-width: 80%;
+  text-align: center;
+}
+
+.Title {
+  font-size: 12px;
+  font-weight: 600;
+  margin: auto;
+}

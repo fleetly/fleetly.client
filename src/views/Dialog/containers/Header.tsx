@@ -24,7 +24,9 @@ const DialogHeader = () => (
         variant="outlined"
       />
       <Button className={styles.Action} icon="far fa-bell" variant="outlined" />
-      <Button color="primary">Confirm</Button>
+      <Button color="primary" className={styles.Confirm}>
+        Confirm
+      </Button>
     </div>
   </div>
 );

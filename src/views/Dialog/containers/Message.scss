@@ -8,18 +8,6 @@
   padding: 8px 12px;
 
   &Variant {
-    &Comment {
-      background: none;
-      display: flex;
-      justify-content: center;
-      width: 100%;
-
-      .Text {
-        max-width: 80%;
-        text-align: center;
-      }
-    }
-
     &Incoming,
     &Outcoming {
       max-width: 70%;

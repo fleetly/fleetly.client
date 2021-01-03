@@ -13,7 +13,6 @@ const DialogMessage: React.FC<Dialog.MessageProps> = ({
 }) => (
   <div
     className={classNames(styles.Root, {
-      [styles.RootVariantComment]: variant === 'comment',
       [styles.RootVariantIncoming]: variant === 'incoming',
       [styles.RootVariantOutcoming]: variant === 'outcoming'
     })}

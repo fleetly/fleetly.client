@@ -17,16 +17,13 @@ const DialogGroup: React.FC<Dialog.GroupProps> = ({
 }) => (
   <div
     className={classNames(styles.Root, {
-      [styles.RootVariantComment]: variant === 'comment',
       [styles.RootVariantOutcoming]: variant === 'outcoming'
     })}
   >
-    {variant !== 'comment' && <Avatar classes={{ root: styles.Avatar }} />}
+    <Avatar classes={{ root: styles.Avatar }} />
     <div className={styles.Messages}>
       <div className={styles.Author}>
-        {variant === 'comment' && <div className={styles.Title}>Comment</div>}
         <div>{author}</div>
-        {variant === 'comment' && <Avatar classes={{ root: styles.Avatar }} />}
       </div>
       <div className={styles.MessagesBlock}>
         {children.map(({ ...message }) => (

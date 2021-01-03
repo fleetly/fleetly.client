@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 // Containers
+import Comment from './containers/Comment';
 import Header from './containers/Header';
 import Group from './containers/Group';
 
@@ -22,6 +23,13 @@ const Dialog = () => (
           {TEST.map((item: any, index: number) => (
             <Group {...item} key={index} />
           ))}
+
+          <Comment
+            date={new Date()}
+            id="11"
+            text="Test text"
+            author="Test Author"
+          />
         </div>
       </div>
     </Wrapper>

@@ -6,24 +6,6 @@
   margin: 10px 0 0;
 
   &Variant {
-    &Comment {
-      .Author {
-        align-items: center;
-        border-bottom: 2px solid $color-green-500;
-        display: flex;
-        justify-content: flex-end;
-        padding: 0 0 10px 0;
-      }
-
-      .Avatar {
-        margin: 0 0 0 20px;
-      }
-
-      .Title {
-        margin: auto;
-      }
-    }
-
     &Outcoming {
       flex-direction: row-reverse;
 
@@ -42,6 +24,10 @@
   font-size: 12px;
   font-weight: 600;
   margin: 0 10px;
+}
+
+.Avatar {
+  flex: 0 0 40px;
 }
 
 .Messages {
