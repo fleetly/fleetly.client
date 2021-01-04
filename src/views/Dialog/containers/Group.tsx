@@ -12,22 +12,24 @@ import styles from './Group.scss';
 
 const DialogGroup: React.FC<Dialog.GroupProps> = ({
   author,
-  children,
-  variant
+  isIncoming,
+  messages
 }) => (
   <div
     className={classNames(styles.Root, {
-      [styles.RootVariantOutcoming]: variant === 'outcoming'
+      [styles.RootVariantIncoming]: !isIncoming
     })}
   >
-    <Avatar classes={{ root: styles.Avatar }} />
+    <Avatar src={author?.photo} classes={{ root: styles.Avatar }} />
     <div className={styles.Messages}>
       <div className={styles.Author}>
-        <div>{author}</div>
+        <div>
+          {author?.firstname} {author?.lastname}
+        </div>
       </div>
       <div className={styles.MessagesBlock}>
-        {children.map(({ ...message }) => (
-          <Message key={message.id} {...message} variant={variant} />
+        {messages?.map(({ ...message }) => (
+          <Message key={message.id} {...message} isIncoming={isIncoming} />
         ))}
       </div>
     </div>

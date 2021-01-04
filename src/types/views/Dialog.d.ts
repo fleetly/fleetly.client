@@ -1,20 +1,30 @@
 declare namespace Dialog {
   type MessageVariant = 'comment' | 'incoming' | 'outcoming';
 
+  interface Author {
+    firstname?: string;
+    lastname?: string;
+    photo?: string;
+    username?: string;
+  }
+
   interface MessageProps {
-    author?: string;
-    date: Date;
+    author?: Author;
+    chatId?: string;
+    date?: Date;
     id?: string;
+    isComment?: boolean;
+    isIncoming?: boolean;
     status?: 'delivered' | 'read' | 'sent';
     text?: string;
-    variant?: MessageVariant;
   }
 
   interface GroupProps {
-    avatar?: string;
-    author?: string;
-    children: DialogMessageProps[];
-    variant: MessageVariant;
+    author?: Author;
+    isIncoming?: boolean;
+    messages?: MessageProps[];
+    variant?: MessageVariant;
+    status?: string;
   }
 }
 

@@ -8,14 +8,14 @@ import Group from './Group';
 import styles from './Date.scss';
 
 // Test
-import TEST from '../Test.js';
+import TEST from '../test/Test';
 
 const DialogDate: React.FC<Dialog.MessageProps> = ({ date }) => (
   <div className={styles.Root}>
-    <div className={styles.Title}>{moment(date).format('Do MMMM')}</div>
+    <div className={styles.Title}>{moment(date).format('D MMMM')}</div>
     <div className={styles.Messages}>
-      {TEST.map((item: any, index: number) => (
-        <Group {...item} key={index} />
+      {TEST.map(({ ...item }, index: number) => (
+        <Group key={index} {...(item as any)} />
       ))}
     </div>
   </div>

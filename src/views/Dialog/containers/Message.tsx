@@ -7,14 +7,13 @@ import styles from './Message.scss';
 
 const DialogMessage: React.FC<Dialog.MessageProps> = ({
   date,
+  isIncoming,
   status,
-  text,
-  variant
+  text
 }) => (
   <div
     className={classNames(styles.Root, {
-      [styles.RootVariantIncoming]: variant === 'incoming',
-      [styles.RootVariantOutcoming]: variant === 'outcoming'
+      [styles.RootVariantOutcoming]: !isIncoming
     })}
   >
     <div className={styles.Text}>{text}</div>
