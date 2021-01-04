@@ -4,7 +4,7 @@ declare namespace Dialog {
   interface MessageProps {
     author?: string;
     date: Date;
-    id: string;
+    id?: string;
     status?: 'delivered' | 'read' | 'sent';
     text?: string;
     variant?: MessageVariant;
