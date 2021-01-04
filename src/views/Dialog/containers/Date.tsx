@@ -10,7 +10,7 @@ import styles from './Date.scss';
 // Test
 import TEST from '../Test.js';
 
-const DialogDate = ({ date }) => (
+const DialogDate: React.FC<Dialog.MessageProps> = ({ date }) => (
   <div className={styles.Root}>
     <div className={styles.Title}>{moment(date).format('Do MMMM')}</div>
     <div className={styles.Messages}>
