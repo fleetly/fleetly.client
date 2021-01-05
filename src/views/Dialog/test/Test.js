@@ -82,6 +82,19 @@ const TEST = [
         text: 'Test incoming message'
       }
     ]
+  },
+  {
+    id: '10',
+    author: {
+      firstname: 'Демис',
+      lastname: 'Карибидис',
+      photo: 'https://i.ytimg.com/vi/bwSUhBrKAe8/maxresdefault.jpg',
+      username: 'demis'
+    },
+    chatId: '11',
+    date: new Date(),
+    isComment: true,
+    text: 'Ты на него посмотри!!!! Ля ты крыса!!!'
   }
 ];
 

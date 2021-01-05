@@ -1,6 +1,11 @@
+@import '~@styles/colors.scss';
+
 .Root {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0 30px;
+}
+
+.Message {
+  padding: 0 32px;
 }

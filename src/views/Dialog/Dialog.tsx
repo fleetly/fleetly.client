@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 // Containers
-import Comment from './containers/Comment';
 import DateGroup from './containers/Date';
 import Header from './containers/Header';
 
@@ -18,13 +17,6 @@ const Dialog = () => (
         <Header />
         <div className={styles.Message}>
           <DateGroup date={new Date()} />
-
-          <Comment
-            date={new Date()}
-            id="11"
-            text="Test text"
-            author="Test Author"
-          />
         </div>
       </div>
     </Wrapper>

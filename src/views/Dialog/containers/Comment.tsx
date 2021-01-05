@@ -17,8 +17,10 @@ const DialogComment: React.FC<Dialog.MessageProps> = ({
       <div className={styles.Title}>Comment</div>
       <div className={styles.Info}>
         <div className={styles.Date}>{moment(date).format('HH:mm')}</div>
-        <div className={styles.Author}>{author}</div>
-        <Avatar classes={{ root: styles.Avatar }} />
+        <div className={styles.Author}>
+          {author?.firstname} {author?.lastname}
+        </div>
+        <Avatar src={author?.photo} classes={{ root: styles.Avatar }} />
       </div>
     </div>
     <div className={styles.Text}>{text}</div>
