@@ -11,21 +11,19 @@
 
 .Action {
   border: none;
-  margin: 0 12px 0 0;
 }
 
 .Actions {
   align-items: center;
   display: flex;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 12px;
+  }
 }
 
-.Info {
+.Name {
   margin: 0 0 0 20px;
-}
-
-.Online {
-  color: $color-gray-600;
-  font-size: 12px;
 }
 
 .Subscriber {

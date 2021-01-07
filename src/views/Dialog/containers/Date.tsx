@@ -11,12 +11,16 @@ import styles from './Date.scss';
 // Test
 import TEST from '../test/Test';
 
-const DialogDate: React.FC<Dialog.MessageProps> = ({ date }) => (
+const DialogDate: React.FC<Dialog.DateProps> = ({ date }) => (
   <div className={styles.Root}>
     <div className={styles.Title}>{moment(date).format('D MMMM')}</div>
     <div className={styles.Messages}>
       {TEST.map(({ isComment, ...item }) =>
-        isComment ? <Comment {...item} /> : <Group {...(item as any)} />
+        isComment ? (
+          <Comment {...(item as any)} />
+        ) : (
+          <Group {...(item as any)} />
+        )
       )}
     </div>
   </div>

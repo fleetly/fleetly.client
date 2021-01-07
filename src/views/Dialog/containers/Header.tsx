@@ -7,13 +7,12 @@ import Button from '@components/Button';
 // Styles
 import styles from './Header.scss';
 
-const DialogHeader = () => (
+const DialogHeader: React.FC<Dialog.HeaderProps> = ({ subscriber }) => (
   <div className={styles.Root}>
     <div className={styles.Subscriber}>
-      <Avatar />
-      <div className={styles.Info}>
-        Firstname Lastname
-        <div className={styles.Online}>Last online</div>
+      <Avatar src={subscriber?.photo} sourceType={subscriber.type} />
+      <div className={styles.Name}>
+        {subscriber?.firstname} {subscriber?.lastname}
       </div>
     </div>
 

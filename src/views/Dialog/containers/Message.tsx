@@ -11,11 +11,7 @@ const DialogMessage: React.FC<Dialog.MessageProps> = ({
   status,
   text
 }) => (
-  <div
-    className={classNames(styles.Root, {
-      [styles.RootVariantOutcoming]: !isIncoming
-    })}
-  >
+  <div className={classNames(styles.Root, isIncoming && styles.RootIsIncoming)}>
     <div className={styles.Text}>{text}</div>
     <div className={styles.Date}>
       {moment(date).format('HH:mm')}
@@ -24,13 +20,8 @@ const DialogMessage: React.FC<Dialog.MessageProps> = ({
           className={classNames(
             styles.Status,
             'far',
-            {
-              'fa-check': status === 'sent',
-              'fa-check-double': status !== 'sent'
-            },
-            {
-              [styles.StatusIsRead]: status === 'read'
-            }
+            `fa-check${status !== 'sent' ? '-double' : ''}`,
+            status === 'read' && styles.StatusIsRead
           )}
         />
       )}

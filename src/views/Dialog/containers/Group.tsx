@@ -21,13 +21,11 @@ const DialogGroup: React.FC<Dialog.GroupProps> = ({
     })}
   >
     <Avatar src={author?.photo} classes={{ root: styles.Avatar }} />
-    <div className={styles.Messages}>
+    <div className={styles.Container}>
       <div className={styles.Author}>
-        <div>
-          {author?.firstname} {author?.lastname}
-        </div>
+        {author.firstname} {author.lastname}
       </div>
-      <div className={styles.MessagesBlock}>
+      <div className={styles.Messages}>
         {messages?.map(({ ...message }) => (
           <Message key={message.id} {...message} isIncoming={isIncoming} />
         ))}

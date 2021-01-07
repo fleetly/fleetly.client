@@ -10,11 +10,11 @@
       flex-direction: row-reverse;
 
       .Messages {
-        text-align: right;
+        align-items: flex-end;
+      }
 
-        &Block {
-          align-items: flex-end;
-        }
+      .Author {
+        text-align: right;
       }
     }
   }
@@ -23,20 +23,26 @@
 .Author {
   font-size: 12px;
   font-weight: 600;
-  margin: 0 10px;
+  margin: 12px;
 }
 
 .Avatar {
-  flex: 0 0 40px;
+  flex: 0 0 32px;
+  height: 32px;
+}
+
+.Container {
+  margin: 0 10px;
+  width: 100%;
 }
 
 .Messages {
-  margin: 0 10px;
-  width: 100%;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
 
-  &Block {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
+  & > *:not(:first-child) {
+    margin: 4px 0 0;
+    max-width: 80%;
   }
 }

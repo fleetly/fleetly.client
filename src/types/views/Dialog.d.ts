@@ -1,6 +1,7 @@
-declare namespace Dialog {
-  type MessageVariant = 'comment' | 'incoming' | 'outcoming';
+// Interfaces
+import { ISubscriberSource } from '@interfaces/subscriber.interface';
 
+declare namespace Dialog {
   interface Author {
     firstname?: string;
     lastname?: string;
@@ -8,23 +9,32 @@ declare namespace Dialog {
     username?: string;
   }
 
+  interface CommentProps {
+    author: Author;
+    date: Date;
+    text: string;
+  }
+
+  interface DateProps {
+    children?: React.ReactNode;
+    date: Date;
+  }
+
+  interface HeaderProps {
+    subscriber: ISubscriberSource;
+  }
+
   interface MessageProps {
-    author?: Author;
-    chatId?: string;
     date?: Date;
-    id?: string;
-    isComment?: boolean;
     isIncoming?: boolean;
     status?: 'delivered' | 'read' | 'sent';
-    text?: string;
+    text: string;
   }
 
   interface GroupProps {
-    author?: Author;
+    author: Author;
     isIncoming?: boolean;
-    messages?: MessageProps[];
-    variant?: MessageVariant;
-    status?: string;
+    messages: MessageProps[];
   }
 }
 
