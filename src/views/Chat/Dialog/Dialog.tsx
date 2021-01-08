@@ -6,7 +6,7 @@ import Header from './containers/Header';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
-import { Source } from '@fleetly/common/dist/enums';
+import { MessagePolicy, Source } from '@fleetly/common/dist/enums';
 
 // Styles
 import styles from './Dialog.scss';
@@ -22,7 +22,8 @@ const SUBSCRIBER = {
       'https://abakan-news.ru/wp-content/uploads/2018/03/-e1520919096875.jpg',
     type: Source.TELEGRAM,
     username: 'ivan095'
-  }
+  },
+  messagePolicy: MessagePolicy.ALLOWED
 };
 
 const Dialog = () => (
