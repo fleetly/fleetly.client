@@ -13,8 +13,10 @@ const DialogMessage: React.FC<Dialog.MessageProps> = ({
 }) => (
   <div className={classNames(styles.Root, isIncoming && styles.RootIsIncoming)}>
     <div className={styles.Text}>{text}</div>
+
     <div className={styles.Date}>
       {moment(date).format('HH:mm')}
+
       {!!status && (
         <i
           className={classNames(

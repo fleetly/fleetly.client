@@ -2,10 +2,10 @@ import { MessagePolicy, Source } from '@fleetly/common';
 
 export interface ISubscriber {
   id: string;
-  fields: ISubscriberField[];
-  messagePolicy: MessagePolicy;
+  fields?: ISubscriberField[];
+  messagePolicy?: MessagePolicy;
   source: ISubscriberSource;
-  tags: string[];
+  tags?: string[];
 }
 
 export interface ISubscriberField {

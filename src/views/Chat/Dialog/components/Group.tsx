@@ -25,6 +25,7 @@ const DialogGroup: React.FC<Dialog.GroupProps> = ({
       <div className={styles.Author}>
         {author.firstname} {author.lastname}
       </div>
+
       <div className={styles.Messages}>
         {messages?.map(({ ...message }, index: number) => (
           <Message key={index} {...message} isIncoming={isIncoming} />

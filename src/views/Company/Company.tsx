@@ -18,7 +18,7 @@ import styles from './Company.scss';
 import Channel from '@views/Channel';
 import Channels from '@views/Channels';
 import Collaborators from '@views/Collaborators';
-import Dialog from '@views/Dialog';
+import { Dialog } from '@views/Chat';
 import General from '@views/General';
 import Fields from '@views/Fields';
 import Subscribers from '@views/Subscribers';

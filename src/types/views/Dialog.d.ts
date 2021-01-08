@@ -1,5 +1,5 @@
 // Interfaces
-import { ISubscriberSource } from '@interfaces/subscriber.interface';
+import { ISubscriber } from '@interfaces/subscriber.interface';
 
 declare namespace Dialog {
   interface Author {
@@ -16,16 +16,16 @@ declare namespace Dialog {
   }
 
   interface DateProps {
-    children?: React.ReactNode;
+    groups?: GroupProps[];
     date: Date;
   }
 
   interface HeaderProps {
-    subscriber: ISubscriberSource;
+    subscriber: ISubscriber;
   }
 
   interface MessageProps {
-    date?: Date;
+    date: Date;
     isIncoming?: boolean;
     status?: 'delivered' | 'read' | 'sent';
     text: string;
