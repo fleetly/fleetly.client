@@ -11,7 +11,6 @@ import { useNotifications } from '@store';
 // Styles
 import styles from './Bar.scss';
 import { getClassName } from '@utils/styles';
-import { time } from 'console';
 
 const NotificationsBar: React.FC<Notifications.BarProps> = ({
   description,
