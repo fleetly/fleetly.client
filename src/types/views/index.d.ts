@@ -11,3 +11,4 @@ export * from './Security';
 export * from './Sign';
 export * from './Subscribers';
 export * from './Tags';
+export * from './Thread';

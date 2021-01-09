@@ -6,7 +6,7 @@ import Header from './containers/Header';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
-import { MessagePolicy, Source } from '@fleetly/common/dist/enums';
+import { MessagePolicy } from '@fleetly/common/dist/enums';
 
 // Styles
 import styles from './Dialog.scss';
@@ -20,7 +20,7 @@ const SUBSCRIBER = {
     link: 'https://vk.com',
     photo:
       'https://abakan-news.ru/wp-content/uploads/2018/03/-e1520919096875.jpg',
-    type: Source.TELEGRAM,
+    type: 'VK',
     username: 'ivan095'
   },
   messagePolicy: MessagePolicy.ALLOWED

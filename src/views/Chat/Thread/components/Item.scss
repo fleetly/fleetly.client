@@ -1,0 +1,55 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  display: flex;
+  height: 40px;
+  margin: 0 0 30px;
+  padding: 0 10px;
+}
+
+.Author,
+.LastMessage {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Avatar {
+  flex: 0 0 40px;
+  height: 40px;
+}
+
+.Counter {
+  border: 1px solid $color-gray-500;
+  border-radius: 12px;
+  color: $color-gray-500;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+}
+
+.Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 0 0 20px;
+  width: 100%;
+}
+
+.LastDate {
+  color: $color-gray-500;
+  font-size: 12px;
+}
+
+.Message {
+  color: $color-gray-500;
+  font-size: 12px;
+  max-width: 188px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Name {
+  font-weight: 600;
+}

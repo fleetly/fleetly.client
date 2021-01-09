@@ -18,7 +18,7 @@ import styles from './Company.scss';
 import Channel from '@views/Channel';
 import Channels from '@views/Channels';
 import Collaborators from '@views/Collaborators';
-import { Dialog } from '@views/Chat';
+import Chat from '@views/Chat';
 import General from '@views/General';
 import Fields from '@views/Fields';
 import Subscribers from '@views/Subscribers';
@@ -126,7 +126,7 @@ const Company: React.FC<{}> = () => {
         <Switch>
           <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
-          <Route component={Dialog} path={ROUTES.COMPANY.CHAT} />
+          <Route component={Chat} path={ROUTES.COMPANY.CHAT} />
           <Route
             component={Collaborators}
             path={ROUTES.COMPANY.COLLABORATORS}
