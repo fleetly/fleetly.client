@@ -1,5 +1,6 @@
 const data = [
   {
+    counter: 2,
     id: '1234',
     lastMessage: 'Работать негры!',
     subscriber: {
@@ -29,6 +30,7 @@ const data = [
     }
   },
   {
+    counter: 14,
     id: '1234',
     lastMessage: 'Макет готов',
     subscriber: {

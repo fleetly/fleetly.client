@@ -7,6 +7,7 @@ import Avatar from '@components/Avatar';
 import styles from './Item.scss';
 
 const Item: React.FC<Chat.Threads.ItemProps> = ({
+  counter,
   lastMessage,
   subscriber
 }) => (
@@ -28,7 +29,7 @@ const Item: React.FC<Chat.Threads.ItemProps> = ({
 
       <div className={styles.Row}>
         <div className={styles.Message}>{lastMessage}</div>
-        <div className={styles.Counter}>999+</div>
+        {counter && <div className={styles.Counter}>{counter}</div>}
       </div>
     </div>
   </div>
