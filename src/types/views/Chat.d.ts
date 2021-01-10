@@ -40,6 +40,7 @@ declare namespace Chat {
 
   namespace Threads {
     interface ItemProps {
+      counter?: string;
       id: string;
       isConversation?: boolean;
       lastMessage: MessageProps;
