@@ -28,7 +28,7 @@ const Item: React.FC<Chat.Threads.ItemProps> = ({
 
       <div className={styles.Row}>
         <div className={styles.Message}>{lastMessage}</div>
-        <div className={styles.Counter}>12</div>
+        <div className={styles.Counter}>999+</div>
       </div>
     </div>
   </div>

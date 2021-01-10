@@ -1,7 +1,7 @@
 .Root {
   display: flex;
   flex-direction: column;
-  max-width: 380px;
+  width: 100%;
 }
 
 .Action {
@@ -12,15 +12,11 @@
 .Actions {
   align-items: center;
   display: flex;
-  margin: 0 0 0 34px;
+  margin: 0 0 0 4px;
 
   & > :last-child {
     margin: 0 0 0 10px;
   }
-}
-
-.Container {
-  padding: 0 30px;
 }
 
 .Find {

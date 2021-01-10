@@ -21,7 +21,8 @@ const data = [
       source: {
         firstname: 'Nikita',
         lastname: 'Urbanovich',
-        photo: 'https://bigpicture.ru/wp-content/uploads/2014/11/34.jpg',
+        photo:
+          'https://sun1-16.userapi.com/impf/c855628/v855628268/105fce/6j9kiQxYbBA.jpg?size=200x0&quality=96&crop=2,395,1616,1616&sign=61f8a31aee672be25b22bdc7f8fed383&ava=1',
         type: 'TELEGRAM',
         username: 'nikita'
       }
