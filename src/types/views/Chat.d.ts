@@ -8,42 +8,46 @@ declare namespace Chat {
     username?: string;
   }
 
-  interface CommentProps {
-    author: Author;
-    date: Date;
-    text: string;
+  namespace Dialog {
+    interface CommentProps {
+      author: Author;
+      date: Date;
+      text: string;
+    }
+
+    interface DateProps {
+      groups?: GroupProps[];
+      date: Date;
+    }
+
+    interface GroupProps {
+      author: Author;
+      isIncoming?: boolean;
+      messages: MessageProps[];
+    }
+
+    interface HeaderProps {
+      subscriber: ISubscriber;
+    }
+
+    interface MessageProps {
+      date: Date;
+      isIncoming?: boolean;
+      status?: 'delivered' | 'read' | 'sent';
+      text: string;
+    }
   }
 
-  interface DateProps {
-    groups?: GroupProps[];
-    date: Date;
-  }
-
-  interface GroupProps {
-    author: Author;
-    isIncoming?: boolean;
-    messages: MessageProps[];
-  }
-
-  interface HeaderProps {
-    subscriber: ISubscriber;
-  }
-
-  interface ItemProps {
-    id: string;
-    isConversation?: boolean;
-    lastMessage: MessageProps;
-    subscriber: {
+  namespace Threads {
+    interface ItemProps {
       id: string;
-      source: ISubscriberSource;
-    };
-  }
-
-  interface MessageProps {
-    date: Date;
-    isIncoming?: boolean;
-    status?: 'delivered' | 'read' | 'sent';
-    text: string;
+      isConversation?: boolean;
+      lastMessage: MessageProps;
+      subscriber: {
+        id: string;
+        source: ISubscriberSource;
+      };
+    }
   }
 }
 

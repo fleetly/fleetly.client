@@ -93,8 +93,11 @@ const Subscriber = () => {
                     })}
                   >
                     <div className={styles.Track}>
-                      {tags && <Tags tags={tags} values={subscriber?.tags} />}
-                      {fields && fieldTypes && (
+                      {tags && subscriber.tags && (
+                        <Tags tags={tags} values={subscriber?.tags} />
+                      )}
+
+                      {fields && fieldTypes && subscriber.fields && (
                         <Fields
                           fields={fields}
                           fieldTypes={fieldTypes}

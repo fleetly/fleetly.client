@@ -1,5 +1,6 @@
+import classNames from 'classnames';
 import * as React from 'react';
-import { Route, Switch, useParams } from 'react-router-dom';
+import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 
 // Components
 import Menu from '@components/Menu';
@@ -17,6 +18,7 @@ import styles from './Company.scss';
 // Views
 import Channel from '@views/Channel';
 import Channels from '@views/Channels';
+import { Threads } from '@views/Chat';
 import Collaborators from '@views/Collaborators';
 import Chat from '@views/Chat';
 import General from '@views/General';
@@ -27,8 +29,9 @@ import Tags from '@views/Tags';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Company: React.FC<{}> = () => {
+const Company: React.FC<{}> = (props) => {
   const { companyId } = useParams<{ companyId: string }>();
+  const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT);
 
   const MENU = React.useMemo<Menu.Group[]>(
     () => [
@@ -110,15 +113,22 @@ const Company: React.FC<{}> = () => {
     [companyId]
   );
 
+  // @todo - animate sidebar content change
+
   return (
     <div className={styles.Root}>
-      <div className={styles.Sidebar}>
+      <div
+        className={classNames(styles.Sidebar, {
+          [styles.SidebarVariantChat]: isChat,
+          [styles.SidebarVariantMenu]: !isChat
+        })}
+      >
         <div className={styles.Company}>
           <Info />
         </div>
 
         <div className={styles.Menu}>
-          <Menu data={MENU} />
+          {isChat ? <Threads /> : <Menu data={MENU} />}
         </div>
       </div>
 

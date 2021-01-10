@@ -6,7 +6,10 @@ import Avatar from '@components/Avatar';
 // Styles
 import styles from './Item.scss';
 
-const Item: React.FC<Chat.ItemProps> = ({ lastMessage, subscriber }) => (
+const Item: React.FC<Chat.Threads.ItemProps> = ({
+  lastMessage,
+  subscriber
+}) => (
   <div className={styles.Root}>
     <Avatar
       classes={{ photo: styles.Avatar }}
@@ -19,12 +22,13 @@ const Item: React.FC<Chat.ItemProps> = ({ lastMessage, subscriber }) => (
         <div className={styles.Name}>
           {subscriber.source?.firstname} {subscriber.source?.lastname}
         </div>
-        <div className={styles.Date}>Yesterday</div>
+
+        <div className={styles.Date}>15:35</div>
       </div>
 
       <div className={styles.Row}>
         <div className={styles.Message}>{lastMessage}</div>
-        <div className={styles.Counter}>999+</div>
+        <div className={styles.Counter}>12</div>
       </div>
     </div>
   </div>
