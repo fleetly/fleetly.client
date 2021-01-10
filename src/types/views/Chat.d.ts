@@ -1,7 +1,6 @@
-// Interfaces
-import { ISubscriber } from '@interfaces/subscriber.interface';
+import { ISubscriberSource } from '@interfaces/subscriber.interface';
 
-declare namespace Dialog {
+declare namespace Chat {
   interface Author {
     firstname?: string;
     lastname?: string;
@@ -20,8 +19,24 @@ declare namespace Dialog {
     date: Date;
   }
 
+  interface GroupProps {
+    author: Author;
+    isIncoming?: boolean;
+    messages: MessageProps[];
+  }
+
   interface HeaderProps {
     subscriber: ISubscriber;
+  }
+
+  interface ItemProps {
+    id: string;
+    isConversation?: boolean;
+    lastMessage: MessageProps;
+    subscriber: {
+      id: string;
+      source: ISubscriberSource;
+    };
   }
 
   interface MessageProps {
@@ -30,13 +45,7 @@ declare namespace Dialog {
     status?: 'delivered' | 'read' | 'sent';
     text: string;
   }
-
-  interface GroupProps {
-    author: Author;
-    isIncoming?: boolean;
-    messages: MessageProps[];
-  }
 }
 
-export = Dialog;
-export as namespace Dialog;
+export = Chat;
+export as namespace Chat;

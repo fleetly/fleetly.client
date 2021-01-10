@@ -10,7 +10,7 @@ import Avatar from '@components/Avatar';
 // Styles
 import styles from './Group.scss';
 
-const DialogGroup: React.FC<Dialog.GroupProps> = ({
+const DialogGroup: React.FC<Chat.GroupProps> = ({
   author,
   isIncoming,
   messages

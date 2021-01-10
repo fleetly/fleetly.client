@@ -2,14 +2,14 @@ import * as React from 'react';
 
 // Components
 import Dialog from './Dialog';
-import Thread from './Thread';
+import Threads from './Threads';
 
 // Styles
 import styles from './Chat.scss';
 
 const Chat = () => (
   <div className={styles.Root}>
-    <Thread />
+    <Threads />
     <Dialog />
   </div>
 );

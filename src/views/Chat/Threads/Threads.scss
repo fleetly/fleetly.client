@@ -12,7 +12,7 @@
 .Actions {
   align-items: center;
   display: flex;
-  margin: 0 0 0 8px;
+  margin: 0 0 0 34px;
 
   & > :last-child {
     margin: 0 0 0 10px;
@@ -20,7 +20,6 @@
 }
 
 .Container {
-  background: none;
   padding: 0 30px;
 }
 
@@ -30,10 +29,4 @@
   margin: 0 24px 0 0;
   min-width: 30px;
   width: 30px;
-}
-
-.Tabs {
-  & > *:nth-child() {
-    border: 1px solid blue;
-  }
 }

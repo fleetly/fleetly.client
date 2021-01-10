@@ -11,7 +11,7 @@ import styles from './Date.scss';
 // Test
 import data from '../data';
 
-const DialogDate: React.FC<Dialog.DateProps> = ({ date }) => (
+const DialogDate: React.FC<Chat.DateProps> = ({ date }) => (
   <div className={styles.Root}>
     <div className={styles.Title}>{moment(date).format('D MMMM')}</div>
 
