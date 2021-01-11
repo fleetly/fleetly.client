@@ -1,19 +1,34 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 // Components
 import Avatar from '@components/Avatar';
 
+// Routes
+import ROUTES from '@routes';
+
 // Styles
 import styles from './Item.scss';
+
+// Utils
+import { fillUrl } from '@utils/url';
 
 const Item: React.FC<Chat.Threads.ItemProps> = ({
   counter,
   lastMessage,
   subscriber
-}) => (
-  <NavLink className={styles.NavLink} to="/:companyId/chat/:subscriberId">
-    <div className={styles.Root}>
+}) => {
+  const { companyId } = useParams<{ companyId: string }>();
+
+  return (
+    <NavLink
+      activeClassName={styles.RootIsSelected}
+      className={styles.Root}
+      to={fillUrl(ROUTES.COMPANY.CHAT.DIALOG, {
+        companyId,
+        subscriberId: subscriber.id
+      })}
+    >
       <Avatar
         classes={{ photo: styles.Avatar }}
         src={subscriber.source.photo}
@@ -34,8 +49,8 @@ const Item: React.FC<Chat.Threads.ItemProps> = ({
           {counter && <div className={styles.Badge}>{counter}</div>}
         </div>
       </div>
-    </div>
-  </NavLink>
-);
+    </NavLink>
+  );
+};
 
 export default Item;

@@ -1,10 +1,10 @@
 const data = [
   {
     counter: '2',
-    id: '1234',
+    id: '12345',
     lastMessage: 'Работать негры!',
     subscriber: {
-      id: '1234',
+      id: '12345',
       source: {
         firstname: 'Ivan',
         lastname: 'Vyatkin',
@@ -15,10 +15,10 @@ const data = [
     }
   },
   {
-    id: '1234',
+    id: '123456',
     lastMessage: 'Опять космический макет верстать?',
     subscriber: {
-      id: '1234',
+      id: '123456',
       source: {
         firstname: 'Nikita',
         lastname: 'Urbanovich',
@@ -31,10 +31,10 @@ const data = [
   },
   {
     counter: '14',
-    id: '1234',
+    id: '1234567',
     lastMessage: 'Макет готов',
     subscriber: {
-      id: '1234',
+      id: '1234567',
       source: {
         firstname: 'Artur',
         lastname: 'Teslar',

@@ -4,7 +4,10 @@ export default {
     BILLING: '/:companyId/billing',
     CHANNEL: '/:companyId/channels/:channelId',
     CHANNELS: '/:companyId/channels',
-    CHAT: '/:companyId/chat',
+    CHAT: {
+      ROOT: '/:companyId/chat',
+      DIALOG: '/:companyId/chat/:subscriberId'
+    },
     COLLABORATORS: '/:companyId/collaborators',
     DASHBOARD: '/:companyId/dashboard',
     FIELDS: '/:companyId/fields',

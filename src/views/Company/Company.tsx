@@ -31,7 +31,7 @@ import { fillUrl } from '@utils/url';
 
 const Company: React.FC<{}> = (props) => {
   const { companyId } = useParams<{ companyId: string }>();
-  const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT);
+  const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT.ROOT);
 
   const MENU = React.useMemo<Menu.Group[]>(
     () => [
@@ -49,7 +49,7 @@ const Company: React.FC<{}> = (props) => {
           {
             icon: 'far fa-comment',
             title: 'Chat',
-            to: fillUrl(ROUTES.COMPANY.CHAT, { companyId })
+            to: fillUrl(ROUTES.COMPANY.CHAT.ROOT, { companyId })
           },
           {
             icon: 'far fa-code-merge',
@@ -136,7 +136,7 @@ const Company: React.FC<{}> = (props) => {
         <Switch>
           <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
-          <Route component={Chat} path={ROUTES.COMPANY.CHAT} />
+          <Route component={Chat} path={ROUTES.COMPANY.CHAT.ROOT} />
           <Route
             component={Collaborators}
             path={ROUTES.COMPANY.COLLABORATORS}
