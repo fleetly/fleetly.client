@@ -15,7 +15,7 @@ import TEST from './data';
 const Threads = () => (
   <div className={styles.Root}>
     <div className={styles.Actions}>
-      <Button className={styles.Find} variant="outlined" icon="far fa-search" />
+      <Button className={styles.Find} icon="far fa-search" variant="outlined" />
       <Button className={styles.Action} color="primary">
         Open
       </Button>
