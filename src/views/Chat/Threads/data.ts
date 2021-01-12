@@ -2,7 +2,13 @@ const data = [
   {
     counter: '2',
     id: '12345',
-    lastMessage: 'Работать негры!',
+    lastMessage: {
+      author: {
+        firstname: 'Ivan',
+        lastname: 'Vyatkin'
+      },
+      message: 'Работать негры!'
+    },
     subscriber: {
       id: '12345',
       source: {
@@ -16,7 +22,13 @@ const data = [
   },
   {
     id: '123456',
-    lastMessage: 'Опять космический макет верстать?',
+    lastMessage: {
+      author: {
+        firstname: 'Nikita',
+        lastname: 'Urbanovich'
+      },
+      message: 'Опять космический макет верстать?'
+    },
     subscriber: {
       id: '123456',
       source: {
@@ -32,7 +44,13 @@ const data = [
   {
     counter: '14',
     id: '1234567',
-    lastMessage: 'Макет готов',
+    lastMessage: {
+      author: {
+        firstname: 'Artur',
+        lastname: 'Teslar'
+      },
+      message: 'Макет готов'
+    },
     subscriber: {
       id: '1234567',
       source: {

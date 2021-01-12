@@ -43,7 +43,10 @@ declare namespace Chat {
       counter?: string;
       id: string;
       isConversation?: boolean;
-      lastMessage: MessageProps;
+      lastMessage: {
+        author: Author;
+        message: MessageProps;
+      };
       subscriber: {
         id: string;
         source: ISubscriberSource;
