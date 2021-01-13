@@ -15,14 +15,26 @@ import TEST from './data';
 const Threads = () => (
   <div className={styles.Root}>
     <div className={styles.Actions}>
-      <Button className={styles.Find} icon="far fa-search" variant="outlined" />
-      <Button className={styles.Action} color="primary">
-        Open
-      </Button>
-      <Button className={styles.Action} variant="outlined">
-        Close
-      </Button>
+      <div className={styles.Search}>
+        <Button
+          className={styles.SearchTrigger}
+          classes={{ root: styles.Find, icon: styles.FindIcon }}
+          icon="far fa-search"
+          variant="outlined"
+        />
+      </div>
+
+      <div className={styles.Status}>
+        <Button className={styles.Action} color="primary">
+          Opened
+        </Button>
+
+        <Button className={styles.Action} variant="outlined">
+          Closed
+        </Button>
+      </div>
     </div>
+
     <div className={styles.Container}>
       {TEST.map((item: any, index: number) => (
         <Item key={index} {...item} />

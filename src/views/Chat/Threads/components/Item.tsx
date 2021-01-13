@@ -49,8 +49,10 @@ const Item: React.FC<Chat.Threads.ItemProps> = ({
             <span className={styles.Author}>
               {lastMessage.author.firstname}:
             </span>
+
             {lastMessage.message}
           </div>
+
           {counter && <div className={styles.Badge}>{counter}</div>}
         </div>
       </div>
