@@ -7,7 +7,7 @@ import Button from '@components/Button';
 // Styles
 import styles from './Header.scss';
 
-const DialogHeader: React.FC<Dialog.HeaderProps> = ({ subscriber }) => {
+const DialogHeader: React.FC<Chat.Dialog.HeaderProps> = ({ subscriber }) => {
   const { firstname, lastname, photo, type } = subscriber?.source || {};
 
   return (

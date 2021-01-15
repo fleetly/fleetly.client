@@ -1,0 +1,41 @@
+.Root {
+  display: flex;
+  flex-direction: column;
+}
+
+.Action {
+  border: none;
+  font-size: 12px;
+  height: 30px;
+  min-width: 114px;
+}
+
+.Actions {
+  align-items: center;
+  display: flex;
+  margin: 28px 0 12px;
+}
+
+.Find {
+  font-size: 12px;
+  height: 30px;
+  min-width: 30px;
+  width: 30px;
+}
+
+.Search {
+  display: flex;
+  flex: 0 0 40px;
+  justify-content: center;
+  margin: 0 20px 0 0;
+  width: 40px;
+}
+
+.Status {
+  display: flex;
+  max-width: calc(100% - 60px);
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 12px;
+  }
+}

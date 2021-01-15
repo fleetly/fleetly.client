@@ -1,4 +1,3 @@
-import { Role } from '@fleetly/common/dist/enums';
 import * as React from 'react';
 
 // Components

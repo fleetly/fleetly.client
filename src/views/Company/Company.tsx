@@ -1,5 +1,6 @@
+import classNames from 'classnames';
 import * as React from 'react';
-import { Route, Switch, useParams } from 'react-router-dom';
+import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 
 // Components
 import Menu from '@components/Menu';
@@ -17,8 +18,9 @@ import styles from './Company.scss';
 // Views
 import Channel from '@views/Channel';
 import Channels from '@views/Channels';
+import { Threads } from '@views/Chat';
 import Collaborators from '@views/Collaborators';
-import { Dialog } from '@views/Chat';
+import Chat from '@views/Chat';
 import General from '@views/General';
 import Fields from '@views/Fields';
 import Subscribers from '@views/Subscribers';
@@ -27,8 +29,9 @@ import Tags from '@views/Tags';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Company: React.FC<{}> = () => {
+const Company: React.FC<{}> = (props) => {
   const { companyId } = useParams<{ companyId: string }>();
+  const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT.ROOT);
 
   const MENU = React.useMemo<Menu.Group[]>(
     () => [
@@ -46,7 +49,7 @@ const Company: React.FC<{}> = () => {
           {
             icon: 'far fa-comment',
             title: 'Chat',
-            to: fillUrl(ROUTES.COMPANY.CHAT, { companyId })
+            to: fillUrl(ROUTES.COMPANY.CHAT.ROOT, { companyId })
           },
           {
             icon: 'far fa-code-merge',
@@ -110,15 +113,22 @@ const Company: React.FC<{}> = () => {
     [companyId]
   );
 
+  // @todo - animate sidebar content change
+
   return (
     <div className={styles.Root}>
-      <div className={styles.Sidebar}>
+      <div
+        className={classNames(styles.Sidebar, {
+          [styles.SidebarVariantChat]: isChat,
+          [styles.SidebarVariantMenu]: !isChat
+        })}
+      >
         <div className={styles.Company}>
           <Info />
         </div>
 
         <div className={styles.Menu}>
-          <Menu data={MENU} />
+          {isChat ? <Threads /> : <Menu data={MENU} />}
         </div>
       </div>
 
@@ -126,7 +136,7 @@ const Company: React.FC<{}> = () => {
         <Switch>
           <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
-          <Route component={Dialog} path={ROUTES.COMPANY.CHAT} />
+          <Route component={Chat} path={ROUTES.COMPANY.CHAT.ROOT} />
           <Route
             component={Collaborators}
             path={ROUTES.COMPANY.COLLABORATORS}

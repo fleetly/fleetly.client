@@ -1,5 +1,6 @@
 export * from './Channel';
 export * from './Channels';
+export * from './Chat';
 export * from './Collaboration';
 export * from './Collaborators';
 export * from './Company';

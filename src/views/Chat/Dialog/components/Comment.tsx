@@ -7,7 +7,7 @@ import Avatar from '@components/Avatar';
 // Styles
 import styles from './Comment.scss';
 
-const DialogComment: React.FC<Dialog.CommentProps> = ({
+const DialogComment: React.FC<Chat.Dialog.CommentProps> = ({
   date,
   text,
   author

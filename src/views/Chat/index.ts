@@ -1,1 +1,2 @@
-export { default as Dialog } from './Dialog';
+export { default } from './Chat';
+export { default as Threads } from './Threads';

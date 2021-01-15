@@ -25,12 +25,22 @@
 
 .Sidebar {
   display: flex;
-  flex: 0 0 260px;
   flex-direction: column;
   padding: 0 40px;
   position: sticky;
   top: 0;
-  width: 260px;
+
+  &Variant {
+    &Chat {
+      flex: 0 0 380px;
+      width: 380px;
+    }
+
+    &Menu {
+      flex: 0 0 260px;
+      width: 260px;
+    }
+  }
 }
 
 .Subscriber {
