@@ -6,7 +6,7 @@ export default {
     CHANNELS: '/:companyId/channels',
     CHAT: {
       ROOT: '/:companyId/chat',
-      DIALOG: '/:companyId/chat/:subscriberId'
+      DIALOG: '/:companyId/chat/:chatId'
     },
     COLLABORATORS: '/:companyId/collaborators',
     DASHBOARD: '/:companyId/dashboard',
