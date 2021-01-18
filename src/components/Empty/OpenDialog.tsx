@@ -6,7 +6,7 @@ import styles from './OpenDialog.scss';
 const OpenDialog = () => (
   <div className={styles.Root}>
     <div className={styles.Icon}>
-      <i class="fal fa-comments-alt fa-5x" />
+      <i className="fal fa-comments-alt fa-5x" />
     </div>
     <div className={styles.Title}>Open Dialog</div>
     <div className={styles.Text}>
