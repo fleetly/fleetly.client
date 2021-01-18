@@ -16,6 +16,10 @@ import { useSubscriber, VIEW } from './Subscriber.hooks';
 
 // Styles
 import styles from './Subscriber.scss';
+import routes from '@routes';
+
+// Utils
+import { fillUrl } from '@utils/url';
 
 const SubscriberContext = React.createContext<{
   companyId: string;
@@ -69,7 +73,14 @@ const Subscriber = () => {
                   {subscriber && <Source {...subscriber} />}
 
                   <div className={styles.Actions}>
-                    <Button color="primary" fullWidth>
+                    <Button
+                      color="primary"
+                      fullWidth
+                      to={fillUrl(routes.COMPANY.CHAT.DIALOG, {
+                        chatId: subscriber.id,
+                        companyId
+                      })}
+                    >
                       Start Chat
                     </Button>
 

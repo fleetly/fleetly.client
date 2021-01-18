@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^3.0.3",
+    "@fleetly/chat": "^0.2.3",
     "@fleetly/common": "^0.0.82",
     "@fortawesome/fontawesome-pro": "^5.13.0",
     "@types/react-portal": "^4.0.2",

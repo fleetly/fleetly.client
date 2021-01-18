@@ -17,9 +17,6 @@ import Form, {
 // GraphQL
 import loginMutation from '@views/Sign/graphql/login.gql';
 
-// Store
-import { login } from '@store';
-
 // Styles
 import styles from './common.scss';
 
@@ -67,7 +64,7 @@ export default compose<InjectedFormProps, any>(
     ),
     onSubmit: (variables, dispatch, { mutate }: any) =>
       mutate({ variables })
-        .then(() => dispatch(login()))
+        .then(() => window.location.reload())
         .catch(gqlErrorHandler)
   })
 )(SignIn);

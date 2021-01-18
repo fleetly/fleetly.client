@@ -1,3 +1,4 @@
+import { IMessage } from '@interfaces/message.interface';
 import { ISubscriberSource } from '@interfaces/subscriber.interface';
 
 declare namespace Chat {
@@ -26,10 +27,6 @@ declare namespace Chat {
       messages: MessageProps[];
     }
 
-    interface HeaderProps {
-      subscriber: ISubscriber;
-    }
-
     interface MessageProps {
       date: Date;
       isIncoming?: boolean;
@@ -40,17 +37,11 @@ declare namespace Chat {
 
   namespace Threads {
     interface ItemProps {
-      counter?: string;
       id: string;
+      counter?: number;
       isConversation?: boolean;
-      lastMessage: {
-        author: Author;
-        message: MessageProps;
-      };
-      subscriber: {
-        id: string;
-        source: ISubscriberSource;
-      };
+      lastMessage: IMessage;
+      subscriber: ISubscriber;
     }
   }
 }

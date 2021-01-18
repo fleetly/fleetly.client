@@ -2,7 +2,7 @@ import * as React from 'react';
 
 // Containers
 import DateGroup from './components/Date';
-import Header from './containers/Header';
+// import Header from './containers/Header';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
@@ -30,8 +30,6 @@ const Dialog = () => (
   <Page title="Chat">
     <Wrapper classes={{ container: styles.Root }} title="Chat">
       <div className={styles.Chat}>
-        <Header subscriber={SUBSCRIBER} />
-
         <div className={styles.Container}>
           <DateGroup date={new Date()} />
         </div>
