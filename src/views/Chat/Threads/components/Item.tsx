@@ -26,7 +26,7 @@ const Item: React.FC<Chat.Threads.ItemProps> = ({
       className={styles.Root}
       to={fillUrl(ROUTES.COMPANY.CHAT.DIALOG, {
         companyId,
-        subscriberId: subscriber.id
+        chatId: subscriber.id
       })}
     >
       <Avatar

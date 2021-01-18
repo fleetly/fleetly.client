@@ -1,6 +1,7 @@
 .Root {
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 180px);
 }
 
 .Action {
@@ -8,6 +9,10 @@
   font-size: 12px;
   height: 30px;
   min-width: 114px;
+}
+
+.Container {
+  height: 100%;
 }
 
 .Actions {

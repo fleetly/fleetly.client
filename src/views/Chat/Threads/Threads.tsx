@@ -2,6 +2,7 @@ import * as React from 'react';
 
 // Containers
 import Button from '@components/Button';
+import { AllClosed } from '@components/Empty';
 
 // Components
 import Item from './components/Item';
@@ -36,9 +37,11 @@ const Threads = () => (
     </div>
 
     <div className={styles.Container}>
-      {TEST.map((item: any, index: number) => (
-        <Item key={index} {...item} />
-      ))}
+      {1 > 2 ? (
+        TEST.map((item: any, index: number) => <Item key={index} {...item} />)
+      ) : (
+        <AllClosed />
+      )}
     </div>
   </div>
 );
