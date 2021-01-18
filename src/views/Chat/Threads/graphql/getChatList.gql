@@ -1,5 +1,5 @@
-query getChatList($companyId: String!) {
-  chats(companyId: $companyId) {
+query getChatList($companyId: String!, $status: ChatStatusType!) {
+  chats(companyId: $companyId, status: $status) {
     id
     lastMessage {
       id

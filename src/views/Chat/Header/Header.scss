@@ -22,12 +22,21 @@
   }
 }
 
+.Info {
+  align-items: center;
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .Name {
   font-weight: 600;
   margin: 0 0 0 20px;
 }
 
 .Subscriber {
-  align-items: center;
-  display: flex;
+  min-width: 160px;
+  position: relative;
 }

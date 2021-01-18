@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
+// Fleetly
+import { ChatStatus } from '@fleetly/chat/dist/common/interfaces';
+
 // Containers
 import Button from '@components/Button';
 
@@ -21,9 +24,12 @@ const Threads = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
 
+  // State
+  const [status, setStatus] = React.useState(ChatStatus.OPENED);
+
   // Data
   const { data } = useQuery<{ chats: IChat[] }>(GET_CHAT_LIST, {
-    variables: { companyId }
+    variables: { companyId, status }
   });
 
   const sortedList = React.useMemo(
@@ -36,6 +42,15 @@ const Threads = () => {
           : 0
       ),
     [data]
+  );
+
+  // Handlers
+  const handleStatusChange = React.useCallback(
+    () =>
+      setStatus(
+        status === ChatStatus.OPENED ? ChatStatus.CLOSED : ChatStatus.OPENED
+      ),
+    [status]
   );
 
   return (
@@ -51,23 +66,35 @@ const Threads = () => {
         </div>
 
         <div className={styles.Status}>
-          <Button className={styles.Action} color="primary">
+          <Button
+            className={styles.Action}
+            color={status === ChatStatus.OPENED ? 'primary' : 'default'}
+            onClick={handleStatusChange}
+            variant={status === ChatStatus.OPENED ? 'filled' : 'outlined'}
+          >
             Opened
           </Button>
 
-          <Button className={styles.Action} variant="outlined">
+          <Button
+            className={styles.Action}
+            color={status === ChatStatus.CLOSED ? 'primary' : 'default'}
+            onClick={handleStatusChange}
+            variant={status === ChatStatus.CLOSED ? 'filled' : 'outlined'}
+          >
             Closed
           </Button>
         </div>
       </div>
 
-      {sortedList.length > 0 && (
-        <div className={styles.Container}>
-          {sortedList.map((chat) => (
-            <Thread key={chat.id} {...chat} />
-          ))}
-        </div>
-      )}
+      <div className={styles.Container}>
+        {sortedList.length > 0 && (
+          <div className={styles.List}>
+            {sortedList.map((chat) => (
+              <Thread key={chat.id} {...chat} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

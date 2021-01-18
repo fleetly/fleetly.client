@@ -1,47 +1,62 @@
 import * as React from 'react';
 import { useQuery } from 'react-apollo';
-import { matchPath, useLocation } from 'react-router-dom';
 
 // Components
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
+import Loader from '@components/Loader';
+
+// Constants
+import { SUBSCRIBER_MODAL } from '@constants';
 
 // GraphQL
 import GET_CHAT_BY_ID from './graphql/getChatById.gql';
 
-// Routes
-import routes from '@routes';
+// Store
+import { useModals } from '@store';
 
 // Styles
 import styles from './Header.scss';
 import { IChat } from '@interfaces/chat.interface';
 
-const DialogHeader: React.FC<{}> = () => {
+const DialogHeader: React.FC<{ chatId: string }> = ({ chatId }) => {
   // Setup
-  const location = useLocation();
-  const match = matchPath<{ chatId: string }>(location.pathname, {
-    path: routes.COMPANY.CHAT.DIALOG
-  });
+  const { openModal } = useModals(SUBSCRIBER_MODAL);
 
   // Data
-  const { data } = useQuery<{ chat: IChat }>(GET_CHAT_BY_ID, {
-    variables: { chatId: match?.params.chatId }
+  const { data, loading } = useQuery<{ chat: IChat }>(GET_CHAT_BY_ID, {
+    variables: { chatId }
   });
 
-  const { firstname, lastname, photo, type } =
-    data?.chat.subscriber.source || {};
+  const { id, source } = data?.chat.subscriber || {};
+  const { firstname, lastname, photo, type } = source || {};
+
+  // Handlers
+  const handleSubscriberClick = React.useCallback(
+    () => openModal({ subscriberId: id }),
+    [id, openModal]
+  );
 
   return (
     <div className={styles.Root}>
-      {data?.chat.subscriber && (
-        <div className={styles.Subscriber}>
-          <Avatar src={photo} sourceType={type} />
+      <div className={styles.Subscriber}>
+        {loading && <Loader />}
 
-          <div className={styles.Name}>
-            {firstname} {lastname}
+        {!loading && id && (
+          <div
+            className={styles.Info}
+            onClick={handleSubscriberClick}
+            role="button"
+            tabIndex={0}
+          >
+            <Avatar src={photo} sourceType={type} />
+
+            <div className={styles.Name}>
+              {firstname} {lastname}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className={styles.Actions}>
         <Button
@@ -49,6 +64,7 @@ const DialogHeader: React.FC<{}> = () => {
           icon="far fa-search"
           variant="outlined"
         />
+
         <Button
           className={styles.Action}
           icon="far fa-bell"
