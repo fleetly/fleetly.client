@@ -1,0 +1,11 @@
+.Root {
+  flex: 1 1 auto;
+  max-height: calc(100% - 80px);
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 0 28px;
+
+  & > * {
+    margin: 0 0 20px;
+  }
+}
