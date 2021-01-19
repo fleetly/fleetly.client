@@ -4,6 +4,7 @@ query getChatList($companyId: String!, $status: ChatStatusType!) {
     lastMessage {
       id
       author {
+        id
         firstname
       }
       date

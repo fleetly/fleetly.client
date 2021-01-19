@@ -1,6 +1,16 @@
 query getChatById($chatId: String!) {
   chat(chatId: $chatId) {
     id
+    lastMessage {
+      id
+      author {
+        id
+        firstname
+      }
+      date
+      isComment
+      text
+    }
     subscriber {
       id
       source {

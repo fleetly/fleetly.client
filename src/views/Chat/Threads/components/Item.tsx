@@ -14,7 +14,7 @@ import styles from './Item.scss';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Item: React.FC<Chat.Threads.ItemProps> = ({
+const Item: React.FC<Chat.Threads.Item> = ({
   counter,
   isConversation,
   lastMessage,

@@ -1,5 +1,9 @@
-import { IMessage } from '@interfaces/message.interface';
-import { ISubscriberSource } from '@interfaces/subscriber.interface';
+// Fleetly
+import { MessageStatus } from '@fleetly/chat/dist/common/interfaces';
+
+// Interfaces
+import { IMessage, IMessageAuthor } from '@interfaces/message.interface';
+import { ISubscriber } from '@interfaces/subscriber.interface';
 
 declare namespace Chat {
   interface Author {
@@ -9,34 +13,31 @@ declare namespace Chat {
     username?: string;
   }
 
-  namespace Dialog {
-    interface CommentProps {
-      author: Author;
-      date: Date;
-      text: string;
+  namespace Messages {
+    interface Root {
+      chatId: string;
     }
 
-    interface DateProps {
-      groups?: GroupProps[];
-      date: Date;
+    interface Date {
+      date: string;
+      messages: IMessage[];
     }
 
-    interface GroupProps {
-      author: Author;
+    interface Group {
+      author: IMessageAuthor;
+      messages: Text[];
+    }
+
+    interface Text {
+      date: string;
       isIncoming?: boolean;
-      messages: MessageProps[];
-    }
-
-    interface MessageProps {
-      date: Date;
-      isIncoming?: boolean;
-      status?: 'delivered' | 'read' | 'sent';
+      status: MessageStatus;
       text: string;
     }
   }
 
   namespace Threads {
-    interface ItemProps {
+    interface Item {
       id: string;
       counter?: number;
       isConversation?: boolean;
