@@ -1,0 +1,23 @@
+query getChatList($companyId: String!, $status: ChatStatusType!) {
+  chats(companyId: $companyId, status: $status) {
+    id
+    lastMessage {
+      id
+      author {
+        firstname
+      }
+      date
+      isComment
+      text
+    }
+    subscriber {
+      id
+      source {
+        firstname
+        lastname
+        photo
+        type
+      }
+    }
+  }
+}

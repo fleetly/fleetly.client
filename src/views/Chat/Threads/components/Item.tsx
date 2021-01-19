@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 
@@ -15,43 +16,54 @@ import { fillUrl } from '@utils/url';
 
 const Item: React.FC<Chat.Threads.ItemProps> = ({
   counter,
+  isConversation,
   lastMessage,
   subscriber
 }) => {
+  // Setup
   const { companyId } = useParams<{ companyId: string }>();
+  const { firstname, lastname, photo, type } = subscriber?.source || {};
 
   return (
     <NavLink
       activeClassName={styles.RootIsSelected}
       className={styles.Root}
       to={fillUrl(ROUTES.COMPANY.CHAT.DIALOG, {
-        companyId,
-        chatId: subscriber.id
+        chatId: subscriber.id,
+        companyId
       })}
     >
       <Avatar
         classes={{ photo: styles.Avatar }}
-        src={subscriber.source.photo}
-        sourceType={subscriber.source.type}
+        src={photo}
+        sourceType={type}
       />
 
       <div className={styles.Info}>
         <div className={styles.Row}>
           <div className={styles.Name}>
-            {subscriber.source.firstname} {subscriber.source.lastname}
+            {firstname} {lastname}
           </div>
 
-          <div className={styles.Date}>15:35</div>
+          {lastMessage && (
+            <div className={styles.Date}>
+              {moment(lastMessage.date).format('HH:mm')}
+            </div>
+          )}
         </div>
 
         <div className={styles.Row}>
-          <div className={styles.Message}>
-            <span className={styles.Author}>
-              {lastMessage.author.firstname}:
-            </span>
+          {lastMessage && (
+            <div className={styles.Message}>
+              {isConversation && (
+                <span className={styles.Author}>
+                  {lastMessage?.author.firstname}:
+                </span>
+              )}
 
-            {lastMessage.message}
-          </div>
+              {lastMessage?.text}
+            </div>
+          )}
 
           {counter && <div className={styles.Badge}>{counter}</div>}
         </div>

@@ -30,9 +30,11 @@ import Tags from '@views/Tags';
 import { fillUrl } from '@utils/url';
 
 const Company: React.FC<{}> = (props) => {
+  // Setup
   const { companyId } = useParams<{ companyId: string }>();
   const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT.ROOT);
 
+  // Memo
   const MENU = React.useMemo<Menu.Group[]>(
     () => [
       {
