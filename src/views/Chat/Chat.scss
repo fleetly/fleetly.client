@@ -1,3 +1,16 @@
+@import '~@styles/colors.scss';
+
 .Root {
+  max-height: calc(100vh - 32px);
+}
+
+.Container {
   display: flex;
+  flex-direction: column;
+}
+
+.Form {
+  border-top: 2px solid $color-gray-100;
+  flex: 0 0 80px;
+  height: 80px;
 }

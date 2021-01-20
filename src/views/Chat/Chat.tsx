@@ -7,6 +7,7 @@ import Empty from '@components/Empty';
 
 // Containers
 import Header from './Header';
+import Messages from './Messages';
 
 // Routes
 import routes from '@routes';
@@ -26,14 +27,15 @@ const Chat = () => {
 
   return (
     <Page title="Chat">
-      <Wrapper title="Chat">
+      <Wrapper
+        classes={{ root: styles.Root, container: styles.Container }}
+        title="Chat"
+      >
         {chatId ? (
           <>
-            <div className={styles.Header}>
-              <Header chatId={chatId} key={chatId} />
-            </div>
-
-            <div className={styles.Messages}>123</div>
+            <Header chatId={chatId} />
+            <Messages chatId={chatId} />
+            <div className={styles.Form} />
           </>
         ) : (
           <Empty

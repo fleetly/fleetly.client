@@ -1,0 +1,38 @@
+.Root {
+  align-items: flex-end;
+  display: flex;
+  margin: 40px 0 0;
+  width: 100%;
+}
+
+.Author {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 12px;
+  position: absolute;
+  top: -40px;
+}
+
+.Avatar {
+  bottom: 12px;
+  flex: 0 0 32px;
+  height: 32px;
+  position: sticky;
+}
+
+.Container {
+  margin: 0 8px;
+  position: relative;
+  width: calc(100% - 48px);
+}
+
+.List {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+
+  & > *:not(:first-child) {
+    margin: 4px 0 0;
+  }
+}

@@ -1,0 +1,16 @@
+query getMessageList($chatId: String!) {
+  messages(chatId: $chatId) {
+    id
+    author {
+      id
+      firstname
+      lastname
+      photo
+      username
+    }
+    date
+    isComment
+    status
+    text
+  }
+}

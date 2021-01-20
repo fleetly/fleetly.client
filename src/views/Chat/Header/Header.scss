@@ -4,9 +4,10 @@
   align-items: center;
   border-bottom: 2px solid $color-gray-100;
   display: flex;
+  flex: 0 0 80px;
   height: 80px;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 0 28px;
 }
 
 .Action {
