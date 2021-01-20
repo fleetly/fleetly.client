@@ -6,18 +6,19 @@
   flex-direction: column;
   height: 100%;
   justify-content: center;
+  width: 100%;
+}
+
+.Description {
+  color: $color-gray-600;
+  margin: 12px 0 0;
+  max-width: 180px;
+  text-align: center;
 }
 
 .Icon {
   color: $color-blue-300;
-}
-
-.Text {
-  color: $color-gray-600;
-  margin: 10px 0 0;
-  max-width: 180px;
-  min-width: 140px;
-  text-align: center;
+  font-size: 70px;
 }
 
 .Title {

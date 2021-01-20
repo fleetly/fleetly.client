@@ -39,8 +39,8 @@ const Chat = () => {
           </>
         ) : (
           <Empty
-            icon="fal fa-comments-alt fa-5x"
-            text="Be careful, the wrong key can stop the channel."
+            description="Select a chat to start messaging."
+            icon="fal fa-comments-alt"
             title="Open Dialog"
           />
         )}

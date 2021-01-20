@@ -96,8 +96,8 @@ const Threads = () => {
           </div>
         ) : (
           <Empty
-            icon="fal fa-check-circle fa-5x"
-            text="You have closed all open dialogs."
+            description="You have closed all opened dialogs."
+            icon="fal fa-check-circle"
             title="All Close"
           />
         )}
