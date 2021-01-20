@@ -3,7 +3,7 @@ import { matchPath, useLocation } from 'react-router-dom';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
-import { OpenDialog } from '@components/Empty';
+import Empty from '@components/Empty';
 
 // Containers
 import Header from './Header';
@@ -36,7 +36,11 @@ const Chat = () => {
             <div className={styles.Messages}>123</div>
           </>
         ) : (
-          <OpenDialog />
+          <Empty
+            icon="fal fa-comments-alt fa-5x"
+            text="Be careful, the wrong key can stop the channel."
+            title="Open Dialog"
+          />
         )}
       </Wrapper>
     </Page>
