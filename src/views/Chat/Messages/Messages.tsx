@@ -1,6 +1,7 @@
 import moment from 'moment';
 import * as React from 'react';
 import { useQuery } from 'react-apollo';
+import InfiniteScroller from 'react-infinite-scroller';
 
 // Components
 import Date from './components/Date';
@@ -15,6 +16,9 @@ import { IMessage } from '@interfaces/message.interface';
 import styles from './Messages.scss';
 
 const ChatMessages: React.FC<Chat.Messages.Root> = ({ chatId }) => {
+  // Setup
+  const $root = React.useRef(null);
+
   // Data
   const { data } = useQuery<{ messages: IMessage[] }>(GET_MESSAGE_LIST, {
     variables: { chatId }
@@ -36,10 +40,19 @@ const ChatMessages: React.FC<Chat.Messages.Root> = ({ chatId }) => {
   }, [data]);
 
   return (
-    <div className={styles.Root}>
-      {Array.from(groupedMessages).map(([date, messages]) => (
-        <Date key={date} date={date} messages={messages} />
-      ))}
+    <div className={styles.Root} ref={$root}>
+      <InfiniteScroller
+        className={styles.Wrapper}
+        hasMore
+        // tslint:disable-next-line: no-console
+        loadMore={console.log}
+        isReverse
+        pageStart={0}
+      >
+        {Array.from(groupedMessages).map(([date, messages]) => (
+          <Date key={date} date={date} messages={messages} />
+        ))}
+      </InfiniteScroller>
     </div>
   );
 };

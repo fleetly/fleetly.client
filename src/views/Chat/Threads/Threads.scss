@@ -1,6 +1,7 @@
 .Root {
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 180px);
 }
 
 .Action {
@@ -10,14 +11,15 @@
   min-width: 114px;
 }
 
+.Container {
+  height: 100%;
+  position: relative;
+}
+
 .Actions {
   align-items: center;
   display: flex;
   margin: 28px 0 12px;
-}
-
-.Container {
-  position: relative;
 }
 
 .Find {

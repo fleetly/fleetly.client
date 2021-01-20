@@ -3,6 +3,7 @@ import { matchPath, useLocation } from 'react-router-dom';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
+import Empty from '@components/Empty';
 
 // Containers
 import Header from './Header';
@@ -30,12 +31,18 @@ const Chat = () => {
         classes={{ root: styles.Root, container: styles.Container }}
         title="Chat"
       >
-        {chatId && (
+        {chatId ? (
           <>
             <Header chatId={chatId} />
             <Messages chatId={chatId} />
             <div className={styles.Form} />
           </>
+        ) : (
+          <Empty
+            description="Select a chat to start messaging."
+            icon="fal fa-comments-alt"
+            title="Open Dialog"
+          />
         )}
       </Wrapper>
     </Page>

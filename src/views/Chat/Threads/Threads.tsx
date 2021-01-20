@@ -7,6 +7,7 @@ import { ChatStatus } from '@fleetly/chat/dist/common/interfaces';
 
 // Containers
 import Button from '@components/Button';
+import Empty from '@components/Empty';
 
 // Components
 import Thread from './components/Item';
@@ -87,12 +88,18 @@ const Threads = () => {
       </div>
 
       <div className={styles.Container}>
-        {sortedList.length > 0 && (
+        {sortedList.length > 0 ? (
           <div className={styles.List}>
             {sortedList.map((chat) => (
               <Thread key={chat.id} {...chat} />
             ))}
           </div>
+        ) : (
+          <Empty
+            description="You have closed all opened dialogs."
+            icon="fal fa-check-circle"
+            title="All Close"
+          />
         )}
       </div>
     </div>
