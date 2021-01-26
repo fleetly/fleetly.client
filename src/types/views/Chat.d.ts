@@ -36,6 +36,10 @@ declare namespace Chat {
     }
   }
 
+  interface SendMessageForm {
+    message: string;
+  }
+
   namespace Threads {
     interface Item {
       id: string;
