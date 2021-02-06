@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import * as React from 'react';
 
 // Components
@@ -9,14 +10,26 @@ import styles from './Group.scss';
 
 const ChatMessagesGroup: React.FC<Chat.Messages.Group> = ({
   author,
+  isOutcoming,
   messages
 }) => {
   // Data
-  const { firstname, lastname, photo } = author;
+  const { firstname, id, lastname, photo } = author;
+
+  // Memo
+  const rootClassName = React.useMemo(
+    () => classNames(styles.Root, { [styles.RootIsOutcoming]: isOutcoming }),
+    [isOutcoming]
+  );
 
   return (
-    <div className={styles.Root}>
-      <Avatar src={photo} classes={{ root: styles.Avatar }} />
+    <div className={rootClassName}>
+      <Avatar
+        alt={firstname}
+        classes={{ root: styles.Avatar }}
+        src={photo}
+        toColor={id}
+      />
 
       <div className={styles.Container}>
         <div className={styles.Author}>
@@ -25,7 +38,7 @@ const ChatMessagesGroup: React.FC<Chat.Messages.Group> = ({
 
         <div className={styles.List}>
           {messages.map((message: any) => (
-            <Text {...message} key={message.id} />
+            <Text {...message} isOutcoming={isOutcoming} key={message.id} />
           ))}
         </div>
       </div>

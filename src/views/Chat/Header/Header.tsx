@@ -49,7 +49,12 @@ const DialogHeader: React.FC<{ chatId: string }> = ({ chatId }) => {
             role="button"
             tabIndex={0}
           >
-            <Avatar src={photo} sourceType={type} />
+            <Avatar
+              alt={firstname}
+              sourceType={type}
+              src={photo}
+              toColor={id}
+            />
 
             <div className={styles.Name}>
               {firstname} {lastname}

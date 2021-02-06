@@ -3,6 +3,7 @@ import moment from 'moment';
 import * as React from 'react';
 
 // Components
+import Comment from './Comment';
 import Group from './Group';
 
 // Styles
@@ -19,10 +20,8 @@ const ChatMessagesDate: React.FC<Chat.Messages.Date> = ({ date, messages }) => {
     const result: Chat.Messages.Group[] = [];
 
     messages
-      .sort((a: any, b: any) =>
-        a.date > b.date ? 1 : a.date < b.date ? -1 : 0
-      )
-      .forEach((message: any) => {
+      .sort((a, b) => (a.date > b.date ? 1 : a.date < b.date ? -1 : 0))
+      .forEach((message) => {
         const lastGroup = last(result);
         const newMessage = {
           id: message.id,
@@ -31,10 +30,15 @@ const ChatMessagesDate: React.FC<Chat.Messages.Date> = ({ date, messages }) => {
           text: message.text
         };
 
-        lastGroup && lastGroup.author.id === message.author.id
+        lastGroup &&
+        !lastGroup.isComment &&
+        !message.isComment &&
+        lastGroup.author.id === message.author.id
           ? lastGroup.messages.push(newMessage)
           : result.push({
               author: message.author,
+              isComment: message.isComment,
+              isOutcoming: message.isOutcoming,
               messages: [newMessage]
             });
       });
@@ -47,9 +51,13 @@ const ChatMessagesDate: React.FC<Chat.Messages.Date> = ({ date, messages }) => {
       <div className={styles.Title}>{displayedTitle}</div>
 
       <div className={styles.Container}>
-        {groupedMessages.map((group, index: number) => (
-          <Group {...group} key={index} />
-        ))}
+        {groupedMessages.map(({ isComment, ...group }, index: number) =>
+          isComment ? (
+            <Comment {...group} {...group.messages[0]} key={index} />
+          ) : (
+            <Group {...group} key={index} />
+          )
+        )}
       </div>
     </div>
   );

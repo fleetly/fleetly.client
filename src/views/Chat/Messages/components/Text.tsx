@@ -10,7 +10,7 @@ import styles from './Text.scss';
 
 const ChatMessagesText: React.FC<Chat.Messages.Text> = ({
   date,
-  isIncoming = true,
+  isOutcoming = true,
   status,
   text
 }) => {
@@ -22,14 +22,15 @@ const ChatMessagesText: React.FC<Chat.Messages.Text> = ({
   return (
     <div
       className={classNames(styles.Root, {
-        [styles.RootIsIncoming]: isIncoming
+        [styles.RootIsOutcoming]: isOutcoming
       })}
     >
       <div className={styles.Text}>{text}</div>
 
       <div className={styles.Date}>
         {displayedDate}
-        {!isIncoming && !!status && (
+
+        {isOutcoming && !!status && (
           <i
             className={classNames(
               styles.Status,

@@ -36,7 +36,7 @@ const Chat = () => {
           <>
             <Header chatId={chatId} />
             <Messages chatId={chatId} />
-            <SendForm />
+            <SendForm chatId={chatId} />
           </>
         ) : (
           <Empty

@@ -41,7 +41,7 @@
   min-width: 120px;
   padding: 0 16px;
   text-decoration: none;
-  transition: background .2s, color .2s;
+  transition: background .2s, color .2s, opacity .2s;
 
   &:hover {
     cursor: pointer;

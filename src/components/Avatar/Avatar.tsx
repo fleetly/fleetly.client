@@ -1,4 +1,4 @@
-import { Color, Source } from '@fleetly/common/dist/enums';
+import { Source } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
 
@@ -7,15 +7,23 @@ import styles from './Avatar.scss';
 
 // Utils
 import { getClassName } from '@utils/styles';
+import { convertToColor } from '@utils/string';
 
 const Avatar: React.FC<Avatar.Props> = ({
   alt = 'avatar',
   aura,
   classes,
-  color,
+  color: propColor,
   sourceType,
-  src
+  src,
+  toColor
 }) => {
+  // Memo
+  const color = React.useMemo(() => convertToColor(toColor) || propColor, [
+    propColor,
+    toColor
+  ]);
+
   const {
     rootClassName,
     photoClassName,
@@ -28,7 +36,7 @@ const Avatar: React.FC<Avatar.Props> = ({
         styles.Root,
         getClassName('color', {
           collection: styles,
-          value: color || Color.BLUE
+          value: color
         }),
         {
           [styles.RootWithAura]: aura

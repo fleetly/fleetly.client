@@ -1,57 +1,34 @@
+import { gqlErrorHandler } from '@components/Form';
 import * as React from 'react';
-import { InjectedFormProps, reduxForm } from 'redux-form';
-import * as yup from 'yup';
+import { useMutation } from 'react-apollo';
 
-// Components
-import Button from '@components/Button';
-import Form, {
-  asyncValidate,
-  Actions,
-  Fieldset,
-  Input
-} from '@components/Form';
+// Containers
+import Form, { SubmitType } from './containers/Form';
 
-// Constants
-import { SEND_MESSAGE_CHAT_FORM } from '@constants';
+// GraphQL
+import SEND_MESSAGE from './graphql/sendMessage.gql';
 
-// Styles
-import styles from './Send.scss';
+const ChatSend: React.FC<Chat.Send.Root> = ({ chatId }) => {
+  // Mutations
+  const [sendMessage] = useMutation(SEND_MESSAGE);
 
-const ChatSendMessageForm: React.FC<InjectedFormProps<
-  Chat.SendMessageForm
->> = ({ error, handleSubmit, submitting }) => (
-  <Form
-    classes={{ container: styles.Root }}
-    error={error}
-    onSubmit={handleSubmit}
-  >
-    <Actions classes={{ root: styles.Smile }}>
-      <Button icon="fal fa-smile" variant="outlined" />
-    </Actions>
+  // Handlers
+  const handleSubmit = React.useCallback(
+    async (type: SubmitType, text: string, reset) => {
+      try {
+        await sendMessage({
+          variables: { chatId, isComment: type === SubmitType.COMMENT, text }
+        });
 
-    <textarea
-      className={styles.Input}
-      name="message"
-      placeholder="Enter Message..."
-    />
+        reset();
+      } catch (error) {
+        return gqlErrorHandler(error);
+      }
+    },
+    [chatId, sendMessage]
+  );
 
-    <Actions classes={{ root: styles.Actions }}>
-      <Button
-        className={styles.Clip}
-        icon="fal fa-paperclip"
-        variant="outlined"
-      />
-      <Button
-        className={styles.Send}
-        icon="fas fa-paper-plane"
-        variant="outlined"
-      />
-      <Button icon="fal fa-comment-alt-dots" variant="outlined" />
-    </Actions>
-  </Form>
-);
+  return <Form onSubmit={handleSubmit} />;
+};
 
-export default reduxForm<any, any>({
-  asyncValidate: asyncValidate(yup.object().shape({ message: yup.string() })),
-  form: SEND_MESSAGE_CHAT_FORM
-})(ChatSendMessageForm);
+export default ChatSend;

@@ -34,9 +34,11 @@ const Item: React.FC<Chat.Threads.Item> = ({
       })}
     >
       <Avatar
+        alt={firstname}
         classes={{ photo: styles.Avatar }}
-        src={photo}
         sourceType={type}
+        src={photo}
+        toColor={subscriber.id}
       />
 
       <div className={styles.Info}>

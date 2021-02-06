@@ -1,5 +1,5 @@
-query getMessageList($chatId: String!) {
-  messages(chatId: $chatId) {
+mutation sendMessage($chatId: String!, $isComment: Boolean, $text: String!) {
+  sendMessage(chatId: $chatId, isComment: $isComment, text: $text) {
     id
     author {
       id
