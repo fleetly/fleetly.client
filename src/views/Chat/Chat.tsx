@@ -35,7 +35,7 @@ const Chat = () => {
         {chatId ? (
           <>
             <Header chatId={chatId} />
-            <Messages chatId={chatId} />
+            <Messages chatId={chatId} key={chatId} />
             <SendForm chatId={chatId} />
           </>
         ) : (

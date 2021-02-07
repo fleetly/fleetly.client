@@ -1,15 +1,24 @@
 .Root {
+  display: flex;
   flex: 1 1 auto;
+  flex-direction: column-reverse;
+  height: 300px;
   max-height: calc(100% - 160px);
   overflow: auto;
   padding: 0 28px;
 }
 
+.Loader {
+  height: 80px;
+  position: relative;
+  width: 100%;
+}
+
 .Wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: flex-end;
-  min-height: 100%;
+  overflow: visible !important;
 
   & > * {
     margin: 0 0 20px;
