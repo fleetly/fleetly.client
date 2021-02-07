@@ -25,15 +25,27 @@ declare namespace Chat {
 
     interface Group {
       author: IMessageAuthor;
+      isComment?: boolean;
+      isOutcoming?: boolean;
       messages: Text[];
     }
 
     interface Text {
       date: string;
-      isIncoming?: boolean;
+      isOutcoming?: boolean;
       status: MessageStatus;
       text: string;
     }
+  }
+
+  namespace Send {
+    interface Root {
+      chatId: string;
+    }
+  }
+
+  interface SendMessageForm {
+    message: string;
   }
 
   namespace Threads {

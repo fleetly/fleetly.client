@@ -11,7 +11,6 @@ import ROUTES from '@routes';
 import styles from './Company.scss';
 
 // Utils
-import { convertToColor } from '@utils/string';
 import { fillUrl } from '@utils/url';
 
 type PropTypes = {
@@ -24,19 +23,15 @@ const MainCompany: React.FC<PropTypes> = ({
   id,
   notifications = false,
   title = ''
-}) => {
-  const color = React.useMemo(() => convertToColor(id), [id]);
-
-  return (
-    <NavLink
-      activeClassName={styles.RootIsSelected}
-      className={styles.Root}
-      to={fillUrl(ROUTES.COMPANY.ROOT, { companyId: id })}
-    >
-      {notifications && <div className={styles.Notifications} />}
-      <Avatar alt={title} classes={{ root: styles.Avatar }} color={color} />
-    </NavLink>
-  );
-};
+}) => (
+  <NavLink
+    activeClassName={styles.RootIsSelected}
+    className={styles.Root}
+    to={fillUrl(ROUTES.COMPANY.ROOT, { companyId: id })}
+  >
+    {notifications && <div className={styles.Notifications} />}
+    <Avatar alt={title} classes={{ root: styles.Avatar }} toColor={id} />
+  </NavLink>
+);
 
 export default MainCompany;

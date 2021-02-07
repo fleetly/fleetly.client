@@ -1,0 +1,43 @@
+@import '~@styles/colors';
+
+.Author {
+  align-items: center;
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+
+.Avatar {
+  height: 32px;
+  width: 32px;
+}
+
+.Date {
+  color: $color-gray-600;
+  line-height: 13px;
+}
+
+.Header {
+  align-items: center;
+  border-bottom: 2px solid $color-green-50;
+  display: flex;
+  height: 56px;
+  justify-content: center;
+  position: relative;
+}
+
+.Name {
+  color: $color-primary;
+  font-weight: 600;
+  margin: 0 8px;
+}
+
+.Text {
+  color: $color-gray-900;
+  margin: 16px 60px;
+}
+
+.Title {
+  font-size: 12px;
+  font-weight: 700;
+}

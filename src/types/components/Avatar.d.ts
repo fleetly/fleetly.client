@@ -14,6 +14,7 @@ declare namespace Avatar {
     color?: Color;
     sourceType?: Source;
     src?: string;
+    toColor?: string;
   }
 }
 

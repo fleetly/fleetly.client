@@ -1,14 +1,14 @@
-@import '~@styles/colors.scss';
+@import '~@styles/colors';
 
 .Root {
-  background-color: $color-blue-50;
+  background-color: $color-gray-100;
   border-radius: 16px;
   display: flex;
   padding: 7px 12px;
 
   &Is {
-    &Incoming {
-      background-color: $color-gray-100;
+    &Outcoming {
+      background-color: $color-blue-50;
     }
   }
 }

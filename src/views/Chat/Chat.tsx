@@ -8,6 +8,7 @@ import Empty from '@components/Empty';
 // Containers
 import Header from './Header';
 import Messages from './Messages';
+import SendForm from './Send';
 
 // Routes
 import routes from '@routes';
@@ -34,8 +35,8 @@ const Chat = () => {
         {chatId ? (
           <>
             <Header chatId={chatId} />
-            <Messages chatId={chatId} />
-            <div className={styles.Form} />
+            <Messages chatId={chatId} key={chatId} />
+            <SendForm chatId={chatId} />
           </>
         ) : (
           <Empty
