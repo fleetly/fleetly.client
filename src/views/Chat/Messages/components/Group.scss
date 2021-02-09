@@ -1,13 +1,19 @@
+@import '~@styles/colors';
+
 .Root {
   align-items: flex-end;
   display: flex;
-  margin: 40px 0 0;
+  margin: 32px 0 0;
   width: 100%;
 
   &Is {
     &Outcoming {
       display: flex;
       flex-direction: row-reverse;
+
+      .Author {
+        color: $color-primary;
+      }
 
       .Container {
         align-items: flex-end;
@@ -23,9 +29,9 @@
 .Author {
   font-size: 12px;
   font-weight: 600;
-  margin: 12px;
+  margin: 8px 12px;
   position: absolute;
-  top: -40px;
+  top: -32px;
 }
 
 .Avatar {
