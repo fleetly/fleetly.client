@@ -1,17 +1,24 @@
-query getMessageList($chatId: String!, $pagination: PaginationInput!) {
+query getMessageList($chatId: String!, $pagination: CursorPagination) {
   messages(chatId: $chatId, pagination: $pagination) {
-    id
-    author {
+    items {
       id
-      firstname
-      lastname
-      photo
-      username
+      author {
+        id
+        firstname
+        lastname
+        photo
+        username
+      }
+      date
+      isComment
+      isOutcoming
+      status
+      text
     }
-    date
-    isComment
-    isOutcoming
-    status
-    text
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    totalCount
   }
 }

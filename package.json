@@ -5,7 +5,6 @@
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^3.0.3",
     "@fleetly/chat": "^0.2.3",
-    "@fleetly/common": "^0.0.82",
     "@fortawesome/fontawesome-pro": "^5.13.0",
     "animate.css": "^4.1.1",
     "apollo-boost": "^0.4.9",
@@ -94,7 +93,7 @@
     "file-loader": "4.3.0",
     "fs-extra": "^8.1.0",
     "html-webpack-plugin": "4.0.0-beta.11",
-    "husky": "^4.2.5",
+    "husky": "^5.0.9",
     "identity-obj-proxy": "3.0.0",
     "jest": "24.9.0",
     "jest-environment-jsdom-fourteen": "1.0.1",
