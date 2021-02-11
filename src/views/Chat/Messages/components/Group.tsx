@@ -3,6 +3,8 @@ import * as React from 'react';
 
 // Components
 import Avatar from '@components/Avatar';
+
+import Sticker from './Sticker';
 import Text from './Text';
 
 // Styles
@@ -37,9 +39,17 @@ const ChatMessagesGroup: React.FC<Chat.Messages.Group> = ({
         </div>
 
         <div className={styles.List}>
-          {messages.map((message: any) => (
-            <Text {...message} isOutcoming={isOutcoming} key={message.id} />
-          ))}
+          {messages.map((message) => {
+            const Component = message.sticker ? Sticker : Text;
+
+            return (
+              <Component
+                {...message}
+                key={message.id}
+                isOutcoming={isOutcoming}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
