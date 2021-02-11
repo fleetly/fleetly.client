@@ -4,6 +4,7 @@ import * as yup from 'yup';
 
 // Components
 import Button from '@components/Button';
+import Emoji from '../components/Emoji';
 import Form, { asyncValidate } from '@components/Form';
 
 // Constants
@@ -44,7 +45,7 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
       classes={{ root: styles.Root, container: styles.Container }}
       onSubmit={handleSubmit}
     >
-      <Button icon="far fa-smile" variant="outlined" />
+      <Emoji />
 
       <Field
         className={styles.Textarea}
