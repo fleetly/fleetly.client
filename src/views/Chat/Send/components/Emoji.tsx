@@ -7,27 +7,29 @@ import Button from '@components/Button';
 // Styles
 import styles from './Emoji.scss';
 
-const Emoji = () => {
-  const [isHidden, setIsHidden] = React.useState(false);
-  const openEmoji = () => setIsHidden(!isHidden);
-
-  const [chosenEmoji, setChosenEmoji] = React.useState(null);
-  const onEmojiClick = ({ event, emojiObject }: any) => {
-    setChosenEmoji(emojiObject);
-  };
+const Emoji = ({ onEmojiSelect }: any) => {
+  const [isOpened, setOpenState] = React.useState(false);
+  const handleTriggerClick = React.useCallback(
+    () => setOpenState((isOpened) => !isOpened),
+    []
+  );
 
   return (
     <div className={styles.Root}>
-      {isHidden && (
+      {isOpened && (
         <div className={styles.EmojiList}>
           <Picker
             disableSearchBar
             disableSkinTonePicker
-            onEmojiClick={onEmojiClick}
+            onEmojiClick={onEmojiSelect}
           />
         </div>
       )}
-      <Button onClick={openEmoji} icon="far fa-smile" variant="outlined" />
+      <Button
+        onClick={handleTriggerClick}
+        icon="far fa-smile"
+        variant="outlined"
+      />
     </div>
   );
 };
