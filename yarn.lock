@@ -1162,6 +1162,14 @@
     class-transformer "^0.3.1"
     factory-girl "^5.0.4"
 
+"@fleetly/common@^0.4.2":
+  version "0.4.2"
+  resolved "https://npm.pkg.github.com/download/@fleetly/common/0.4.2/e27a58f44c8de179e5e8b3c6f12dd256d161536e9e9d9652e5cf863fff542ed1#8908caa9dbc939d88b691b61722937b3cde601b8"
+  integrity sha512-n84YvNAWFK3rtuh1Fs3ubpyPTg4gfYvtU+YJpdagYFXz2XN7noi7WI0ixsC4v9S2zmnl9RbgtC0XfeLJQJL6PQ==
+  dependencies:
+    class-transformer "^0.3.1"
+    factory-girl "^5.0.4"
+
 "@fortawesome/fontawesome-pro@^5.13.0":
   version "5.13.0"
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/5.13.0/fontawesome-pro-5.13.0.tgz#fde32ed4d9933c4c9b60b8a74a79c67eba58d984"

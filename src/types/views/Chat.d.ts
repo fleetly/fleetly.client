@@ -13,6 +13,12 @@ declare namespace Chat {
     username?: string;
   }
 
+  interface Sticker {
+    height: number;
+    url: string;
+    width: number;
+  }
+
   namespace Messages {
     interface Root {
       chatId: string;
@@ -31,9 +37,11 @@ declare namespace Chat {
     }
 
     interface Text {
+      id: string;
       date: string;
       isOutcoming?: boolean;
       status: MessageStatus;
+      sticker?: Sticker;
       text: string;
     }
   }

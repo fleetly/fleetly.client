@@ -5,6 +5,7 @@
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^3.0.3",
     "@fleetly/chat": "^0.2.3",
+    "@fleetly/common": "^0.4.2",
     "@fortawesome/fontawesome-pro": "^5.13.0",
     "animate.css": "^4.1.1",
     "apollo-boost": "^0.4.9",

@@ -13,6 +13,9 @@ query getMessageList($chatId: String!, $pagination: CursorPagination) {
       isComment
       isOutcoming
       status
+      sticker {
+        url
+      }
       text
     }
     pageInfo {
