@@ -1,0 +1,20 @@
+subscription subMessageUpdate($chatId: String!) {
+  messageUpdate(chatId: $chatId) {
+    id
+    author {
+      id
+      firstname
+      lastname
+      photo
+      username
+    }
+    date
+    isComment
+    isOutcoming
+    status
+    sticker {
+      url
+    }
+    text
+  }
+}

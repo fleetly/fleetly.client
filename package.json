@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.10",
     "@fingerprintjs/fingerprintjs": "^3.0.3",
     "@fleetly/chat": "^0.2.3",
     "@fleetly/common": "^0.4.2",
@@ -33,6 +34,7 @@
     "redux": "^4.0.5",
     "redux-form": "^8.3.6",
     "reselect": "^4.0.0",
+    "subscriptions-transport-ws": "^0.9.18",
     "uuid": "^8.0.0",
     "yup": "^0.28.5"
   },

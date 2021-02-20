@@ -1,5 +1,5 @@
 import moment from 'moment';
-import * as React from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useQuery } from 'react-apollo';
 
 // Fleetly
@@ -7,23 +7,45 @@ import { IPagination } from '@fleetly/common/dist/interfaces';
 
 // GraphQL
 import GET_MESSAGE_LIST from './graphql/getMessageList.gql';
+import SUB_MESSAGE_NEW from './graphql/subMessageNew.gql';
+import SUB_MESSAGE_UPDATE from './graphql/subMessageUpdate.gql';
 
 // Interfaces
 import { IMessage } from '@interfaces/message.interface';
 
 const useChatMessagesView = (chatId: string) => {
   // Setup
-  // @todo - increase to 100
-  const limit = 10;
+  const limit = 100;
 
   // Data
-  const { data, fetchMore } = useQuery<{ messages: IPagination<IMessage> }>(
-    GET_MESSAGE_LIST,
-    { variables: { chatId, pagination: { first: limit } } }
-  );
+  const { data, fetchMore, subscribeToMore } = useQuery<{
+    messages: IPagination<IMessage>;
+  }>(GET_MESSAGE_LIST, { variables: { chatId, pagination: { first: limit } } });
+
+  // Effects
+  useEffect(() => {
+    subscribeToMore({
+      document: SUB_MESSAGE_NEW,
+      variables: { chatId },
+      updateQuery: (prevResult, { subscriptionData }) => ({
+        messages: {
+          ...prevResult.messages,
+          items: [
+            (subscriptionData?.data as any).messageNew as IMessage,
+            ...prevResult.messages.items
+          ]
+        }
+      })
+    });
+
+    subscribeToMore({
+      document: SUB_MESSAGE_UPDATE,
+      variables: { chatId }
+    });
+  }, [chatId, subscribeToMore]);
 
   // Handlers
-  const handleFetchMore = () => {
+  const handleFetchMore = useCallback(() => {
     fetchMore({
       variables: {
         chatId,
@@ -44,10 +66,10 @@ const useChatMessagesView = (chatId: string) => {
         } as any;
       }
     });
-  };
+  }, [chatId, data, fetchMore]);
 
   // Memo
-  const items = React.useMemo(() => {
+  const items = useMemo(() => {
     const map = new Map<string, IMessage[]>();
 
     (data?.messages.items || []).forEach((message: IMessage) => {

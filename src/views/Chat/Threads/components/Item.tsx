@@ -23,6 +23,7 @@ const Item: React.FC<Chat.Threads.Item> = ({
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
   const { firstname, lastname, photo, type } = subscriber?.source || {};
+  const { author, date, sticker, text } = lastMessage;
 
   return (
     <NavLink
@@ -48,9 +49,7 @@ const Item: React.FC<Chat.Threads.Item> = ({
           </div>
 
           {lastMessage && (
-            <div className={styles.Date}>
-              {moment(lastMessage.date).format('HH:mm')}
-            </div>
+            <div className={styles.Date}>{moment(date).format('HH:mm')}</div>
           )}
         </div>
 
@@ -58,12 +57,10 @@ const Item: React.FC<Chat.Threads.Item> = ({
           {lastMessage && (
             <div className={styles.Message}>
               {isConversation && (
-                <span className={styles.Author}>
-                  {lastMessage?.author.firstname}:
-                </span>
+                <span className={styles.Author}>{author.firstname}:</span>
               )}
 
-              {lastMessage?.text}
+              {!!sticker ? 'Sticker 😊' : text}
             </div>
           )}
 
