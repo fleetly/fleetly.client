@@ -7,8 +7,8 @@ import { IPagination } from '@fleetly/common/dist/interfaces';
 
 // GraphQL
 import GET_MESSAGE_LIST from './graphql/getMessageList.gql';
-import SUB_MESSAGE_NEW from './graphql/subMessageNew.gql';
-import SUB_MESSAGE_UPDATE from './graphql/subMessageUpdate.gql';
+import SUB_MESSAGE_SENT from './graphql/subMessageSent.gql';
+import SUB_MESSAGE_UPDATED from './graphql/subMessageUpdated.gql';
 
 // Interfaces
 import { IMessage } from '@interfaces/message.interface';
@@ -25,13 +25,13 @@ const useChatMessagesView = (chatId: string) => {
   // Effects
   useEffect(() => {
     subscribeToMore({
-      document: SUB_MESSAGE_NEW,
+      document: SUB_MESSAGE_SENT,
       variables: { chatId },
       updateQuery: (prevResult, { subscriptionData }) => ({
         messages: {
           ...prevResult.messages,
           items: [
-            (subscriptionData?.data as any).messageNew as IMessage,
+            (subscriptionData?.data as any).messageSent as IMessage,
             ...prevResult.messages.items
           ]
         }
@@ -39,7 +39,7 @@ const useChatMessagesView = (chatId: string) => {
     });
 
     subscribeToMore({
-      document: SUB_MESSAGE_UPDATE,
+      document: SUB_MESSAGE_UPDATED,
       variables: { chatId }
     });
   }, [chatId, subscribeToMore]);

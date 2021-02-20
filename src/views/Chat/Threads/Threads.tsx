@@ -1,29 +1,32 @@
 import * as React from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Fleetly
 import { ChatStatus } from '@fleetly/chat/dist/common/interfaces';
 
 // Components
 import Button from '@components/Button';
+import Empty from '@components/Empty';
+import Loader from '@components/Loader';
 
-// Containers
-import List from './containers/List';
+import Thread from './components/Item';
+
+// Hooks
+import { useChatThreadsView } from './Threads.hooks';
 
 // Styles
 import styles from './Threads.scss';
 
 const Threads = () => {
-  // State
-  const [status, setStatus] = React.useState(ChatStatus.OPENED);
-
-  // Handlers
-  const handleStatusChange = React.useCallback(
-    () =>
-      setStatus(
-        status === ChatStatus.OPENED ? ChatStatus.CLOSED : ChatStatus.OPENED
-      ),
-    [status]
-  );
+  const {
+    count,
+    handleFetchMore,
+    handleStatusClick,
+    hasMore,
+    id,
+    items,
+    status
+  } = useChatThreadsView();
 
   return (
     <div className={styles.Root}>
@@ -31,7 +34,7 @@ const Threads = () => {
         <Button
           className={styles.Action}
           color={status === ChatStatus.OPENED ? 'primary' : 'default'}
-          onClick={handleStatusChange}
+          onClick={handleStatusClick}
           variant={status === ChatStatus.OPENED ? 'filled' : 'outlined'}
         >
           Opened
@@ -40,14 +43,37 @@ const Threads = () => {
         <Button
           className={styles.Action}
           color={status === ChatStatus.CLOSED ? 'primary' : 'default'}
-          onClick={handleStatusChange}
+          onClick={handleStatusClick}
           variant={status === ChatStatus.CLOSED ? 'filled' : 'outlined'}
         >
           Closed
         </Button>
       </div>
 
-      <List status={status} />
+      <div className={styles.Container} id={id}>
+        <InfiniteScroll
+          className={styles.Wrapper}
+          dataLength={count}
+          hasMore={hasMore}
+          loader={
+            <div className={styles.Loader}>
+              <Loader />
+            </div>
+          }
+          next={handleFetchMore}
+          scrollableTarget={id}
+        >
+          {count === 0 ? (
+            <Empty
+              description="You have closed all opened dialogs."
+              icon="fal fa-check-circle"
+              title="All Close"
+            />
+          ) : (
+            items.map((item) => <Thread key={item.id} {...item} />)
+          )}
+        </InfiniteScroll>
+      </div>
     </div>
   );
 };

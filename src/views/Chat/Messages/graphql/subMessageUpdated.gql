@@ -1,5 +1,5 @@
-subscription subMessageUpdate($chatId: String!) {
-  messageUpdate(chatId: $chatId) {
+subscription subMessageUpdated($chatId: String!) {
+  messageUpdated(chatId: $chatId) {
     id
     author {
       id

@@ -1,5 +1,4 @@
-import moment from 'moment';
-import * as React from 'react';
+import React from 'react';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -8,14 +7,13 @@ import { Caption } from '@components/Typography';
 // Styles
 import styles from './Comment.scss';
 
-const ChatMessagesComment: React.FC<any> = ({ author, date, text }) => {
+const ChatMessagesComment: React.FC<Chat.Messages.Comment> = ({
+  author,
+  date,
+  text
+}) => {
   // Setup
   const { firstname, id, lastname } = author;
-
-  // Memo
-  const displayedDate = React.useMemo(() => moment(date).format('HH:mm'), [
-    date
-  ]);
 
   return (
     <div className={styles.Root}>
@@ -23,7 +21,7 @@ const ChatMessagesComment: React.FC<any> = ({ author, date, text }) => {
         <div className={styles.Title}>Comment</div>
 
         <div className={styles.Author}>
-          <Caption className={styles.Date}>{displayedDate}</Caption>
+          <Caption className={styles.Date}>{date}</Caption>
 
           <div className={styles.Name}>
             {firstname} {lastname}

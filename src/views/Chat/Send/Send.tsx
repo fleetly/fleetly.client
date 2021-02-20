@@ -10,11 +10,7 @@ import SEND_MESSAGE from './graphql/sendMessage.gql';
 
 const ChatSend: React.FC<Chat.Send.Root> = ({ chatId }) => {
   // Mutations
-  const [sendMessage] = useMutation(SEND_MESSAGE, {
-    update(cache, { data }) {
-      console.log(cache, data);
-    }
-  });
+  const [sendMessage] = useMutation(SEND_MESSAGE);
 
   // Handlers
   const handleSubmit = React.useCallback(
