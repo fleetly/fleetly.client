@@ -24,6 +24,7 @@ declare namespace Form {
     loaded?: boolean;
     name: string;
     placeholder?: string;
+    ref?: any;
     withoutRedux?: boolean;
   }
 

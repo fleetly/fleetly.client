@@ -30,12 +30,13 @@ const Chat = () => {
     <Page title="Chat">
       <Wrapper
         classes={{ root: styles.Root, container: styles.Container }}
+        key={chatId}
         title="Chat"
       >
         {chatId ? (
           <>
             <Header chatId={chatId} />
-            <Messages chatId={chatId} key={chatId} />
+            <Messages chatId={chatId} />
             <SendForm chatId={chatId} />
           </>
         ) : (

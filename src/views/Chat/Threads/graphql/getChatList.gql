@@ -1,5 +1,9 @@
-query getChatList($companyId: String!, $status: ChatStatusType!) {
-  chats(companyId: $companyId, status: $status) {
+query getChatList(
+  $companyId: String!
+  $pagination: CursorPagination
+  $status: ChatStatusType!
+) {
+  chats(companyId: $companyId, pagination: $pagination, status: $status) {
     items {
       id
       lastMessage {

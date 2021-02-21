@@ -28,7 +28,7 @@ const ChatSend: React.FC<Chat.Send.Root> = ({ chatId }) => {
     [chatId, sendMessage]
   );
 
-  return <Form onSubmit={handleSubmit} />;
+  return <Form chatId={chatId} onSubmit={handleSubmit} />;
 };
 
 export default ChatSend;

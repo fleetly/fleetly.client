@@ -9,6 +9,7 @@ import { withReduxForm } from '@components/Form';
 import styles from './Textarea.scss';
 
 const ChatSendTextarea: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
+  id,
   name,
   onChange
 }) => {
@@ -21,6 +22,7 @@ const ChatSendTextarea: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
   return (
     <TextareaAutosize
       className={styles.Root}
+      id={id}
       maxRows={12}
       minRows={1}
       name={name}
