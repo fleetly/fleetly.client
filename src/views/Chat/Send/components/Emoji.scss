@@ -1,0 +1,77 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  position: relative;
+}
+
+.EmojiList {
+  background-color: $color-gray-0;
+  border-radius: 20px;
+  bottom: 70px;
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .1);
+  height: 650px;
+  position: absolute;
+  width: 394px;
+}
+
+:global aside.emoji-picker-react {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  width: 100%;
+}
+
+:global aside.emoji-picker-react .content-wrapper {
+  padding: 0 0 0 32px;
+
+  &::before {
+    display: none;
+  }
+}
+
+:global .emoji-picker-react .emoji-scroll-wrapper {
+  padding: 0 14px 0 0;
+}
+
+:global .emoji-picker-react img.emoji-img {
+  height: 25px;
+  margin: 8px;
+  width: 25px;
+}
+
+:global .emoji-picker-react .active-category-indicator-wrapper {
+  display: none;
+}
+
+:global .emoji-picker-react .emoji-group::after {
+  display: none;
+}
+
+:global .emoji-picker-react .emoji-categories {
+  align-items: center;
+  border-top: 2px solid $color-gray-300;
+  height: 66px;
+  padding: 0 40px;
+  width: 100%;
+}
+
+:global .emoji-picker-react .emoji-group {
+  justify-content: start;
+  padding: 0;
+
+  &::before {
+    padding: 0 0 0 8px;
+  }
+}
+
+:global .emoji-picker-react .emoji.has-skin-variation button::before {
+  display: none;
+}
+
+:global .emoji-picker-react .emoji button {
+  &:hover,
+  :focus-visible {
+    background-color: $color-blue-50;
+  }
+}
