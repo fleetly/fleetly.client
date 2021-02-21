@@ -7,15 +7,28 @@ import { ISubscriber } from '@interfaces/subscriber.interface';
 
 declare namespace Chat {
   interface Author {
+    id: string;
     firstname?: string;
     lastname?: string;
     photo?: string;
     username?: string;
   }
 
+  interface Sticker {
+    height: number;
+    url: string;
+    width: number;
+  }
+
   namespace Messages {
     interface Root {
       chatId: string;
+    }
+
+    interface Comment {
+      author: Author;
+      date: string;
+      text: string;
     }
 
     interface Date {
@@ -31,9 +44,11 @@ declare namespace Chat {
     }
 
     interface Text {
+      id: string;
       date: string;
       isOutcoming?: boolean;
       status: MessageStatus;
+      sticker?: Sticker;
       text: string;
     }
   }

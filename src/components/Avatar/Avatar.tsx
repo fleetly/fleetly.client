@@ -10,7 +10,7 @@ import { getClassName } from '@utils/styles';
 import { convertToColor } from '@utils/string';
 
 const Avatar: React.FC<Avatar.Props> = ({
-  alt = 'avatar',
+  alt,
   aura,
   classes,
   color: propColor,
@@ -65,7 +65,7 @@ const Avatar: React.FC<Avatar.Props> = ({
       {src ? (
         <img alt={alt} className={photoClassName} src={src} />
       ) : (
-        <div className={plugClassName}>{alt.substr(0, 1)}</div>
+        <div className={plugClassName}>{(alt || '').substr(0, 1)}</div>
       )}
 
       {sourceType && <i className={sourceClassName} />}

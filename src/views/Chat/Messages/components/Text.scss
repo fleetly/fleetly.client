@@ -22,7 +22,9 @@
 }
 
 .Status {
-  margin: 0 0 0 4px;
+  margin: -2px 0 0 4px;
+  position: relative;
+  top: -2px;
 
   &Is {
     &Read {

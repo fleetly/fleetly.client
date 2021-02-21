@@ -1,5 +1,9 @@
 @import '~@styles/colors';
 
+.Root {
+  margin: 24px 0;
+}
+
 .Author {
   align-items: center;
   display: flex;
@@ -35,6 +39,7 @@
 .Text {
   color: $color-gray-900;
   margin: 16px 60px;
+  text-align: center;
 }
 
 .Title {

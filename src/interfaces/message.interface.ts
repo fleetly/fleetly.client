@@ -8,6 +8,7 @@ export interface IMessage {
   readonly isComment: boolean;
   readonly isOutcoming: boolean;
   readonly status: MessageStatus;
+  readonly sticker?: IMessageSticker;
   readonly text: string;
 }
 
@@ -17,4 +18,10 @@ export interface IMessageAuthor {
   readonly lastname: string;
   readonly photo: string;
   readonly username: string;
+}
+
+export interface IMessageSticker {
+  readonly height: number;
+  readonly url: string;
+  readonly width: number;
 }

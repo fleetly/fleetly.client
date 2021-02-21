@@ -25,8 +25,9 @@ const ChatMessagesDate: React.FC<Chat.Messages.Date> = ({ date, messages }) => {
         const lastGroup = last(result);
         const newMessage = {
           id: message.id,
-          date: message.date,
+          date: moment(message.date).format('HH:mm'),
           status: message.status,
+          sticker: message.sticker,
           text: message.text
         };
 

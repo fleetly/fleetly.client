@@ -1,0 +1,27 @@
+subscription subChatUpdated($companyId: String!, $status: ChatStatusType!) {
+  chatUpdated(companyId: $companyId, status: $status) {
+    id
+    lastMessage {
+      id
+      author {
+        id
+        firstname
+      }
+      date
+      isComment
+      sticker {
+        url
+      }
+      text
+    }
+    subscriber {
+      id
+      source {
+        firstname
+        lastname
+        photo
+        type
+      }
+    }
+  }
+}

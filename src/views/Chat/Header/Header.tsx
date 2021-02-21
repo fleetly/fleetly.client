@@ -64,18 +64,6 @@ const DialogHeader: React.FC<{ chatId: string }> = ({ chatId }) => {
       </div>
 
       <div className={styles.Actions}>
-        <Button
-          className={styles.Action}
-          icon="far fa-search"
-          variant="outlined"
-        />
-
-        <Button
-          className={styles.Action}
-          icon="far fa-bell"
-          variant="outlined"
-        />
-
         <Button className={styles.Confirm} color="primary">
           Confirm
         </Button>

@@ -31,6 +31,10 @@
   height: 100%;
 }
 
+.Emoji {
+  align-self: flex-end;
+}
+
 .Right {
   align-self: flex-end;
   display: flex;
@@ -38,15 +42,4 @@
   & > *:not(:first-child) {
     margin: 0 0 0 12px;
   }
-}
-
-.Textarea {
-  border: 0;
-  flex: 1 1 auto;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: inherit;
-  height: 24px;
-  margin: 0 20px;
-  resize: none;
 }

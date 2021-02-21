@@ -1,11 +1,13 @@
-import * as React from 'react';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import React, { useCallback } from 'react';
+import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
 
 // Components
 import Button from '@components/Button';
 import Emoji from '../components/Emoji';
 import Form, { asyncValidate } from '@components/Form';
+
+import Textarea from '../components/Textarea';
 
 // Constants
 import { SEND_MESSAGE_FORM } from '@constants';
@@ -30,12 +32,12 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
   const { onSubmit } = props as any;
 
   // Handlers
-  const handleCommentClick = React.useCallback(
+  const handleCommentClick = useCallback(
     handleSubmit(({ text }) => onSubmit(SubmitType.COMMENT, text, reset)),
     []
   );
 
-  const handleSendClick = React.useCallback(
+  const handleSendClick = useCallback(
     handleSubmit(({ text }) => onSubmit(SubmitType.DEFAULT, text, reset)),
     []
   );
@@ -47,12 +49,7 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
     >
       <Emoji />
 
-      <Field
-        className={styles.Textarea}
-        component="textarea"
-        name="text"
-        placeholder="Enter Message..."
-      />
+      <Textarea name="text" />
 
       <div className={styles.Right}>
         <Button
