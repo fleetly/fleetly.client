@@ -11,7 +11,8 @@ import styles from './Textarea.scss';
 const ChatSendTextarea: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
   id,
   name,
-  onChange
+  onChange,
+  value
 }) => {
   // Handlers
   const handleBlur = useCallback(
@@ -29,6 +30,7 @@ const ChatSendTextarea: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
       onBlur={handleBlur}
       onChange={onChange}
       placeholder="Enter Message..."
+      value={value}
     />
   );
 };

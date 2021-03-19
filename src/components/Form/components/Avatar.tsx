@@ -13,8 +13,8 @@ import styles from './Avatar.scss';
 
 const FormAvatar: React.FC<Form.AvatarProps> = ({
   alt = 'Logo',
-  color,
-  label
+  label,
+  toColor
 }) => (
   <div>
     <FieldHeader label={label} />
@@ -23,7 +23,7 @@ const FormAvatar: React.FC<Form.AvatarProps> = ({
       <Avatar
         alt={alt}
         classes={{ root: styles.Avatar, plug: styles.AvatarPlug }}
-        color={color}
+        toColor={toColor}
       />
 
       <Button color="primary" variant="outlined">

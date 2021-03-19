@@ -27,6 +27,18 @@ const SOURCE_LIST = [
     title: 'VK'
   },
   {
+    id: 'INSTAGRAM',
+    icon: 'fab fa-instagram',
+    isDisabled: true,
+    title: 'Instagram'
+  },
+  {
+    id: 'WHATSAPP',
+    icon: 'fab fa-whatsapp',
+    isDisabled: true,
+    title: 'Whatsapp'
+  },
+  {
     id: 'TWITCH',
     icon: 'fab fa-twitch',
     isDisabled: true,

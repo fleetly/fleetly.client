@@ -14,13 +14,11 @@ const ChatSend: React.FC<Chat.Send.Root> = ({ chatId }) => {
 
   // Handlers
   const handleSubmit = React.useCallback(
-    async (type: SubmitType, text: string, reset) => {
+    async (type: SubmitType, text: string) => {
       try {
         await sendMessage({
           variables: { chatId, isComment: type === SubmitType.COMMENT, text }
         });
-
-        reset();
       } catch (error) {
         return gqlErrorHandler(error);
       }

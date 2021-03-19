@@ -14,7 +14,6 @@ import Form, {
 
 // Constants
 import { UPDATE_COMPANY_FORM } from '@constants';
-import { convertToColor } from '@utils/string';
 
 const GeneralUpdateForm: React.FC<InjectedFormProps<
   General.UpdateFormValues
@@ -23,9 +22,9 @@ const GeneralUpdateForm: React.FC<InjectedFormProps<
     <Fieldset>
       <Avatar
         alt={initialValues.title}
-        color={convertToColor(initialValues.companyId)}
         label="Logo"
         name="logo"
+        toColor={initialValues.companyId}
       />
 
       <Input label="Company Name" name="title" placeholder="Display Name" />

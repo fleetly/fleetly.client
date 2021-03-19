@@ -24,9 +24,6 @@ import { ICollaborator } from '@interfaces/collaborator.interface';
 // Styles
 import styles from './Table.scss';
 
-// Utils
-import { convertToColor } from '@utils/string';
-
 const useCollaboratorsTable = () => {
   // Setup
   const { companyId }: any = useParams();
@@ -81,7 +78,7 @@ const useCollaboratorsTable = () => {
         accessor: 'avatar',
         Cell: ({ row }: any) => {
           const { id, username } = row?.original?.user;
-          return <Avatar alt={username} color={convertToColor(id)} />;
+          return <Avatar alt={username} toColor={id} />;
         },
         Header: '',
         maxWidth: 52

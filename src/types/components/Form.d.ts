@@ -48,7 +48,7 @@ declare namespace Form {
   // Avatar
   interface AvatarProps extends FieldBase {
     alt?: string;
-    color?: Color;
+    toColor?: string;
   }
 
   // End Avatar

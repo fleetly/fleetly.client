@@ -24,18 +24,17 @@ export enum SubmitType {
 const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
   dirty,
   handleSubmit,
-  reset,
   submitting,
   valid,
   ...props
-}): JSX.Element => {
+}) => {
   // Setup
   const { chatId, onSubmit } = props as any;
   const textareaId = `${chatId}-text`;
 
   // Handlers
   const handleCommentClick = useCallback(
-    handleSubmit(({ text }) => onSubmit(SubmitType.COMMENT, text, reset)),
+    handleSubmit(({ text }) => onSubmit(SubmitType.COMMENT, text)),
     []
   );
 
@@ -48,7 +47,7 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
   );
 
   const handleSendClick = useCallback(
-    handleSubmit(({ text }) => onSubmit(SubmitType.DEFAULT, text, reset)),
+    handleSubmit(({ text }) => onSubmit(SubmitType.DEFAULT, text)),
     []
   );
 
@@ -84,5 +83,6 @@ export default reduxForm<any, any>({
   asyncValidate: asyncValidate(
     yup.object().shape({ text: yup.string().required() })
   ),
-  form: SEND_MESSAGE_FORM
+  form: SEND_MESSAGE_FORM,
+  onSubmitSuccess: (value, dispatch, { reset }) => reset()
 })(ChatSendForm);

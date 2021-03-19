@@ -19,7 +19,7 @@ const Avatar: React.FC<Avatar.Props> = ({
   toColor
 }) => {
   // Memo
-  const color = React.useMemo(() => convertToColor(toColor) || propColor, [
+  const color = React.useMemo(() => propColor || convertToColor(toColor), [
     propColor,
     toColor
   ]);
