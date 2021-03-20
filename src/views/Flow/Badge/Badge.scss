@@ -1,0 +1,51 @@
+@import '~@styles/colors.scss';
+
+@mixin color($color) {
+    background-color: rgba($color, .1);
+
+    .Icon {
+      border: solid 2px rgba($color, .5);
+      color: rgba($color, .5);
+    }
+}
+
+.Root {
+  border-radius: 20px;
+  display: flex;
+  margin: 20px 0;
+  padding: 20px;
+
+  @include coloring;
+}
+
+.Close {
+  border: solid 2px $color-gray-900;
+  border-radius: 20px;
+  height: 30px;
+  width: 30px;
+}
+
+.Icon {
+  align-items: center;
+  border-radius: 100%;
+  display: flex !important;
+  font-size: 16px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.Info {
+  margin: 0 0 0 20px;
+  width: calc(100% - 60px);
+}
+
+.Title {
+  font-weight: 600;
+}
+
+.Description {
+  color: $color-gray-600;
+  font-size: 12px;
+  font-weight: 600;
+}
