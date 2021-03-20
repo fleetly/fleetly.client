@@ -18,7 +18,6 @@ import styles from './Company.scss';
 // Views
 import Channel from '@views/Channel';
 import Channels from '@views/Channels';
-import { Thread } from '@views/Flow';
 import { Threads } from '@views/Chat';
 import Collaborators from '@views/Collaborators';
 import Chat from '@views/Chat';
@@ -34,7 +33,6 @@ const Company: React.FC<{}> = (props) => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
   const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT.ROOT);
-  const isFlow = !!useRouteMatch(ROUTES.COMPANY.FLOW)
 
   // Memo
   const MENU = React.useMemo<Menu.Group[]>(
@@ -132,8 +130,7 @@ const Company: React.FC<{}> = (props) => {
         </div>
 
         <div className={styles.Menu}>
-          {isChat ? <Threads /> :
-          isFlow ? <Thread /> : <Menu data={MENU} />}
+          {isChat ? <Threads /> : <Menu data={MENU} />}
         </div>
       </div>
 
