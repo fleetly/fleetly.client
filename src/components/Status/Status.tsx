@@ -1,6 +1,8 @@
-import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
+
+// Fleetly
+import { Color } from '@fleetly/common/dist/enums';
 
 // Styles
 import styles from './Status.scss';
@@ -8,29 +10,37 @@ import styles from './Status.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-const Status: React.FC<Status.Props> = ({ classes, color, title }) => {
-  const { rootClassName, dotClassName, titleClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(
-        classes?.root,
-        styles.Root,
-        getClassName('color', {
-          collection: styles,
-          value: color || Color.BLUE
-        })
-      ),
-      dotClassName: classNames(classes?.dot, styles.Dot),
-      titleClassName: classNames(classes?.title, styles.Title)
-    }),
-    [classes, color]
-  );
+interface Classes extends ExtendedClasses {
+  dot?: string;
+  title?: string;
+}
 
-  return (
-    <div className={rootClassName}>
-      <div className={dotClassName} />
-      {title && <div className={titleClassName}>{title.toLowerCase()}</div>}
-    </div>
-  );
-};
+interface PropTypes {
+  className?: string;
+  classes?: Classes;
+  color?: Color;
+  title?: string;
+}
+
+const Status: React.FC<PropTypes> = ({ classes, color, title }) => (
+  <div
+    className={classNames(
+      classes?.root,
+      styles.Root,
+      getClassName('color', {
+        collection: styles,
+        value: color || Color.BLUE
+      })
+    )}
+  >
+    <div className={classNames(classes?.dot, styles.Dot)} />
+
+    {title && (
+      <div className={classNames(classes?.title, styles.Title)}>
+        {title.toLowerCase()}
+      </div>
+    )}
+  </div>
+);
 
 export default Status;

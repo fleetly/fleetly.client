@@ -1,11 +1,25 @@
 import classNames from 'classnames';
 import * as React from 'react';
-import { useTable } from 'react-table';
+import { Column, useTable } from 'react-table';
 
 // Styles
 import styles from './Table.scss';
 
-const Table: React.FC<Table.Props> = ({ columns, data, onTrClick }) => {
+interface Classes extends ExtendedClasses {
+  tbody?: string;
+  td?: string;
+  thead?: string;
+  tr?: string;
+}
+
+interface PropTypes {
+  classes?: Classes;
+  columns: Column[];
+  data: any[];
+  onTrClick?(event: any): void;
+}
+
+const Table: React.FC<PropTypes> = ({ columns, data, onTrClick }) => {
   const {
     getTableProps,
     getTableBodyProps,

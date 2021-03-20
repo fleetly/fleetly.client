@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React, { useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
@@ -12,7 +12,24 @@ import { useModals } from '@store';
 // Styles
 import styles from './Modal.scss';
 
-const Modal: React.FC<Modal.Props> = ({
+interface Classes extends ExtendedClasses {
+  backdrop?: string;
+  container?: string;
+  title?: string;
+  content?: string;
+}
+
+interface PropTypes {
+  children: React.ReactNode;
+  data?: Map<string, any>;
+  classes?: Classes;
+  id: string;
+  isOpened?: boolean;
+  onClose?(event: React.SyntheticEvent<HTMLDivElement>): void;
+  title?: string;
+}
+
+const Modal: React.FC<PropTypes> = ({
   children,
   classes,
   id,
@@ -21,7 +38,7 @@ const Modal: React.FC<Modal.Props> = ({
 }) => {
   const { closeModal, isOpened, modal } = useModals(id);
 
-  const handleBackdropClick = React.useCallback(
+  const handleBackdropClick = useCallback(
     (event) => {
       closeModal();
       onClose(event);

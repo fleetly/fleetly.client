@@ -1,6 +1,8 @@
-import { Source } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
-import * as React from 'react';
+import React, { useMemo } from 'react';
+
+// Fleetly
+import { Color, Source } from '@fleetly/common/dist/enums';
 
 // Styles
 import styles from './Avatar.scss';
@@ -9,7 +11,23 @@ import styles from './Avatar.scss';
 import { getClassName } from '@utils/styles';
 import { convertToColor } from '@utils/string';
 
-const Avatar: React.FC<Avatar.Props> = ({
+interface Classes extends ExtendedClasses {
+  photo?: string;
+  plug?: string;
+  source?: string;
+}
+
+interface PropTypes {
+  alt?: string;
+  aura?: boolean;
+  classes?: Classes;
+  color?: Color;
+  sourceType?: Source;
+  src?: string;
+  toColor?: string;
+}
+
+const Avatar: React.FC<PropTypes> = ({
   alt,
   aura,
   classes,
@@ -19,19 +37,14 @@ const Avatar: React.FC<Avatar.Props> = ({
   toColor
 }) => {
   // Memo
-  const color = React.useMemo(() => propColor || convertToColor(toColor), [
+  const color = useMemo(() => propColor || convertToColor(toColor), [
     propColor,
     toColor
   ]);
 
-  const {
-    rootClassName,
-    photoClassName,
-    plugClassName,
-    sourceClassName
-  } = React.useMemo(
-    () => ({
-      rootClassName: classNames(
+  return (
+    <div
+      className={classNames(
         classes?.root,
         styles.Root,
         getClassName('color', {
@@ -41,34 +54,36 @@ const Avatar: React.FC<Avatar.Props> = ({
         {
           [styles.RootWithAura]: aura
         }
-      ),
-      photoClassName: classNames(classes?.photo, styles.Photo),
-      plugClassName: classNames(classes?.plug, styles.Plug),
-      sourceClassName: classNames(
-        classes?.source,
-        styles.Source,
-        sourceType === Source.VK.toUpperCase() && {
-          'fab fa-vk': true,
-          [styles.SourceVariantVK]: true
-        },
-        sourceType === Source.TELEGRAM.toUpperCase() && {
-          'fab fa-telegram-plane': true,
-          [styles.SourceVariantTelegram]: true
-        }
-      )
-    }),
-    [aura, classes, color, sourceType]
-  );
-
-  return (
-    <div className={rootClassName}>
+      )}
+    >
       {src ? (
-        <img alt={alt} className={photoClassName} src={src} />
+        <img
+          alt={alt}
+          className={classNames(classes?.photo, styles.Photo)}
+          src={src}
+        />
       ) : (
-        <div className={plugClassName}>{(alt || '').substr(0, 1)}</div>
+        <div className={classNames(classes?.plug, styles.Plug)}>
+          {(alt || '').substr(0, 1)}
+        </div>
       )}
 
-      {sourceType && <i className={sourceClassName} />}
+      {sourceType && (
+        <i
+          className={classNames(
+            classes?.source,
+            styles.Source,
+            sourceType === Source.VK.toUpperCase() && {
+              'fab fa-vk': true,
+              [styles.SourceVariantVK]: true
+            },
+            sourceType === Source.TELEGRAM.toUpperCase() && {
+              'fab fa-telegram-plane': true,
+              [styles.SourceVariantTelegram]: true
+            }
+          )}
+        />
+      )}
     </div>
   );
 };

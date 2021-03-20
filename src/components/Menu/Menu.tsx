@@ -1,54 +1,65 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Styles
 import styles from './Menu.scss';
 
-const Menu: React.FC<Menu.Props> = ({ className, classes, data }) => {
-  const {
-    rootClassName,
-    groupClassName,
-    iconClassName,
-    linkClassName,
-    listClassName,
-    titleClassName
-  } = React.useMemo(
-    () => ({
-      rootClassName: classNames(className, classes?.root, styles.Root),
-      groupClassName: classNames(classes?.group, styles.Group),
-      iconClassName: classNames(classes?.icon, styles.Icon),
-      linkClassName: classNames(classes?.link, styles.Link),
-      listClassName: classNames(classes?.list, styles.List),
-      titleClassName: classNames(classes?.title, styles.Title)
-    }),
-    [className, classes]
-  );
+export interface Classes extends ExtendedClasses {
+  group?: string;
+  icon?: string;
+  link?: string;
+  list?: string;
+  title?: string;
+}
 
-  return (
-    <div className={rootClassName}>
-      {data.map(({ children, title }, index: number) => (
-        <div className={groupClassName} key={index}>
-          {title && <div className={titleClassName}>{title}</div>}
+export interface Group {
+  children: Item[];
+  title?: string;
+}
 
-          <div className={listClassName}>
-            {children.map(({ exact, icon, title, to }, index: number) => (
-              <NavLink
-                activeClassName={styles.LinkIsSelected}
-                className={linkClassName}
-                exact={exact}
-                key={index}
-                to={to}
-              >
-                {icon && <i className={classNames(iconClassName, icon)} />}
-                {title}
-              </NavLink>
-            ))}
+export interface Item {
+  exact?: boolean;
+  icon?: string;
+  title: string;
+  to: string;
+}
+
+export interface PropTypes {
+  classes?: Classes;
+  className?: string;
+  data: Group[];
+}
+
+const Menu: React.FC<PropTypes> = ({ className, classes, data }) => (
+  <div className={classNames(className, classes?.root, styles.Root)}>
+    {data.map(({ children, title }, index: number) => (
+      <div className={classNames(classes?.group, styles.Group)} key={index}>
+        {title && (
+          <div className={classNames(classes?.title, styles.Title)}>
+            {title}
           </div>
+        )}
+
+        <div className={classNames(classes?.list, styles.List)}>
+          {children.map(({ exact, icon, title, to }, index: number) => (
+            <NavLink
+              activeClassName={styles.LinkIsSelected}
+              className={classNames(classes?.link, styles.Link)}
+              exact={exact}
+              key={index}
+              to={to}
+            >
+              {icon && (
+                <i className={classNames(classes?.icon, styles.Icon, icon)} />
+              )}
+              {title}
+            </NavLink>
+          ))}
         </div>
-      ))}
-    </div>
-  );
-};
+      </div>
+    ))}
+  </div>
+);
 
 export default Menu;

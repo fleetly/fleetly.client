@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 
 // Components
 import Link from '@components/Link';
@@ -10,7 +10,28 @@ import styles from './Button.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-const Button: React.FC<Button.Props> = ({
+interface Classes extends ExtendedClasses {
+  icon?: string;
+  spinner?: string;
+}
+
+interface PropTypes {
+  children?: React.ReactNode;
+  className?: string;
+  classes?: Classes;
+  color?: ColorType;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  icon?: string;
+  id?: number | string;
+  loaded?: boolean;
+  onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
+  to?: string;
+  type?: 'button' | 'reset' | 'submit';
+  variant?: 'filled' | 'outlined';
+}
+
+const Button: React.FC<PropTypes> = ({
   children,
   className,
   classes,
@@ -64,6 +85,7 @@ const Button: React.FC<Button.Props> = ({
           {icon && (
             <i className={classNames(classes?.icon, styles.Icon, icon)} />
           )}
+
           {children}
         </>
       )}

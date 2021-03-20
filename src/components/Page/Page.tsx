@@ -1,11 +1,21 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 // Styles
 import styles from './Page.scss';
 
-const Page: React.SFC<Page.Props> = ({
+interface Classes extends ExtendedClasses {
+  container?: string;
+}
+
+interface PropsTypes {
+  children: React.ReactNode;
+  classes?: Classes;
+  title?: string;
+}
+
+const Page: React.FC<PropsTypes> = ({
   children,
   classes,
   title = 'Fleetly'

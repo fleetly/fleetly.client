@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // Styles
@@ -8,13 +8,18 @@ import styles from './Link.scss';
 // Utils
 import { isExternal } from '@utils/url';
 
-const Link: React.SFC<Link.Props> = ({
+interface PropTypes {
+  children?: React.ReactNode;
+  className?: string;
+  to?: string;
+}
+
+const Link: React.FC<PropTypes> = ({
   children,
   className: classNameProp,
-  classes = {},
   to = '/'
 }) => {
-  const className = classNames(classNameProp, classes.root, styles.Root);
+  const className = classNames(classNameProp, styles.Root);
 
   return isExternal(to) ? (
     <a

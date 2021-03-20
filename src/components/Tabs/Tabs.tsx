@@ -1,18 +1,22 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React, { Children, useCallback } from 'react';
 
 // Styles
 import styles from './Tabs.scss';
 
-const Tabs: React.FC<Tabs.Props> = ({ children, classes, onSelect, value }) => {
-  const { rootClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(classes?.root, styles.Root)
-    }),
-    [classes]
-  );
+interface Classes extends ExtendedClasses {
+  tab?: string;
+}
 
-  const handleTabClick = React.useCallback(
+interface PropTypes {
+  children: React.ReactNode;
+  classes?: Classes;
+  onSelect?(value: any): void;
+  value: any;
+}
+
+const Tabs: React.FC<PropTypes> = ({ children, classes, onSelect, value }) => {
+  const handleTabClick = useCallback(
     (event: React.SyntheticEvent<HTMLDivElement>) => {
       onSelect && onSelect(event.currentTarget.dataset.tabId);
     },
@@ -21,10 +25,10 @@ const Tabs: React.FC<Tabs.Props> = ({ children, classes, onSelect, value }) => {
 
   return (
     <div
-      className={rootClassName}
+      className={classNames(classes?.root, styles.Root)}
       role="tablist"
       style={{
-        gridTemplateColumns: `repeat(${React.Children.count(children)}, 1fr)`
+        gridTemplateColumns: `repeat(${Children.count(children)}, 1fr)`
       }}
     >
       {React.Children.map<any, any>(children, (child) =>

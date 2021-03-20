@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 
 // Components
-import Menu from '@components/Menu';
+import Menu, { Group } from '@components/Menu';
 
 // Containers
 import Subscriber from '@containers/Subscriber';
@@ -29,13 +29,13 @@ import Tags from '@views/Tags';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Company: React.FC<{}> = (props) => {
+const Company: React.FC<{}> = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
   const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT.ROOT);
 
   // Memo
-  const MENU = React.useMemo<Menu.Group[]>(
+  const MENU = React.useMemo<Group[]>(
     () => [
       {
         children: [
