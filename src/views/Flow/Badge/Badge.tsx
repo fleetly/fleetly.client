@@ -30,13 +30,15 @@ const Badge: React.FC<Flow.Badge> = ({ color, description, icon = 'far fa-bell',
         )} />
 
       <div className={styles.Info}>
-        <div className={styles.Title}>
+        <div className={styles.Title} title={title}>
           {title}
         </div>
 
-        <div className={styles.Description}>
-          {description}
-        </div>
+        {description &&
+          <div className={styles.Description}>
+            {description}
+          </div>
+        }
       </div>
     </div>
   );

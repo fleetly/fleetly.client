@@ -36,12 +36,18 @@
 }
 
 .Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0 0 0 20px;
   width: calc(100% - 60px);
 }
 
 .Title {
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .Description {

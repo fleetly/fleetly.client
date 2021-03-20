@@ -31,6 +31,11 @@ const DATA = [
     id: 3,
     title: 'Danger!',
     description: 'Ban'
+  },
+  {
+    color: Color.YELLOW,
+    id: 3,
+    title: 'Badge without description and with a very long title.',
   }
 ];
 
