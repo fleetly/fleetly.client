@@ -17,6 +17,11 @@
   @include coloring;
 }
 
+.Description {
+  color: $color-gray-600;
+  margin: 4px 0 0 0;
+}
+
 .Icon {
   align-items: center;
   border-radius: 100%;
@@ -39,9 +44,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.Description {
-  color: $color-gray-600;
-  margin: 4px 0 0 0;
 }
