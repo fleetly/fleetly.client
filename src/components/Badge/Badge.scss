@@ -7,6 +7,10 @@
     border: 2px solid rgba($color, .3);
     color: $color;
   }
+
+  .Title {
+    color: $color;
+  }
 }
 
 .Root {
@@ -15,6 +19,14 @@
   padding: 20px;
 
   @include coloring;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 0 16px;
+  width: calc(100% - 60px);
 }
 
 .Description {
@@ -30,14 +42,6 @@
   height: 40px;
   justify-content: center;
   width: 40px;
-}
-
-.Info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 0 0 16px;
-  width: calc(100% - 60px);
 }
 
 .Title {

@@ -1,6 +1,17 @@
 export {};
 
 declare global {
+  type Color =
+    | 'blue'
+    | 'gray'
+    | 'green'
+    | 'orange'
+    | 'pink'
+    | 'purple'
+    | 'red'
+    | 'sky'
+    | 'yellow';
+
   type ColorType =
     | 'danger'
     | 'default'

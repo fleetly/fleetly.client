@@ -1,48 +1,60 @@
-import { Color } from '@fleetly/common/dist/enums';
-import * as React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 // Components
 import { Caption, H5 } from '@components/Typography';
 
-//Styles
+// Styles
 import styles from './Badge.scss';
 
 // Utils
 import { getClassName } from '@utils/styles';
 
-const Badge: React.FC<Flow.Badge> = ({
+interface Classes extends ExtendedClasses {
+  content?: string;
+  description?: string;
+  icon?: string;
+  title?: string;
+}
+
+interface PropTypes {
+  classes?: Classes;
+  color?: Color;
+  description?: string;
+  icon?: string;
+  title?: string;
+}
+
+const Badge: React.FC<PropTypes> = ({
+  classes = {},
   color,
   description,
   icon = 'far fa-bell',
   title
-}) => {
-  const { rootClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(
-        styles.Root,
-        getClassName('color', {
-          collection: styles,
-          value: color || Color.BLUE
-        })
-      )
-    }),
-    [color]
-  );
+}) => (
+  <div
+    className={classNames(
+      styles.Root,
+      getClassName('color', {
+        collection: styles,
+        value: color || 'blue'
+      })
+    )}
+  >
+    <i className={classNames(classes.icon, styles.Icon, icon)} />
 
-  return (
-    <div className={rootClassName}>
-      <i className={classNames(styles.Icon, icon)} />
+    <div className={classNames(classes.content, styles.Content)}>
+      <H5 className={classNames(classes.title, styles.Title)}>{title}</H5>
 
-      <div className={styles.Info}>
-        <H5 className={styles.Title}>{title}</H5>
-
-        {description && (
-          <Caption className={styles.Description}>{description}</Caption>
-        )}
-      </div>
+      {description && (
+        <Caption
+          className={classNames(classes.description, styles.Description)}
+        >
+          {description}
+        </Caption>
+      )}
     </div>
-  );
-};
+  </div>
+);
 
 export default Badge;

@@ -2,30 +2,22 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 // Components
+import Badge from '@components/Badge';
 import Transition from '@components/Transition';
 
 // Styles
 import styles from './Form.scss';
 
-const Form: React.FC<Form.Props> = ({ children, classes, error, onSubmit }) => {
-  const { rootClassName, errorClassName, containerClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(classes?.root, styles.Root),
-      errorClassName: classNames(classes?.error, styles.Error),
-      containerClassName: classNames(classes?.container, styles.Container)
-    }),
-    [classes]
-  );
+const Form: React.FC<Form.Props> = ({ children, classes, error, onSubmit }) => (
+  <form className={classNames(classes?.root, styles.Root)} onSubmit={onSubmit}>
+    <Transition duration={400} enter="fadeInUp" in={!!error}>
+      <Badge color="red" icon="fas fa-exclamation-triangle" title={error} />
+    </Transition>
 
-  return (
-    <form className={rootClassName} onSubmit={onSubmit}>
-      <Transition duration={400} enter="fadeInUp" in={!!error}>
-        <div className={errorClassName}>{error}</div>
-      </Transition>
-
-      <div className={containerClassName}>{children}</div>
-    </form>
-  );
-};
+    <div className={classNames(classes?.container, styles.Container)}>
+      {children}
+    </div>
+  </form>
+);
 
 export default Form;
