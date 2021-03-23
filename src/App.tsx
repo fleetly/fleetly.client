@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div className={styles.Root}>
-      {!isAuthorized ? (
+      {isAuthorized ? (
         <Switch>
           <Redirect from={ROUTES.SIGN.ROOT} to="/" />
           <Route component={Main} path="/" />
