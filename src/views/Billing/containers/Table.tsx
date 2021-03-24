@@ -33,7 +33,7 @@ const BillingTable: React.FC<Billing.TableProps> = ({ data }) => {
       },
       {
         accessor: 'createdAt',
-        Cell: () => moment().format('D-M-YYYY'),
+        Cell: ({ value }) => moment(value).format('MMM D, YYYY'),
         Header: 'Date'
       },
       {
