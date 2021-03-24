@@ -16,6 +16,7 @@ import ROUTES from '@routes';
 import styles from './Company.scss';
 
 // Views
+import Billing from '@views/Billing';
 import Channel from '@views/Channel';
 import Channels from '@views/Channels';
 import { Threads } from '@views/Chat';
@@ -136,6 +137,7 @@ const Company: React.FC<{}> = () => {
 
       <div className={styles.Content}>
         <Switch>
+          <Route component={Billing} path={ROUTES.COMPANY.BILLING} />
           <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
           <Route component={Chat} path={ROUTES.COMPANY.CHAT.ROOT} />
