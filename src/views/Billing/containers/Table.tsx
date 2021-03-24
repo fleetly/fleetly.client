@@ -46,6 +46,11 @@ const BillingTable: React.FC<Billing.TableProps> = ({ data }) => {
       },
       {
         accessor: 'amount',
+        Cell: ({ value }) =>
+          new Intl.NumberFormat('en-US', {
+            currency: 'USD',
+            style: 'currency'
+          }).format(value),
         Header: 'Amount'
       },
       {

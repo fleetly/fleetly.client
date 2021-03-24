@@ -20,7 +20,7 @@ const TEST = [
     id: '2',
     description: 'test 2',
     status: 'PENDING',
-    amount: 200,
+    amount: 1999,
     accessor: 'test 2'
   },
   {
@@ -28,7 +28,7 @@ const TEST = [
     id: '2',
     description: 'test 2',
     status: 'FAILED',
-    amount: 200,
+    amount: 15,
     accessor: 'test 2'
   }
 ];
