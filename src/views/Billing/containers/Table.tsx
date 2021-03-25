@@ -7,7 +7,7 @@ import Button from '@components/Button';
 import Table from '@components/Table';
 
 // Interface
-import { IBilling } from '@interfaces/billing.interface';
+import { IInvoice } from '@interfaces/invoice.interface';
 
 // Styles
 import styles from './Table.scss';
@@ -16,7 +16,7 @@ import styles from './Table.scss';
 import { getClassName } from '@utils/styles';
 
 interface PropTypes {
-  data: IBilling[];
+  data: IInvoice[];
 }
 
 const currentIntl = new Intl.NumberFormat('en-US', {
