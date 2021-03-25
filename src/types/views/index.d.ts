@@ -1,3 +1,4 @@
+export * from './Billing';
 export * from './Channel';
 export * from './Channels';
 export * from './Chat';
