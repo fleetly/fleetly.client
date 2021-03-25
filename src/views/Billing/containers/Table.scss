@@ -10,11 +10,6 @@
   width: 40px;
 
   &Variant {
-    &Successed {
-      border-color: rgba($color-success, .3);
-      color: $color-success;
-    }
-
     &Failed {
       border-color: rgba($color-danger, .3);
       color: $color-danger;
@@ -24,6 +19,11 @@
       border-color: rgba($color-primary, .3);
       color: $color-primary;
       font-size: 24px;
+    }
+
+    &Successed {
+      border-color: rgba($color-success, .3);
+      color: $color-success;
     }
   }
 }

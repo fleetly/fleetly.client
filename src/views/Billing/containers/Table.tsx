@@ -1,16 +1,31 @@
 import classNames from 'classnames';
 import moment from 'moment';
-import * as React from 'react';
+import React, { useMemo } from 'react';
 
 // Components
 import Button from '@components/Button';
 import Table from '@components/Table';
 
+// Interface
+import { IBilling } from '@interfaces/billing.interface';
+
 // Styles
 import styles from './Table.scss';
 
-const BillingTable: React.FC<Billing.TableProps> = ({ data }) => {
-  const columns = React.useMemo(
+// Utils
+import { getClassName } from '@utils/styles';
+
+interface PropTypes {
+  data: IBilling[];
+}
+
+const currentIntl = new Intl.NumberFormat('en-US', {
+  currency: 'USD',
+  style: 'currency'
+});
+
+const BillingTable: React.FC<PropTypes> = ({ data }) => {
+  const columns = useMemo(
     () => [
       {
         accessor: 'status',
@@ -23,9 +38,11 @@ const BillingTable: React.FC<Billing.TableProps> = ({ data }) => {
                 : value === 'PENDING'
                 ? 'far fa-ellipsis-h'
                 : 'fas fa-ban',
-              { [styles.StatusVariantSuccessed]: value === 'SUCCESSED' },
-              { [styles.StatusVariantPending]: value === 'PENDING' },
-              { [styles.StatusVariantFailed]: value === 'FAILED' }
+              getClassName('variant', {
+                collection: styles,
+                value,
+                prefix: 'status'
+              })
             )}
           />
         ),
@@ -46,19 +63,13 @@ const BillingTable: React.FC<Billing.TableProps> = ({ data }) => {
       },
       {
         accessor: 'amount',
-        Cell: ({ value }) =>
-          new Intl.NumberFormat('en-US', {
-            currency: 'USD',
-            style: 'currency'
-          }).format(value),
+        Cell: ({ value }) => currentIntl.format(value),
         Header: 'Amount'
       },
       {
         accessor: 'receipt',
         Cell: () => (
-          <Button color="primary" variant="outlined">
-            Receipt
-          </Button>
+          <Button color="primary" variant="outlined" icon="far fa-receipt" />
         ),
         Header: ''
       }
