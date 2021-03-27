@@ -38,7 +38,21 @@ import '@fortawesome/fontawesome-pro/css/all.min.css';
 // Utils
 import * as serviceWorker from '@utils/serviceWorker';
 
+const ATTEMPTS = new Map();
+const MAX_ATTEMPTS = 2;
+
 const store = createStore();
+
+const clearTypenameLink = new ApolloLink((operation, forward) => {
+  if (operation.variables) {
+    operation.variables = JSON.parse(
+      JSON.stringify(operation.variables),
+      (key: any, value: any) => (key === '__typename' ? undefined : value)
+    );
+  }
+
+  return forward(operation);
+});
 
 const errorLink = onError(({ forward, graphQLErrors, operation }) => {
   let isUnauthorized = false;
@@ -57,6 +71,23 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
     }
   });
 
+  if (isUnauthorized) {
+    const currentAttempt = ATTEMPTS.get(operation.operationName) || 0;
+
+    if (currentAttempt < MAX_ATTEMPTS) {
+      ATTEMPTS.set(operation.operationName, currentAttempt + 1);
+      return forward(operation).map((response) => {
+        if (!response.errors) {
+          ATTEMPTS.clear();
+        }
+
+        return response;
+      });
+    } else {
+      ATTEMPTS.clear();
+    }
+  }
+
   return new Observable((subscriber): any => {
     if (isUnauthorized) {
       store.dispatch(
@@ -70,6 +101,8 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
       );
 
       store.dispatch(logout());
+
+      subscriber.next(operation);
     } else if (isForbidden) {
       new Promise((resolve, reject) => {
         const unsubscribe = store.subscribe(() => {
@@ -107,7 +140,7 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
 
 const httpLink = new HttpLink({
   credentials: 'include',
-  uri: 'https://api.fleetly.it/graphql'
+  uri: 'http://localhost:3001/graphql' // 'https://api.fleetly.it/graphql'
 });
 
 const wsLink = new WebSocketLink({
@@ -131,15 +164,7 @@ const splitLink = split(
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: ApolloLink.from([errorLink, splitLink])
-  // request: (operation) => {
-  //   if (operation.variables) {
-  //     operation.variables = JSON.parse(
-  //       JSON.stringify(operation.variables),
-  //       (key: any, value: any) => (key === '__typename' ? undefined : value)
-  //     );
-  //   }
-  // }
+  link: ApolloLink.from([clearTypenameLink, errorLink, splitLink])
 });
 
 ReactDOM.render(

@@ -66,4 +66,8 @@
   letter-spacing: -.2px;
   padding: 0 20px;
   width: 100%;
+
+  &::placeholder {
+    color: $color-gray-400;
+  }
 }

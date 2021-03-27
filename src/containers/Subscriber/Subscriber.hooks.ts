@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useQuery } from 'react-apollo';
+import { useLazyQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // Constants
@@ -34,14 +34,12 @@ const useSubscriber = () => {
   const [currentView, setCurrentView] = React.useState(VIEW.TAGS);
 
   // Data
-  const { data } = useQuery<{
+  const [getSubscriber, { data }] = useLazyQuery<{
     fields: IField[];
     fieldTypes: IFieldTypeOption[];
     subscriber: ISubscriber;
     tags: ITag[];
-  }>(GET_SUBSCRIBER_BY_ID, {
-    variables: { companyId, subscriberId: modalData?.subscriberId }
-  });
+  }>(GET_SUBSCRIBER_BY_ID);
 
   // Effetcs
   React.useEffect(() => {
@@ -50,6 +48,14 @@ const useSubscriber = () => {
       setCurrentCompanyId(companyId);
     }
   }, [closeModal, companyId, currentCompanyId]);
+
+  React.useEffect(() => {
+    if (modalData?.subscriberId) {
+      getSubscriber({
+        variables: { companyId, subscriberId: modalData?.subscriberId }
+      });
+    }
+  }, [companyId, getSubscriber, modalData]);
 
   // Handlers
   const handleCloseClick = React.useCallback(() => closeModal(), [closeModal]);
