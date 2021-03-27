@@ -140,11 +140,14 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
 
 const httpLink = new HttpLink({
   credentials: 'include',
-  uri: 'http://localhost:3001/graphql' // 'https://api.fleetly.it/graphql'
+  uri: 'https://api.fleetly.it/graphql'
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'wss://api.fleetly.it/graphql',
+  uri:
+    process.env.NODE_ENV === 'development'
+      ? 'ws://api.fleetly.me/graphql'
+      : 'wss://api.fleetly.it/graphql',
   options: {
     reconnect: true
   }
