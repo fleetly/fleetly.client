@@ -1,0 +1,103 @@
+@import '~@styles/colors';
+
+.Container {
+  align-items: center;
+  display: flex;
+  padding: 28px 30px;
+}
+
+.Description {
+  margin: 0 0 0 20px;
+
+  &Info {
+    color: $color-gray-600;
+    font-size: 12px;
+  }
+}
+
+.Features {
+  align-items: center;
+  display: flex;
+  margin: 0 0 0 78px;
+  word-wrap: break-word;
+
+  &Item {
+    align-items: center;
+    border: 2px solid $color-blue-300;
+    border-radius: 100%;
+    color: $color-blue-300;
+    display: flex !important;
+    justify-content: center;
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  &Title {
+    margin: 0 0 0 20px;
+  }
+}
+
+.Icon {
+  align-items: center;
+  background-color: rgba($color-blue-300, .2);
+  border-radius: 100%;
+  color: $color-blue-300;
+  display: flex !important;
+  font-size: 16px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.Info {
+  border-bottom: 1px solid $color-gray-100;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  padding-bottom: 15px;
+}
+
+.Plan {
+  &Title {
+    color: $color-gray-400;
+    margin: 0 0 0 30px;
+  }
+
+  &Info {
+    align-items: center;
+    border-top: 1px solid $color-gray-300;
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0 0;
+    padding: 34px 30px 0;
+
+    &Title {
+      display: flex;
+      font-weight: 600;
+    }
+
+    &Limit {
+      color: $color-gray-500;
+      margin: 0 0 0 20px;
+    }
+  }
+}
+
+.Progress {
+  align-items: center;
+  display: flex;
+  margin: 4px 0 0 0;
+  padding: 0 30px;
+
+  &Info {
+    width: 100%;
+  }
+
+  &Price {
+    margin: 0 0 0 30px;
+  }
+}
+
+.Subscription {
+  display: flex;
+}

@@ -1,0 +1,19 @@
+@import '~@styles/colors';
+
+.Root {
+  display: flex;
+  flex-direction: column;
+}
+
+.CurrentPlan {
+  padding: 24px 0;
+}
+
+.Header {
+  display: flex;
+}
+
+.NextPlan {
+  margin: 0 0 0 30px;
+  width: 280px;
+}
