@@ -24,12 +24,7 @@ import App from './App';
 import { SUDO_MODAL } from '@constants';
 
 // Store
-import createStore, {
-  closeModal,
-  createNotification,
-  logout,
-  openModal
-} from '@store';
+import createStore, { closeModal, logout, openModal } from '@store';
 
 // Styles
 import 'animate.css';
@@ -76,34 +71,19 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
 
     if (currentAttempt < MAX_ATTEMPTS) {
       ATTEMPTS.set(operation.operationName, currentAttempt + 1);
-      return forward(operation).map((response) => {
-        if (!response.errors) {
-          ATTEMPTS.clear();
-        }
 
+      return forward(operation).map((response) => {
+        !response.errors ? ATTEMPTS.clear() : store.dispatch(logout());
         return response;
       });
     } else {
+      store.dispatch(logout());
       ATTEMPTS.clear();
     }
   }
 
   return new Observable((subscriber): any => {
-    if (isUnauthorized) {
-      store.dispatch(
-        createNotification({
-          description: 'You must log in to continue',
-          id: 'unauthorized',
-          title: 'Unauthorized!',
-          timeout: 5000,
-          variant: 'danger'
-        })
-      );
-
-      store.dispatch(logout());
-
-      subscriber.next(operation);
-    } else if (isForbidden) {
+    if (isForbidden) {
       new Promise((resolve, reject) => {
         const unsubscribe = store.subscribe(() => {
           const state = store.getState();
