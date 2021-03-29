@@ -3,7 +3,9 @@ import * as React from 'react';
 
 // Components
 import Button from '@components/Button';
-import { Caption, H4, H5 } from '@components/Typography';
+import { H5 } from '@components/Typography';
+import Features from './Features';
+import Trafic from './Trafic';
 
 // Styles
 import styles from './CurrentPlan.scss';
@@ -31,35 +33,15 @@ const CurrentPlan = ({ data }: any) => {
 
       <div className={styles.Container}>
         {features.map(({ icon, title }: any) => (
-          <div className={styles.Features}>
-            <i className={classNames(styles.FeaturesItem, icon)} />
-            <H5 className={styles.FeaturesTitle}>{title}</H5>
-          </div>
+          <Features icon={icon} title={title} />
         ))}
       </div>
 
-      <div className={styles.Plan}>
-        <Caption className={styles.PlanTitle}>Trafic</Caption>
-        <div className={styles.PlanInfo}>
-          <div className={styles.PlanInfoTitle}>
-            <H5>Subscribers</H5>
-            <div className={styles.PlanInfoLimit}>
-              {data?.limits?.value} of {data?.limits?.limit}
-            </div>
-          </div>
-
-          <div>{data?.limits?.unitPrice}$ per subscriber</div>
-        </div>
-
-        <div className={styles.Progress}>
-          <progress
-            className={styles.ProgressInfo}
-            max={data?.limits?.limit}
-            value={data?.limits?.value}
-          />
-          <H4 className={styles.ProgressPrice}>{data?.limits?.unitPrice}$</H4>
-        </div>
-      </div>
+      <Trafic
+        limit={data?.limits?.limit}
+        unitPrice={data?.limits?.unitPrice}
+        value={data?.limits?.value}
+      />
     </div>
   );
 };

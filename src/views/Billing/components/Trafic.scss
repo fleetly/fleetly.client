@@ -1,0 +1,46 @@
+@import '~@styles/colors';
+
+.Info {
+  align-items: center;
+  border-top: 1px solid $color-gray-300;
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0 0;
+  padding: 34px 30px 0;
+
+  &Title {
+    align-items: center;
+    display: flex;
+    font-weight: 600;
+  }
+
+  &Limit {
+    color: $color-gray-600;
+    margin: 0 0 0 20px;
+  }
+}
+
+.Progress {
+  align-items: center;
+  display: flex;
+  margin: 4px 0 0 0;
+  padding: 0 30px;
+
+  &Info {
+    width: 100%;
+  }
+
+  &Price {
+    margin: 0 0 0 30px;
+  }
+}
+
+.Text {
+  color: $color-gray-600;
+  font-weight: 600;
+}
+
+.Title {
+  color: $color-gray-400;
+  margin: 0 0 0 30px;
+}
