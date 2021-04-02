@@ -16,13 +16,16 @@ const useMainView = () => {
   const isProfile = !!useRouteMatch(ROUTES.PROFILE.GENERAL);
 
   // Data
-  const { data } = useQuery<{ companies: ICompany[] }>(GET_COMPANY_LIST);
+  const { data, loading } = useQuery<{ companies: ICompany[] }>(
+    GET_COMPANY_LIST
+  );
   const companies = data?.companies || [];
 
   return {
     companies,
     isCompany,
-    isProfile
+    isProfile,
+    loading
   };
 };
 

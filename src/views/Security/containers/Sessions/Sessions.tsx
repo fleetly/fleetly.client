@@ -82,7 +82,9 @@ const SecuritySessions = () => {
                 {location}
               </Link>
 
-              <Caption className={styles.Description}>{ip}</Caption>
+              <Caption className={styles.Description} component="div">
+                {ip}
+              </Caption>
             </div>
           );
         },

@@ -33,9 +33,7 @@ import '@fortawesome/fontawesome-pro/css/all.min.css';
 // Utils
 import * as serviceWorker from '@utils/serviceWorker';
 
-const ATTEMPTS = new Map();
-const MAX_ATTEMPTS = 2;
-
+let refreshTokenOperation: any = null;
 const store = createStore();
 
 const clearTypenameLink = new ApolloLink((operation, forward) => {
@@ -67,18 +65,15 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
   });
 
   if (isUnauthorized) {
-    const currentAttempt = ATTEMPTS.get(operation.operationName) || 0;
-
-    if (currentAttempt < MAX_ATTEMPTS) {
-      ATTEMPTS.set(operation.operationName, currentAttempt + 1);
-
-      return forward(operation).map((response) => {
-        !response.errors ? ATTEMPTS.clear() : store.dispatch(logout());
+    if (refreshTokenOperation) {
+      return refreshTokenOperation.map(() => forward(operation));
+    } else {
+      refreshTokenOperation = forward(operation).map((response) => {
+        response.errors && store.dispatch(logout());
         return response;
       });
-    } else {
-      store.dispatch(logout());
-      ATTEMPTS.clear();
+
+      return refreshTokenOperation;
     }
   }
 

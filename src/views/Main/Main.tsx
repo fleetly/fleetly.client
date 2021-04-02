@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Components
 import Link from '@components/Link';
+import Loader from '@components/Loader';
 
 // Containers
 import Companies from './containers/Companies';
@@ -25,7 +26,7 @@ import Profile from '@views/Profile';
 import { fillUrl } from '@utils/url';
 
 const Main: React.FC<{}> = () => {
-  const { companies, isCompany, isProfile } = useMainView();
+  const { companies, isCompany, isProfile, loading } = useMainView();
   const companyId = companies[0]?.id;
 
   const { rootClassName } = React.useMemo(
@@ -37,7 +38,9 @@ const Main: React.FC<{}> = () => {
     [isProfile]
   );
 
-  return (
+  return companies.length === 0 && loading ? (
+    <Loader />
+  ) : (
     <div className={rootClassName}>
       {companyId && !isCompany && (
         <Redirect to={fillUrl(ROUTES.COMPANY.DASHBOARD, { companyId })} />

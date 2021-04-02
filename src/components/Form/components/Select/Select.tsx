@@ -4,11 +4,11 @@ import * as React from 'react';
 import Select from 'react-select';
 import { WrappedFieldInputProps } from 'redux-form';
 
-// Components
 import {
   DropdownIndicator,
   LoadingIndicator,
-  NoOptionsMessage
+  NoOptionsMessage,
+  SelectContainer
 } from './components';
 import { FieldError, FieldHeader } from '../common';
 
@@ -104,6 +104,7 @@ const FormSelect: React.FC<Form.SelectProps & WrappedFieldInputProps> = ({
           Option,
           MultiValue: Value,
           NoOptionsMessage,
+          SelectContainer,
           SingleValue: Value
         }}
         inputId={id}

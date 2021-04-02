@@ -53,6 +53,13 @@
   }
 }
 
+.Container {
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+  position: relative;
+}
+
 .Empty {
   align-items: center;
   display: flex;

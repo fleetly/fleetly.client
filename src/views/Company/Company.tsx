@@ -19,11 +19,11 @@ import styles from './Company.scss';
 import Billing from '@views/Billing';
 import Channel from '@views/Channel';
 import Channels from '@views/Channels';
-import { Threads } from '@views/Chat';
+import Chat, { Threads } from '@views/Chat';
 import Collaborators from '@views/Collaborators';
-import Chat from '@views/Chat';
 import General from '@views/General';
 import Fields from '@views/Fields';
+import Flow from '@views/Flow';
 import Subscribers from '@views/Subscribers';
 import Tags from '@views/Tags';
 
@@ -146,6 +146,7 @@ const Company: React.FC<{}> = () => {
             path={ROUTES.COMPANY.COLLABORATORS}
           />
           <Route component={Fields} path={ROUTES.COMPANY.FIELDS} />
+          <Route component={Flow} path={ROUTES.COMPANY.FLOW} />
           <Route component={General} path={ROUTES.COMPANY.GENERAL} />
           <Route component={Subscribers} path={ROUTES.COMPANY.SUBSCRIBERS} />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS} />

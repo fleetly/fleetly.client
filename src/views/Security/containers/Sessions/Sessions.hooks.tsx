@@ -16,7 +16,7 @@ const useSecuritySessionsView = () => {
   );
 
   const sessions =
-    data?.sessions.sort(
+    [...(data?.sessions || [])].sort(
       (a, b) =>
         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     ) || [];
