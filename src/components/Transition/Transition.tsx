@@ -2,9 +2,6 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-// Styles
-import './Transition.scss';
-
 type Timing = {
   enter: number;
   exit: number;
@@ -51,33 +48,36 @@ const Transition: React.FC<PropTypes> = ({
         const isExist =
           (status === 'entering' && enter) || (status === 'exiting' && exit);
 
-        return React.cloneElement(children as any, {
-          className: classNames(
-            (children as any).props.className,
-            isExist &&
-              `animate__animated animate__${
-                status === 'entering' ? enter : exit
-              }`
-          ),
-          style: isExist
-            ? {
-                animationDelay: `${
-                  (status === 'entering'
-                    ? formattedDelay.enter
-                    : status === 'exiting'
-                    ? formattedDelay.exit
-                    : 0) / 1000
-                }s`,
-                animationDuration: `${
-                  (status === 'entering'
-                    ? formattedDuration.enter
-                    : status === 'exiting'
-                    ? formattedDuration.exit
-                    : 0) / 1000
-                }s`
-              }
-            : undefined
-        });
+        return (
+          children &&
+          React.cloneElement(children as any, {
+            className: classNames(
+              (children as any).props.className,
+              isExist &&
+                `animate__animated animate__${
+                  status === 'entering' ? enter : exit
+                }`
+            ),
+            style: isExist
+              ? {
+                  animationDelay: `${
+                    (status === 'entering'
+                      ? formattedDelay.enter
+                      : status === 'exiting'
+                      ? formattedDelay.exit
+                      : 0) / 1000
+                  }s`,
+                  animationDuration: `${
+                    (status === 'entering'
+                      ? formattedDuration.enter
+                      : status === 'exiting'
+                      ? formattedDuration.exit
+                      : 0) / 1000
+                  }s`
+                }
+              : undefined
+          })
+        );
       }}
     </CSSTransition>
   );

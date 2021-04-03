@@ -72,7 +72,9 @@ const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
         <div className={labelClassName}>
           {label}
           {description && (
-            <Caption className={descriptionClassName}>{description}</Caption>
+            <Caption className={descriptionClassName} component="div">
+              {description}
+            </Caption>
           )}
         </div>
       </div>

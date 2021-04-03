@@ -34,6 +34,7 @@ const Badge: React.FC<PropTypes> = ({
 }) => (
   <div
     className={classNames(
+      classes.root,
       styles.Root,
       getClassName('color', {
         collection: styles,

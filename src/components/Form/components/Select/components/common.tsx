@@ -1,9 +1,10 @@
 import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
-import { IndicatorProps } from 'react-select';
+import { components, IndicatorProps } from 'react-select';
 
 // Components
+import Transition from '@components/Transition';
 import { H4, P } from '@components/Typography';
 
 // Styles
@@ -76,4 +77,17 @@ export const NoOptionsMessage: React.FC<{}> = () => (
       Please try again with a different condition
     </P>
   </div>
+);
+
+export const SelectContainer: React.FC<any> = (props) => (
+  <components.SelectContainer {...props}>
+    {props.children[0]}
+    {props.children[1]}
+
+    <Transition duration={200} enter="zoomIn" in={!!props.children[2]}>
+      <div className={styles.Container}>{props.children[2]}</div>
+    </Transition>
+
+    {props.children[3]}
+  </components.SelectContainer>
 );

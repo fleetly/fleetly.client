@@ -56,10 +56,7 @@ const Item: React.FC<Chat.Threads.Item> = ({
         <div className={styles.Row}>
           {lastMessage && (
             <div className={styles.Message}>
-              {isConversation && (
-                <span className={styles.Author}>{author.firstname}:</span>
-              )}
-
+              <span className={styles.Author}>{author.firstname}:</span>
               {!!sticker ? 'Sticker 😊' : text}
             </div>
           )}

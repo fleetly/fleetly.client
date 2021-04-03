@@ -24,12 +24,7 @@ import App from './App';
 import { SUDO_MODAL } from '@constants';
 
 // Store
-import createStore, {
-  closeModal,
-  createNotification,
-  logout,
-  openModal
-} from '@store';
+import createStore, { closeModal, logout, openModal } from '@store';
 
 // Styles
 import 'animate.css';
@@ -38,7 +33,19 @@ import '@fortawesome/fontawesome-pro/css/all.min.css';
 // Utils
 import * as serviceWorker from '@utils/serviceWorker';
 
+let refreshTokenOperation: any = null;
 const store = createStore();
+
+const clearTypenameLink = new ApolloLink((operation, forward) => {
+  if (operation.variables) {
+    operation.variables = JSON.parse(
+      JSON.stringify(operation.variables),
+      (key: any, value: any) => (key === '__typename' ? undefined : value)
+    );
+  }
+
+  return forward(operation);
+});
 
 const errorLink = onError(({ forward, graphQLErrors, operation }) => {
   let isUnauthorized = false;
@@ -57,20 +64,21 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
     }
   });
 
-  return new Observable((subscriber): any => {
-    if (isUnauthorized) {
-      store.dispatch(
-        createNotification({
-          description: 'You must log in to continue',
-          id: 'unauthorized',
-          title: 'Unauthorized!',
-          timeout: 5000,
-          variant: 'danger'
-        })
-      );
+  if (isUnauthorized) {
+    if (refreshTokenOperation) {
+      return refreshTokenOperation.map(() => forward(operation));
+    } else {
+      refreshTokenOperation = forward(operation).map((response) => {
+        response.errors && store.dispatch(logout());
+        return response;
+      });
 
-      store.dispatch(logout());
-    } else if (isForbidden) {
+      return refreshTokenOperation;
+    }
+  }
+
+  return new Observable((subscriber): any => {
+    if (isForbidden) {
       new Promise((resolve, reject) => {
         const unsubscribe = store.subscribe(() => {
           const state = store.getState();
@@ -107,10 +115,7 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
 
 const httpLink = new HttpLink({
   credentials: 'include',
-  uri:
-    process.env.NODE_ENV === 'development'
-      ? 'http://api.fleetly.me/graphql'
-      : 'https://api.fleetly.it/graphql'
+  uri: 'https://api.fleetly.it/graphql'
 });
 
 const wsLink = new WebSocketLink({
@@ -137,15 +142,7 @@ const splitLink = split(
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: ApolloLink.from([errorLink, splitLink])
-  // request: (operation) => {
-  //   if (operation.variables) {
-  //     operation.variables = JSON.parse(
-  //       JSON.stringify(operation.variables),
-  //       (key: any, value: any) => (key === '__typename' ? undefined : value)
-  //     );
-  //   }
-  // }
+  link: ApolloLink.from([clearTypenameLink, errorLink, splitLink])
 });
 
 ReactDOM.render(
