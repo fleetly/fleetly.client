@@ -20,28 +20,42 @@
   }
 }
 
-.Progress {
+.ProgressInfo {
   align-items: center;
   display: flex;
   margin: 4px 0 0 0;
   padding: 0 30px;
-
-  &Info {
-    width: 100%;
-  }
 
   &Price {
     margin: 0 0 0 30px;
   }
 }
 
+.ProgressScale {
+  align-items: center;
+  display: flex;
+  height: 4px;
+  margin: 0 30px 0 0;
+  width: 100%;
+}
+
+.Progress {
+  background-color: #6781f4;
+  border-radius: 2px;
+  box-shadow: 0 12px 12px 0 rgba(103, 129, 244, .2);
+  height: 4px;
+  position: absolute;
+}
+
+.Scale {
+  background-color: #f5f5f3;
+  border-radius: 1px;
+  height: 2px;
+  width: 100%;
+}
+
 .Text {
   color: $color-gray-600;
   font-weight: 600;
   margin: 0 63px 0 0;
-}
-
-.Title {
-  color: $color-gray-400;
-  margin: 0 0 0 30px;
 }

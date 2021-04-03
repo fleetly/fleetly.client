@@ -1,10 +1,10 @@
-const TEST = {
+const CURRENT_PLAN = {
   endDate: new Date(),
   limits: {
     amount: 30,
     limit: 100,
-    title: 'Pro',
-    unit: 'Fleetly',
+    title: 'Subscribers',
+    unit: 'subscriber',
     unitChunk: 1000,
     unitPrice: 30,
     value: 28
@@ -44,4 +44,31 @@ const TEST = {
   startDate: new Date()
 };
 
-export default TEST;
+const PAYMANT_HISTORY = [
+  {
+    createdAt: new Date(),
+    id: '1',
+    description: 'test',
+    status: 'SUCCESSED',
+    amount: 200,
+    accessor: 'test'
+  },
+  {
+    createdAt: new Date(),
+    id: '2',
+    description: 'test 2',
+    status: 'PENDING',
+    amount: 1999,
+    accessor: 'test 2'
+  },
+  {
+    createdAt: new Date(),
+    id: '2',
+    description: 'test 2',
+    status: 'FAILED',
+    amount: 15,
+    accessor: 'test 2'
+  }
+];
+
+export default { CURRENT_PLAN, PAYMANT_HISTORY };

@@ -1,6 +1,10 @@
 @import '~@styles/colors';
 
-.Container {
+.Root {
+  padding: 24px 0;
+}
+
+.Features {
   display: grid;
   grid-template-areas:
     'a b c'
@@ -82,4 +86,9 @@
 
 .Subscription {
   display: flex;
+}
+
+.Title {
+  color: $color-gray-400;
+  margin: 0 0 0 30px;
 }

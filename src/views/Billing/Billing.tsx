@@ -1,37 +1,25 @@
 import * as React from 'react';
 
 // Components
-import CurrentPlan from './components/CurrentPlan';
-import Page, { Wrapper } from '@components/Page';
-
-// Containers
-import Table from './containers/Table';
+import CurrentPlan from './CurrentPlan';
+import NextPlan from './NextPlan';
+import PaymentHistory from './History';
+import Page from '@components/Page';
 
 // Test
-import CurrentTest from './TestInfo/CurrentPlan';
-import PaymentTest from './TestInfo/PaymentHistory';
+import data from './data';
 
 // Styles
 import styles from './Billing.scss';
 
 const Billing = () => (
-  <div className={styles.Root}>
-    <div className={styles.Header}>
-      <Wrapper classes={{ container: styles.CurrentPlan }} title="Current Plan">
-        <CurrentPlan data={CurrentTest} />
-      </Wrapper>
+  <Page classes={{ container: styles.Root }} title="Billing">
+    <CurrentPlan data={data.CURRENT_PLAN} />
 
-      <Wrapper classes={{ root: styles.NextPlan }} title="Next Plan">
-        12345
-      </Wrapper>
-    </div>
+    <NextPlan />
 
-    <Page title="Billing">
-      <Wrapper title="Payment History">
-        <Table data={PaymentTest} />
-      </Wrapper>
-    </Page>
-  </div>
+    <PaymentHistory data={data.PAYMANT_HISTORY} />
+  </Page>
 );
 
 export default Billing;

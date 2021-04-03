@@ -1,19 +1,18 @@
 @import '~@styles/colors';
 
 .Root {
-  display: flex;
-  flex-direction: column;
-}
-
-.CurrentPlan {
-  padding: 24px 0;
-}
-
-.Header {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    'a  b'
+    'c  c';
 }
 
 .NextPlan {
+  grid-area: b;
   margin: 0 0 0 30px;
   width: 280px;
+}
+
+.PaymantHistory {
+  grid-area: c;
 }
