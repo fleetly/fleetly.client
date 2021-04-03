@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
 // Components
+import Page from '@components/Page';
+
+// Domains
 import CurrentPlan from './CurrentPlan';
 import NextPlan from './NextPlan';
 import PaymentHistory from './History';
-import Page from '@components/Page';
 
 // Test
 import data from './data';

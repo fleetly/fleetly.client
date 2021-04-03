@@ -1,26 +1,25 @@
 @import '~@styles/colors';
 
 .Root {
-  padding: 24px 0;
+  grid-area: a;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .Features {
+  border-top: 1px solid $color-gray-100;
   display: grid;
-  grid-template-areas:
-    'a b c'
-    'd e f'
-    'g h i';
+  grid-template-columns: repeat(3, 1fr);
+  margin: 14px 0 0;
   padding: 28px 30px;
   row-gap: 16px;
 }
 
-.Description {
-  margin: 0 0 0 20px;
-
-  &Info {
-    color: $color-gray-600;
-    font-size: 12px;
-  }
+.Header {
+  padding: 24px 30px 0;
 }
 
 .Icon {
@@ -82,10 +81,6 @@
   &Price {
     margin: 0 0 0 30px;
   }
-}
-
-.Subscription {
-  display: flex;
 }
 
 .Title {

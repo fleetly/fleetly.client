@@ -1,6 +1,7 @@
 @import '~@styles/colors';
 
 .Root {
+  column-gap: 30px;
   display: grid;
   grid-template-areas:
     'a  b'
@@ -8,11 +9,6 @@
 }
 
 .NextPlan {
-  grid-area: b;
   margin: 0 0 0 30px;
   width: 280px;
-}
-
-.PaymantHistory {
-  grid-area: c;
 }
