@@ -2,6 +2,7 @@ import * as React from 'react';
 
 // Components
 import { Caption, H4, H5 } from '@components/Typography';
+import Progress from './Progress';
 
 // Styles
 import styles from './Trafic.scss';
@@ -21,7 +22,7 @@ const Trafic = ({ limit, unitPrice, value }: any) => (
     </div>
 
     <div className={styles.Progress}>
-      <progress className={styles.ProgressInfo} max={limit} value={value} />
+      <Progress limit={limit} value={value} />
       <H4 className={styles.ProgressPrice}>{unitPrice}$</H4>
     </div>
   </div>
