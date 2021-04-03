@@ -24,6 +24,18 @@ const TEST = {
       {
         icon: 'fas fa-check',
         title: '3.000 Actions minutes/month'
+      },
+      {
+        icon: 'fas fa-check',
+        title: '3.000 Actions minutes/month'
+      },
+      {
+        icon: 'fas fa-check',
+        title: '3.000 Actions minutes/month'
+      },
+      {
+        icon: 'fas fa-check',
+        title: '3.000 Actions minutes/month'
       }
     ],
     title: 'PRO',

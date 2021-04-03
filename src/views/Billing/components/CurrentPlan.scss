@@ -1,9 +1,13 @@
 @import '~@styles/colors';
 
 .Container {
-  align-items: center;
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    'a b c'
+    'd e f'
+    'g h i';
   padding: 28px 30px;
+  row-gap: 16px;
 }
 
 .Description {
