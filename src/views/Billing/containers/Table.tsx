@@ -46,11 +46,12 @@ const BillingTable: React.FC<PropTypes> = ({ data }) => {
             )}
           />
         ),
-        Header: 'Status'
+        Header: 'Status',
+        maxWidth: 80
       },
       {
         accessor: 'createdAt',
-        Cell: ({ value }) => moment(value).format('MMM D, YYYY'),
+        Cell: ({ value }: any) => moment(value).format('MMM D, YYYY'),
         Header: 'Date'
       },
       {
