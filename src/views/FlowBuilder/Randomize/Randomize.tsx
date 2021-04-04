@@ -8,10 +8,11 @@ import { Block, Button } from '@views/FlowBuilder/Common';
 // Styles
 import styles from './Randomize.scss';
 
-const FlowBuilderRandomize: React.FC<NodeProps> = ({ selected }) => (
+const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
   <Block
     color="purple"
     icon="fas fa-random"
+    id={id}
     selected={selected}
     subTitle="Randomize"
     title="A/B test"

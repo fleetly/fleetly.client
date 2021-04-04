@@ -8,10 +8,12 @@ import { Block, Button } from '@views/FlowBuilder/Common';
 // Styles
 import styles from './Start.scss';
 
-const FlowBuilderStart: React.FC<NodeProps> = ({ selected }) => (
+const FlowBuilderStart: React.FC<NodeProps> = ({ id, selected }) => (
   <Block
     color="green"
     icon="fas fa-play"
+    id={id}
+    hasTarget={false}
     selected={selected}
     subTitle="Start"
     title="Starting step"

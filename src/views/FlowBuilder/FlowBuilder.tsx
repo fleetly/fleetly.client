@@ -22,14 +22,21 @@ const Flow = () => {
       {
         id: '1',
         type: 'start',
-        position: { x: 200, y: 400 }
+        position: { x: 100, y: 400 }
       },
       {
         id: '2',
-        position: { x: 550, y: 280 },
+        position: { x: 550, y: 250 },
         type: 'randomize'
       },
-      { id: 'e1-2', source: '1', target: '2', animated: true },
+      {
+        id: 'e1-2',
+        source: '1',
+        target: '2',
+        style: {
+          strokeWidth: 2
+        }
+      },
       {
         id: '3',
         position: { x: 550, y: 600 },
@@ -37,12 +44,12 @@ const Flow = () => {
       },
       {
         id: '4',
-        position: { x: 900, y: 350 },
+        position: { x: 1000, y: 350 },
         type: 'content'
       },
       {
         id: '5',
-        position: { x: 900, y: 520 },
+        position: { x: 1000, y: 550 },
         type: 'action'
       }
     ],
