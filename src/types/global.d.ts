@@ -3,6 +3,7 @@ export {};
 declare global {
   type Color =
     | 'blue'
+    | 'default'
     | 'gray'
     | 'green'
     | 'orange'

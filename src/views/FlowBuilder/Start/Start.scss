@@ -1,45 +1,7 @@
 @import '~@styles/colors';
 
-.Root {
-  transition: box-shadow .2s;
-  width: 300px;
-
-  &Is {
-    &Selected {
-      box-shadow: 0 0 0 2px $color-green-500;
-    }
-  }
-}
-
-.Avatar {
-  background: rgba($color-green-500, .2);
-  border-radius: 100%;
-  height: 100%;
-  width: 100%;
-}
-
-.Button {
-  background: $color-gray-0;
-  border: 1px solid $color-gray-300;
-  border-radius: 8px;
-  color: $color-primary;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  height: 40px;
+.Actions {
   margin: 16px 0 0;
-  transition: all .2s;
-  width: 100%;
-
-  &:focus {
-    border-color: $color-primary;
-    box-shadow: 0 0 0 1px $color-primary;
-  }
-
-  &:hover {
-    background: $color-gray-50;
-    cursor: pointer;
-  }
 }
 
 .Description {

@@ -14,8 +14,9 @@ const Form: React.FC<Form.Props> = ({ children, classes, error, onSubmit }) => (
       <Badge
         classes={{ root: styles.Error }}
         color="red"
+        description={error}
         icon="fas fa-exclamation-triangle"
-        title={error}
+        title="Error"
       />
     </Transition>
 

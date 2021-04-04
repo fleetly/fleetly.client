@@ -23,7 +23,7 @@ import Chat, { Threads } from '@views/Chat';
 import Collaborators from '@views/Collaborators';
 import General from '@views/General';
 import Fields from '@views/Fields';
-import Flow from '@views/Flow';
+import FlowBuilder from '@views/FlowBuilder';
 import Subscribers from '@views/Subscribers';
 import Tags from '@views/Tags';
 
@@ -146,7 +146,7 @@ const Company: React.FC<{}> = () => {
             path={ROUTES.COMPANY.COLLABORATORS}
           />
           <Route component={Fields} path={ROUTES.COMPANY.FIELDS} />
-          <Route component={Flow} path={ROUTES.COMPANY.FLOW} />
+          <Route component={FlowBuilder} path={ROUTES.COMPANY.FLOW} />
           <Route component={General} path={ROUTES.COMPANY.GENERAL} />
           <Route component={Subscribers} path={ROUTES.COMPANY.SUBSCRIBERS} />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS} />

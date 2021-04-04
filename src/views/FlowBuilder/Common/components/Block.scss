@@ -1,0 +1,28 @@
+@import '~@styles/colors';
+
+@mixin color($color) {
+  &.RootIsSelected {
+    box-shadow: 0 0 0 2px rgba($color, 1);
+  }
+
+  .Icon {
+    background: rgba($color, .2);
+    color: $color;
+  }
+}
+
+.Root {
+  transition: box-shadow .2s;
+  width: 300px;
+
+  @include coloring();
+}
+
+.Icon {
+  align-items: center;
+  border-radius: 100%;
+  display: flex !important;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
