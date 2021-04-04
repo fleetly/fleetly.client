@@ -1,0 +1,46 @@
+@import '~@styles/colors';
+
+@mixin color($color) {
+  border: 3px solid rgba($color, .2);
+
+  &::before {
+    background: $color;
+    box-shadow: 0 2px 3px 0 rgba($color, .6);
+  }
+
+  &:hover {
+    border-color: rgba($color, .6);
+  }
+}
+
+.Root {
+  background: $color-gray-0;
+  height: 20px;
+  transition: all .2s;
+  width: 20px;
+
+  @include coloring();
+
+  &::before {
+    border-radius: 100%;
+    content: '';
+    display: none;
+    height: 10px;
+    left: 2px;
+    position: absolute;
+    top: 2px;
+    width: 10px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &Is {
+    &Connected {
+      &::before {
+        display: block;
+      }
+    }
+  }
+}

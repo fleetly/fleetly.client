@@ -1,21 +1,9 @@
 @import '~@styles/colors';
 
 @mixin color($color) {
+  &:hover,
   &.RootIsSelected {
     box-shadow: 0 0 0 2px rgba($color, 1);
-  }
-
-  .Handle {
-    border: 3px solid rgba($color, .2);
-
-    &::before {
-      background: $color;
-      box-shadow: 0 2px 3px 0 rgba($color, .6);
-    }
-
-    &:hover {
-      border-color: rgba($color, .6);
-    }
   }
 
   .Icon {
@@ -40,46 +28,15 @@
   width: 100%;
 }
 
-.Handle {
-  background: $color-gray-0;
-  height: 20px;
-  transition: all .2s;
-  width: 20px;
-
-  &::before {
-    background: #f00;
-    border-radius: 100%;
-    content: '';
-    display: none;
-    height: 10px;
-    left: 2px;
-    position: absolute;
-    top: 2px;
-    width: 10px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &Is {
-    &Connected {
-      &::before {
-        display: block;
-      }
-    }
-  }
-}
-
-.Source {
+.Next {
   color: $color-gray-600;
   margin: 20px 0 0;
   position: relative;
   text-align: right;
+}
 
-  .Handle {
-    right: -30px;
-  }
+.Source {
+  right: -30px;
 }
 
 .Target {
