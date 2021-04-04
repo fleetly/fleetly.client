@@ -18,7 +18,7 @@ const Billing = () => (
   <Page classes={{ container: styles.Root }} title="Billing">
     <CurrentPlan data={data.CURRENT_PLAN} />
 
-    <NextPlan />
+    <NextPlan data={data.CURRENT_PLAN} />
 
     <PaymentHistory data={data.PAYMANT_HISTORY} />
   </Page>

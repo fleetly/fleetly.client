@@ -7,7 +7,7 @@ const CURRENT_PLAN = {
     unit: 'subscriber',
     unitChunk: 1000,
     unitPrice: 30,
-    value: 28
+    value: 29
   },
   plan: {
     id: 1,
