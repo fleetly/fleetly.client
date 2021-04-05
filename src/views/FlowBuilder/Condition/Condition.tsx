@@ -7,10 +7,11 @@ import { Block, Button } from '../Common';
 // Styles
 import styles from './Condition.scss';
 
-const FlowBuilderCondition: React.FC<NodeProps> = ({ selected }) => (
+const FlowBuilderCondition: React.FC<NodeProps> = ({ id, selected }) => (
   <Block
     color="pink"
     icon="fas fa-filter"
+    id={id}
     selected={selected}
     subTitle="Condition"
     title="Check customer info"

@@ -7,10 +7,11 @@ import { Block, Button } from '../Common';
 // Styles
 import styles from './Action.scss';
 
-const FlowBuilderAction: React.FC<NodeProps> = ({ selected }) => (
+const FlowBuilderAction: React.FC<NodeProps> = ({ id, selected }) => (
   <Block
     color="yellow"
     icon="fas fa-bolt"
+    id={id}
     selected={selected}
     subTitle="Action"
     title="Set customer as favorite"

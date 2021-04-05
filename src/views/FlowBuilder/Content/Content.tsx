@@ -7,9 +7,10 @@ import { Block, Button } from '../Common';
 // Styles
 import styles from './Content.scss';
 
-const FlowBuilderContent: React.FC<NodeProps> = ({ selected }) => (
+const FlowBuilderContent: React.FC<NodeProps> = ({ id, selected }) => (
   <Block
     icon="fas fa-text"
+    id={id}
     selected={selected}
     subTitle="Content"
     title="Send welcome messages"
