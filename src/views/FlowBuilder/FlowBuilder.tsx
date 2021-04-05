@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import ReactFlow, { addEdge } from 'react-flow-renderer';
+import ReactFlow, { addEdge, removeElements } from 'react-flow-renderer';
 
 // Containers
 import Action from './Action';
@@ -53,11 +53,20 @@ const Flow = () => {
     }
   ]);
 
+  // @todo - for tests
   const onConnect = useCallback((params) => {
-    setElements(
-      (elements) =>
-        addEdge({ ...params, style: { strokeWidth: 2 } }, elements) as any
-    );
+    setElements((elements) => {
+      const oldLinks = elements.filter(
+        ({ source, sourceHandle }: any) =>
+          source === params.source && sourceHandle === params.sourceHandle
+      );
+      const filteredElements = removeElements(oldLinks, elements);
+
+      return addEdge(
+        { ...params, style: { strokeWidth: 2 } },
+        filteredElements
+      ) as any;
+    });
   }, []);
 
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
-import { NodeProps } from 'react-flow-renderer';
+import { NodeProps, Position } from 'react-flow-renderer';
 
 // Components
 import { Text } from '@components/Typography';
-import { Block, Button } from '@views/FlowBuilder/Common';
+import { Block, Button, Handle } from '../Common';
 
 // Styles
 import styles from './Randomize.scss';
@@ -13,6 +13,7 @@ const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
     color="purple"
     icon="fas fa-random"
     id={id}
+    hasSource={false}
     selected={selected}
     subTitle="Randomize"
     title="A/B test"
@@ -22,8 +23,30 @@ const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
     </Text>
 
     <div className={styles.Actions}>
-      <Button color="purple">A - 75%</Button>
-      <Button color="purple">B - 25%</Button>
+      <Button color="purple">
+        A - 75%
+        <Handle
+          className={styles.Handle}
+          color="purple"
+          id="1"
+          parentId={id}
+          position={Position.Right}
+          type="source"
+        />
+      </Button>
+
+      <Button color="purple">
+        B - 25%
+        <Handle
+          className={styles.Handle}
+          color="purple"
+          id="2"
+          parentId={id}
+          position={Position.Right}
+          type="source"
+        />
+      </Button>
+
       <Button>Add Variant</Button>
     </div>
   </Block>

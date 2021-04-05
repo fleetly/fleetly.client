@@ -9,24 +9,33 @@ import styles from './Handle.scss';
 interface PropTypes extends HandleProps {
   className?: string;
   color?: Color;
+  parentId?: string;
 }
 
 const FlowBuilderHandle: React.FC<PropTypes> = ({
   className,
   color = 'blue',
   id,
+  parentId,
   type,
   ...props
 }) => {
   // Setup
   const edges = useStoreState(({ edges }) => edges);
 
-  const isConnected = useMemo(() => !!edges.find((edge) => edge[type] === id), [
-    edges,
-    id,
-    type
-  ]);
-
+  // @todo - make it better
+  const isConnected = useMemo(
+    () =>
+      !!edges.find(({ source, sourceHandle, target, targetHandle }) =>
+        type === 'source'
+          ? source === parentId &&
+            (!sourceHandle || (sourceHandle && sourceHandle === id))
+          : target === parentId &&
+            (!targetHandle || (targetHandle && targetHandle === id))
+      ),
+    [edges, id, parentId, type]
+  );
+  console.log(edges, parentId, id);
   return (
     <Handle
       {...props}
@@ -38,6 +47,7 @@ const FlowBuilderHandle: React.FC<PropTypes> = ({
           [styles.RootIsConnected]: isConnected
         }
       )}
+      id={id}
       type={type}
     />
   );

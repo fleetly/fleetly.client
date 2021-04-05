@@ -119,10 +119,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri:
-    process.env.NODE_ENV === 'development'
-      ? 'ws://api.fleetly.me/graphql'
-      : 'wss://api.fleetly.it/graphql',
+  uri: 'wss://api.fleetly.it/graphql',
   options: {
     reconnect: true
   }

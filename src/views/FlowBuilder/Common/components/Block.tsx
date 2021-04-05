@@ -59,7 +59,7 @@ const FlowBuilderBlock: React.FC<PropTypes> = ({
         <Handle
           className={styles.Source}
           color={color}
-          id={id}
+          parentId={id}
           position={Position.Right}
           type="source"
         />
@@ -70,7 +70,7 @@ const FlowBuilderBlock: React.FC<PropTypes> = ({
       <Handle
         className={styles.Target}
         color={color}
-        id={id}
+        parentId={id}
         position={Position.Left}
         type="target"
       />
