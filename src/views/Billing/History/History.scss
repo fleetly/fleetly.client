@@ -1,5 +1,9 @@
 @import '~@styles/colors';
 
+.Root {
+  grid-area: c;
+}
+
 .Status {
   align-items: center;
   border: 2px solid;

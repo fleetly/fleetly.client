@@ -1,0 +1,48 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: flex-end;
+  display: flex;
+  margin: 32px 0;
+  width: 100%;
+}
+
+.Content {
+  flex: 1 1 auto;
+  margin: 0 28px 0 0;
+}
+
+.Counter {
+  color: $color-gray-600;
+  flex: 1 1 auto;
+  margin: 0 0 0 20px;
+}
+
+.Info {
+  align-items: center;
+  display: flex;
+}
+
+.Progress {
+  align-items: center;
+  display: flex;
+  height: 4px;
+  margin: 10px 30px 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.ProgressBar {
+  background-color: #6781f4;
+  border-radius: 2px;
+  box-shadow: 0 12px 12px 0 rgba(103, 129, 244, .2);
+  height: 4px;
+  position: absolute;
+}
+
+.ProgressCover {
+  background-color: #f5f5f3;
+  border-radius: 1px;
+  height: 2px;
+  width: 100%;
+}

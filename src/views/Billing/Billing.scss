@@ -1,0 +1,11 @@
+@import '~@styles/colors';
+
+.Root {
+  column-gap: 28px;
+  display: grid;
+  grid-template-areas:
+    'a  b'
+    'c  c';
+  grid-template-columns: 1fr 280px;
+  grid-template-rows: 1fr 1fr;
+}

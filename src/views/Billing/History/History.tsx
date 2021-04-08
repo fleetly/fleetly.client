@@ -1,56 +1,48 @@
-import classNames from 'classnames';
 import moment from 'moment';
 import React, { useMemo } from 'react';
 
 // Components
 import Button from '@components/Button';
+import Icon from '@components/Icon';
+import { Wrapper } from '@components/Page';
 import Table from '@components/Table';
 
-// Interface
-import { IInvoice } from '@interfaces/invoice.interface';
-
 // Styles
-import styles from './Table.scss';
+import styles from './History.scss';
 
 // Utils
-import { getClassName } from '@utils/styles';
+import { formatCurrency } from '@utils/string';
 
-interface PropTypes {
-  data: IInvoice[];
-}
-
-const currentIntl = new Intl.NumberFormat('en-US', {
-  currency: 'USD',
-  style: 'currency'
-});
-
-const BillingTable: React.FC<PropTypes> = ({ data }) => {
+const BillingHistory = ({ data }: any) => {
   const columns = useMemo(
     () => [
       {
         accessor: 'status',
         Cell: ({ value }: any) => (
-          <i
-            className={classNames(
-              styles.Status,
+          <Icon
+            color={
+              value === 'SUCCESSED'
+                ? 'green'
+                : value === 'PENDING'
+                ? 'blue'
+                : 'red'
+            }
+            icon={
               value === 'SUCCESSED'
                 ? 'fas fa-check'
                 : value === 'PENDING'
                 ? 'far fa-ellipsis-h'
-                : 'fas fa-ban',
-              getClassName('variant', {
-                collection: styles,
-                value,
-                prefix: 'status'
-              })
-            )}
+                : 'fas fa-ban'
+            }
+            variant="outlined"
           />
         ),
-        Header: 'Status'
+        Header: 'Status',
+        maxWidth: 80
       },
       {
         accessor: 'createdAt',
-        Cell: ({ value }) => moment(value).format('MMM D, YYYY'),
+        Cell: ({ value }: any) => moment(value).format('MMM D, YYYY'),
         Header: 'Date'
       },
       {
@@ -63,7 +55,7 @@ const BillingTable: React.FC<PropTypes> = ({ data }) => {
       },
       {
         accessor: 'amount',
-        Cell: ({ value }) => currentIntl.format(value),
+        Cell: ({ value }) => formatCurrency(value),
         Header: 'Amount'
       },
       {
@@ -77,7 +69,11 @@ const BillingTable: React.FC<PropTypes> = ({ data }) => {
     []
   );
 
-  return <Table columns={columns} data={data} />;
+  return (
+    <Wrapper classes={{ root: styles.Root }} title="Payment History">
+      <Table columns={columns} data={data} />
+    </Wrapper>
+  );
 };
 
-export default BillingTable;
+export default BillingHistory;

@@ -1,0 +1,47 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Date {
+  font-weight: 700;
+
+  &Start {
+    color: $color-gray-600;
+  }
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Period {
+  color: $color-gray-600;
+  margin: 0 0 0 8px;
+  position: relative;
+  top: -4px;
+}
+
+.Price {
+  align-items: flex-end;
+  display: flex;
+}
+
+.Limit,
+.Title {
+  color: $color-blue-300;
+}

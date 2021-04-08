@@ -1,19 +1,24 @@
-import * as React from 'react';
+import React from 'react';
 
 // Components
-import Page, { Wrapper } from '@components/Page';
+import Page from '@components/Page';
 
-// Containers
-import Table from './containers/Table';
+// Domains
+import CurrentPlan from './Current';
+import NextPlan from './Next';
+import PaymentHistory from './History';
 
 // Test
-import TEST from './DataTest';
+import data from './data';
+
+// Styles
+import styles from './Billing.scss';
 
 const Billing = () => (
-  <Page title="Billing">
-    <Wrapper title="Payment History">
-      <Table data={TEST} />
-    </Wrapper>
+  <Page classes={{ container: styles.Root }} title="Billing">
+    <CurrentPlan data={data.CURRENT_PLAN} />
+    <NextPlan data={data.CURRENT_PLAN} />
+    <PaymentHistory data={data.PAYMANT_HISTORY} />
   </Page>
 );
 
