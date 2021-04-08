@@ -4,6 +4,7 @@ import { Position } from 'react-flow-renderer';
 
 // Components
 import Card, { CardHeader } from '@components/Card';
+import Icon from '@components/Icon';
 import { Caption } from '@components/Typography';
 
 import Handle from './Handle';
@@ -46,7 +47,7 @@ const FlowBuilderBlock: React.FC<PropTypes> = ({
     )}
   >
     <CardHeader
-      avatar={<i className={classNames(styles.Icon, icon)} />}
+      avatar={<Icon color={color} icon={icon} />}
       subTitle={subTitle}
       title={title}
     />

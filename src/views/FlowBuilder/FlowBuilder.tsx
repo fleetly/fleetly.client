@@ -1,3 +1,4 @@
+import { last } from 'lodash';
 import React, { useCallback, useState } from 'react';
 import ReactFlow, { addEdge, removeElements } from 'react-flow-renderer';
 
@@ -8,6 +9,9 @@ import Content from './Content';
 import Randomize from './Randomize';
 import Start from './Start';
 
+// Store
+import { useNotifications } from '@store';
+
 const nodeTypes = {
   action: Action,
   condition: Condition,
@@ -17,6 +21,10 @@ const nodeTypes = {
 };
 
 const Flow = () => {
+  // Setup
+  const { createNotification } = useNotifications();
+
+  // State
   const [elements, setElements] = useState([
     {
       id: '1',
@@ -55,20 +63,76 @@ const Flow = () => {
   ]);
 
   // @todo - for tests
-  const onConnect = useCallback((params) => {
-    setElements((elements) => {
+  // Handlers
+  const onConnect = useCallback(
+    (params) => {
+      if (params.source === params.target) {
+        createNotification({
+          description: 'Block cannot reference itself.',
+          timeout: 5000,
+          title: 'Link creation error!',
+          variant: 'danger'
+        });
+
+        return;
+      }
+
       const oldLinks = elements.filter(
         ({ source, sourceHandle }: any) =>
           source === params.source && sourceHandle === params.sourceHandle
       );
       const filteredElements = removeElements(oldLinks, elements);
-      console.log(elements, params);
-      return addEdge(
-        { ...params, style: { strokeWidth: 2 } },
-        filteredElements
-      ) as any;
-    });
-  }, []);
+
+      let hasCycling = false;
+
+      if (params.source) {
+        const graphs: string[][] = [];
+        const edges = elements.filter(({ source }) => !!source);
+
+        edges.forEach(({ source, target }) => {
+          let hasGraph = false;
+
+          graphs.forEach((graph) => {
+            if (last(graph) === source) {
+              hasGraph = true;
+              graph.push(target as string);
+            }
+          });
+
+          if (!hasGraph) {
+            graphs.push([source as string, target as string]);
+          }
+        });
+
+        graphs.forEach((graph) => {
+          if (!hasCycling) {
+            hasCycling =
+              graph.indexOf(params.target as string) > -1 &&
+              graph.indexOf(params.source as string) > -1;
+          }
+        });
+      }
+
+      if (hasCycling) {
+        createNotification({
+          description: 'Chain of links creates looping.',
+          timeout: 5000,
+          title: 'Link creation error!',
+          variant: 'danger'
+        });
+
+        return;
+      }
+
+      return setElements(
+        addEdge(
+          { ...params, style: { strokeWidth: 2 } },
+          filteredElements
+        ) as any
+      );
+    },
+    [createNotification, elements]
+  );
 
   return (
     <ReactFlow
