@@ -25,55 +25,62 @@ const Threads = () => {
     hasMore,
     id,
     items,
+    loading,
     status
   } = useChatThreadsView();
 
   return (
     <div className={styles.Root}>
-      <div className={styles.Actions}>
-        <Button
-          className={styles.Action}
-          color={status === ChatStatus.OPENED ? 'primary' : 'default'}
-          onClick={handleStatusClick}
-          variant={status === ChatStatus.OPENED ? 'filled' : 'outlined'}
-        >
-          Opened
-        </Button>
+      {count === 0 && loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={styles.Actions}>
+            <Button
+              className={styles.Action}
+              color={status === ChatStatus.OPENED ? 'primary' : 'default'}
+              onClick={handleStatusClick}
+              variant={status === ChatStatus.OPENED ? 'filled' : 'outlined'}
+            >
+              Opened
+            </Button>
 
-        <Button
-          className={styles.Action}
-          color={status === ChatStatus.CLOSED ? 'primary' : 'default'}
-          onClick={handleStatusClick}
-          variant={status === ChatStatus.CLOSED ? 'filled' : 'outlined'}
-        >
-          Closed
-        </Button>
-      </div>
+            <Button
+              className={styles.Action}
+              color={status === ChatStatus.CLOSED ? 'primary' : 'default'}
+              onClick={handleStatusClick}
+              variant={status === ChatStatus.CLOSED ? 'filled' : 'outlined'}
+            >
+              Closed
+            </Button>
+          </div>
 
-      <div className={styles.Container} id={id}>
-        <InfiniteScroll
-          className={styles.Wrapper}
-          dataLength={count}
-          hasMore={hasMore}
-          loader={
-            <div className={styles.Loader}>
-              <Loader />
-            </div>
-          }
-          next={handleFetchMore}
-          scrollableTarget={id}
-        >
-          {count === 0 ? (
-            <Empty
-              description="You have closed all opened dialogs."
-              icon="fal fa-check-circle"
-              title="All Close"
-            />
-          ) : (
-            items.map((item) => <Thread key={item.id} {...item} />)
-          )}
-        </InfiniteScroll>
-      </div>
+          <div className={styles.Container} id={id}>
+            <InfiniteScroll
+              className={styles.Wrapper}
+              dataLength={count}
+              hasMore={hasMore}
+              loader={
+                <div className={styles.Loader}>
+                  <Loader />
+                </div>
+              }
+              next={handleFetchMore}
+              scrollableTarget={id}
+            >
+              {count === 0 ? (
+                <Empty
+                  description="You have closed all opened dialogs."
+                  icon="fal fa-check-circle"
+                  title="All Close"
+                />
+              ) : (
+                items.map((item) => <Thread key={item.id} {...item} />)
+              )}
+            </InfiniteScroll>
+          </div>
+        </>
+      )}
     </div>
   );
 };

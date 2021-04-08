@@ -31,6 +31,7 @@ const Flow = () => {
     {
       id: 'e1-2',
       source: '1',
+      sourceHandle: null,
       target: '2',
       style: {
         strokeWidth: 2
@@ -61,7 +62,7 @@ const Flow = () => {
           source === params.source && sourceHandle === params.sourceHandle
       );
       const filteredElements = removeElements(oldLinks, elements);
-
+      console.log(elements, params);
       return addEdge(
         { ...params, style: { strokeWidth: 2 } },
         filteredElements

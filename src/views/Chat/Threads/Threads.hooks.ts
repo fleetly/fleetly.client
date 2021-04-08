@@ -22,7 +22,7 @@ const useChatThreadsView = () => {
   const [status, setStatus] = useState(ChatStatus.OPENED);
 
   // Data
-  const { data, subscribeToMore } = useQuery<{
+  const { data, loading, subscribeToMore } = useQuery<{
     chats: IPagination<IChat>;
   }>(GET_CHAT_LIST, {
     variables: { companyId, pagination: { first: limit }, status }
@@ -88,6 +88,7 @@ const useChatThreadsView = () => {
     hasMore: data?.chats.pageInfo.hasNextPage || false,
     id: `${companyId}-chat-list`,
     items,
+    loading,
     status
   };
 };

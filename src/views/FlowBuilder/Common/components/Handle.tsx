@@ -35,7 +35,7 @@ const FlowBuilderHandle: React.FC<PropTypes> = ({
       ),
     [edges, id, parentId, type]
   );
-  console.log(edges, parentId, id);
+
   return (
     <Handle
       {...props}
