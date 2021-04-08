@@ -1,10 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 // Components
 import { H4, Text } from '@components/Typography';
 
 // Styles
 import styles from './Limit.scss';
+
+// Utils
+import { formatCurrency } from '@utils/string';
 
 interface PropTypes {
   limit: number;
@@ -14,12 +17,7 @@ interface PropTypes {
   value: number;
 }
 
-const currentIntl = new Intl.NumberFormat('en-US', {
-  currency: 'USD',
-  style: 'currency'
-});
-
-const BillingCurrentPlanLimit: React.FC<PropTypes> = ({
+const BillingCurrentLimit: React.FC<PropTypes> = ({
   limit,
   title,
   unit,
@@ -30,7 +28,7 @@ const BillingCurrentPlanLimit: React.FC<PropTypes> = ({
 
   return (
     <div className={styles.Root}>
-      <div className={styles.Test}>
+      <div className={styles.Content}>
         <div className={styles.Info}>
           <H4>{title}</H4>
 
@@ -39,7 +37,7 @@ const BillingCurrentPlanLimit: React.FC<PropTypes> = ({
           </Text>
 
           <Text>
-            {currentIntl.format(unitPrice)} per {unit}
+            {formatCurrency(unitPrice)} per {unit}
           </Text>
         </div>
 
@@ -52,9 +50,9 @@ const BillingCurrentPlanLimit: React.FC<PropTypes> = ({
         </div>
       </div>
 
-      <H4 className={styles.UnitPrice}>{currentIntl.format(unitPrice)}</H4>
+      <H4>{formatCurrency(unitPrice)}</H4>
     </div>
   );
 };
 
-export default BillingCurrentPlanLimit;
+export default BillingCurrentLimit;

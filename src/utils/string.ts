@@ -21,3 +21,15 @@ export const convertToColor = (data: string = ''): Color => {
 
   return colors[hash];
 };
+
+export const formatCurrency = (
+  value: number,
+  options?: { currency?: string; locale?: string }
+): string => {
+  const currentIntl = new Intl.NumberFormat(options?.locale || 'en-US', {
+    currency: options?.currency || 'USD',
+    style: 'currency'
+  });
+
+  return currentIntl.format(value);
+};

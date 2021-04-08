@@ -1,3 +1,33 @@
+@import '~@styles/colors';
+
 .Root {
   grid-area: c;
+}
+
+.Status {
+  align-items: center;
+  border: 2px solid;
+  border-radius: 100%;
+  display: flex !important;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+
+  &Variant {
+    &Failed {
+      border-color: rgba($color-danger, .3);
+      color: $color-danger;
+    }
+
+    &Pending {
+      border-color: rgba($color-primary, .3);
+      color: $color-primary;
+      font-size: 24px;
+    }
+
+    &Successed {
+      border-color: rgba($color-success, .3);
+      color: $color-success;
+    }
+  }
 }

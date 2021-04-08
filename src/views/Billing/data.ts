@@ -14,27 +14,21 @@ const CURRENT_PLAN = {
     description: 'Advanced collaboration and support for organization',
     features: [
       {
-        icon: 'fas fa-check',
         title: '3.000 Actions minutes/month'
       },
       {
-        icon: 'fas fa-check',
         title: '3.000 Actions minutes/month'
       },
       {
-        icon: 'fas fa-check',
         title: '3.000 Actions minutes/month'
       },
       {
-        icon: 'fas fa-check',
         title: '3.000 Actions minutes/month'
       },
       {
-        icon: 'fas fa-check',
         title: '3.000 Actions minutes/month'
       },
       {
-        icon: 'fas fa-check',
         title: '3.000 Actions minutes/month'
       }
     ],
