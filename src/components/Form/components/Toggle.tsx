@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import { WrappedFieldInputProps } from 'redux-form';
 
 // Decorators
 import withReduxForm from '../hocs/withReduxForm';
@@ -7,22 +8,27 @@ import withReduxForm from '../hocs/withReduxForm';
 // Styles
 import styles from './Toggle.scss';
 
-const Toggle: React.FC<any> = (props) => (
-  <label
-    className={classNames(styles.Root, {
-      [styles.RootChecked]: props.checked,
-      [styles.RootUnChecked]: !props.checked
-    })}
-    htmlFor={props.id}
-  >
-    <input
-      className={styles.Checkbox}
-      type="checkbox"
-      id={props.id}
-      onChange={props.onChange}
-    />
-    <div className={styles.Check} />
-  </label>
-);
+const Toggle: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
+  checked,
+  id,
+  onChange
+}) => {
+  return (
+    <label
+      className={classNames(styles.Root, {
+        [styles.RootIsChecked]: checked
+      })}
+      htmlFor={id}
+    >
+      <input
+        className={styles.Input}
+        type="checkbox"
+        id={id}
+        onChange={onChange}
+      />
+      <div className={styles.Circle} />
+    </label>
+  );
+};
 
 export default withReduxForm({ type: 'checkbox' })(Toggle);

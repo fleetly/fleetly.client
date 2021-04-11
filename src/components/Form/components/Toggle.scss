@@ -1,39 +1,33 @@
 @import '~@styles/colors.scss';
 
 .Root {
+  background-color: $color-gray-300;
   border-radius: 10px;
   height: 18px;
   padding: 2px;
+  transition: .4s;
   width: 34px;
 
-  &Checked {
-    background-color: $color-green-500;
-    transition: 1s;
+  &Is {
+    &Checked {
+      background-color: $color-green-500;
 
-    .Check {
-      transform: translate(16px, 0);
-      transition: 1s;
-    }
-  }
-
-  &UnChecked {
-    background-color: $color-gray-300;
-    transition: 1s;
-
-    .Check {
-      transform: translate(0, 0);
-      transition: 1s;
+      .Circle {
+        transform: translate(16px, 0);
+      }
     }
   }
 }
 
-.Check {
+.Circle {
   background-color: $color-gray-0;
   border-radius: 10px;
   height: 14px;
+  transform: translate(0, 0);
+  transition: .4s;
   width: 14px;
 }
 
-.Checkbox {
+.Input {
   display: none;
 }
