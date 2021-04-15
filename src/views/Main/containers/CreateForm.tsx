@@ -8,8 +8,7 @@ import Form, {
   asyncValidate,
   Actions,
   Fieldset,
-  Input,
-  Toggle
+  Input
 } from '@components/Form';
 
 // Constants
@@ -23,7 +22,6 @@ const MainCreateForm: React.FC<InjectedFormProps<Main.CreateFormValues>> = ({
     <Fieldset>
       <Input label="Name" name="name" placeholder="Unique company name" />
       <Input label="Title" name="title" placeholder="Public display name" />
-      <Toggle name="toggle" />
     </Fieldset>
 
     <Actions>

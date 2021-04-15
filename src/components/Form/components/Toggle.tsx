@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { WrappedFieldInputProps } from 'redux-form';
 
-// Decorators
+// HOSc
 import withReduxForm from '../hocs/withReduxForm';
 
 // Styles
@@ -11,7 +11,9 @@ import styles from './Toggle.scss';
 const Toggle: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
   checked,
   id,
-  onChange
+  name,
+  onChange,
+  value
 }) => {
   return (
     <label
@@ -22,9 +24,11 @@ const Toggle: React.FC<Form.FieldBase & WrappedFieldInputProps> = ({
     >
       <input
         className={styles.Input}
-        type="checkbox"
         id={id}
+        name={name}
         onChange={onChange}
+        type="checkbox"
+        value={value}
       />
       <div className={styles.Circle} />
     </label>
