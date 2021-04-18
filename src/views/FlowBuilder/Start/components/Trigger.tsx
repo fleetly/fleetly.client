@@ -9,7 +9,11 @@ import { Handle } from '@views/FlowBuilder/Common';
 // Styles
 import styles from './Trigger.scss';
 
-const StartTrigger = ({ id }: any) => (
+interface PropTypes {
+  id: string;
+}
+
+const FlowBuilderStartTrigger: React.FC<PropTypes> = ({ id }) => (
   <Card className={styles.Root}>
     <CardHeader
       actions={
@@ -28,4 +32,4 @@ const StartTrigger = ({ id }: any) => (
   </Card>
 );
 
-export default StartTrigger;
+export default FlowBuilderStartTrigger;
