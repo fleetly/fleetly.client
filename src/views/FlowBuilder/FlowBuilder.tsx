@@ -1,6 +1,9 @@
-import { last } from 'lodash';
-import React, { useCallback, useState } from 'react';
-import ReactFlow, { addEdge, removeElements } from 'react-flow-renderer';
+import React, { useCallback, useMemo } from 'react';
+import { useMutation, useQuery } from 'react-apollo';
+import ReactFlow, { Node } from 'react-flow-renderer';
+
+// Fleetly
+import { BlockType } from '@fleetly/flow/dist/common/interfaces';
 
 // Containers
 import Action from './Action';
@@ -9,136 +12,64 @@ import Content from './Content';
 import Randomize from './Randomize';
 import Start from './Start';
 
-// Store
-import { useNotifications } from '@store';
+// GraphQL
+import GET_FLOW_BY_ID from './Common/graphql/getFlowById.gql';
+import UPDATE_BLOCK from './Common/graphql/updateBlock.gql';
 
-const nodeTypes = {
-  action: Action,
-  condition: Condition,
-  content: Content,
-  randomize: Randomize,
-  start: Start
-};
+// Interfaces
+import { IFlow } from '@interfaces/flow.interface';
 
-const Flow = () => {
-  // Setup
-  const { createNotification } = useNotifications();
+const Flow: React.FC<{}> = () => {
+  // Data
+  const { data } = useQuery<{ flow: IFlow }>(GET_FLOW_BY_ID, {
+    variables: { flowId: '60897697e1a2ae00297c16fc' }
+  });
 
-  // State
-  const [elements, setElements] = useState([
-    {
-      id: '1',
-      type: 'start',
-      position: { x: 100, y: 400 }
-    },
-    {
-      id: '2',
-      position: { x: 550, y: 250 },
-      type: 'randomize'
-    },
-    {
-      id: 'e1-2',
-      source: '1',
-      sourceHandle: null,
-      target: '2',
-      style: {
-        strokeWidth: 2
-      }
-    },
-    {
-      id: '3',
-      position: { x: 550, y: 600 },
-      type: 'condition'
-    },
-    {
-      id: '4',
-      position: { x: 1000, y: 350 },
-      type: 'content'
-    },
-    {
-      id: '5',
-      position: { x: 1000, y: 550 },
-      type: 'action'
-    }
-  ]);
+  // Mutations
+  const [updateBlock] = useMutation(UPDATE_BLOCK);
 
-  // @todo - for tests
+  // Memo
+  const elements = useMemo(
+    () =>
+      (data?.flow.blocks || []).map(
+        ({ id, elements, position, title, type }) => ({
+          id,
+          data: {
+            elements,
+            title
+          },
+          position,
+          type
+        })
+      ),
+    [data]
+  );
+
   // Handlers
-  const onConnect = useCallback(
-    (params) => {
-      if (params.source === params.target) {
-        createNotification({
-          description: 'Block cannot reference itself.',
-          timeout: 5000,
-          title: 'Link creation error!',
-          variant: 'danger'
+  const handleNodeDrag = useCallback(
+    async (event: React.SyntheticEvent, node: Node) => {
+      try {
+        await updateBlock({
+          variables: { blockId: node.id, block: { position: node.position } }
         });
-
-        return;
+      } catch (error) {
+        // Dispatch error notify
       }
-
-      const oldLinks = elements.filter(
-        ({ source, sourceHandle }: any) =>
-          source === params.source && sourceHandle === params.sourceHandle
-      );
-      const filteredElements = removeElements(oldLinks, elements);
-
-      let hasCycling = false;
-
-      if (params.source) {
-        const graphs: string[][] = [];
-        const edges = elements.filter(({ source }) => !!source);
-
-        edges.forEach(({ source, target }) => {
-          let hasGraph = false;
-
-          graphs.forEach((graph) => {
-            if (last(graph) === source) {
-              hasGraph = true;
-              graph.push(target as string);
-            }
-          });
-
-          if (!hasGraph) {
-            graphs.push([source as string, target as string]);
-          }
-        });
-
-        graphs.forEach((graph) => {
-          if (!hasCycling) {
-            hasCycling =
-              graph.indexOf(params.target as string) > -1 &&
-              graph.indexOf(params.source as string) > -1;
-          }
-        });
-      }
-
-      if (hasCycling) {
-        createNotification({
-          description: 'Chain of links creates looping.',
-          timeout: 5000,
-          title: 'Link creation error!',
-          variant: 'danger'
-        });
-
-        return;
-      }
-
-      return setElements(
-        addEdge(
-          { ...params, style: { strokeWidth: 2 } },
-          filteredElements
-        ) as any
-      );
     },
-    [createNotification, elements]
+    [updateBlock]
   );
 
   return (
     <ReactFlow
       elements={elements}
-      nodeTypes={nodeTypes}
-      onConnect={onConnect}
+      onNodeDragStop={handleNodeDrag}
+      nodeTypes={{
+        [BlockType.ACTION]: Action,
+        [BlockType.CONDITION]: Condition,
+        [BlockType.CONTENT]: Content,
+        [BlockType.RANDOMIZE]: Randomize,
+        [BlockType.START]: Start
+      }}
       snapToGrid
     />
   );

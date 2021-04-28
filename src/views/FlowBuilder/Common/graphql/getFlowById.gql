@@ -1,0 +1,19 @@
+query getFlowById($flowId: String!) {
+  flow(flowId: $flowId) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    title
+  }
+}

@@ -1,0 +1,19 @@
+mutation updateBlock($blockId: String!, $block: UpdateBlockInput!) {
+  updateBlock(blockId: $blockId, block: $block) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    title
+  }
+}

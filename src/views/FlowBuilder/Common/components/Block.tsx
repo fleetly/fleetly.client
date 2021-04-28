@@ -3,6 +3,7 @@ import React from 'react';
 import { Position } from 'react-flow-renderer';
 
 // Components
+import Button from '@components/Button';
 import Card, { CardHeader } from '@components/Card';
 import Icon from '@components/Icon';
 import { Caption } from '@components/Typography';
@@ -39,44 +40,57 @@ const FlowBuilderBlock: React.FC<PropTypes> = ({
   subTitle,
   title
 }) => (
-  <Card
+  <div
     className={classNames(
       styles.Root,
       getClassName('color', { collection: styles, value: color }),
       { [styles.RootIsSelected]: selected }
     )}
   >
-    <CardHeader
-      avatar={<Icon color={color} icon={icon} />}
-      subTitle={subTitle}
-      title={title}
-    />
+    <div className={styles.Actions}>
+      <Button className={styles.Action} icon="far fa-cog" variant="outlined" />
 
-    {children}
+      <Button
+        className={styles.Action}
+        color="danger"
+        icon="far fa-trash-alt"
+        variant="outlined"
+      />
+    </div>
 
-    {hasSource && (
-      <Caption className={styles.Next} component="div">
-        Next Step
+    <Card className={styles.Card}>
+      <CardHeader
+        avatar={<Icon color={color} icon={icon} />}
+        subTitle={subTitle}
+        title={title}
+      />
+
+      {children}
+
+      {hasSource && (
+        <Caption className={styles.Next} component="div">
+          Next Step
+          <Handle
+            className={styles.Source}
+            color={color}
+            parentId={id}
+            position={Position.Right}
+            type="source"
+          />
+        </Caption>
+      )}
+
+      {hasTarget && (
         <Handle
-          className={styles.Source}
+          className={styles.Target}
           color={color}
           parentId={id}
-          position={Position.Right}
-          type="source"
+          position={Position.Left}
+          type="target"
         />
-      </Caption>
-    )}
-
-    {hasTarget && (
-      <Handle
-        className={styles.Target}
-        color={color}
-        parentId={id}
-        position={Position.Left}
-        type="target"
-      />
-    )}
-  </Card>
+      )}
+    </Card>
+  </div>
 );
 
 export default FlowBuilderBlock;
