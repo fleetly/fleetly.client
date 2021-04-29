@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery } from 'react-apollo';
 import ReactFlow, { Node } from 'react-flow-renderer';
 
@@ -6,11 +6,7 @@ import ReactFlow, { Node } from 'react-flow-renderer';
 import { BlockType } from '@fleetly/flow/dist/common/interfaces';
 
 // Components
-import ContextMenu, {
-  MenuHr,
-  MenuItem,
-  MenuTitle
-} from '@components/ContextMenu';
+import ContextMenu, { MenuItem, MenuTitle } from '@components/ContextMenu';
 
 // Containers
 import Action from './Action';
@@ -35,21 +31,25 @@ const Flow: React.FC<{}> = () => {
   // Mutations
   const [updateBlock] = useMutation(UPDATE_BLOCK);
 
+  const [elements, setElements] = useState([]);
+
   // Memo
-  const elements = useMemo(
+  useEffect(
     () =>
-      (data?.flow.blocks || []).map(
-        ({ id, elements, position, title, type }) => ({
-          id,
-          data: {
-            elements,
-            title
-          },
-          position,
-          type
-        })
+      setElements(
+        (data?.flow.blocks || []).map(
+          ({ id, elements, position, title, type }) => ({
+            id,
+            data: {
+              elements,
+              title
+            },
+            position,
+            type
+          })
+        ) as any
       ),
-    [data]
+    [data, setElements]
   );
 
   // Handlers
@@ -66,45 +66,81 @@ const Flow: React.FC<{}> = () => {
     [updateBlock]
   );
 
+  const [isOpened, setOpenState] = useState(false);
+  const [position, setPosition] = useState<null | { x: number; y: number }>(
+    null
+  );
+
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (ref && ref.current) {
+      (ref.current as any).addEventListener(
+        'contextmenu',
+        (event: MouseEvent) => {
+          event.preventDefault();
+
+          setPosition({ x: event.x, y: event.y });
+          setOpenState(true);
+        }
+      );
+    }
+  }, [ref]);
+
+  const handleClick = () => {
+    setElements(
+      (elements) =>
+        [
+          ...elements,
+          {
+            id: '123',
+            data: null as any,
+            position: {
+              x: (position?.x || 0) - 380,
+              y: position?.y || 0
+            },
+            type: BlockType.ACTION
+          }
+        ] as any
+    );
+
+    setOpenState(false);
+  };
+
   return (
     <>
-      <ContextMenu>
-        <MenuTitle>Content</MenuTitle>
-
-        <MenuItem arrow icon="far fa-ellipsis-h" title="More" />
-        <MenuItem icon="far fa-cog" title="Edit" />
-        <MenuItem color="red" icon="far fa-trash-alt" title="Delete" />
-
-        <MenuHr />
-
-        <MenuTitle>Links</MenuTitle>
+      <ContextMenu
+        onClose={() => setOpenState(false)}
+        opened={isOpened}
+        position={position as any}
+      >
+        <MenuTitle>New Block</MenuTitle>
 
         <MenuItem
-          icon="far fa-database"
-          title="Channels"
-          to="/605a5b9705b6a100254f6a78/channels"
+          color="yellow"
+          icon="fas fa-bolt"
+          title="Action"
+          onClick={handleClick}
         />
-
-        <MenuItem
-          color="green"
-          icon="fab fa-google"
-          title="Google"
-          to="https://google.com"
-        />
+        <MenuItem color="purple" icon="fas fa-filter" title="Condition" />
+        <MenuItem icon="fas fa-text" title="Content" />
+        <MenuItem color="purple" icon="fas fa-random" title="Randomize" />
       </ContextMenu>
 
-      <ReactFlow
-        elements={elements}
-        onNodeDragStop={handleNodeDrag}
-        nodeTypes={{
-          [BlockType.ACTION]: Action,
-          [BlockType.CONDITION]: Condition,
-          [BlockType.CONTENT]: Content,
-          [BlockType.RANDOMIZE]: Randomize,
-          [BlockType.START]: Start
-        }}
-        snapToGrid
-      />
+      <div ref={ref} style={{ height: '100%' }}>
+        <ReactFlow
+          elements={elements}
+          onNodeDragStop={handleNodeDrag}
+          nodeTypes={{
+            [BlockType.ACTION]: Action,
+            [BlockType.CONDITION]: Condition,
+            [BlockType.CONTENT]: Content,
+            [BlockType.RANDOMIZE]: Randomize,
+            [BlockType.START]: Start
+          }}
+          snapToGrid
+        />
+      </div>
     </>
   );
 };

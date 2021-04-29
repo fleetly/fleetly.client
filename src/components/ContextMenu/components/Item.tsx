@@ -22,6 +22,7 @@ interface PropTypes {
   className?: string;
   color?: Color;
   icon?: string;
+  onClick?(event: React.SyntheticEvent): void;
   title: string;
   to?: string;
 }
@@ -32,6 +33,7 @@ const ContextMenuItem: React.FC<PropTypes> = ({
   className,
   color = 'blue',
   icon,
+  onClick,
   title,
   to
 }) => {
@@ -50,6 +52,7 @@ const ContextMenuItem: React.FC<PropTypes> = ({
         styles.Root,
         getClassName('color', { collection: styles, value: color })
       )}
+      onClick={onClick}
     >
       {icon && (
         <Icon
