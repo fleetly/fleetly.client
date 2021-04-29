@@ -5,6 +5,13 @@ import ReactFlow, { Node } from 'react-flow-renderer';
 // Fleetly
 import { BlockType } from '@fleetly/flow/dist/common/interfaces';
 
+// Components
+import ContextMenu, {
+  MenuHr,
+  MenuItem,
+  MenuTitle
+} from '@components/ContextMenu';
+
 // Containers
 import Action from './Action';
 import Condition from './Condition';
@@ -60,18 +67,45 @@ const Flow: React.FC<{}> = () => {
   );
 
   return (
-    <ReactFlow
-      elements={elements}
-      onNodeDragStop={handleNodeDrag}
-      nodeTypes={{
-        [BlockType.ACTION]: Action,
-        [BlockType.CONDITION]: Condition,
-        [BlockType.CONTENT]: Content,
-        [BlockType.RANDOMIZE]: Randomize,
-        [BlockType.START]: Start
-      }}
-      snapToGrid
-    />
+    <>
+      <ContextMenu>
+        <MenuTitle>Content</MenuTitle>
+
+        <MenuItem arrow icon="far fa-ellipsis-h" title="More" />
+        <MenuItem icon="far fa-cog" title="Edit" />
+        <MenuItem color="red" icon="far fa-trash-alt" title="Delete" />
+
+        <MenuHr />
+
+        <MenuTitle>Links</MenuTitle>
+
+        <MenuItem
+          icon="far fa-database"
+          title="Channels"
+          to="/605a5b9705b6a100254f6a78/channels"
+        />
+
+        <MenuItem
+          color="green"
+          icon="fab fa-google"
+          title="Google"
+          to="https://google.com"
+        />
+      </ContextMenu>
+
+      <ReactFlow
+        elements={elements}
+        onNodeDragStop={handleNodeDrag}
+        nodeTypes={{
+          [BlockType.ACTION]: Action,
+          [BlockType.CONDITION]: Condition,
+          [BlockType.CONTENT]: Content,
+          [BlockType.RANDOMIZE]: Randomize,
+          [BlockType.START]: Start
+        }}
+        snapToGrid
+      />
+    </>
   );
 };
 
