@@ -35,7 +35,8 @@ const ContextMenuItem: React.FC<PropTypes> = ({
   icon,
   onClick,
   title,
-  to
+  to,
+  ...props
 }) => {
   const Component = (props: any) =>
     to ? (
@@ -53,6 +54,7 @@ const ContextMenuItem: React.FC<PropTypes> = ({
         getClassName('color', { collection: styles, value: color })
       )}
       onClick={onClick}
+      {...props}
     >
       {icon && (
         <Icon

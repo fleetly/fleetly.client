@@ -1,147 +1,105 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useMutation, useQuery } from 'react-apollo';
-import ReactFlow, { Node } from 'react-flow-renderer';
+import React, { useCallback } from 'react';
+import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
 
 // Fleetly
 import { BlockType } from '@fleetly/flow/dist/common/interfaces';
 
 // Components
-import ContextMenu, { MenuItem, MenuTitle } from '@components/ContextMenu';
+import Button from '@components/Button';
+import { useContextMenu } from '@components/ContextMenu';
+import Page, { Wrapper } from '@components/Page';
 
 // Containers
+import BlockMenu from './Common/containers/BlockMenu';
+import Zoom from './Common/containers/Zoom';
+
+// Hooks
+import { useFlowBuilderApi } from './FlowBuilder.hooks';
+
+// Nodes
 import Action from './Action';
 import Condition from './Condition';
 import Content from './Content';
 import Randomize from './Randomize';
 import Start from './Start';
 
-// GraphQL
-import GET_FLOW_BY_ID from './Common/graphql/getFlowById.gql';
-import UPDATE_BLOCK from './Common/graphql/updateBlock.gql';
+// Routes
+import ROUTES from '@routes';
 
-// Interfaces
-import { IFlow } from '@interfaces/flow.interface';
+// Styles
+import styles from './FlowBuilder.scss';
+
+// Utils
+import { fillUrl } from '@utils/url';
+import { useParams } from 'react-router-dom';
 
 const Flow: React.FC<{}> = () => {
-  // Data
-  const { data } = useQuery<{ flow: IFlow }>(GET_FLOW_BY_ID, {
-    variables: { flowId: '60897697e1a2ae00297c16fc' }
-  });
+  // Setup
+  const { companyId } = useParams<{ companyId: string }>();
+  const [blockMenuProps, { handleMenuOpen }] = useContextMenu();
 
-  // Mutations
-  const [updateBlock] = useMutation(UPDATE_BLOCK);
-
-  const [elements, setElements] = useState([]);
-
-  // Memo
-  useEffect(
-    () =>
-      setElements(
-        (data?.flow.blocks || []).map(
-          ({ id, elements, position, title, type }) => ({
-            id,
-            data: {
-              elements,
-              title
-            },
-            position,
-            type
-          })
-        ) as any
-      ),
-    [data, setElements]
-  );
+  const {
+    addBlock,
+    elements,
+    flowId,
+    handleBlockDrag,
+    title = 'Untitled flow'
+  } = useFlowBuilderApi();
 
   // Handlers
-  const handleNodeDrag = useCallback(
-    async (event: React.SyntheticEvent, node: Node) => {
-      try {
-        await updateBlock({
-          variables: { blockId: node.id, block: { position: node.position } }
-        });
-      } catch (error) {
-        // Dispatch error notify
-      }
-    },
-    [updateBlock]
+  const handleMenuItemClick = useCallback(
+    (event: React.SyntheticEvent<HTMLElement>) =>
+      addBlock({ title: 'Text', type: event.currentTarget.dataset.blockType }),
+    [addBlock]
   );
-
-  const [isOpened, setOpenState] = useState(false);
-  const [position, setPosition] = useState<null | { x: number; y: number }>(
-    null
-  );
-
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (ref && ref.current) {
-      (ref.current as any).addEventListener(
-        'contextmenu',
-        (event: MouseEvent) => {
-          event.preventDefault();
-
-          setPosition({ x: event.x, y: event.y });
-          setOpenState(true);
-        }
-      );
-    }
-  }, [ref]);
-
-  const handleClick = () => {
-    setElements(
-      (elements) =>
-        [
-          ...elements,
-          {
-            id: '123',
-            data: null as any,
-            position: {
-              x: (position?.x || 0) - 380,
-              y: position?.y || 0
-            },
-            type: BlockType.ACTION
-          }
-        ] as any
-    );
-
-    setOpenState(false);
-  };
 
   return (
-    <>
-      <ContextMenu
-        onClose={() => setOpenState(false)}
-        opened={isOpened}
-        position={position as any}
+    <Page title={title}>
+      <Wrapper
+        breadcrumbs={[
+          {
+            title: 'Flows',
+            to: fillUrl(ROUTES.COMPANY.FLOWS.ROOT, { companyId })
+          },
+          {
+            title,
+            to: fillUrl(ROUTES.COMPANY.FLOWS.FLOW, { flowId, companyId })
+          }
+        ]}
+        classes={{ container: styles.Container }}
       >
-        <MenuTitle>New Block</MenuTitle>
+        <ReactFlowProvider>
+          <div className={styles.Builder}>
+            <ReactFlow
+              elements={elements}
+              onNodeDragStop={handleBlockDrag}
+              nodeTypes={{
+                [BlockType.ACTION]: Action,
+                [BlockType.CONDITION]: Condition,
+                [BlockType.CONTENT]: Content,
+                [BlockType.RANDOMIZE]: Randomize,
+                [BlockType.START]: Start
+              }}
+              snapToGrid
+            />
 
-        <MenuItem
-          color="yellow"
-          icon="fas fa-bolt"
-          title="Action"
-          onClick={handleClick}
-        />
-        <MenuItem color="purple" icon="fas fa-filter" title="Condition" />
-        <MenuItem icon="fas fa-text" title="Content" />
-        <MenuItem color="purple" icon="fas fa-random" title="Randomize" />
-      </ContextMenu>
+            <div className={styles.Actions}>
+              <Button
+                classes={{ root: styles.Add, icon: styles.AddIcon }}
+                color="primary"
+                icon="fas fa-layer-plus"
+                key="123"
+                onClick={handleMenuOpen}
+              />
 
-      <div ref={ref} style={{ height: '100%' }}>
-        <ReactFlow
-          elements={elements}
-          onNodeDragStop={handleNodeDrag}
-          nodeTypes={{
-            [BlockType.ACTION]: Action,
-            [BlockType.CONDITION]: Condition,
-            [BlockType.CONTENT]: Content,
-            [BlockType.RANDOMIZE]: Randomize,
-            [BlockType.START]: Start
-          }}
-          snapToGrid
-        />
-      </div>
-    </>
+              <Zoom />
+            </div>
+          </div>
+        </ReactFlowProvider>
+      </Wrapper>
+
+      <BlockMenu {...blockMenuProps} onItemClick={handleMenuItemClick} />
+    </Page>
   );
 };
 

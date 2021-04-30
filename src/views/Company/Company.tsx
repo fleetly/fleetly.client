@@ -57,7 +57,7 @@ const Company: React.FC<{}> = () => {
           {
             icon: 'far fa-code-merge',
             title: 'Flow',
-            to: fillUrl(ROUTES.COMPANY.FLOW, { companyId })
+            to: fillUrl(ROUTES.COMPANY.FLOWS.ROOT, { companyId })
           }
         ],
         title: 'Apps'
@@ -146,7 +146,7 @@ const Company: React.FC<{}> = () => {
             path={ROUTES.COMPANY.COLLABORATORS}
           />
           <Route component={Fields} path={ROUTES.COMPANY.FIELDS} />
-          <Route component={FlowBuilder} path={ROUTES.COMPANY.FLOW} />
+          <Route component={FlowBuilder} path={ROUTES.COMPANY.FLOWS.ROOT} />
           <Route component={General} path={ROUTES.COMPANY.GENERAL} />
           <Route component={Subscribers} path={ROUTES.COMPANY.SUBSCRIBERS} />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 // Components
@@ -16,23 +16,63 @@ interface Position {
   y?: number;
 }
 
-interface PropTypes {
-  children: React.ReactNode;
+export interface PropTypes {
+  anchor?: HTMLElement;
+  children?: React.ReactNode;
   onClose?(event: React.SyntheticEvent): void;
   opened?: boolean;
   position?: Position;
+  spacing?: number;
 }
 
 const ContextMenu: React.FC<PropTypes> = ({
+  anchor,
   children,
   onClose,
   opened,
-  position
+  spacing = 8
 }) => {
-  const ref = useOutsideClick(onClose);
+  // Setup
+  const ref = useOutsideClick(opened ? onClose : undefined);
+
+  // State
+  const [position, setPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0
+  });
+
+  // Effects
+  useEffect(() => {
+    if (anchor && ref && ref.current) {
+      const handleWindowResize = (event?: React.SyntheticEvent) => {
+        const { left, top } = anchor.getBoundingClientRect();
+        const $menu = ref.current as any;
+
+        setPosition({
+          x:
+            left + $menu.clientWidth < window.innerWidth
+              ? left + anchor.clientWidth + spacing
+              : left - ($menu.clientWidth + spacing),
+          y:
+            top + $menu.clientHeight < window.innerHeight
+              ? top
+              : top +
+                (window.innerHeight - (top + spacing + $menu.clientHeight))
+        });
+      };
+
+      handleWindowResize();
+
+      window.addEventListener('resize', handleWindowResize as any);
+
+      return () => {
+        window.removeEventListener('resize', handleWindowResize as any);
+      };
+    }
+  }, [anchor, ref, spacing]);
 
   return ReactDOM.createPortal(
-    <Transition duration={400} enter="fadeIn" in={opened}>
+    <Transition duration={100} enter="zoomIn" in={opened}>
       <div
         className={styles.Root}
         ref={ref}
