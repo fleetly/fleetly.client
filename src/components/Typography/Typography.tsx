@@ -7,13 +7,17 @@ import styles from './Typography.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
+type Size = 'extraLarge' | 'large' | 'medium' | 'small' | 'extraSmall';
 type Variant = 'caption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'text';
 
 interface TypeProps {
   children: React.ReactNode;
   className?: string;
   component?: any;
+  bold?: boolean;
   htmlFor?: string;
+  medium?: boolean;
+  size?: Size;
   variant?: Variant;
 }
 
@@ -21,6 +25,9 @@ const Typography: React.FC<TypeProps> = ({
   children,
   className,
   component: Component = 'div',
+  bold,
+  medium,
+  size = 'medium',
   variant = 'text',
   ...props
 }) => (
@@ -29,7 +36,12 @@ const Typography: React.FC<TypeProps> = ({
     className={classNames(
       className,
       styles.Root,
-      getClassName('variant', { collection: styles, value: variant })
+      getClassName('size', { collection: styles, value: size }),
+      getClassName('variant', { collection: styles, value: variant }),
+      {
+        [styles.RootWeightBold]: bold,
+        [styles.RootWeightMedium]: medium
+      }
     )}
   >
     {children}

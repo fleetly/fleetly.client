@@ -1,0 +1,19 @@
+mutation addBlock($block: CreateBlockInput!, $flowId: String!) {
+  addBlock(block: $block, flowId: $flowId) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    title
+  }
+}

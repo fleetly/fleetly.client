@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 // Components
 import Link from '@components/Link';
@@ -47,8 +47,11 @@ const Button: React.FC<PropTypes> = ({
   variant = 'filled',
   ...props
 }) => {
-  const Component = (props: any) =>
-    to ? <Link {...props} to={to} /> : <button {...props} />;
+  const Component = useMemo(
+    () => (props: any) =>
+      to ? <Link {...props} to={to} /> : <button {...props} />,
+    [to]
+  );
 
   return (
     <Component

@@ -58,24 +58,28 @@ const Transition: React.FC<PropTypes> = ({
                   status === 'entering' ? enter : exit
                 }`
             ),
-            style: isExist
-              ? {
-                  animationDelay: `${
-                    (status === 'entering'
-                      ? formattedDelay.enter
-                      : status === 'exiting'
-                      ? formattedDelay.exit
-                      : 0) / 1000
-                  }s`,
-                  animationDuration: `${
-                    (status === 'entering'
-                      ? formattedDuration.enter
-                      : status === 'exiting'
-                      ? formattedDuration.exit
-                      : 0) / 1000
-                  }s`
-                }
-              : undefined
+            style: Object.assign(
+              {},
+              (children as any).props.style,
+              isExist
+                ? {
+                    animationDelay: `${
+                      (status === 'entering'
+                        ? formattedDelay.enter
+                        : status === 'exiting'
+                        ? formattedDelay.exit
+                        : 0) / 1000
+                    }s`,
+                    animationDuration: `${
+                      (status === 'entering'
+                        ? formattedDuration.enter
+                        : status === 'exiting'
+                        ? formattedDuration.exit
+                        : 0) / 1000
+                    }s`
+                  }
+                : undefined
+            )
           })
         );
       }}

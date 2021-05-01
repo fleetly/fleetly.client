@@ -68,8 +68,7 @@ const useNotifications = (currentNotificationId?: string) => {
     [currentNotificationId, dispatch]
   );
 
-  // Custom handlers
-  const pushError = React.useCallback<
+  const handleApolloError = React.useCallback<
     (
       error: ApolloError | Error,
       notification?: Store.NotificationsPayload
@@ -81,7 +80,9 @@ const useNotifications = (currentNotificationId?: string) => {
         : error.message;
 
       createNotification({
-        title: message,
+        description: message,
+        timeout: 5000,
+        title: 'Server error!',
         variant: 'danger',
         ...notification
       });
@@ -94,8 +95,8 @@ const useNotifications = (currentNotificationId?: string) => {
     data,
     deleteAllNotifications,
     deleteNotification,
-    notifications,
-    pushError
+    handleApolloError,
+    notifications
   };
 };
 

@@ -12,7 +12,7 @@ import { useNotifications } from '@store';
 const useChannelInfoSourceView = (status: ChannelStatus) => {
   // Setup
   const { channelId } = useParams<{ channelId: string }>();
-  const { pushError } = useNotifications();
+  const { handleApolloError } = useNotifications();
 
   // Data
   const isActive = status === ChannelStatus.ACTIVE;
@@ -31,7 +31,7 @@ const useChannelInfoSourceView = (status: ChannelStatus) => {
   ] = useMutation(ENABLE_CHANNEL, { variables });
 
   const [syncChannel, { loading: syncIsLoading }] = useMutation(SYNC_CHANNEL, {
-    onError: pushError,
+    onError: handleApolloError,
     variables
   });
 
