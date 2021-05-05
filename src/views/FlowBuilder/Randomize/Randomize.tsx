@@ -26,10 +26,10 @@ const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
       <Button color="purple">
         A - 75%
         <Handle
+          id="1"
+          blockId={id}
           className={styles.Handle}
           color="purple"
-          id="1"
-          parentId={id}
           position={Position.Right}
           type="source"
         />
@@ -38,10 +38,10 @@ const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
       <Button color="purple">
         B - 25%
         <Handle
+          id="2"
+          blockId={id}
           className={styles.Handle}
           color="purple"
-          id="2"
-          parentId={id}
           position={Position.Right}
           type="source"
         />

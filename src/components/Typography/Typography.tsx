@@ -17,6 +17,7 @@ interface TypeProps {
   bold?: boolean;
   htmlFor?: string;
   medium?: boolean;
+  noWrap?: boolean;
   size?: Size;
   variant?: Variant;
 }
@@ -27,6 +28,7 @@ const Typography: React.FC<TypeProps> = ({
   component: Component = 'div',
   bold,
   medium,
+  noWrap,
   size = 'medium',
   variant = 'text',
   ...props
@@ -41,6 +43,9 @@ const Typography: React.FC<TypeProps> = ({
       {
         [styles.RootWeightBold]: bold,
         [styles.RootWeightMedium]: medium
+      },
+      {
+        [styles.RootModeNoWrap]: noWrap
       }
     )}
   >

@@ -8,7 +8,7 @@ import Card, { CardHeader } from '@components/Card';
 import Icon from '@components/Icon';
 import { Caption } from '@components/Typography';
 
-import Handle from './Handle';
+import Handle from '../Handle';
 
 // Styles
 import styles from './Block.scss';
@@ -71,9 +71,9 @@ const FlowBuilderBlock: React.FC<PropTypes> = ({
         <Caption className={styles.Next} component="div">
           Next Step
           <Handle
+            blockId={id}
             className={styles.Source}
             color={color}
-            parentId={id}
             position={Position.Right}
             type="source"
           />
@@ -82,9 +82,9 @@ const FlowBuilderBlock: React.FC<PropTypes> = ({
 
       {hasTarget && (
         <Handle
+          blockId={id}
           className={styles.Target}
           color={color}
-          parentId={id}
           position={Position.Left}
           type="target"
         />

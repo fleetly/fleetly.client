@@ -1,4 +1,12 @@
 .Root {
+  &Mode {
+    &NoWrap {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
   &Variant {
     &Caption {
       font-size: 12px;

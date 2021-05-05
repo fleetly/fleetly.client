@@ -7,16 +7,16 @@ import { Handle, HandleProps, useStoreState } from 'react-flow-renderer';
 import styles from './Handle.scss';
 
 interface PropTypes extends HandleProps {
+  blockId?: string;
   className?: string;
   color?: Color;
-  parentId?: string;
 }
 
 const FlowBuilderHandle: React.FC<PropTypes> = ({
+  id,
   className,
   color = 'blue',
-  id,
-  parentId,
+  blockId,
   type,
   ...props
 }) => {
@@ -28,12 +28,12 @@ const FlowBuilderHandle: React.FC<PropTypes> = ({
     () =>
       !!edges.find(({ source, sourceHandle, target, targetHandle }) =>
         type === 'source'
-          ? source === parentId &&
+          ? source === blockId &&
             (!sourceHandle || (sourceHandle && sourceHandle === id))
-          : target === parentId &&
+          : target === blockId &&
             (!targetHandle || (targetHandle && targetHandle === id))
       ),
-    [edges, id, parentId, type]
+    [id, blockId, edges, type]
   );
 
   return (

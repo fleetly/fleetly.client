@@ -15,7 +15,7 @@ interface Classes extends ExtendedClasses {
   title?: string;
 }
 
-interface PropTypes {
+export interface CardHeaderProps {
   actions?: React.ReactNode;
   avatar?: React.ReactNode;
   className?: string;
@@ -24,7 +24,7 @@ interface PropTypes {
   title: string;
 }
 
-const CardHeader: React.FC<PropTypes> = ({
+const CardHeader: React.FC<CardHeaderProps> = ({
   actions,
   avatar,
   className,
@@ -39,12 +39,17 @@ const CardHeader: React.FC<PropTypes> = ({
 
     <div className={classNames(classes.content, styles.Content)}>
       {subTitle && (
-        <Caption className={classNames(classes.subTitle, styles.SubTitle)}>
+        <Caption
+          className={classNames(classes.subTitle, styles.SubTitle)}
+          noWrap
+        >
           {subTitle}
         </Caption>
       )}
 
-      <H5 className={classNames(classes.title, styles.Title)}>{title}</H5>
+      <H5 className={classNames(classes.title, styles.Title)} noWrap>
+        {title}
+      </H5>
     </div>
 
     {actions && (

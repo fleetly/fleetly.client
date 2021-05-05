@@ -5,6 +5,12 @@ query getFlowById($flowId: String!) {
       id
       elements {
         id
+        payload {
+          ... on StartKeyword {
+            operator
+            value
+          }
+        }
         type
       }
       position {

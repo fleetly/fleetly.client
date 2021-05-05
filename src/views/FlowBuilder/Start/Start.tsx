@@ -1,16 +1,29 @@
 import React from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
+// Fleetly
+import { ElementType } from '@fleetly/flow/dist/common/interfaces';
+
 // Components
-import Trigger from './components/Trigger';
 import { Text } from '@components/Typography';
-import { Block, Button } from '@views/FlowBuilder/Common';
+import {
+  Block,
+  BlockActions,
+  BlockContent,
+  Button
+} from '@views/FlowBuilder/Common';
+
+import StartKeyword from './components/Keyword';
 
 // Interfaces
 import { IElement } from '@interfaces/flow.interface';
 
 // Styles
 import styles from './Start.scss';
+
+const ELEMENT: any = {
+  [ElementType.START_KEYWORD]: StartKeyword
+};
 
 const FlowBuilderStart: React.FC<NodeProps<{
   elements: IElement[];
@@ -32,15 +45,24 @@ const FlowBuilderStart: React.FC<NodeProps<{
       Add triggers to listen
     </Text>
 
-    <div className={styles.Triggers}>
-      <Trigger id={id} />
-      <Trigger id={id} />
-      <Trigger id={id} />
-    </div>
+    <BlockContent>
+      {elements.map((element) => {
+        const Component = ELEMENT.TRIGGER_KEYWORD;
 
-    <div className={styles.Actions}>
+        return (
+          <Component
+            key={element.id}
+            {...element.payload}
+            id={element.id}
+            blockId={id}
+          />
+        );
+      })}
+    </BlockContent>
+
+    <BlockActions>
       <Button>Add Trigger</Button>
-    </div>
+    </BlockActions>
   </Block>
 );
 

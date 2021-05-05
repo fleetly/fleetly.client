@@ -11,6 +11,7 @@ export interface IBlock {
 
 export interface IElement {
   readonly id: string;
+  readonly payload: any;
   readonly type: ElementType;
 }
 
