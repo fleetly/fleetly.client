@@ -1,15 +1,7 @@
 @import '~@styles/colors';
 
 .Actions {
-  background: $color-gray-100;
-  border: 2px solid $color-gray-300;
-  border-radius: 16px;
   margin: 16px 0 0;
-  padding: 8px;
-
-  & > *:not(:first-child) {
-    margin: 8px 0 0;
-  }
 }
 
 .Description {
@@ -19,4 +11,17 @@
 
 .Handle {
   right: 12px !important;
+}
+
+.List {
+  background: $color-gray-100;
+  border: 2px solid $color-gray-300;
+  border-radius: 16px;
+  margin: 16px 0 0;
+  padding: 8px;
+
+  & > *:not(:first-child) {
+    border-top: 2px solid $color-gray-300;
+    margin: 8px 0 0;
+  }
 }
