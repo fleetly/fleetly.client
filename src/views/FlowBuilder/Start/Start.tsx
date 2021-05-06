@@ -47,7 +47,7 @@ const FlowBuilderStart: React.FC<NodeProps<{
 
     <BlockContent>
       {elements.map((element) => {
-        const Component = ELEMENT.TRIGGER_KEYWORD;
+        const Component = ELEMENT[element.type];
 
         return (
           <Component

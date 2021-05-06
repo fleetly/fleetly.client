@@ -3,10 +3,6 @@ mutation addBlock($block: CreateBlockInput!, $flowId: String!) {
     id
     blocks {
       id
-      elements {
-        id
-        type
-      }
       position {
         x
         y
@@ -14,6 +10,5 @@ mutation addBlock($block: CreateBlockInput!, $flowId: String!) {
       title
       type
     }
-    title
   }
 }

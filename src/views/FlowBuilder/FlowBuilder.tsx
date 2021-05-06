@@ -39,19 +39,12 @@ const Flow: React.FC<{}> = () => {
   const [blockMenuProps, { handleMenuOpen }] = useContextMenu();
 
   const {
-    addBlock,
     elements,
     flowId,
     handleBlockDrag,
+    handleEdgeConnect,
     title = 'Untitled flow'
   } = useFlowBuilderApi();
-
-  // Handlers
-  const handleMenuItemClick = useCallback(
-    (event: React.SyntheticEvent<HTMLElement>) =>
-      addBlock({ title: 'Text', type: event.currentTarget.dataset.blockType }),
-    [addBlock]
-  );
 
   return (
     <Page title={title}>
@@ -72,6 +65,7 @@ const Flow: React.FC<{}> = () => {
           <div className={styles.Builder}>
             <ReactFlow
               elements={elements}
+              onConnect={handleEdgeConnect}
               onNodeDragStop={handleBlockDrag}
               nodeTypes={{
                 [BlockType.ACTION]: Action,
@@ -98,7 +92,7 @@ const Flow: React.FC<{}> = () => {
         </ReactFlowProvider>
       </Wrapper>
 
-      <BlockMenu {...blockMenuProps} onItemClick={handleMenuItemClick} />
+      <BlockMenu {...blockMenuProps} />
     </Page>
   );
 };

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useMutation } from 'react-apollo';
+import { useParams } from 'react-router-dom';
 
 // Fleetly
 import { BlockType } from '@fleetly/flow/dist/common/interfaces';
@@ -10,48 +12,84 @@ import ContextMenu, {
   PropTypes as ContextMenuProps
 } from '@components/ContextMenu';
 
-interface PropTypes extends ContextMenuProps {
-  onItemClick(event: React.SyntheticEvent): void;
-}
+// GraphQL
+import ADD_BLOCK from '../graphql/addBlock.gql';
 
-const FlowBuilderBlockMenu: React.FC<PropTypes> = ({
-  onItemClick,
+// Store
+import { useNotifications } from '@store';
+
+const FlowBuilderBlockMenu: React.FC<ContextMenuProps> = ({
+  onClose,
   ...props
-}) => (
-  <ContextMenu {...props}>
-    <MenuTitle>New Block</MenuTitle>
+}) => {
+  // Setup
+  const { flowId = '60897697e1a2ae00297c16fc' } = useParams<{
+    flowId: string;
+  }>();
 
-    <MenuItem
-      data-block-type={BlockType.ACTION}
-      color="yellow"
-      icon="fas fa-bolt"
-      onClick={onItemClick}
-      title="Action"
-    />
+  const { handleApolloError } = useNotifications();
 
-    <MenuItem
-      data-block-type={BlockType.CONDITION}
-      color="purple"
-      icon="fas fa-filter"
-      onClick={onItemClick}
-      title="Condition"
-    />
+  // Mutations
+  const [addBlock] = useMutation(ADD_BLOCK);
 
-    <MenuItem
-      data-block-type={BlockType.CONTENT}
-      icon="fas fa-text"
-      onClick={onItemClick}
-      title="Content"
-    />
+  // Handlers
+  const handleMenuItemClick = useCallback(
+    async (event: React.SyntheticEvent<HTMLDivElement>) => {
+      onClose && onClose(event);
 
-    <MenuItem
-      data-block-type={BlockType.RANDOMIZE}
-      color="purple"
-      icon="fas fa-random"
-      onClick={onItemClick}
-      title="Randomize"
-    />
-  </ContextMenu>
-);
+      try {
+        await addBlock({
+          variables: {
+            flowId,
+            block: {
+              title: 'Text',
+              type: event.currentTarget.dataset.blockType
+            }
+          }
+        });
+      } catch (error) {
+        return handleApolloError(error, { title: "Can't add block!" });
+      }
+    },
+    [addBlock, flowId, handleApolloError, onClose]
+  );
+
+  return (
+    <ContextMenu {...props} onClose={onClose}>
+      <MenuTitle>New Block</MenuTitle>
+
+      <MenuItem
+        data-block-type={BlockType.ACTION}
+        color="yellow"
+        icon="fas fa-bolt"
+        onClick={handleMenuItemClick}
+        title="Action"
+      />
+
+      <MenuItem
+        data-block-type={BlockType.CONDITION}
+        color="purple"
+        icon="fas fa-filter"
+        onClick={handleMenuItemClick}
+        title="Condition"
+      />
+
+      <MenuItem
+        data-block-type={BlockType.CONTENT}
+        icon="fas fa-text"
+        onClick={handleMenuItemClick}
+        title="Content"
+      />
+
+      <MenuItem
+        data-block-type={BlockType.RANDOMIZE}
+        color="purple"
+        icon="fas fa-random"
+        onClick={handleMenuItemClick}
+        title="Randomize"
+      />
+    </ContextMenu>
+  );
+};
 
 export default FlowBuilderBlockMenu;

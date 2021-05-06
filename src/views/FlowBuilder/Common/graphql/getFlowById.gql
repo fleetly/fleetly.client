@@ -20,6 +20,13 @@ query getFlowById($flowId: String!) {
       title
       type
     }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
     title
   }
 }

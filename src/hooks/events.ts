@@ -10,10 +10,14 @@ const useOutsideClick = (callback?: (event: React.SyntheticEvent) => void) => {
       }
     };
 
-    document.addEventListener('click', handleDocumentClick as any);
+    document.addEventListener('mousedown', handleDocumentClick as any, true);
 
     return () => {
-      document.removeEventListener('click', handleDocumentClick as any);
+      document.removeEventListener(
+        'mousedown',
+        handleDocumentClick as any,
+        true
+      );
     };
   }, [callback, ref]);
 

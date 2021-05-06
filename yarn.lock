@@ -1210,10 +1210,10 @@
     class-transformer "^0.3.1"
     factory-girl "^5.0.4"
 
-"@fleetly/flow@^0.4.3":
-  version "0.4.3"
-  resolved "https://npm.pkg.github.com/download/@fleetly/flow/0.4.3/83ffcdab7b0656e648777dbe79aeda27adcec29a563be39de67db4d33b0ee597#bee855d85c329918a8b48e7d1d83b54401ec20ad"
-  integrity sha512-U3rGJ+ldRF33EABX/xrFVkLSoFr2rCu2Rfl0EIZ2IeLyNYKwPkBkAt55dmgnHiVpSWvgObzDeaN9KbEUasa/qA==
+"@fleetly/flow@^0.5.1":
+  version "0.5.1"
+  resolved "https://npm.pkg.github.com/download/@fleetly/flow/0.5.1/85ce5b40fa5c3f28b00e0962542b11956a4b4533e8fc7025eea70f8978641fc1#e79ae98dd74db3bb2111d3f16f10c2e8ae210a9c"
+  integrity sha512-IovWxjCrmra8aY1vn/wGlPUKhxNNwS1iyp4VaD0Kj8Tss3ZUXSGTyf2y8u5Ojp1NNGArYmQ1CA5kWLxKRCMAdA==
   dependencies:
     "@fleetly/common" "^0.11.1"
 

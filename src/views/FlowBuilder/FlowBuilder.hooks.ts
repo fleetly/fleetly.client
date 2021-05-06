@@ -1,11 +1,11 @@
 import React, { useCallback, useMemo } from 'react';
 import { useMutation, useQuery } from 'react-apollo';
-import { Node } from 'react-flow-renderer';
+import { Connection, Edge, Elements, Node } from 'react-flow-renderer';
+import { useParams } from 'react-router-dom';
 
 // GraphQL
+import ADD_EDGE from './Common/graphql/addEdge.gql';
 import GET_FLOW_BY_ID from './Common/graphql/getFlowById.gql';
-
-import ADD_BLOCK from './Common/graphql/addBlock.gql';
 import UPDATE_BLOCK from './Common/graphql/updateBlock.gql';
 
 // Interfaces
@@ -16,7 +16,10 @@ import { useNotifications } from '@store';
 
 const useFlowBuilderApi = () => {
   // Setup
-  const flowId = '60897697e1a2ae00297c16fc';
+  const { flowId = '60897697e1a2ae00297c16fc' } = useParams<{
+    flowId: string;
+  }>();
+
   const { handleApolloError } = useNotifications();
 
   // Data
@@ -25,46 +28,43 @@ const useFlowBuilderApi = () => {
   });
 
   // Mutations
-  const [addBlockMutation] = useMutation(ADD_BLOCK);
+  const [addEdge] = useMutation(ADD_EDGE);
   const [updateBlock] = useMutation(UPDATE_BLOCK);
 
   // Memo
-  const elements = useMemo(
-    () =>
-      (data?.flow.blocks || []).map(
-        ({ id, elements, position, title, type }) => ({
-          id,
-          data: {
-            elements,
-            title
-          },
-          position,
-          type
-        })
-      ),
-    [data]
-  );
+  const elements = useMemo(() => {
+    const result: Elements = [];
+
+    if (data?.flow) {
+      (data.flow.blocks || []).forEach(
+        ({ id, elements, position, title, type }) =>
+          result.push({
+            id,
+            data: {
+              elements,
+              title
+            },
+            position,
+            type
+          })
+      );
+
+      (data.flow.edges || []).forEach(
+        ({ id, sourceId, sourceElementId, targetId }) =>
+          result.push({
+            id,
+            target: targetId,
+            source: sourceId,
+            sourceHandle: sourceElementId,
+            style: { strokeWidth: 2 }
+          })
+      );
+    }
+
+    return result;
+  }, [data]);
 
   // Handlers
-  const addBlock = useCallback(
-    async ({ title, type }) => {
-      try {
-        return await addBlockMutation({
-          variables: {
-            flowId,
-            block: {
-              title,
-              type
-            }
-          }
-        });
-      } catch (error) {
-        return handleApolloError(error, { title: "Can't add block!" });
-      }
-    },
-    [addBlockMutation, handleApolloError]
-  );
-
   const handleBlockDrag = useCallback(
     async (event: React.SyntheticEvent, node: Node) => {
       try {
@@ -79,11 +79,31 @@ const useFlowBuilderApi = () => {
     [handleApolloError, updateBlock]
   );
 
+  const handleEdgeConnect = useCallback(
+    async ({ target, source, sourceHandle }: Connection | Edge) => {
+      const [elementId, handleId] = sourceHandle?.split('.') || [];
+
+      try {
+        await addEdge({
+          variables: {
+            sourceId: source,
+            sourceElementId: elementId,
+            sourceHandleId: handleId,
+            targetId: target
+          }
+        });
+      } catch (error) {
+        return handleApolloError(error);
+      }
+    },
+    [addEdge, handleApolloError]
+  );
+
   return {
-    addBlock,
     elements,
     flowId,
     handleBlockDrag,
+    handleEdgeConnect,
     title: data?.flow.title
   };
 };
