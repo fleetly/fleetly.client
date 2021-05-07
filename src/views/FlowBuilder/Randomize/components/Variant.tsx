@@ -7,14 +7,14 @@ import { Text } from '@components/Typography';
 import { Button, Handle } from '../../Common';
 
 // Styles
-import styles from './Element.scss';
+import styles from './Variant.scss';
 
 interface PropTypes {
   id: string;
   name: string;
 }
 
-const FlowBuilderRandomizeElement: React.FC<PropTypes> = ({ name, id }) => {
+const FlowBuilderRandomizeVariant: React.FC<PropTypes> = ({ name, id }) => {
   // State
   const [value, setValue] = useState<number>(0);
 
@@ -32,7 +32,7 @@ const FlowBuilderRandomizeElement: React.FC<PropTypes> = ({ name, id }) => {
 
   return (
     <div className={styles.Root}>
-      <div className={styles.Control}>
+      <div className={styles.Container}>
         <div className={styles.Title}>
           <Text className={styles.Name} medium>
             {name}
@@ -41,8 +41,9 @@ const FlowBuilderRandomizeElement: React.FC<PropTypes> = ({ name, id }) => {
           <Text>%</Text>
         </div>
 
-        <div className={styles.RangeProgress}>
-          <div className={styles.Progress} style={{ width: `${value}%` }} />
+        <div className={styles.Control}>
+          <div className={styles.Value} style={{ width: `${value}%` }} />
+
           <input
             className={styles.Input}
             max="100"
@@ -56,26 +57,28 @@ const FlowBuilderRandomizeElement: React.FC<PropTypes> = ({ name, id }) => {
         </div>
 
         <DeleteButton
-          className={styles.DeleteButton}
+          className={styles.Delete}
           color="danger"
           icon="fal fa-trash-alt"
           variant="outlined"
         />
       </div>
 
-      <Button color="purple">
-        {name} - {value}%
-        <Handle
-          className={styles.Handle}
-          color="purple"
-          id={id}
-          parentId={id}
-          position={Position.Right}
-          type="source"
-        />
-      </Button>
+      <div className={styles.Actions}>
+        <Button color="purple">
+          {name} - {value}%
+          <Handle
+            blockId={id}
+            className={styles.Handle}
+            color="purple"
+            id={id}
+            position={Position.Right}
+            type="source"
+          />
+        </Button>
+      </div>
     </div>
   );
 };
 
-export default FlowBuilderRandomizeElement;
+export default FlowBuilderRandomizeVariant;

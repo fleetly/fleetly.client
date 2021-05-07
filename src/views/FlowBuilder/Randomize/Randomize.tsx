@@ -2,9 +2,10 @@ import React from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
 // Components
-import Element from './components/Element';
 import { Text } from '@components/Typography';
-import { Block, Button } from '../Common';
+import { Block, BlockActions, Button } from '../Common';
+
+import Variant from './components/Variant';
 
 // Styles
 import styles from './Randomize.scss';
@@ -24,14 +25,14 @@ const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
     </Text>
 
     <div className={styles.List}>
-      <Element name="A" id="1" />
-      <Element name="B" id="2" />
-      <Element name="C" id="3" />
+      <Variant name="A" id="1" />
+      <Variant name="B" id="2" />
+      <Variant name="C" id="3" />
     </div>
 
-    <div className={styles.Actions}>
+    <BlockActions>
       <Button>Add Variant</Button>
-    </div>
+    </BlockActions>
   </Block>
 );
 
