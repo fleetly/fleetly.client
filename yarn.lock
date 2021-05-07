@@ -1195,6 +1195,13 @@
     class-transformer "^0.3.1"
     factory-girl "^5.0.4"
 
+"@fleetly/common@^0.11.1":
+  version "0.11.1"
+  resolved "https://npm.pkg.github.com/download/@fleetly/common/0.11.1/157f800ebe05463e934f4f1e47f9c0ccf570964244c5c5300e4b3ad14ad0ae06#5cc1e45986bbc2781343daef05fc5556a51bde2e"
+  integrity sha512-pe8PVo5Ht4Fv2eTRibFDNfYqxksJPAI57liBEVyME6i/NP7fgtQ/5YAp/0FkguuIlzIEEh40pTuUrpNq1bjHwA==
+  dependencies:
+    factory-girl "^5.0.4"
+
 "@fleetly/common@^0.4.2":
   version "0.4.2"
   resolved "https://npm.pkg.github.com/download/@fleetly/common/0.4.2/e27a58f44c8de179e5e8b3c6f12dd256d161536e9e9d9652e5cf863fff542ed1#8908caa9dbc939d88b691b61722937b3cde601b8"
@@ -1202,6 +1209,13 @@
   dependencies:
     class-transformer "^0.3.1"
     factory-girl "^5.0.4"
+
+"@fleetly/flow@^0.5.1":
+  version "0.5.1"
+  resolved "https://npm.pkg.github.com/download/@fleetly/flow/0.5.1/85ce5b40fa5c3f28b00e0962542b11956a4b4533e8fc7025eea70f8978641fc1#e79ae98dd74db3bb2111d3f16f10c2e8ae210a9c"
+  integrity sha512-IovWxjCrmra8aY1vn/wGlPUKhxNNwS1iyp4VaD0Kj8Tss3ZUXSGTyf2y8u5Ojp1NNGArYmQ1CA5kWLxKRCMAdA==
+  dependencies:
+    "@fleetly/common" "^0.11.1"
 
 "@fortawesome/fontawesome-pro@^5.13.0":
   version "5.13.0"

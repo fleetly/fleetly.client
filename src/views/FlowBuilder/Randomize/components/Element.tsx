@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Position } from 'react-flow-renderer';
 
 // Components
@@ -10,21 +10,36 @@ import { Button, Handle } from '../../Common';
 import styles from './Element.scss';
 
 interface PropTypes {
-  name: string;
   id: string;
+  name: string;
 }
 
 const FlowBuilderRandomizeElement: React.FC<PropTypes> = ({ name, id }) => {
+  // State
   const [value, setValue] = useState<number>(0);
 
-  const handleChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setValue(parseInt(event.currentTarget.value, 10));
-  };
+  // Handlers
+  const handleMouseDown = useCallback((event: React.SyntheticEvent) => {
+    event.stopPropagation();
+  }, []);
+
+  const handleValueChange = useCallback(
+    (event: React.SyntheticEvent<HTMLInputElement>) => {
+      setValue(parseInt(event.currentTarget.value, 10));
+    },
+    []
+  );
 
   return (
     <div className={styles.Root}>
-      <div className={styles.Range}>
-        <Text className={styles.Name}>{name}</Text>
+      <div className={styles.Control}>
+        <div className={styles.Title}>
+          <Text className={styles.Name} medium>
+            {name}
+          </Text>
+
+          <Text>%</Text>
+        </div>
 
         <div className={styles.RangeProgress}>
           <div className={styles.Progress} style={{ width: `${value}%` }} />
@@ -32,8 +47,9 @@ const FlowBuilderRandomizeElement: React.FC<PropTypes> = ({ name, id }) => {
             className={styles.Input}
             max="100"
             min="0"
-            onChange={handleChange}
-            onMouseDown={(event) => event?.stopPropagation()}
+            name="value"
+            onChange={handleValueChange}
+            onMouseDown={handleMouseDown}
             type="range"
             value={value}
           />

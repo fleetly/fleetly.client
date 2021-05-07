@@ -1,146 +1,99 @@
-import { last } from 'lodash';
-import React, { useCallback, useState } from 'react';
-import ReactFlow, { addEdge, removeElements } from 'react-flow-renderer';
+import React, { useCallback } from 'react';
+import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
+
+// Fleetly
+import { BlockType } from '@fleetly/flow/dist/common/interfaces';
+
+// Components
+import Button from '@components/Button';
+import { useContextMenu } from '@components/ContextMenu';
+import Page, { Wrapper } from '@components/Page';
 
 // Containers
+import BlockMenu from './Common/containers/BlockMenu';
+import Zoom from './Common/containers/Zoom';
+
+// Hooks
+import { useFlowBuilderApi } from './FlowBuilder.hooks';
+
+// Nodes
 import Action from './Action';
 import Condition from './Condition';
 import Content from './Content';
 import Randomize from './Randomize';
 import Start from './Start';
 
-// Store
-import { useNotifications } from '@store';
+// Routes
+import ROUTES from '@routes';
 
-const nodeTypes = {
-  action: Action,
-  condition: Condition,
-  content: Content,
-  randomize: Randomize,
-  start: Start
-};
+// Styles
+import styles from './FlowBuilder.scss';
 
-const Flow = () => {
+// Utils
+import { fillUrl } from '@utils/url';
+import { useParams } from 'react-router-dom';
+
+const Flow: React.FC<{}> = () => {
   // Setup
-  const { createNotification } = useNotifications();
+  const { companyId } = useParams<{ companyId: string }>();
+  const [blockMenuProps, { handleMenuOpen }] = useContextMenu();
 
-  // State
-  const [elements, setElements] = useState([
-    {
-      id: '1',
-      type: 'start',
-      position: { x: 100, y: 400 }
-    },
-    {
-      id: '2',
-      position: { x: 550, y: 250 },
-      type: 'randomize'
-    },
-    {
-      id: 'e1-2',
-      source: '1',
-      sourceHandle: null,
-      target: '2',
-      style: {
-        strokeWidth: 2
-      }
-    },
-    {
-      id: '3',
-      position: { x: 550, y: 600 },
-      type: 'condition'
-    },
-    {
-      id: '4',
-      position: { x: 1000, y: 350 },
-      type: 'content'
-    },
-    {
-      id: '5',
-      position: { x: 1000, y: 550 },
-      type: 'action'
-    }
-  ]);
-
-  // @todo - for tests
-  // Handlers
-  const onConnect = useCallback(
-    (params) => {
-      if (params.source === params.target) {
-        createNotification({
-          description: 'Block cannot reference itself.',
-          timeout: 5000,
-          title: 'Link creation error!',
-          variant: 'danger'
-        });
-
-        return;
-      }
-
-      const oldLinks = elements.filter(
-        ({ source, sourceHandle }: any) =>
-          source === params.source && sourceHandle === params.sourceHandle
-      );
-      const filteredElements = removeElements(oldLinks, elements);
-
-      let hasCycling = false;
-
-      if (params.source) {
-        const graphs: string[][] = [];
-        const edges = elements.filter(({ source }) => !!source);
-
-        edges.forEach(({ source, target }) => {
-          let hasGraph = false;
-
-          graphs.forEach((graph) => {
-            if (last(graph) === source) {
-              hasGraph = true;
-              graph.push(target as string);
-            }
-          });
-
-          if (!hasGraph) {
-            graphs.push([source as string, target as string]);
-          }
-        });
-
-        graphs.forEach((graph) => {
-          if (!hasCycling) {
-            hasCycling =
-              graph.indexOf(params.target as string) > -1 &&
-              graph.indexOf(params.source as string) > -1;
-          }
-        });
-      }
-
-      if (hasCycling) {
-        createNotification({
-          description: 'Chain of links creates looping.',
-          timeout: 5000,
-          title: 'Link creation error!',
-          variant: 'danger'
-        });
-
-        return;
-      }
-
-      return setElements(
-        addEdge(
-          { ...params, style: { strokeWidth: 2 } },
-          filteredElements
-        ) as any
-      );
-    },
-    [createNotification, elements]
-  );
+  const {
+    elements,
+    flowId,
+    handleBlockDrag,
+    handleEdgeConnect,
+    title = 'Untitled flow'
+  } = useFlowBuilderApi();
 
   return (
-    <ReactFlow
-      elements={elements}
-      nodeTypes={nodeTypes}
-      onConnect={onConnect}
-      snapToGrid
-    />
+    <Page title={title}>
+      <Wrapper
+        breadcrumbs={[
+          {
+            title: 'Flows',
+            to: fillUrl(ROUTES.COMPANY.FLOWS.ROOT, { companyId })
+          },
+          {
+            title,
+            to: fillUrl(ROUTES.COMPANY.FLOWS.FLOW, { flowId, companyId })
+          }
+        ]}
+        classes={{ container: styles.Container }}
+      >
+        <ReactFlowProvider>
+          <div className={styles.Builder}>
+            <ReactFlow
+              elements={elements}
+              onConnect={handleEdgeConnect}
+              onNodeDragStop={handleBlockDrag}
+              nodeTypes={{
+                [BlockType.ACTION]: Action,
+                [BlockType.CONDITION]: Condition,
+                [BlockType.CONTENT]: Content,
+                [BlockType.RANDOMIZE]: Randomize,
+                [BlockType.START]: Start
+              }}
+              snapToGrid
+            />
+
+            <div className={styles.Actions}>
+              <Button
+                classes={{ root: styles.Add, icon: styles.AddIcon }}
+                color="primary"
+                icon="fas fa-layer-plus"
+                key="123"
+                onClick={handleMenuOpen}
+              />
+
+              <Zoom />
+            </div>
+          </div>
+        </ReactFlowProvider>
+      </Wrapper>
+
+      <BlockMenu {...blockMenuProps} />
+    </Page>
   );
 };
 

@@ -25,9 +25,7 @@ const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
 
     <div className={styles.List}>
       <Element name="A" id="1" />
-
       <Element name="B" id="2" />
-
       <Element name="C" id="3" />
     </div>
 

@@ -296,6 +296,7 @@ module.exports = function (webpackEnv) {
         '@containers': path.resolve(__dirname, '../src/containers'),
         '@entities': path.resolve(__dirname, '../src/entities'),
         '@graphql': path.resolve(__dirname, '../src/graphql'),
+        '@hooks': path.resolve(__dirname, '../src/hooks'),
         '@routes': path.resolve(__dirname, '../src/routes'),
         '@services': path.resolve(__dirname, '../src/services'),
         '@store': path.resolve(__dirname, '../src/store'),

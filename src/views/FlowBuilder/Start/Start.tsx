@@ -1,15 +1,34 @@
 import React from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
+// Fleetly
+import { ElementType } from '@fleetly/flow/dist/common/interfaces';
+
 // Components
-import Trigger from './components/Trigger';
 import { Text } from '@components/Typography';
-import { Block, Button } from '@views/FlowBuilder/Common';
+import {
+  Block,
+  BlockActions,
+  BlockContent,
+  Button
+} from '@views/FlowBuilder/Common';
+
+import StartKeyword from './components/Keyword';
+
+// Interfaces
+import { IElement } from '@interfaces/flow.interface';
 
 // Styles
 import styles from './Start.scss';
 
-const FlowBuilderStart: React.FC<NodeProps> = ({ id, selected }) => (
+const ELEMENT: any = {
+  [ElementType.START_KEYWORD]: StartKeyword
+};
+
+const FlowBuilderStart: React.FC<NodeProps<{
+  elements: IElement[];
+  title: string;
+}>> = ({ id, data: { elements, title = 'Starting step' }, selected }) => (
   <Block
     color="green"
     icon="fas fa-play"
@@ -18,7 +37,7 @@ const FlowBuilderStart: React.FC<NodeProps> = ({ id, selected }) => (
     hasSource={false}
     selected={selected}
     subTitle="Start"
-    title="Starting step"
+    title={title}
   >
     <Text className={styles.Description} component="div">
       Flow starts from this block
@@ -26,15 +45,24 @@ const FlowBuilderStart: React.FC<NodeProps> = ({ id, selected }) => (
       Add triggers to listen
     </Text>
 
-    <div className={styles.Triggers}>
-      <Trigger id={id} />
-      <Trigger id={id} />
-      <Trigger id={id} />
-    </div>
+    <BlockContent>
+      {elements.map((element) => {
+        const Component = ELEMENT[element.type];
 
-    <div className={styles.Actions}>
+        return (
+          <Component
+            key={element.id}
+            {...element.payload}
+            id={element.id}
+            blockId={id}
+          />
+        );
+      })}
+    </BlockContent>
+
+    <BlockActions>
       <Button>Add Trigger</Button>
-    </div>
+    </BlockActions>
   </Block>
 );
 

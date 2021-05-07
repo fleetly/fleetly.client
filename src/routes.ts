@@ -11,7 +11,10 @@ export default {
     COLLABORATORS: '/:companyId/collaborators',
     DASHBOARD: '/:companyId/dashboard',
     FIELDS: '/:companyId/fields',
-    FLOW: '/:companyId/flow',
+    FLOWS: {
+      ROOT: '/:companyId/flows',
+      FLOW: '/:companyId/flows/:flowId'
+    },
     GENERAL: '/:companyId/general',
     STATS: '/:companyId/channels/stats',
     NOTIFICATIONS: '/:companyId/notifications',

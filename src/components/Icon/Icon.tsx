@@ -7,14 +7,14 @@ import styles from './Icon.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-interface PropTypes {
+export interface IconProps {
   className?: string;
   color?: Color;
   icon: string;
   variant?: 'filled' | 'outlined';
 }
 
-const Icon: React.FC<PropTypes> = ({
+const Icon: React.FC<IconProps> = ({
   className,
   color = 'blue',
   icon,

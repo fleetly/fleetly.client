@@ -1,4 +1,12 @@
 .Root {
+  &Mode {
+    &NoWrap {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
   &Variant {
     &Caption {
       font-size: 12px;
@@ -47,9 +55,44 @@
     }
 
     &Text {
-      font-size: 14px;
       letter-spacing: -.2px;
-      line-height: 24px;
+
+      &.RootSize {
+        &ExtraLarge {
+          font-size: 18px;
+          line-height: 32px;
+        }
+
+        &Large {
+          font-size: 16px;
+          line-height: 28px;
+        }
+
+        &Medium {
+          font-size: 14px;
+          line-height: 24px;
+        }
+
+        &Small {
+          font-size: 12px;
+          line-height: 20px;
+        }
+
+        &ExtraSmall {
+          font-size: 10px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+
+  &Weight {
+    &Bold {
+      font-weight: 700;
+    }
+
+    &Medium {
+      font-weight: 600;
     }
   }
 }
