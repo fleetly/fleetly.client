@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
 
 // Fleetly

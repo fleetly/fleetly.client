@@ -1,9 +1,11 @@
 import React from 'react';
-import { NodeProps, Position } from 'react-flow-renderer';
+import { NodeProps } from 'react-flow-renderer';
 
 // Components
 import { Text } from '@components/Typography';
-import { Block, Button, Handle } from '../Common';
+import { Block, BlockActions, Button } from '../Common';
+
+import Variant from './components/Variant';
 
 // Styles
 import styles from './Randomize.scss';
@@ -22,33 +24,15 @@ const FlowBuilderRandomize: React.FC<NodeProps> = ({ id, selected }) => (
       The block will split flow
     </Text>
 
-    <div className={styles.Actions}>
-      <Button color="purple">
-        A - 75%
-        <Handle
-          id="1"
-          blockId={id}
-          className={styles.Handle}
-          color="purple"
-          position={Position.Right}
-          type="source"
-        />
-      </Button>
-
-      <Button color="purple">
-        B - 25%
-        <Handle
-          id="2"
-          blockId={id}
-          className={styles.Handle}
-          color="purple"
-          position={Position.Right}
-          type="source"
-        />
-      </Button>
-
-      <Button>Add Variant</Button>
+    <div className={styles.List}>
+      <Variant name="A" id="1" />
+      <Variant name="B" id="2" />
+      <Variant name="C" id="3" />
     </div>
+
+    <BlockActions>
+      <Button>Add Variant</Button>
+    </BlockActions>
   </Block>
 );
 
