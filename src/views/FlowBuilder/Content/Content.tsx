@@ -3,6 +3,7 @@ import { NodeProps } from 'react-flow-renderer';
 
 // Components
 import { Block, Button } from '../Common';
+import Description from './components/Description';
 
 // Interfaces
 import { IElement } from '@interfaces/flow.interface';
@@ -21,6 +22,7 @@ const FlowBuilderContent: React.FC<NodeProps<{
     subTitle="Content"
     title={title}
   >
+    <Description />
     <div className={styles.Actions}>
       <Button>Add Content</Button>
     </div>
