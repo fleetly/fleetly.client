@@ -2,14 +2,11 @@ import React from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
 // Components
-import { Block, Button } from '../Common';
-import Description from './components/Description';
+import { Block, BlockActions, BlockContent, Button } from '../Common';
+import Text from './components/Text';
 
 // Interfaces
 import { IElement } from '@interfaces/flow.interface';
-
-// Styles
-import styles from './Content.scss';
 
 const FlowBuilderContent: React.FC<NodeProps<{
   elements: IElement[];
@@ -22,10 +19,13 @@ const FlowBuilderContent: React.FC<NodeProps<{
     subTitle="Content"
     title={title}
   >
-    <Description />
-    <div className={styles.Actions}>
+    <BlockContent>
+      <Text />
+    </BlockContent>
+
+    <BlockActions>
       <Button>Add Content</Button>
-    </div>
+    </BlockActions>
   </Block>
 );
 
