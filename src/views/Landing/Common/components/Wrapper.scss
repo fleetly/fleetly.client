@@ -1,0 +1,12 @@
+.Root {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.Container {
+  max-width: 1200px;
+  width: 100%;
+}

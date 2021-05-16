@@ -64,6 +64,7 @@ const Sign = ({ match }: Sign.Props) => {
               <Switch>
                 <Route component={In} path={resolve([match.url, 'in'])} />
                 <Route component={Up} path={resolve([match.url, 'up'])} />
+
                 <Redirect from="/sign" to="/sign/in" />
               </Switch>
             </div>

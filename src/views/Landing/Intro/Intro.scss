@@ -1,0 +1,53 @@
+@import '~@styles/colors';
+
+.Root {
+  height: 1000px;
+}
+
+.Actions {
+  margin: 64px 0 0;
+}
+
+.Background {
+  background: url('./assets/background.png') no-repeat;
+  background-size: contain;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.Blue {
+  background: url('./assets/background-blue.svg') no-repeat;
+  background-size: contain;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.Container {
+  align-items: center;
+  display: flex;
+}
+
+.Content {
+  color: $color-gray-0;
+  max-width: 420px;
+  position: relative;
+  z-index: 2;
+}
+
+.Cover {
+  height: 1400px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.Description {
+  color: rgba($color-gray-0, .8);
+  margin: 12px 0 0;
+}

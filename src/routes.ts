@@ -1,4 +1,5 @@
 export default {
+  ROOT: '/',
   COMPANY: {
     ROOT: '/:companyId',
     BILLING: '/:companyId/billing',

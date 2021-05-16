@@ -1,0 +1,19 @@
+@import '~@styles/colors';
+
+.Root {
+  background-clip: content-box, border-box;
+  background-image: linear-gradient(to bottom, #fea250, #eb3d3b);
+  background-image: linear-gradient(to bottom, #fea250, #eb3d3b), linear-gradient(to bottom, #feb373, #ef6463);
+  background-origin: border-box;
+  border: 2px solid rgba($color-gray-0, .2);
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to bottom, #feb373, #ef6463);
+  border-radius: 30px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 6px 6px 0 rgba(255, 155, 104, .6), 0 -6px 6px 0 rgba(255, 255, 255, .3);
+  box-shadow: 0 16px 16px 0 rgba(255, 155, 104, .8);
+  color: $color-gray-0;
+  height: 54px;
+  width: 144px;
+}

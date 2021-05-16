@@ -1,9 +1,17 @@
 import { LOGIN, LOGOUT } from './types';
 
-export const login = () => ({
-  type: LOGIN
-});
+export const login = () => {
+  window.localStorage.setItem('isAuthorized', 'true');
 
-export const logout = () => ({
-  type: LOGOUT
-});
+  return {
+    type: LOGIN
+  };
+};
+
+export const logout = () => {
+  window.localStorage.removeItem('isAuthorized');
+
+  return {
+    type: LOGOUT
+  };
+};

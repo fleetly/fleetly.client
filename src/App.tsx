@@ -16,10 +16,11 @@ import { isAuthorized as getAuthState } from '@store';
 import styles from './App.scss';
 
 // Views
+import Landing from '@views/Landing';
 import Main from '@views/Main';
 import Sign from '@views/Sign';
 
-const App = () => {
+const App: React.FC<{}> = () => {
   const isAuthorized = useSelector(getAuthState);
 
   return (
@@ -31,8 +32,10 @@ const App = () => {
         </Switch>
       ) : (
         <Switch>
+          <Route component={Landing} exact path={ROUTES.ROOT} />
           <Route component={Sign} path={ROUTES.SIGN.ROOT} />
-          <Redirect to={ROUTES.SIGN.IN} />
+
+          <Redirect to={ROUTES.ROOT} />
         </Switch>
       )}
 

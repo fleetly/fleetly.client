@@ -5,7 +5,7 @@ interface Action {
 }
 
 const initialState: Store.SessionState = {
-  isAuthorized: true
+  isAuthorized: !!window.localStorage.getItem('isAuthorized') || false
 };
 
 export default (state = initialState, action: Action): Store.SessionState => {

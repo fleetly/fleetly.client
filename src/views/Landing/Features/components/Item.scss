@@ -1,0 +1,51 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  height: 540px;
+  width: 100%;
+
+  &Color {
+    &Default {
+      .Title {
+        color: $color-blue-300;
+      }
+    }
+  }
+
+  &Mode {
+    &Reverse {
+      flex-direction: row-reverse;
+
+      .Cover {
+        margin: 0 0 0 80px;
+      }
+    }
+  }
+}
+
+.Cover {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  margin: 0 80px 0 0;
+  position: relative;
+}
+
+.Content {
+  flex: 0 0 440px;
+  white-space: pre-wrap;
+  width: 440px;
+}
+
+.Description {
+  color: $color-brown;
+  margin: 20px 0 0;
+}
+
+.Image {
+  max-width: 100%;
+  object-fit: contain;
+}
