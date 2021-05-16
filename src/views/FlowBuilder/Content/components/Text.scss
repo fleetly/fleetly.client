@@ -10,6 +10,12 @@
   margin: 20px 0 0;
   padding: 10px;
   width: 100%;
+
+  &Is {
+    &Action {
+      border-color: $color-blue-300;
+    }
+  }
 }
 
 .Actions {
@@ -30,7 +36,7 @@
   padding: 0 10px;
 
   &Editor {
-    border: 2px solid $color-blue-500;
+    border: 2px solid $color-blue-300;
     border-radius: 12px;
     color: $color-gray-900;
     font-size: 12px;

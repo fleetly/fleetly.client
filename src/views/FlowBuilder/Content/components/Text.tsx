@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import { Position } from 'react-flow-renderer';
 
@@ -22,7 +23,7 @@ interface PropTypes {
 
 const FlowBuilderContentText = () => {
   // State
-  const [value] = useState<string>('1234');
+  const [value] = useState<string>('This test text');
 
   const [state, setState] = useState(false);
 
@@ -32,14 +33,17 @@ const FlowBuilderContentText = () => {
   const ref = useOutsideClick(state ? handleClickClosed : undefined);
 
   return (
-    <div className={styles.Root} onClick={handleClickOpened} ref={ref}>
+    <div
+      className={classNames(styles.Root, { [styles.RootIsAction]: state })}
+      onClick={handleClickOpened}
+      ref={ref}
+    >
       {state ? (
         <textarea
           autoFocus
           className={styles.DescriptionEditor}
           name="value"
           value={value}
-          placeholder="1234"
         />
       ) : (
         <Text className={styles.Description} size="small">
