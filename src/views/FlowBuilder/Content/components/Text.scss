@@ -28,6 +28,19 @@
 
 .Description {
   padding: 0 10px;
+
+  &Editor {
+    border: 2px solid $color-blue-500;
+    border-radius: 12px;
+    color: $color-gray-900;
+    font-size: 12px;
+    font-weight: 500;
+    height: 20px;
+    letter-spacing: -.2px;
+    line-height: 20px;
+    padding: 0 10px;
+    width: 100%;
+  }
 }
 
 .Handle {

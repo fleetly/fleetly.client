@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Position } from 'react-flow-renderer';
 
 // Components
 import { Button, Handle } from '../../Common';
 import { Text } from '@components/Typography';
+
+// Hooks
+import { useOutsideClick } from '@hooks/events';
 
 // Styles
 import styles from './Text.scss';
@@ -17,55 +20,76 @@ interface PropTypes {
   }[];
 }
 
-const FlowBuilderContentText = () => (
-  <div className={styles.Root}>
-    <Text className={styles.Description} size="small">
-      You have successfully subscribed to Page Name ! The next post is coming
-      soon, stay tuned!
-    </Text>
+const FlowBuilderContentText = () => {
+  // State
+  const [value] = useState<string>('1234');
 
-    <div className={styles.Actions}>
-      <Button color="blue">
-        Button 1
-        <Handle
-          blockId="1"
-          className={styles.Handle}
-          color="blue"
-          id="1"
-          position={Position.Right}
-          type="source"
+  const [state, setState] = useState(false);
+
+  const handleClickOpened = () => setState(true);
+  const handleClickClosed = () => setState(false);
+
+  const ref = useOutsideClick(state ? handleClickClosed : undefined);
+
+  return (
+    <div className={styles.Root} onClick={handleClickOpened} ref={ref}>
+      {state ? (
+        <textarea
+          autoFocus
+          className={styles.DescriptionEditor}
+          name="value"
+          value={value}
+          placeholder="1234"
         />
-      </Button>
+      ) : (
+        <Text className={styles.Description} size="small">
+          {value}
+        </Text>
+      )}
 
-      <Button color="blue">
-        Button 1
-        <Handle
-          blockId="1"
-          className={styles.Handle}
-          color="blue"
-          id="1"
-          position={Position.Right}
-          type="source"
-        />
-      </Button>
+      <div className={styles.Actions}>
+        <Button color="blue">
+          Button 1
+          <Handle
+            blockId="1"
+            className={styles.Handle}
+            color="blue"
+            id="1"
+            position={Position.Right}
+            type="source"
+          />
+        </Button>
 
-      <Button color="blue">
-        Button 1
-        <Handle
-          blockId="1"
-          className={styles.Handle}
-          color="blue"
-          id="1"
-          position={Position.Right}
-          type="source"
-        />
-      </Button>
+        <Button color="blue">
+          Button 1
+          <Handle
+            blockId="1"
+            className={styles.Handle}
+            color="blue"
+            id="1"
+            position={Position.Right}
+            type="source"
+          />
+        </Button>
 
-      <div className={styles.Add}>
-        <Button color="blue">Add Button</Button>
+        <Button color="blue">
+          Button 1
+          <Handle
+            blockId="1"
+            className={styles.Handle}
+            color="blue"
+            id="1"
+            position={Position.Right}
+            type="source"
+          />
+        </Button>
+
+        <div className={styles.Add}>
+          <Button color="blue">Add Button</Button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default FlowBuilderContentText;
