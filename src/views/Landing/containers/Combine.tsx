@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Wrapper } from '../Common';
+import Wrapper from '../components/Wrapper';
 
 // Styles
 import styles from './Combine.scss';

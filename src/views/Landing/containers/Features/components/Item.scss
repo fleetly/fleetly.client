@@ -12,6 +12,16 @@
         color: $color-blue-300;
       }
     }
+
+    &White {
+      .Description {
+        color: rgba($color-gray-0, .8);
+      }
+
+      .Title {
+        color: $color-gray-0;
+      }
+    }
   }
 
   &Mode {

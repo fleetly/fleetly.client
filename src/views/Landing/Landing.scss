@@ -5,22 +5,37 @@
   width: 100%;
 }
 
-.Footer {
+.Half {
   background-image: linear-gradient(to bottom, #5461ea, #76adff);
-  display: flex;
-  flex-direction: column-reverse;
-  height: 1780px;
+  margin: 300px 0 0;
+  padding: 380px 0 0;
   position: relative;
   width: 100%;
 
   &Cover {
-    background: url('./Common/assets/footer-background.png') no-repeat;
-    background-size: contain;
-    bottom: 0;
-    height: 1007px;
-    position: absolute;
-    right: 0;
-    width: 1920px;
+    &::after {
+      background: url('./assets/half-bg-2.png') no-repeat;
+      background-size: contain;
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 1007px;
+      position: absolute;
+      right: 0;
+      width: 1920px;
+    }
+
+    &::before {
+      background: url('./assets/half-bg-1.png') no-repeat;
+      background-size: contain;
+      content: '';
+      display: block;
+      height: 728px;
+      left: 0;
+      position: absolute;
+      top: -528px;
+      width: 1920px;
+    }
   }
 }
 

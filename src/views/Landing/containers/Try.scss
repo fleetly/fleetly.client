@@ -1,0 +1,36 @@
+@import '~@styles/colors';
+
+.Root {
+  margin: 200px 0 0;
+}
+
+.Actions {
+  margin: 40px 0 0;
+}
+
+.Container {
+  background: url('../assets/try-bg.png') no-repeat;
+  background-size: contain;
+  height: 632px;
+  width: 1200px;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: 0 0 0 140px;
+  max-width: 420px;
+}
+
+.Description {
+  color: rgba($color-gray-0, .8);
+}
+
+.Title {
+  color: $color-gray-0;
+  font-size: 26px;
+  line-height: 32px;
+  margin: 8px 0 0;
+}

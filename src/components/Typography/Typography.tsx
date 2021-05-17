@@ -15,6 +15,7 @@ interface TypeProps {
   className?: string;
   component?: any;
   bold?: boolean;
+  extraBold?: boolean;
   htmlFor?: string;
   medium?: boolean;
   noWrap?: boolean;
@@ -27,6 +28,7 @@ const Typography: React.FC<TypeProps> = ({
   className,
   component: Component = 'div',
   bold,
+  extraBold,
   medium,
   noWrap,
   size = 'medium',
@@ -42,6 +44,7 @@ const Typography: React.FC<TypeProps> = ({
       getClassName('variant', { collection: styles, value: variant }),
       {
         [styles.RootWeightBold]: bold,
+        [styles.RootWeightExtraBold]: extraBold,
         [styles.RootWeightMedium]: medium
       },
       {

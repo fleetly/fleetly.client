@@ -2,7 +2,9 @@ import React from 'react';
 
 // Components
 import { H1, H2, Text } from '@components/Typography';
-import { Button, Wrapper } from '../Common';
+
+import Button from '../components/Button';
+import Wrapper from '../components/Wrapper';
 
 // Styles
 import styles from './Intro.scss';

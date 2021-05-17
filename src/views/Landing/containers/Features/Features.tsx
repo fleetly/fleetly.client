@@ -1,11 +1,11 @@
 import React from 'react';
 
 // Assets
-import feature1Img from './assets/feature-1.png';
-import feature2Img from './assets/feature-2.png';
+import feature1Img from '../../assets/features/feature-1.png';
+import feature2Img from '../../assets/features/feature-2.png';
 
 // Components
-import { Wrapper } from '../Common';
+import Wrapper from '@views/Landing/components/Wrapper';
 import Feature from './components/Item';
 
 // Styles
@@ -24,7 +24,7 @@ const LandingFeatures: React.FC<{}> = () => (
       basic questions saving time and money."
       image={feature2Img}
       reverse
-      title={'Automate\ncommunication flow'}
+      title={'Automate customer\ncommunication flow'}
     />
   </Wrapper>
 );

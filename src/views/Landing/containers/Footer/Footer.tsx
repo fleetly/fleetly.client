@@ -4,7 +4,7 @@ import React from 'react';
 import Link from '@components/Link';
 import { Text } from '@components/Typography';
 
-import { Wrapper } from '../Common';
+import Wrapper from '@views/Landing/components/Wrapper';
 import Social from './components/Social';
 
 // Data
