@@ -11,18 +11,20 @@ interface Classes extends ExtendedClasses {
 interface PropTypes {
   classes?: Classes;
   className?: string;
+  component?: any;
 }
 
 const LandingWrapper: React.FC<PropTypes> = ({
   children,
   classes = {},
-  className
+  className,
+  component: Component = 'section'
 }) => (
-  <section className={classNames(className, classes.root, styles.Root)}>
+  <Component className={classNames(className, classes.root, styles.Root)}>
     <div className={classNames(classes.container, styles.Container)}>
       {children}
     </div>
-  </section>
+  </Component>
 );
 
 export default LandingWrapper;

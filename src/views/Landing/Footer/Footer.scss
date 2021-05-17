@@ -1,0 +1,37 @@
+@import '~@styles/colors';
+
+.Root {
+  padding: 0 0 60px;
+}
+
+.Container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Copyright {
+  color: rgba($color-gray-0, .6);
+}
+
+.Link {
+  color: rgba($color-gray-0, .8);
+
+  &:hover {
+    color: $color-gray-0;
+  }
+}
+
+.Links {
+  & > *:not(:first-child) {
+    margin: 0 0 0 40px;
+  }
+}
+
+.Social {
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 20px;
+  }
+}

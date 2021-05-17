@@ -7,7 +7,10 @@ import { Wrapper } from '../Common';
 import styles from './Header.scss';
 
 const LandingHeader = () => (
-  <Wrapper classes={{ root: styles.Root, container: styles.Container }}>
+  <Wrapper
+    classes={{ root: styles.Root, container: styles.Container }}
+    component="header"
+  >
     123
   </Wrapper>
 );

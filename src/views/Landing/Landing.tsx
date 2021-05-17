@@ -3,6 +3,7 @@ import React from 'react';
 // Domains
 import Combine from './Combine';
 import Features from './Features';
+import Footer from './Footer';
 import Header from './Header';
 import Intro from './Intro';
 
@@ -15,6 +16,11 @@ const Landing = () => (
     <Intro />
     <Combine />
     <Features />
+
+    <div className={styles.Footer}>
+      <div className={styles.FooterCover} />
+      <Footer />
+    </div>
   </div>
 );
 
