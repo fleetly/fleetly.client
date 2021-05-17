@@ -20,7 +20,7 @@ const Landing = () => (
     <Features />
 
     <div className={styles.Half}>
-      <div className={styles.Half} />
+      <div className={styles.HalfCover} />
 
       <Analyze />
       <Try />
