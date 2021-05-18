@@ -23,6 +23,7 @@ const LandingFeatures: React.FC<{}> = () => (
       description="Optimize communication with the client on
       basic questions saving time and money."
       image={feature2Img}
+      link
       reverse
       title={'Automate customer\ncommunication flow'}
     />

@@ -6,6 +6,9 @@ import { H3, Text } from '@components/Typography';
 import Button from '../components/Button';
 import Wrapper from '../components/Wrapper';
 
+// Routes
+import ROUTES from '@routes';
+
 // Styles
 import styles from './Try.scss';
 
@@ -23,7 +26,7 @@ const LandingTry: React.FC<{}> = () => (
       </H3>
 
       <div className={styles.Actions}>
-        <Button>Try for Free</Button>
+        <Button to={ROUTES.SIGN.UP}>Try for Free</Button>
       </div>
     </div>
   </Wrapper>

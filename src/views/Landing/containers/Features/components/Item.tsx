@@ -3,9 +3,15 @@ import React from 'react';
 
 // Components
 import { H2, Text } from '@components/Typography';
+import Button from '../../../components/Button';
+
+// Routes
+import ROUTES from '@routes';
 
 // Styles
 import styles from './Item.scss';
+
+// Utils
 import { getClassName } from '@utils/styles';
 
 type Color = 'default' | 'white';
@@ -24,6 +30,7 @@ interface PropTypes {
   color?: Color;
   description: string;
   image: string;
+  link?: boolean;
   reverse?: boolean;
   title: string;
 }
@@ -34,6 +41,7 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
   color = 'default',
   description,
   image,
+  link,
   reverse = false,
   title
 }) => (
@@ -57,7 +65,9 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
     </div>
 
     <div className={classNames(classes.content, styles.Content)}>
-      <H2 className={classNames(classes.title, styles.Title)}>{title}</H2>
+      <H2 className={classNames(classes.title, styles.Title)} extraBold>
+        {title}
+      </H2>
 
       <Text
         className={classNames(classes.description, styles.Description)}
@@ -67,6 +77,12 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
       >
         {description}
       </Text>
+
+      {link && (
+        <div className={styles.Actions}>
+          <Button to={ROUTES.SIGN.UP}>Try for Free</Button>
+        </div>
+      )}
     </div>
   </div>
 );

@@ -6,6 +6,9 @@ import { H1, H2, Text } from '@components/Typography';
 import Button from '../components/Button';
 import Wrapper from '../components/Wrapper';
 
+// Routes
+import ROUTES from '@routes';
+
 // Styles
 import styles from './Intro.scss';
 
@@ -17,8 +20,8 @@ const LandingIntro = () => (
     </div>
 
     <div className={styles.Content}>
-      <H2>Increase Your Busines</H2>
-      <H1>With Fleetly</H1>
+      <H2 extraBold>Increase Your Business</H2>
+      <H1 extraBold>With Fleetly</H1>
 
       <Text className={styles.Description} component="div">
         Combine channels and&nbsp;automate communication with&nbsp;subscribers
@@ -26,7 +29,7 @@ const LandingIntro = () => (
       </Text>
 
       <div className={styles.Actions}>
-        <Button>Try for Free</Button>
+        <Button to={ROUTES.SIGN.UP}>Try for Free</Button>
       </div>
     </div>
   </Wrapper>
