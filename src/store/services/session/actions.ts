@@ -2,6 +2,7 @@ import { LOGIN, LOGOUT } from './types';
 
 export const login = () => {
   window.localStorage.setItem('isAuthorized', 'true');
+  window.location.reload();
 
   return {
     type: LOGIN
