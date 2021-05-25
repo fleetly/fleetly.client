@@ -5,6 +5,8 @@ import { NodeProps } from 'react-flow-renderer';
 import { Block, BlockActions, BlockContent, Button } from '../Common';
 import Text from './components/Text';
 
+import List from '../Condition/components/List';
+
 // Interfaces
 import { IElement } from '@interfaces/flow.interface';
 
@@ -20,6 +22,7 @@ const FlowBuilderContent: React.FC<NodeProps<{
     title={title}
   >
     <BlockContent>
+      <List />
       <Text />
     </BlockContent>
 
