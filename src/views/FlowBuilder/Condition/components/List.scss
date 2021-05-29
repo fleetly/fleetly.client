@@ -1,0 +1,34 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.List {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & > *:not(:first-child) {
+    border-top: 2px solid $color-gray-300;
+    margin: 12px 0 0;
+    padding: 12px 0 0;
+  }
+}
+
+.Item {
+  width: 100%;
+}
+
+.Action {
+  align-items: center;
+  border-top: 2px solid $color-gray-300;
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+  width: 100%;
+}

@@ -2,13 +2,11 @@ import React from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
 // Components
-import { Block, Button } from '../Common';
+import { Block, BlockActions, BlockContent, Button } from '../Common';
+import Text from './components/Text';
 
 // Interfaces
 import { IElement } from '@interfaces/flow.interface';
-
-// Styles
-import styles from './Content.scss';
 
 const FlowBuilderContent: React.FC<NodeProps<{
   elements: IElement[];
@@ -21,9 +19,16 @@ const FlowBuilderContent: React.FC<NodeProps<{
     subTitle="Content"
     title={title}
   >
-    <div className={styles.Actions}>
+    <BlockContent>
+      <Text
+        id="test"
+        text="You have successfully subscribed to Page Name! The next post is coming soon, stay tuned!"
+      />
+    </BlockContent>
+
+    <BlockActions>
       <Button>Add Content</Button>
-    </div>
+    </BlockActions>
   </Block>
 );
 
