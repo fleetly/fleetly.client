@@ -11,12 +11,14 @@ interface PropTypes {
   children?: React.ReactNode;
   className?: string;
   color?: Color;
+  onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
 }
 
 const FlowBuilderButton: React.FC<PropTypes> = ({
   children,
   className,
-  color = 'default'
+  color = 'default',
+  onClick
 }) => (
   <button
     className={classNames(
@@ -24,6 +26,7 @@ const FlowBuilderButton: React.FC<PropTypes> = ({
       styles.Root,
       getClassName('color', { collection: styles, value: color })
     )}
+    onClick={onClick}
     type="button"
   >
     {children}
