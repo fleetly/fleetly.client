@@ -12,8 +12,10 @@ const TEST = [<ItemsList />, <ItemsList />, <ItemsList />];
 const List = () => (
   <div className={styles.Root}>
     <div className={styles.List}>
-      {TEST.map((item) => (
-        <div className={styles.Item}>{item}</div>
+      {TEST.map((item, index) => (
+        <div key={index} className={styles.Item}>
+          {item}
+        </div>
       ))}
     </div>
 

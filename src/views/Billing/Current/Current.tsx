@@ -13,8 +13,13 @@ import Limit from './components/Limit';
 // Styles
 import styles from './Current.scss';
 
+// TEST data
+import TEST from '../data';
+
 const BillingCurrent = ({ data }: any) => {
-  const features = data?.plan?.features;
+  const features = TEST?.CURRENT_PLAN?.plan?.features; // TEST
+  const traffics = data?.traffics;
+  const check = Array.isArray(traffics);
 
   return (
     <Wrapper classes={{ root: styles.Root }} title="Current Plan">
@@ -27,8 +32,8 @@ const BillingCurrent = ({ data }: any) => {
           }
           avatar={<Icon icon="fab fa-vk" />}
           classes={{ content: styles.Content }}
-          subTitle={data?.plan?.description}
-          title={data?.plan?.title}
+          subTitle={data?.description}
+          title={data?.title}
         />
 
         <CardHr />
@@ -44,7 +49,10 @@ const BillingCurrent = ({ data }: any) => {
         <CardHr />
 
         <div className={styles.Limits}>
-          <Limit {...data?.limits} />
+          {check &&
+            traffics.map(({ id, ...props }: any) => (
+              <Limit key={id} {...props} />
+            ))}
         </div>
       </Card>
     </Wrapper>

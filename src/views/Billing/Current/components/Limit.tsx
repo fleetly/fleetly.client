@@ -10,34 +10,35 @@ import styles from './Limit.scss';
 import { formatCurrency } from '@utils/string';
 
 interface PropTypes {
-  limit: number;
-  title: string;
-  unit: number;
-  unitPrice: number;
-  value: number;
+  limit?: number;
+  origin?: {
+    title?: string;
+    unit?: string;
+  };
+  chunkPrice?: number;
+  chunkSize?: number;
 }
 
 const BillingCurrentLimit: React.FC<PropTypes> = ({
   limit,
-  title,
-  unit,
-  unitPrice,
-  value
+  origin,
+  chunkPrice,
+  chunkSize
 }: any) => {
-  const progress = (value / limit) * 100;
+  const progress = (chunkSize / limit) * 100;
 
   return (
     <div className={styles.Root}>
       <div className={styles.Content}>
         <div className={styles.Info}>
-          <H4>{title}</H4>
+          <H4>{origin?.title}</H4>
 
           <Text className={styles.Counter}>
-            {value} of {limit}
+            {chunkSize} of {limit}
           </Text>
 
           <Text>
-            {formatCurrency(unitPrice)} per {unit}
+            {formatCurrency(chunkPrice)} per {origin?.title}
           </Text>
         </div>
 
@@ -50,7 +51,7 @@ const BillingCurrentLimit: React.FC<PropTypes> = ({
         </div>
       </div>
 
-      <H4>{formatCurrency(unitPrice)}</H4>
+      <H4>{formatCurrency(chunkPrice)}</H4>
     </div>
   );
 };

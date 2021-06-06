@@ -1,0 +1,26 @@
+query getCurrentPlan($companyId: String!) {
+  currentPlan(companyId: $companyId) {
+    id
+    expiresAt
+    plan {
+      id
+      price
+      title
+      traffics {
+        id
+        chunkPrice
+        chunkSize
+        limit
+        origin {
+          id
+          title
+          type
+          unit
+        }
+      }
+      type
+    }
+    startsAt
+    status
+  }
+}
