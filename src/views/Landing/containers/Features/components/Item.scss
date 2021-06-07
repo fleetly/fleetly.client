@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -5,6 +6,10 @@
   display: flex;
   height: 540px;
   width: 100%;
+
+  @include breakpoints(mobile) {
+    flex-direction: column;
+  }
 
   &Color {
     &Default {
@@ -24,12 +29,14 @@
     }
   }
 
-  &Mode {
-    &Reverse {
-      flex-direction: row-reverse;
+  @include breakpoints(desktop) {
+    &Mode {
+      &Reverse {
+        flex-direction: row-reverse;
 
-      .Cover {
-        margin: 0 0 0 80px;
+        .Cover {
+          margin: 0 0 0 80px;
+        }
       }
     }
   }
@@ -46,12 +53,21 @@
   justify-content: center;
   margin: 0 80px 0 0;
   position: relative;
+
+  @include breakpoints(mobile) {
+    margin: 0 -32px 60px;
+  }
 }
 
 .Content {
   flex: 0 0 440px;
   white-space: pre-wrap;
   width: 440px;
+
+  @include breakpoints(mobile) {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 }
 
 .Description {

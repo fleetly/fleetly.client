@@ -21,7 +21,9 @@ const LandingIntro = () => (
 
     <div className={styles.Content}>
       <H2 extraBold>Increase Your Business</H2>
-      <H1 extraBold>With Fleetly</H1>
+      <H1 extraBold noWrap>
+        With Fleetly
+      </H1>
 
       <Text className={styles.Description} component="div">
         Combine channels and&nbsp;automate communication with&nbsp;subscribers

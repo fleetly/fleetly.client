@@ -1,17 +1,30 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
   padding: 0 0 60px;
+
+  @include breakpoints(mobile) {
+    padding: 0;
+  }
 }
 
 .Container {
   align-items: center;
   display: flex;
   justify-content: space-between;
+
+  @include breakpoints(mobile) {
+    flex-direction: column;
+  }
 }
 
 .Copyright {
   color: rgba($color-gray-0, .6);
+
+  @include breakpoints(mobile) {
+    margin: 20px 0 0;
+  }
 }
 
 .Link {
@@ -23,6 +36,10 @@
 }
 
 .Links {
+  @include breakpoints(mobile) {
+    margin: 40px 0 0;
+  }
+
   & > *:not(:first-child) {
     margin: 0 0 0 40px;
   }

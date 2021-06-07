@@ -1,3 +1,5 @@
+@import '~@styles/breakpoints';
+
 .Root {
   display: flex;
   justify-content: center;
@@ -9,4 +11,9 @@
 .Container {
   max-width: 1200px;
   width: 100%;
+
+  @include breakpoints(mobile) {
+    max-width: 100%;
+    padding: 40px;
+  }
 }

@@ -1,3 +1,5 @@
+@import '~@styles/breakpoints';
+
 .Root {
   &Mode {
     &NoWrap {
@@ -19,12 +21,23 @@
       font-weight: 800;
       letter-spacing: 1px;
       line-height: 76px;
+
+      @include breakpoints(mobile) {
+        font-size: 52px;
+        letter-spacing: 0;
+        line-height: 64px;
+      }
     }
 
     &H2 {
       font-size: 30px;
       font-weight: 800;
       line-height: 40px;
+
+      @include breakpoints(mobile) {
+        font-size: 26px;
+        line-height: 32px;
+      }
     }
 
     &H3 {
@@ -32,6 +45,13 @@
       font-weight: 700;
       letter-spacing: -.2px;
       line-height: 24px;
+
+      @include breakpoints(mobile) {
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 20px;
+      }
     }
 
     &H4 {
@@ -56,6 +76,10 @@
 
     &Text {
       letter-spacing: -.2px;
+
+      @include breakpoints(mobile) {
+        letter-spacing: 0;
+      }
 
       &.RootSize {
         &ExtraLarge {

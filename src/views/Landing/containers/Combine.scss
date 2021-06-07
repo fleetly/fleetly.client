@@ -1,6 +1,12 @@
+@import '~@styles/breakpoints';
+
 .Container {
   background: url('../assets/combine-bg.png') no-repeat;
   background-size: contain;
   height: 980px;
   width: 1200px;
+
+  @include breakpoints(mobile) {
+    display: none;
+  }
 }

@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -6,6 +7,10 @@
 
 .Actions {
   margin: 40px 0 0;
+
+  @include breakpoints(mobile) {
+    margin: 48px 0 0;
+  }
 }
 
 .Container {
@@ -22,6 +27,10 @@
   justify-content: center;
   margin: 0 0 0 140px;
   max-width: 420px;
+
+  @include breakpoints(mobile) {
+    margin: 0 20px;
+  }
 }
 
 .Description {
@@ -33,4 +42,10 @@
   font-size: 26px;
   line-height: 32px;
   margin: 8px 0 0;
+
+  @include breakpoints(mobile) {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 12px 0 0;
+  }
 }

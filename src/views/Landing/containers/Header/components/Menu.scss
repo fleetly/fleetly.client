@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -8,6 +9,10 @@
   flex: 0 0 448px;
   height: 44px;
   padding: 4px;
+
+  @include breakpoints(mobile) {
+    display: none;
+  }
 }
 
 .Item {

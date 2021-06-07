@@ -1,7 +1,7 @@
 @mixin breakpoints($devices...) {
   @each $device in $devices {
-    @if $device == laptop {
-      @media only screen and (min-width: 1025px) and (max-width: 1680px) {
+    @if $device == desktop {
+      @media only screen and (min-width: 1025px) {
         @content;
       }
     }

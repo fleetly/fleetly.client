@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -6,6 +7,10 @@
 
 .Actions {
   margin: 64px 0 0;
+
+  @include breakpoints(mobile) {
+    margin: 48px 0 0;
+  }
 }
 
 .Background {
@@ -24,6 +29,11 @@
   position: absolute;
   width: 100%;
   z-index: 1;
+
+  @include breakpoints(mobile) {
+    background-image: linear-gradient(to bottom, #76adff, #5461ea);
+    height: 908px;
+  }
 }
 
 .Container {
