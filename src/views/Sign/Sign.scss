@@ -101,7 +101,7 @@
     @include coverPosition();
 
     @include breakpoints(mobile) {
-      top: 40px;
+      top: 60px;
     }
   }
 }
