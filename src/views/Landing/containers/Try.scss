@@ -14,10 +14,15 @@
 }
 
 .Container {
-  background: url('../assets/try-bg.png') no-repeat;
-  background-size: contain;
+  background: url('../assets/try-bg.png') no-repeat center center / contain;
   height: 632px;
   width: 1200px;
+
+  @include breakpoints(mobile) {
+    background-image: url('../assets/try-bg_mobile.png');
+    height: 716px;
+    width: 100%;
+  }
 }
 
 .Content {
@@ -29,7 +34,8 @@
   max-width: 420px;
 
   @include breakpoints(mobile) {
-    margin: 0 20px;
+    justify-content: flex-start;
+    margin: 40px 20px 0;
   }
 }
 

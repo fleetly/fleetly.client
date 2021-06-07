@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -12,10 +13,14 @@
   position: relative;
   width: 100%;
 
+  @include breakpoints(mobile) {
+    margin: 520px 0 0;
+    padding: 200px 0 0;
+  }
+
   &Cover {
     &::after {
-      background: url('./assets/half-bg-2.png') no-repeat;
-      background-size: contain;
+      background: url('./assets/half-bg-2.png') no-repeat center center / contain;
       bottom: 0;
       content: '';
       display: block;
@@ -23,6 +28,12 @@
       position: absolute;
       right: 0;
       width: 1920px;
+
+      @include breakpoints(mobile) {
+        background-image: url('./assets/half-bg-2_mobile.png');
+        height: 758px;
+        width: 100%;
+      }
     }
 
     &::before {
@@ -35,6 +46,13 @@
       position: absolute;
       top: -528px;
       width: 1920px;
+
+      @include breakpoints(mobile) {
+        background-image: url('./assets/half-bg-1_mobile.png');
+        height: 534px;
+        top: -420px;
+        width: 100%;
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
 @import '~@styles/colors';
 
 .Root {
-  height: 1000px;
+  height: 900px;
 }
 
 .Actions {
@@ -14,12 +14,16 @@
 }
 
 .Background {
-  background: url('../assets/intro-bg.png') no-repeat;
-  background-size: contain;
+  background: url('../assets/intro-bg.png') no-repeat center center / cover;
   height: 100%;
   position: relative;
   width: 100%;
   z-index: 2;
+
+  @include breakpoints(mobile) {
+    background-image: url('../assets/intro-bg_mobile.png');
+    height: 952px;
+  }
 }
 
 .Blue {
@@ -32,7 +36,7 @@
 
   @include breakpoints(mobile) {
     background-image: linear-gradient(to bottom, #76adff, #5461ea);
-    height: 908px;
+    height: 900px;
   }
 }
 

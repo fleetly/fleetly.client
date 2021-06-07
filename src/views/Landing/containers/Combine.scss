@@ -1,12 +1,20 @@
 @import '~@styles/breakpoints';
 
+.Root {
+  @include breakpoints(mobile) {
+    margin: -100px 0;
+  }
+}
+
 .Container {
-  background: url('../assets/combine-bg.png') no-repeat;
-  background-size: contain;
+  background: url('../assets/combine-bg.png') no-repeat center center / contain;
   height: 980px;
   width: 1200px;
 
   @include breakpoints(mobile) {
-    display: none;
+    background-image: url('../assets/combine-bg_mobile.png');
+    height: 900px;
+    padding: 0;
+    width: 100%;
   }
 }
