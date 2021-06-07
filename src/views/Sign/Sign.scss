@@ -29,6 +29,11 @@
   position: relative;
   z-index: 2;
 
+  @include breakpoints(mobile) {
+    margin: 0;
+    width: 100%;
+  }
+
   @include breakpoints(laptop) {
     margin: 0 72px;
   }
@@ -45,6 +50,11 @@
   display: flex;
   margin: 40px 40px 24px;
 
+  @include breakpoints(mobile) {
+    justify-content: center;
+    margin: 40px 0;
+  }
+
   &Link {
     color: $color-blue-200;
     text-decoration: none;
@@ -57,6 +67,10 @@
 
     & > h3 {
       font-weight: 800;
+
+      @include breakpoints(mobile) {
+        font-size: 20px;
+      }
     }
 
     &Is {
@@ -74,6 +88,10 @@
     z-index: 2;
 
     @include coverPosition();
+
+    @include breakpoints(mobile) {
+      top: 60px;
+    }
   }
 
   &2 {
@@ -81,6 +99,10 @@
     z-index: 1;
 
     @include coverPosition();
+
+    @include breakpoints(mobile) {
+      top: 40px;
+    }
   }
 }
 
@@ -94,6 +116,10 @@
   z-index: 3;
 
   @include coverPosition();
+
+  @include breakpoints(mobile) {
+    display: none;
+  }
 }
 
 .Welcome {
@@ -110,5 +136,12 @@
 
   @include breakpoints(laptop) {
     max-width: 1240px;
+  }
+
+  @include breakpoints(mobile) {
+    align-items: flex-start;
+    margin: 80px 40px 0;
+    max-width: 100%;
+    width: 100%;
   }
 }

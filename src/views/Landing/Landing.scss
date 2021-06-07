@@ -20,7 +20,7 @@
 
   &Cover {
     &::after {
-      background: url('./assets/half-bg-2.png') no-repeat center center / contain;
+      background: url('./assets/half-bg-2.png') no-repeat center center / cover;
       bottom: 0;
       content: '';
       display: block;
@@ -31,14 +31,13 @@
 
       @include breakpoints(mobile) {
         background-image: url('./assets/half-bg-2_mobile.png');
-        height: 758px;
+        height: 780px;
         width: 100%;
       }
     }
 
     &::before {
-      background: url('./assets/half-bg-1.png') no-repeat;
-      background-size: contain;
+      background: url('./assets/half-bg-1.png') no-repeat center center / cover;
       content: '';
       display: block;
       height: 728px;
@@ -49,7 +48,7 @@
 
       @include breakpoints(mobile) {
         background-image: url('./assets/half-bg-1_mobile.png');
-        height: 534px;
+        height: 552px;
         top: -420px;
         width: 100%;
       }
