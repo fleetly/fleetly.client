@@ -19,15 +19,19 @@
   }
 
   &Cover {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
     &::after {
-      background: url('./assets/half-bg-2.png') no-repeat center center / cover;
+      background: url('./assets/half-bg-2.png') no-repeat left bottom / contain;
       bottom: 0;
       content: '';
       display: block;
-      height: 1007px;
+      height: 1400px;
       position: absolute;
       right: 0;
-      width: 1920px;
+      width: 100%;
 
       @include breakpoints(mobile) {
         background-image: url('./assets/half-bg-2_mobile.png');
@@ -37,14 +41,14 @@
     }
 
     &::before {
-      background: url('./assets/half-bg-1.png') no-repeat center center / cover;
+      background: url('./assets/half-bg-1.png') no-repeat left center / contain;
       content: '';
       display: block;
-      height: 728px;
-      left: 0;
+      height: 1000px;
+      min-width: 1920px;
       position: absolute;
-      top: -528px;
-      width: 1920px;
+      top: -680px;
+      width: 100%;
 
       @include breakpoints(mobile) {
         background-image: url('./assets/half-bg-1_mobile.png');

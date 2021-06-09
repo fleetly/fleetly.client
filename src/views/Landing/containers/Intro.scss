@@ -14,7 +14,7 @@
 }
 
 .Background {
-  background: url('../assets/intro-bg.png') no-repeat center center / cover;
+  background: url('../assets/intro-bg.png') no-repeat center bottom / cover;
   height: 100%;
   position: relative;
   width: 100%;
@@ -27,8 +27,7 @@
 }
 
 .Blue {
-  background: url('../assets/intro-blue.svg') no-repeat;
-  background-size: contain;
+  background: url('../assets/intro-blue.svg') no-repeat center bottom / cover;
   height: 100%;
   position: absolute;
   width: 100%;

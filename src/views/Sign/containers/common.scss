@@ -21,6 +21,7 @@
   grid-column-gap: 40px;
   grid-template-columns: repeat(2, 260px);
   grid-template-rows: 124px;
+  row-gap: 0;
 
   @include breakpoints(mobile) {
     display: grid;
