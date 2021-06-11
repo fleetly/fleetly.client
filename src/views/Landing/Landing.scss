@@ -24,7 +24,7 @@
     width: 100%;
 
     &::after {
-      background: url('./assets/half-bg-2.png') no-repeat left bottom / contain;
+      background: url('./assets/half-bg-2.webp') no-repeat left bottom / contain;
       bottom: 0;
       content: '';
       display: block;
@@ -34,14 +34,14 @@
       width: 100%;
 
       @include breakpoints(mobile) {
-        background-image: url('./assets/half-bg-2_mobile.png');
+        background-image: url('./assets/half-bg-2_mobile.webp');
         height: 780px;
         width: 100%;
       }
     }
 
     &::before {
-      background: url('./assets/half-bg-1.png') no-repeat left center / contain;
+      background: url('./assets/half-bg-1.webp') no-repeat left center / contain;
       content: '';
       display: block;
       height: 1000px;
@@ -51,7 +51,7 @@
       width: 100%;
 
       @include breakpoints(mobile) {
-        background-image: url('./assets/half-bg-1_mobile.png');
+        background-image: url('./assets/half-bg-1_mobile.webp');
         height: 552px;
         top: -420px;
         width: 100%;

@@ -14,12 +14,12 @@
 }
 
 .Container {
-  background: url('../assets/try-bg.png') no-repeat center center / contain;
+  background: url('../assets/try-bg.webp') no-repeat center center / contain;
   height: 632px;
   width: 1200px;
 
   @include breakpoints(mobile) {
-    background-image: url('../assets/try-bg_mobile.png');
+    background-image: url('../assets/try-bg_mobile.webp');
     height: 716px;
     width: 100%;
   }

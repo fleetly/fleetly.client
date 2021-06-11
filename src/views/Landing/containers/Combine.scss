@@ -7,12 +7,12 @@
 }
 
 .Container {
-  background: url('../assets/combine-bg.png') no-repeat center center / contain;
+  background: url('../assets/combine-bg.webp') no-repeat center center / contain;
   height: 980px;
   width: 1200px;
 
   @include breakpoints(mobile) {
-    background-image: url('../assets/combine-bg_mobile.png');
+    background-image: url('../assets/combine-bg_mobile.webp');
     height: 900px;
     padding: 0;
     width: 100%;
