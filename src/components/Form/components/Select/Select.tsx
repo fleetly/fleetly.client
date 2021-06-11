@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { chain } from 'lodash';
+import chain from 'lodash/chain';
 import * as React from 'react';
 import Select from 'react-select';
 import { WrappedFieldInputProps } from 'redux-form';

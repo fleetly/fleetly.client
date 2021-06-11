@@ -1,4 +1,4 @@
-import { last } from 'lodash';
+import last from 'lodash/last';
 import moment from 'moment';
 import * as React from 'react';
 

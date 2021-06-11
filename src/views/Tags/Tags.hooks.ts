@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 import { useMutation, useQuery } from 'react-apollo';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';

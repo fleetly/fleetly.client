@@ -1,4 +1,8 @@
-import { get, isEmpty, keys, merge } from 'lodash';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import keys from 'lodash/keys';
+import merge from 'lodash/merge';
+
 import url from 'url';
 
 export const fillUrl = (url: string = '/', params: any): string => {

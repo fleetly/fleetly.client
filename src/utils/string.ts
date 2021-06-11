@@ -1,5 +1,5 @@
 import { Color } from '@fleetly/common/dist/enums';
-import { values } from 'lodash';
+import values from 'lodash/values';
 
 export const capitalizeFirstLetter = (data: string = ''): string =>
   `${data.charAt(0).toUpperCase()}${data.slice(1)}`;

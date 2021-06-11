@@ -1,6 +1,6 @@
 import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
-import { keys } from 'lodash';
+import keys from 'lodash/keys';
 import * as React from 'react';
 
 // Decorators
