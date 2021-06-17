@@ -99,11 +99,11 @@ const Company: React.FC<{}> = () => {
             title: 'Fields',
             to: fillUrl(ROUTES.COMPANY.FIELDS, { companyId })
           },
-          {
-            icon: 'far fa-bells',
-            title: 'Notifications',
-            to: fillUrl(ROUTES.COMPANY.NOTIFICATIONS, { companyId })
-          },
+          // {
+          //   icon: 'far fa-bells',
+          //   title: 'Notifications',
+          //   to: fillUrl(ROUTES.COMPANY.NOTIFICATIONS, { companyId })
+          // },
           {
             icon: 'far fa-tags',
             title: 'Tags',

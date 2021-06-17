@@ -5,7 +5,7 @@ import Item from './Item';
 import { Button } from '../../Common';
 import { Text } from '@components/Typography';
 
-//Styles
+// Styles
 import styles from './ItemsList.scss';
 
 const ItemsList = () => (
