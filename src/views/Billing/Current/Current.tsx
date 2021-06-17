@@ -32,8 +32,8 @@ const BillingCurrent = ({ data }: any) => {
           }
           avatar={<Icon icon="fab fa-vk" />}
           classes={{ content: styles.Content }}
-          subTitle={data?.description}
-          title={data?.title}
+          subTitle={data?.title}
+          title={data?.type}
         />
 
         <CardHr />

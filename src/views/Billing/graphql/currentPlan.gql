@@ -1,7 +1,10 @@
-query getCurrentPlan($companyId: String!) {
+query currentPlan($companyId: String!) {
   currentPlan(companyId: $companyId) {
     id
-    expiresAt
+    next {
+      billDate
+      price
+    }
     plan {
       id
       price
@@ -20,7 +23,6 @@ query getCurrentPlan($companyId: String!) {
       }
       type
     }
-    startsAt
     status
   }
 }

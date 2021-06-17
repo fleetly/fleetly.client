@@ -14,7 +14,7 @@ const useBilling = () => {
   });
 
   return {
-    date: data?.currentPlan?.plan
+    date: data?.currentPlan
   };
 };
 

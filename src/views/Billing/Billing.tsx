@@ -22,7 +22,7 @@ const Billing = () => {
 
   return (
     <Page classes={{ container: styles.Root }} title="Billing">
-      <CurrentPlan data={date} />
+      <CurrentPlan data={date?.plan} />
       <NextPlan data={data.CURRENT_PLAN} />
       <PaymentHistory data={data.PAYMANT_HISTORY} />
     </Page>
