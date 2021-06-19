@@ -2,14 +2,18 @@
 
 .Actions {
   margin: 8px 0 0;
+
+  @include breakpoints(mobile) {
+    margin: 40px 0 0;
+
+    & > button {
+      width: 100%;
+    }
+  }
 }
 
 .Container {
   padding: 40px 0 0;
-}
-
-.Error {
-  width: 260px;
 }
 
 .Fieldset {
@@ -17,8 +21,17 @@
   grid-column-gap: 40px;
   grid-template-columns: repeat(2, 260px);
   grid-template-rows: 124px;
+  row-gap: 0;
 
-  &Multiple {
-    grid-template-rows: repeat(2, 124px);
+  @include breakpoints(mobile) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+  }
+
+  @include breakpoints(desktop) {
+    &Multiple {
+      grid-template-rows: repeat(2, 124px);
+    }
   }
 }

@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -12,29 +13,49 @@
   position: relative;
   width: 100%;
 
+  @include breakpoints(mobile) {
+    margin: 520px 0 0;
+    padding: 200px 0 0;
+  }
+
   &Cover {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
     &::after {
-      background: url('./assets/half-bg-2.png') no-repeat;
-      background-size: contain;
+      background: url('./assets/half-bg-2.webp') no-repeat left bottom / contain;
       bottom: 0;
       content: '';
       display: block;
-      height: 1007px;
+      height: 1400px;
       position: absolute;
       right: 0;
-      width: 1920px;
+      width: 100%;
+
+      @include breakpoints(mobile) {
+        background-image: url('./assets/half-bg-2_mobile.webp');
+        height: 780px;
+        width: 100%;
+      }
     }
 
     &::before {
-      background: url('./assets/half-bg-1.png') no-repeat;
-      background-size: contain;
+      background: url('./assets/half-bg-1.webp') no-repeat left center / contain;
       content: '';
       display: block;
-      height: 728px;
-      left: 0;
+      height: 1000px;
+      min-width: 1920px;
       position: absolute;
-      top: -528px;
-      width: 1920px;
+      top: -680px;
+      width: 100%;
+
+      @include breakpoints(mobile) {
+        background-image: url('./assets/half-bg-1_mobile.webp');
+        height: 552px;
+        top: -420px;
+        width: 100%;
+      }
     }
   }
 }

@@ -7,13 +7,14 @@ import { Button } from '../../Common';
 // Styles
 import styles from './List.scss';
 
+// tslint:disable-next-line: jsx-key
 const TEST = [<ItemsList />, <ItemsList />, <ItemsList />];
 
 const List = () => (
   <div className={styles.Root}>
     <div className={styles.List}>
       {TEST.map((item, index) => (
-        <div key={index} className={styles.Item}>
+        <div className={styles.Item} key={index}>
           {item}
         </div>
       ))}

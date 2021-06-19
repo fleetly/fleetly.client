@@ -1,5 +1,5 @@
 import { ApolloError } from 'apollo-client';
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 // Utils
 import { capitalizeFirstLetter } from '@utils/string';

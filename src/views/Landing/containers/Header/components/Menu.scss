@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -8,6 +9,10 @@
   flex: 0 0 448px;
   height: 44px;
   padding: 4px;
+
+  @include breakpoints(mobile) {
+    display: none;
+  }
 }
 
 .Item {
@@ -20,7 +25,9 @@
 
   &:hover {
     background: $color-gray-0;
-    box-shadow: 0 -10px 10px 0 rgba($color-gray-0, .6), 0 10px 10px 0 rgba($color-gray-1000, .2);
+    box-shadow:
+      0 -10px 10px 0 rgba($color-gray-0, .6),
+      0 10px 10px 0 rgba($color-gray-1000, .2);
     cursor: pointer;
   }
 

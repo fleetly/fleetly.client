@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 import { useMutation, useQuery } from 'react-apollo';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -11,7 +11,7 @@ import CREATE_CHANNEL from '@graphql/createChannel.gql';
 import GET_CHANNEL_LIST from '@graphql/getChannelList.gql';
 
 // Interfaces
-import { IChannel } from '@interfaces/channel.interface.ts';
+import { IChannel } from '@interfaces/channel.interface';
 
 // Store
 import { closeModal, openModal } from '@store';

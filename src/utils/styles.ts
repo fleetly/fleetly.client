@@ -1,4 +1,5 @@
-import { has, set } from 'lodash';
+import has from 'lodash/has';
+import set from 'lodash/set';
 
 // Utils
 import { capitalizeFirstLetter } from './string';

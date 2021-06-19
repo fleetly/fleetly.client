@@ -15,7 +15,7 @@
 }
 
 @mixin colorOutlinedButton($color) {
-  border-color: rgba($color, .2);
+  border-color: rgba($color, .4);
   color: $color;
 
   &:active {
