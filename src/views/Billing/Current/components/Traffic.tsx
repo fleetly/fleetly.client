@@ -1,53 +1,43 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 // Components
 import { H4, Text } from '@components/Typography';
 
+// Interfaces
+import { IPlanTraffic } from '@interfaces/plan.interface';
+
 // Styles
-import styles from './Limit.scss';
+import styles from './Traffic.scss';
 
 // Utils
 import { formatCurrency } from '@utils/string';
 
-interface PropTypes {
-  limit?: number;
-  origin?: {
-    title?: string;
-    unit?: string;
-  };
-  chunkPrice?: number;
-  chunkSize?: number;
-}
-
-const BillingCurrentLimit: React.FC<PropTypes> = ({
-  limit,
-  origin,
+const BillingCurrentLimit: React.FC<IPlanTraffic> = ({
   chunkPrice,
-  chunkSize
-}: any) => {
-  const progress = (chunkSize / limit) * 100;
+  chunkSize,
+  limit,
+  origin
+}) => {
+  const value = useMemo(() => (chunkSize / limit) * 100, [chunkSize, limit]);
 
   return (
     <div className={styles.Root}>
       <div className={styles.Content}>
         <div className={styles.Info}>
-          <H4>{origin?.title}</H4>
+          <H4>{origin.title}</H4>
 
           <Text className={styles.Counter}>
             {chunkSize} of {limit}
           </Text>
 
           <Text>
-            {formatCurrency(chunkPrice)} per {origin?.title}
+            {formatCurrency(chunkPrice)} per {origin.unit}
           </Text>
         </div>
 
         <div className={styles.Progress}>
           <div className={styles.ProgressCover} />
-          <div
-            className={styles.ProgressBar}
-            style={{ width: `${progress}%` }}
-          />
+          <div className={styles.ProgressBar} style={{ width: `${value}%` }} />
         </div>
       </div>
 

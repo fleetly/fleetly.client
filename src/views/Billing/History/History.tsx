@@ -1,69 +1,75 @@
 import moment from 'moment';
 import React, { useMemo } from 'react';
 
+// Fleetly
+import { PaymentType } from '@fleetly/core/dist/common/interfaces';
+
 // Components
 import Button from '@components/Button';
-import Icon from '@components/Icon';
 import { Wrapper } from '@components/Page';
 import Table from '@components/Table';
+
+import Amount from './components/Amount';
+import Status from './components/Status';
+
+// Interfaces
+import { IPayment } from '@interfaces/payment.interface';
 
 // Styles
 import styles from './History.scss';
 
-// Utils
-import { formatCurrency } from '@utils/string';
+interface BillingHistoryProps {
+  readonly data: IPayment[];
+}
 
-const BillingHistory = ({ data }: any) => {
+const BillingHistory: React.FC<BillingHistoryProps> = ({ data }) => {
   const columns = useMemo(
     () => [
       {
         accessor: 'status',
-        Cell: ({ value }: any) => (
-          <Icon
-            color={
-              value === 'SUCCESSED'
-                ? 'green'
-                : value === 'PENDING'
-                ? 'blue'
-                : 'red'
-            }
-            icon={
-              value === 'SUCCESSED'
-                ? 'fas fa-check'
-                : value === 'PENDING'
-                ? 'far fa-ellipsis-h'
-                : 'fas fa-ban'
-            }
-            variant="outlined"
-          />
-        ),
+        Cell: Status,
         Header: 'Status',
         maxWidth: 80
       },
       {
         accessor: 'createdAt',
         Cell: ({ value }: any) => moment(value).format('MMM D, YYYY'),
-        Header: 'Date'
+        Header: 'Date',
+        maxWidth: 160
       },
       {
-        accessor: 'id',
-        Header: 'ID'
+        accessor: 'orderId',
+        Header: 'Order ID',
+        maxWidth: 160
       },
       {
-        accessor: 'description',
+        accessor: 'type',
+        Cell: ({ value }: any) =>
+          value === PaymentType.SUBSCRIPTION
+            ? 'Monthly subscription payment'
+            : 'One-off payment',
         Header: 'Description'
       },
       {
         accessor: 'amount',
-        Cell: ({ value }) => formatCurrency(value),
-        Header: 'Amount'
+        Cell: ({ row, value }: any) => (
+          <Amount amount={value} tax={row.original.tax} />
+        ),
+        Header: 'Amount',
+        maxWidth: 160
       },
       {
-        accessor: 'receipt',
-        Cell: () => (
-          <Button color="primary" variant="outlined" icon="far fa-receipt" />
+        accessor: 'receiptUrl',
+        Cell: ({ value }: any) => (
+          <Button
+            color="primary"
+            icon="far fa-receipt"
+            to={value}
+            variant="outlined"
+          />
         ),
-        Header: ''
+        Header: 'Receipt',
+        maxWidth: 80
       }
     ],
     []

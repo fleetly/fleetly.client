@@ -11,20 +11,21 @@ import PaymentHistory from './History';
 // Hook
 import { useBilling } from './Billing.hooks';
 
-// Test
-import data from './data';
-
 // Styles
 import styles from './Billing.scss';
 
 const Billing = () => {
-  const { date } = useBilling();
+  const { payments, subscription }: any = useBilling();
 
   return (
     <Page classes={{ container: styles.Root }} title="Billing">
-      <CurrentPlan data={date?.plan} />
-      <NextPlan data={data.CURRENT_PLAN} />
-      <PaymentHistory data={data.PAYMANT_HISTORY} />
+      {subscription && (
+        <>
+          <CurrentPlan {...subscription} />
+          <NextPlan {...subscription} />
+          <PaymentHistory data={payments} />
+        </>
+      )}
     </Page>
   );
 };

@@ -4,7 +4,6 @@
   align-items: flex-end;
   display: flex;
   margin: 32px 0;
-  width: 100%;
 }
 
 .Content {
@@ -30,19 +29,19 @@
   margin: 10px 30px 0 0;
   position: relative;
   width: 100%;
-}
 
-.ProgressBar {
-  background-color: #6781f4;
-  border-radius: 2px;
-  box-shadow: 0 12px 12px 0 rgba(103, 129, 244, .2);
-  height: 4px;
-  position: absolute;
-}
+  &Bar {
+    background-color: $color-blue-300;
+    border-radius: 2px;
+    box-shadow: 0 12px 12px 0 rgba($color-blue-300, .2);
+    height: 4px;
+    position: absolute;
+  }
 
-.ProgressCover {
-  background-color: #f5f5f3;
-  border-radius: 1px;
-  height: 2px;
-  width: 100%;
+  &Cover {
+    background-color: $color-gray-100;
+    border-radius: 1px;
+    height: 2px;
+    width: 100%;
+  }
 }

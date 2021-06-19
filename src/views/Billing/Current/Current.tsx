@@ -8,55 +8,55 @@ import { Wrapper } from '@components/Page';
 import { Caption } from '@components/Typography';
 
 import Feature from './components/Feature';
-import Limit from './components/Limit';
+import Traffic from './components/Traffic';
+
+// Data
+import { FEATURES } from '../Billing.data';
+
+// Interfaces
+import { ISubscription } from '@interfaces/subscription.interface';
 
 // Styles
 import styles from './Current.scss';
 
-// TEST data
-import TEST from '../data';
+const BillingCurrent: React.FC<ISubscription> = ({ plan }) => (
+  <Wrapper title="Current Plan">
+    <Card>
+      <CardHeader
+        actions={
+          <Button color="primary" variant="outlined">
+            Get Usage Report
+          </Button>
+        }
+        avatar={<Icon icon="fad fa-rocket" />}
+        classes={{ content: styles.Content }}
+        subTitle={plan.title}
+        title={plan.type}
+      />
 
-const BillingCurrent = ({ data }: any) => {
-  const features = TEST?.CURRENT_PLAN?.plan?.features; // TEST
-  const traffics = data?.traffics;
-  const check = Array.isArray(traffics);
+      <CardHr />
 
-  return (
-    <Wrapper classes={{ root: styles.Root }} title="Current Plan">
-      <Card>
-        <CardHeader
-          actions={
-            <Button color="primary" variant="outlined">
-              Get Usage Report
-            </Button>
-          }
-          avatar={<Icon icon="fab fa-vk" />}
-          classes={{ content: styles.Content }}
-          subTitle={data?.title}
-          title={data?.type}
-        />
+      <div className={styles.Features}>
+        {FEATURES.map(({ icon, title }: any, index: number) => (
+          <Feature key={index} icon={icon} title={title} />
+        ))}
+      </div>
 
-        <CardHr />
+      {plan.traffics && plan.traffics.length > 0 && (
+        <>
+          <Caption className={styles.Title}>Traffics</Caption>
 
-        <div className={styles.Features}>
-          {features.map(({ icon, title }: any, index: number) => (
-            <Feature key={index} icon={icon} title={title} />
-          ))}
-        </div>
+          <CardHr />
 
-        <Caption className={styles.Title}>Trafic</Caption>
-
-        <CardHr />
-
-        <div className={styles.Limits}>
-          {check &&
-            traffics.map(({ id, ...props }: any) => (
-              <Limit key={id} {...props} />
+          <div className={styles.Traffics}>
+            {plan.traffics.map((traffic) => (
+              <Traffic {...traffic} key={traffic.id} />
             ))}
-        </div>
-      </Card>
-    </Wrapper>
-  );
-};
+          </div>
+        </>
+      )}
+    </Card>
+  </Wrapper>
+);
 
 export default BillingCurrent;
