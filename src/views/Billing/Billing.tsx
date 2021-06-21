@@ -8,18 +8,26 @@ import CurrentPlan from './Current';
 import NextPlan from './Next';
 import PaymentHistory from './History';
 
-// Test
-import data from './data';
+// Hook
+import { useBilling } from './Billing.hooks';
 
 // Styles
 import styles from './Billing.scss';
 
-const Billing = () => (
-  <Page classes={{ container: styles.Root }} title="Billing">
-    <CurrentPlan data={data.CURRENT_PLAN} />
-    <NextPlan data={data.CURRENT_PLAN} />
-    <PaymentHistory data={data.PAYMANT_HISTORY} />
-  </Page>
-);
+const Billing = () => {
+  const { payments, subscription }: any = useBilling();
+
+  return (
+    <Page classes={{ container: styles.Root }} title="Billing">
+      {subscription && (
+        <>
+          <CurrentPlan {...subscription} />
+          <NextPlan {...subscription} />
+          <PaymentHistory data={payments} />
+        </>
+      )}
+    </Page>
+  );
+};
 
 export default Billing;

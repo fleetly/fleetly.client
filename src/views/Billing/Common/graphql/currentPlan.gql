@@ -1,0 +1,38 @@
+query currentPlan($companyId: String!) {
+  currentPlan(companyId: $companyId) {
+    id
+    next {
+      billDate
+      price
+    }
+    payments {
+      # id
+      amount
+      checkoutId
+      orderId
+      receiptUrl
+      status
+      tax
+      type
+    }
+    plan {
+      id
+      price
+      title
+      traffics {
+        id
+        chunkPrice
+        chunkSize
+        limit
+        origin {
+          id
+          title
+          type
+          unit
+        }
+      }
+      type
+    }
+    status
+  }
+}

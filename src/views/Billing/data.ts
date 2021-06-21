@@ -1,4 +1,4 @@
-const CURRENT_PLAN = {
+export const CURRENT_PLAN = {
   endDate: new Date(),
   limits: {
     amount: 30,
@@ -38,7 +38,7 @@ const CURRENT_PLAN = {
   startDate: new Date()
 };
 
-const PAYMANT_HISTORY = [
+export const PAYMENT_HISTORY = [
   {
     createdAt: new Date(),
     id: '1',
@@ -64,5 +64,3 @@ const PAYMANT_HISTORY = [
     accessor: 'test 2'
   }
 ];
-
-export default { CURRENT_PLAN, PAYMANT_HISTORY };

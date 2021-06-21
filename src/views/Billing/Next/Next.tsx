@@ -15,17 +15,13 @@ import { Wrapper } from '@components/Page';
 import GET_USER from '@graphql/getUserById.gql';
 
 // Interfaces
+import { ISubscription } from '@interfaces/subscription.interface';
 import { IUser } from '@interfaces/user.interface';
 
 // Styles
 import styles from './Next.scss';
 
-const BillingNext: React.FC<any> = ({
-  billDate = new Date(),
-  price = '200',
-  title = 'For 10000 subscribers',
-  type = 'PRO'
-}) => {
+const BillingNext: React.FC<ISubscription> = ({ id, next, plan }) => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
 
@@ -35,36 +31,37 @@ const BillingNext: React.FC<any> = ({
   // Handlers
   const handleClick = useCallback(() => {
     data?.user.id &&
+      id &&
       (window as any).Paddle.Checkout.open({
         email: 'ivan@fleetly.it',
         passthrough: JSON.stringify({
           companyId,
-          subscriptionId: '60c624b7a6156e2ec086f10a',
+          subscriptionId: id,
           userId: data.user.id
         }),
         product: 11465
       });
-  }, [companyId, data]);
+  }, [companyId, data, id]);
 
   return (
     <Wrapper title="Next Plan">
       <Card className={styles.Root}>
         <div className={styles.Header}>
-          <H4 className={styles.Title}>{type}</H4>
+          <H4 className={styles.Title}>{plan.type}</H4>
 
-          <Text className={styles.Date}>
-            <Caption className={styles.DateStart}>from</Caption>{' '}
-            {moment(billDate).format('Do MMM')}
-          </Text>
+          <div>
+            <Caption className={styles.Date}>from&nbsp;</Caption>
+            <Caption bold>{moment(next?.billDate).format('Do MMM')}</Caption>
+          </div>
         </div>
 
         <div className={styles.Content}>
           <div className={styles.Price}>
-            <H2 className={styles.Amount}>${price}</H2>
+            <H2>${plan.price}</H2>
             <Text className={styles.Period}>/ month</Text>
           </div>
 
-          <Text className={styles.Limit}>{title}</Text>
+          <Text className={styles.Limit}>{plan.title}</Text>
         </div>
 
         <Button color="primary" fullWidth onClick={handleClick}>

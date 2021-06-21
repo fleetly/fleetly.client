@@ -36,6 +36,7 @@
   height: 100px;
   justify-content: space-between;
   padding: 20px;
+  position: relative;
   width: 100%;
 
   @include breakpoints(mobile) {
