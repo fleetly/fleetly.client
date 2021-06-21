@@ -1,0 +1,36 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+
+  &Is {
+    &Disabled {
+      opacity: .6;
+
+      .Logo {
+        filter: grayscale(100%);
+      }
+    }
+  }
+}
+
+.Icon {
+  flex: 0 0 40px;
+  font-size: 40px;
+}
+
+.Info {
+  margin: 0 0 0 20px;
+}
+
+.Logo {
+  flex: 0 0 40px;
+  max-height: 40px;
+  max-width: 40px;
+  object-fit: contain;
+}
+
+.Title {
+  color: $color-brown;
+}

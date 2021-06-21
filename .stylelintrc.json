@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "stylelint-config-prettier",
-    "stylelint-config-standard",
-    "stylelint-config-css-modules"
-  ],
+  "extends": ["stylelint-config-prettier", "stylelint-config-css-modules"],
   "plugins": ["stylelint-order", "stylelint-prettier", "stylelint-scss"],
   "rules": {
     "at-rule-no-unknown": null,
@@ -40,7 +36,6 @@
       }
     ],
     "scss/at-rule-no-unknown": true,
-    "no-descending-specificity": null,
     "value-keyword-case": null
   }
 }

@@ -10,7 +10,7 @@ import Button from '@views/Landing/components/Button';
 import Wrapper from '@views/Landing/components/Wrapper';
 
 // Containers
-import Menu from './components/Menu';
+import Menu from './containers/Menu';
 
 // Styles
 import styles from './Header.scss';
