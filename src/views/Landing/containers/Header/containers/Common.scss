@@ -6,19 +6,15 @@
   border-radius: 50px;
   box-shadow: 0 40px 40px 0 rgba($color-gray-1000, .1);
   display: grid;
-  grid-gap: 12px;
-  grid-template-columns: 236px repeat(4, 1fr);
-  padding: 6px;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 28px;
 
-  & > *:first-child {
-    background: $color-gray-0;
-    padding: 28px;
+  &Variant {
+    &Products {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
-}
-
-.Category {
-  border-radius: 40px;
-  padding: 28px 12px;
 }
 
 .List {

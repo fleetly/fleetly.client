@@ -7,22 +7,32 @@ import { Text } from '@components/Typography';
 // Styles
 import styles from './Product.scss';
 
+// Utils
+import { getClassName } from '@utils/styles';
+
+type Variant = 'integration' | 'product';
+
 interface LandingHeaderProductProps {
   description?: string;
   disabled?: boolean;
-  icon?: string;
   logo?: string;
   title: string;
+  variant: Variant;
 }
 
 const LandingHeaderProduct: React.FC<LandingHeaderProductProps> = ({
   description,
   disabled,
   logo,
-  title
+  title,
+  variant = 'integration'
 }) => (
   <div
-    className={classNames(styles.Root, { [styles.RootIsDisabled]: disabled })}
+    className={classNames(
+      styles.Root,
+      getClassName('variant', { collection: styles, value: variant }),
+      { [styles.RootIsDisabled]: disabled }
+    )}
   >
     {logo && <img alt={title} className={styles.Logo} src={logo} />}
 
@@ -31,7 +41,11 @@ const LandingHeaderProduct: React.FC<LandingHeaderProductProps> = ({
         {title}
       </Text>
 
-      {description && <Text>{description}</Text>}
+      {description && (
+        <Text className={styles.Description} medium>
+          {description}
+        </Text>
+      )}
     </div>
   </div>
 );

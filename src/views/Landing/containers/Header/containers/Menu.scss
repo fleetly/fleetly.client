@@ -2,6 +2,7 @@
 @import '~@styles/colors';
 
 .Root {
+  align-items: center;
   background: #dee8da;
   border: 2px solid #d6e2d1;
   border-radius: 24px;
@@ -15,29 +16,50 @@
   }
 }
 
-.Item {
+.Control {
   align-items: center;
   border-radius: 24px;
   display: flex;
   flex: 0 0 144px;
+  height: 32px;
   transition: all .2s;
   will-change: background, box-shadow;
+}
+
+.Dropdown {
+  cursor: auto;
+  left: 0;
+  opacity: 0;
+  padding: 20px 0 0;
+  position: absolute;
+  top: 100%;
+  transform: translateY(-20%);
+  transition: all .3s;
+  visibility: hidden;
+  width: 100%;
+  will-change: opacity, transform, visibility;
+  z-index: -1;
+}
+
+.Item {
+  align-items: center;
+  display: flex;
+  flex: 0 0 144px;
+  height: 100px;
 
   &:hover {
-    background: $color-gray-0;
-    box-shadow: 0 -10px 10px 0 rgba($color-gray-0, .6),
-      0 10px 10px 0 rgba($color-gray-1000, .2);
-    cursor: pointer;
-  }
+    .Control {
+      background: $color-gray-0;
+      box-shadow: 0 -10px 10px 0 rgba($color-gray-0, .6),
+        0 10px 10px 0 rgba($color-gray-1000, .2);
+      cursor: pointer;
+    }
 
-  &Products {
-    &:hover {
-      .Products {
-        opacity: 1;
-        transform: translateY(0%);
-        transition-delay: 0s;
-        visibility: visible;
-      }
+    .Dropdown {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 0s;
+      visibility: visible;
     }
   }
 
@@ -46,17 +68,4 @@
     text-align: center;
     width: 100%;
   }
-}
-
-.Products {
-  cursor: auto;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  top: calc(100% + 20px);
-  transform: translateY(-20%);
-  transition: all .3s .4s;
-  visibility: hidden;
-  width: 100%;
-  z-index: -1;
 }
