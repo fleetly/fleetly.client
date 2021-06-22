@@ -1,5 +1,6 @@
 {
   "extends": ["stylelint-config-prettier", "stylelint-config-css-modules"],
+  "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
   "plugins": ["stylelint-order", "stylelint-prettier", "stylelint-scss"],
   "rules": {
     "at-rule-no-unknown": null,

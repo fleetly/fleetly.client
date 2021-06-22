@@ -16,4 +16,9 @@
     max-width: 100%;
     padding: 40px;
   }
+
+  @include breakpoints(smallMobile) {
+    max-width: 100%;
+    padding: 20px;
+  }
 }

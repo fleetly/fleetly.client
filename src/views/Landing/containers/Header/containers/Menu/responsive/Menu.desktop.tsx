@@ -4,11 +4,11 @@ import React from 'react';
 import { Text } from '@components/Typography';
 
 // Containers
-import Integrations from './Integrations';
-import Products from './Products';
+import Integrations from '../../Integrations';
+import Products from '../../Products';
 
 // Styles
-import styles from './Menu.scss';
+import styles from './Menu.desktop.scss';
 
 const LandingHeaderMenu: React.FC<{}> = () => (
   <nav className={styles.Root} role="menu">

@@ -3,6 +3,10 @@
 
 .Root {
   margin: 200px 0 0;
+
+  @include breakpoints(mobile) {
+    margin: 80px 0 0;
+  }
 }
 
 .Actions {

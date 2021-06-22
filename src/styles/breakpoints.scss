@@ -6,13 +6,17 @@
       }
     }
 
-    @if $device == mobile {
-      @media only screen and (max-width: 767px) {
+    @if $device == smallMobile {
+      @media only screen and (max-width: 400px) {
         @content;
       }
     }
 
-    @else if $device == tablet {
+    @if $device == mobile {
+      @media only screen and (max-width: 767px) {
+        @content;
+      }
+    } @else if $device == tablet {
       @media only screen and (min-width: 768px) and (max-width: 1024px) {
         @content;
       }

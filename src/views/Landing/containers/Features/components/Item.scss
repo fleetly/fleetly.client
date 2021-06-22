@@ -58,6 +58,10 @@
     flex: none;
     margin: 0 -32px 60px;
   }
+
+  @include breakpoints(mobile) {
+    margin: 0 -12px 60px;
+  }
 }
 
 .Content {

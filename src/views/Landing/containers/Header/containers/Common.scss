@@ -1,3 +1,4 @@
+@import '~@styles/breakpoints';
 @import '~@styles/colors';
 
 .Root {
@@ -8,11 +9,25 @@
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(4, 1fr);
-  padding: 28px;
+  padding: 40px;
+
+  @include breakpoints(mobile) {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    grid-gap: 40px;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 20px;
+  }
 
   &Variant {
     &Products {
       grid-template-columns: repeat(3, 1fr);
+
+      @include breakpoints(mobile) {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 }
@@ -20,11 +35,23 @@
 .List {
   margin: 28px 0 0;
 
+  @include breakpoints(mobile) {
+    margin: 20px 0 0;
+  }
+
   & > *:not(:first-child) {
     margin: 20px 0 0;
+
+    @include breakpoints(mobile) {
+      margin: 16px 0 0;
+    }
   }
 }
 
 .Title {
   color: $color-green-500;
+
+  @include breakpoints(mobile) {
+    font-size: 16px !important;
+  }
 }

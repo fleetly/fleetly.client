@@ -1,0 +1,41 @@
+@import '~@styles/breakpoints';
+@import '~@styles/colors';
+
+.Root {
+  background-color: #dee8da;
+  border: solid 2px #d6e2d1;
+  border-radius: 20px;
+  display: none;
+  flex-direction: column;
+  height: 40px;
+  justify-content: center;
+  padding: 0 16px;
+  width: 60px;
+
+  @include breakpoints(mobile) {
+    display: flex;
+  }
+}
+
+.Line {
+  background-color: #5fa24b;
+  border-radius: 1.5px;
+  height: 3px;
+  opacity: .4;
+  transition: all .2s;
+  width: 12px;
+  will-change: box-shadow, opacity, width;
+
+  &:not(:first-child) {
+    margin: 6px 0 0;
+  }
+
+  &Is {
+    &Selected {
+      box-shadow: 0 -2px 2px 0 rgba(255, 255, 255, .4),
+        0 2px 2px 0 rgba(95, 162, 75, .6);
+      opacity: 1;
+      width: 24px;
+    }
+  }
+}

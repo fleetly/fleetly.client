@@ -25,7 +25,7 @@ const LandingIntro = () => (
         With Fleetly
       </H1>
 
-      <Text className={styles.Description} component="div">
+      <Text className={styles.Description} component="div" medium size="large">
         Combine channels and&nbsp;automate communication with&nbsp;subscribers
         to&nbsp;grow your business
       </Text>
