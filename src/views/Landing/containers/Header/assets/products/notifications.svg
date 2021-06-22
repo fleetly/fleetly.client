@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF9098" offset="0.00819493007%"></stop>
+            <stop stop-color="#FF3F3D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1E4FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-/-Header-/-Pop-Up" transform="translate(-512.000000, -209.000000)">
+            <g id="Pop-Up" transform="translate(0.000000, 120.000000)">
+                <g id="Groups" transform="translate(286.000000, 40.000000)">
+                    <g id="System" transform="translate(226.000000, 0.000000)">
+                        <g id="Push-Notifications" transform="translate(0.000000, 49.000000)">
+                            <g id="Icon">
+                                <rect id="Rectangle" fill="url(#linearGradient-1)" x="0" y="0" width="40" height="40" rx="10.6666667"></rect>
+                                <path d="M28.7537333,24.6400556 C29.1252,24.9621111 29.3333333,25.4192222 29.3333333,25.9027778 C29.3333333,26.8141667 28.6006667,27.5555556 27.7,27.5555556 L12.3,27.5555556 C11.3993333,27.5555556 10.6666667,26.8141667 10.6666667,25.9027778 C10.6666667,25.4192222 10.8748,24.9621111 11.2378667,24.6476111 C12.6574667,23.4330556 13.4666667,21.6688333 13.4666667,19.7997778 L13.4666667,17.1666667 C13.4666667,13.8431667 15.9054667,11.092 19.0666667,10.6311111 L19.0666667,9.61111111 C19.0666667,9.08883333 19.4848,8.66666667 20,8.66666667 C20.5152,8.66666667 20.9333333,9.08883333 20.9333333,9.61111111 L20.9333333,10.6311111 C24.0936,11.092 26.5333333,13.8431667 26.5333333,17.1666667 L26.5333333,19.7997778 C26.5333333,21.6688333 27.3425333,23.4330556 28.7537333,24.6400556 Z M20,31.3333333 C18.3097333,31.3333333 16.8957333,30.1140556 16.5709333,28.5 L23.4290667,28.5 C23.1042667,30.1140556 21.6902667,31.3333333 20,31.3333333 Z" id="Combined-Shape-Copy-2" fill="url(#linearGradient-2)" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

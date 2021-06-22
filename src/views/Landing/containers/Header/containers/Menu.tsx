@@ -1,10 +1,10 @@
-import classNames from 'classnames';
 import React from 'react';
 
 // Components
 import { Text } from '@components/Typography';
 
 // Containers
+import Integrations from './Integrations';
 import Products from './Products';
 
 // Styles
@@ -12,29 +12,36 @@ import styles from './Menu.scss';
 
 const LandingHeaderMenu: React.FC<{}> = () => (
   <nav className={styles.Root} role="menu">
-    <div
-      className={classNames(styles.Item, styles.ItemProducts)}
-      role="menuitem"
-    >
-      <Text bold className={styles.ItemTitle} component="div" size="large">
-        Products
-      </Text>
+    <div className={styles.Item} role="menuitem">
+      <div className={styles.Control}>
+        <Text bold className={styles.ItemTitle} component="div" size="large">
+          Products
+        </Text>
+      </div>
 
-      <div className={styles.Products}>
+      <div className={styles.Dropdown}>
         <Products />
       </div>
     </div>
 
     <div className={styles.Item} role="menuitem">
-      <Text bold className={styles.ItemTitle} component="div" size="large">
-        Integrations
-      </Text>
+      <div className={styles.Control}>
+        <Text bold className={styles.ItemTitle} component="div" size="large">
+          Integrations
+        </Text>
+      </div>
+
+      <div className={styles.Dropdown}>
+        <Integrations />
+      </div>
     </div>
 
     <div className={styles.Item} role="menuitem">
-      <Text bold className={styles.ItemTitle} component="div" size="large">
-        Pricing
-      </Text>
+      <div className={styles.Control}>
+        <Text bold className={styles.ItemTitle} component="div" size="large">
+          Pricing
+        </Text>
+      </div>
     </div>
   </nav>
 );

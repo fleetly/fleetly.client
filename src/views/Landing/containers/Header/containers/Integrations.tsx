@@ -2,18 +2,18 @@ import React from 'react';
 
 // Components
 import { Text } from '@components/Typography';
-import Product from '../../components/Product';
+import Product from '../components/Product';
 
 // Data
-import { PRODUCTS } from './Products.data';
+import { INTEGRATIONS } from '../Header.data';
 
 // Styles
-import styles from './Products.scss';
+import styles from './Common.scss';
 
-const LandingHeaderProducts: React.FC<{}> = () => (
+const LandingHeaderIntegrations: React.FC<{}> = () => (
   <div className={styles.Root}>
-    {PRODUCTS.map(({ items, title }, index) => (
-      <div className={styles.Category} key={index}>
+    {INTEGRATIONS.map(({ items, title }, index) => (
+      <div key={index}>
         <Text bold className={styles.Title} size="large">
           {title}
         </Text>
@@ -30,4 +30,4 @@ const LandingHeaderProducts: React.FC<{}> = () => (
   </div>
 );
 
-export default LandingHeaderProducts;
+export default LandingHeaderIntegrations;

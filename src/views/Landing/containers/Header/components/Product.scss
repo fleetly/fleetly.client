@@ -1,7 +1,6 @@
 @import '~@styles/colors';
 
 .Root {
-  align-items: center;
   display: flex;
 
   &Is {
@@ -13,24 +12,45 @@
       }
     }
   }
+
+  &Variant {
+    &Integration {
+      align-items: center;
+
+      .Logo {
+        flex: 0 0 40px;
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    &Product {
+      align-items: flex-start;
+
+      .Logo {
+        flex: 0 0 72px;
+        height: 72px;
+        width: 72px;
+      }
+    }
+  }
 }
 
-.Icon {
-  flex: 0 0 40px;
-  font-size: 40px;
+.Description {
+  color: rgba($color-brown, .6);
 }
 
 .Info {
+  display: flex;
+  flex-direction: column;
   margin: 0 0 0 20px;
 }
 
 .Logo {
-  flex: 0 0 40px;
-  max-height: 40px;
-  max-width: 40px;
   object-fit: contain;
 }
 
 .Title {
   color: $color-brown;
+  white-space: nowrap;
 }
