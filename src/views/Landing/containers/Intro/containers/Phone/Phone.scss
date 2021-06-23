@@ -1,0 +1,75 @@
+@import '~@styles/colors';
+
+.Root {
+  background-image:
+    linear-gradient(
+      to top,
+      $color-green-400,
+      20%,
+      $color-green-200
+    ),
+    linear-gradient(to bottom, $color-green-200, $color-green-400 23%);
+  border: 16px solid #6f77ff;
+  border-radius: 68px;
+  display: flex;
+  flex-direction: column;
+  height: 958px;
+  overflow: hidden;
+  position: relative;
+  top: 80px;
+  // transform: scale(.7);
+  transform: rotateX(340deg) rotateY(16deg) rotateZ(8deg) scale(.7);
+  width: 460px;
+  z-index: 1;
+}
+
+.Container {
+  background: $color-gray-50;
+  border-radius: 52px 52px 0 0;
+  box-shadow: 0 0 0 4px rgba($color-gray-0, .2);
+  display: flex;
+  flex: 1 1 calc(100% - 160px);
+  flex-direction: column;
+  max-height: calc(100% - 160px);
+  overflow: hidden;
+}
+
+.Group {
+  margin: 12px 0;
+
+  & > *:not(:first-child) {
+    margin: 4px 0 0;
+
+    & > div {
+      border-radius: 8px 32px 32px 8px !important;
+    }
+  }
+}
+
+.Form {
+  align-items: center;
+  background: $color-gray-100;
+  border: 2px solid $color-gray-300;
+  border-radius: 28px;
+  color: rgba($color-brown, .6);
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 28px 28px;
+  padding: 4px 4px 4px 20px;
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  flex: 0 0 160px;
+  justify-content: center;
+}
+
+.Track {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column-reverse;
+  max-height: 100%;
+  overflow: auto;
+  padding: 28px;
+}

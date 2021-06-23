@@ -6,7 +6,7 @@ import Combine from './containers/Combine';
 import Features from './containers/Features';
 import Footer from './containers/Footer';
 import Header from './containers/Header';
-import Intro from './containers/Intro';
+import Intro from './containers/Intro/Intro';
 import Try from './containers/Try';
 
 // Styles

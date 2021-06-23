@@ -19,7 +19,6 @@
     &H1 {
       font-size: 60px;
       font-weight: 800;
-      letter-spacing: 1px;
       line-height: 76px;
 
       @include breakpoints(mobile) {
@@ -43,7 +42,6 @@
     &H3 {
       font-size: 20px;
       font-weight: 700;
-      letter-spacing: -.2px;
       line-height: 24px;
 
       @include breakpoints(mobile) {
@@ -57,14 +55,12 @@
     &H4 {
       font-size: 18px;
       font-weight: 700;
-      letter-spacing: -.2px;
       line-height: 24px;
     }
 
     &H5 {
       font-size: 14px;
       font-weight: 600;
-      letter-spacing: -.2px;
       line-height: 20px;
     }
 
@@ -75,14 +71,12 @@
     }
 
     &Text {
-      letter-spacing: -.2px;
-
       @include breakpoints(mobile) {
         letter-spacing: 0;
       }
 
       &.RootSize {
-        &ExtraLarge {
+        &Extralarge {
           font-size: 18px;
           line-height: 32px;
         }

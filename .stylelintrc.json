@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-prettier", "stylelint-config-css-modules"],
+  "extends": ["stylelint-config-css-modules", "stylelint-config-standard"],
   "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
   "plugins": ["stylelint-order", "stylelint-prettier", "stylelint-scss"],
   "rules": {
@@ -30,6 +30,7 @@
       }
     ],
     "order/properties-alphabetical-order": true,
+    "property-no-unknown": null,
     "selector-pseudo-class-no-unknown": [
       true,
       {

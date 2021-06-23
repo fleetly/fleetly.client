@@ -14,20 +14,20 @@
 }
 
 .Background {
-  background: url('../assets/intro-bg.webp') no-repeat center bottom / cover;
+  background: url('../../assets/intro-bg.webp') no-repeat center bottom / cover;
   height: 100%;
   position: relative;
   width: 100%;
   z-index: 2;
 
   @include breakpoints(mobile) {
-    background-image: url('../assets/intro-bg_mobile.webp');
+    background-image: url('../../assets/intro-bg_mobile.webp');
     height: 952px;
   }
 }
 
 .Blue {
-  background: url('../assets/intro-blue.svg') no-repeat center bottom / cover;
+  background: url('../../assets/intro-blue.svg') no-repeat center bottom / cover;
   height: 100%;
   position: absolute;
   width: 100%;
@@ -63,4 +63,13 @@
 .Description {
   color: rgba($color-gray-0, .8);
   margin: 12px 0 0;
+}
+
+.Phone {
+  align-items: flex-end;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
 }
