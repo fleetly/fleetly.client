@@ -9,7 +9,7 @@ export const MESSAGES: {
     id: '1',
     buttons: ["Let's see what you can! 🚀"],
     text:
-      'Hello, welcome to Fleetly! Let me show you how you can automate the processes in your business?',
+      'Hello there, welcome to Fleetly! Let me show you how you can automate the processes in your business?',
     timeout: 0
   },
   {

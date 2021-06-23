@@ -82,7 +82,7 @@
 .Wrapper {
   @include breakpoints(mobile) {
     background-color: #eef4ec;
-    border: solid 3px #ffffff;
+    border: solid 3px #fff;
     border-radius: 30px;
     box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .1);
     display: flex;
