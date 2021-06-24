@@ -6,6 +6,9 @@ import Button from '@components/Button';
 import { Text } from '@components/Typography';
 import Message from './components/Message';
 
+// Container
+import Header from './containers/Header';
+
 // Data
 import { MESSAGES } from './Phone.data';
 
@@ -50,24 +53,28 @@ const LandingIntroPhone = () => {
 
   return (
     <div className={styles.Root}>
-      <div className={styles.Header} />
-
-      <div className={styles.Container}>
-        <div className={styles.Track}>
-          {groups.map(({ messages, variant }, index) => (
-            <div className={styles.Group} key={messages[0].id}>
-              {messages.map((message) => (
-                <Message {...message} key={message.id} variant={variant} />
-              ))}
-            </div>
-          ))}
+      <div className={styles.Phone}>
+        <div className={styles.Header}>
+          <Header />
         </div>
 
-        <div className={styles.Form}>
-          <Text medium size="extraLarge">
-            Type something...
-          </Text>
-          <Button color="primary" icon="fas fa-paper-plane" />
+        <div className={styles.Container}>
+          <div className={styles.Track}>
+            {groups.map(({ messages, variant }, index) => (
+              <div className={styles.Group} key={messages[0].id}>
+                {messages.map((message) => (
+                  <Message {...message} key={message.id} variant={variant} />
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.Form}>
+            <Text medium size="extraLarge">
+              Type something...
+            </Text>
+            <Button color="primary" icon="fas fa-paper-plane" />
+          </div>
         </div>
       </div>
     </div>

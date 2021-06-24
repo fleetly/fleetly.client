@@ -2,7 +2,11 @@
 @import '~@styles/colors';
 
 .Root {
-  height: 900px;
+  height: 1000px;
+
+  @include breakpoints(mobile) {
+    height: 900px;
+  }
 }
 
 .Actions {
@@ -26,18 +30,19 @@
   }
 }
 
-.Blue {
-  background: url('../../assets/intro-blue.svg') no-repeat center bottom / cover;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  z-index: 1;
+// .Blue {
+//   background: url('../../assets/intro-blue.svg') no-repeat center bottom / cover;
+//   height: 100%;
+//   opacity: 1;
+//   position: absolute;
+//   width: 100%;
+//   z-index: 1;
 
-  @include breakpoints(mobile) {
-    background-image: linear-gradient(to bottom, #76adff, #5461ea);
-    height: 900px;
-  }
-}
+//   @include breakpoints(mobile) {
+//     background-image: linear-gradient(to bottom, #76adff, #5461ea);
+//     height: 900px;
+//   }
+// }
 
 .Container {
   align-items: center;
@@ -45,10 +50,15 @@
 }
 
 .Content {
-  color: $color-gray-0;
+  color: $color-blue-300;
+  margin: 140px 0 0;
   max-width: 420px;
   position: relative;
   z-index: 2;
+
+  @include breakpoints(mobile) {
+    margin: 140px 0 0;
+  }
 }
 
 .Cover {
@@ -61,7 +71,7 @@
 }
 
 .Description {
-  color: rgba($color-gray-0, .8);
+  color: $color-brown;
   margin: 12px 0 0;
 }
 
