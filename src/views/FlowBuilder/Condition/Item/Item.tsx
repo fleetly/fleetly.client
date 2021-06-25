@@ -5,27 +5,31 @@ import React, { useState } from 'react';
 import { Text } from '@components/Typography';
 import { useContextMenu } from '@components/ContextMenu';
 
+// Containers
+import Menu from './containers/Menu';
+
 // Hooks
 import { useOutsideClick } from '@hooks/events';
 
 // Styles
 import styles from './Item.scss';
 
-// Test
-import Test from './Menu'
-
 const Item = () => {
+  // Setup
+  const [blockMenuProps, { handleMenuOpen }] = useContextMenu();
+
   // State
   const [state, setState] = useState(false);
 
-  const handleEditClick = () => setState(true);
+  // Handlers
   const handleClickClosed = () => setState(false);
 
-  const [blockMenuProps, {handleMenuOpen}] = useContextMenu();
-
+  // Setup
   const ref = useOutsideClick(state ? handleClickClosed : undefined);
+
   return (
-    <div><Test {...blockMenuProps} /> 
+    <div>
+      <Menu {...blockMenuProps} />
       <div
         className={classNames(styles.Root, { [styles.RootIsAction]: state })}
         ref={ref}

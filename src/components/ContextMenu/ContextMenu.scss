@@ -7,5 +7,14 @@
 .Card {
   border: 2px solid rgba($color-primary, .2);
   box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .1);
+  display: flex;
   min-width: 220px;
+
+  & > * {
+    min-width: 220px;
+
+    &:not(:first-child) {
+      border-left: 2px solid $color-gray-100;
+    }
+  }
 }

@@ -2,13 +2,13 @@ import React from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
 // Components
-import { Block, Button } from '../Common';
+import { Block, BlockContent, Button } from '../Common';
+
+// Containers
+import Filter from './/Filter';
 
 // Styles
 import styles from './Condition.scss';
-
-// TEST
-import List from './components/List';
 
 const FlowBuilderCondition: React.FC<NodeProps> = ({ id, selected }) => (
   <Block
@@ -19,7 +19,10 @@ const FlowBuilderCondition: React.FC<NodeProps> = ({ id, selected }) => (
     subTitle="Condition"
     title="Check customer info"
   >
-    <List />
+    <BlockContent>
+      <Filter />
+    </BlockContent>
+
     <div className={styles.Actions}>
       <Button>Add Condition</Button>
     </div>

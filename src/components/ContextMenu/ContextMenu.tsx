@@ -17,7 +17,7 @@ interface Position {
   y?: number;
 }
 
-export interface PropTypes {
+export interface ContextMenuProps {
   anchor?: HTMLElement;
   children?: React.ReactNode;
   classes?: ExtendedClasses;
@@ -27,7 +27,7 @@ export interface PropTypes {
   spacing?: number;
 }
 
-const ContextMenu: React.FC<PropTypes> = ({
+const ContextMenu: React.FC<ContextMenuProps> = ({
   anchor,
   children,
   classes,
