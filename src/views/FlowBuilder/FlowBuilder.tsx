@@ -70,7 +70,7 @@ const Flow: React.FC<{}> = () => {
               nodeTypes={{
                 [BlockType.ACTION]: Action,
                 [BlockType.CONDITION]: Condition,
-                [BlockType.CONTENT]: Content,
+                [BlockType.CONTENT]: Condition,
                 [BlockType.RANDOMIZE]: Randomize,
                 [BlockType.START]: Start
               }}

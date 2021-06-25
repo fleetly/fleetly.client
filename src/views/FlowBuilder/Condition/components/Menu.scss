@@ -1,0 +1,22 @@
+@import '~@styles/colors';
+
+.Root {
+  display: flex;
+
+  & > *:not(:first-child) {
+    border-left: solid 2px $color-gray-100;
+    padding: 0 20px;
+  }
+
+  & > :first-child {
+    margin: 0 20px 0 0;
+  }
+
+  & > *:not(:last-child) {
+    width: 200px;
+  }
+}
+
+.Title {
+  padding: 0 0 0 4px;
+}

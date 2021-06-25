@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -19,6 +20,7 @@ interface Position {
 export interface PropTypes {
   anchor?: HTMLElement;
   children?: React.ReactNode;
+  classes?: ExtendedClasses;
   onClose?(event: React.SyntheticEvent): void;
   opened?: boolean;
   position?: Position;
@@ -28,6 +30,7 @@ export interface PropTypes {
 const ContextMenu: React.FC<PropTypes> = ({
   anchor,
   children,
+  classes,
   onClose,
   opened,
   spacing = 8
@@ -78,7 +81,9 @@ const ContextMenu: React.FC<PropTypes> = ({
         ref={ref}
         style={{ left: position?.x, position: 'absolute', top: position?.y }}
       >
-        <Card className={styles.Card}>{children}</Card>
+        <Card className={classNames(classes?.root, styles.Card)}>
+          {children}
+        </Card>
       </div>
     </Transition>,
     document.getElementById('portal') as HTMLElement

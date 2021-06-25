@@ -7,6 +7,9 @@ import { Block, Button } from '../Common';
 // Styles
 import styles from './Condition.scss';
 
+// TEST
+import List from './components/List';
+
 const FlowBuilderCondition: React.FC<NodeProps> = ({ id, selected }) => (
   <Block
     color="pink"
@@ -16,6 +19,7 @@ const FlowBuilderCondition: React.FC<NodeProps> = ({ id, selected }) => (
     subTitle="Condition"
     title="Check customer info"
   >
+    <List />
     <div className={styles.Actions}>
       <Button>Add Condition</Button>
     </div>
