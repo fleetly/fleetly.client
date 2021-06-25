@@ -1,7 +1,7 @@
 export const SOCIAL_LINKS = [
   {
     icon: 'fab fa-facebook',
-    to: '/'
+    to: 'https://www.facebook.com/fleetlyapp'
   },
   {
     icon: 'fab fa-instagram',
@@ -9,7 +9,7 @@ export const SOCIAL_LINKS = [
   },
   {
     icon: 'fab fa-twitter',
-    to: '/'
+    to: 'https://twitter.com/fleetlyit'
   },
   {
     icon: 'fab fa-vk',

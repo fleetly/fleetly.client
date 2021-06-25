@@ -3,7 +3,7 @@ import * as React from 'react';
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import { InjectedFormProps, reduxForm } from 'redux-form';
-import { object, ref, string } from 'yup';
+import { object, string } from 'yup';
 
 // Components
 import Button from '@components/Button';
@@ -25,7 +25,7 @@ const SignUp: React.SFC<InjectedFormProps> = ({
   handleSubmit,
   submitting
 }) => (
-  <Form classes={{ error: styles.Error }} error={error} onSubmit={handleSubmit}>
+  <Form error={error} onSubmit={handleSubmit}>
     <Fieldset
       classes={{ root: classNames(styles.Fieldset, styles.FieldsetMultiple) }}
     >
@@ -35,13 +35,6 @@ const SignUp: React.SFC<InjectedFormProps> = ({
         disabled={submitting}
         label="Password"
         name="password"
-        type="password"
-      />
-
-      <Input
-        disabled={submitting}
-        label="Confirm password"
-        name="confirmation"
         type="password"
       />
     </Fieldset>
@@ -61,9 +54,6 @@ export default compose<InjectedFormProps, any>(
     asyncValidate: asyncValidate(
       object().shape({
         email: string().required(),
-        confirmation: string()
-          .required()
-          .oneOf([ref('password')], 'Passwords must match'),
         password: string().required(),
         username: string().required()
       })

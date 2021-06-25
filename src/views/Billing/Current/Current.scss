@@ -1,11 +1,6 @@
 @import '~@styles/colors';
 
-.Root {
-  grid-area: a;
-}
-
 .Content {
-  display: flex;
   flex-direction: column-reverse;
 }
 
@@ -14,55 +9,6 @@
   grid-gap: 16px 16px;
   grid-template-columns: repeat(3, 1fr);
   margin: 28px 0;
-}
-
-.Info {
-  border-bottom: 1px solid $color-gray-100;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30px;
-  padding-bottom: 15px;
-}
-
-.Plan {
-  &Title {
-    color: $color-gray-400;
-    margin: 0 0 0 30px;
-  }
-
-  &Info {
-    align-items: center;
-    border-top: 1px solid $color-gray-300;
-    display: flex;
-    justify-content: space-between;
-    margin: 12px 0 0;
-    padding: 34px 30px 0;
-
-    &Title {
-      display: flex;
-      font-weight: 600;
-    }
-
-    &Limit {
-      color: $color-gray-500;
-      margin: 0 0 0 20px;
-    }
-  }
-}
-
-.Progress {
-  align-items: center;
-  display: flex;
-  margin: 4px 0 0 0;
-  padding: 0 30px;
-
-  &Info {
-    width: 100%;
-  }
-
-  &Price {
-    margin: 0 0 0 30px;
-  }
 }
 
 .Title {

@@ -1,0 +1,105 @@
+@import '~@styles/colors';
+
+.Root {
+  border-radius: 68px;
+  display: flex;
+  height: 958px;
+  justify-content: center;
+  position: relative;
+  top: 40px;
+  transform: rotateX(340deg) rotateY(16deg) rotateZ(8deg) scale(.75);
+  width: 460px;
+  z-index: 1;
+
+  &::after {
+    bottom: 0;
+    box-shadow: 20px 20px 80px rgba($color-gray-1000, 1);
+    content: '';
+    display: block;
+    height: 40px;
+    position: absolute;
+    width: 80%;
+    z-index: -1;
+  }
+
+  &::before {
+    background: #6f77ff;
+    content: '';
+    height: 120px;
+    position: absolute;
+    right: -12px;
+    top: 240px;
+    width: 4px;
+  }
+}
+
+.Container {
+  background: $color-gray-50;
+  border-radius: 52px 52px 0 0;
+  box-shadow: 0 0 0 8px rgba($color-gray-0, .2);
+  display: flex;
+  flex: 1 1 calc(100% - 160px);
+  flex-direction: column;
+  max-height: calc(100% - 160px);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.Group {
+  margin: 12px 0;
+
+  & > *:not(:first-child) {
+    margin: 4px 0 0;
+
+    & > div {
+      border-radius: 8px 32px 32px 8px !important;
+    }
+  }
+}
+
+.Form {
+  align-items: center;
+  background: $color-gray-100;
+  border: 2px solid $color-gray-300;
+  border-radius: 28px;
+  color: rgba($color-brown, .6);
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 28px 28px;
+  padding: 4px 4px 4px 20px;
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  flex: 0 0 160px;
+  justify-content: center;
+}
+
+.Phone {
+  background-image:
+    linear-gradient(
+      to bottom,
+      $color-green-200,
+      $color-green-400 20%
+    ),
+    linear-gradient(to top, $color-green-400, 20%, $color-green-200);
+  border: 16px solid #757dff;
+  border-radius: 68px;
+  box-shadow: 2px 2px 0 2px #6870ff, 10px 10px 0 8px #676bde;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.Track {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column-reverse;
+  max-height: 100%;
+  overflow: auto;
+  padding: 28px;
+}

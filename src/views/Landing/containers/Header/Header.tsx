@@ -10,11 +10,13 @@ import Button from '@views/Landing/components/Button';
 import Wrapper from '@views/Landing/components/Wrapper';
 
 // Containers
-import Menu from './components/Menu';
+import Menu from './containers/Menu';
+
+// Routes
+import routes from '@routes';
 
 // Styles
 import styles from './Header.scss';
-import routes from '@routes';
 
 const LandingHeader = () => (
   <Wrapper

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Assets
-import feature3Img from '../assets/features/feature-3.png';
+import feature3Img from '../assets/features/feature-3.webp';
 
 // Components
 import { Feature } from './Features';

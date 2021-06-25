@@ -41,6 +41,7 @@ const FlowBuilderContentText: React.FC<PropTypes> = ({ text }) => {
     >
       <Form
         initialValues={{ button: 'Кликай по мне 😎', text }}
+        // tslint:disable-next-line: no-console
         onSubmit={console.log}
         subscription={{ values: true }}
       >

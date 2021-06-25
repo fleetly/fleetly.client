@@ -1,5 +1,11 @@
+@import '~@styles/breakpoints';
+
 .Container {
   & > * {
     margin: 160px 0;
+
+    @include breakpoints(mobile) {
+      margin: 100px 0;
+    }
   }
 }

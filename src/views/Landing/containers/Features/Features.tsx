@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Assets
-import feature1Img from '../../assets/features/feature-1.png';
-import feature2Img from '../../assets/features/feature-2.png';
+import feature1Img from '../../assets/features/feature-1.webp';
+import feature2Img from '../../assets/features/feature-2.webp';
 
 // Components
 import Wrapper from '@views/Landing/components/Wrapper';

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 // Components
 import { Wrapper } from '@components/Page';
-import Tabs, { Tab } from '@components/Tabs';
+import SubChart from './components/SubChart';
 
 // Interfaces
 import { IChannel } from '@interfaces/channel.interface';
@@ -17,25 +17,6 @@ import styles from './Stat.scss';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const TABS = [
-  {
-    label: 'Messages',
-    value: 'messages'
-  },
-  {
-    label: 'Subscribers',
-    value: 'subscribers'
-  },
-  {
-    label: 'Subscribed',
-    value: 'subscribed'
-  },
-  {
-    label: 'Unsubscribed',
-    value: 'unsubscribed'
-  }
-];
-
 const ChannelStat: React.FC<IChannel> = ({ source }) => {
   // Setup
   const { channelId, companyId } = useParams<{
@@ -43,22 +24,8 @@ const ChannelStat: React.FC<IChannel> = ({ source }) => {
     companyId: string;
   }>();
 
-  // State
-  const [currentTab, setCurrentTab] = React.useState(TABS[0].value);
-
   return (
     <Wrapper
-      actions={
-        <Tabs
-          classes={{ root: styles.Tabs }}
-          onSelect={setCurrentTab}
-          value={currentTab}
-        >
-          {TABS.map((tab) => (
-            <Tab {...tab} key={tab.value} />
-          ))}
-        </Tabs>
-      }
       breadcrumbs={[
         {
           title: 'Channels',
@@ -71,9 +38,10 @@ const ChannelStat: React.FC<IChannel> = ({ source }) => {
       ]}
       classes={{ actions: styles.Actions, container: styles.Container }}
     >
-      <div>Messages</div>
-      <div>Subscribers</div>
-      <div>Graph</div>
+      <SubChart title="Messages" value={182} />
+      <SubChart title="Subscribers" value={32} />
+
+      <SubChart title="Graph" value={32} />
     </Wrapper>
   );
 };

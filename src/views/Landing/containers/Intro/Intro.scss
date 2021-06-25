@@ -1,0 +1,85 @@
+@import '~@styles/breakpoints';
+@import '~@styles/colors';
+
+.Root {
+  height: 1000px;
+
+  @include breakpoints(mobile) {
+    height: 900px;
+  }
+}
+
+.Actions {
+  margin: 64px 0 0;
+
+  @include breakpoints(mobile) {
+    margin: 48px 0 0;
+  }
+}
+
+.Background {
+  background: url('../../assets/intro-bg.webp') no-repeat center bottom / cover;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+
+  @include breakpoints(mobile) {
+    background-image: url('../../assets/intro-bg_mobile.webp');
+    height: 952px;
+  }
+}
+
+// .Blue {
+//   background: url('../../assets/intro-blue.svg') no-repeat center bottom / cover;
+//   height: 100%;
+//   opacity: 1;
+//   position: absolute;
+//   width: 100%;
+//   z-index: 1;
+
+//   @include breakpoints(mobile) {
+//     background-image: linear-gradient(to bottom, #76adff, #5461ea);
+//     height: 900px;
+//   }
+// }
+
+.Container {
+  align-items: center;
+  display: flex;
+}
+
+.Content {
+  color: $color-blue-300;
+  margin: 140px 0 0;
+  max-width: 420px;
+  position: relative;
+  z-index: 2;
+
+  @include breakpoints(mobile) {
+    margin: 140px 0 0;
+  }
+}
+
+.Cover {
+  height: 1400px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.Description {
+  color: $color-brown;
+  margin: 12px 0 0;
+}
+
+.Phone {
+  align-items: flex-end;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}

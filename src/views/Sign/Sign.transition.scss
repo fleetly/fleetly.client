@@ -1,3 +1,5 @@
+@import '~@styles/breakpoints';
+
 .Root {
   &Transition {
     &Enter {
@@ -29,7 +31,11 @@
         .Content {
           opacity: 1;
           transform: translateY(0);
-          transition: all .8s 2s;
+          transition: all .8s 1.2s;
+
+          @include breakpoints(mobile) {
+            transition: all .8s .6s;
+          }
         }
 
         .Land1 {

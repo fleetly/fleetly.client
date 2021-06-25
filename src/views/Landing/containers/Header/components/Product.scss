@@ -1,0 +1,77 @@
+@import '~@styles/breakpoints';
+@import '~@styles/colors';
+
+.Root {
+  display: flex;
+
+  &Is {
+    &Disabled {
+      opacity: .6;
+
+      .Logo {
+        filter: grayscale(100%);
+      }
+    }
+  }
+
+  &Variant {
+    &Integration {
+      align-items: center;
+
+      .Logo {
+        flex: 0 0 40px;
+        height: 40px;
+        width: 40px;
+
+        @include breakpoints(mobile) {
+          flex: 0 0 32px;
+          height: 32px;
+          width: 32px;
+        }
+      }
+    }
+
+    &Product {
+      align-items: flex-start;
+
+      .Logo {
+        flex: 0 0 72px;
+        height: 72px;
+        width: 72px;
+
+        @include breakpoints(mobile) {
+          flex: 0 0 40px;
+          height: 40px;
+          width: 40px;
+        }
+      }
+    }
+  }
+}
+
+.Description {
+  color: rgba($color-brown, .6);
+
+  @include breakpoints(mobile) {
+    font-size: 12px !important;
+  }
+}
+
+.Info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 20px;
+}
+
+.Logo {
+  object-fit: contain;
+}
+
+.Title {
+  color: $color-brown;
+  white-space: nowrap;
+
+  @include breakpoints(mobile) {
+    font-size: 14px !important;
+  }
+}

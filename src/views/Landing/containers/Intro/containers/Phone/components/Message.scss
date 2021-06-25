@@ -1,0 +1,79 @@
+@import '~@styles/colors';
+
+.Root {
+  animation: init .2s;
+  display: flex;
+  width: 100%;
+
+  &Variant {
+    &Incoming {
+      flex-direction: row-reverse;
+
+      .Container {
+        background: $color-blue-300;
+        border-color: $color-blue-300;
+        border-radius: 32px 32px 8px 32px;
+      }
+
+      .Text {
+        color: $color-gray-0;
+      }
+    }
+
+    &Outcoming {
+      .Container {
+        background: $color-gray-100;
+        border-color: $color-gray-300;
+        border-radius: 32px 32px 32px 8px;
+      }
+
+      .Text {
+        color: $color-brown;
+      }
+    }
+  }
+}
+
+.Actions {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0 0;
+
+  & > *:not(:first-child) {
+    margin: 4px 0 0;
+  }
+}
+
+.Button {
+  background: $color-gray-0;
+  border: 2px solid $color-gray-300;
+  border-radius: 20px;
+  font-family: inherit;
+  padding: 6px 12px;
+  width: 100%;
+}
+
+.Container {
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  padding: 12px 20px;
+  transition: all .2s;
+}
+
+.Text {
+  color: $color-brown;
+}
+
+@keyframes init {
+  from {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}

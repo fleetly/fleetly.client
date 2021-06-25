@@ -1,0 +1,10 @@
+@import '~@styles/colors';
+
+.Root {
+  display: flex;
+  flex-direction: column;
+}
+
+.Tax {
+  color: $color-gray-500;
+}

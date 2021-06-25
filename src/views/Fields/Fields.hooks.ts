@@ -1,4 +1,4 @@
-import { omit } from 'lodash';
+import omit from 'lodash/omit';
 import { useMutation, useQuery } from 'react-apollo';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
