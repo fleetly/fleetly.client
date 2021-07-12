@@ -1,12 +1,17 @@
-import * as React from 'react';
+import React from 'react';
+import { useQuery } from 'react-apollo';
+import { Line } from 'react-chartjs-2';
 import { useParams } from 'react-router-dom';
 
 // Components
 import { Wrapper } from '@components/Page';
-import SubChart from './components/SubChart';
+
+// GraphQL
+import GET_CHANNEL_STATS from './graphql/getChannelStats.gql';
 
 // Interfaces
 import { IChannel } from '@interfaces/channel.interface';
+import { IStats } from '@interfaces/stats.interface';
 
 // Routes
 import ROUTES from '@routes';
@@ -24,6 +29,11 @@ const ChannelStat: React.FC<IChannel> = ({ source }) => {
     companyId: string;
   }>();
 
+  // Data
+  const { data } = useQuery<{ channelStats: IStats[] }>(GET_CHANNEL_STATS, {
+    variables: { channelId }
+  });
+
   return (
     <Wrapper
       breadcrumbs={[
@@ -38,10 +48,24 @@ const ChannelStat: React.FC<IChannel> = ({ source }) => {
       ]}
       classes={{ actions: styles.Actions, container: styles.Container }}
     >
-      <SubChart title="Messages" value={182} />
-      <SubChart title="Subscribers" value={32} />
-
-      <SubChart title="Graph" value={32} />
+      <Line
+        className={styles.Chart}
+        data={{
+          labels: (data?.channelStats || []).map(({ x }) => x),
+          datasets: [
+            {
+              borderColor: '#5c68ec',
+              data: (data?.channelStats || []).map(({ y }) => y),
+              fill: false,
+              pointRadius: 0
+            }
+          ]
+        }}
+        options={{
+          bezierCurve: true
+        }}
+        type="number"
+      />
     </Wrapper>
   );
 };

@@ -1,0 +1,6 @@
+query getChannelStats($channelId: String!) {
+  channelStats(channelId: $channelId, range: YEAR) {
+    x
+    y
+  }
+}

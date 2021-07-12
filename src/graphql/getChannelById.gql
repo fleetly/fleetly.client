@@ -16,11 +16,7 @@ query channel($channelId: String!) {
     }
     webhook {
       id
-      status {
-        color
-        message
-        type
-      }
+      status
     }
   }
 }

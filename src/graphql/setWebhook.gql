@@ -3,11 +3,7 @@ mutation setWebhook($channelId: String!) {
     id
     webhook {
       id
-      status {
-        color
-        message
-        type
-      }
+      status
     }
   }
 }
