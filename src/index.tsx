@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
+import 'utils/charts';
+
 // Apollo
 import {
   ApolloClient,

@@ -1,8 +1,10 @@
-import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { useParams } from 'react-router-dom';
+
+// Fleetly
+import { Color } from '@fleetly/common/dist/enums';
 
 // Components
 import Button from '@components/Button';
@@ -16,17 +18,17 @@ import { IWebhook } from '@interfaces/webhook.interface';
 import SET_WEBHOOK from '@graphql/setWebhook.gql';
 
 // Status
-import styles from '../common.scss';
+import styles from '../Common/common.scss';
 
 // Utils
 import { copyToClipboard } from '@utils/clipboard';
 
-const ChannelInfoWebhook: React.FC<IWebhook> = ({ id, status }) => {
+const ChannelWebhook: React.FC<IWebhook> = ({ id, status }) => {
   // Setup
   const { channelId } = useParams<{ channelId: string }>();
 
   // State
-  const [isCopied, setCopyState] = React.useState(false);
+  const [isCopied, setCopyState] = useState(false);
 
   // Mutations
   const [setWebhook, { loading }] = useMutation(SET_WEBHOOK, {
@@ -35,7 +37,7 @@ const ChannelInfoWebhook: React.FC<IWebhook> = ({ id, status }) => {
 
   // Handlers
   const handleCopyClick = React.useCallback(() => {
-    copyToClipboard(`https://api.fleetly.it/webhooks/${id}`);
+    copyToClipboard(`${window.location.origin}/webhooks/${id}`);
     setCopyState(true);
     setTimeout(() => setCopyState(false), 1000);
   }, [id]);
@@ -44,7 +46,7 @@ const ChannelInfoWebhook: React.FC<IWebhook> = ({ id, status }) => {
     <div>
       <div className={styles.Content}>
         <H5 className={styles.Label}>Webhook</H5>
-        <Status color={Color.GREEN} title={status?.type} />
+        <Status color={Color.GREEN} title={status} />
         <P className={styles.Description}>
           This is a secret key that gives access to your instant messengers or
           social networks
@@ -75,4 +77,4 @@ const ChannelInfoWebhook: React.FC<IWebhook> = ({ id, status }) => {
   );
 };
 
-export default ChannelInfoWebhook;
+export default ChannelWebhook;

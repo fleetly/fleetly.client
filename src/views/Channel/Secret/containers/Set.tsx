@@ -15,7 +15,7 @@ import { SET_CHANNEL_TOKEN_FORM, SET_CHANNEL_TOKEN_MODAL } from '@constants';
 // Styles
 import styles from './common.scss';
 
-const ChannelTokenSet: React.FC<InjectedFormProps<
+const ChannelSecretSet: React.FC<InjectedFormProps<
   Channel.TokenSetFormValues,
   any
 >> = ({ error, handleSubmit, submitting }) => (
@@ -45,4 +45,4 @@ export default reduxForm<any, any>({
     yup.object().shape({ newToken: yup.string().required() })
   ),
   form: SET_CHANNEL_TOKEN_FORM
-})(ChannelTokenSet);
+})(ChannelSecretSet);

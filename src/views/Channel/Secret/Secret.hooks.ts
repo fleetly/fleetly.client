@@ -1,6 +1,10 @@
+import { ApolloError } from 'apollo-boost';
 import { useCallback } from 'react';
 import { useApolloClient, useMutation } from 'react-apollo';
 import { useParams } from 'react-router-dom';
+
+// Constants
+import { SET_CHANNEL_TOKEN_MODAL, SHOW_CHANNEL_TOKEN_MODAL } from '@constants';
 
 // Form
 import { gqlErrorHandler } from '@components/Form';
@@ -11,12 +15,14 @@ import SET_CHANNEL_TOKEN from './graphql/setChannelToken.gql';
 
 // Store
 import { useModals } from '@store';
+
+// Utils
 import { copyToClipboard } from '@utils/clipboard';
 
-const useChannelTokenView = () => {
+const useChannelSecretView = () => {
   // Setup
   const client = useApolloClient();
-  const { closeModals } = useModals();
+  const { closeModals, openModal } = useModals();
   const { channelId } = useParams<{ channelId: string }>();
 
   // Mutations
@@ -29,7 +35,7 @@ const useChannelTokenView = () => {
         await setChannelToken({ variables: { channelId, newToken } });
         return closeModals();
       } catch (error) {
-        return gqlErrorHandler(error);
+        return gqlErrorHandler(error as ApolloError);
       }
     },
     [channelId, closeModals, setChannelToken]
@@ -45,14 +51,24 @@ const useChannelTokenView = () => {
       copyToClipboard(data.channelToken);
       return closeModals();
     } catch (error) {
-      return gqlErrorHandler(error);
+      return gqlErrorHandler(error as ApolloError);
     }
   }, [channelId, client, closeModals]);
 
+  const openSetModal = useCallback(() => openModal(SET_CHANNEL_TOKEN_MODAL), [
+    openModal
+  ]);
+
+  const openShowModal = useCallback(() => openModal(SHOW_CHANNEL_TOKEN_MODAL), [
+    openModal
+  ]);
+
   return {
     handleSetSubmit,
-    handleShowSubmit
+    handleShowSubmit,
+    openSetModal,
+    openShowModal
   };
 };
 
-export { useChannelTokenView };
+export { useChannelSecretView };

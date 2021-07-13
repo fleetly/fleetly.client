@@ -1,25 +1,26 @@
-import * as React from 'react';
+import React from 'react';
 import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // Components
-import Page from '@components/Page';
+import Page, { Wrapper } from '@components/Page';
 
-// Container
-import Info from './Info';
-import Stat from './Stat';
-import Token from './Token';
+// Domains
+import Secret from './Secret';
+import Source from './Source';
+import Stats from './Stats';
+import Webhook from './Webhook';
 
 // GraphQL
 import GET_CHANNEL_BY_ID from '@graphql/getChannelById.gql';
 
 // Interfaces
-import { IChannel } from '@interfaces/channel.interface.ts';
+import { IChannel } from '@interfaces/channel.interface';
 
 // Styles
 import styles from './Channel.scss';
 
-const Channel = () => {
+const Channel: React.FC = () => {
   // Setup
   const { channelId } = useParams<{ channelId: string }>();
 
@@ -32,12 +33,15 @@ const Channel = () => {
     <Page classes={{ container: styles.Root }} title="Channels">
       {data?.channel && (
         <>
-          <Stat {...data?.channel} />
-          <Info {...data?.channel} />
+          <Stats {...data?.channel} />
+
+          <Wrapper classes={{ container: styles.Info }} title="Information">
+            <Source {...data?.channel} />
+            <Secret />
+            <Webhook {...data?.channel.webhook} />
+          </Wrapper>
         </>
       )}
-
-      <Token />
     </Page>
   );
 };

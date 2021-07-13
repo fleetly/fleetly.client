@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 
 // Components
@@ -13,7 +13,7 @@ import { SHOW_CHANNEL_TOKEN_FORM, SHOW_CHANNEL_TOKEN_MODAL } from '@constants';
 // Styles
 import styles from './common.scss';
 
-const ChannelTokenShow: React.FC<InjectedFormProps<any, any>> = ({
+const ChannelSecretShow: React.FC<InjectedFormProps<any, any>> = ({
   error,
   handleSubmit,
   submitting
@@ -36,4 +36,4 @@ const ChannelTokenShow: React.FC<InjectedFormProps<any, any>> = ({
   </Modal>
 );
 
-export default reduxForm({ form: SHOW_CHANNEL_TOKEN_FORM })(ChannelTokenShow);
+export default reduxForm({ form: SHOW_CHANNEL_TOKEN_FORM })(ChannelSecretShow);
