@@ -4,9 +4,13 @@ import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // Fleetly
-import { StatsRange } from '@fleetly/provider/dist/common/interfaces';
+import {
+  StatsRange,
+  StatsType
+} from '@fleetly/provider/dist/common/interfaces';
 
 // Components
+import Loader from '@components/Loader';
 import { Wrapper } from '@components/Page';
 import Tabs, { Tab } from '@components/Tabs';
 
@@ -39,11 +43,15 @@ const ChannelStats: React.FC<IChannel> = ({ source }) => {
 
   // State
   const [range, setRange] = useState<StatsRange>(StatsRange.DAY);
+  const [type, setType] = useState<StatsType>(StatsType.INCOMING_MESSAGES);
 
   // Data
-  const { data } = useQuery<{ channelStats: IStats[] }>(GET_CHANNEL_STATS, {
-    variables: { channelId, range }
-  });
+  const { data, loading } = useQuery<{ channelStats: IStats[] }>(
+    GET_CHANNEL_STATS,
+    {
+      variables: { channelId, range, type }
+    }
+  );
 
   // Effects
   useEffect(() => {
@@ -57,7 +65,7 @@ const ChannelStats: React.FC<IChannel> = ({ source }) => {
               borderColor: '#5c68ec',
               data: (data?.channelStats || []).map(({ y }) => y),
               fill: false,
-              tension: 0.4
+              tension: 0.35
             }
           ]
         },
@@ -102,9 +110,9 @@ const ChannelStats: React.FC<IChannel> = ({ source }) => {
   return (
     <Wrapper
       actions={
-        <Tabs value="1">
-          <Tab label="Messages" value="1" />
-          <Tab label="Subscribers" value="2" />
+        <Tabs onSelect={setType} value={type}>
+          <Tab label="Messages" value={StatsType.INCOMING_MESSAGES} />
+          <Tab label="Subscribers" value={StatsType.ACTIVE_USERS} />
         </Tabs>
       }
       breadcrumbs={[
@@ -119,6 +127,7 @@ const ChannelStats: React.FC<IChannel> = ({ source }) => {
       ]}
       classes={{ actions: styles.Actions, container: styles.Container }}
     >
+      {loading && <Loader className={styles.Loader} />}
       <Range onSelect={setRange} value={range} />
       <canvas className={styles.Chart} ref={$chart} />
     </Wrapper>

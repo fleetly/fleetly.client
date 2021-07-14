@@ -13,6 +13,7 @@
 .Container {
   height: 520px;
   padding: 24px;
+  position: relative;
 }
 
 .Chart {
@@ -20,6 +21,10 @@
   flex: 1 1 auto;
   margin: 24px 0 0;
   max-height: calc(100% - 80px);
+}
+
+.Loader {
+  background: rgba($color-gray-0, .8);
 }
 
 .Tabs {

@@ -1336,10 +1336,30 @@
     mongoose "^5.9.2"
     redis "^3.0.2"
 
-"@fleetly/provider@^0.3.1", "@fleetly/provider@^0.3.5":
+"@fleetly/provider@^0.3.1":
   version "0.3.5"
   resolved "https://npm.pkg.github.com/download/@fleetly/provider/0.3.5/3439144ad80421066af01a64682f05299b96711dee3dc7e874e7e558a9197b06#0257bf0c5e8268adb961c930ea5644d11a723cd6"
   integrity sha512-h3+BuWoHcmZv7KMsGvX+a1PLZUyB4/pb0uJcf4/nbcDYucoM3nUNgdpkcn85tmuoQLWrDuZnYKgpQnPZUcyqvA==
+  dependencies:
+    "@fleetly/chat" "^0.5.0"
+    "@fleetly/common" "^0.12.1"
+    "@fleetly/core" "^0.2.6"
+    "@fleetly/provider" "^0.3.1"
+    "@nestjs/cqrs" "^7.0.0"
+    "@nestjs/microservices" "^7.3.2"
+    "@nestjs/mongoose" "^7.0.2"
+    "@types/moment" "^2.13.0"
+    accesscontrol "^2.2.1"
+    crypto-js "^4.0.0"
+    crypto-random-string "^3.2.0"
+    moment "^2.29.1"
+    mongoose "^5.9.2"
+    redis "^3.0.2"
+
+"@fleetly/provider@^0.3.6":
+  version "0.3.6"
+  resolved "https://npm.pkg.github.com/download/@fleetly/provider/0.3.6/9475e61580d784192a590afa7ddd11d1b8e9be9f788db00a16bd2ebca8993db8#fe16ee8e01b4beb4b10ee4a5cdd2c6198c3844e0"
+  integrity sha512-c46y1vuB7N9Ea1y0TqAwMrTLD0wjqS3lnWVtovcWEEXAeWq+KABhNHNY+ibjONv7klADPta6SaXAx3O06kOvNw==
   dependencies:
     "@fleetly/chat" "^0.5.0"
     "@fleetly/common" "^0.12.1"

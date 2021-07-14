@@ -1,5 +1,9 @@
-query getChannelStats($channelId: String!, $range: StatsRangeType!) {
-  channelStats(channelId: $channelId, range: $range) {
+query getChannelStats(
+  $channelId: String!
+  $range: StatsRangeType!
+  $type: StatsType!
+) {
+  channelStats(channelId: $channelId, range: $range, type: $type) {
     x
     y
   }
