@@ -12,14 +12,20 @@ import { SUBSCRIBER_MODAL } from '@constants';
 // GraphQL
 import GET_CHAT_BY_ID from './graphql/getChatById.gql';
 
+// Interfaces
+import { IChat } from '@interfaces/chat.interface';
+
 // Store
 import { useModals } from '@store';
 
 // Styles
 import styles from './Header.scss';
-import { IChat } from '@interfaces/chat.interface';
 
-const DialogHeader: React.FC<{ chatId: string }> = ({ chatId }) => {
+export interface ChatHeaderProps {
+  chatId: string;
+}
+
+const ChatHeader: React.FC<ChatHeaderProps> = ({ chatId }) => {
   // Setup
   const { openModal } = useModals(SUBSCRIBER_MODAL);
 
@@ -72,4 +78,4 @@ const DialogHeader: React.FC<{ chatId: string }> = ({ chatId }) => {
   );
 };
 
-export default DialogHeader;
+export default ChatHeader;

@@ -22,7 +22,7 @@ const useChatThreadsView = () => {
   const [status, setStatus] = useState(ChatStatus.OPENED);
 
   // Data
-  const { data, loading, subscribeToMore } = useQuery<{
+  const { data, fetchMore, loading, subscribeToMore } = useQuery<{
     chats: IPagination<IChat>;
   }>(GET_CHAT_LIST, {
     variables: { companyId, pagination: { first: limit }, status }
@@ -54,9 +54,24 @@ const useChatThreadsView = () => {
 
   // Handlers
   const handleFetchMore = useCallback(() => {
-    // tslint:disable-next-line: no-console
-    console.log(123);
-  }, []);
+    fetchMore({
+      variables: {
+        companyId,
+        pagination: {
+          after: data?.chats.pageInfo.endCursor,
+          first: limit
+        }
+      },
+      updateQuery: (prevResult, { fetchMoreResult }) => {
+        return {
+          chats: {
+            ...fetchMoreResult?.chats,
+            items: [...prevResult.chats.items, ...fetchMoreResult!.chats.items]
+          }
+        } as any;
+      }
+    });
+  }, [companyId, data, fetchMore]);
 
   const handleStatusClick = useCallback(
     () =>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Components
@@ -28,7 +28,6 @@ const ChatMessages: React.FC<Chat.Messages.Root> = ({ chatId }) => {
             <Loader />
           </div>
         }
-        // tslint:disable-next-line: no-console
         next={handleFetchMore}
         scrollableTarget={id}
       >

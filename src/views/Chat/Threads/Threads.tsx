@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Fleetly
@@ -17,7 +17,7 @@ import { useChatThreadsView } from './Threads.hooks';
 // Styles
 import styles from './Threads.scss';
 
-const Threads = () => {
+const ChatThreads: React.FC = () => {
   const {
     count,
     handleFetchMore,
@@ -85,4 +85,4 @@ const Threads = () => {
   );
 };
 
-export default Threads;
+export default ChatThreads;

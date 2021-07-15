@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import React, { SyntheticEvent, useCallback } from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
@@ -16,11 +17,6 @@ import { SEND_MESSAGE_FORM } from '@constants';
 // Styles
 import styles from './Form.scss';
 
-export enum SubmitType {
-  COMMENT = 'COMMENT',
-  DEFAULT = 'DEFAULT'
-}
-
 const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
   dirty,
   handleSubmit,
@@ -29,15 +25,10 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
   ...props
 }) => {
   // Setup
-  const { chatId, onSubmit } = props as any;
+  const { chatId, isComment } = props as any;
   const textareaId = `${chatId}-text`;
 
   // Handlers
-  const handleCommentClick = useCallback(
-    handleSubmit(({ text }) => onSubmit(SubmitType.COMMENT, text)),
-    []
-  );
-
   const handleEmojiSelect = useCallback(
     (event: SyntheticEvent, { emoji }) => {
       const el = document.getElementById(textareaId);
@@ -46,14 +37,12 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
     [textareaId]
   );
 
-  const handleSendClick = useCallback(
-    handleSubmit(({ text }) => onSubmit(SubmitType.DEFAULT, text)),
-    []
-  );
-
   return (
     <Form
-      classes={{ root: styles.Root, container: styles.Container }}
+      classes={{
+        root: classNames(styles.Root, { [styles.RootIsComment]: isComment }),
+        container: styles.Container
+      }}
       onSubmit={handleSubmit}
     >
       <Emoji onSelect={handleEmojiSelect} />
@@ -62,17 +51,10 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
 
       <div className={styles.Right}>
         <Button
-          color="primary"
+          color={isComment ? 'warning' : 'primary'}
           disabled={!dirty || !valid || submitting}
-          icon="fas fa-paper-plane"
-          onClick={handleSendClick}
-        />
-
-        <Button
-          className={styles.Comment}
-          disabled={!dirty || !valid || submitting}
-          icon="fas fa-comment-alt-dots"
-          onClick={handleCommentClick}
+          icon={isComment ? 'fas fa-comment-alt-lines' : 'fas fa-paper-plane'}
+          type="submit"
         />
       </div>
     </Form>

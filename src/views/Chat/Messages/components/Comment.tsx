@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import Avatar from '@components/Avatar';
-import { Caption } from '@components/Typography';
+import { Caption, Text } from '@components/Typography';
 
 // Styles
 import styles from './Comment.scss';
@@ -18,7 +18,7 @@ const ChatMessagesComment: React.FC<Chat.Messages.Comment> = ({
   return (
     <div className={styles.Root}>
       <div className={styles.Header}>
-        <div className={styles.Title}>Comment</div>
+        <Text className={styles.Title}>Comment</Text>
 
         <div className={styles.Author}>
           <Caption className={styles.Date}>{date}</Caption>
@@ -35,7 +35,9 @@ const ChatMessagesComment: React.FC<Chat.Messages.Comment> = ({
         </div>
       </div>
 
-      <div className={styles.Text}>{text}</div>
+      <Text className={styles.Text} component="div">
+        {text}
+      </Text>
     </div>
   );
 };

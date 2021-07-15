@@ -70,7 +70,8 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
     if (refreshTokenOperation) {
       return refreshTokenOperation.map(() => forward(operation));
     } else {
-      refreshTokenOperation = forward(operation).map((response: any) => {
+      // @todo - finish socket token refresh
+      refreshTokenOperation = forward(operation)?.map((response: any) => {
         response.errors && store.dispatch(logout());
         return response;
       });

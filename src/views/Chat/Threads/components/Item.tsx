@@ -1,5 +1,5 @@
 import moment from 'moment';
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 
 // Components
@@ -14,9 +14,9 @@ import styles from './Item.scss';
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Item: React.FC<Chat.Threads.Item> = ({
+const ChatThreadsItem: React.FC<Chat.Threads.Item> = ({
   counter,
-  isConversation,
+  // isConversation,
   lastMessage,
   subscriber
 }) => {
@@ -24,6 +24,18 @@ const Item: React.FC<Chat.Threads.Item> = ({
   const { companyId } = useParams<{ companyId: string }>();
   const { firstname, lastname, photo, type } = subscriber?.source || {};
   const { author, date, sticker, text } = lastMessage;
+
+  const lastMessageDate = useMemo(() => {
+    if (date) {
+      const currentDate = moment(date);
+
+      return currentDate.format(
+        currentDate.isSame(moment().startOf('day'), 'd') ? 'HH:mm' : 'DD MMM'
+      );
+    }
+
+    return null;
+  }, [date]);
 
   return (
     <NavLink
@@ -48,8 +60,8 @@ const Item: React.FC<Chat.Threads.Item> = ({
             {firstname} {lastname}
           </div>
 
-          {lastMessage && (
-            <div className={styles.Date}>{moment(date).format('HH:mm')}</div>
+          {lastMessageDate && (
+            <div className={styles.Date}>{lastMessageDate}</div>
           )}
         </div>
 
@@ -68,4 +80,4 @@ const Item: React.FC<Chat.Threads.Item> = ({
   );
 };
 
-export default Item;
+export default ChatThreadsItem;

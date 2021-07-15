@@ -8,14 +8,21 @@ interface Classes extends ExtendedClasses {
   tab?: string;
 }
 
-interface PropTypes {
+export interface TabsProps {
   children: React.ReactNode;
   classes?: Classes;
+  className?: string;
   onSelect?(value: any): void;
   value: any;
 }
 
-const Tabs: React.FC<PropTypes> = ({ children, classes, onSelect, value }) => {
+const Tabs: React.FC<TabsProps> = ({
+  children,
+  className,
+  classes,
+  onSelect,
+  value
+}) => {
   const handleTabClick = useCallback(
     (event: React.SyntheticEvent<HTMLDivElement>) => {
       onSelect && onSelect(event.currentTarget.dataset.tabId);
@@ -25,7 +32,7 @@ const Tabs: React.FC<PropTypes> = ({ children, classes, onSelect, value }) => {
 
   return (
     <div
-      className={classNames(classes?.root, styles.Root)}
+      className={classNames(className, classes?.root, styles.Root)}
       role="tablist"
       style={{
         gridTemplateColumns: `repeat(${Children.count(children)}, 1fr)`

@@ -63,8 +63,11 @@ const ChannelStats: React.FC<IChannel> = ({ source }) => {
           datasets: [
             {
               borderColor: '#5c68ec',
+              borderWidth: 4,
               data: (data?.channelStats || []).map(({ y }) => y),
               fill: false,
+              pointBackgroundColor: '#fff',
+              pointRadius: 4,
               tension: 0.35
             }
           ]
@@ -96,7 +99,8 @@ const ChannelStats: React.FC<IChannel> = ({ source }) => {
                   family: 'Montserrat',
                   size: 12,
                   weight: '600'
-                }
+                },
+                maxTicksLimit: 6
               }
             }
           }
