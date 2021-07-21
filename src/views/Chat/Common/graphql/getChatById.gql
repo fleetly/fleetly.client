@@ -11,6 +11,7 @@ query getChatById($chatId: String!) {
       isComment
       text
     }
+    status
     subscriber {
       id
       source {

@@ -4,10 +4,7 @@ import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // Fleetly
-import {
-  StatsRange,
-  StatsType
-} from '@fleetly/provider/dist/common/interfaces';
+import { StatsRange, StatsType } from '@fleetly/provider/interfaces';
 
 // Components
 import Loader from '@components/Loader';

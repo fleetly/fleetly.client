@@ -19,6 +19,7 @@ query getChatList(
         }
         text
       }
+      status
       subscriber {
         id
         source {

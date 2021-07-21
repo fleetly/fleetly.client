@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 // Fleetly
-import { MessageStatus } from '@fleetly/chat/dist/common/interfaces';
+import { MessageStatus } from '@fleetly/chat/interfaces';
 
 // Styles
 import styles from './Text.scss';

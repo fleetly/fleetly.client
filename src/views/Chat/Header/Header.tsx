@@ -1,5 +1,8 @@
-import * as React from 'react';
-import { useQuery } from 'react-apollo';
+import React, { useCallback } from 'react';
+import { useMutation } from 'react-apollo';
+
+// Fleetly
+import { ChatStatus } from '@fleetly/chat/interfaces';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -10,7 +13,7 @@ import Loader from '@components/Loader';
 import { SUBSCRIBER_MODAL } from '@constants';
 
 // GraphQL
-import GET_CHAT_BY_ID from './graphql/getChatById.gql';
+import CLOSE_CHAT from './graphql/closeChat.gql';
 
 // Interfaces
 import { IChat } from '@interfaces/chat.interface';
@@ -25,20 +28,25 @@ export interface ChatHeaderProps {
   chatId: string;
 }
 
-const ChatHeader: React.FC<ChatHeaderProps> = ({ chatId }) => {
+const ChatHeader: React.FC<IChat> = ({
+  id,
+  status,
+  subscriber: {
+    source: { firstname, lastname, photo, type }
+  }
+}) => {
   // Setup
   const { openModal } = useModals(SUBSCRIBER_MODAL);
 
-  // Data
-  const { data, loading } = useQuery<{ chat: IChat }>(GET_CHAT_BY_ID, {
-    variables: { chatId }
+  // Mutations
+  const [closeChat, { loading }] = useMutation(CLOSE_CHAT, {
+    variables: { chatId: id }
   });
 
-  const { id, source } = data?.chat.subscriber || {};
-  const { firstname, lastname, photo, type } = source || {};
-
   // Handlers
-  const handleSubscriberClick = React.useCallback(
+  const handleConfirmClick = useCallback(() => closeChat(), [closeChat]);
+
+  const handleSubscriberClick = useCallback(
     () => openModal({ subscriberId: id }),
     [id, openModal]
   );
@@ -46,9 +54,9 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ chatId }) => {
   return (
     <div className={styles.Root}>
       <div className={styles.Subscriber}>
-        {loading && <Loader />}
+        {!id && <Loader />}
 
-        {!loading && id && (
+        {id && (
           <div
             className={styles.Info}
             onClick={handleSubscriberClick}
@@ -70,9 +78,16 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ chatId }) => {
       </div>
 
       <div className={styles.Actions}>
-        <Button className={styles.Confirm} color="primary">
-          Confirm
-        </Button>
+        {status === ChatStatus.OPENED && (
+          <Button
+            className={styles.Confirm}
+            color="primary"
+            loaded={loading}
+            onClick={handleConfirmClick}
+          >
+            Confirm
+          </Button>
+        )}
       </div>
     </div>
   );

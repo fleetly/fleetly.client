@@ -2,7 +2,7 @@ import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Fleetly
-import { ChatStatus } from '@fleetly/chat/dist/common/interfaces';
+import { ChatStatus } from '@fleetly/chat/interfaces';
 
 // Components
 import Button from '@components/Button';

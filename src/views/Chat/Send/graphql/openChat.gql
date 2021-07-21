@@ -1,0 +1,6 @@
+mutation openChat($chatId: String!) {
+  openChat(chatId: $chatId) {
+    id
+    status
+  }
+}

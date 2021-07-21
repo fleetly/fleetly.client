@@ -1,5 +1,5 @@
 // Fleetly
-import { MessageStatus } from '@fleetly/chat/dist/common/interfaces';
+import { MessageStatus } from '@fleetly/chat/interfaces';
 
 export interface IMessage {
   readonly id: string;

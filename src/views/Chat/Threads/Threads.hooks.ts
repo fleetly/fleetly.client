@@ -3,7 +3,7 @@ import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router';
 
 // Fleetly
-import { ChatStatus } from '@fleetly/chat/dist/common/interfaces';
+import { ChatStatus } from '@fleetly/chat/interfaces';
 import { IPagination } from '@fleetly/common/dist/interfaces';
 
 // GraphQL
@@ -25,6 +25,7 @@ const useChatThreadsView = () => {
   const { data, fetchMore, loading, subscribeToMore } = useQuery<{
     chats: IPagination<IChat>;
   }>(GET_CHAT_LIST, {
+    fetchPolicy: 'network-only',
     variables: { companyId, pagination: { first: limit }, status }
   });
 
@@ -86,6 +87,7 @@ const useChatThreadsView = () => {
     () =>
       (data?.chats.items || [])
         .slice()
+        .filter((chat) => chat.status === status)
         .sort((a, b) =>
           a.lastMessage.date < b.lastMessage.date
             ? 1
@@ -93,7 +95,7 @@ const useChatThreadsView = () => {
             ? -1
             : 0
         ),
-    [data]
+    [data, status]
   );
 
   return {

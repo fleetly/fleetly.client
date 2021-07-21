@@ -14,6 +14,7 @@ subscription subChatUpdated($companyId: String!, $status: ChatStatusType!) {
       }
       text
     }
+    status
     subscriber {
       id
       source {

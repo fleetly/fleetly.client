@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, { useCallback } from 'react';
 
 // Fleetly
-import { StatsRange } from '@fleetly/provider/dist/common/interfaces';
+import { StatsRange } from '@fleetly/provider/interfaces';
 
 // Components
 import { Text } from '@components/Typography';
