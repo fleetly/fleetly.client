@@ -18,9 +18,12 @@ const useChatMessagesView = (chatId: string) => {
   const limit = 100;
 
   // Data
-  const { data, fetchMore, subscribeToMore } = useQuery<{
+  const { data, fetchMore, loading, subscribeToMore } = useQuery<{
     messages: IPagination<IMessage>;
-  }>(GET_MESSAGE_LIST, { variables: { chatId, pagination: { first: limit } } });
+  }>(GET_MESSAGE_LIST, {
+    fetchPolicy: 'network-only',
+    variables: { chatId, pagination: { first: limit } }
+  });
 
   // Effects
   useEffect(() => {
@@ -89,7 +92,8 @@ const useChatMessagesView = (chatId: string) => {
     handleFetchMore,
     hasMore: data?.messages.pageInfo.hasNextPage || false,
     id: `${chatId}-message-list`,
-    items
+    items,
+    loading
   };
 };
 

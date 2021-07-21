@@ -7,7 +7,6 @@ import { ChatStatus } from '@fleetly/chat/interfaces';
 // Components
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
-import Loader from '@components/Loader';
 
 // Constants
 import { SUBSCRIBER_MODAL } from '@constants';
@@ -23,10 +22,6 @@ import { useModals } from '@store';
 
 // Styles
 import styles from './Header.scss';
-
-export interface ChatHeaderProps {
-  chatId: string;
-}
 
 const ChatHeader: React.FC<IChat> = ({
   id,
@@ -54,27 +49,18 @@ const ChatHeader: React.FC<IChat> = ({
   return (
     <div className={styles.Root}>
       <div className={styles.Subscriber}>
-        {!id && <Loader />}
+        <div
+          className={styles.Info}
+          onClick={handleSubscriberClick}
+          role="button"
+          tabIndex={0}
+        >
+          <Avatar alt={firstname} sourceType={type} src={photo} toColor={id} />
 
-        {id && (
-          <div
-            className={styles.Info}
-            onClick={handleSubscriberClick}
-            role="button"
-            tabIndex={0}
-          >
-            <Avatar
-              alt={firstname}
-              sourceType={type}
-              src={photo}
-              toColor={id}
-            />
-
-            <div className={styles.Name}>
-              {firstname} {lastname}
-            </div>
+          <div className={styles.Name}>
+            {firstname} {lastname}
           </div>
-        )}
+        </div>
       </div>
 
       <div className={styles.Actions}>

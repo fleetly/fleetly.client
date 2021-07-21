@@ -63,14 +63,13 @@ const useChatThreadsView = () => {
           first: limit
         }
       },
-      updateQuery: (prevResult, { fetchMoreResult }) => {
-        return {
+      updateQuery: (prevResult, { fetchMoreResult }) =>
+        ({
           chats: {
             ...fetchMoreResult?.chats,
             items: [...prevResult.chats.items, ...fetchMoreResult!.chats.items]
           }
-        } as any;
-      }
+        } as any)
     });
   }, [companyId, data, fetchMore]);
 

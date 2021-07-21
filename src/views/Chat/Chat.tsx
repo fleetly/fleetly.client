@@ -44,7 +44,7 @@ const Chat = () => {
         key={chatId}
         title="Chat"
       >
-        {!data?.chat && loading ? (
+        {loading ? (
           <Loader />
         ) : (
           <>

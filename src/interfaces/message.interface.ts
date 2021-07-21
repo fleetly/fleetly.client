@@ -4,6 +4,7 @@ import { MessageStatus } from '@fleetly/chat/interfaces';
 export interface IMessage {
   readonly id: string;
   readonly author: IMessageAuthor;
+  readonly chatId: string;
   readonly date: string;
   readonly isComment: boolean;
   readonly isOutcoming: boolean;
