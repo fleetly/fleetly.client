@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { matchPath, useLocation } from 'react-router-dom';
 
@@ -32,6 +32,9 @@ const Chat = () => {
   });
   const chatId = match?.params?.chatId;
 
+  // State
+  const [search, setSearch] = useState<string>('');
+
   // Data
   const { data, loading } = useQuery<{ chat: IChat }>(GET_CHAT_BY_ID, {
     variables: { chatId }
@@ -50,8 +53,8 @@ const Chat = () => {
           <>
             {data?.chat ? (
               <>
-                <Header {...data?.chat} />
-                <Messages chatId={data?.chat.id} />
+                <Header {...data?.chat} onSearch={setSearch} />
+                <Messages chatId={data?.chat.id} search={search} />
                 <SendForm {...data?.chat} />
               </>
             ) : (

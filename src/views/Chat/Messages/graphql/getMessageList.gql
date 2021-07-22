@@ -1,5 +1,9 @@
-query getMessageList($chatId: String!, $pagination: CursorPagination) {
-  messages(chatId: $chatId, pagination: $pagination) {
+query getMessageList(
+  $chatId: String!
+  $pagination: CursorPagination
+  $search: String
+) {
+  messages(chatId: $chatId, pagination: $pagination, search: $search) {
     items {
       id
       author {

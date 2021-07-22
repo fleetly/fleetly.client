@@ -11,7 +11,12 @@ import { useChatMessagesView } from './Messages.hooks';
 // Styles
 import styles from './Messages.scss';
 
-const ChatMessages: React.FC<Chat.Messages.Root> = ({ chatId }) => {
+export interface ChatMessagesProps {
+  chatId: string;
+  search?: string;
+}
+
+const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, search }) => {
   const {
     count,
     handleFetchMore,
@@ -19,11 +24,11 @@ const ChatMessages: React.FC<Chat.Messages.Root> = ({ chatId }) => {
     id,
     items,
     loading
-  } = useChatMessagesView(chatId);
+  } = useChatMessagesView(chatId, search);
 
   return (
     <div className={styles.Root} id={id}>
-      {items.length === 0 && loading ? (
+      {loading ? (
         <Loader />
       ) : (
         <InfiniteScroll

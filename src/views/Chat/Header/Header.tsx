@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { useMutation } from 'react-apollo';
+import classNames from 'classnames';
+import React from 'react';
 
 // Fleetly
 import { ChatStatus } from '@fleetly/chat/interfaces';
@@ -8,72 +8,87 @@ import { ChatStatus } from '@fleetly/chat/interfaces';
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
 
-// Constants
-import { SUBSCRIBER_MODAL } from '@constants';
+// Containers
+import Search from './containers/Search';
 
-// GraphQL
-import CLOSE_CHAT from './graphql/closeChat.gql';
+// Hooks
+import { useChatHeader } from './Header.hooks';
 
 // Interfaces
 import { IChat } from '@interfaces/chat.interface';
 
-// Store
-import { useModals } from '@store';
-
 // Styles
 import styles from './Header.scss';
 
-const ChatHeader: React.FC<IChat> = ({
+export interface ChatHeaderProps {
+  onSearch(search: string): void;
+}
+
+const ChatHeader: React.FC<ChatHeaderProps & IChat> = ({
   id,
+  onSearch,
   status,
   subscriber: {
     source: { firstname, lastname, photo, type }
   }
 }) => {
-  // Setup
-  const { openModal } = useModals(SUBSCRIBER_MODAL);
-
-  // Mutations
-  const [closeChat, { loading }] = useMutation(CLOSE_CHAT, {
-    variables: { chatId: id }
-  });
-
-  // Handlers
-  const handleConfirmClick = useCallback(() => closeChat(), [closeChat]);
-
-  const handleSubscriberClick = useCallback(
-    () => openModal({ subscriberId: id }),
-    [id, openModal]
-  );
+  const {
+    handleCancelClick,
+    handleConfirmClick,
+    handleSearchClick,
+    handleSearchSubmit,
+    handleSubscriberClick,
+    isOpened,
+    loading
+  } = useChatHeader({ chatId: id, onSearch });
 
   return (
-    <div className={styles.Root}>
-      <div className={styles.Subscriber}>
-        <div
-          className={styles.Info}
-          onClick={handleSubscriberClick}
-          role="button"
-          tabIndex={0}
-        >
-          <Avatar alt={firstname} sourceType={type} src={photo} toColor={id} />
+    <div
+      className={classNames(styles.Root, { [styles.RootIsOpened]: isOpened })}
+    >
+      <div className={styles.Header}>
+        <div className={styles.Subscriber}>
+          <div
+            className={styles.Info}
+            onClick={handleSubscriberClick}
+            role="button"
+            tabIndex={0}
+          >
+            <Avatar
+              alt={firstname}
+              sourceType={type}
+              src={photo}
+              toColor={id}
+            />
 
-          <div className={styles.Name}>
-            {firstname} {lastname}
+            <div className={styles.Name}>
+              {firstname} {lastname}
+            </div>
           </div>
+        </div>
+
+        <div className={styles.Actions}>
+          <Button
+            icon="far fa-search"
+            onClick={handleSearchClick}
+            variant="outlined"
+          />
+
+          {status === ChatStatus.OPENED && (
+            <Button
+              className={styles.Confirm}
+              color="primary"
+              loaded={loading}
+              onClick={handleConfirmClick}
+            >
+              Confirm
+            </Button>
+          )}
         </div>
       </div>
 
-      <div className={styles.Actions}>
-        {status === ChatStatus.OPENED && (
-          <Button
-            className={styles.Confirm}
-            color="primary"
-            loaded={loading}
-            onClick={handleConfirmClick}
-          >
-            Confirm
-          </Button>
-        )}
+      <div className={styles.Search}>
+        <Search onCancel={handleCancelClick} onSubmit={handleSearchSubmit} />
       </div>
     </div>
   );

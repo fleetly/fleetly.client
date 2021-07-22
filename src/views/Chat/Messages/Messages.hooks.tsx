@@ -13,16 +13,16 @@ import SUB_MESSAGE_UPDATED from './graphql/subMessageUpdated.gql';
 // Interfaces
 import { IMessage } from '@interfaces/message.interface';
 
-const useChatMessagesView = (chatId: string) => {
+const useChatMessagesView = (chatId: string, search?: string) => {
   // Setup
   const limit = 100;
 
   // Data
-  const { data, fetchMore, loading, subscribeToMore } = useQuery<{
+  const { data, fetchMore, loading, subscribeToMore, variables } = useQuery<{
     messages: IPagination<IMessage>;
   }>(GET_MESSAGE_LIST, {
     fetchPolicy: 'network-only',
-    variables: { chatId, pagination: { first: limit } }
+    variables: { chatId, pagination: { first: limit }, search }
   });
 
   // Effects
@@ -73,27 +73,31 @@ const useChatMessagesView = (chatId: string) => {
 
   // Memo
   const items = useMemo(() => {
-    const map = new Map<string, IMessage[]>();
+    if (variables.search === search && !loading) {
+      const map = new Map<string, IMessage[]>();
 
-    (data?.messages.items || []).forEach((message: IMessage) => {
-      const key = moment(message.date).format('MM/DD/YYYY');
+      (data?.messages.items || []).forEach((message: IMessage) => {
+        const key = moment(message.date).format('MM/DD/YYYY');
 
-      map.set(
-        key,
-        map.has(key) ? [...(map.get(key) || []), message] : [message]
-      );
-    });
+        map.set(
+          key,
+          map.has(key) ? [...(map.get(key) || []), message] : [message]
+        );
+      });
 
-    return Array.from(map);
-  }, [data]);
+      return Array.from(map);
+    } else {
+      return [];
+    }
+  }, [data, loading, search, variables.search]);
 
   return {
-    count: data?.messages.items.length || 0,
+    count: items.length || 0,
     handleFetchMore,
     hasMore: data?.messages.pageInfo.hasNextPage || false,
     id: `${chatId}-message-list`,
     items,
-    loading
+    loading: items.length === 0 && loading
   };
 };
 
