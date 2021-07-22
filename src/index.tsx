@@ -38,6 +38,31 @@ import * as serviceWorker from '@utils/serviceWorker';
 let refreshTokenOperation: any = null;
 const store = createStore();
 
+const httpLink = new HttpLink({
+  credentials: 'include',
+  uri: 'https://api.fleetly.it/graphql'
+});
+
+const wsLink = new WebSocketLink({
+  uri: 'wss://api.fleetly.it/graphql',
+  options: {
+    reconnect: true
+  }
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink
+);
+
 const clearTypenameLink = new ApolloLink((operation, forward) => {
   if (operation.variables) {
     operation.variables = JSON.parse(
@@ -67,14 +92,22 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
   });
 
   if (isUnauthorized) {
-    if (refreshTokenOperation) {
+    (wsLink as any).subscriptionClient.close();
+
+    if (refreshTokenOperation && refreshTokenOperation.map) {
       return refreshTokenOperation.map(() => forward(operation));
     } else {
-      // @todo - finish socket token refresh
-      refreshTokenOperation = forward(operation)?.map((response: any) => {
-        response.errors && store.dispatch(logout());
-        return response;
-      });
+      refreshTokenOperation = forward(operation);
+
+      if (refreshTokenOperation.map) {
+        refreshTokenOperation = forward(operation)?.map((response: any) => {
+          response.errors
+            ? store.dispatch(logout())
+            : (wsLink as any).subscriptionClient.connect();
+
+          return response;
+        });
+      }
 
       return refreshTokenOperation;
     }
@@ -115,30 +148,6 @@ const errorLink = onError(({ forward, graphQLErrors, operation }) => {
     return subscriber;
   });
 });
-
-const httpLink = new HttpLink({
-  credentials: 'include',
-  uri: 'https://api.fleetly.it/graphql'
-});
-
-const wsLink = new WebSocketLink({
-  uri: 'wss://api.fleetly.it/graphql',
-  options: {
-    reconnect: true
-  }
-});
-
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
-    );
-  },
-  wsLink,
-  httpLink
-);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
