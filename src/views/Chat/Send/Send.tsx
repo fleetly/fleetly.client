@@ -14,12 +14,15 @@ import { Text } from '@components/Typography';
 // Containers
 import Form from './containers/Form';
 
-// Interfaces
-import { IChat } from '@interfaces/chat.interface';
-
 // GraphQL
 import OPEN_CHAT from './graphql/openChat.gql';
 import SEND_MESSAGE from './graphql/sendMessage.gql';
+
+// Hooks
+import { useChatRefetch } from '../Chat.hooks';
+
+// Interfaces
+import { IChat } from '@interfaces/chat.interface';
 
 // Styles
 import styles from './Send.scss';
@@ -30,6 +33,9 @@ export enum SubmitType {
 }
 
 const ChatSend: React.FC<IChat> = ({ id, status }) => {
+  // Setup
+  const { refetchQueries } = useChatRefetch();
+
   // State
   const [currentType, setCurrentType] = useState<SubmitType>(
     SubmitType.DEFAULT
@@ -37,6 +43,7 @@ const ChatSend: React.FC<IChat> = ({ id, status }) => {
 
   // Mutations
   const [openChat, { loading }] = useMutation(OPEN_CHAT, {
+    refetchQueries,
     variables: { chatId: id }
   });
 

@@ -1,9 +1,12 @@
 import moment from 'moment';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useContext, useEffect, useMemo } from 'react';
 import { useQuery } from 'react-apollo';
 
 // Fleetly
 import { IPagination } from '@fleetly/common/dist/interfaces';
+
+// Context
+import { ChatContext } from '@views/Chat/Chat.context';
 
 // GraphQL
 import GET_MESSAGE_LIST from './graphql/getMessageList.gql';
@@ -13,16 +16,17 @@ import SUB_MESSAGE_UPDATED from './graphql/subMessageUpdated.gql';
 // Interfaces
 import { IMessage } from '@interfaces/message.interface';
 
-const useChatMessagesView = (chatId: string, search?: string) => {
+const MESSAGES_LIMIT = 100;
+
+const useChatMessagesView = () => {
   // Setup
-  const limit = 100;
+  const { chatId, search } = useContext(ChatContext);
 
   // Data
   const { data, fetchMore, loading, subscribeToMore, variables } = useQuery<{
     messages: IPagination<IMessage>;
   }>(GET_MESSAGE_LIST, {
-    fetchPolicy: 'network-only',
-    variables: { chatId, pagination: { first: limit }, search }
+    variables: { chatId, pagination: { first: MESSAGES_LIMIT }, search }
   });
 
   // Effects
@@ -54,7 +58,7 @@ const useChatMessagesView = (chatId: string, search?: string) => {
         chatId,
         pagination: {
           after: data?.messages.pageInfo.endCursor,
-          first: limit
+          first: MESSAGES_LIMIT
         }
       },
       updateQuery: (prevResult, { fetchMoreResult }) => {

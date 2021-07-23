@@ -7,25 +7,27 @@ import { ChatStatus } from '@fleetly/chat/interfaces';
 import { IPagination } from '@fleetly/common/dist/interfaces';
 
 // GraphQL
-import GET_CHAT_LIST from './graphql/getChatList.gql';
+import GET_CHAT_LIST from '../Common/graphql/getChatList.gql';
 import SUB_CHAT_UPDATED from './graphql/subChatUpdated.gql';
+
+// Hooks
+import { useChatRefetch } from '../Chat.hooks';
 
 // Interfaces
 import { IChat } from '@interfaces/chat.interface';
 
 const useChatThreadsView = () => {
   // Setup
+  const { limit } = useChatRefetch();
   const { companyId } = useParams<{ companyId: string }>();
-  const limit = 20;
 
   // State
   const [status, setStatus] = useState(ChatStatus.OPENED);
 
   // Data
-  const { data, fetchMore, loading, subscribeToMore } = useQuery<{
+  const { data, fetchMore, loading, subscribeToMore, variables } = useQuery<{
     chats: IPagination<IChat>;
   }>(GET_CHAT_LIST, {
-    fetchPolicy: 'network-only',
     variables: { companyId, pagination: { first: limit }, status }
   });
 
@@ -71,7 +73,7 @@ const useChatThreadsView = () => {
           }
         } as any)
     });
-  }, [companyId, data, fetchMore]);
+  }, [companyId, data, fetchMore, limit]);
 
   const handleStatusClick = useCallback(
     () =>
@@ -84,17 +86,18 @@ const useChatThreadsView = () => {
   // Memo
   const items = useMemo(
     () =>
-      (data?.chats.items || [])
-        .slice()
-        .filter((chat) => chat.status === status)
-        .sort((a, b) =>
-          a.lastMessage.date < b.lastMessage.date
-            ? 1
-            : a.lastMessage.date > b.lastMessage.date
-            ? -1
-            : 0
-        ),
-    [data, status]
+      variables.status === status && loading
+        ? []
+        : (data?.chats.items || [])
+            .slice()
+            .sort((a, b) =>
+              a.lastMessage.date < b.lastMessage.date
+                ? 1
+                : a.lastMessage.date > b.lastMessage.date
+                ? -1
+                : 0
+            ),
+    [data, loading, status, variables.status]
   );
 
   return {

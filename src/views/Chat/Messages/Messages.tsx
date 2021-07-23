@@ -11,12 +11,7 @@ import { useChatMessagesView } from './Messages.hooks';
 // Styles
 import styles from './Messages.scss';
 
-export interface ChatMessagesProps {
-  chatId: string;
-  search?: string;
-}
-
-const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, search }) => {
+const ChatMessages: React.FC = () => {
   const {
     count,
     handleFetchMore,
@@ -24,7 +19,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, search }) => {
     id,
     items,
     loading
-  } = useChatMessagesView(chatId, search);
+  } = useChatMessagesView();
 
   return (
     <div className={styles.Root} id={id}>

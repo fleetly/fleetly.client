@@ -7,6 +7,9 @@ import { SUBSCRIBER_MODAL } from '@constants';
 // GraphQL
 import CLOSE_CHAT from './graphql/closeChat.gql';
 
+// Hooks
+import { useChatRefetch } from '../Chat.hooks';
+
 // Store
 import { useModals } from '@store';
 
@@ -14,9 +17,10 @@ const useChatHeader = (props: {
   chatId: string;
   onSearch?(search: string): void;
 }) => {
+  // Setup
   const { chatId, onSearch } = props;
 
-  // Setup
+  const { refetchQueries } = useChatRefetch();
   const { openModal } = useModals(SUBSCRIBER_MODAL);
 
   // State
@@ -24,6 +28,7 @@ const useChatHeader = (props: {
 
   // Mutations
   const [closeChat, { loading }] = useMutation(CLOSE_CHAT, {
+    refetchQueries,
     variables: { chatId }
   });
 
