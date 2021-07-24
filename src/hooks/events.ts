@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
-const useOutsideClick = (callback?: (event: React.SyntheticEvent) => void) => {
-  const ref = useRef(null);
+const useOutsideClick = <T extends HTMLElement>(
+  callback?: (event: React.SyntheticEvent) => void
+) => {
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     const handleDocumentClick = (event: React.SyntheticEvent) => {

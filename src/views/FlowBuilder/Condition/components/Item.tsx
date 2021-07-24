@@ -17,7 +17,10 @@ const Item = () => {
   const handleEditClick = () => setState(true);
   const handleClickClosed = () => setState(false);
 
-  const ref = useOutsideClick(state ? handleClickClosed : undefined);
+  const ref = useOutsideClick<HTMLDivElement>(
+    state ? handleClickClosed : undefined
+  );
+
   return (
     <div
       className={classNames(styles.Root, { [styles.RootIsAction]: state })}

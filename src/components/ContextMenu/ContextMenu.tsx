@@ -33,7 +33,7 @@ const ContextMenu: React.FC<PropTypes> = ({
   spacing = 8
 }) => {
   // Setup
-  const ref = useOutsideClick(opened ? onClose : undefined);
+  const ref = useOutsideClick<HTMLDivElement>(opened ? onClose : undefined);
 
   // State
   const [position, setPosition] = useState<{ x: number; y: number }>({

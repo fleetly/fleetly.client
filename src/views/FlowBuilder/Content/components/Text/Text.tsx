@@ -31,7 +31,9 @@ const FlowBuilderContentText: React.FC<PropTypes> = ({ text }) => {
   const handleClickClosed = useCallback(() => setFocusState(false), []);
   const handleClickOpened = useCallback(() => setFocusState(true), []);
 
-  const ref = useOutsideClick(isFocused ? handleClickClosed : undefined);
+  const ref = useOutsideClick<HTMLDivElement>(
+    isFocused ? handleClickClosed : undefined
+  );
 
   return (
     <div

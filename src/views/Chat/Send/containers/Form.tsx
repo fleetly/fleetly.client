@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import insertTextAtCursor from 'insert-text-at-cursor';
-import React, { SyntheticEvent, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import * as yup from 'yup';
 
@@ -30,7 +30,7 @@ const ChatSendForm: React.FC<InjectedFormProps<any, any>> = ({
 
   // Handlers
   const handleEmojiSelect = useCallback(
-    (event: SyntheticEvent, { emoji }) => {
+    (emoji: string) => {
       const el = document.getElementById(textareaId);
       el && insertTextAtCursor(el as HTMLTextAreaElement, emoji);
     },
