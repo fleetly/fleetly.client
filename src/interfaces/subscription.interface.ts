@@ -1,5 +1,5 @@
 // Fleetly
-import { SubscriptionStatus } from '@fleetly/core/dist/common';
+import { SubscriptionStatus } from '@fleetly/core/interfaces';
 
 // Interfaces
 import { IPayment } from './payment.interface';

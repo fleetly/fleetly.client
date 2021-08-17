@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 // Fleetly
-import { PaymentStatus } from '@fleetly/core/dist/common/interfaces';
+import { PaymentStatus } from '@fleetly/core/interfaces';
 
 // Components
 import Icon from '@components/Icon';

@@ -24,11 +24,12 @@ export const convertToColor = (data: string = ''): Color => {
 
 export const formatCurrency = (
   value: number,
-  options?: { currency?: string; locale?: string }
+  options?: { currency?: string; fraction?: boolean; locale?: string }
 ): string => {
   const currentIntl = new Intl.NumberFormat(options?.locale || 'en-US', {
     currency: options?.currency || 'USD',
-    style: 'currency'
+    style: 'currency',
+    minimumFractionDigits: options?.fraction ? 2 : 0
   });
 
   return currentIntl.format(value);

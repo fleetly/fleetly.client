@@ -1,0 +1,124 @@
+@import '~@styles/colors';
+
+.Root {
+  border: 8px solid rgba($color-white, .4);
+  border-radius: 60px;
+  height: 520px;
+  position: relative;
+  width: 400px;
+
+  &Color {
+    &Enterprice {
+      background: $color-purple;
+
+      .Background {
+        background: linear-gradient(to bottom, #c18bfd, #9640f2);
+        border-radius: 52px;
+        box-shadow:
+          inset 0 0 0 8px $color-purple,
+          inset 0 -18px 16px 0 #c18bfd,
+          inset 0 18px 16px 0 #9640f2;
+      }
+    }
+
+    &Lite {
+      background: $color-green;
+
+      .Background {
+        background: linear-gradient(to top, #66b450, #b1eaa2);
+        border-radius: 52px;
+        box-shadow:
+          inset 0 0 0 8px $color-green,
+          inset 0 -18px 16px 0 #b1eaa2,
+          inset 0 18px 16px 0 #66b450;
+      }
+    }
+
+    &Pro {
+      background: $color-blue;
+
+      .Background {
+        background: linear-gradient(to bottom, #72a8fe, #5c68ec);
+        border-radius: 52px;
+        box-shadow:
+          inset 0 0 0 8px $color-blue,
+          inset 0 -18px 16px 0 #72a8fe,
+          inset 0 18px 16px 0 #5c68ec;
+      }
+    }
+  }
+}
+
+.Button {
+  flex: 0 0 120px;
+  height: 64px;
+
+  & > div {
+    height: 100%;
+    padding: 6px;
+    width: 100%;
+
+    & button {
+      min-width: 100%;
+    }
+  }
+}
+
+.Buy {
+  border-radius: 40px;
+  display: flex;
+  height: 68px;
+  margin: 20px 0;
+  width: 100%;
+
+  &Variant {
+    &Paid {
+      border: 2px solid rgba($color-white, .2);
+      box-shadow:
+        inset 0 8px 8px 0 rgba($color-black, .06),
+        inset 0 -8px 8px 0 rgba($color-white, .1);
+    }
+  }
+}
+
+.Content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+}
+
+.Background,
+.Content {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.Description {
+  color: rgba($color-white, .8);
+  margin: 12px 0 0;
+}
+
+.Limit {
+  color: rgba($color-white, .6);
+}
+
+.Price {
+  align-items: center;
+  color: $color-white;
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.Type {
+  color: $color-white;
+  font-size: 26px;
+  line-height: 32px;
+}

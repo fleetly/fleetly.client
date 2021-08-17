@@ -1,5 +1,5 @@
 // Fleetly
-import { PaymentStatus, PaymentType } from '@fleetly/core/dist/common';
+import { PaymentStatus, PaymentType } from '@fleetly/core/interfaces';
 
 export interface IPayment {
   readonly id: string;

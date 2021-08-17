@@ -1,4 +1,5 @@
 // Blue
+$color-blue: #5c68ec;
 $color-blue-500: #0048e3;
 $color-blue-300: #5c68ec;
 $color-blue-200: #a4b3f8;
@@ -23,6 +24,7 @@ $color-gray-50: #fbfbfb;
 $color-gray-0: #fff;
 
 // Green
+$color-green: #55b242;
 $color-green-500: #5fa24b;
 $color-green-400: #7aba69;
 $color-green-300: #98d788;
@@ -53,11 +55,14 @@ $color-sky-500: #0089ff;
 $color-yellow-500: #ffe26c;
 
 // Common
+$color-black: #000;
 $color-danger: $color-red-300;
 $color-primary: $color-blue-300;
 $color-secondary: #8c67f4;
 $color-success: #55b242;
+$color-purple: #a756ff;
 $color-warning: #f8a652;
+$color-white: #fff;
 
 $color-text: $color-gray-900;
 $color-text-secondary: $color-gray-700;

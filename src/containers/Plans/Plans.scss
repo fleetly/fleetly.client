@@ -1,0 +1,24 @@
+@import '~@styles/colors';
+
+.Root {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.Backdrop {
+  background: $color-gray-100;
+}
+
+.Container {
+  background: transparent;
+  box-shadow: none;
+}
+
+.Content {
+  column-gap: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+}

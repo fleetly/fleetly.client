@@ -12,28 +12,29 @@ import { useModals } from '@store';
 // Styles
 import styles from './Modal.scss';
 
-interface Classes extends ExtendedClasses {
+export interface ModalClasses extends ExtendedClasses {
   backdrop?: string;
   container?: string;
   title?: string;
   content?: string;
 }
 
-interface PropTypes {
+export interface ModalProps {
   children: React.ReactNode;
   data?: Map<string, any>;
-  classes?: Classes;
+  classes?: ModalClasses;
   id: string;
-  isOpened?: boolean;
+  opened?: boolean;
   onClose?(event: React.SyntheticEvent<HTMLDivElement>): void;
   title?: string;
 }
 
-const Modal: React.FC<PropTypes> = ({
+const Modal: React.FC<ModalProps> = ({
   children,
   classes,
   id,
   onClose = () => null,
+  opened,
   title
 }) => {
   const { closeModal, isOpened, modal } = useModals(id);
@@ -53,7 +54,7 @@ const Modal: React.FC<PropTypes> = ({
         enter: styles.RootTransitionEnter,
         enterActive: styles.RootTransitionEnterActive
       }}
-      in={isOpened}
+      in={opened || isOpened}
       timeout={{ enter: 700 }}
       unmountOnExit
     >
@@ -64,21 +65,17 @@ const Modal: React.FC<PropTypes> = ({
         />
 
         <div className={classNames(classes?.container, styles.Container)}>
-          {modal && (
-            <>
-              {(title || modal?.title) && (
-                <H3 className={classNames(classes?.title, styles.Title)}>
-                  {modal?.title || title}
-                </H3>
-              )}
-
-              <div className={classNames(classes?.content, styles.Content)}>
-                {typeof children === 'function'
-                  ? children({ ...modal?.data })
-                  : children}
-              </div>
-            </>
+          {(title || modal?.title) && (
+            <H3 className={classNames(classes?.title, styles.Title)}>
+              {modal?.title || title}
+            </H3>
           )}
+
+          <div className={classNames(classes?.content, styles.Content)}>
+            {typeof children === 'function'
+              ? children({ ...modal?.data })
+              : children}
+          </div>
         </div>
       </div>
     </CSSTransition>,

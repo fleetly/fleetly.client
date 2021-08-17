@@ -5,10 +5,8 @@ import Button from '@components/Button';
 import Card, { CardHeader, CardHr } from '@components/Card';
 import Icon from '@components/Icon';
 import { Wrapper } from '@components/Page';
-import { Caption } from '@components/Typography';
 
 import Feature from './components/Feature';
-import Traffic from './components/Traffic';
 
 // Data
 import { FEATURES } from '../Billing.data';
@@ -41,20 +39,6 @@ const BillingCurrent: React.FC<ISubscription> = ({ plan }) => (
           <Feature key={index} icon={icon} title={title} />
         ))}
       </div>
-
-      {plan.traffics && plan.traffics.length > 0 && (
-        <>
-          <Caption className={styles.Title}>Traffics</Caption>
-
-          <CardHr />
-
-          <div className={styles.Traffics}>
-            {plan.traffics.map((traffic) => (
-              <Traffic {...traffic} key={traffic.id} />
-            ))}
-          </div>
-        </>
-      )}
     </Card>
   </Wrapper>
 );

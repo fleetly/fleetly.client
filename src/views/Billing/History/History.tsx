@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useMemo } from 'react';
 
 // Fleetly
-import { PaymentType } from '@fleetly/core/dist/common/interfaces';
+import { PaymentType } from '@fleetly/core/interfaces';
 
 // Components
 import Button from '@components/Button';

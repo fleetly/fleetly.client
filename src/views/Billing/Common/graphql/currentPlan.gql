@@ -19,19 +19,19 @@ query currentPlan($companyId: String!) {
       id
       price
       title
-      traffics {
-        id
-        chunkPrice
-        chunkSize
-        limit
-        origin {
-          id
-          title
-          type
-          unit
-        }
-      }
-      type
+      # traffics {
+      #   id
+      #   chunkPrice
+      #   chunkSize
+      #   limit
+      #   origin {
+      #     id
+      #     title
+      #     type
+      #     unit
+      #   }
+      # }
+      # type
     }
     status
   }
