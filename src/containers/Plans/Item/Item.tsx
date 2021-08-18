@@ -8,6 +8,8 @@ import { PlanType } from '@fleetly/core/interfaces';
 import { H2, H3, Text } from '@components/Typography';
 import Button from '@views/Landing/components/Button';
 
+import Select from './components/Select';
+
 // Styles
 import styles from './Item.scss';
 
@@ -20,6 +22,7 @@ export interface PlansItemProps {
   title: string;
   type: PlanType;
   variants: {
+    id: string;
     price: number;
     title: string;
   }[];
@@ -32,7 +35,7 @@ const PlansItem: React.FC<PlansItemProps> = ({
   variants
 }) => {
   // State
-  const [currentPlan] = useState(variants[0]);
+  const [currentPlan, selectCurrentPlan] = useState(variants[0]);
   const isFree = type === PlanType.LITE;
 
   return (
@@ -45,6 +48,8 @@ const PlansItem: React.FC<PlansItemProps> = ({
       <div className={styles.Background} />
 
       <div className={styles.Content}>
+        <div className={styles.Cover}>123</div>
+
         <H3 className={styles.Type}>{title}</H3>
 
         <Text className={styles.Description} medium size="large">
@@ -73,6 +78,12 @@ const PlansItem: React.FC<PlansItemProps> = ({
         <Text className={styles.Limit} medium size="large">
           {currentPlan.title}
         </Text>
+
+        <Select
+          onSelect={selectCurrentPlan as any}
+          plans={variants}
+          value={currentPlan}
+        />
       </div>
     </div>
   );

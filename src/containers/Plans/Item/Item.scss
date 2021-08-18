@@ -1,5 +1,18 @@
 @import '~@styles/colors';
 
+@mixin color($color) {
+  background: $color;
+
+  .Background {
+    background: linear-gradient(to bottom, lighten($color, 22), $color);
+    border-radius: 52px;
+    box-shadow:
+      inset 0 0 0 8px rgba($color, .6),
+      inset 0 -18px 16px 0 lighten($color, 22),
+      inset 0 18px 16px 0 $color;
+  }
+}
+
 .Root {
   border: 8px solid rgba($color-white, .4);
   border-radius: 60px;
@@ -9,48 +22,21 @@
 
   &Color {
     &Enterprice {
-      background: $color-purple;
-
-      .Background {
-        background: linear-gradient(to bottom, #c18bfd, #9640f2);
-        border-radius: 52px;
-        box-shadow:
-          inset 0 0 0 8px $color-purple,
-          inset 0 -18px 16px 0 #c18bfd,
-          inset 0 18px 16px 0 #9640f2;
-      }
+      @include color($color-purple);
     }
 
     &Lite {
-      background: $color-green;
-
-      .Background {
-        background: linear-gradient(to top, #66b450, #b1eaa2);
-        border-radius: 52px;
-        box-shadow:
-          inset 0 0 0 8px $color-green,
-          inset 0 -18px 16px 0 #b1eaa2,
-          inset 0 18px 16px 0 #66b450;
-      }
+      @include color($color-green);
     }
 
     &Pro {
-      background: $color-blue;
-
-      .Background {
-        background: linear-gradient(to bottom, #72a8fe, #5c68ec);
-        border-radius: 52px;
-        box-shadow:
-          inset 0 0 0 8px $color-blue,
-          inset 0 -18px 16px 0 #72a8fe,
-          inset 0 18px 16px 0 #5c68ec;
-      }
+      @include color($color-blue);
     }
   }
 }
 
 .Button {
-  flex: 0 0 120px;
+  flex: 0 0 140px;
   height: 64px;
 
   & > div {
@@ -81,6 +67,15 @@
   }
 }
 
+.Background,
+.Content {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 .Content {
   align-items: center;
   display: flex;
@@ -89,13 +84,8 @@
   padding: 40px;
 }
 
-.Background,
-.Content {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
+.Cover {
+  flex: 1 1 auto;
 }
 
 .Description {

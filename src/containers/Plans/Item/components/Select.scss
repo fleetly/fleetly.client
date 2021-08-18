@@ -1,0 +1,91 @@
+@import '~@styles/colors';
+
+.Root {
+  height: 40px;
+  margin: 32px 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.Bar {
+  background: $color-white;
+  height: 100%;
+  position: absolute;
+  transition: all .2s;
+  width: 100%;
+}
+
+.List {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Point {
+  align-items: center;
+  background: darken($color-blue, 4);
+  border-radius: 100%;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  padding: 10px;
+  transition: all .2s;
+  width: 20px;
+  z-index: 2;
+
+  &::after {
+    border: 2px solid rgba($color-white, .2);
+    border-radius: 100%;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    padding: 5px;
+    transform: scale(1.5);
+
+    &::after {
+      border-color: rgba($color-black, .1);
+    }
+  }
+
+  &:hover,
+  &IsSelected {
+    background: linear-gradient(to bottom, $color-white, #dce6ff);
+    box-shadow:
+      0 15px 30px 0 rgba(22, 50, 149, .6),
+      0 -15px 30px 0 rgba($color-white, .6),
+      0 8px 8px 0 rgba(36, 65, 170, .6),
+      0 2px 3px 0 $color-white,
+      0 -2px 3px 0 $color-white;
+  }
+
+  &Is {
+    &Colored {
+      background: $color-white;
+      padding: 4px;
+
+      &::after {
+        border: 2px solid rgba($color-blue, .4);
+      }
+    }
+
+    &Selected {
+      pointer-events: none;
+      transform: scale(2);
+    }
+  }
+}
+
+.Track {
+  background: rgba($color-blue, .6);
+  border-radius: 8px;
+  height: 8px;
+  overflow: hidden;
+  position: absolute;
+  top: 6px;
+  width: 100%;
+}
