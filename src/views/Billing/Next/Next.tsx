@@ -1,7 +1,5 @@
 import moment from 'moment';
 import React, { useCallback } from 'react';
-import { useQuery } from 'react-apollo';
-import { useParams } from 'react-router-dom';
 
 // Components
 import Button from '@components/Button';
@@ -11,37 +9,24 @@ import { Caption, H2, H4, Text } from '@components/Typography';
 // Components
 import { Wrapper } from '@components/Page';
 
-// GraphQL
-import GET_USER from '@graphql/getUserById.gql';
+// Constants
+import { PLANS_MODAL } from '@constants';
 
 // Interfaces
 import { ISubscription } from '@interfaces/subscription.interface';
-import { IUser } from '@interfaces/user.interface';
+
+// Store
+import { useModals } from '@store';
 
 // Styles
 import styles from './Next.scss';
 
-const BillingNext: React.FC<ISubscription> = ({ id, next, plan }) => {
+const BillingNext: React.FC<ISubscription> = ({ next, plan }) => {
   // Setup
-  const { companyId } = useParams<{ companyId: string }>();
-
-  // Data
-  const { data } = useQuery<{ user: IUser }>(GET_USER);
+  const { openModal } = useModals(PLANS_MODAL);
 
   // Handlers
-  const handleClick = useCallback(() => {
-    data?.user.id &&
-      id &&
-      (window as any).Paddle.Checkout.open({
-        email: 'ivan@fleetly.it',
-        passthrough: JSON.stringify({
-          companyId,
-          subscriptionId: id,
-          userId: data.user.id
-        }),
-        product: 11465
-      });
-  }, [companyId, data, id]);
+  const handleBuyClick = useCallback(() => openModal(), [openModal]);
 
   return (
     <Wrapper title="Next Plan">
@@ -64,7 +49,7 @@ const BillingNext: React.FC<ISubscription> = ({ id, next, plan }) => {
           <Text className={styles.Limit}>{plan.title}</Text>
         </div>
 
-        <Button color="primary" fullWidth onClick={handleClick}>
+        <Button color="primary" fullWidth onClick={handleBuyClick}>
           Change Plan
         </Button>
       </Card>

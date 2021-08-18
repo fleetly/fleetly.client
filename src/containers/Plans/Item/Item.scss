@@ -4,21 +4,21 @@
   background: $color;
 
   .Background {
-    background: linear-gradient(to bottom, lighten($color, 22), $color);
-    border-radius: 52px;
+    background: linear-gradient(to bottom, lighten($color, 24), $color);
+    border-radius: 40px;
     box-shadow:
-      inset 0 0 0 8px rgba($color, .6),
-      inset 0 -18px 16px 0 lighten($color, 22),
+      inset 0 0 0 4px rgba($color, .6),
+      inset 0 -18px 16px 0 lighten($color, 16),
       inset 0 18px 16px 0 $color;
   }
 }
 
 .Root {
-  border: 8px solid rgba($color-white, .4);
-  border-radius: 60px;
-  height: 520px;
+  border: 4px solid rgba($color-white, .4);
+  border-radius: 44px;
+  height: 380px;
   position: relative;
-  width: 400px;
+  width: 100%;
 
   &Color {
     &Enterprice {
@@ -36,16 +36,24 @@
 }
 
 .Button {
-  flex: 0 0 140px;
-  height: 64px;
+  flex: 0 0 92px;
+  height: 46px;
 
   & > div {
     height: 100%;
-    padding: 6px;
+    padding: 4px;
     width: 100%;
 
-    & button {
-      min-width: 100%;
+    & > div {
+      padding: 4px;
+
+      & > button {
+        min-width: 100%;
+
+        & > span {
+          font-size: 12px !important;
+        }
+      }
     }
   }
 }
@@ -53,8 +61,8 @@
 .Buy {
   border-radius: 40px;
   display: flex;
-  height: 68px;
-  margin: 20px 0;
+  height: 50px;
+  margin: 16px 0;
   width: 100%;
 
   &Variant {
@@ -81,14 +89,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px;
+  padding: 28px;
 }
 
 .Cover {
-  align-items: flex-end;
-  display: flex;
   flex: 1 1 auto;
-  justify-content: center;
   position: relative;
   width: 100%;
 }
@@ -99,11 +104,11 @@
 }
 
 .Image {
-  height: 250px;
-  left: 32px;
+  bottom: 0;
+  height: 248px;
+  left: -12px;
   object-fit: contain;
   position: absolute;
-  transform: scale(1.4) translateY(-10%);
   width: 294px;
 }
 
@@ -116,6 +121,7 @@
   color: $color-white;
   display: flex;
   flex: 1 1 auto;
+  font-size: 24px;
   height: 100%;
   justify-content: center;
   width: 100%;
@@ -123,6 +129,4 @@
 
 .Type {
   color: $color-white;
-  font-size: 26px;
-  line-height: 32px;
 }

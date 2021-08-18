@@ -12,13 +12,16 @@ const useBilling = () => {
   const { companyId }: any = useParams();
 
   // Data
-  const { data } = useQuery<{ currentPlan: ISubscription }>(GET_CURRENT_PLAN, {
-    variables: { companyId }
-  });
+  const { data } = useQuery<{ currentSubscription: ISubscription }>(
+    GET_CURRENT_PLAN,
+    {
+      variables: { companyId }
+    }
+  );
 
   return {
-    payments: data?.currentPlan.payments || [],
-    subscription: data?.currentPlan
+    payments: data?.currentSubscription.payments || [],
+    subscription: data?.currentSubscription
   };
 };
 

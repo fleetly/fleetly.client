@@ -1,12 +1,12 @@
-query currentPlan($companyId: String!) {
-  currentPlan(companyId: $companyId) {
+query currentSubscriptions($companyId: String!) {
+  currentSubscription(companyId: $companyId) {
     id
     next {
       billDate
       price
     }
     payments {
-      # id
+      id
       amount
       checkoutId
       orderId
@@ -19,19 +19,7 @@ query currentPlan($companyId: String!) {
       id
       price
       title
-      # traffics {
-      #   id
-      #   chunkPrice
-      #   chunkSize
-      #   limit
-      #   origin {
-      #     id
-      #     title
-      #     type
-      #     unit
-      #   }
-      # }
-      # type
+      type
     }
     status
   }

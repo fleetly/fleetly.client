@@ -4,7 +4,8 @@ import Products from '../Products';
 
 export const MENU_ID = {
   INTEGRATIONS: 'integrations',
-  PRODUCTS: 'products'
+  PRODUCTS: 'products',
+  PRICING: 'pricing'
 };
 
 export const MENU: {
@@ -23,6 +24,7 @@ export const MENU: {
     title: 'Integrations'
   },
   {
+    id: MENU_ID.PRICING,
     title: 'Pricing'
   }
 ];

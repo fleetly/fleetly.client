@@ -14,11 +14,14 @@ import proImage2x from './assets/pro@2x.png';
 
 // Components
 import Image from '@components/Image';
-import { H2, H3, Text } from '@components/Typography';
+import { H3, Text } from '@components/Typography';
 
 import Button from '@views/Landing/components/Button';
 
 import Select from './components/Select';
+
+// Interfaces
+import { IPlan } from '@interfaces/plan.interface';
 
 // Styles
 import styles from './Item.scss';
@@ -29,17 +32,12 @@ import { getClassName } from '@utils/styles';
 
 export interface PlansItemProps {
   description: string;
-  title: string;
+  plans: IPlan[];
   type: PlanType;
-  variants: {
-    id: string;
-    price: number;
-    title: string;
-  }[];
 }
 
 const IMAGE_SET = {
-  [PlanType.ENTERPRCIE]: {
+  [PlanType.ENTERPRICE]: {
     '1x': enterpriceImage,
     '2x': enterpriceImage2x
   },
@@ -53,14 +51,9 @@ const IMAGE_SET = {
   }
 };
 
-const PlansItem: React.FC<PlansItemProps> = ({
-  description,
-  title,
-  type,
-  variants
-}) => {
+const PlansItem: React.FC<PlansItemProps> = ({ description, plans, type }) => {
   // State
-  const [currentPlan, selectCurrentPlan] = useState(variants[0]);
+  const [currentPlan, selectCurrentPlan] = useState(plans[0]);
   const isFree = type === PlanType.LITE;
 
   return (
@@ -82,40 +75,44 @@ const PlansItem: React.FC<PlansItemProps> = ({
           />
         </div>
 
-        <H3 className={styles.Type}>{title}</H3>
+        <H3 className={styles.Type}>{type}</H3>
 
-        <Text className={styles.Description} medium size="large">
+        <Text className={styles.Description} medium>
           {description}
         </Text>
 
-        <div
-          className={classNames(styles.Buy, {
-            [styles.BuyVariantFree]: isFree,
-            [styles.BuyVariantPaid]: !isFree
-          })}
-        >
-          <H2 className={styles.Price}>
-            {isFree
-              ? 'FREE'
-              : formatCurrency(currentPlan.price, { fraction: false })}
-          </H2>
+        {currentPlan && (
+          <>
+            <div
+              className={classNames(styles.Buy, {
+                [styles.BuyVariantFree]: isFree,
+                [styles.BuyVariantPaid]: !isFree
+              })}
+            >
+              <H3 className={styles.Price}>
+                {isFree
+                  ? 'FREE'
+                  : formatCurrency(currentPlan.price, { fraction: false })}
+              </H3>
 
-          {!isFree && (
-            <div className={styles.Button}>
-              <Button>BUY</Button>
+              {!isFree && (
+                <div className={styles.Button}>
+                  <Button>BUY</Button>
+                </div>
+              )}
             </div>
-          )}
-        </div>
 
-        <Text className={styles.Limit} medium size="large">
-          {currentPlan.title}
-        </Text>
+            <Text className={styles.Limit} medium>
+              {currentPlan.title}
+            </Text>
 
-        <Select
-          onSelect={selectCurrentPlan as any}
-          plans={variants}
-          value={currentPlan}
-        />
+            <Select
+              onSelect={selectCurrentPlan as any}
+              plans={plans}
+              value={currentPlan}
+            />
+          </>
+        )}
       </div>
     </div>
   );

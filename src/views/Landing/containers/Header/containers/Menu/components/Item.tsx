@@ -33,7 +33,7 @@ const LandingHeaderMenuItem: React.FC<any> = ({
       className={classNames(styles.Root, {
         [styles.RootIsSelected]: selected
       })}
-      data-item-index={id}
+      data-item-id={id}
       onClick={onClick}
       role="menuitem"
     >

@@ -11,6 +11,9 @@ import Toggle from './components/Toggle';
 import Integrations from '../Integrations';
 import Products from '../Products';
 
+// Constants
+import { PLANS_MODAL } from '@constants';
+
 // Data
 import { MENU, MENU_ID } from './Menu.data';
 
@@ -20,11 +23,15 @@ import { useResponsive } from '@hooks/responsive';
 // Routes
 import routes from '@routes';
 
+// Store
+import { useModals } from '@store';
+
 // Styles
 import styles from './Menu.scss';
 
 const LandingHeaderMenu: React.FC<{}> = () => {
   // Setup
+  const { openModal } = useModals(PLANS_MODAL);
   const { isDesktop, isMobile } = useResponsive();
 
   // State
@@ -40,10 +47,15 @@ const LandingHeaderMenu: React.FC<{}> = () => {
   // Handlers
   const handleItemClick = useCallback(
     (event: React.SyntheticEvent<HTMLDivElement>) => {
-      isMobile &&
-        setIndex(event.currentTarget.dataset.itemIndex || MENU_ID.PRODUCTS);
+      const itemId = event.currentTarget.dataset.itemId;
+
+      if (itemId === MENU_ID.PRICING) {
+        openModal();
+      } else if (isMobile) {
+        setIndex(itemId || MENU_ID.PRODUCTS);
+      }
     },
-    [isMobile]
+    [isMobile, openModal]
   );
 
   const handleToggleClick = useCallback(

@@ -1217,10 +1217,10 @@
     class-transformer "^0.3.1"
     factory-girl "^5.0.4"
 
-"@fleetly/core@^0.7.0":
-  version "0.7.0"
-  resolved "https://npm.pkg.github.com/download/@fleetly/core/0.7.0/930824be73ce85712bfe6a651b641b4b61948b1899b484c9aeb224bb6c9161d2#622f8dd88bd989e051a604797f3f91b1f243e61f"
-  integrity sha512-B6TjRq8wyeIXs7sMJ1DmDElt6X5DhI+BtYrTSfBo0W56KXytQiKAJVM22fgdl/ogCRObQibiaSIpeQa8zs/lwQ==
+"@fleetly/core@^0.7.1":
+  version "0.7.1"
+  resolved "https://npm.pkg.github.com/download/@fleetly/core/0.7.1/bbb77b526fe095afca0e4f0a2762ddee167340058fb95a15608d01696dc50b0e#e04920668e177ed2a14ef8a6320a631eb6c3c1d1"
+  integrity sha512-OLcFQHtE7vBUleizuNFYIxNv3+vvWCq6y2ccImvqO0oHZsc+zRRAW2KcRF5R3DAU/38I81lWhsqnvDjJyO01qA==
   dependencies:
     "@casl/ability" "^5.3.1"
     "@fleetly/auth" "^0.2.2"

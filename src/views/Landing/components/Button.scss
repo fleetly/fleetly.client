@@ -4,6 +4,7 @@
   align-items: center;
   border: 0;
   display: flex;
+  font-family: inherit;
   height: 100%;
   justify-content: center;
 
@@ -35,14 +36,24 @@
     }
 
     &Orange {
-      background-image: linear-gradient(to bottom, $color-orange-400, $color-red-600);
+      background-image:
+        linear-gradient(
+          to bottom,
+          $color-orange-400,
+          $color-red-600
+        );
       border-radius: 36px;
       box-shadow: 0 6px 6px 0 rgba(255, 155, 104, .6);
       color: $color-gray-0;
     }
 
     &OrangeWhite {
-      background-image: linear-gradient(to bottom, $color-orange-400, $color-red-600);
+      background-image:
+        linear-gradient(
+          to bottom,
+          $color-orange-400,
+          $color-red-600
+        );
       border-radius: 36px;
       color: $color-gray-0;
       min-width: 152px;
@@ -60,9 +71,16 @@
 }
 
 .Cover {
-  background-image: linear-gradient(to bottom, $color-red-600, $color-orange-400);
+  background-image:
+    linear-gradient(
+      to bottom,
+      $color-red-600,
+      $color-orange-400
+    );
   border-radius: 36px;
-  box-shadow: 0 6px 6px 0 rgba(255, 155, 104, .6), 0 -6px 6px 0 rgba($color-gray-0, .3);
+  box-shadow:
+    0 6px 6px 0 rgba(255, 155, 104, .6),
+    0 -6px 6px 0 rgba($color-gray-0, .3);
   height: 100%;
   padding: 6px;
   transition: all .2s;
