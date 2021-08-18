@@ -4,8 +4,18 @@ import React, { useState } from 'react';
 // Fleetly
 import { PlanType } from '@fleetly/core/interfaces';
 
+// Assets
+import enterpriceImage from './assets/enterprice@1x.png';
+import enterpriceImage2x from './assets/enterprice@2x.png';
+import liteImage from './assets/lite@1x.png';
+import liteImage2x from './assets/lite@2x.png';
+import proImage from './assets/pro@1x.png';
+import proImage2x from './assets/pro@2x.png';
+
 // Components
+import Image from '@components/Image';
 import { H2, H3, Text } from '@components/Typography';
+
 import Button from '@views/Landing/components/Button';
 
 import Select from './components/Select';
@@ -28,6 +38,21 @@ export interface PlansItemProps {
   }[];
 }
 
+const IMAGE_SET = {
+  [PlanType.ENTERPRCIE]: {
+    '1x': enterpriceImage,
+    '2x': enterpriceImage2x
+  },
+  [PlanType.LITE]: {
+    '1x': liteImage,
+    '2x': liteImage2x
+  },
+  [PlanType.PRO]: {
+    '1x': proImage,
+    '2x': proImage2x
+  }
+};
+
 const PlansItem: React.FC<PlansItemProps> = ({
   description,
   title,
@@ -48,7 +73,14 @@ const PlansItem: React.FC<PlansItemProps> = ({
       <div className={styles.Background} />
 
       <div className={styles.Content}>
-        <div className={styles.Cover}>123</div>
+        <div className={styles.Cover}>
+          <Image
+            alt={type}
+            className={styles.Image}
+            src={IMAGE_SET[type]['1x']}
+            srcSet={IMAGE_SET[type]}
+          />
+        </div>
 
         <H3 className={styles.Type}>{title}</H3>
 

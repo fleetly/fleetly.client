@@ -22,6 +22,7 @@ const Plans = () => {
         content: styles.Content
       }}
       id={PLANS_MODAL}
+      opened
     >
       {PLANS.map((plan) => (
         <Plan {...plan} key={plan.type} />

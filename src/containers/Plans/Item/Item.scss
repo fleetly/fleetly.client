@@ -85,12 +85,26 @@
 }
 
 .Cover {
+  align-items: flex-end;
+  display: flex;
   flex: 1 1 auto;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .Description {
   color: rgba($color-white, .8);
   margin: 12px 0 0;
+}
+
+.Image {
+  height: 250px;
+  left: 32px;
+  object-fit: contain;
+  position: absolute;
+  transform: scale(1.4) translateY(-10%);
+  width: 294px;
 }
 
 .Limit {
