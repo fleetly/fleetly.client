@@ -25,12 +25,19 @@ const LandingFooter: React.FC<{}> = () => (
     </div>
 
     <div className={styles.Links}>
-      <Link className={styles.Link} to="/">
+      <Link
+        className={styles.Link}
+        to="https://www.iubenda.com/terms-and-conditions/35742426"
+      >
         <Text medium size="large">
           Terms of Service
         </Text>
       </Link>
-      <Link className={styles.Link} to="/">
+
+      <Link
+        className={styles.Link}
+        to="https://www.iubenda.com/privacy-policy/35742426/full-legal"
+      >
         <Text medium size="large">
           Privacy Policy
         </Text>
