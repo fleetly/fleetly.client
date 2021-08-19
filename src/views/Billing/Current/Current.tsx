@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Components
-import Button from '@components/Button';
 import Card, { CardHeader, CardHr } from '@components/Card';
 import Icon from '@components/Icon';
 import { Wrapper } from '@components/Page';
@@ -21,11 +20,6 @@ const BillingCurrent: React.FC<ISubscription> = ({ plan }) => (
   <Wrapper title="Current Plan">
     <Card>
       <CardHeader
-        actions={
-          <Button color="primary" variant="outlined">
-            Get Usage Report
-          </Button>
-        }
         avatar={<Icon icon="fad fa-rocket" />}
         classes={{ content: styles.Content }}
         subTitle={plan.title}

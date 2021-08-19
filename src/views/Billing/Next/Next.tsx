@@ -1,9 +1,18 @@
 import moment from 'moment';
 import React, { useCallback } from 'react';
 
+// Fleetly
+import { PlanType } from '@fleetly/core/interfaces';
+
+// Assets
+import enterpriceImage1x from '@containers/Plans/Item/assets/enterprice@1x.png';
+import enterpriceImage2x from '@containers/Plans/Item/assets/enterprice@2x.png';
+
 // Components
 import Button from '@components/Button';
 import Card from '@components/Card';
+import Image from '@components/Image';
+import Link from '@components/Link';
 import { Caption, H2, H4, Text } from '@components/Typography';
 
 // Components
@@ -21,9 +30,15 @@ import { useModals } from '@store';
 // Styles
 import styles from './Next.scss';
 
-const BillingNext: React.FC<ISubscription> = ({ next, plan }) => {
+// Utils
+import { formatCurrency } from '@utils/string';
+
+const BillingNext: React.FC<ISubscription> = ({ cancelDate, next, plan }) => {
   // Setup
   const { openModal } = useModals(PLANS_MODAL);
+
+  const isCanceled = !!cancelDate;
+  const isLite = plan.type === PlanType.LITE;
 
   // Handlers
   const handleBuyClick = useCallback(() => openModal(), [openModal]);
@@ -31,27 +46,61 @@ const BillingNext: React.FC<ISubscription> = ({ next, plan }) => {
   return (
     <Wrapper title="Next Plan">
       <Card className={styles.Root}>
-        <div className={styles.Header}>
-          <H4 className={styles.Title}>{plan.type}</H4>
+        {isLite ? (
+          <>
+            <div className={styles.Cover}>
+              <Image
+                className={styles.Image}
+                src={enterpriceImage1x}
+                srcSet={{ '1x': enterpriceImage1x, '2x': enterpriceImage2x }}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={styles.Header}>
+              <H4 className={styles.Title}>{plan.type}</H4>
 
-          <div>
-            <Caption className={styles.Date}>from&nbsp;</Caption>
-            <Caption bold>{moment(next?.billDate).format('Do MMM')}</Caption>
-          </div>
+              <div>
+                <Caption className={styles.Date}>{`${
+                  cancelDate ? 'begins' : 'next due'
+                } `}</Caption>
+
+                <Caption bold>
+                  {moment(isCanceled ? cancelDate : next?.billDate).format(
+                    'Do MMM'
+                  )}
+                </Caption>
+              </div>
+            </div>
+
+            <div className={styles.Content}>
+              {cancelDate ? (
+                <H2>Free</H2>
+              ) : (
+                <div className={styles.Price}>
+                  <H2>{formatCurrency(plan.price)}</H2>
+                  <Text className={styles.Period}>/ month</Text>
+                </div>
+              )}
+
+              <Text className={styles.Limit}>{plan.title}</Text>
+            </div>
+          </>
+        )}
+
+        <div className={styles.Actions}>
+          <Button color="primary" fullWidth onClick={handleBuyClick}>
+            {isCanceled || isLite ? 'Upgrade to PRO' : 'Change Plan'}
+          </Button>
+
+          {!isCanceled && !isLite && (
+            <Link className={styles.Method}>
+              <i className="fa far fa-credit-card" />
+              Update payment method
+            </Link>
+          )}
         </div>
-
-        <div className={styles.Content}>
-          <div className={styles.Price}>
-            <H2>${plan.price}</H2>
-            <Text className={styles.Period}>/ month</Text>
-          </div>
-
-          <Text className={styles.Limit}>{plan.title}</Text>
-        </div>
-
-        <Button color="primary" fullWidth onClick={handleBuyClick}>
-          Change Plan
-        </Button>
       </Card>
     </Wrapper>
   );

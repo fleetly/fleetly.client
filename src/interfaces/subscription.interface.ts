@@ -7,6 +7,7 @@ import { IPlan } from './plan.interface';
 
 export interface ISubscription {
   readonly id: string;
+  readonly cancelDate?: string;
   readonly next?: ISubscriptionNext;
   readonly payments?: IPayment[];
   readonly plan: IPlan;

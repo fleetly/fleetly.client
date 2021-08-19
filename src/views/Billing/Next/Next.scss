@@ -7,6 +7,19 @@
   height: 100%;
 }
 
+.Actions {
+  width: 100%;
+}
+
+.Cover {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+
 .Content {
   align-items: center;
   display: flex;
@@ -24,6 +37,31 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.Image {
+  left: 12px;
+  max-width: 100%;
+  object-fit: contain;
+  position: relative;
+  transform: scale(1.2);
+}
+
+.Method {
+  color: $color-gray-500;
+  display: block;
+  font-size: 12px;
+  margin: 12px 0 0;
+  text-align: center;
+  width: 100%;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  & > i {
+    margin: 0 4px 0 0;
+  }
 }
 
 .Period {
