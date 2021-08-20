@@ -32,7 +32,12 @@ import styles from './Next.scss';
 // Utils
 import { formatCurrency } from '@utils/string';
 
-const BillingNext: React.FC<ISubscription> = ({ cancelDate, next, plan }) => {
+const BillingNext: React.FC<ISubscription> = ({
+  cancelDate,
+  next,
+  plan,
+  updateUrl
+}) => {
   // Setup
   const { openModal } = useModals(PLANS_MODAL);
 
@@ -93,8 +98,8 @@ const BillingNext: React.FC<ISubscription> = ({ cancelDate, next, plan }) => {
             {isCanceled || isLite ? 'Upgrade to PRO' : 'Change Plan'}
           </Button>
 
-          {!isCanceled && !isLite && (
-            <Link className={styles.Method}>
+          {updateUrl && (
+            <Link className={styles.Method} to={updateUrl}>
               <i className="fa far fa-credit-card" />
               Update payment method
             </Link>

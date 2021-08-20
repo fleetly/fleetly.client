@@ -12,6 +12,7 @@ export interface ISubscription {
   readonly payments?: IPayment[];
   readonly plan: IPlan;
   readonly status: SubscriptionStatus;
+  readonly updateUrl?: string;
 }
 
 export interface ISubscriptionNext {
