@@ -4,27 +4,24 @@ import React, { useState } from 'react';
 // Fleetly
 import { PlanType } from '@fleetly/core/interfaces';
 
-// Assets
-import enterpriceImage from './assets/enterprice@1x.png';
-import enterpriceImage2x from './assets/enterprice@2x.png';
-import liteImage from './assets/lite@1x.png';
-import liteImage2x from './assets/lite@2x.png';
-import proImage from './assets/pro@1x.png';
-import proImage2x from './assets/pro@2x.png';
-
 // Components
 import Image from '@components/Image';
 import { H3, Text } from '@components/Typography';
 
-import Button from '@views/Landing/components/Button';
-
 import Select from './components/Select';
+
+// Data
+import { PLANS_IMAGE_SET } from '../Plans.data';
 
 // Interfaces
 import { IPlan } from '@interfaces/plan.interface';
+import { ISubscription } from '@interfaces/subscription.interface';
 
 // Styles
 import styles from './Item.scss';
+
+// Views
+import Button from '@views/Landing/components/Button';
 
 // Utils
 import { formatCurrency } from '@utils/string';
@@ -32,28 +29,26 @@ import { getClassName } from '@utils/styles';
 
 export interface PlansItemProps {
   description: string;
+  onClick(event: React.SyntheticEvent<HTMLButtonElement>): void;
   plans: IPlan[];
+  subscription?: ISubscription;
   type: PlanType;
 }
 
-const IMAGE_SET = {
-  [PlanType.ENTERPRICE]: {
-    '1x': enterpriceImage,
-    '2x': enterpriceImage2x
-  },
-  [PlanType.LITE]: {
-    '1x': liteImage,
-    '2x': liteImage2x
-  },
-  [PlanType.PRO]: {
-    '1x': proImage,
-    '2x': proImage2x
-  }
-};
-
-const PlansItem: React.FC<PlansItemProps> = ({ description, plans, type }) => {
+const PlansItem: React.FC<PlansItemProps> = ({
+  description,
+  onClick,
+  plans,
+  subscription,
+  type
+}) => {
   // State
-  const [currentPlan, selectCurrentPlan] = useState(plans[0]);
+  const [currentPlan, selectCurrentPlan] = useState(
+    subscription
+      ? plans.find(({ id }) => id === subscription.plan.id) || plans[0]
+      : plans[0]
+  );
+
   const isFree = type === PlanType.LITE;
 
   return (
@@ -70,14 +65,14 @@ const PlansItem: React.FC<PlansItemProps> = ({ description, plans, type }) => {
           <Image
             alt={type}
             className={styles.Image}
-            src={IMAGE_SET[type]['1x']}
-            srcSet={IMAGE_SET[type]}
+            src={PLANS_IMAGE_SET[type]['1x']}
+            srcSet={PLANS_IMAGE_SET[type]}
           />
         </div>
 
         <H3 className={styles.Type}>{type}</H3>
 
-        <Text className={styles.Description} medium>
+        <Text className={styles.Description} weight="medium">
           {description}
         </Text>
 
@@ -97,12 +92,18 @@ const PlansItem: React.FC<PlansItemProps> = ({ description, plans, type }) => {
 
               {!isFree && (
                 <div className={styles.Button}>
-                  <Button>BUY</Button>
+                  <Button data-plan-id={currentPlan.id} onClick={onClick}>
+                    {subscription
+                      ? subscription.plan.id === currentPlan.id
+                        ? 'CANCEL'
+                        : 'CHANGE'
+                      : 'BUY'}
+                  </Button>
                 </div>
               )}
             </div>
 
-            <Text className={styles.Limit} medium>
+            <Text className={styles.Limit} weight="medium">
               {currentPlan.title}
             </Text>
 

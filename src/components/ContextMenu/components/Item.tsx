@@ -66,8 +66,8 @@ const ContextMenuItem: React.FC<PropTypes> = ({
 
       <Text
         className={classNames(classes.title, styles.Title)}
-        medium
         size="small"
+        weight="medium"
       >
         {title}
       </Text>

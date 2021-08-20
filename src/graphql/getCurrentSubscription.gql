@@ -1,0 +1,27 @@
+query getCurrentSubscriptions($companyId: String!) {
+  currentSubscription(companyId: $companyId) {
+    id
+    cancelDate
+    next {
+      billDate
+      price
+    }
+    payments {
+      id
+      amount
+      checkoutId
+      orderId
+      receiptUrl
+      status
+      tax
+      type
+    }
+    plan {
+      id
+      price
+      title
+      type
+    }
+    status
+  }
+}

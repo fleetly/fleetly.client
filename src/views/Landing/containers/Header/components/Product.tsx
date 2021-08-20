@@ -37,12 +37,12 @@ const LandingHeaderProduct: React.FC<LandingHeaderProductProps> = ({
     {logo && <img alt={title} className={styles.Logo} src={logo} />}
 
     <div className={styles.Info}>
-      <Text bold className={styles.Title} size="large">
+      <Text className={styles.Title} size="large" weight="bold">
         {title}
       </Text>
 
       {description && (
-        <Text className={styles.Description} medium>
+        <Text className={styles.Description} weight="medium">
           {description}
         </Text>
       )}

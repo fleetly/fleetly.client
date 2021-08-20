@@ -1,0 +1,3 @@
+mutation cancelSubscription($companyId: String!) {
+  cancelSubscription(companyId: $companyId)
+}

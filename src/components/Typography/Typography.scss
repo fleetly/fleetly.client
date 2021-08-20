@@ -12,7 +12,6 @@
   &Variant {
     &Caption {
       font-size: 12px;
-      font-weight: 600;
       line-height: 16px;
     }
 
@@ -71,6 +70,9 @@
     }
 
     &Text {
+      font-size: 14px;
+      line-height: 24px;
+
       @include breakpoints(mobile) {
         letter-spacing: 0;
       }
@@ -105,16 +107,28 @@
   }
 
   &Weight {
+    &Light {
+      font-weight: 300;
+    }
+
+    &Regular {
+      font-weight: 400;
+    }
+
+    &Medium {
+      font-weight: 500;
+    }
+
+    &SemiBold {
+      font-weight: 600;
+    }
+
     &Bold {
       font-weight: 700;
     }
 
     &ExtraBold {
-      font-weight: 900;
-    }
-
-    &Medium {
-      font-weight: 600;
+      font-weight: 800;
     }
   }
 }

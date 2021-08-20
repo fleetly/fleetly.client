@@ -14,7 +14,7 @@ const LandingHeaderIntegrations: React.FC<{}> = () => (
   <div className={styles.Root}>
     {INTEGRATIONS.map(({ items, title }, index) => (
       <div key={index}>
-        <Text bold className={styles.Title} size="large">
+        <Text className={styles.Title} size="large" weight="bold">
           {title}
         </Text>
 

@@ -13,6 +13,8 @@ import Form, {
   Fieldset,
   Input
 } from '@components/Form';
+import Link from '@components/Link';
+import { Text } from '@components/Typography';
 
 // GraphQL
 import registerMutation from '@views/Sign/graphql/register.gql';
@@ -20,7 +22,7 @@ import registerMutation from '@views/Sign/graphql/register.gql';
 // Styles
 import styles from './common.scss';
 
-const SignUp: React.SFC<InjectedFormProps> = ({
+const SignUp: React.FC<InjectedFormProps> = ({
   error,
   handleSubmit,
   submitting
@@ -38,6 +40,13 @@ const SignUp: React.SFC<InjectedFormProps> = ({
         type="password"
       />
     </Fieldset>
+
+    <Text className={styles.Disclaimer} component="div" size="small">
+      By creating an account, you agree to the{' '}
+      <Link to="https://www.iubenda.com/terms-and-conditions/35742426">
+        Terms of Service
+      </Link>
+    </Text>
 
     <div className={styles.Actions}>
       <Button color="primary" loaded={submitting} type="submit">

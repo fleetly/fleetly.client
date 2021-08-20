@@ -9,7 +9,8 @@
 }
 
 .Backdrop {
-  background: $color-gray-100;
+  background: rgba($color-gray-100, .9);
+  filter: blur(4px);
 }
 
 .Container {
@@ -18,7 +19,7 @@
 }
 
 .Content {
-  column-gap: 80px;
+  column-gap: 64px;
   display: grid;
   grid-template-columns: repeat(3, 296px);
 }

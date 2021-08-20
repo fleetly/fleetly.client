@@ -45,7 +45,7 @@ const ChannelStatsRange: React.FC<ChannelStatsRangeProps> = ({
         ))}
       </div>
 
-      <Text className={styles.Range} component="div" medium>
+      <Text className={styles.Range} component="div" weight="medium">
         {value !== StatsRange.DAY &&
           moment()
             .add(

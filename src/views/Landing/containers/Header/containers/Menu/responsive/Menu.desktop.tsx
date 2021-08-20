@@ -14,7 +14,12 @@ const LandingHeaderMenu: React.FC<{}> = () => (
   <nav className={styles.Root} role="menu">
     <div className={styles.Item} role="menuitem">
       <div className={styles.Control}>
-        <Text bold className={styles.ItemTitle} component="div" size="large">
+        <Text
+          className={styles.ItemTitle}
+          component="div"
+          size="large"
+          weight="bold"
+        >
           Products
         </Text>
       </div>
@@ -26,7 +31,12 @@ const LandingHeaderMenu: React.FC<{}> = () => (
 
     <div className={styles.Item} role="menuitem">
       <div className={styles.Control}>
-        <Text bold className={styles.ItemTitle} component="div" size="large">
+        <Text
+          className={styles.ItemTitle}
+          component="div"
+          size="large"
+          weight="bold"
+        >
           Integrations
         </Text>
       </div>
@@ -38,7 +48,12 @@ const LandingHeaderMenu: React.FC<{}> = () => (
 
     <div className={styles.Item} role="menuitem">
       <div className={styles.Control}>
-        <Text bold className={styles.ItemTitle} component="div" size="large">
+        <Text
+          className={styles.ItemTitle}
+          component="div"
+          size="large"
+          weight="bold"
+        >
           Pricing
         </Text>
       </div>

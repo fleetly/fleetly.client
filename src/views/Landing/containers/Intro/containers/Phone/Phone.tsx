@@ -70,7 +70,7 @@ const LandingIntroPhone = () => {
           </div>
 
           <div className={styles.Form}>
-            <Text medium size="extraLarge">
+            <Text size="extraLarge" weight="medium">
               Type something...
             </Text>
             <Button color="primary" icon="fas fa-paper-plane" />

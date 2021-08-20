@@ -27,9 +27,9 @@ const Item = () => {
       ref={ref}
       onClick={handleEditClick}
     >
-      <Text medium>Gender</Text>
-      <Text medium>Is</Text>
-      <Text medium>Male</Text>
+      <Text weight="medium">Gender</Text>
+      <Text weight="medium">Is</Text>
+      <Text weight="medium">Male</Text>
     </div>
   );
 };

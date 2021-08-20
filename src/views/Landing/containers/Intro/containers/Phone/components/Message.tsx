@@ -29,7 +29,7 @@ const LandingIntroPhoneMessage: React.FC<LandingIntroPhoneMessageProps> = ({
     )}
   >
     <div className={styles.Container}>
-      <Text className={styles.Text} medium size="extraLarge">
+      <Text className={styles.Text} size="extraLarge" weight="medium">
         {text}
       </Text>
 
@@ -37,7 +37,7 @@ const LandingIntroPhoneMessage: React.FC<LandingIntroPhoneMessageProps> = ({
         <div className={styles.Actions}>
           {buttons.map((text, index) => (
             <button className={styles.Button} key={index} type="button">
-              <Text medium size="extraLarge">
+              <Text size="extraLarge" weight="medium">
                 {text}
               </Text>
             </button>

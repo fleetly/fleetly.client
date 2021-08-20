@@ -29,7 +29,7 @@ const FlowBuilderContentTextArea: React.FC<PropTypes> = ({ isFocused }) => {
             onMouseDown={avoidMouseDown}
           />
         ) : (
-          <Text className={styles.Text} medium size="small">
+          <Text className={styles.Text} size="small" weight="medium">
             {input.value}
           </Text>
         )

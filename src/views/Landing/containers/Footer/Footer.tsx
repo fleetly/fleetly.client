@@ -29,7 +29,7 @@ const LandingFooter: React.FC<{}> = () => (
         className={styles.Link}
         to="https://www.iubenda.com/terms-and-conditions/35742426"
       >
-        <Text medium size="large">
+        <Text size="large" weight="medium">
           Terms of Service
         </Text>
       </Link>
@@ -38,7 +38,7 @@ const LandingFooter: React.FC<{}> = () => (
         className={styles.Link}
         to="https://www.iubenda.com/privacy-policy/35742426/full-legal"
       >
-        <Text medium size="large">
+        <Text size="large" weight="medium">
           Privacy Policy
         </Text>
       </Link>
@@ -46,8 +46,8 @@ const LandingFooter: React.FC<{}> = () => (
 
     <Text
       className={styles.Copyright}
-      medium
       size="large"
+      weight="medium"
     >{`© ${new Date().getFullYear()} Fleetly. All rights reserved`}</Text>
   </Wrapper>
 );

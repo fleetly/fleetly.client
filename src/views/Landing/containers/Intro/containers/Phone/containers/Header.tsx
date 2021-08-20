@@ -19,11 +19,11 @@ const LandingIntroPhoneHeader = () => (
         </div>
 
         <div className={styles.Info}>
-          <Text className={styles.Name} medium size="extraLarge">
+          <Text className={styles.Name} size="extraLarge" weight="medium">
             Welcome Fleetly!
           </Text>
 
-          <Text bold className={styles.Status} size="large">
+          <Text className={styles.Status} size="large" weight="bold">
             <div className={styles.Dots}>
               <div className={styles.Dot} />
               <div className={styles.Dot} />

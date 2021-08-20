@@ -13,7 +13,11 @@ interface PropTypes {
 }
 
 const ContextMenuTitle: React.FC<PropTypes> = ({ children, className }) => (
-  <Text className={classNames(className, styles.Root)} medium size="small">
+  <Text
+    className={classNames(className, styles.Root)}
+    size="small"
+    weight="medium"
+  >
     {children}
   </Text>
 );

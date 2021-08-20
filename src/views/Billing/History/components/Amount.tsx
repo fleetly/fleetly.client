@@ -11,7 +11,7 @@ import { formatCurrency } from '@utils/string';
 
 const BillingHistoryAmount: React.FC<any> = ({ amount, tax }) => (
   <div className={styles.Root}>
-    <Text bold>{formatCurrency(amount)}</Text>
+    <Text weight="bold">{formatCurrency(amount)}</Text>
     <Caption className={styles.Tax}>{`${formatCurrency(tax)} (VAT)`}</Caption>
   </div>
 );

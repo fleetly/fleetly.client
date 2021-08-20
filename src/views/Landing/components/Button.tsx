@@ -11,14 +11,17 @@ import styles from './Button.scss';
 type Variant = 'green' | 'orange' | 'orangeWhite';
 
 interface PropTypes {
+  onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
   to?: string;
   variant?: Variant;
 }
 
 const LandingButton: React.FC<PropTypes> = ({
   children,
+  onClick,
   to,
-  variant = 'orangeWhite'
+  variant = 'orangeWhite',
+  ...props
 }) => {
   const Component = useMemo(
     () => (props: any) =>
@@ -33,8 +36,10 @@ const LandingButton: React.FC<PropTypes> = ({
           <div className={classNames(styles.Cover, styles.CoverSizeSmall)}>
             <Component
               className={classNames(styles.Root, styles.RootVariantOrange)}
+              onClick={onClick}
+              {...props}
             >
-              <Text className={styles.Text} bold size="large">
+              <Text className={styles.Text} size="large" weight="bold">
                 {children}
               </Text>
             </Component>
@@ -49,8 +54,10 @@ const LandingButton: React.FC<PropTypes> = ({
                   styles.Root,
                   styles.RootVariantOrangeWhite
                 )}
+                onClick={onClick}
+                {...props}
               >
-                <Text className={styles.Text} bold size="large">
+                <Text className={styles.Text} size="large" weight="bold">
                   {children}
                 </Text>
               </Component>
@@ -61,15 +68,17 @@ const LandingButton: React.FC<PropTypes> = ({
       default:
         return (
           <Component
+            {...props}
             className={classNames(styles.Root, styles.RootVariantGreen)}
+            onClick={onClick}
           >
-            <Text className={styles.Text} bold size="large">
+            <Text className={styles.Text} size="large" weight="bold">
               {children}
             </Text>
           </Component>
         );
     }
-  }, [children, variant]);
+  }, [children, onClick, props, variant]);
 };
 
 export default LandingButton;

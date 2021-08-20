@@ -15,11 +15,11 @@ import styles from './Try.scss';
 const LandingTry: React.FC<{}> = () => (
   <Wrapper classes={{ root: styles.Root, container: styles.Container }}>
     <div className={styles.Content}>
-      <Text className={styles.Description} medium size="large">
+      <Text className={styles.Description} size="large" weight="medium">
         Building bots with fun, no code
       </Text>
 
-      <H3 className={styles.Title} extraBold>
+      <H3 className={styles.Title} weight="extraBold">
         Try your best customer
         <br />
         communication experience

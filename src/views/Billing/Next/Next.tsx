@@ -4,10 +4,6 @@ import React, { useCallback } from 'react';
 // Fleetly
 import { PlanType } from '@fleetly/core/interfaces';
 
-// Assets
-import enterpriceImage1x from '@containers/Plans/Item/assets/enterprice@1x.png';
-import enterpriceImage2x from '@containers/Plans/Item/assets/enterprice@2x.png';
-
 // Components
 import Button from '@components/Button';
 import Card from '@components/Card';
@@ -20,6 +16,9 @@ import { Wrapper } from '@components/Page';
 
 // Constants
 import { PLANS_MODAL } from '@constants';
+
+// Data
+import { PLANS_IMAGE_SET } from '@containers/Plans/Plans.data';
 
 // Interfaces
 import { ISubscription } from '@interfaces/subscription.interface';
@@ -51,8 +50,8 @@ const BillingNext: React.FC<ISubscription> = ({ cancelDate, next, plan }) => {
             <div className={styles.Cover}>
               <Image
                 className={styles.Image}
-                src={enterpriceImage1x}
-                srcSet={{ '1x': enterpriceImage1x, '2x': enterpriceImage2x }}
+                src={PLANS_IMAGE_SET.ENTERPRICE['1x']}
+                srcSet={PLANS_IMAGE_SET.ENTERPRICE}
               />
             </div>
           </>
@@ -66,7 +65,7 @@ const BillingNext: React.FC<ISubscription> = ({ cancelDate, next, plan }) => {
                   cancelDate ? 'begins' : 'next due'
                 } `}</Caption>
 
-                <Caption bold>
+                <Caption weight="bold">
                   {moment(isCanceled ? cancelDate : next?.billDate).format(
                     'Do MMM'
                   )}

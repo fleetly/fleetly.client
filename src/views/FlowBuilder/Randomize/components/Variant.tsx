@@ -34,7 +34,7 @@ const FlowBuilderRandomizeVariant: React.FC<PropTypes> = ({ name, id }) => {
     <div className={styles.Root}>
       <div className={styles.Container}>
         <div className={styles.Title}>
-          <Text className={styles.Name} medium>
+          <Text className={styles.Name} weight="medium">
             {name}
           </Text>
 

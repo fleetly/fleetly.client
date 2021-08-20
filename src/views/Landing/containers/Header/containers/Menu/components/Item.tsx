@@ -38,7 +38,12 @@ const LandingHeaderMenuItem: React.FC<any> = ({
       role="menuitem"
     >
       <div className={styles.Control}>
-        <Text bold className={styles.Title} component="div" size="large">
+        <Text
+          className={styles.Title}
+          component="div"
+          size="large"
+          weight="bold"
+        >
           {title}
         </Text>
       </div>

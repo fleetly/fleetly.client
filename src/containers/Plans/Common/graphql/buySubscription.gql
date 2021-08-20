@@ -1,0 +1,3 @@
+mutation buySubscription($companyId: String!, $planId: String!) {
+  buySubscription(companyId: $companyId, planId: $planId)
+}

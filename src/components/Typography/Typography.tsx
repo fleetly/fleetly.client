@@ -7,32 +7,49 @@ import styles from './Typography.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-type Size = 'extraLarge' | 'large' | 'medium' | 'small' | 'extraSmall';
-type Variant = 'caption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'text';
+type TypographySize =
+  | 'extraLarge'
+  | 'large'
+  | 'medium'
+  | 'small'
+  | 'extraSmall';
 
-interface TypeProps {
-  children: React.ReactNode;
+type TypographyWeight =
+  | 'light'
+  | 'regular'
+  | 'medium'
+  | 'semiBold'
+  | 'bold'
+  | 'extraBold';
+
+type TypographyVariant =
+  | 'caption'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'text';
+
+export interface TypographyProps {
   className?: string;
   component?: any;
-  bold?: boolean;
-  extraBold?: boolean;
   htmlFor?: string;
-  medium?: boolean;
   noWrap?: boolean;
-  size?: Size;
-  variant?: Variant;
+  size?: TypographySize;
+  weight?: TypographyWeight;
+  variant?: TypographyVariant;
 }
 
-const Typography: React.FC<TypeProps> = ({
+const Typography: React.FC<TypographyProps> = ({
   children,
   className,
   component: Component = 'div',
-  bold,
-  extraBold,
-  medium,
   noWrap,
-  size = 'medium',
+  size,
   variant = 'text',
+  weight,
   ...props
 }) => (
   <Component
@@ -40,13 +57,9 @@ const Typography: React.FC<TypeProps> = ({
     className={classNames(
       className,
       styles.Root,
-      getClassName('size', { collection: styles, value: size }),
+      size && getClassName('size', { collection: styles, value: size }),
+      weight && getClassName('weight', { collection: styles, value: weight }),
       getClassName('variant', { collection: styles, value: variant }),
-      {
-        [styles.RootWeightBold]: bold,
-        [styles.RootWeightExtraBold]: extraBold,
-        [styles.RootWeightMedium]: medium
-      },
       {
         [styles.RootModeNoWrap]: noWrap
       }
@@ -59,38 +72,38 @@ const Typography: React.FC<TypeProps> = ({
 // Exports
 export default Typography;
 
-export const Caption: React.FC<TypeProps> = (props) => (
+export const Caption: React.FC<TypographyProps> = (props) => (
   <Typography component="span" variant="caption" {...props} />
 );
 
-export const H1: React.FC<TypeProps> = (props) => (
+export const H1: React.FC<TypographyProps> = (props) => (
   <Typography component="h1" variant="h1" {...props} />
 );
 
-export const H2: React.FC<TypeProps> = (props) => (
+export const H2: React.FC<TypographyProps> = (props) => (
   <Typography component="h2" variant="h2" {...props} />
 );
 
-export const H3: React.FC<TypeProps> = (props) => (
+export const H3: React.FC<TypographyProps> = (props) => (
   <Typography component="h3" variant="h3" {...props} />
 );
 
-export const H4: React.FC<TypeProps> = (props) => (
+export const H4: React.FC<TypographyProps> = (props) => (
   <Typography component="h4" variant="h4" {...props} />
 );
 
-export const H5: React.FC<TypeProps> = (props) => (
+export const H5: React.FC<TypographyProps> = (props) => (
   <Typography component="h5" variant="h5" {...props} />
 );
 
-export const H6: React.FC<TypeProps> = (props) => (
+export const H6: React.FC<TypographyProps> = (props) => (
   <Typography component="h6" variant="h6" {...props} />
 );
 
-export const P: React.FC<TypeProps> = (props) => (
+export const P: React.FC<TypographyProps> = (props) => (
   <Typography component="p" variant="text" {...props} />
 );
 
-export const Text: React.FC<TypeProps> = (props) => (
+export const Text: React.FC<TypographyProps> = (props) => (
   <Typography component="span" variant="text" {...props} />
 );

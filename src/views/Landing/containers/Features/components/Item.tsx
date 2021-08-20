@@ -65,15 +65,18 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
     </div>
 
     <div className={classNames(classes.content, styles.Content)}>
-      <H2 className={classNames(classes.title, styles.Title)} extraBold>
+      <H2
+        className={classNames(classes.title, styles.Title)}
+        weight="extraBold"
+      >
         {title}
       </H2>
 
       <Text
         className={classNames(classes.description, styles.Description)}
         component="div"
-        medium
         size="large"
+        weight="medium"
       >
         {description}
       </Text>

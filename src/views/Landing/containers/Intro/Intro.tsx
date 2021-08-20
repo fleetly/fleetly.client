@@ -29,16 +29,16 @@ const LandingIntro = () => {
       </div>
 
       <div className={styles.Content}>
-        <H2 extraBold>Increase Your Business</H2>
-        <H1 extraBold noWrap>
+        <H2 weight="extraBold">Increase Your Business</H2>
+        <H1 noWrap weight="extraBold">
           With Fleetly
         </H1>
 
         <Text
           className={styles.Description}
           component="div"
-          medium
           size="large"
+          weight="medium"
         >
           Combine channels and&nbsp;automate communication with&nbsp;subscribers
           to&nbsp;grow your business

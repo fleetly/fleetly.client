@@ -2,7 +2,7 @@ import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // GraphQL
-import GET_CURRENT_PLAN from './Common/graphql/currentPlan.gql';
+import GET_CURRENT_SUBSCRIPTION from '@graphql/getCurrentSubscription.gql';
 
 // Interfaces
 import { ISubscription } from '@interfaces/subscription.interface';
@@ -13,7 +13,7 @@ const useBilling = () => {
 
   // Data
   const { data } = useQuery<{ currentSubscription: ISubscription }>(
-    GET_CURRENT_PLAN,
+    GET_CURRENT_SUBSCRIPTION,
     {
       variables: { companyId }
     }
