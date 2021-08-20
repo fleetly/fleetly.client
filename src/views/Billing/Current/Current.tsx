@@ -7,11 +7,7 @@ import { PlanType } from '@fleetly/core/interfaces';
 import Card, { CardHeader, CardHr } from '@components/Card';
 import Icon from '@components/Icon';
 import { Wrapper } from '@components/Page';
-
-import Feature from './components/Feature';
-
-// Data
-import { FEATURES } from '../Billing.data';
+import { Text } from '@components/Typography';
 
 // Interfaces
 import { ISubscription } from '@interfaces/subscription.interface';
@@ -44,11 +40,22 @@ const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
 
         <CardHr />
 
-        <div className={styles.Features}>
-          {FEATURES.map(({ icon, title }: any, index: number) => (
-            <Feature color={color} key={index} icon={icon} title={title} />
-          ))}
-        </div>
+        {plan.features && plan.features.length > 0 && (
+          <div className={styles.Features}>
+            {plan.features.map((feature, index) => (
+              <div className={styles.Feature} key={index}>
+                <Icon
+                  className={styles.Icon}
+                  color={color}
+                  icon="fas fa-check"
+                  variant="outlined"
+                />
+
+                <Text>{feature}</Text>
+              </div>
+            ))}
+          </div>
+        )}
       </Card>
     </Wrapper>
   );

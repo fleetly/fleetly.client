@@ -7,6 +7,8 @@ import Link from '@components/Link';
 import Loader from '@components/Loader';
 
 // Containers
+import Sudo from '@containers/Sudo';
+
 import Companies from './containers/Companies';
 
 // Hooks
@@ -68,6 +70,8 @@ const Main: React.FC<{}> = () => {
           <Route component={Company} path={ROUTES.COMPANY.ROOT} />
         </Switch>
       </div>
+
+      <Sudo />
     </div>
   );
 };

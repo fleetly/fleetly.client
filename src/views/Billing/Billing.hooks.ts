@@ -2,7 +2,7 @@ import { useQuery } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // GraphQL
-import GET_CURRENT_SUBSCRIPTION from '@graphql/getCurrentSubscription.gql';
+import GET_CURRENT_SUBSCRIPTION from './Billing.gql';
 
 // Interfaces
 import { ISubscription } from '@interfaces/subscription.interface';

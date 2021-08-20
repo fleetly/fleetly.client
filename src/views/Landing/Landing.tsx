@@ -1,6 +1,8 @@
 import React from 'react';
 
 // Containers
+import Plans from '@containers/Plans';
+
 import Analyze from './containers/Analyze';
 import Combine from './containers/Combine';
 import Features from './containers/Features';
@@ -26,6 +28,8 @@ const Landing = () => (
       <Try />
       <Footer />
     </div>
+
+    <Plans />
   </div>
 );
 

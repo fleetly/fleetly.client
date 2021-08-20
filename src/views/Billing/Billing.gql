@@ -1,6 +1,7 @@
-query currentSubscriptions($companyId: String!) {
+query GET_CURRENT_SUBSCRIPTION($companyId: String!) {
   currentSubscription(companyId: $companyId) {
     id
+    cancelDate
     next {
       billDate
       price
@@ -17,6 +18,7 @@ query currentSubscriptions($companyId: String!) {
     }
     plan {
       id
+      features
       price
       title
       type

@@ -1,10 +1,10 @@
 import { ApolloError } from '@apollo/client';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useLazyQuery, useMutation, useQuery } from 'react-apollo';
+import { useCallback, useMemo } from 'react';
+import { useMutation, useQuery } from 'react-apollo';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 // Fleetly
-import { PlanType, SubscriptionStatus } from '@fleetly/core/interfaces';
+import { PlanType } from '@fleetly/core/interfaces';
 
 // Constants
 import { PLANS_MODAL } from '@constants';
@@ -13,7 +13,6 @@ import { PLANS_MODAL } from '@constants';
 import { PLANS } from './Plans.data';
 
 // GraphQl
-import GET_CURRENT_SUBSCRIPTION from '@graphql/getCurrentSubscription.gql';
 import GET_PLAN_LIST from './Common/graphql/getPlanList.gql';
 
 import BUY_SUBSCRIPTION from './Common/graphql/buySubscription.gql';
@@ -30,7 +29,7 @@ import ROUTES from '@routes';
 // Store
 import { useModals, useNotifications, useSession } from '@store';
 
-const usePlansContainer = () => {
+const usePlansContainer = (subscription?: ISubscription) => {
   // Setup
   const history = useHistory();
   const { closeModal } = useModals(PLANS_MODAL);
@@ -40,20 +39,8 @@ const usePlansContainer = () => {
 
   const companyId = match?.params.companyId;
 
-  // State
-  const [subscription, setSubscription] = useState<ISubscription>();
-
   // Data
   const { data, loading } = useQuery<{ plans: IPlan[] }>(GET_PLAN_LIST);
-  const [getCurrentSubscription] = useLazyQuery<{
-    currentSubscription: ISubscription;
-  }>(GET_CURRENT_SUBSCRIPTION, {
-    onCompleted: ({ currentSubscription }) =>
-      (!currentSubscription.cancelDate ||
-        currentSubscription.status === SubscriptionStatus.CANCELLED) &&
-      setSubscription(currentSubscription),
-    variables: { companyId }
-  });
 
   // Mutations
   const [buySubscription] = useMutation<{ buySubscription: string }>(
@@ -61,11 +48,6 @@ const usePlansContainer = () => {
   );
   const [cancelSubscription] = useMutation(CANCEL_SUBSCRIPTION);
   const [upgradeSubscription] = useMutation(UPGRADE_SUBSCRIPTION);
-
-  // Effects
-  useEffect(() => {
-    isAuthorized && getCurrentSubscription();
-  }, [getCurrentSubscription, isAuthorized]);
 
   // Handlers
   const handleClick = useCallback(
@@ -76,10 +58,10 @@ const usePlansContainer = () => {
         try {
           const planId = event.currentTarget.dataset.planId!;
 
-          if (subscription && subscription.plan.id === planId) {
-            await cancelSubscription({ variables: { companyId } });
-          } else if (subscription && planId) {
-            await upgradeSubscription({ variables: { companyId, planId } });
+          if (subscription && !subscription.cancelDate) {
+            subscription.plan.id === planId
+              ? await cancelSubscription({ variables: { companyId } })
+              : await upgradeSubscription({ variables: { companyId, planId } });
           } else {
             const { data } = await buySubscription({
               variables: { companyId, planId }
@@ -132,8 +114,7 @@ const usePlansContainer = () => {
   return {
     handleClick,
     loading,
-    plans,
-    subscription
+    plans
   };
 };
 

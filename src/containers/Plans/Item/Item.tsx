@@ -93,7 +93,7 @@ const PlansItem: React.FC<PlansItemProps> = ({
               {!isFree && (
                 <div className={styles.Button}>
                   <Button data-plan-id={currentPlan.id} onClick={onClick}>
-                    {subscription
+                    {subscription && !subscription.cancelDate
                       ? subscription.plan.id === currentPlan.id
                         ? 'CANCEL'
                         : 'CHANGE'

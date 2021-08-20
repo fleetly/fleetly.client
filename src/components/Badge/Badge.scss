@@ -1,11 +1,10 @@
 @import '~@styles/colors.scss';
 
 @mixin color($color) {
-  background-color: rgba($color, .1);
+  background-color: rgba($color, .2);
 
-  .Icon {
-    border: 2px solid rgba($color, .3);
-    color: $color;
+  .Description {
+    color: rgba($color, .6);
   }
 
   .Title {
@@ -31,17 +30,6 @@
 
 .Description {
   color: $color-gray-600;
-  margin: 4px 0 0 0;
-}
-
-.Icon {
-  align-items: center;
-  border-radius: 100%;
-  display: flex !important;
-  font-size: 16px;
-  height: 40px;
-  justify-content: center;
-  width: 40px;
 }
 
 .Title {

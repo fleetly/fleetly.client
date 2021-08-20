@@ -4,8 +4,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Containers
 import Notifications from '@containers/Notifications';
-import Plans from '@containers/Plans';
-import Sudo from '@containers/Sudo';
 
 // Routes
 import ROUTES from '@routes';
@@ -43,9 +41,6 @@ const App: React.FC<{}> = () => {
       </Suspense>
 
       <Notifications />
-      <Plans />
-
-      {isAuthorized && <Sudo />}
     </div>
   );
 };

@@ -3,6 +3,9 @@ import React from 'react';
 // Components
 import Page from '@components/Page';
 
+// Containers
+import Plans from '@containers/Plans';
+
 // Domains
 import CurrentPlan from './Current';
 import NextPlan from './Next';
@@ -24,6 +27,7 @@ const Billing = () => {
           <CurrentPlan {...subscription} />
           <NextPlan {...subscription} />
           <PaymentHistory data={payments} />
+          <Plans subscription={subscription} />
         </>
       )}
     </Page>

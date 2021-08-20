@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import React from 'react';
 
 // Components
-import { Caption, H5 } from '@components/Typography';
+import Icon from '@components/Icon';
+import { Text } from '@components/Typography';
 
 // Styles
 import styles from './Badge.scss';
@@ -10,22 +11,25 @@ import styles from './Badge.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-interface Classes extends ExtendedClasses {
+export interface BadgeClasses extends ExtendedClasses {
   content?: string;
   description?: string;
   icon?: string;
   title?: string;
 }
 
-interface PropTypes {
-  classes?: Classes;
+export interface BadgeProps {
+  className?: string;
+  classes?: BadgeClasses;
   color?: Color;
   description?: string;
   icon?: string;
   title?: string;
 }
 
-const Badge: React.FC<PropTypes> = ({
+const Badge: React.FC<BadgeProps> = ({
+  children,
+  className,
   classes = {},
   color,
   description,
@@ -34,6 +38,7 @@ const Badge: React.FC<PropTypes> = ({
 }) => (
   <div
     className={classNames(
+      className,
       classes.root,
       styles.Root,
       getClassName('color', {
@@ -42,17 +47,24 @@ const Badge: React.FC<PropTypes> = ({
       })
     )}
   >
-    <i className={classNames(classes.icon, styles.Icon, icon)} />
+    <Icon color={color} icon={icon} />
 
     <div className={classNames(classes.content, styles.Content)}>
-      <H5 className={classNames(classes.title, styles.Title)}>{title}</H5>
+      <Text
+        className={classNames(classes.title, styles.Title)}
+        size="large"
+        weight="bold"
+      >
+        {title}
+      </Text>
 
-      {description && (
-        <Caption
+      {(children || description) && (
+        <Text
           className={classNames(classes.description, styles.Description)}
+          size="small"
         >
-          {description}
-        </Caption>
+          {children || description}
+        </Text>
       )}
     </div>
   </div>
