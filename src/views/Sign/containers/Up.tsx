@@ -43,7 +43,7 @@ const SignUp: React.FC<InjectedFormProps> = ({
 
     <Text className={styles.Disclaimer} component="div" size="small">
       By creating an account, you agree to the{' '}
-      <Link to="https://www.iubenda.com/terms-and-conditions/35742426">
+      <Link to="https://app.termly.io/document/terms-of-use-for-website/39452092-d91a-4396-9ec4-e207df253d0c">
         Terms of Service
       </Link>
     </Text>

@@ -27,7 +27,7 @@ const LandingFooter: React.FC<{}> = () => (
     <div className={styles.Links}>
       <Link
         className={styles.Link}
-        to="https://www.iubenda.com/terms-and-conditions/35742426"
+        to="https://app.termly.io/document/terms-of-use-for-website/39452092-d91a-4396-9ec4-e207df253d0c"
       >
         <Text size="large" weight="medium">
           Terms of Service
