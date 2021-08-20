@@ -53,7 +53,7 @@ const Plans: React.FC<PlansProps> = ({ subscription }) => {
             </div>
           )}
 
-          {true && (
+          {subscription?.cancelDate && (
             <Badge
               className={styles.Badge}
               color="orange"
