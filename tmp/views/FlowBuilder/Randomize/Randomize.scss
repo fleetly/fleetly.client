@@ -1,0 +1,26 @@
+@import '~@styles/colors';
+
+.Actions {
+  margin: 16px 0 0;
+}
+
+.Description {
+  color: $color-gray-600;
+  margin: 16px 0 0;
+}
+
+.Handle {
+  right: 12px !important;
+}
+
+.List {
+  background: $color-gray-100;
+  border: 2px solid $color-gray-300;
+  border-radius: 16px;
+  margin: 28px 0 0;
+  padding: 0 20px;
+
+  & > *:not(:first-child) {
+    border-top: 2px solid $color-gray-300;
+  }
+}

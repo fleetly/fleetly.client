@@ -1,1 +1,1 @@
-export { default } from './Current';
+export * from './Current';

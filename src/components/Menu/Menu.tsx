@@ -13,25 +13,25 @@ export interface Classes extends ExtendedClasses {
   title?: string;
 }
 
-export interface Group {
-  children: Item[];
+export interface MenuGroupProps {
+  children: MenuItemProps[];
   title?: string;
 }
 
-export interface Item {
+export interface MenuItemProps {
   exact?: boolean;
   icon?: string;
   title: string;
   to: string;
 }
 
-export interface PropTypes {
+export interface MenuProps {
   classes?: Classes;
   className?: string;
-  data: Group[];
+  data: MenuGroupProps[];
 }
 
-const Menu: React.FC<PropTypes> = ({ className, classes, data }) => (
+const Menu: React.FC<MenuProps> = ({ className, classes, data }) => (
   <div className={classNames(className, classes?.root, styles.Root)}>
     {data.map(({ children, title }, index: number) => (
       <div className={classNames(classes?.group, styles.Group)} key={index}>

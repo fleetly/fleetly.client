@@ -8,8 +8,8 @@ import { Color, Source } from '@fleetly/common/dist/enums';
 import styles from './Avatar.scss';
 
 // Utils
-import { getClassName } from '@utils/styles';
 import { convertToColor } from '@utils/string';
+import { getClassName } from '@utils/styles';
 
 interface Classes extends ExtendedClasses {
   photo?: string;
@@ -21,6 +21,7 @@ interface PropTypes {
   alt?: string;
   aura?: boolean;
   classes?: Classes;
+  className?: string;
   color?: Color;
   sourceType?: Source;
   src?: string;
@@ -31,6 +32,7 @@ const Avatar: React.FC<PropTypes> = ({
   alt,
   aura,
   classes,
+  className,
   color: propColor,
   sourceType,
   src,
@@ -45,6 +47,7 @@ const Avatar: React.FC<PropTypes> = ({
   return (
     <div
       className={classNames(
+        className,
         classes?.root,
         styles.Root,
         getClassName('color', {

@@ -1,3 +1,0 @@
-mutation leaveCompany($companyId: String!) {
-  leaveCompany(companyId: $companyId)
-}

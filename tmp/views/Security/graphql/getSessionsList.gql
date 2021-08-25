@@ -1,0 +1,11 @@
+query {
+  sessions {
+    id
+    browser
+    ip
+    isOnline
+    location
+    os
+    updatedAt
+  }
+}

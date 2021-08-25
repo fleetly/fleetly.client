@@ -1,0 +1,24 @@
+mutation addEdge(
+  $sourceId: String!
+  $sourceElementId: String
+  $sourceHandleId: String
+  $targetId: String!
+) {
+  addEdge(
+    edge: {
+      sourceId: $sourceId
+      sourceElementId: $sourceElementId
+      sourceHandleId: $sourceHandleId
+      targetId: $targetId
+    }
+  ) {
+    id
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+  }
+}

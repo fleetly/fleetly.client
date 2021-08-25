@@ -1,4 +1,4 @@
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client';
 import { useRouteMatch } from 'react-router-dom';
 
 // GraphQL
@@ -19,10 +19,9 @@ const useMainView = () => {
   const { data, loading } = useQuery<{ companies: ICompany[] }>(
     GET_COMPANY_LIST
   );
-  const companies = data?.companies || [];
 
   return {
-    companies,
+    companies: data?.companies || [],
     isCompany,
     isProfile,
     loading

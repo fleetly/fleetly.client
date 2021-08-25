@@ -1,18 +1,19 @@
+import { useQuery } from '@apollo/client';
 import classNames from 'classnames';
-import * as React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 
 // Components
-import Link from '@components/Link';
 import Loader from '@components/Loader';
 
-// Containers
-import Sudo from '@containers/Sudo';
+// Domains
+import { MainSidebar } from './Sidebar';
 
-import Companies from './containers/Companies';
+// GraphQL
+import GET_COMPANY_LIST from '@graphql/getCompanyList.gql';
 
-// Hooks
-import { useMainView } from './Main.hooks';
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
 
 // Routes
 import ROUTES from '@routes';
@@ -22,56 +23,46 @@ import styles from './Main.scss';
 
 // Views
 import Company from '@views/Company';
-import Profile from '@views/Profile';
+// import Profile from '@views/Profile';
 
 // Utils
 import { fillUrl } from '@utils/url';
 
-const Main: React.FC<{}> = () => {
-  const { companies, isCompany, isProfile, loading } = useMainView();
-  const companyId = companies[0]?.id;
+const Main: React.FC = () => {
+  // State
+  const isProfile = !!useRouteMatch(ROUTES.PROFILE.GENERAL);
 
-  const { rootClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(styles.Root, {
-        [styles.RootWithSidebar]: !isProfile
-      })
-    }),
-    [isProfile]
+  // Data
+  const { data, loading } = useQuery<{ companies: ICompany[] }>(
+    GET_COMPANY_LIST
   );
 
-  return companies.length === 0 && loading ? (
+  return loading ? (
     <Loader />
   ) : (
-    <div className={rootClassName}>
-      {companyId && !isCompany && (
-        <Redirect to={fillUrl(ROUTES.COMPANY.DASHBOARD, { companyId })} />
-      )}
-
-      {!isProfile && (
-        <div className={styles.Sidebar}>
-          <div className={styles.SidebarItem}>
-            <Link className={styles.Logo} />
-          </div>
-
-          <div className={styles.Companies}>
-            <Companies data={companies} />
-          </div>
-
-          <div className={styles.SidebarItem}>
-            <Link className={styles.User} to={ROUTES.PROFILE.GENERAL} />
-          </div>
-        </div>
-      )}
+    <div
+      className={classNames(styles.Root, {
+        [styles.RootWithSidebar]: !isProfile
+      })}
+    >
+      {!isProfile && <MainSidebar data={data?.companies || []} />}
 
       <div className={styles.Container}>
         <Switch>
-          <Route component={Profile} path={ROUTES.PROFILE.GENERAL} />
+          {/* <Route component={Profile} path={ROUTES.PROFILE.GENERAL} /> */}
           <Route component={Company} path={ROUTES.COMPANY.ROOT} />
+
+          {!isProfile && data?.companies && (
+            <Redirect
+              exact
+              path="/"
+              to={fillUrl(ROUTES.COMPANY.DASHBOARD, {
+                companyId: data?.companies[0]?.id
+              })}
+            />
+          )}
         </Switch>
       </div>
-
-      <Sudo />
     </div>
   );
 };

@@ -1,0 +1,69 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.Avatar {
+  height: 80px;
+  width: 80px;
+}
+
+.Id {
+  color: $color-gray-500;
+  margin: 16px 0 0;
+  text-transform: uppercase;
+}
+
+.Info {
+  display: grid;
+  grid-column-gap: 28px;
+  grid-template-columns: 1fr 2px 1fr;
+  margin: 20px 0 0;
+
+  &Delimiter {
+    background: $color-gray-300;
+    height: 100%;
+    width: 2px;
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+
+    &:first-child {
+      align-items: flex-end;
+    }
+
+    &:last-child {
+      align-items: flex-start;
+    }
+  }
+}
+
+.Label {
+  color: $color-gray-600;
+  margin: 0 0 4px;
+}
+
+.Name {
+  margin: 28px 0 0;
+  text-align: center;
+  width: 100%;
+}
+
+.Status {
+  white-space: nowrap;
+
+  & > div:first-child {
+    display: none;
+  }
+}
+
+.Timezone {
+  color: $color-blue-200;
+  margin: 4px 0 0;
+}

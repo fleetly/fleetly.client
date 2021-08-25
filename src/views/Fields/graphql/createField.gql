@@ -1,8 +1,0 @@
-mutation createField($companyId: String!, $field: CreateFieldInput!) {
-  createField(companyId: $companyId, field: $field) {
-    id
-    description
-    title
-    type
-  }
-}

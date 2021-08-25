@@ -1,0 +1,5 @@
+.Root {
+  & > div:not(:first-child) {
+    margin: 12px 0 0;
+  }
+}

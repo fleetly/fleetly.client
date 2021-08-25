@@ -23,6 +23,7 @@ interface PropTypes {
   actions?: React.ReactNode;
   children: React.ReactNode;
   classes?: Classes;
+  className?: string;
   breadcrumbs?: BreadcrumbsData[];
   title?: string;
 }
@@ -31,10 +32,11 @@ const PageWrapper: React.FC<PropTypes> = ({
   actions,
   children,
   classes,
+  className,
   breadcrumbs,
   title
 }) => (
-  <div className={classNames(classes?.root, styles.Root)}>
+  <div className={classNames(className, classes?.root, styles.Root)}>
     <div className={classNames(classes?.header, styles.Header)}>
       {breadcrumbs && (
         <Breadcrumbs classes={classes?.breadcrumbs} data={breadcrumbs} />

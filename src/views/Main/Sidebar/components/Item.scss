@@ -1,0 +1,21 @@
+@import '~@styles/colors';
+
+.Root {
+  display: block;
+  text-decoration: none;
+
+  &Is {
+    &Selected {
+      .Avatar {
+        border: 2px solid $color-gray-0;
+        box-shadow: 0 0 0 4px rgba($color-primary, .4);
+      }
+    }
+  }
+}
+
+.Avatar {
+  height: 40px;
+  transition: all .2s;
+  width: 40px;
+}

@@ -18,11 +18,12 @@ import { IPayment } from '@interfaces/payment.interface';
 // Styles
 import styles from './History.scss';
 
-interface BillingHistoryProps {
+export interface BillingHistoryProps {
   readonly data: IPayment[];
 }
 
-const BillingHistory: React.FC<BillingHistoryProps> = ({ data }) => {
+export const BillingHistory: React.FC<BillingHistoryProps> = ({ data }) => {
+  // Memo
   const columns = useMemo(
     () => [
       {
@@ -76,10 +77,8 @@ const BillingHistory: React.FC<BillingHistoryProps> = ({ data }) => {
   );
 
   return (
-    <Wrapper classes={{ root: styles.Root }} title="Payment History">
+    <Wrapper className={styles.Root} title="Payment History">
       <Table columns={columns} data={data} />
     </Wrapper>
   );
 };
-
-export default BillingHistory;

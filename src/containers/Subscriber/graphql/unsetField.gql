@@ -1,9 +1,0 @@
-mutation unsetField($fieldId: String!, $subscriberId: String!) {
-  unsetField(fieldId: $fieldId, subscriberId: $subscriberId) {
-    id
-    fields {
-      fieldId
-      value
-    }
-  }
-}

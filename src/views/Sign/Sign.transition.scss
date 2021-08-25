@@ -6,7 +6,7 @@
       &:not(&Active) {
         opacity: 0;
 
-        .Content {
+        .Wrapper {
           opacity: 0;
           transform: translateY(6%);
         }
@@ -28,7 +28,7 @@
         opacity: 1;
         transition: opacity 2s ease-in;
 
-        .Content {
+        .Wrapper {
           opacity: 1;
           transform: translateY(0);
           transition: all .8s 1.2s;

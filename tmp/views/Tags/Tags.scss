@@ -1,0 +1,13 @@
+@import '~@styles/colors.scss';
+
+.Container {
+  max-width: 300px;
+}
+
+.Description {
+  color: $color-gray-600;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  margin: 0 0 40px;
+}

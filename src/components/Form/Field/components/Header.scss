@@ -1,0 +1,13 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 12px;
+  padding: 0 20px;
+}
+
+.Title {
+  color: $color-text-secondary;
+}

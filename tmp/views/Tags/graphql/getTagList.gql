@@ -1,0 +1,8 @@
+query getTagList($companyId: String!) {
+  tags(companyId: $companyId) {
+    id
+    color
+    description
+    title
+  }
+}

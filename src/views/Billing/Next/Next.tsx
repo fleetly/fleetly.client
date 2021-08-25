@@ -32,7 +32,7 @@ import styles from './Next.scss';
 // Utils
 import { formatCurrency } from '@utils/string';
 
-const BillingNext: React.FC<ISubscription> = ({
+export const BillingNext: React.FC<ISubscription> = ({
   cancelDate,
   next,
   plan,
@@ -109,5 +109,3 @@ const BillingNext: React.FC<ISubscription> = ({
     </Wrapper>
   );
 };
-
-export default BillingNext;

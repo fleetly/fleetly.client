@@ -1,0 +1,22 @@
+@import '~@styles/colors';
+
+.Root {
+  display: grid;
+  flex: 0 0 88px;
+  grid-template-rows: 88px 1fr 88px;
+  width: 88px;
+}
+
+.Logo {
+  background: url('~@assets/logo.svg') no-repeat center center / 70% 70%;
+}
+
+.List {
+  background: $color-white;
+  border-radius: 0 30px 30px 0;
+  padding: 24px;
+
+  & > *:not(:first-child) {
+    margin: 20px 0 0;
+  }
+}

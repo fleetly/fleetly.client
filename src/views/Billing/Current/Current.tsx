@@ -15,7 +15,7 @@ import { ISubscription } from '@interfaces/subscription.interface';
 // Styles
 import styles from './Current.scss';
 
-const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
+export const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
   // Memo
   const color: Color = useMemo(() => {
     switch (plan.type) {
@@ -33,7 +33,6 @@ const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
       <Card>
         <CardHeader
           avatar={<Icon color={color} icon="fad fa-rocket" />}
-          classes={{ content: styles.Content }}
           subTitle={plan.title}
           title={plan.type}
         />
@@ -60,5 +59,3 @@ const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
     </Wrapper>
   );
 };
-
-export default BillingCurrent;

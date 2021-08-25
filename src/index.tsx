@@ -1,5 +1,4 @@
 import React from 'react';
-import { ApolloProvider } from 'react-apollo';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,6 +9,7 @@ import 'utils/charts';
 import {
   ApolloClient,
   ApolloLink,
+  ApolloProvider,
   InMemoryCache,
   HttpLink,
   Observable,
@@ -156,7 +156,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client as any}>
+    <ApolloProvider client={client}>
       <Provider store={store}>
         <BrowserRouter>
           <App />

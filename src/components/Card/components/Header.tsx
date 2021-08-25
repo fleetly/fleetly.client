@@ -38,6 +38,10 @@ const CardHeader: React.FC<CardHeaderProps> = ({
     )}
 
     <div className={classNames(classes.content, styles.Content)}>
+      <H5 className={classNames(classes.title, styles.Title)} noWrap>
+        {title}
+      </H5>
+
       {subTitle && (
         <Caption
           className={classNames(classes.subTitle, styles.SubTitle)}
@@ -46,10 +50,6 @@ const CardHeader: React.FC<CardHeaderProps> = ({
           {subTitle}
         </Caption>
       )}
-
-      <H5 className={classNames(classes.title, styles.Title)} noWrap>
-        {title}
-      </H5>
     </div>
 
     {actions && (

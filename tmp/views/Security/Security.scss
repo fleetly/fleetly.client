@@ -1,0 +1,23 @@
+.Root {
+  column-gap: 32px;
+  display: grid;
+  grid-template-areas:
+    'a b b'
+    'a c c';
+  grid-template-columns: 400px 1fr;
+  grid-template-rows: 380px 1fr;
+
+  & > * {
+    &:nth-child(1) {
+      grid-area: a;
+    }
+
+    &:nth-child(2) {
+      grid-area: b;
+    }
+
+    &:nth-child(3) {
+      grid-area: c;
+    }
+  }
+}

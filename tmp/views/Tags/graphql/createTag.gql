@@ -1,0 +1,8 @@
+mutation createTag($companyId: String!, $tag: TagInput!) {
+  createTag(companyId: $companyId, tag: $tag) {
+    id
+    color
+    description
+    title
+  }
+}

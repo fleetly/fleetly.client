@@ -1,6 +1,5 @@
-import { ApolloError } from '@apollo/client';
+import { ApolloError, useMutation, useQuery } from '@apollo/client';
 import { useCallback, useMemo } from 'react';
-import { useMutation, useQuery } from 'react-apollo';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 // Fleetly
