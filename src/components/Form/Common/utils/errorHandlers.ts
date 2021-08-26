@@ -1,10 +1,14 @@
-import { ApolloError } from 'apollo-boost';
-import { SubmissionError } from 'redux-form';
+import { ApolloError } from '@apollo/client';
+import { FORM_ERROR } from 'final-form';
 
 // Utils
 import { parseGQLError } from '@utils/graphql';
 
-export const gqlErrorHandler = (error: ApolloError): void => {
+export const gqlErrorHandler = (error: ApolloError) => {
   const { message, validationErrors } = parseGQLError(error);
-  throw new SubmissionError({ ...validationErrors, _error: message });
+
+  return {
+    [FORM_ERROR]: message,
+    ...validationErrors
+  };
 };

@@ -21,8 +21,6 @@ import styles from './Select.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-export interface SelectProps {}
-
 export const Select: React.FC<Form.SelectProps> = ({
   classes,
   disabled,

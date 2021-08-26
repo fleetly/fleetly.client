@@ -53,7 +53,7 @@ export const Field: React.FC<FieldProps> = ({
           />
         </div>
 
-        {touched && <FieldError>{error}</FieldError>}
+        {error && touched && <FieldError>{error}</FieldError>}
       </label>
     </div>
   );

@@ -1,34 +1,44 @@
+import React, { useCallback, useMemo } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+
+// Fleetly
 import { ChannelStatus } from '@fleetly/common/dist/interfaces';
-import * as React from 'react';
 
 // Components
 import Avatar from '@components/Avatar';
-import Button from '@components/Button';
 import Link from '@components/Link';
 import Status from '@components/Status';
 import Table from '@components/Table';
-import { Caption, P } from '@components/Typography';
-
-// Hooks
-import { useChannelsTable } from './Table.hooks';
+import { Text } from '@components/Typography';
 
 // Interfaces
+import { IChannel } from '@interfaces/channel.interface';
 import { IStatus } from '@interfaces/status.interface';
 
-// Styles
-import styles from './Table.scss';
+// Routes
+import ROUTES from '@routes';
 
-const ChannelsTable = ({ data }: any) => {
+// Utils
+import { fillUrl } from '@utils/url';
+
+export interface ChannelsTableProps {
+  data: IChannel[];
+}
+
+export const ChannelsTable: React.FC<ChannelsTableProps> = ({ data }) => {
   // Setup
-  const {
-    handleEnableClick,
-    handleDisableClick,
-    handleDeleteClick,
-    handleRowClick
-  } = useChannelsTable();
+  const { push } = useHistory();
+  const { companyId } = useParams<{ companyId: string }>();
 
-  // Data
-  const columns = React.useMemo(
+  // Handlers
+  const handleTrClick = useCallback(
+    ({ id }: IChannel) =>
+      push(fillUrl(ROUTES.COMPANY.CHANNEL, { companyId, channelId: id })),
+    [companyId, push]
+  );
+
+  // Memo
+  const columns = useMemo(
     () => [
       {
         accessor: 'source.id',
@@ -45,10 +55,11 @@ const ChannelsTable = ({ data }: any) => {
           const { id, link, name, title } = row?.original?.source;
 
           return (
-            <div className={styles.Channel}>
-              <P component="div">{title}</P>
+            <div>
+              <Text component="div">{title}</Text>
+
               <Link to={link}>
-                <Caption component="span">@{name || id}</Caption>
+                <Text size="small">@{name || id}</Text>
               </Link>
             </div>
           );
@@ -63,45 +74,10 @@ const ChannelsTable = ({ data }: any) => {
         Header: 'Status'
       },
       { accessor: 'messages', Cell: () => 0, Header: 'Messages' },
-      { accessor: 'subscribers', Cell: () => 0, Header: 'Subscribers' },
-      {
-        accessor: 'id',
-        Cell: ({ row, value }: any) => {
-          const status: ChannelStatus = row.original.status.type;
-          const isActive = status === ChannelStatus.ACTIVE;
-
-          return (
-            <div className={styles.Actions}>
-              {isActive && <Button icon="far fa-sync" variant="outlined" />}
-
-              <Button
-                color={isActive ? 'danger' : 'success'}
-                icon="far fa-power-off"
-                id={value}
-                onClick={isActive ? handleDisableClick : handleEnableClick}
-                variant="outlined"
-              />
-
-              {!isActive && (
-                <Button
-                  color="danger"
-                  icon="far fa-trash-alt"
-                  id={value}
-                  onClick={handleDeleteClick}
-                  variant="outlined"
-                />
-              )}
-            </div>
-          );
-        },
-        Header: '',
-        maxWidth: 92
-      }
+      { accessor: 'subscribers', Cell: () => 0, Header: 'Subscribers' }
     ],
-    [handleDeleteClick, handleDisableClick, handleEnableClick]
+    []
   );
 
-  return <Table columns={columns} data={data} onTrClick={handleRowClick} />;
+  return <Table columns={columns} data={data} onTrClick={handleTrClick} />;
 };
-
-export default ChannelsTable;

@@ -1,0 +1,58 @@
+@import '~@styles/colors';
+
+.Root {
+  display: grid;
+  grid-column-gap: 40px;
+  grid-row-gap: 20px;
+  grid-template-columns: repeat(3, 60px);
+  justify-content: center;
+}
+
+.Icon {
+  flex: 0 0 60px;
+  font-size: 20px;
+  height: 60px;
+  transition: all .2s;
+  width: 60px;
+}
+
+.Item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  &:hover,
+  &IsSelected {
+    cursor: pointer;
+
+    .Icon {
+      background: rgba($color-primary, .8);
+      color: $color-gray-0;
+      text-shadow: 0 4px 4px rgba($color-gray-0, .4);
+    }
+
+    .Title {
+      color: $color-gray-800;
+    }
+  }
+
+  &IsDisabled {
+    pointer-events: none;
+
+    .Icon {
+      background: $color-gray-100;
+      color: $color-gray-400;
+      text-shadow: none;
+    }
+
+    .Title {
+      color: $color-gray-300;
+    }
+  }
+}
+
+.Title {
+  color: $color-gray-500;
+  margin: 12px 0 0;
+  transition: all .2s;
+}

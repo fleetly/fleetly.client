@@ -1,58 +1,71 @@
-import * as React from 'react';
+import { useQuery } from '@apollo/client';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 // Components
 import Button from '@components/Button';
-import Modal from '@components/Modal';
 import Page, { Wrapper } from '@components/Page';
-import { P } from '@components/Typography';
 
-// Containers
-import AddForm from './AddForm';
-import Table from './Table';
+// Fragments
+import { ChannelAdd } from './Add';
+import { ChannelsTable } from './Table';
 
 // Constants
 import { ADD_CHANNEL_MODAL } from '@constants';
 
-// Hooks
-import { useChannels } from './Channels.hooks';
+// GraphQL
+import GET_CHANNEL_LIST from '@graphql/getChannelList.gql';
 
-// Styles
-import styles from './Channels.scss';
+// Interfaces
+import { IChannel } from '@interfaces/channel.interface';
 
-const Channels = () => {
-  const { channels, handleAddClick, handleSubmit } = useChannels();
+// Store
+import { useModals } from '@store';
+
+const Channels: React.FC = () => {
+  // Setup
+  const { openModal } = useModals(ADD_CHANNEL_MODAL);
+  const { companyId } = useParams<{ companyId: string }>();
+
+  // Data
+  const { data } = useQuery<{ channels: IChannel[] }>(GET_CHANNEL_LIST, {
+    variables: { companyId }
+  });
 
   return (
     <Page title="Channels">
       <Wrapper
         actions={
-          <Button color="primary" onClick={handleAddClick}>
+          <Button color="primary" onClick={openModal}>
             Add Channel
           </Button>
         }
         title="Channels"
       >
-        <Table data={channels} />
+        <ChannelAdd />
 
-        <Modal
-          classes={{ container: styles.Container }}
-          id={ADD_CHANNEL_MODAL}
-          title="Add Channel"
-        >
-          <div className={styles.Description}>
-            <P>
-              Fleetly will use an access token to connect and use your channel
-            </P>
-            <P className={styles.Careful}>
-              Do not give the token to third parties!
-            </P>
-          </div>
-
-          <AddForm onSubmit={handleSubmit} />
-        </Modal>
+        {data?.channels && <ChannelsTable data={data?.channels} />}
       </Wrapper>
     </Page>
   );
 };
 
 export default Channels;
+
+/* <Modal
+          classes={{ container: styles.Container }}
+          id={ADD_CHANNEL_MODAL}
+          title="Add Channel"
+        >
+          <div className={styles.Description}>
+            <Text>
+              Fleetly will use an access token to connect and use your channel
+            </Text>
+
+            <Text className={styles.Careful}>
+              Do not give the token to third parties!
+            </Text>
+          </div>
+
+          <AddForm onSubmit={handleSubmit} />
+        </Modal> */
