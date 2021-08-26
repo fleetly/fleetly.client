@@ -1,6 +1,6 @@
+import { useMutation } from '@apollo/client';
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import { useMutation } from 'react-apollo';
 import { useParams } from 'react-router-dom';
 
 // Fleetly
@@ -17,13 +17,13 @@ import { IWebhook } from '@interfaces/webhook.interface';
 // GraphQL
 import SET_WEBHOOK from '@graphql/setWebhook.gql';
 
-// Status
-import styles from '../Common/common.scss';
+// Styles
+import styles from '../Channel.scss';
 
 // Utils
 import { copyToClipboard } from '@utils/clipboard';
 
-const ChannelWebhook: React.FC<IWebhook> = ({ id, status }) => {
+export const ChannelWebhook: React.FC<IWebhook> = ({ id, status }) => {
   // Setup
   const { channelId } = useParams<{ channelId: string }>();
 
@@ -39,11 +39,12 @@ const ChannelWebhook: React.FC<IWebhook> = ({ id, status }) => {
   const handleCopyClick = React.useCallback(() => {
     copyToClipboard(`${window.location.origin}/webhooks/${id}`);
     setCopyState(true);
+
     setTimeout(() => setCopyState(false), 1000);
   }, [id]);
 
   return (
-    <div>
+    <div className={styles.Section}>
       <div className={styles.Content}>
         <H5 className={styles.Label}>Webhook</H5>
         <Status color={Color.GREEN} title={status} />
@@ -76,5 +77,3 @@ const ChannelWebhook: React.FC<IWebhook> = ({ id, status }) => {
     </div>
   );
 };
-
-export default ChannelWebhook;

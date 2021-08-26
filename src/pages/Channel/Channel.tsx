@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom';
 import Page, { Wrapper } from '@components/Page';
 
 // Domains
-// import Secret from './Secret';
-// import Source from './Source';
+import { ChannelSecret } from './Secret';
+import { ChannelSource } from './Source';
 import { ChannelStats } from './Stats';
-// import Webhook from './Webhook';
+import { ChannelWebhook } from './Webhook';
 
 // GraphQL
 import GET_CHANNEL_BY_ID from '@graphql/getChannelById.gql';
@@ -37,7 +37,11 @@ const Channel: React.FC = () => {
         <>
           <ChannelStats {...channel} />
 
-          <Wrapper title="Information">123</Wrapper>
+          <Wrapper classes={{ container: styles.Info }} title="Information">
+            <ChannelSource {...channel} />
+            <ChannelSecret />
+            <ChannelWebhook {...channel.webhook} />
+          </Wrapper>
 
           {/* <Wrapper classes={{ container: styles.Info }} title="Information">
             <Source {...data?.channel} />

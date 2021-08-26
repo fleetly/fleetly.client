@@ -1,12 +1,43 @@
+@import '~@styles/colors';
+
 .Root {
   display: grid;
   grid-template-rows: 1fr 460px;
 }
 
+.Actions {
+  display: flex;
+  margin: 28px 0 0;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 8px;
+  }
+}
+
+.Content {
+  flex: 1 1 auto;
+  padding: 0 20px;
+}
+
+.Description {
+  color: $color-gray-600;
+  margin: 8px 0 0;
+}
+
+.Label {
+  color: $color-gray-600;
+  margin: 0 0 12px;
+}
+
 .Info {
   align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 72px;
+}
+
+.Section {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 76px 24px;
+  flex-direction: column;
+  height: 100%;
 }

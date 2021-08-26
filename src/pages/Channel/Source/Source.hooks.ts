@@ -1,15 +1,19 @@
-import { ChannelStatus } from '@fleetly/common/dist/interfaces';
-import * as React from 'react';
-import { useMutation } from 'react-apollo';
+import { useMutation } from '@apollo/client';
+import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+
+// Fleetly
+import { ChannelStatus } from '@fleetly/provider/interfaces';
 
 // GraphQL
 import DISABLE_CHANNEL from '@graphql/disableChannel.gql';
 import ENABLE_CHANNEL from '@graphql/enableChannel.gql';
 import SYNC_CHANNEL from '@graphql/syncChannel.gql';
+
+// Store
 import { useNotifications } from '@store';
 
-const useChannelInfoSourceView = (status: ChannelStatus) => {
+export const useChannelSource = (status: ChannelStatus) => {
   // Setup
   const { channelId } = useParams<{ channelId: string }>();
   const { handleApolloError } = useNotifications();
@@ -36,8 +40,9 @@ const useChannelInfoSourceView = (status: ChannelStatus) => {
   });
 
   /// Handlers
-  const handleSyncClick = React.useCallback(() => syncChannel(), [syncChannel]);
-  const handleSwitchClick = React.useCallback(
+  const handleSyncClick = useCallback(() => syncChannel(), [syncChannel]);
+
+  const handleSwitchClick = useCallback(
     () => (isActive ? disableChannel() : enableChannel()),
     [disableChannel, enableChannel, isActive]
   );
@@ -50,5 +55,3 @@ const useChannelInfoSourceView = (status: ChannelStatus) => {
     syncIsLoading
   };
 };
-
-export { useChannelInfoSourceView };

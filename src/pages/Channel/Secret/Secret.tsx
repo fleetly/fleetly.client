@@ -1,30 +1,27 @@
-import * as React from 'react';
+import React from 'react';
 
 // Components
 import Button from '@components/Button';
 import { H4, H5, P } from '@components/Typography';
 
-// Containers
-// import Set from './containers/Set';
-// import Show from './containers/Set';
+// Constants
+import { SET_CHANNEL_TOKEN_MODAL } from '@constants';
 
-// Hooks
-import { useChannelSecretView } from './Secret.hooks';
+// Fragments
+import { ChannelSecretToken } from './Token';
 
-// Status
-import styles from '../Common/common.scss';
+// Store
+import { useModals } from '@store';
 
-const ChannelInfoSecret = () => {
+// Styles
+import styles from '../Channel.scss';
+
+export const ChannelSecret: React.FC = () => {
   // Setup
-  const {
-    handleSetSubmit,
-    handleShowSubmit,
-    openSetModal,
-    openShowModal
-  } = useChannelSecretView();
+  const { openModal } = useModals(SET_CHANNEL_TOKEN_MODAL);
 
   return (
-    <div>
+    <div className={styles.Section}>
       <div className={styles.Content}>
         <H5 className={styles.Label}>Secret Key</H5>
         <H4>Never pass this key to anyone</H4>
@@ -35,17 +32,12 @@ const ChannelInfoSecret = () => {
       </div>
 
       <div className={styles.Actions}>
-        <Button color="primary" onClick={openSetModal} variant="outlined">
+        <Button color="primary" onClick={openModal} variant="outlined">
           Set Token
         </Button>
-
-        <Button icon="fas fa-eye" onClick={openShowModal} variant="outlined" />
       </div>
 
-      {/* <Set onSubmit={handleSetSubmit} /> */}
-      {/* <Show onSubmit={handleShowSubmit} /> */}
+      <ChannelSecretToken />
     </div>
   );
 };
-
-export default ChannelInfoSecret;

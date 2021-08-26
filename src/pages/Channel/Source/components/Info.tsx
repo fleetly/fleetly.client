@@ -10,7 +10,7 @@ import { IChannelSource } from '@interfaces/channel.interface';
 // Status
 import styles from './Info.scss';
 
-const ChannelSourceInfo: React.FC<IChannelSource> = ({
+export const ChannelSourceInfo: React.FC<IChannelSource> = ({
   id,
   name,
   photo,
@@ -25,14 +25,17 @@ const ChannelSourceInfo: React.FC<IChannelSource> = ({
         <span className={styles.Label}>ID:</span>
         {id}
       </P>
+
       <P className={styles.Field}>
         <span className={styles.Label}>Name:</span>
         {name}
       </P>
+
       <P className={styles.Field}>
         <span className={styles.Label}>Title:</span>
         {title}
       </P>
+
       <P className={styles.Field}>
         <span className={styles.Label}>Type:</span>
         {type}
@@ -40,5 +43,3 @@ const ChannelSourceInfo: React.FC<IChannelSource> = ({
     </div>
   </div>
 );
-
-export default ChannelSourceInfo;
