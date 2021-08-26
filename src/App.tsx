@@ -15,9 +15,9 @@ import { isAuthorized as getAuthState } from '@store';
 import styles from './App.scss';
 
 // Views
-const Landing = lazy(() => import('@views/Landing'));
-const Main = lazy(() => import('@views/Main'));
-const Sign = lazy(() => import('@views/Sign'));
+const Landing = lazy(() => import('@pages/Landing'));
+const Main = lazy(() => import('@pages/Main'));
+const Sign = lazy(() => import('@pages/Sign'));
 
 const App: React.FC<{}> = () => {
   const isAuthorized = useSelector(getAuthState);

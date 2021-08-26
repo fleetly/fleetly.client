@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -297,12 +295,12 @@ module.exports = function (webpackEnv) {
         '@entities': path.resolve(__dirname, '../src/entities'),
         '@graphql': path.resolve(__dirname, '../src/graphql'),
         '@hooks': path.resolve(__dirname, '../src/hooks'),
+        '@pages': path.resolve(__dirname, '../src/pages'),
         '@routes': path.resolve(__dirname, '../src/routes'),
         '@services': path.resolve(__dirname, '../src/services'),
         '@store': path.resolve(__dirname, '../src/store'),
         '@utils': path.resolve(__dirname, '../src/utils'),
         '@styles': path.resolve(__dirname, '../src/styles'),
-        '@views': path.resolve(__dirname, '../src/views'),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',

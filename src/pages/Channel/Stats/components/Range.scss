@@ -1,0 +1,45 @@
+@import '~@styles/colors';
+
+.Root {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Actions {
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 12px;
+  }
+}
+
+.Button {
+  background: transparent;
+  border: 0;
+  border-radius: 16px;
+  color: $color-gray-600;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  height: 32px;
+  width: 80px;
+
+  &:hover,
+  &IsSelected {
+    background: rgba($color-blue-300, .2);
+    color: $color-blue-300;
+    cursor: pointer;
+  }
+}
+
+.Range {
+  align-items: center;
+  background: $color-gray-100;
+  border-radius: 16px;
+  color: $color-gray-800;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0 32px;
+  min-width: 160px;
+  padding: 4px 12px;
+}

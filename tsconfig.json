@@ -23,10 +23,10 @@
       "@interfaces/*": ["interfaces/*"],
       "@graphql/*": ["graphql/*"],
       "@hooks/*": ["hooks/*"],
+      "@pages/*": ["pages/*"],
       "@store": ["store/index.ts"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"],
-      "@views/*": ["views/*"]
+      "@utils/*": ["utils/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

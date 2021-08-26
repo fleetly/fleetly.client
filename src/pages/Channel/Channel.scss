@@ -1,0 +1,12 @@
+.Root {
+  display: grid;
+  grid-template-rows: 1fr 460px;
+}
+
+.Info {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 76px 24px;
+}
