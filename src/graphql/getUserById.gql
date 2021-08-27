@@ -1,9 +1,0 @@
-query getUserById($userId: String) {
-  user(userId: $userId) {
-    id
-    email
-    firstname
-    lastname
-    username
-  }
-}

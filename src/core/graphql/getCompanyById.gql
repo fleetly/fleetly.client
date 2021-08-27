@@ -1,0 +1,7 @@
+query getCompanyById($companyId: String!) {
+  company(companyId: $companyId) {
+    id
+    name
+    title
+  }
+}
