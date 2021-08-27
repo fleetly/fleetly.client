@@ -4,7 +4,7 @@ import React from 'react';
 import { StartKeywordOperator } from '@fleetly/flow/dist/common/interfaces/elements';
 
 // Components
-import { Element } from '@views/FlowBuilder/Common';
+import { Element } from '../../Common';
 
 interface PropTypes {
   id: string;

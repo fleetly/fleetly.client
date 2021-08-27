@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { Form } from 'react-final-form';
 
 // Components
-import { Button } from '@views/FlowBuilder/Common';
+import { Button } from '../../../Common';
 
 import TextArea from './components/Area';
 import TextButton from './components/Button';

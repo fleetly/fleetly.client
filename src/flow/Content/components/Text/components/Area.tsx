@@ -6,7 +6,7 @@ import Textarea from 'react-textarea-autosize';
 import { Text } from '@components/Typography';
 
 // Hooks
-import { useFlowBuilder } from '@views/FlowBuilder/Common/hooks/useFlowBuilder';
+import { useFlowBuilder } from '../../../../Common/hooks/useFlowBuilder';
 
 // Styles
 import styles from './Area.scss';

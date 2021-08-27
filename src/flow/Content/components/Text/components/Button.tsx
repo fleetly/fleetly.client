@@ -3,11 +3,11 @@ import { Field } from 'react-final-form';
 import { Position } from 'react-flow-renderer';
 
 // Components
-import { Button, Handle } from '@views/FlowBuilder/Common';
+import { Button, Handle } from '../../../../Common';
 
 // Hooks
 import { useOutsideClick } from '@hooks/events';
-import { useFlowBuilder } from '@views/FlowBuilder/Common/hooks/useFlowBuilder';
+import { useFlowBuilder } from '../../../../Common/hooks/useFlowBuilder';
 
 // Styles
 import styles from './Button.scss';

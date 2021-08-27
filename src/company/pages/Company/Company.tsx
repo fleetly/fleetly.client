@@ -25,6 +25,7 @@ import Billing from '../Billing';
 import Channel from '../Channel';
 import Channels from '../Channels';
 import Chat, { Threads } from 'chat';
+import Flow from 'flow';
 import Tags from '../Tags';
 import Subscribers from '../Subscribers';
 // import Collaborators from '@views/Collaborators';
@@ -54,6 +55,7 @@ const Company: React.FC = () => {
           <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
           <Route component={Chat} path={ROUTES.COMPANY.CHAT.ROOT} />
+          <Route component={Flow} path={ROUTES.COMPANY.FLOWS.ROOT} />
           <Route component={Tags} path={ROUTES.COMPANY.TAGS} />
           <Route component={Subscribers} path={ROUTES.COMPANY.SUBSCRIBERS} />
           {/*
@@ -62,7 +64,6 @@ const Company: React.FC = () => {
             path={ROUTES.COMPANY.COLLABORATORS}
           />
           <Route component={Fields} path={ROUTES.COMPANY.FIELDS} />
-          <Route component={FlowBuilder} path={ROUTES.COMPANY.FLOWS.ROOT} />
           <Route component={General} path={ROUTES.COMPANY.GENERAL} />
            */}
         </Switch>

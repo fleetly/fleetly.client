@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 // Components
 import Button from '@components/Button';
+import Link from '@components/Link';
 import Page from '@components/Page';
 import { H1, H2, H3, P } from '@components/Typography';
 

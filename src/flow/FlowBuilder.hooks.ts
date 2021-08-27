@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { useMutation, useQuery } from 'react-apollo';
+import { useMutation, useQuery } from '@apollo/client';
 import { Connection, Edge, Elements, Node } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 

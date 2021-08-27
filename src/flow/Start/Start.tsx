@@ -6,12 +6,7 @@ import { ElementType } from '@fleetly/flow/dist/common/interfaces';
 
 // Components
 import { Text } from '@components/Typography';
-import {
-  Block,
-  BlockActions,
-  BlockContent,
-  Button
-} from '@views/FlowBuilder/Common';
+import { Block, BlockActions, BlockContent, Button } from '../Common';
 
 import StartKeyword from './components/Keyword';
 

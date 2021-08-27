@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Containers
 import Notifications from '@containers/Notifications';
+import { Sudo } from './company/containers/Sudo';
 
 // Routes
 import ROUTES from '@routes';
@@ -17,8 +18,8 @@ import styles from './App.scss';
 // Views
 const Landing = lazy(() => import('@landing/index'));
 
-const Main = lazy(() => import('./app/pages/Main'));
-const Sign = lazy(() => import('./app/pages/Sign'));
+const Main = lazy(() => import('./company/pages/Main'));
+const Sign = lazy(() => import('./company/pages/Sign'));
 
 const App: React.FC<{}> = () => {
   const isAuthorized = useSelector(getAuthState);
@@ -42,6 +43,7 @@ const App: React.FC<{}> = () => {
       </Suspense>
 
       <Notifications />
+      <Sudo />
     </div>
   );
 };

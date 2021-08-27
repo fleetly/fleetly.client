@@ -1,0 +1,3 @@
+mutation VERIFY_BY_PASSWORD($password: String!) {
+  verifyByPassword(password: $password)
+}
