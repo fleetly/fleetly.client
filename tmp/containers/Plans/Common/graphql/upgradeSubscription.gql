@@ -1,3 +1,0 @@
-mutation upgradeSubscription($companyId: String!, $planId: String!) {
-  upgradeSubscription(companyId: $companyId, planId: $planId)
-}

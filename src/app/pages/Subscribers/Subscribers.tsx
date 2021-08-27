@@ -1,27 +1,50 @@
+import { useQuery } from '@apollo/client';
 import moment from 'moment';
-import * as React from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 
 // Components
 import Avatar from '@components/Avatar';
+import Link from '@components/Link';
+import Page, { Wrapper } from '@components/Page';
 import Status from '@components/Status';
 import Table from '@components/Table';
-import { Caption, P } from '@components/Typography';
+import { Text } from '@components/Typography';
 
 // Constants
 import { MESSAGE_POLICY_STATUS, SUBSCRIBER_MODAL } from '@constants';
+
+// GraphQL
+import GET_SUBSCRIBER_LIST from './Subscribers.gql';
+
+// Interfaces
+import { ISubscriber } from '@interfaces/subscriber.interface';
 
 // Store
 import { useModals } from '@store';
 
 // Styles
-import styles from './Table.scss';
+import styles from './Subscribers.scss';
 
-const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
+const Subscribers: React.FC = () => {
   // Setup
   const { openModal } = useModals(SUBSCRIBER_MODAL);
+  const { companyId } = useParams<{ companyId: string }>();
 
   // Data
-  const columns = React.useMemo(
+  const { data } = useQuery<{ subscribers: ISubscriber[] }>(
+    GET_SUBSCRIBER_LIST,
+    { variables: { companyId } }
+  );
+
+  // Handlers
+  const handleTrClick = useCallback(
+    ({ id }: ISubscriber) => openModal({ subscriberId: id }),
+    [openModal]
+  );
+
+  // Memo
+  const columns = useMemo(
     () => [
       {
         accessor: 'source.photo',
@@ -52,16 +75,13 @@ const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
 
           return (
             <div className={styles.User}>
-              <P component="div">{`${firstname || ''} ${lastname || ''}`}</P>
+              <Text component="div">{`${firstname || ''} ${
+                lastname || ''
+              }`}</Text>
 
-              <a
-                className={styles.UserLink}
-                href={link}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <Caption component="span">{`@${username || id}`}</Caption>
-              </a>
+              <Link to={link}>
+                <Text size="small">{`@${username || id}`}</Text>
+              </Link>
             </div>
           );
         },
@@ -81,13 +101,17 @@ const SubscribersTable: React.FC<Subscribers.Table.Props> = ({ data }: any) => {
     []
   );
 
-  // Handlers
-  const handleTrClick = React.useCallback(
-    ({ id }) => openModal({ subscriberId: id }),
-    [openModal]
+  return (
+    <Page title="Subscribers">
+      <Wrapper title="Subscribers">
+        <Table
+          columns={columns}
+          data={data?.subscribers || []}
+          onTrClick={handleTrClick}
+        />
+      </Wrapper>
+    </Page>
   );
-
-  return <Table columns={columns} data={data} onTrClick={handleTrClick} />;
 };
 
-export default SubscribersTable;
+export default Subscribers;
