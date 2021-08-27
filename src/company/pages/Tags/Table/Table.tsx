@@ -45,7 +45,8 @@ export const TagsTable: React.FC = () => {
   );
 
   const handleTrClick = useCallback(
-    ({ id, ...tag }: ITag) => openModal({ data: { tagId: id, tag } }),
+    ({ id, ...tag }: ITag) =>
+      openModal({ data: { tagId: id, tag }, title: 'Update tag' }),
     [openModal]
   );
 

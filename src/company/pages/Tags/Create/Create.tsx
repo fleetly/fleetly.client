@@ -81,9 +81,9 @@ export const TagsCreate: React.FC = () => {
 
   return (
     <Modal id={CREATE_TAG_MODAL} title="Create tag">
-      {({ data }: { data: ITag }) => (
+      {(initialValues: ITag) => (
         <Form
-          initialValues={data}
+          initialValues={initialValues}
           onSubmit={handleFormSubmit}
           validate={yupValidator(
             yup.object().shape({
@@ -118,7 +118,7 @@ export const TagsCreate: React.FC = () => {
                   loaded={submitting}
                   type="submit"
                 >
-                  {data ? 'Update' : 'Create'}
+                  {initialValues ? 'Update' : 'Create'}
                 </Button>
               </Actions>
             </form>

@@ -65,16 +65,14 @@ const Modal: React.FC<ModalProps> = ({
         />
 
         <div className={classNames(classes?.container, styles.Container)}>
-          {(title || modal?.title) && (
+          {(modal?.title || title) && (
             <H3 className={classNames(classes?.title, styles.Title)}>
               {modal?.title || title}
             </H3>
           )}
 
           <div className={classNames(classes?.content, styles.Content)}>
-            {typeof children === 'function'
-              ? children({ ...modal?.data })
-              : children}
+            {typeof children === 'function' ? children(modal?.data) : children}
           </div>
         </div>
       </div>

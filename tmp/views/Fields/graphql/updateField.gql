@@ -1,8 +1,0 @@
-mutation updateField($fieldId: String!, $field: UpdateFieldInput!) {
-  updateField(fieldId: $fieldId, field: $field) {
-    id
-    description
-    title
-    type
-  }
-}

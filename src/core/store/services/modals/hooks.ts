@@ -34,10 +34,10 @@ const useModals = <T = {}>(currentModalId?: string) => {
   const handleOpenModal = React.useCallback(
     (idOrData = currentModalId, data?: any) => {
       dispatch(
-        openModal(typeof idOrData === 'string' ? idOrData : currentModalId, {
-          data:
-            data || typeof idOrData === 'object' ? (idOrData as any) : undefined
-        })
+        openModal(
+          typeof idOrData === 'string' ? idOrData : currentModalId,
+          data || typeof idOrData === 'object' ? (idOrData as any) : undefined
+        )
       );
     },
     [currentModalId, dispatch]

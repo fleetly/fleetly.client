@@ -36,25 +36,3 @@ const Tags = () => {
 };
 
 export default Tags;
-
-// <Modal
-// classes={{ container: styles.Container }}
-// id={CREATE_TAG_MODAL}
-// title="Create new tag"
-// >
-// {({ initialValues }: Tags.ModalProps) => (
-//   <>
-//     {!initialValues?.tagId && (
-
-//     )}
-
-//     <Form
-//       form={`${CREATE_TAG_FORM}${
-//         initialValues?.tagId ? `-${initialValues?.tagId}` : ''
-//       }`}
-//       initialValues={initialValues}
-//       onSubmit={handleFormSubmit}
-//     />
-//   </>
-// )}
-// </Modal>
