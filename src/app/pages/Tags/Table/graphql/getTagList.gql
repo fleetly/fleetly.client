@@ -1,0 +1,8 @@
+query GET_TAG_LIST($companyId: String!) {
+  tags(companyId: $companyId) {
+    id
+    color
+    description
+    title
+  }
+}

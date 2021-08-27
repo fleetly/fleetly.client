@@ -25,12 +25,12 @@ import Billing from '../Billing';
 import Channel from '../Channel';
 import Channels from '../Channels';
 import Chat, { Threads } from 'chat';
+import Tags from '../Tags';
 // import Collaborators from '@views/Collaborators';
 // import General from '@views/General';
 // import Fields from '@views/Fields';
 // import FlowBuilder from '@views/FlowBuilder';
 // import Subscribers from '@views/Subscribers';
-// import Tags from '@views/Tags';
 
 const Company: React.FC = () => {
   // Setup
@@ -54,6 +54,7 @@ const Company: React.FC = () => {
           <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
           <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
           <Route component={Chat} path={ROUTES.COMPANY.CHAT.ROOT} />
+          <Route component={Tags} path={ROUTES.COMPANY.TAGS} />
           {/*
 
           <Route
@@ -64,7 +65,7 @@ const Company: React.FC = () => {
           <Route component={FlowBuilder} path={ROUTES.COMPANY.FLOWS.ROOT} />
           <Route component={General} path={ROUTES.COMPANY.GENERAL} />
           <Route component={Subscribers} path={ROUTES.COMPANY.SUBSCRIBERS} />
-          <Route component={Tags} path={ROUTES.COMPANY.TAGS} /> */}
+           */}
         </Switch>
       </div>
 
