@@ -32,7 +32,7 @@ const Channel: React.FC = () => {
   const channel = data?.channel;
 
   return (
-    <Page classes={{ container: styles.Root }} title="Channels">
+    <Page className={styles.Root} title="Channels">
       {channel && (
         <>
           <ChannelStats {...channel} />

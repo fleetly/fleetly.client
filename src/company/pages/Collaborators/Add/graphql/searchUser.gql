@@ -2,6 +2,7 @@ query SEARCH_USER {
   users {
     id
     email
+    fullname
     username
   }
 }

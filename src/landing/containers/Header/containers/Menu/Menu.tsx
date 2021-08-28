@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, { useCallback, useEffect, useState } from 'react';
 
 // Components
-import Button from '@landing/components/Button';
+import Button from 'Landing/components/Button';
 
 import MenuItem from './components/Item';
 import Toggle from './components/Toggle';
@@ -24,7 +24,7 @@ import { useResponsive } from '@hooks/responsive';
 import routes from '@routes';
 
 // Store
-import { useModals } from 'core/store';
+import { useModals } from '@store';
 
 // Styles
 import styles from './Menu.scss';

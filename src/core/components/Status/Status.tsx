@@ -1,9 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
 
-// Fleetly
-import { Color } from '@fleetly/common/dist/enums';
-
 // Styles
 import styles from './Status.scss';
 
@@ -29,7 +26,7 @@ const Status: React.FC<PropTypes> = ({ classes, color, title }) => (
       styles.Root,
       getClassName('color', {
         collection: styles,
-        value: color || Color.BLUE
+        value: color || 'blue'
       })
     )}
   >

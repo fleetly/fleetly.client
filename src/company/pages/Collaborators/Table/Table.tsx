@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 // Components
@@ -51,7 +51,7 @@ export const CollaboratorsTable: React.FC<CollaboratorsTableProps> = ({
   );
 
   // Memo
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         accessor: 'avatar',

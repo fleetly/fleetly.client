@@ -37,7 +37,7 @@ const Billing: React.FC = () => {
   const subscription = data?.currentSubscription;
 
   return (
-    <Page classes={{ container: styles.Root }} title="Billing">
+    <Page className={styles.Root} title="Billing">
       {!subscription && loading ? (
         <Loader />
       ) : (

@@ -6,8 +6,8 @@ import logoImg from '@assets/logo.svg';
 // Components
 import { H3 } from '@components/Typography';
 
-import Button from '@landing/components/Button';
-import Wrapper from '@landing/components/Wrapper';
+import Button from 'Landing/components/Button';
+import Wrapper from 'Landing/components/Wrapper';
 
 // Containers
 import Menu from './containers/Menu';

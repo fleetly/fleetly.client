@@ -21,7 +21,7 @@ import { ISubscription } from '@interfaces/subscription.interface';
 import styles from './Item.scss';
 
 // Views
-import Button from '@landing/components/Button';
+import Button from 'Landing/components/Button';
 
 // Utils
 import { formatCurrency } from '@utils/string';

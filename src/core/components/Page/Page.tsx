@@ -5,30 +5,24 @@ import { Helmet } from 'react-helmet';
 // Styles
 import styles from './Page.scss';
 
-interface Classes extends ExtendedClasses {
-  container?: string;
-}
-
 interface PropsTypes {
   children: React.ReactNode;
-  classes?: Classes;
+  className?: string;
   title?: string;
 }
 
 const Page: React.FC<PropsTypes> = ({
   children,
-  classes,
+  className,
   title = 'Fleetly'
 }) => (
-  <div className={classNames(classes?.root, styles.Root)}>
+  <>
     <Helmet>
       <title>{title}</title>
     </Helmet>
 
-    <main className={classNames(classes?.container, styles.Container)}>
-      {children}
-    </main>
-  </div>
+    <main className={classNames(className, styles.Root)}>{children}</main>
+  </>
 );
 
 export default Page;

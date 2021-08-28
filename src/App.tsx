@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Containers
 import Notifications from '@containers/Notifications';
-import { Sudo } from './company/containers/Sudo';
+import { Sudo } from './Company/containers/Sudo';
 
 // Routes
 import ROUTES from '@routes';
@@ -16,10 +16,11 @@ import { isAuthorized as getAuthState } from '@store';
 import styles from './App.scss';
 
 // Views
-const Landing = lazy(() => import('@landing/index'));
+const Landing = lazy(() => import('Landing/index'));
 
-const Main = lazy(() => import('./company/pages/Main'));
-const Sign = lazy(() => import('./company/pages/Sign'));
+const Main = lazy(() => import('./Company/pages/Main'));
+const Profile = lazy(() => import('./Profile'));
+const Sign = lazy(() => import('./Company/pages/Sign'));
 
 const App: React.FC<{}> = () => {
   const isAuthorized = useSelector(getAuthState);
@@ -30,6 +31,7 @@ const App: React.FC<{}> = () => {
         {isAuthorized ? (
           <Switch>
             <Redirect from={ROUTES.SIGN.ROOT} to="/" />
+            <Route component={Profile} path="/profile" />
             <Route component={Main} path="/" />
           </Switch>
         ) : (

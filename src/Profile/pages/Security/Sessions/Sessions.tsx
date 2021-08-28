@@ -1,7 +1,7 @@
-import { Color } from '@fleetly/common/dist/enums';
+import { useMutation, useQuery } from '@apollo/client';
 import classNames from 'classnames';
 import moment from 'moment';
-import * as React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 // Components
 import Button from '@components/Button';
@@ -9,10 +9,18 @@ import Link from '@components/Link';
 import { Wrapper } from '@components/Page';
 import Status from '@components/Status';
 import Table from '@components/Table';
-import { Caption, H5 } from '@components/Typography';
+import { H5, Text } from '@components/Typography';
 
-// Hooks
-import { useSecuritySessionsView } from './Sessions.hooks';
+// GraphQL
+import DELETE_ALL_SESSIONS from './graphql/deleteAllSessions.gql';
+import DELETE_SESSION from './graphql/deleteSession.gql';
+import GET_SESSION_LIST from './graphql/getSessionList.gql';
+
+// Interfaces
+import { ISession } from '@interfaces/session.interface';
+
+// Store
+import { useNotifications } from '@store';
 
 // Styles
 import styles from './Sessions.scss';
@@ -20,14 +28,43 @@ import styles from './Sessions.scss';
 // Utils
 import { parseOS } from './utils/parseOs';
 
-const SecuritySessions = () => {
-  const {
-    handleDeleteClick,
-    handleDeleteAllClick,
-    sessions
-  } = useSecuritySessionsView();
+export const SecuritySessions = () => {
+  // Setup
+  const { handleApolloError } = useNotifications();
 
-  const columns = React.useMemo(
+  // Data
+  const { data, refetch } = useQuery<{ sessions: ISession[] }>(
+    GET_SESSION_LIST
+  );
+
+  // Mutations
+  const [deleteSession] = useMutation(DELETE_SESSION, {
+    onError: handleApolloError
+  });
+
+  const [deleteAllSessions] = useMutation(DELETE_ALL_SESSIONS, {
+    onError: handleApolloError
+  });
+
+  // Handlers
+  const handleDeleteAllClick = useCallback(async () => {
+    await deleteAllSessions();
+    refetch();
+  }, [deleteAllSessions, refetch]);
+
+  const handleDeleteClick = useCallback(
+    async (event: React.SyntheticEvent<HTMLButtonElement>) => {
+      await deleteSession({
+        variables: { sessionId: event.currentTarget.dataset.sessionId }
+      });
+
+      refetch();
+    },
+    [deleteSession, refetch]
+  );
+
+  // Memo
+  const columns = useMemo(
     () => [
       {
         accessor: 'device',
@@ -56,7 +93,8 @@ const SecuritySessions = () => {
           return (
             <div>
               <H5>{browser}</H5>
-              <Caption className={styles.Description}>
+
+              <Text className={styles.Description} size="small">
                 <i
                   className={classNames(styles.OS, 'fab', {
                     'fa-android': isAndroid,
@@ -65,7 +103,7 @@ const SecuritySessions = () => {
                   })}
                 />
                 {os}
-              </Caption>
+              </Text>
             </div>
           );
         },
@@ -82,9 +120,9 @@ const SecuritySessions = () => {
                 {location}
               </Link>
 
-              <Caption className={styles.Description} component="div">
+              <Text className={styles.Description} component="div" size="small">
                 {ip}
-              </Caption>
+              </Text>
             </div>
           );
         },
@@ -94,7 +132,7 @@ const SecuritySessions = () => {
         accessor: 'isOnline',
         Cell: ({ value }: any) => (
           <Status
-            color={value ? Color.GREEN : Color.RED}
+            color={value ? 'green' : 'red'}
             title={value ? 'Online' : 'Offline'}
           />
         ),
@@ -136,9 +174,7 @@ const SecuritySessions = () => {
       }
       title="Recent Devices"
     >
-      <Table columns={columns} data={sessions} />
+      <Table columns={columns} data={data?.sessions || []} />
     </Wrapper>
   );
 };
-
-export default SecuritySessions;

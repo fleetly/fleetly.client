@@ -22,6 +22,7 @@ import styles from './Select.scss';
 import { getClassName } from '@utils/styles';
 
 export const Select: React.FC<Form.SelectProps> = ({
+  className,
   classes,
   disabled,
   hint,
@@ -75,6 +76,7 @@ export const Select: React.FC<Form.SelectProps> = ({
   return (
     <div
       className={classNames(
+        className,
         classes?.root,
         styles.Root,
         isFilled &&

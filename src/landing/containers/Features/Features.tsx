@@ -5,7 +5,7 @@ import feature1Img from '../../assets/features/feature-1.webp';
 import feature2Img from '../../assets/features/feature-2.webp';
 
 // Components
-import Wrapper from '@landing/components/Wrapper';
+import Wrapper from 'Landing/components/Wrapper';
 import Feature from './components/Item';
 
 // Styles

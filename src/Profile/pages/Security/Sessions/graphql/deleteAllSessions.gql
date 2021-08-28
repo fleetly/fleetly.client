@@ -1,0 +1,3 @@
+mutation DELETE_ALL_SESSIONS {
+  deleteAllSessions
+}

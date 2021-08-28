@@ -67,12 +67,12 @@ export const CollaboratorsAdd = () => {
   // Memo
   const options = useMemo(
     () =>
-      (data?.users || []).map(({ id, email, username }) => ({
+      (data?.users || []).map(({ id, email, fullname, username }) => ({
         avatar: {
-          alt: username
+          alt: fullname
         },
         color: convertToColor(id),
-        description: username,
+        description: username || fullname,
         label: email,
         value: id
       })),

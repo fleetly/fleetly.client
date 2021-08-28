@@ -21,8 +21,8 @@ import ROUTES from '@routes';
 import styles from './Company.scss';
 
 // Views
-import Chat, { Threads } from 'chat';
-import Flow from 'flow';
+import Chat, { Threads } from 'Chat';
+import Flow from 'Flow';
 
 import Billing from '../Billing';
 import Channel from '../Channel';

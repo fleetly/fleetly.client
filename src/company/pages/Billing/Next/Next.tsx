@@ -24,7 +24,7 @@ import { PLANS_IMAGE_SET } from '@containers/Plans/Plans.data';
 import { ISubscription } from '@interfaces/subscription.interface';
 
 // Store
-import { useModals } from 'core/store';
+import { useModals } from '@store';
 
 // Styles
 import styles from './Next.scss';

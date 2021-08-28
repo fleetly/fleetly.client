@@ -29,7 +29,7 @@ interface PropTypes {
 }
 
 const Avatar: React.FC<PropTypes> = ({
-  alt = '',
+  alt,
   aura,
   classes,
   className,
@@ -46,7 +46,7 @@ const Avatar: React.FC<PropTypes> = ({
 
   const displayedAlt = useMemo(
     () =>
-      alt
+      (alt || '')
         .split(' ')
         .slice(0, 2)
         .map((str: string) => str.substr(0, 1))
