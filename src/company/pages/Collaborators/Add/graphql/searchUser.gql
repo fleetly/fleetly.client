@@ -1,0 +1,7 @@
+query SEARCH_USER {
+  users {
+    id
+    email
+    username
+  }
+}

@@ -29,7 +29,7 @@ interface PropTypes {
 }
 
 const Avatar: React.FC<PropTypes> = ({
-  alt,
+  alt = '',
   aura,
   classes,
   className,
@@ -43,6 +43,16 @@ const Avatar: React.FC<PropTypes> = ({
     propColor,
     toColor
   ]);
+
+  const displayedAlt = useMemo(
+    () =>
+      alt
+        .split(' ')
+        .slice(0, 2)
+        .map((str: string) => str.substr(0, 1))
+        .join(''),
+    [alt]
+  );
 
   return (
     <div
@@ -67,7 +77,7 @@ const Avatar: React.FC<PropTypes> = ({
         />
       ) : (
         <div className={classNames(classes?.plug, styles.Plug)}>
-          {(alt || '').substr(0, 1)}
+          {displayedAlt}
         </div>
       )}
 

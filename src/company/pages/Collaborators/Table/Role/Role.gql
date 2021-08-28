@@ -1,0 +1,6 @@
+mutation UPDATE_COLLABORATOR_ROLE($collaboratorId: String!, $newRole: Role!) {
+  updateCollaboratorRole(collaboratorId: $collaboratorId, newRole: $newRole) {
+    id
+    role
+  }
+}

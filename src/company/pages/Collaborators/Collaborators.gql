@@ -1,0 +1,12 @@
+query GET_COLLABORATOR_LIST($companyId: String!) {
+  collaborators(companyId: $companyId) {
+    id
+    role
+    user {
+      id
+      email
+      fullname
+      username
+    }
+  }
+}

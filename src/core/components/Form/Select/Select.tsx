@@ -43,7 +43,12 @@ export const Select: React.FC<Form.SelectProps> = ({
   // @todo - fixed value type
   // Setup
   const displayedValue: any = useMemo(() => {
-    const collection = chain(options).map('options').flatten();
+    const collection = chain(
+      (options as any).reduce(
+        (accum = [], item: any) => accum.concat(item.options || item),
+        []
+      )
+    );
 
     return value
       ? multiplied
@@ -87,7 +92,7 @@ export const Select: React.FC<Form.SelectProps> = ({
         }
       )}
     >
-      <FieldHeader classes={classes} hint={hint} id={id} label={label} />
+      {label && <FieldHeader classes={classes} hint={hint} label={label} />}
 
       <ReactSelect
         className={styles.Container}

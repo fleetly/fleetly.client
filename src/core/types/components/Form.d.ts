@@ -84,6 +84,7 @@ declare namespace Form {
   }
 
   interface SelectProps extends FieldBase {
+    className?: string;
     classes?: any;
     hint?: React.ReactNode;
     multiplied?: boolean;

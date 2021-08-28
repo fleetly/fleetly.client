@@ -1,0 +1,3 @@
+mutation REMOVE_COLLABORATOR($collaboratorId: String!) {
+  removeCollaborator(collaboratorId: $collaboratorId)
+}
