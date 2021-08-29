@@ -1,0 +1,8 @@
+query GET_COLLABORATION_LIST {
+  companies {
+    id
+    name
+    title
+    role
+  }
+}

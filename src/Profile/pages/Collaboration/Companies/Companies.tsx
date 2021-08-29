@@ -1,35 +1,52 @@
-import * as React from 'react';
+import { useMutation } from '@apollo/client';
+import React, { useCallback, useMemo } from 'react';
 
 // Components
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
+import { Wrapper } from '@components/Page';
 import Status from '@components/Status';
 import Table from '@components/Table';
-import { Wrapper } from '@components/Page';
 
 // Constants
 import { ROLES } from '@constants';
 
-// Hooks
-import { useCollaborationCompaniesView } from './Companies.hooks';
+// GraphQL
+import LEAVE_COMPANY from './Companies.gql';
+import GET_COLLABORATION_LIST from '../Collaboration.gql';
 
-// Utils
-import { convertToColor } from '@utils/string';
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
 
-const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
+export interface CollaborationCompaniesProps {
+  data: ICompany[];
+}
+
+export const CollaborationCompanies: React.FC<CollaborationCompaniesProps> = ({
   data
 }) => {
-  const { handleLeaveClick } = useCollaborationCompaniesView();
+  // Mutations
+  const [leaveCompany] = useMutation(LEAVE_COMPANY, {
+    refetchQueries: [{ query: GET_COLLABORATION_LIST }]
+  });
 
-  const columns = React.useMemo(
+  // Handlers
+  const handleLeaveClick = useCallback(
+    async (event: React.SyntheticEvent<HTMLButtonElement>) => {
+      await leaveCompany({
+        variables: { companyId: event.currentTarget.dataset.companyId }
+      });
+    },
+    [leaveCompany]
+  );
+
+  // Memo
+  const columns = useMemo(
     () => [
       {
         accessor: 'icon',
         Cell: ({ row }: any) => (
-          <Avatar
-            alt={row?.original?.title}
-            color={convertToColor(row?.original?.id)}
-          />
+          <Avatar alt={row?.original?.title} toColor={row?.original?.id} />
         ),
         Header: '',
         maxWidth: 60
@@ -43,6 +60,7 @@ const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
         Cell: ({ value }: any) => {
           const { color, label } =
             ROLES.find((role) => role.value === value) || ROLES[2];
+
           return <Status color={color} title={label} />;
         },
         Header: 'Role'
@@ -60,7 +78,7 @@ const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
               Leave
             </Button>
           ),
-        Header: 'Leave',
+        Header: 'Actions',
         maxWidth: 120
       }
     ],
@@ -73,5 +91,3 @@ const CollaborationCompanies: React.FC<Collaboration.CompaniesProps> = ({
     </Wrapper>
   );
 };
-
-export default CollaborationCompanies;
