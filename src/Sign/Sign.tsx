@@ -6,8 +6,8 @@ import { CSSTransition } from 'react-transition-group';
 import styles from './Sign.scss';
 
 // Views
-import { SignIn } from './In';
-import { SignUp } from './Up';
+import { SignIn } from './pages/In';
+import { SignUp } from './pages/Up';
 
 // Utils
 import { resolve } from '@utils/url';

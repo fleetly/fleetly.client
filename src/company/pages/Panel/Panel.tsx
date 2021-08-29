@@ -16,6 +16,7 @@ import Billing from '../Billing';
 import Channel from '../Channel';
 import Channels from '../Channels';
 import Collaborators from '../Collaborators';
+import { General } from '../General';
 import Fields from '../Fields';
 import Tags from '../Tags';
 import Subscribers from '../Subscribers';
@@ -72,6 +73,7 @@ export const Panel: React.FC = () => {
                 component={Collaborators}
                 path={ROUTES.COMPANY.COLLABORATORS}
               />
+              <Route component={General} path={ROUTES.COMPANY.GENERAL} />
               <Route component={Fields} path={ROUTES.COMPANY.FIELDS} />
               <Route component={Tags} path={ROUTES.COMPANY.TAGS} />
               <Route

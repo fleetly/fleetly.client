@@ -3,7 +3,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Containers
 import Notifications from '@containers/Notifications';
-// import { Sudo } from './Company/Cabinet/Sudo';
 
 // Routes
 import ROUTES from '@routes';
@@ -43,7 +42,6 @@ const App: React.FC<{}> = () => {
       </Suspense>
 
       <Notifications />
-      {/* <Sudo /> */}
     </div>
   );
 };

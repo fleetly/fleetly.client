@@ -12,7 +12,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  max-height: calc(100% - 90px);
+  max-height: calc(100% - 88px);
   overflow-x: visible;
   overflow-y: hidden;
 }
@@ -20,7 +20,7 @@
 .Header {
   align-items: center;
   display: flex;
-  flex: 0 0 90px;
+  flex: 0 0 88px;
   justify-content: space-between;
   padding: 0 32px;
 }
