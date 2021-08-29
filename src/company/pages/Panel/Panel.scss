@@ -1,0 +1,26 @@
+.Root {
+  align-items: flex-start;
+  display: flex;
+  margin: 0 40px 40px 0;
+  width: 100%;
+}
+
+.Container {
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  max-width: calc(100% - 260px);
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  flex: 0 0 88px;
+}
+
+.Sidebar {
+  display: flex;
+  flex: 0 0 260px;
+  flex-direction: column;
+  padding: 0 40px;
+}

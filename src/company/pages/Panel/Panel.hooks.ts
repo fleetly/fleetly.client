@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client';
 import { useMemo } from 'react';
-import { useParams, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // Components
 import { MenuGroupProps } from '@components/Menu';
 
 // GraphQL
-import GET_COMPANY_BY_ID from '@graphql/getCompanyById.gql';
+import GET_COMPANY from './Panel.gql';
 
-// Interface
+// Interfaces
 import { ICompany } from '@interfaces/company.interface';
 
 // Routes
@@ -17,13 +17,12 @@ import ROUTES from '@routes';
 // Utils
 import { fillUrl } from '@utils/url';
 
-export const useCompanyPage = () => {
+export const usePanel = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
-  const isChat = !!useRouteMatch(ROUTES.COMPANY.CHAT.ROOT);
 
   // Data
-  const { data } = useQuery<{ company: ICompany }>(GET_COMPANY_BY_ID, {
+  const { data, loading } = useQuery<{ company: ICompany }>(GET_COMPANY, {
     variables: { companyId }
   });
 
@@ -103,5 +102,5 @@ export const useCompanyPage = () => {
     [companyId]
   );
 
-  return { company: data?.company, isChat, menu };
+  return { company: data?.company, loading, menu };
 };
