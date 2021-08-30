@@ -28,9 +28,13 @@ export const ChatSendForm: React.FC<any> = ({ ...props }) => {
     [textareaId]
   );
 
+  const handleFormSubmit = useCallback(async () => {
+    return true;
+  }, []);
+
   return (
     <Form
-      onSubmit={console.log}
+      onSubmit={handleFormSubmit}
       validate={yupValidator(
         yup.object().shape({ text: yup.string().required() })
       )}

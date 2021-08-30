@@ -50,6 +50,7 @@ export const Company: React.FC = () => {
               <div className={styles.List}>
                 {data?.companies.map(({ id, title }) => (
                   <NavLink
+                    key={id}
                     activeClassName={styles.LinkIsSelected}
                     className={styles.Link}
                     to={fillUrl(ROUTES.COMPANY.ROOT, { companyId: id })}

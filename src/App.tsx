@@ -29,7 +29,7 @@ const App: React.FC<{}> = () => {
             <Redirect from={ROUTES.SIGN.ROOT} to="/" />
 
             <Route component={Profile} path="/profile" />
-            <Route component={Company} path="/:companyId" />
+            <Route component={Company} path="/:companyId?" />
           </Switch>
         ) : (
           <Switch>

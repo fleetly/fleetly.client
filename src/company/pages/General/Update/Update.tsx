@@ -5,14 +5,7 @@ import { Form } from 'react-final-form';
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
 import Card from '@components/Card';
-import {
-  Actions,
-  Error,
-  Field,
-  Fieldset,
-  gqlErrorHandler,
-  yupValidator
-} from '@components/Form';
+import { Actions, Error, Field, Fieldset } from '@components/Form';
 
 // Styles
 import styles from './Update.scss';
@@ -40,8 +33,12 @@ export const GeneralUpdate = () => {
   //     })
   // });
 
+  const handleFormSubmit = useCallback(async () => {
+    return true;
+  }, []);
+
   return (
-    <Form onSubmit={console.log}>
+    <Form onSubmit={handleFormSubmit}>
       {({ handleSubmit, submitting, values }) => (
         <Card className={styles.Root}>
           <form>
