@@ -57,8 +57,11 @@ const usePlansContainer = (subscription?: ISubscription) => {
         try {
           const planId = event.currentTarget.dataset.planId!;
 
-          if (subscription && !subscription.cancelDate) {
-            subscription.plan.id === planId
+          if (
+            subscription?.plan.type !== PlanType.LITE &&
+            !subscription?.cancelDate
+          ) {
+            subscription?.plan.id === planId
               ? await cancelSubscription({ variables: { companyId } })
               : await upgradeSubscription({ variables: { companyId, planId } });
           } else {
