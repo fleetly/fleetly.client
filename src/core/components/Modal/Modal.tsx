@@ -72,7 +72,9 @@ const Modal: React.FC<ModalProps> = ({
           )}
 
           <div className={classNames(classes?.content, styles.Content)}>
-            {typeof children === 'function' ? children(modal?.data) : children}
+            {typeof children === 'function'
+              ? children(modal?.data || {})
+              : children}
           </div>
         </div>
       </div>

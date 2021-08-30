@@ -1,6 +1,0 @@
-mutation removeTag($subscriberId: String!, $tagId: String!) {
-  removeTag(subscriberId: $subscriberId, tagId: $tagId) {
-    id
-    tags
-  }
-}

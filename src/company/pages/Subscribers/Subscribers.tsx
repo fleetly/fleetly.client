@@ -39,7 +39,7 @@ const Subscribers: React.FC = () => {
 
   // Handlers
   const handleTrClick = useCallback(
-    ({ id }: ISubscriber) => openModal({ subscriberId: id }),
+    ({ id }: ISubscriber) => openModal({ data: { subscriberId: id } }),
     [openModal]
   );
 

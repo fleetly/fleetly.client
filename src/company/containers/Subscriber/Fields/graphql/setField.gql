@@ -1,0 +1,9 @@
+mutation SET_FIELD($fieldId: String!, $subscriberId: String!, $value: String!) {
+  setField(fieldId: $fieldId, subscriberId: $subscriberId, value: $value) {
+    id
+    fields {
+      fieldId
+      value
+    }
+  }
+}

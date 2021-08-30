@@ -8,6 +8,7 @@ import Link from '@components/Link';
 import Loader from '@components/Loader';
 
 // Containers
+import { Subscriber } from './containers/Subscriber';
 import { Sudo } from './containers/Sudo';
 
 // GraphQL
@@ -74,6 +75,7 @@ export const Company: React.FC = () => {
             </Switch>
           </div>
 
+          <Subscriber />
           <Sudo />
         </>
       )}

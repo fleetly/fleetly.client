@@ -1,0 +1,45 @@
+@import '~@styles/colors';
+
+@mixin color($color) {
+  background: rgba($color, .1);
+
+  .Label {
+    color: $color;
+  }
+
+  .Remove {
+    background: rgba($color, .6);
+
+    &:hover {
+      background: rgba($color, .8);
+    }
+  }
+}
+
+.Root {
+  align-items: center;
+  border-radius: 16px;
+  display: flex;
+  height: 32px;
+  padding: 6px;
+
+  @include coloring;
+}
+
+.Label {
+  flex: 1 1 auto;
+  margin: 0 0 0 10px;
+}
+
+.Remove {
+  border: 0;
+  border-radius: 100%;
+  color: rgba($color-gray-0, .8);
+  height: 20px;
+  transition: all .2s;
+  width: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
