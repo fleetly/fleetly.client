@@ -1,0 +1,134 @@
+@import '~@styles/breakpoints';
+
+.Root {
+  &Mode {
+    &NoWrap {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &Variant {
+    &Caption {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    &H1 {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 76px;
+
+      @include breakpoints(mobile) {
+        font-size: 52px;
+        letter-spacing: 0;
+        line-height: 64px;
+      }
+    }
+
+    &H2 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 40px;
+
+      @include breakpoints(mobile) {
+        font-size: 26px;
+        line-height: 32px;
+      }
+    }
+
+    &H3 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+
+      @include breakpoints(mobile) {
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 20px;
+      }
+    }
+
+    &H4 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+
+    &H5 {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    &H6 {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+    }
+
+    &Text {
+      font-size: 14px;
+      line-height: 24px;
+
+      @include breakpoints(mobile) {
+        letter-spacing: 0;
+      }
+
+      &.RootSize {
+        &Extralarge {
+          font-size: 18px;
+          line-height: 32px;
+        }
+
+        &Large {
+          font-size: 16px;
+          line-height: 28px;
+        }
+
+        &Medium {
+          font-size: 14px;
+          line-height: 24px;
+        }
+
+        &Small {
+          font-size: 12px;
+          line-height: 20px;
+        }
+
+        &ExtraSmall {
+          font-size: 10px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+
+  &Weight {
+    &Light {
+      font-weight: 300;
+    }
+
+    &Regular {
+      font-weight: 400;
+    }
+
+    &Medium {
+      font-weight: 500;
+    }
+
+    &Semibold {
+      font-weight: 600;
+    }
+
+    &Bold {
+      font-weight: 700;
+    }
+
+    &Extrabold {
+      font-weight: 800;
+    }
+  }
+}

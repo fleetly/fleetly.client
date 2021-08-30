@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -290,19 +288,18 @@ module.exports = function (webpackEnv) {
         .map((ext) => `.${ext}`)
         .filter((ext) => useTypeScript || !ext.includes('ts')),
       alias: {
-        '@assets': path.resolve(__dirname, '../src/assets'),
-        '@components': path.resolve(__dirname, '../src/components'),
-        '@constants': path.resolve(__dirname, '../src/constants'),
-        '@containers': path.resolve(__dirname, '../src/containers'),
-        '@entities': path.resolve(__dirname, '../src/entities'),
-        '@graphql': path.resolve(__dirname, '../src/graphql'),
-        '@hooks': path.resolve(__dirname, '../src/hooks'),
+        '@core': path.resolve(__dirname, '../src/Core'),
+        '@assets': path.resolve(__dirname, '../src/Core/assets'),
+        '@components': path.resolve(__dirname, '../src/Core/components'),
+        '@constants': path.resolve(__dirname, '../src/Core/constants'),
+        '@containers': path.resolve(__dirname, '../src/Core/containers'),
+        '@entities': path.resolve(__dirname, '../src/Core/entities'),
+        '@graphql': path.resolve(__dirname, '../src/Core/graphql'),
+        '@hooks': path.resolve(__dirname, '../src/Core/hooks'),
         '@routes': path.resolve(__dirname, '../src/routes'),
-        '@services': path.resolve(__dirname, '../src/services'),
-        '@store': path.resolve(__dirname, '../src/store'),
-        '@utils': path.resolve(__dirname, '../src/utils'),
-        '@styles': path.resolve(__dirname, '../src/styles'),
-        '@views': path.resolve(__dirname, '../src/views'),
+        '@store': path.resolve(__dirname, '../src/Core/store'),
+        '@utils': path.resolve(__dirname, '../src/Core/utils'),
+        '@styles': path.resolve(__dirname, '../src/Core/styles'),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',

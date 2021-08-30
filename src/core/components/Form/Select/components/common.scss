@@ -1,0 +1,116 @@
+@import '~@styles/colors';
+
+// Caret color
+@mixin color($color) {
+  &.CaretVariantFilled {
+    background: $color;
+  }
+}
+
+.Caret {
+  align-items: center;
+  border-radius: 100%;
+  composes: Caret from '../Select.scss';
+  display: flex;
+  justify-content: center;
+  margin: 0 4px;
+
+  @include coloring;
+
+  &Variant {
+    &Filled {
+      height: 22px;
+      width: 22px;
+
+      .CaretIcon {
+        background: none;
+        color: $color-gray-0;
+        font-size: 16px;
+        text-shadow: none;
+      }
+    }
+
+    &Outlined {
+      border: 2px solid rgba($color-primary, .4);
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  &Icon {
+    align-items: center;
+    background: rgba($color-primary, .1);
+    border-radius: 100%;
+    color: $color-primary;
+    composes: CaretIcon from '../Select.scss';
+    display: flex !important;
+    font-size: 18px;
+    height: 26px;
+    justify-content: center;
+    text-shadow: 0 2px 3px rgba($color-primary, .4);
+    transition: all .2s;
+    width: 26px;
+  }
+}
+
+.Container {
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+  position: relative;
+}
+
+.Empty {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 32px 0;
+
+  &Description {
+    color: $color-gray-600;
+    margin: 12px 0 0;
+    max-width: 160px;
+    text-align: center;
+  }
+
+  &Icon {
+    align-items: center;
+    border: 4px solid rgba($color-primary, .5);
+    border-radius: 100%;
+    color: $color-primary;
+    display: flex !important;
+    font-size: 24px;
+    height: 60px;
+    justify-content: center;
+    width: 60px;
+  }
+
+  &Title {
+    margin: 20px 0 0;
+  }
+}
+
+// Spinner color
+@mixin color($color) {
+  color: $color;
+}
+
+.Spinner {
+  animation: spin .8s linear infinite;
+  color: $color-primary;
+  font-size: 20px;
+  margin: 0 6px;
+
+  @include coloring;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,3 +1,0 @@
-mutation deleteField($fieldId: String!) {
-  deleteField(fieldId: $fieldId)
-}

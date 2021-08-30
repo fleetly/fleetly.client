@@ -1,6 +1,0 @@
-mutation updateCollaboratorRole($collaboratorId: String!, $newRole: Role!) {
-  updateCollaboratorRole(collaboratorId: $collaboratorId, newRole: $newRole) {
-    id
-    role
-  }
-}

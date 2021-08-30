@@ -1,0 +1,8 @@
+query GET_COMPANY_LIST {
+  companies {
+    id
+    name
+    title
+    role
+  }
+}

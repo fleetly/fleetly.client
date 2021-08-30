@@ -1,8 +1,0 @@
-query getCompanyList {
-  companies {
-    id
-    name
-    title
-    role
-  }
-}

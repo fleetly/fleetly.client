@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from 'react';
-import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Containers
@@ -9,18 +8,18 @@ import Notifications from '@containers/Notifications';
 import ROUTES from '@routes';
 
 // Store
-import { isAuthorized as getAuthState } from '@store';
+import { useSession } from '@store';
 
 // Styles
 import styles from './App.scss';
 
-// Views
-const Landing = lazy(() => import('@views/Landing'));
-const Main = lazy(() => import('@views/Main'));
-const Sign = lazy(() => import('@views/Sign'));
+const Company = lazy(() => import('./Company'));
+const Landing = lazy(() => import('./Landing'));
+const Profile = lazy(() => import('./Profile'));
+const Sign = lazy(() => import('./Sign'));
 
 const App: React.FC<{}> = () => {
-  const isAuthorized = useSelector(getAuthState);
+  const { isAuthorized } = useSession();
 
   return (
     <div className={styles.Root}>
@@ -28,7 +27,9 @@ const App: React.FC<{}> = () => {
         {isAuthorized ? (
           <Switch>
             <Redirect from={ROUTES.SIGN.ROOT} to="/" />
-            <Route component={Main} path="/" />
+
+            <Route component={Profile} path="/profile" />
+            <Route component={Company} path="/:companyId?" />
           </Switch>
         ) : (
           <Switch>

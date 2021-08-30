@@ -1,0 +1,21 @@
+@import '~@styles/colors';
+
+.Feature {
+  align-items: center;
+  display: flex;
+}
+
+.Features {
+  display: grid;
+  grid-gap: 16px 16px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 28px 0;
+}
+
+.Icon {
+  margin: 0 16px 0 0;
+}
+
+.Title {
+  color: $color-gray-400;
+}

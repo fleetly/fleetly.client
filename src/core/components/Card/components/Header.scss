@@ -1,0 +1,31 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+}
+
+.Actions {
+  position: relative;
+}
+
+.Avatar {
+  flex: 0 0 40px;
+  height: 40px;
+  margin: 0 16px 0 0;
+}
+
+.Content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.SubTitle {
+  color: $color-gray-600;
+  margin: 0 0 2px;
+}
+
+.Title {
+  color: $color-gray-900;
+}

@@ -1,0 +1,28 @@
+@import '~@styles/colors.scss';
+
+.Button {
+  margin: 32px 0 0;
+}
+
+.Container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.Content {
+  max-width: 460px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.Description {
+  color: $color-gray-600;
+  margin: 12px 0 0;
+}
+
+.Title {
+  color: $color-gray-900;
+  margin: 4px 0 0;
+}

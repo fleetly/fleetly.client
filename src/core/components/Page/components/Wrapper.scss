@@ -1,0 +1,26 @@
+.Root {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  max-height: 100%;
+  width: 100%;
+}
+
+.Container {
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  max-height: calc(100% - 88px);
+  overflow-x: visible;
+  overflow-y: hidden;
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  flex: 0 0 88px;
+  justify-content: space-between;
+  padding: 0 32px;
+}

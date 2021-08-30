@@ -1,0 +1,73 @@
+@import '~@styles/colors';
+
+.Root {
+  &Is {
+    &Disabled {
+      .Container {
+        opacity: .6;
+        pointer-events: none;
+      }
+    }
+
+    &Focused {
+      &.RootIsFailed {
+        .Container {
+          background: $color-gray-100;
+          border-color: $color-red-200;
+        }
+      }
+
+      .Container {
+        background: $color-gray-100;
+        border-color: $color-blue-200;
+      }
+    }
+
+    &Invalid {
+      .Container {
+        border-color: $color-red-200;
+
+        &:hover {
+          background: $color-red-50;
+          border-color: $color-red-200;
+        }
+      }
+    }
+  }
+}
+
+.Container {
+  background: $color-gray-100;
+  border: 2px solid $color-gray-300;
+  border-radius: 20px;
+  height: 40px;
+  overflow: hidden;
+  transition: all .2s;
+  width: 100%;
+
+  &:hover {
+    background: $color-blue-50;
+    border-color: $color-blue-200;
+  }
+}
+
+.Input {
+  background: transparent;
+  border: none;
+  color: $color-gray-900;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  height: 100%;
+  padding: 0 20px;
+  width: 100%;
+
+  &::placeholder {
+    color: $color-gray-400;
+  }
+}
+
+.Label {
+  display: flex;
+  flex-direction: column;
+}

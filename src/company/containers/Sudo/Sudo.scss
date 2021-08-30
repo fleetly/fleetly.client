@@ -1,0 +1,11 @@
+@import '~@styles/colors';
+
+.Root {
+  width: 280px;
+}
+
+.Description {
+  color: $color-gray-500;
+  margin: 0 0 40px;
+  text-align: center;
+}

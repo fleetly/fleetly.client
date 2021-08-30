@@ -1,0 +1,9 @@
+mutation UNSET_FIELD($fieldId: String!, $subscriberId: String!) {
+  unsetField(fieldId: $fieldId, subscriberId: $subscriberId) {
+    id
+    fields {
+      fieldId
+      value
+    }
+  }
+}

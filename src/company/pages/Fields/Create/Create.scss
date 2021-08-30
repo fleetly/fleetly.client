@@ -1,0 +1,16 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  width: 280px;
+}
+
+.Careful {
+  color: $color-warning;
+  margin: 12px 0 0;
+}
+
+.Description {
+  color: $color-gray-600;
+  margin: 0 0 40px;
+  text-align: center;
+}
