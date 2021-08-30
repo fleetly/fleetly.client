@@ -33,7 +33,7 @@ export const BillingHistory: React.FC<BillingHistoryProps> = ({ data }) => {
         maxWidth: 80
       },
       {
-        accessor: 'createdAt',
+        accessor: 'date',
         Cell: ({ value }: any) => moment(value).format('MMM D, YYYY'),
         Header: 'Date',
         maxWidth: 160
