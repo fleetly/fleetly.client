@@ -10,6 +10,7 @@ query GET_CURRENT_SUBSCRIPTION($companyId: String!) {
       id
       amount
       checkoutId
+      date
       orderId
       receiptUrl
       status
