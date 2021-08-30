@@ -1,0 +1,30 @@
+@import '~@styles/colors';
+
+@mixin color($color) {
+  color: $color;
+
+  &:focus {
+    border-color: $color;
+    box-shadow: 0 0 0 1px $color;
+  }
+}
+
+.Root {
+  background: $color-gray-0;
+  border: 1.5px solid $color-gray-300;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  height: 40px;
+  position: relative;
+  transition: all .2s;
+  width: 100%;
+
+  &:hover:not(:active) {
+    background: $color-gray-50;
+    cursor: pointer;
+  }
+
+  @include coloring();
+}

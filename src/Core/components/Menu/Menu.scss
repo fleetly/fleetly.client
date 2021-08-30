@@ -1,0 +1,57 @@
+@import '~@styles/colors.scss';
+
+.Group {
+  margin: 32px 0 0;
+}
+
+.Icon {
+  display: flex !important;
+  flex: 0 0 20px;
+  font-size: 20px;
+  justify-content: center;
+  margin: 0 12px 0 0;
+  max-width: 20px;
+}
+
+.Link {
+  align-items: center;
+  border-radius: 20px;
+  color: $color-gray-600;
+  display: flex;
+  font-weight: 600;
+  letter-spacing: -.2px;
+  padding: 0 20px;
+  text-decoration: none;
+  transition: all .2s;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &Is {
+    &Selected {
+      background: rgba($color-primary, .1);
+      color: $color-primary;
+    }
+  }
+}
+
+.List {
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    flex: 0 0 40px;
+
+    &:not(:first-child) {
+      margin: 8px 0 0;
+    }
+  }
+}
+
+.Title {
+  color: $color-gray-800;
+  font-weight: 600;
+  letter-spacing: -.2px;
+  margin: 0 0 20px;
+}
