@@ -10,26 +10,25 @@
     }
 
     &Focused {
-      &.RootIsFailed {
-        .Container {
-          background: $color-gray-100;
-          border-color: $color-red-200;
-        }
-      }
-
       .Container {
-        background: $color-gray-100;
-        border-color: $color-blue-200;
+        background: $color-background;
+        border-color: $color-blue;
+
+        &:hover {
+          background: $color-background;
+          border-color: $color-blue;
+        }
       }
     }
 
     &Invalid {
       .Container {
-        border-color: $color-red-200;
+        background: lighten($color-red, 28);
+        border-color: $color-red;
 
         &:hover {
-          background: $color-red-50;
-          border-color: $color-red-200;
+          background: $color-background;
+          border-color: $color-red;
         }
       }
     }
@@ -37,8 +36,8 @@
 }
 
 .Container {
-  background: $color-gray-100;
-  border: 2px solid $color-gray-300;
+  background: $color-background;
+  border: 2px solid darken($color-background, 10);
   border-radius: 20px;
   height: 40px;
   overflow: hidden;
@@ -46,15 +45,15 @@
   width: 100%;
 
   &:hover {
-    background: $color-blue-50;
-    border-color: $color-blue-200;
+    background: lighten($color-blue, 32);
+    border-color: lighten($color-blue, 16);
   }
 }
 
 .Input {
   background: transparent;
   border: none;
-  color: $color-gray-900;
+  color: $color-dark;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -63,7 +62,7 @@
   width: 100%;
 
   &::placeholder {
-    color: $color-gray-400;
+    color: $color-text-secondary;
   }
 }
 

@@ -139,7 +139,7 @@ export const FieldsCreate: React.FC<FieldsCreateProps> = ({ fieldTypes }) => {
 
               <Actions>
                 <Button
-                  color="primary"
+                  color="blue"
                   fullWidth
                   loaded={submitting}
                   type="submit"

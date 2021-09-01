@@ -58,7 +58,7 @@ const FlowBuilderRandomizeVariant: React.FC<PropTypes> = ({ name, id }) => {
 
         <DeleteButton
           className={styles.Delete}
-          color="danger"
+          color="red"
           icon="fal fa-trash-alt"
           variant="outlined"
         />

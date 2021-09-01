@@ -148,7 +148,7 @@ export const SecuritySessions = () => {
         Cell: ({ value }: any) => (
           <Button
             data-session-id={value}
-            color="danger"
+            color="red"
             icon="far fa-trash-alt"
             onClick={handleDeleteClick}
             variant="outlined"
@@ -164,11 +164,7 @@ export const SecuritySessions = () => {
   return (
     <Wrapper
       actions={
-        <Button
-          color="danger"
-          variant="outlined"
-          onClick={handleDeleteAllClick}
-        >
+        <Button color="red" variant="outlined" onClick={handleDeleteAllClick}>
           Delete All
         </Button>
       }

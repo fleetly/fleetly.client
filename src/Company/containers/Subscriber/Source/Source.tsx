@@ -74,7 +74,7 @@ export const SubscriberSource: React.FC<ISubscriber> = ({
 
       <div className={styles.Actions}>
         <Button
-          color="primary"
+          color="blue"
           fullWidth
           to={fillUrl(ROUTES.COMPANY.CHAT.DIALOG, {
             chatId: id,
@@ -84,7 +84,7 @@ export const SubscriberSource: React.FC<ISubscriber> = ({
           Start Chat
         </Button>
 
-        <Button color="danger" disabled fullWidth>
+        <Button color="red" disabled fullWidth>
           Block
         </Button>
       </div>

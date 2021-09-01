@@ -22,7 +22,7 @@ const Tags = () => {
     <Page title="Tags">
       <Wrapper
         actions={
-          <Button color="primary" onClick={openModal}>
+          <Button color="blue" onClick={openModal}>
             Create Tag
           </Button>
         }

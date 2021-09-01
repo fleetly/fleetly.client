@@ -92,7 +92,7 @@ export const FieldsTable: React.FC<FieldsTableProps> = ({
         Cell: ({ value }: any) => (
           <Button
             data-field-id={value}
-            color="danger"
+            color="red"
             icon="far fa-trash-alt"
             onClick={handleDeleteClick}
             variant="outlined"

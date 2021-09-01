@@ -70,7 +70,7 @@ export const CollaborationCompanies: React.FC<CollaborationCompaniesProps> = ({
         Cell: ({ row, value }: any) =>
           row?.original?.role !== 'OWNER' && (
             <Button
-              color="danger"
+              color="red"
               data-company-id={value}
               onClick={handleLeaveClick}
               variant="outlined"

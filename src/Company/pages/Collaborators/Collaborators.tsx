@@ -39,7 +39,7 @@ export const Collaborators: React.FC = () => {
     <Page title="Collaborators">
       <Wrapper
         actions={
-          <Button color="primary" onClick={openModal}>
+          <Button color="blue" onClick={openModal}>
             Add Collaborator
           </Button>
         }

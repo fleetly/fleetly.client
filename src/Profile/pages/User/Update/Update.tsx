@@ -128,12 +128,7 @@ export const ProfileUserUpdate: React.FC = () => {
             <CardHr className={styles.Hr} />
 
             <Actions>
-              <Button
-                color="primary"
-                fullWidth
-                loaded={submitting}
-                type="submit"
-              >
+              <Button color="blue" fullWidth loaded={submitting} type="submit">
                 Save
               </Button>
             </Actions>

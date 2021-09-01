@@ -1,4 +1,3 @@
-import { Color } from '@fleetly/common/dist/enums';
 import { GroupType } from 'react-select';
 import { WrappedFieldMetaProps, WrappedFieldInputProps } from 'redux-form';
 

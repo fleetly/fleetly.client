@@ -2,13 +2,13 @@
 
 @mixin color($color) {
   &.RootVariantFilled {
-    background: rgba($color, .2);
+    background: lighten($color, 28);
     color: $color;
-    text-shadow: 0 4px 4px rgba($color, .4);
+    text-shadow: 0 4px 4px lighten($color, 16);
   }
 
   &.RootVariantOutlined {
-    border-color: rgba($color, .2);
+    border-color: lighten($color, 32);
     color: $color;
   }
 }

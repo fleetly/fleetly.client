@@ -3,7 +3,6 @@ export {};
 declare global {
   type Color =
     | 'blue'
-    | 'default'
     | 'gray'
     | 'green'
     | 'orange'
@@ -12,14 +11,6 @@ declare global {
     | 'red'
     | 'sky'
     | 'yellow';
-
-  type ColorType =
-    | 'danger'
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning';
 
   interface PseudoClasses extends BaseClasses {
     isChecked?: string;

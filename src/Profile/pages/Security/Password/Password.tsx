@@ -106,7 +106,7 @@ export const SecurityPassword: React.FC = () => {
 
             <Actions>
               <Button
-                color="primary"
+                color="blue"
                 disabled={!valid}
                 fullWidth
                 loaded={submitting}

@@ -56,7 +56,7 @@ export const SignIn: React.FC = () => {
     >
       {({ handleSubmit, submitting }) => (
         <form onSubmit={handleSubmit}>
-          <H2 className={styles.Title}>Sign in</H2>
+          <H2 className={styles.Title}>Sign In</H2>
           <H1 className={styles.Fleetly}>Fleetly</H1>
 
           <Text className={styles.Description} component="div">
@@ -76,7 +76,7 @@ export const SignIn: React.FC = () => {
           </Fieldset>
 
           <Actions>
-            <Button color="primary" loaded={submitting} type="submit">
+            <Button color="blue" loaded={submitting} type="submit">
               Sign In
             </Button>
           </Actions>

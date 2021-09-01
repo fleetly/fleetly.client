@@ -32,7 +32,7 @@ export const ChannelSource: React.FC<IChannel> = ({ source, status }) => {
 
       <div className={styles.Actions}>
         <Button
-          color={isActive ? 'danger' : 'success'}
+          color={isActive ? 'red' : 'green'}
           loaded={isLoading}
           onClick={handleSwitchClick}
           variant="outlined"
@@ -49,7 +49,7 @@ export const ChannelSource: React.FC<IChannel> = ({ source, status }) => {
         />
 
         <Button
-          color="primary"
+          color="blue"
           icon="fas fa-external-link"
           to={source.link}
           variant="outlined"

@@ -15,13 +15,13 @@
 }
 
 .Description {
-  color: $color-gray-700;
+  color: $color-text-secondary;
   margin: 8px 0 0;
 }
 
 .Container {
   align-items: flex-start;
-  box-shadow: 0 0 0 4px rgba($color-red-500, .5);
+  box-shadow: 0 0 0 4px lighten($color-red, 10);
   display: flex;
   flex-direction: column;
   padding: 40px;

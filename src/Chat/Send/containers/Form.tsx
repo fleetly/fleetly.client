@@ -52,7 +52,7 @@ export const ChatSendForm: React.FC<any> = ({ ...props }) => {
 
           <div className={styles.Right}>
             <Button
-              color={isComment ? 'warning' : 'primary'}
+              color={isComment ? 'orange' : 'blue'}
               disabled={!dirty || !valid || submitting}
               icon={
                 isComment ? 'fas fa-comment-alt-lines' : 'fas fa-paper-plane'

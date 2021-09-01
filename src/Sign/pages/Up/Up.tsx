@@ -71,7 +71,7 @@ export const SignUp: React.FC = () => {
           </Fieldset>
 
           <Actions>
-            <Button color="primary" loaded={submitting} type="submit">
+            <Button color="blue" loaded={submitting} type="submit">
               Sign Up
             </Button>
           </Actions>

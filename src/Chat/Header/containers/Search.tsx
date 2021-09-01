@@ -26,7 +26,7 @@ export const ChatHeaderSearch: React.FC<any> = ({ onCancel, onSubmit }) => (
         />
 
         <div className={styles.Actions}>
-          <Button color="primary" type="submit">
+          <Button color="blue" type="submit">
             Search
           </Button>
 

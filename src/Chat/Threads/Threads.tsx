@@ -34,7 +34,7 @@ const ChatThreads: React.FC = () => {
       <div className={styles.Actions}>
         <Button
           className={styles.Action}
-          color={status === ChatStatus.OPENED ? 'primary' : 'default'}
+          color={status === ChatStatus.OPENED ? 'blue' : 'purple'}
           onClick={handleStatusClick}
           variant={status === ChatStatus.OPENED ? 'filled' : 'outlined'}
         >
@@ -43,7 +43,7 @@ const ChatThreads: React.FC = () => {
 
         <Button
           className={styles.Action}
-          color={status === ChatStatus.CLOSED ? 'primary' : 'default'}
+          color={status === ChatStatus.CLOSED ? 'blue' : 'purple'}
           onClick={handleStatusClick}
           variant={status === ChatStatus.CLOSED ? 'filled' : 'outlined'}
         >

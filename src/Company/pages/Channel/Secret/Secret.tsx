@@ -32,7 +32,7 @@ export const ChannelSecret: React.FC = () => {
       </div>
 
       <div className={styles.Actions}>
-        <Button color="primary" onClick={openModal} variant="outlined">
+        <Button color="blue" onClick={openModal} variant="outlined">
           Set Token
         </Button>
       </div>

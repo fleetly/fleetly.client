@@ -52,7 +52,7 @@ const FlowBuilderBlock: React.FC<PropTypes> = ({
 
       <Button
         className={styles.Action}
-        color="danger"
+        color="red"
         icon="far fa-trash-alt"
         variant="outlined"
       />

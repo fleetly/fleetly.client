@@ -80,7 +80,7 @@ const ChatSend: React.FC<IChat> = ({ id, status }) => {
 
           <Button
             className={styles.Open}
-            color="primary"
+            color="blue"
             loaded={loading}
             onClick={handleOpenClick}
           >

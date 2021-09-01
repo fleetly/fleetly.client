@@ -77,7 +77,7 @@ export const TagsTable: React.FC = () => {
         Cell: ({ value }: any) => (
           <Button
             data-tag-id={value}
-            color="danger"
+            color="red"
             icon="far fa-trash-alt"
             onClick={handleDeleteClick}
             variant="outlined"

@@ -94,7 +94,7 @@ export const SubscriberFieldsItem: React.FC<SubscriberFieldsItemProps> = ({
             />
 
             <Button
-              color="danger"
+              color="red"
               data-field-id={id}
               icon="far fa-times"
               onClick={onRemove}

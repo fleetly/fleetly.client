@@ -85,12 +85,7 @@ export const ChannelSecretToken: React.FC = () => {
             </Fieldset>
 
             <Actions>
-              <Button
-                color="primary"
-                fullWidth
-                loaded={submitting}
-                type="submit"
-              >
+              <Button color="blue" fullWidth loaded={submitting} type="submit">
                 Set Token
               </Button>
             </Actions>

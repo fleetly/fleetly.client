@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
@@ -42,14 +42,14 @@ const useSubscriber = () => {
   }>(GET_SUBSCRIBER_BY_ID);
 
   // Effetcs
-  React.useEffect(() => {
+  useEffect(() => {
     if (companyId !== currentCompanyId) {
       closeModal();
       setCurrentCompanyId(companyId);
     }
   }, [closeModal, companyId, currentCompanyId]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (modalData?.subscriberId) {
       getSubscriber({
         variables: { companyId, subscriberId: modalData?.subscriberId }
@@ -57,10 +57,13 @@ const useSubscriber = () => {
     }
   }, [companyId, getSubscriber, modalData]);
 
+  // Handlers
+  const handleCloseClick = useCallback(() => closeModal(), [closeModal]);
+
   return {
     companyId,
     currentView,
-    handleCloseClick: closeModal,
+    handleCloseClick,
     handleSelectTab: setCurrentView,
     fields: data?.fields,
     fieldTypes: data?.fieldTypes,

@@ -58,7 +58,7 @@ export const SubscriberFields: React.FC<any> = (props) => {
 
                 <Actions>
                   <Button
-                    color="primary"
+                    color="blue"
                     fullWidth
                     loaded={submitting}
                     type="submit"

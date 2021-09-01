@@ -113,7 +113,7 @@ export const TagsCreate: React.FC = () => {
 
               <Actions>
                 <Button
-                  color="primary"
+                  color="blue"
                   fullWidth
                   loaded={submitting}
                   type="submit"

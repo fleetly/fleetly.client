@@ -39,7 +39,7 @@ const Fields = () => {
     <Page title="Fields">
       <Wrapper
         actions={
-          <Button color="primary" onClick={openModal}>
+          <Button color="blue" onClick={openModal}>
             Create Field
           </Button>
         }

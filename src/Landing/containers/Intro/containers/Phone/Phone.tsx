@@ -73,7 +73,7 @@ const LandingIntroPhone = () => {
             <Text size="extraLarge" weight="medium">
               Type something...
             </Text>
-            <Button color="primary" icon="fas fa-paper-plane" />
+            <Button color="blue" icon="fas fa-paper-plane" />
           </div>
         </div>
       </div>

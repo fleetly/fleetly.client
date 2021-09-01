@@ -1,4 +1,4 @@
-import { Color, FieldType } from '@fleetly/common/dist/enums';
+import { FieldType } from '@fleetly/common/dist/enums';
 
 export interface IField {
   id: string;

@@ -80,7 +80,7 @@ const Flow: React.FC<{}> = () => {
             <div className={styles.Actions}>
               <Button
                 classes={{ root: styles.Add, icon: styles.AddIcon }}
-                color="primary"
+                color="blue"
                 icon="fas fa-layer-plus"
                 key="123"
                 onClick={handleMenuOpen}

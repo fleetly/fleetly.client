@@ -96,12 +96,7 @@ export const CollaboratorsAdd = () => {
             </Fieldset>
 
             <Actions>
-              <Button
-                color="primary"
-                fullWidth
-                loaded={submitting}
-                type="submit"
-              >
+              <Button color="blue" fullWidth loaded={submitting} type="submit">
                 Add
               </Button>
             </Actions>

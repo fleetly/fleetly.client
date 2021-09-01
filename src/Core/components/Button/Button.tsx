@@ -19,7 +19,7 @@ interface PropTypes {
   children?: React.ReactNode;
   className?: string;
   classes?: Classes;
-  color?: ColorType;
+  color?: Color;
   disabled?: boolean;
   fullWidth?: boolean;
   icon?: string;
@@ -35,7 +35,7 @@ const Button: React.FC<PropTypes> = ({
   children,
   className,
   classes,
-  color = 'default',
+  color = 'gray',
   disabled,
   fullWidth,
   icon,

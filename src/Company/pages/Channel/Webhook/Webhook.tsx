@@ -56,7 +56,7 @@ export const ChannelWebhook: React.FC<IWebhook> = ({ id, status }) => {
 
       <div className={styles.Actions}>
         <Button
-          color="primary"
+          color="blue"
           icon={classNames('far', {
             'fa-clipboard': !isCopied,
             'fa-clipboard-check': isCopied

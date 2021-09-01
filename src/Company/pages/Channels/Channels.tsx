@@ -36,7 +36,7 @@ const Channels: React.FC = () => {
     <Page title="Channels">
       <Wrapper
         actions={
-          <Button color="primary" onClick={openModal}>
+          <Button color="blue" onClick={openModal}>
             Add Channel
           </Button>
         }

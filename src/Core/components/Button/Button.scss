@@ -1,34 +1,5 @@
 @import '~@styles/colors.scss';
 
-@mixin colorFilledButton($color) {
-  background: rgba($color, .1);
-  color: $color;
-
-  &:active {
-    background: rgba($color, .1);
-    color: rgba($color, .6);
-  }
-
-  &:hover:not(:active) {
-    background: rgba($color, .2);
-  }
-}
-
-@mixin colorOutlinedButton($color) {
-  border-color: rgba($color, .4);
-  color: $color;
-
-  &:active {
-    background: rgba($color, .05);
-    color: rgba($color, .6);
-  }
-
-  &:hover:not(:active) {
-    background: rgba($color, .2);
-    border-color: transparent;
-  }
-}
-
 .Root {
   align-items: center;
   border-radius: 20px;
@@ -50,7 +21,6 @@
 
   &Is {
     &Disabled {
-      opacity: .6;
       pointer-events: none;
     }
   }
@@ -67,89 +37,6 @@
 
       .Icon {
         margin: 0;
-      }
-    }
-  }
-
-  &Variant {
-    &Filled {
-      border: none;
-
-      &.RootColor {
-        &Danger {
-          @include colorFilledButton($color-danger);
-        }
-
-        &Default {
-          background: rgba($color-text, .1);
-          color: $color-text-secondary;
-
-          &:active {
-            background: rgba($color-text, .1);
-            color: rgba($color-text-secondary, .6);
-          }
-
-          &:hover:not(:active) {
-            background: rgba($color-text, .2);
-          }
-        }
-
-        &Primary {
-          @include colorFilledButton($color-primary);
-        }
-
-        &Secondary {
-          @include colorFilledButton($color-secondary);
-        }
-
-        &Success {
-          @include colorFilledButton($color-success);
-        }
-
-        &Warning {
-          @include colorFilledButton($color-warning);
-        }
-      }
-    }
-
-    &Outlined {
-      background: transparent;
-      border: 2px solid;
-
-      &.RootColor {
-        &Default {
-          border-color: rgba($color-text, .1);
-          color: $color-text-secondary;
-
-          &:active {
-            background: rgba($color-text, .05);
-            color: rgba($color-text-secondary, .4);
-          }
-
-          &:hover:not(:active) {
-            background: rgba($color-text, .1);
-          }
-        }
-
-        &Danger {
-          @include colorOutlinedButton($color-danger);
-        }
-
-        &Primary {
-          @include colorOutlinedButton($color-primary);
-        }
-
-        &Secondary {
-          @include colorOutlinedButton($color-secondary);
-        }
-
-        &Success {
-          @include colorOutlinedButton($color-success);
-        }
-
-        &Warning {
-          @include colorOutlinedButton($color-warning);
-        }
       }
     }
   }
@@ -172,5 +59,62 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@mixin color($color) {
+  background: $color;
+  color: $color-white;
+
+  &:active {
+    background: darken($color, 10);
+  }
+
+  &:hover:not(:active) {
+    background: lighten($color, 10);
+  }
+}
+
+.RootVariantFilled {
+  border: none;
+
+  &.Root {
+    &Is {
+      &Disabled {
+        opacity: .3;
+      }
+    }
+
+    @include coloring();
+  }
+}
+
+@mixin color($color) {
+  border-color: lighten($color, 16);
+  color: $color;
+
+  &:active {
+    background: lighten($color, 20);
+    border-color: transparent;
+  }
+
+  &:hover:not(:active) {
+    background: lighten($color, 28);
+    border-color: transparent;
+  }
+}
+
+.RootVariantOutlined {
+  background: transparent;
+  border: 2px solid;
+
+  &.Root {
+    @include coloring();
+
+    &Is {
+      &Disabled {
+        opacity: .6;
+      }
+    }
   }
 }

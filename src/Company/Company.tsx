@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { lazy } from 'react';
+import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
 // Components
@@ -27,9 +27,9 @@ import styles from './Company.scss';
 import { fillUrl } from '@utils/url';
 
 // Views
-const Chat = lazy(() => import('../Chat'));
-const Flow = lazy(() => import('../Flow'));
-const Panel = lazy(() => import('./pages/Panel'));
+import Chat from '../Chat';
+import Flow from '../Flow';
+import Panel from './pages/Panel';
 
 export const Company: React.FC = () => {
   // Data

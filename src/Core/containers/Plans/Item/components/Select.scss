@@ -12,7 +12,7 @@
   border-radius: 8px;
   box-shadow:
     0 -2px 8px rgba($color-white, .6),
-    0 4px 8px rgba($color-black, .2);
+    0 4px 8px rgba($color-dark, .2);
   height: 100%;
   position: absolute;
   transition: all .2s;
@@ -52,7 +52,7 @@
     transform: scale(1.5);
 
     &::after {
-      border-color: rgba($color-black, .1);
+      border-color: rgba($color-dark, .1);
     }
   }
 

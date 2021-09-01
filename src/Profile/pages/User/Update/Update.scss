@@ -10,7 +10,9 @@
 
 .Avatar {
   border: 8px solid $color-white;
-  box-shadow: 0 0 8px rgba($color-black, .1), 0 12px 20px rgba($color-black, .05);
+  box-shadow:
+    0 0 8px rgba($color-dark, .1),
+    0 12px 20px rgba($color-dark, .05);
   height: 160px;
   left: calc(50% - 80px);
   position: absolute;

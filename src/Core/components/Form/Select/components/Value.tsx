@@ -1,4 +1,3 @@
-import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
 import { MultiValueProps, SingleValueProps } from 'react-select';
@@ -31,7 +30,7 @@ const FormSelectValue: React.FC<
         styles.Root,
         getClassName('color', {
           collection: styles,
-          value: color || Color.BLUE
+          value: color || 'blue'
         }),
         {
           [styles.RootVariantFilled]: selectProps?.isFilled,

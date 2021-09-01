@@ -93,7 +93,7 @@ export const CollaboratorsTable: React.FC<CollaboratorsTableProps> = ({
         Cell: ({ value }: any) => (
           <Button
             data-collaborator-id={value}
-            color="danger"
+            color="red"
             icon="far fa-times"
             onClick={handleRemoveClick}
             variant="outlined"

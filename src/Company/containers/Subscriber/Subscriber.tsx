@@ -38,27 +38,22 @@ export const Subscriber = () => {
     tags
   } = useSubscriber();
 
-  const { rootClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(styles.Root, {
-        [styles.RootIsOpened]: isOpened
-      })
-    }),
-    [isOpened]
-  );
-
   return (
     <SubscriberContext.Provider
       value={{ companyId, subscriberId: subscriber?.id }}
     >
-      <div className={rootClassName}>
+      <div
+        className={classNames(styles.Root, {
+          [styles.RootIsOpened]: isOpened
+        })}
+      >
         <div className={styles.Wrapper}>
           {isOpened && (
             <>
               <Button
                 classes={{ root: styles.Close }}
                 icon="fas fa-times"
-                onClick={handleCloseClick as any}
+                onClick={handleCloseClick}
                 variant="outlined"
               />
 

@@ -63,7 +63,7 @@ export const BillingHistory: React.FC<BillingHistoryProps> = ({ data }) => {
         accessor: 'receiptUrl',
         Cell: ({ value }: any) => (
           <Button
-            color="primary"
+            color="blue"
             icon="far fa-receipt"
             to={value}
             variant="outlined"

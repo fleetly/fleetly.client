@@ -1,11 +1,17 @@
-import { Color } from '@fleetly/common/dist/enums';
-import values from 'lodash/values';
-
 export const capitalizeFirstLetter = (data: string = ''): string =>
   `${data.charAt(0).toUpperCase()}${data.slice(1)}`;
 
 export const convertToColor = (data: string = ''): Color => {
-  const colors = values(Color);
+  const colors: Color[] = [
+    'blue',
+    'green',
+    'orange',
+    'pink',
+    'purple',
+    'red',
+    'sky'
+  ];
+
   let hash = 0;
 
   if (data.length === 0) return colors[0];

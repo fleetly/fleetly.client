@@ -62,8 +62,8 @@
           transition: all .2s;
 
           &:hover {
-            background: $color-blue-50;
-            border-color: $color-blue-200;
+            background: lighten($color-blue, 32);
+            border-color: lighten($color-blue, 16);
 
             :local .CaretIcon {
               transform: scale(1);
@@ -71,8 +71,8 @@
           }
 
           &--is-focused {
-            background: $color-gray-100;
-            border-color: $color-blue-200 !important;
+            background: $color-background;
+            border-color: $color-blue !important;
             box-shadow: none;
           }
         }

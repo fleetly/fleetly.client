@@ -1,4 +1,3 @@
-import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
 import { components, IndicatorProps } from 'react-select';
@@ -25,7 +24,7 @@ export const DropdownIndicator: React.FC<IndicatorProps<
         getClassName('color', {
           collection: styles,
           prefix: 'Caret',
-          value: value?.color || Color.BLUE
+          value: value?.color || 'blue'
         }),
         {
           [styles.CaretVariantFilled]: selectProps?.isFilled,

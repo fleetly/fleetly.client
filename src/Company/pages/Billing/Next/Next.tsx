@@ -94,7 +94,7 @@ export const BillingNext: React.FC<ISubscription> = ({
         )}
 
         <div className={styles.Actions}>
-          <Button color="primary" fullWidth onClick={handleBuyClick}>
+          <Button color="blue" fullWidth onClick={handleBuyClick}>
             {isCanceled || isLite ? 'Upgrade to PRO' : 'Change Plan'}
           </Button>
 

@@ -77,7 +77,7 @@ const ChatHeader: React.FC<ChatHeaderProps & IChat> = ({
           {status === ChatStatus.OPENED && (
             <Button
               className={styles.Confirm}
-              color="primary"
+              color="blue"
               loaded={loading}
               onClick={handleConfirmClick}
             >

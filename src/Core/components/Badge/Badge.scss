@@ -1,10 +1,10 @@
 @import '~@styles/colors.scss';
 
 @mixin color($color) {
-  background-color: rgba($color, .2);
+  background-color: lighten($color, 28); // rgba($color, .2);
 
   .Description {
-    color: rgba($color, .8);
+    color: lighten($color, 12);
   }
 
   .Title {
@@ -26,10 +26,6 @@
   justify-content: center;
   margin: 0 0 0 16px;
   width: calc(100% - 60px);
-}
-
-.Description {
-  color: $color-gray-600;
 }
 
 .Title {

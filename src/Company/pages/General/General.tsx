@@ -26,7 +26,7 @@ export const General = () => (
         </div>
 
         <div className={styles.Actions}>
-          <Button color="danger" disabled variant="outlined">
+          <Button color="red" disabled variant="outlined">
             Disable
           </Button>
         </div>
@@ -42,7 +42,7 @@ export const General = () => (
         </div>
 
         <div className={styles.Actions}>
-          <Button color="danger" disabled variant="outlined">
+          <Button color="red" disabled variant="outlined">
             Delete
           </Button>
         </div>

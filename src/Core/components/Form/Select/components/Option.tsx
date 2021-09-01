@@ -1,4 +1,3 @@
-import { Color } from '@fleetly/common/dist/enums';
 import classNames from 'classnames';
 import * as React from 'react';
 import { OptionProps } from 'react-select';
@@ -37,7 +36,7 @@ const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
         styles.Root,
         getClassName('color', {
           collection: styles,
-          value: color || Color.BLUE
+          value: color || 'blue'
         }),
         {
           [styles.RootIsDisabled]: isDisabled,

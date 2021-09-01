@@ -31,7 +31,7 @@ const NotFound = () => (
         </P>
 
         <div className={styles.Actions}>
-          <Button color="primary" to="/">
+          <Button color="blue" to="/">
             Home
           </Button>
         </div>

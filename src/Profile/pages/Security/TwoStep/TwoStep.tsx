@@ -27,7 +27,7 @@ export const SecurityTwoStep: React.FC = () => (
 
       <Button
         className={styles.Button}
-        color="primary"
+        color="blue"
         disabled
         type="submit"
         variant="outlined"
