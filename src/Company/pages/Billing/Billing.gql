@@ -1,9 +1,15 @@
 query GET_CURRENT_SUBSCRIPTION($companyId: String!) {
   currentSubscription(companyId: $companyId) {
     id
-    cancelDate
+    endDate
     next {
-      billDate
+      plan {
+        id
+        features
+        price
+        title
+        type
+      }
       price
     }
     payments {
@@ -24,7 +30,6 @@ query GET_CURRENT_SUBSCRIPTION($companyId: String!) {
       title
       type
     }
-    status
-    updateUrl
+    startDate
   }
 }

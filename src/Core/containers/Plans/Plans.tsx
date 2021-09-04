@@ -1,6 +1,9 @@
 import moment from 'moment';
 import React from 'react';
 
+// Fleetly
+import { PlanType } from '@fleetly/core/interfaces';
+
 // Components
 import Badge from '@components/Badge';
 import Loader from '@components/Loader';
@@ -53,7 +56,7 @@ const Plans: React.FC<PlansProps> = ({ subscription }) => {
             </div>
           )}
 
-          {subscription?.cancelDate && (
+          {subscription?.plan.type !== PlanType.LITE && (
             <Badge
               className={styles.Badge}
               color="orange"
@@ -61,8 +64,11 @@ const Plans: React.FC<PlansProps> = ({ subscription }) => {
               title="Discard subscription"
             >
               You already have a subscription that will end on{' '}
-              <Text weight="bold">{moment(new Date()).format('DD MMMM')}</Text>.
-              When buying a new subscription, the current one will be completed.
+              <Text weight="bold">
+                {moment(subscription?.endDate).format('DD MMMM')}
+              </Text>
+              . When buying a new subscription, the current one will be
+              completed.
             </Badge>
           )}
         </div>

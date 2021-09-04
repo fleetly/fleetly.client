@@ -45,7 +45,7 @@ const PlansItem: React.FC<PlansItemProps> = ({
   // State
   const [currentPlan, selectCurrentPlan] = useState(
     subscription
-      ? plans.find(({ id }) => id === subscription.plan.id) || plans[0]
+      ? plans.find(({ id }) => id === subscription.next.plan.id) || plans[0]
       : plans[0]
   );
 
@@ -93,11 +93,10 @@ const PlansItem: React.FC<PlansItemProps> = ({
               {!isFree && (
                 <div className={styles.Button}>
                   <Button data-plan-id={currentPlan.id} onClick={onClick}>
-                    {subscription?.plan.type !== PlanType.LITE &&
-                    !subscription?.cancelDate
-                      ? subscription?.plan.id === currentPlan.id
-                        ? 'CANCEL'
-                        : 'CHANGE'
+                    {subscription?.next.plan.id === currentPlan.id
+                      ? 'CANCEL'
+                      : subscription?.next.plan.type !== PlanType.LITE
+                      ? 'CHANGE'
                       : 'BUY'}
                   </Button>
                 </div>
