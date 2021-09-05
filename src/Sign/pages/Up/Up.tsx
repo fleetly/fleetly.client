@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import Button from '@components/Button';
 import {
   Actions,
+  Error,
   Field,
   Fieldset,
   gqlErrorHandler,
@@ -56,6 +57,8 @@ export const SignUp: React.FC = () => {
           <Text className={styles.Description} component="div">
             Already a user? <Link to="/sign/in">Login now</Link>
           </Text>
+
+          <Error />
 
           <Fieldset
             className={classNames(styles.Fieldset, styles.FieldsetMultiple)}
