@@ -30,6 +30,16 @@ query GET_CURRENT_SUBSCRIPTION($companyId: String!) {
       title
       type
     }
+    traffic {
+      id
+      chunkPrice
+      chunkSize
+      limit
+      title
+      total
+      unit
+      value
+    }
     startDate
   }
 }

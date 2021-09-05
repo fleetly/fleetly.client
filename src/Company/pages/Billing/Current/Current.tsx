@@ -9,13 +9,15 @@ import Icon from '@components/Icon';
 import { Wrapper } from '@components/Page';
 import { Text } from '@components/Typography';
 
+import { BillingCurrentTraffic } from './components/Traffic';
+
 // Interfaces
 import { ISubscription } from '@interfaces/subscription.interface';
 
 // Styles
 import styles from './Current.scss';
 
-export const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
+export const BillingCurrent: React.FC<ISubscription> = ({ plan, traffic }) => {
   // Memo
   const color: Color = useMemo(() => {
     switch (plan.type) {
@@ -30,7 +32,7 @@ export const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
 
   return (
     <Wrapper title="Current Plan">
-      <Card>
+      <Card className={styles.Root}>
         <CardHeader
           avatar={<Icon color={color} icon="fad fa-rocket" />}
           subTitle={plan.title}
@@ -39,22 +41,32 @@ export const BillingCurrent: React.FC<ISubscription> = ({ plan }) => {
 
         <CardHr />
 
-        {plan.features && plan.features.length > 0 && (
-          <div className={styles.Features}>
-            {plan.features.map((feature, index) => (
-              <div className={styles.Feature} key={index}>
-                <Icon
-                  className={styles.Icon}
-                  color={color}
-                  icon="fas fa-check"
-                  variant="outlined"
-                />
+        <div className={styles.Features}>
+          {(plan.features || []).map((feature, index) => (
+            <div className={styles.Feature} key={index}>
+              <Icon
+                className={styles.Icon}
+                color={color}
+                icon="fas fa-check"
+                variant="outlined"
+              />
 
-                <Text>{feature}</Text>
-              </div>
-            ))}
-          </div>
-        )}
+              <Text>{feature}</Text>
+            </div>
+          ))}
+        </div>
+
+        <Text className={styles.TrafficTitle} weight="semiBold">
+          Traffic
+        </Text>
+
+        <CardHr />
+
+        <div className={styles.Traffic}>
+          {traffic.map((traffic) => (
+            <BillingCurrentTraffic {...traffic} key={traffic.id} />
+          ))}
+        </div>
       </Card>
     </Wrapper>
   );

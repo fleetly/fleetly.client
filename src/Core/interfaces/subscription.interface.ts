@@ -1,6 +1,7 @@
 // Interfaces
 import { IPayment } from './payment.interface';
 import { IPlan } from './plan.interface';
+import { ITraffic } from './traffic.interface';
 
 export interface ISubscription {
   readonly id: string;
@@ -9,6 +10,7 @@ export interface ISubscription {
   readonly payments?: IPayment[];
   readonly plan: IPlan;
   readonly startDate: string;
+  readonly traffic: ITraffic[];
 }
 
 export interface ISubscriptionNext {

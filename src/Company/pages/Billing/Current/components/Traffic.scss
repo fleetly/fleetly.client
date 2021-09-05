@@ -1,0 +1,44 @@
+@import '~@styles/colors';
+
+.Root {
+  margin: 20px 0;
+}
+
+.Bar {
+  background: $color-blue;
+  border-radius: 2px;
+  box-shadow: 0 12px 12px 0 rgba($color-blue, .2);
+  height: 4px;
+  position: absolute;
+  top: -1px;
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Progress {
+  background: $color-background;
+  border-radius: 1px;
+  height: 2px;
+  margin: 12px 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.Title {
+  align-items: center;
+  display: flex;
+}
+
+.Unit {
+  color: $color-text-secondary;
+}
+
+.Value {
+  color: $color-text-secondary;
+  font-weight: 500;
+  margin: 0 0 0 20px;
+}

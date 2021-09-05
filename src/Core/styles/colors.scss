@@ -88,7 +88,7 @@ $color-vk: #2787f5;
 
 // Text
 $color-text: $color-dark;
-$color-text-secondary: lighten($color-dark, 28);
+$color-text-secondary: rgba($color-dark, .6);
 
 $coloring-variants: (
   Blue: $color-blue,

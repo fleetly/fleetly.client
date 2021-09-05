@@ -1,5 +1,11 @@
 @import '~@styles/colors';
 
+.Root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
 .Feature {
   align-items: center;
   display: flex;
@@ -7,6 +13,7 @@
 
 .Features {
   display: grid;
+  flex: 1 1 auto;
   grid-gap: 16px 16px;
   grid-template-columns: repeat(3, 1fr);
   margin: 28px 0;
@@ -17,5 +24,11 @@
 }
 
 .Title {
-  color: $color-gray-400;
+  color: $color-text-secondary;
+}
+
+.Traffic {
+  &Title {
+    color: $color-text-secondary;
+  }
 }
