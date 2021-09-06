@@ -1,0 +1,6 @@
+mutation CLOSE_CHAT($chatId: String!) {
+  closeChat(chatId: $chatId) {
+    id
+    status
+  }
+}

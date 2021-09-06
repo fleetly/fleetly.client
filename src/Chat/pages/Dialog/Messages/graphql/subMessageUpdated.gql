@@ -1,0 +1,20 @@
+subscription SUB_MESSAGE_UPDATED($chatId: String!) {
+  messageUpdated(chatId: $chatId) {
+    id
+    author {
+      id
+      firstname
+      lastname
+      photo
+      username
+    }
+    date
+    isComment
+    isOutcoming
+    status
+    sticker {
+      url
+    }
+    text
+  }
+}

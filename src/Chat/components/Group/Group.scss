@@ -1,0 +1,59 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: flex-end;
+  display: flex;
+  margin: 48px 0 20px;
+  width: 100%;
+
+  &Is {
+    &Outcoming {
+      display: flex;
+      flex-direction: row-reverse;
+
+      .Author {
+        color: $color-primary;
+      }
+
+      .Container {
+        align-items: flex-end;
+      }
+
+      .List {
+        align-items: flex-end;
+      }
+    }
+  }
+}
+
+.Author {
+  margin: 8px 12px;
+  position: absolute;
+  top: -32px;
+}
+
+.Avatar {
+  bottom: 12px;
+  flex: 0 0 32px;
+  height: 32px;
+  position: sticky;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 8px;
+  position: relative;
+  width: calc(100% - 48px);
+}
+
+.List {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+
+  & > *:not(:first-child) {
+    margin: 4px 0 0;
+  }
+}

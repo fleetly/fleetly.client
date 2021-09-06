@@ -16,6 +16,8 @@
       "@global": ["src/types/global.d.ts"],
       "@routes": ["routes.ts"],
 
+      "@chat/*": ["Chat/*"],
+
       "@assets/*": ["Core/assets/*"],
       "@components/*": ["Core/components/*"],
       "@constants": ["Core/constants/index.ts"],

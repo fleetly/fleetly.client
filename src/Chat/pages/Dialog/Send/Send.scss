@@ -1,0 +1,62 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  position: relative;
+
+  &:hover {
+    .Header {
+      height: 60px;
+    }
+  }
+}
+
+.Closed {
+  align-items: center;
+  background: lighten($color-background, 3);
+  border-top: 2px solid $color-background;
+  color: $color-text-secondary;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.Form {
+  align-items: center;
+  border-top: 2px solid $color-background;
+  display: flex;
+  min-height: 80px;
+  padding: 16px 28px;
+  transition: all .2s;
+  will-change: background;
+
+  &Is {
+    &Comment {
+      background: rgba($color-yellow, .15);
+      border-top-color: $color-yellow;
+    }
+  }
+}
+
+.Header {
+  height: 0;
+  overflow: hidden;
+  transition: all .2s;
+}
+
+.Open {
+  margin: 0 0 0 20px;
+}
+
+.Right {
+  align-self: flex-end;
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 12px;
+  }
+}
+
+.Tabs {
+  width: 280px;
+}

@@ -1,0 +1,33 @@
+@import '~@styles/colors';
+
+.Root {
+  background-color: $color-background;
+  border-radius: 16px;
+  display: flex;
+  padding: 7px 12px;
+
+  &Is {
+    &Outcoming {
+      background-color: lighten($color-blue, 32);
+    }
+  }
+}
+
+.Date {
+  align-items: flex-end;
+  color: $color-text-secondary;
+  display: flex;
+  margin: 0 0 0 10px;
+}
+
+.Status {
+  margin: -2px 0 0 4px;
+  position: relative;
+  top: -4px;
+
+  &Is {
+    &Read {
+      color: $color-blue-500;
+    }
+  }
+}

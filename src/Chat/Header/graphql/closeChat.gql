@@ -1,6 +1,0 @@
-mutation closeChat($chatId: String!) {
-  closeChat(chatId: $chatId) {
-    id
-    status
-  }
-}

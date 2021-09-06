@@ -1,0 +1,30 @@
+@import '~@styles/colors';
+
+.Root {
+  height: 256px;
+  position: relative;
+  width: 256px;
+
+  &:hover {
+    .Date {
+      opacity: 1;
+    }
+  }
+}
+
+.Date {
+  background: $color-background;
+  border-radius: 12px;
+  bottom: 0;
+  color: $color-text-secondary;
+  opacity: 0;
+  padding: 4px 8px;
+  position: absolute;
+  right: 0;
+  transition: all .2s;
+}
+
+.Image {
+  max-height: 100%;
+  max-width: 100%;
+}

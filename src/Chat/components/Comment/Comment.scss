@@ -1,0 +1,41 @@
+@import '~@styles/colors';
+
+.Root {
+  background: rgba($color-yellow, .2);
+  border-radius: 8px;
+  margin: 8px -16px;
+  padding: 0 16px;
+}
+
+.Author {
+  align-items: center;
+  display: flex;
+}
+
+.Avatar {
+  height: 32px;
+  width: 32px;
+}
+
+.Date {
+  color: $color-text-secondary;
+}
+
+.Header {
+  align-items: center;
+  border-bottom: 2px solid $color-yellow;
+  display: flex;
+  height: 56px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.Name {
+  margin: 0 8px;
+}
+
+.Text {
+  color: $color-text;
+  padding: 16px 60px;
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, RouteChildrenProps, Switch, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
 // Styles
@@ -12,7 +12,7 @@ import { SignUp } from './pages/Up';
 // Utils
 import { resolve } from '@utils/url';
 
-const Sign = ({ match }: Sign.Props) => {
+const Sign: React.FC<RouteChildrenProps> = ({ match }) => {
   const [isMounted, setMountState] = useState(false);
 
   useEffect(() => setMountState(true), []);
@@ -36,8 +36,8 @@ const Sign = ({ match }: Sign.Props) => {
 
         <div className={styles.Wrapper}>
           <Switch>
-            <Route component={SignIn} path={resolve([match.url, 'in'])} />
-            <Route component={SignUp} path={resolve([match.url, 'up'])} />
+            <Route component={SignIn} path={resolve([match!.url, 'in'])} />
+            <Route component={SignUp} path={resolve([match!.url, 'up'])} />
 
             <Redirect from="/sign" to="/sign/in" />
           </Switch>

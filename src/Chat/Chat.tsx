@@ -1,51 +1,72 @@
+import { useQuery } from '@apollo/client';
 import React from 'react';
+import { Route, Switch, useParams } from 'react-router-dom';
 
 // Components
-import Empty from '@components/Empty';
+import Avatar from '@components/Avatar';
+import { CardHeader } from '@components/Card';
+import Loader from '@components/Loader';
+import Link from '@components/Link';
 import Page, { Wrapper } from '@components/Page';
 
 // Containers
-import Header from './Header';
-import Messages from './Messages';
-import SendForm from './Send';
+import { Threads } from './containers/Threads';
 
-// Context
-import { ChatContext } from './Chat.context';
+// GraphQL
+import GET_COMPANY from './Chat.gql';
 
-// Hooks
-import { useChatView } from './Chat.hooks';
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
+
+// Pages
+import { Dialog } from './pages/Dialog';
 
 // Styles
 import styles from './Chat.scss';
 
 const Chat = () => {
   // Setup
-  const { chat, chatId, handleSearchSubmit, search } = useChatView();
+  const { companyId } = useParams<{ companyId: string }>();
+
+  // Data
+  const { data, loading } = useQuery<{ company: ICompany }>(GET_COMPANY, {
+    variables: { companyId }
+  });
 
   return (
-    <ChatContext.Provider value={{ chatId, search }}>
-      <Page title="Chat">
-        <Wrapper
-          classes={{ root: styles.Root, container: styles.Container }}
-          key={chatId}
-          title="Chat"
-        >
-          {chat ? (
-            <>
-              <Header {...chat} onSearch={handleSearchSubmit} />
-              <Messages />
-              <SendForm {...chat} />
-            </>
-          ) : (
-            <Empty
-              description="Select a chat to start messaging."
-              icon="fal fa-comments-alt"
-              title="Open Dialog"
-            />
-          )}
-        </Wrapper>
-      </Page>
-    </ChatContext.Provider>
+    <Page className={styles.Root} title="Chat">
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={styles.Sidebar}>
+            <div className={styles.Header}>
+              <Link to={`/${companyId}`}>
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      alt={data?.company?.title}
+                      classes={{ root: styles.Avatar }}
+                      toColor={data?.company?.id}
+                    />
+                  }
+                  subTitle="Software porject"
+                  title={data?.company?.title || 'Loading...'}
+                />
+              </Link>
+            </div>
+
+            <Threads />
+          </div>
+
+          <Wrapper classes={{ root: styles.Container }} title="Chat">
+            <Switch>
+              <Route component={Dialog} path="/:companyId/chat/:chatId" />
+            </Switch>
+          </Wrapper>
+        </>
+      )}
+    </Page>
   );
 };
 

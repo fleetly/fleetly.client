@@ -1,0 +1,56 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  align-items: center;
+  color: $color-text-secondary;
+  display: flex;
+  margin: 0 -12px;
+  padding: 12px;
+  text-decoration: none;
+  transition: all .2s;
+  width: calc(100% + 24px);
+
+  &:not(:first-child) {
+    border-top: 2px solid $color-background-2;
+  }
+
+  &Is {
+    &Selected {
+      background-color: rgba($color-blue, .12);
+      border-color: transparent !important;
+      border-radius: 8px;
+
+      & + * {
+        border-color: transparent !important;
+      }
+    }
+  }
+}
+
+.Author {
+  color: $color-blue;
+  margin: 0 4px 0 0;
+}
+
+.Avatar {
+  flex: 0 0 40px;
+}
+
+.Info {
+  margin: 0 0 0 20px;
+  width: calc(100% - 60px);
+}
+
+.Name {
+  color: $color-text;
+}
+
+.Row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Text {
+  max-width: 100%;
+}

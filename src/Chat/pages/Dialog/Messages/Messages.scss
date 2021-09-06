@@ -1,0 +1,25 @@
+.Root {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column-reverse;
+  overflow: auto;
+  padding: 0 28px;
+  position: relative;
+}
+
+.Loader {
+  height: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.Scroll {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  overflow: visible !important;
+
+  & > * {
+    margin: 0 0 20px;
+  }
+}

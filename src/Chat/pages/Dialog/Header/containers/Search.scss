@@ -1,0 +1,36 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.Actions {
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 12px;
+  }
+}
+
+.Container {
+  align-items: center;
+  display: flex;
+}
+
+.Icon {
+  background: transparent !important;
+}
+
+.Input {
+  background: transparent;
+  border: 0;
+  color: $color-text;
+  flex: 1 1 auto;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  height: 80px;
+  margin: 0 20px;
+}

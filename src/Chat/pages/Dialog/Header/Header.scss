@@ -1,0 +1,60 @@
+@import '~@styles/colors.scss';
+
+.Root {
+  border-bottom: 2px solid $color-background;
+  flex: 0 0 80px;
+  height: 80px;
+  overflow: hidden;
+  padding: 0 28px;
+  position: relative;
+
+  &Is {
+    &Opened {
+      .Form {
+        transform: translateY(-100%);
+      }
+
+      .Header {
+        transform: translateY(-100%);
+      }
+    }
+  }
+}
+
+.Actions {
+  align-items: center;
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 12px;
+  }
+}
+
+.Form {
+  transition: all .2s;
+}
+
+.Header {
+  align-items: center;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  transition: all .2s;
+}
+
+.Name {
+  margin: 0 0 0 20px;
+}
+
+.Search {
+  border: 0;
+}
+
+.Subscriber {
+  align-items: center;
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
