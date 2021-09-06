@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import Button from '@components/Button';
 import {
   Actions,
+  Error,
   Field,
   Fieldset,
   gqlErrorHandler,
@@ -62,6 +63,8 @@ export const SignIn: React.FC = () => {
           <Text className={styles.Description} component="div">
             New user? <Link to="/sign/up">Create an account</Link>
           </Text>
+
+          <Error />
 
           <Fieldset className={styles.Fieldset}>
             <Field disabled={submitting} label="Email" name="email" />
