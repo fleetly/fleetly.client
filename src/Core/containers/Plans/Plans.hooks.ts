@@ -18,6 +18,9 @@ import BUY_SUBSCRIPTION from './Common/graphql/buySubscription.gql';
 import CANCEL_SUBSCRIPTION from './Common/graphql/cancelSubscription.gql';
 import UPGRADE_SUBSCRIPTION from './Common/graphql/upgradeSubscription.gql';
 
+// Hooks
+import { usePlansStatus } from './Status/Status.hooks';
+
 // Interfaces
 import { IPlan } from '@interfaces/plan.interface';
 import { ISubscription } from '@interfaces/subscription.interface';
@@ -28,11 +31,12 @@ import ROUTES from '@routes';
 // Store
 import { useModals, useNotifications, useSession } from '@store';
 
-const usePlansContainer = (subscription?: ISubscription) => {
+export const usePlans = (subscription?: ISubscription) => {
   // Setup
   const history = useHistory();
   const { closeModal } = useModals(PLANS_MODAL);
-  const { handleApolloError } = useNotifications();
+  const { createNotification, handleApolloError } = useNotifications();
+  const { canceledModal, succeededModal } = usePlansStatus();
   const { isAuthorized } = useSession();
   const match = useRouteMatch<{ companyId: string }>('/:companyId');
 
@@ -43,10 +47,27 @@ const usePlansContainer = (subscription?: ISubscription) => {
 
   // Mutations
   const [buySubscription] = useMutation<{ buySubscription: string }>(
-    BUY_SUBSCRIPTION
+    BUY_SUBSCRIPTION,
+    {
+      onError: handleApolloError
+    }
   );
-  const [cancelSubscription] = useMutation(CANCEL_SUBSCRIPTION);
-  const [upgradeSubscription] = useMutation(UPGRADE_SUBSCRIPTION);
+
+  const [cancelSubscription] = useMutation(CANCEL_SUBSCRIPTION, {
+    onCompleted: () => canceledModal.openModal(),
+    onError: handleApolloError
+  });
+
+  const [upgradeSubscription] = useMutation(UPGRADE_SUBSCRIPTION, {
+    onCompleted: () =>
+      createNotification({
+        description: 'Your subscription has been successfully upgraded',
+        timeout: 5000,
+        title: 'Successful upgrade!',
+        variant: 'success'
+      }),
+    onError: handleApolloError
+  });
 
   // Handlers
   const handleClick = useCallback(
@@ -71,7 +92,7 @@ const usePlansContainer = (subscription?: ISubscription) => {
                 override: data?.buySubscription,
                 successCallback: () => {
                   resolve(true);
-                  window.location.reload();
+                  succeededModal.openModal();
                 }
               });
             });
@@ -92,6 +113,7 @@ const usePlansContainer = (subscription?: ISubscription) => {
       history,
       isAuthorized,
       subscription,
+      succeededModal,
       upgradeSubscription
     ]
   );
@@ -116,5 +138,3 @@ const usePlansContainer = (subscription?: ISubscription) => {
     plans
   };
 };
-
-export { usePlansContainer };

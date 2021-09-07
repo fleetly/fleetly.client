@@ -47,6 +47,7 @@ const useModals = <T = {}>(currentModalId?: string) => {
     data: modal?.data,
     closeModal: handleCloseModal,
     closeModals: handleCloseModals,
+    id: currentModalId,
     isOpened: !!modal,
     modal,
     openModal: handleOpenModal

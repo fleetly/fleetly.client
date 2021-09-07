@@ -10,13 +10,15 @@ import Loader from '@components/Loader';
 import Modal from '@components/Modal';
 import { Text } from '@components/Typography';
 
-import Plan from './Item';
-
 // Constants
 import { PLANS_MODAL } from '@constants';
 
+// Fragments
+import Plan from './Item';
+import { PlansStatus } from './Status';
+
 // Hooks
-import { usePlansContainer } from './Plans.hooks';
+import { usePlans } from './Plans.hooks';
 
 // Interfaces
 import { ISubscription } from '@interfaces/subscription.interface';
@@ -29,51 +31,55 @@ export interface PlansProps {
 }
 
 const Plans: React.FC<PlansProps> = ({ subscription }) => {
-  const { handleClick, loading, plans } = usePlansContainer(subscription);
+  const { handleClick, loading, plans } = usePlans(subscription);
 
   return (
-    <Modal
-      classes={{
-        backdrop: styles.Backdrop,
-        container: styles.Container
-      }}
-      id={PLANS_MODAL}
-    >
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className={styles.Root}>
-          {plans && plans.length > 0 && (
-            <div className={styles.Plans}>
-              {plans.map((plan) => (
-                <Plan
-                  {...plan}
-                  key={plan.type}
-                  onClick={handleClick}
-                  subscription={subscription}
-                />
-              ))}
-            </div>
-          )}
+    <>
+      <Modal
+        classes={{
+          backdrop: styles.Backdrop,
+          container: styles.Container
+        }}
+        id={PLANS_MODAL}
+      >
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className={styles.Root}>
+            {plans && plans.length > 0 && (
+              <div className={styles.Plans}>
+                {plans.map((plan) => (
+                  <Plan
+                    {...plan}
+                    key={plan.type}
+                    onClick={handleClick}
+                    subscription={subscription}
+                  />
+                ))}
+              </div>
+            )}
 
-          {subscription?.plan.type !== PlanType.LITE && (
-            <Badge
-              className={styles.Badge}
-              color="orange"
-              icon="far fa-exclamation-triangle"
-              title="Discard subscription"
-            >
-              You already have a subscription that will end on{' '}
-              <Text weight="bold">
-                {moment(subscription?.endDate).format('DD MMMM')}
-              </Text>
-              . When buying a new subscription, the current one will be
-              completed.
-            </Badge>
-          )}
-        </div>
-      )}
-    </Modal>
+            {subscription?.plan.type !== PlanType.LITE && (
+              <Badge
+                className={styles.Badge}
+                color="orange"
+                icon="far fa-exclamation-triangle"
+                title="Discard subscription"
+              >
+                You already have a subscription that will end on{' '}
+                <Text weight="bold">
+                  {moment(subscription?.endDate).format('DD MMMM')}
+                </Text>
+                . When buying a new subscription, the current one will be
+                completed.
+              </Badge>
+            )}
+          </div>
+        )}
+      </Modal>
+
+      <PlansStatus />
+    </>
   );
 };
 
