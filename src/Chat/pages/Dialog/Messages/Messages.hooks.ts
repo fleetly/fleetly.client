@@ -16,11 +16,10 @@ import { IMessage } from '@chat/interfaces/message.interface';
 
 const MESSAGES_LIMIT = 100;
 
-export const useDialogMessages = () => {
+export const useDialogMessages = (search?: string) => {
   // Setup
   const { chatId } = useParams<{ chatId: string }>();
   const id = `${chatId}-message-list`;
-  const search = null;
 
   // Data
   const { data, fetchMore, loading, subscribeToMore, variables } = useQuery<{
@@ -93,7 +92,7 @@ export const useDialogMessages = () => {
     } else {
       return [];
     }
-  }, [data, loading, variables]);
+  }, [data, loading, search, variables]);
 
   return {
     count: messages.length || 0,

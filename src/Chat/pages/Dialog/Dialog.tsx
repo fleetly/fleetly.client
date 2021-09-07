@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // Components
@@ -23,6 +23,9 @@ export const Dialog: React.FC = () => {
   // Setup
   const { chatId } = useParams<{ chatId: string }>();
 
+  // State
+  const [search, setSearch] = useState<string>();
+
   // Data
   const { data, loading } = useQuery<{ chat: IChat }>(GET_CHAT, {
     variables: { chatId }
@@ -34,8 +37,8 @@ export const Dialog: React.FC = () => {
         <Loader />
       ) : (
         <>
-          <DialogHeader {...data.chat} />
-          <DialogMessages />
+          <DialogHeader {...data.chat} onSearch={setSearch} />
+          <DialogMessages search={search} />
           <DialogSend {...data.chat} />
         </>
       )}

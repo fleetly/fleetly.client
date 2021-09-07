@@ -11,7 +11,11 @@ import { useDialogMessages } from './Messages.hooks';
 // Styles
 import styles from './Messages.scss';
 
-export const DialogMessages: React.FC = () => {
+export interface DialogMessagesProps {
+  search?: string;
+}
+
+export const DialogMessages: React.FC<DialogMessagesProps> = ({ search }) => {
   const {
     count,
     handleFetchMore,
@@ -19,7 +23,7 @@ export const DialogMessages: React.FC = () => {
     id,
     loading,
     messages
-  } = useDialogMessages();
+  } = useDialogMessages(search);
 
   return (
     <div className={styles.Root} id={id}>
