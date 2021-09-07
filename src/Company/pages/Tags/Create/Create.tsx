@@ -31,9 +31,6 @@ import UPDATE_TAG from './graphql/updateTag.gql';
 
 import GET_TAG_LIST from '../Table/graphql/getTagList.gql';
 
-// Interfaces
-import { ITag } from '@interfaces/tag.interface';
-
 // Store
 import { useModals } from '@store';
 
@@ -81,7 +78,7 @@ export const TagsCreate: React.FC = () => {
 
   return (
     <Modal id={CREATE_TAG_MODAL} title="Create tag">
-      {(initialValues: ITag) => (
+      {(initialValues: any) => (
         <Form
           initialValues={initialValues}
           onSubmit={handleFormSubmit}
@@ -118,7 +115,7 @@ export const TagsCreate: React.FC = () => {
                   loaded={submitting}
                   type="submit"
                 >
-                  {initialValues ? 'Update' : 'Create'}
+                  {initialValues.tagId ? 'Update' : 'Create'}
                 </Button>
               </Actions>
             </form>

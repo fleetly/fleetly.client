@@ -3,9 +3,16 @@ import moment from 'moment';
 import React, { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
+// Assets
+import emptyImage1x from './assets/empty@1x.png';
+import emptyImage2x from './assets/empty@1x.png';
+
 // Components
 import Avatar from '@components/Avatar';
+import Empty from '@components/Empty';
+import Image from '@components/Image';
 import Link from '@components/Link';
+import Loader from '@components/Loader';
 import Page, { Wrapper } from '@components/Page';
 import Status from '@components/Status';
 import Table from '@components/Table';
@@ -32,7 +39,7 @@ const Subscribers: React.FC = () => {
   const { companyId } = useParams<{ companyId: string }>();
 
   // Data
-  const { data } = useQuery<{ subscribers: ISubscriber[] }>(
+  const { data, loading } = useQuery<{ subscribers: ISubscriber[] }>(
     GET_SUBSCRIBER_LIST,
     { variables: { companyId } }
   );
@@ -101,14 +108,31 @@ const Subscribers: React.FC = () => {
     []
   );
 
+  const hasSubscribers = data?.subscribers && data?.subscribers.length > 0;
+
   return (
     <Page title="Subscribers">
       <Wrapper title="Subscribers">
-        <Table
-          columns={columns}
-          data={data?.subscribers || []}
-          onTrClick={handleTrClick}
-        />
+        {!hasSubscribers && loading ? (
+          <Loader />
+        ) : hasSubscribers ? (
+          <Table
+            columns={columns}
+            data={data?.subscribers || []}
+            onTrClick={handleTrClick}
+          />
+        ) : (
+          <Empty
+            description="Do not scare your catch and soon it will be displayed here"
+            image={
+              <Image
+                src={emptyImage1x}
+                srcSet={{ '1x': emptyImage1x, '2x': emptyImage2x }}
+              />
+            }
+            title="Shhh..."
+          />
+        )}
       </Wrapper>
     </Page>
   );

@@ -43,6 +43,7 @@ export const FieldsTable: React.FC<FieldsTableProps> = ({
   const handleDeleteClick = useCallback(
     (event: React.SyntheticEvent<HTMLButtonElement>) => {
       event.stopPropagation();
+
       deleteField({
         variables: { fieldId: event.currentTarget.dataset.fieldId }
       });

@@ -2,8 +2,15 @@ import { useQuery } from '@apollo/client';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+// Assets
+import emptyImage1x from './Common/assets/empty@1x.png';
+import emptyImage2x from './Common/assets/empty@1x.png';
+
 // Components
 import Button from '@components/Button';
+import Empty from '@components/Empty';
+import Image from '@components/Image';
+import Loader from '@components/Loader';
 import Page, { Wrapper } from '@components/Page';
 
 // Fragments
@@ -28,44 +35,62 @@ const Channels: React.FC = () => {
   const { companyId } = useParams<{ companyId: string }>();
 
   // Data
-  const { data } = useQuery<{ channels: IChannel[] }>(GET_CHANNEL_LIST, {
-    variables: { companyId }
-  });
+  const { data, loading } = useQuery<{ channels: IChannel[] }>(
+    GET_CHANNEL_LIST,
+    {
+      variables: { companyId }
+    }
+  );
+
+  const hasChannels = data?.channels && data?.channels.length > 0;
 
   return (
     <Page title="Channels">
       <Wrapper
         actions={
-          <Button color="blue" onClick={openModal}>
-            Add Channel
-          </Button>
+          hasChannels && (
+            <Button
+              color="blue"
+              icon="far fa-plus"
+              onClick={openModal}
+              variant="outlined"
+            >
+              Add Channel
+            </Button>
+          )
         }
         title="Channels"
       >
-        <ChannelAdd />
+        {!hasChannels && loading ? (
+          <Loader />
+        ) : (
+          <>
+            <ChannelAdd />
 
-        {data?.channels && <ChannelsTable data={data?.channels} />}
+            {hasChannels ? (
+              <ChannelsTable data={data!.channels} />
+            ) : (
+              <Empty
+                actions={
+                  <Button color="blue" onClick={openModal}>
+                    Add Channel
+                  </Button>
+                }
+                description="Let's start our show by adding a channel."
+                image={
+                  <Image
+                    src={emptyImage1x}
+                    srcSet={{ '1x': emptyImage1x, '2x': emptyImage2x }}
+                  />
+                }
+                title="Show must go on!"
+              />
+            )}
+          </>
+        )}
       </Wrapper>
     </Page>
   );
 };
 
 export default Channels;
-
-/* <Modal
-          classes={{ container: styles.Container }}
-          id={ADD_CHANNEL_MODAL}
-          title="Add Channel"
-        >
-          <div className={styles.Description}>
-            <Text>
-              Fleetly will use an access token to connect and use your channel
-            </Text>
-
-            <Text className={styles.Careful}>
-              Do not give the token to third parties!
-            </Text>
-          </div>
-
-          <AddForm onSubmit={handleSubmit} />
-        </Modal> */

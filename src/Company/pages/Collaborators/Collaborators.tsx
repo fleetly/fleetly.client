@@ -2,8 +2,18 @@ import { useQuery } from '@apollo/client';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+// Fleetly
+import { CollaboratorRole } from '@fleetly/core/interfaces';
+
+// Assets
+import emptyImage1x from './Common/assets/empty@1x.png';
+import emptyImage2x from './Common/assets/empty@1x.png';
+
 // Components
 import Button from '@components/Button';
+import Empty from '@components/Empty';
+import Image from '@components/Image';
+import Loader from '@components/Loader';
 import Page, { Wrapper } from '@components/Page';
 
 // Constants
@@ -28,25 +38,63 @@ export const Collaborators: React.FC = () => {
   const { companyId } = useParams<{ companyId: string }>();
 
   // Data
-  const { data } = useQuery<{ collaborators: ICollaborator[] }>(
+  const { data, loading } = useQuery<{ collaborators: ICollaborator[] }>(
     GET_COLLABORATOR_LIST,
     {
       variables: { companyId }
     }
   );
 
+  const collaborators = (data?.collaborators || []).filter(
+    ({ role }) => role !== CollaboratorRole.OWNER
+  );
+
+  const hasCollaborators = collaborators.length > 0;
+
   return (
     <Page title="Collaborators">
       <Wrapper
         actions={
-          <Button color="blue" onClick={openModal}>
-            Add Collaborator
-          </Button>
+          hasCollaborators && (
+            <Button
+              color="blue"
+              icon="far fa-plus"
+              onClick={openModal}
+              variant="outlined"
+            >
+              Add Collaborator
+            </Button>
+          )
         }
         title="Collaborators"
       >
-        <CollaboratorsTable data={data?.collaborators || []} />
-        <CollaboratorsAdd />
+        {!hasCollaborators && loading ? (
+          <Loader />
+        ) : (
+          <>
+            <CollaboratorsAdd />
+
+            {hasCollaborators ? (
+              <CollaboratorsTable data={collaborators} />
+            ) : (
+              <Empty
+                actions={
+                  <Button color="blue" onClick={openModal}>
+                    Add Collaborator
+                  </Button>
+                }
+                description="Add your like-minded people and conquer the world together."
+                image={
+                  <Image
+                    src={emptyImage1x}
+                    srcSet={{ '1x': emptyImage1x, '2x': emptyImage2x }}
+                  />
+                }
+                title="More fun Together"
+              />
+            )}
+          </>
+        )}
       </Wrapper>
     </Page>
   );

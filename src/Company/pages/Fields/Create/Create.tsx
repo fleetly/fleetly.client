@@ -32,7 +32,7 @@ import UPDATE_FIELD from './graphql/updateField.gql';
 import GET_FIELD_LIST from '../Fields.gql';
 
 // Interfaces
-import { IField, IFieldTypeOption } from '@interfaces/field.interface';
+import { IFieldTypeOption } from '@interfaces/field.interface';
 
 // Store
 import { useModals } from '@store';
@@ -85,7 +85,7 @@ export const FieldsCreate: React.FC<FieldsCreateProps> = ({ fieldTypes }) => {
 
   return (
     <Modal id={CREATE_FIELD_MODAL} title="Create field">
-      {(initialValues: IField) => (
+      {(initialValues: any) => (
         <Form
           initialValues={initialValues}
           onSubmit={handleFormSubmit}
@@ -99,7 +99,7 @@ export const FieldsCreate: React.FC<FieldsCreateProps> = ({ fieldTypes }) => {
         >
           {({ handleSubmit, submitting }) => (
             <form className={styles.Root} onSubmit={handleSubmit}>
-              {!initialValues && (
+              {!initialValues.fieldId && (
                 <div className={styles.Description}>
                   <Text component="div">
                     Store important information about your subscribers in
@@ -127,7 +127,7 @@ export const FieldsCreate: React.FC<FieldsCreateProps> = ({ fieldTypes }) => {
                   placeholder="Description"
                 />
 
-                {!initialValues && (
+                {!initialValues.fieldId && (
                   <Select
                     hint={<Link>About field types</Link>}
                     label="Type"
@@ -144,7 +144,7 @@ export const FieldsCreate: React.FC<FieldsCreateProps> = ({ fieldTypes }) => {
                   loaded={submitting}
                   type="submit"
                 >
-                  {initialValues ? 'Update' : 'Create'}
+                  {initialValues.fieldId ? 'Update' : 'Create'}
                 </Button>
               </Actions>
             </form>

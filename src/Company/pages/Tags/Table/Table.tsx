@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import React, { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -20,15 +20,14 @@ import { ITag } from '@interfaces/tag.interface';
 // Store
 import { useModals } from '@store';
 
-export const TagsTable: React.FC = () => {
+export interface TagsTableProps {
+  data: ITag[];
+}
+
+export const TagsTable: React.FC<TagsTableProps> = ({ data }) => {
   // Setup
   const { openModal } = useModals(CREATE_TAG_MODAL);
   const { companyId } = useParams<{ companyId: string }>();
-
-  // Data
-  const { data } = useQuery<{ tags: ITag[] }>(GET_TAG_LIST, {
-    variables: { companyId }
-  });
 
   // Mutations
   const [deleteTag] = useMutation(DELETE_TAG, {
@@ -90,11 +89,5 @@ export const TagsTable: React.FC = () => {
     [handleDeleteClick]
   );
 
-  return (
-    <Table
-      columns={columns}
-      data={data?.tags || []}
-      onTrClick={handleTrClick}
-    />
-  );
+  return <Table columns={columns} data={data} onTrClick={handleTrClick} />;
 };
