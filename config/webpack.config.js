@@ -290,6 +290,8 @@ module.exports = function (webpackEnv) {
       alias: {
         '@chat': path.resolve(__dirname, '../src/Chat'),
         '@core': path.resolve(__dirname, '../src/Core'),
+        '@sign': path.resolve(__dirname, '../src/Sign'),
+
         '@assets': path.resolve(__dirname, '../src/Core/assets'),
         '@components': path.resolve(__dirname, '../src/Core/components'),
         '@constants': path.resolve(__dirname, '../src/Core/constants'),

@@ -92,7 +92,8 @@ $color-text-secondary: rgba($color-dark, .6);
 
 $coloring-variants: (
   Blue: $color-blue,
-  Gray: lighten($color-dark, 50),
+  Dark: $color-dark,
+  Gray: darken($color-background, 20),
   Green: $color-green,
   Orange: $color-orange,
   Pink: $color-pink,

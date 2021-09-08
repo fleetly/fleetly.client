@@ -1,0 +1,37 @@
+@import '~@styles/colors';
+
+.Root {
+  background: #fff;
+  column-gap: 12px;
+  display: grid !important;
+  grid-template-columns: repeat(6, 40px);
+
+  & > input {
+    -moz-appearance: textfield;
+    background: $color-background;
+    border: 2px solid darken($color-background, 10);
+    border-radius: 8px;
+    color: $color-dark;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    height: 40px;
+    padding: 0;
+    text-align: center;
+
+    &:focus {
+      border-color: $color-blue;
+    }
+
+    &:hover {
+      background: lighten($color-blue, 32);
+      border-color: lighten($color-blue, 16);
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

@@ -23,7 +23,7 @@ import SIGN_IN from './In.gql';
 import { useSession } from '@store';
 
 // Styles
-import styles from './In.scss';
+import styles from '@sign/Sign.scss';
 
 export const SignIn: React.FC = () => {
   // Setup
@@ -66,7 +66,7 @@ export const SignIn: React.FC = () => {
 
           <Error />
 
-          <Fieldset className={styles.Fieldset}>
+          <Fieldset>
             <Field disabled={submitting} label="Email" name="email" />
 
             <Field

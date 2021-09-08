@@ -1,5 +1,4 @@
 import { ApolloError, useMutation } from '@apollo/client';
-import classNames from 'classnames';
 import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import * as yup from 'yup';
@@ -45,6 +44,10 @@ export const SignUp: React.FC = () => {
       validate={yupValidator(
         yup.object().shape({
           email: yup.string().required(),
+          confirmPassword: yup
+            .string()
+            .required()
+            .oneOf([yup.ref('password'), null], 'Passwords must match'),
           password: yup.string().required()
         })
       )}
@@ -60,15 +63,20 @@ export const SignUp: React.FC = () => {
 
           <Error />
 
-          <Fieldset
-            className={classNames(styles.Fieldset, styles.FieldsetMultiple)}
-          >
+          <Fieldset>
             <Field disabled={submitting} label="Email" name="email" />
 
             <Field
               disabled={submitting}
               label="Password"
               name="password"
+              type="password"
+            />
+
+            <Field
+              disabled={submitting}
+              label="Confirm password"
+              name="confirmPassword"
               type="password"
             />
           </Fieldset>

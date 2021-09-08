@@ -1,79 +1,35 @@
-@import '~@styles/breakpoints';
 @import '~@styles/colors';
-@import './Sign.transition.scss';
-
-@mixin coverPosition() {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
 
 .Root {
-  align-items: center;
-  background: $color-gray-0;
+  background: $color-blue;
   display: flex;
-  justify-content: flex-start;
-  max-height: 100vh;
-  overflow: hidden;
+  width: 100%;
+}
+
+.Description {
+  color: $color-gray-500;
+  margin: 20px 0 40px;
+}
+
+.Fieldset {
+  grid-row-gap: 0;
+}
+
+.Fleetly {
+  color: $color-primary;
+  text-shadow: 0 8px 4px rgba($color-primary, .1);
+}
+
+.Sidebar {
+  background: $color-white;
+  border-radius: 0 40px 40px 0;
   padding: 100px;
-  position: relative;
-  width: 100%;
 
-  @include breakpoints(mobile) {
-    align-items: flex-start;
-    padding: 40px;
+  & > form {
+    width: 300px;
   }
 }
 
-.Cover {
-  z-index: 1;
-
-  @include coverPosition();
-}
-
-.Land {
-  &1 {
-    background-image: url('./assets/land-1.png');
-    z-index: 2;
-
-    @include coverPosition();
-
-    @include breakpoints(mobile) {
-      top: 60px;
-    }
-  }
-
-  &2 {
-    background-image: url('./assets/land-2.png');
-    z-index: 1;
-
-    @include coverPosition();
-
-    @include breakpoints(mobile) {
-      top: 60px;
-    }
-  }
-}
-
-.Tree {
-  background-image: url('./assets/tree.png');
-  z-index: 3;
-
-  @include coverPosition();
-
-  @include breakpoints(mobile) {
-    display: none;
-  }
-}
-
-.Wrapper {
-  max-width: 320px;
-  position: relative;
-  width: 100%;
-  z-index: 2;
+.Title {
+  color: $color-gray-800;
 }

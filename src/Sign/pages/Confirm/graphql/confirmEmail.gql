@@ -1,0 +1,3 @@
+mutation CONFIRM_EMAIL($code: String!) {
+  confirmEmail(code: $code)
+}

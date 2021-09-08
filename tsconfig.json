@@ -17,6 +17,7 @@
       "@routes": ["routes.ts"],
 
       "@chat/*": ["Chat/*"],
+      "@sign/*": ["Sign/*"],
 
       "@assets/*": ["Core/assets/*"],
       "@components/*": ["Core/components/*"],
