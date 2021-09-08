@@ -1,8 +1,15 @@
+import { useQuery } from '@apollo/client';
 import React, { lazy, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Containers
 import Notifications from '@containers/Notifications';
+
+// GraphQL
+import GET_USER from '@graphql/getUserById.gql';
+
+// Interfaces
+import { IUser } from '@interfaces/user.interface';
 
 // Routes
 import ROUTES from '@routes';
@@ -19,12 +26,18 @@ const Profile = lazy(() => import('./Profile'));
 const Sign = lazy(() => import('./Sign'));
 
 const App: React.FC<{}> = () => {
-  const { isAuthorized } = useSession();
+  // Setup
+  const { isAuthorized, isConfirmed, setUser } = useSession();
+
+  // Data
+  useQuery<{ user: IUser }>(GET_USER, {
+    onCompleted: (res) => setUser(res.user)
+  });
 
   return (
     <div className={styles.Root}>
       <Suspense fallback="">
-        {isAuthorized ? (
+        {isAuthorized && isConfirmed ? (
           <Switch>
             <Redirect from={ROUTES.SIGN.ROOT} to="/" />
 

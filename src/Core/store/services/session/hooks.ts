@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 
 // Actions
-import { login as loginAction, logout as logoutAction } from './actions';
+import {
+  login as loginAction,
+  logout as logoutAction,
+  setUser as setUserAction
+} from './actions';
+
+// Interfaces
+import { IUser } from '@interfaces/user.interface';
 
 const useSession = () => {
   // Setup
@@ -24,12 +31,18 @@ const useSession = () => {
   // Handlers
   const login = useCallback(() => dispatch(loginAction()), [dispatch]);
   const logout = useCallback(() => dispatch(logoutAction()), [dispatch]);
+  const setUser = useCallback((user: IUser) => dispatch(setUserAction(user)), [
+    dispatch
+  ]);
 
   return {
     isAuthorized: session.isAuthorized,
+    isConfirmed: session.user?.isConfirmed,
     login,
     logout,
-    session
+    session,
+    setUser,
+    user: session.user
   };
 };
 

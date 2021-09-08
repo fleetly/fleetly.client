@@ -1,0 +1,3 @@
+mutation SEND_EMAIL_CODE {
+  sendEmailCode
+}

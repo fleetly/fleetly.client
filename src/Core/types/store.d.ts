@@ -1,7 +1,11 @@
+// Interfaces
+
 export {};
 
 declare global {
   namespace Store {
+    import { IUser } from '@interfaces/user.interface';
+
     interface ModalsPayload {
       data?: Record<string, any>;
       title?: string;
@@ -26,6 +30,7 @@ declare global {
 
     interface SessionState {
       isAuthorized: boolean;
+      user?: IUser;
     }
 
     interface State {

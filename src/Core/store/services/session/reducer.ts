@@ -1,11 +1,16 @@
-import { LOGIN, LOGOUT } from './types';
+import { LOGIN, LOGOUT, SET_USER } from './types';
+
+// Interfaces
+import { IUser } from '@interfaces/user.interface';
 
 interface Action {
+  payload?: IUser;
   type: typeof LOGIN | typeof LOGOUT;
 }
 
 const initialState: Store.SessionState = {
-  isAuthorized: !!window.localStorage.getItem('isAuthorized') || false
+  isAuthorized: !!window.localStorage.getItem('isAuthorized') || false,
+  user: null
 };
 
 export default (state = initialState, action: Action): Store.SessionState => {
@@ -14,6 +19,8 @@ export default (state = initialState, action: Action): Store.SessionState => {
       return { ...state, isAuthorized: true };
     case LOGOUT:
       return { ...state, isAuthorized: false };
+    case SET_USER:
+      return { ...state, user: action.payload! };
     default:
       return state;
   }
