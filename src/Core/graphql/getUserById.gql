@@ -3,6 +3,7 @@ query getUserById($userId: String) {
     id
     email
     firstname
+    isConfirmed
     lastname
     username
   }
