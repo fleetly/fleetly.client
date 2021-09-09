@@ -6,7 +6,7 @@ import * as yup from 'yup';
 // Components
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
-import Card, { CardHr } from '@components/Card';
+import Card from '@components/Card';
 import {
   Actions,
   Error,
@@ -15,7 +15,6 @@ import {
   gqlErrorHandler,
   yupValidator
 } from '@components/Form';
-import { H4 } from '@components/Typography';
 
 // GraphQL
 import GET_USER from './graphql/getUser.gql';
@@ -114,18 +113,6 @@ export const ProfileUserUpdate: React.FC = () => {
               <Field label="Last Name" name="lastname" />
               <Field label="Username" name="username" />
             </Fieldset>
-
-            <CardHr className={styles.Hr} />
-
-            <H4 className={styles.Title}>Job</H4>
-
-            <Fieldset>
-              <Field label="Job Title" name="job" />
-              <Field label="Location" name="location" />
-              <Field label="Timezone" name="timezone" />
-            </Fieldset>
-
-            <CardHr className={styles.Hr} />
 
             <Actions>
               <Button color="blue" fullWidth loaded={submitting} type="submit">

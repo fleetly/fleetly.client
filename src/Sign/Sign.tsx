@@ -13,16 +13,33 @@ import { resolve } from '@utils/url';
 // Views
 import { SignConfirm } from './pages/Confirm';
 import { SignIn } from './pages/In';
+import { SignProfile } from './pages/Profile';
 import { SignUp } from './pages/Up';
 
 const Sign: React.FC<RouteChildrenProps> = ({ match }) => {
   // Setup
-  const { isAuthorized } = useSession();
+  const { isAuthorized, isConfirmed, user } = useSession();
 
   return (
     <div className={styles.Root}>
       <div className={styles.Sidebar}>
-        {isAuthorized ? (
+        {isAuthorized && !isConfirmed ? (
+          <Switch>
+            <Route
+              component={SignConfirm}
+              path={resolve([match!.url, 'confirm'])}
+            />
+            <Redirect from="/sign" to="/sign/confirm" />
+          </Switch>
+        ) : isAuthorized && !user.username ? (
+          <Switch>
+            <Route
+              component={SignProfile}
+              path={resolve([match!.url, 'profile'])}
+            />
+            <Redirect from="/sign" to="/sign/profile" />
+          </Switch>
+        ) : isAuthorized ? (
           <Switch>
             <Route
               component={SignConfirm}

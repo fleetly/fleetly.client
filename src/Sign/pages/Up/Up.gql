@@ -1,3 +1,11 @@
-mutation SIGN_UP($email: String!, $password: String!, $username: String!) {
-  register(email: $email, password: $password, username: $username)
+mutation SIGN_UP($email: String!, $password: String!) {
+  register(email: $email, password: $password) {
+    id
+    email
+    firstname
+    fullname
+    isConfirmed
+    lastname
+    username
+  }
 }

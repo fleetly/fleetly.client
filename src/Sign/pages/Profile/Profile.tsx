@@ -13,11 +13,13 @@ import {
   gqlErrorHandler,
   yupValidator
 } from '@components/Form';
-import Link from '@components/Link';
 import { H1, H2, Text } from '@components/Typography';
 
 // GraphQL
-import SIGN_IN from './In.gql';
+import UPDATE_PROFILE from './Profile.gql';
+
+// Interfaces
+import { IUser } from '@interfaces/user.interface';
 
 // Store
 import { useSession } from '@store';
@@ -25,24 +27,30 @@ import { useSession } from '@store';
 // Styles
 import styles from '@sign/Sign.scss';
 
-export const SignIn: React.FC = () => {
+export interface SignProfileFormValues {
+  firstname: string;
+  lastname: string;
+  username: string;
+}
+
+export const SignProfile: React.FC = () => {
   // Setup
-  const { login } = useSession();
+  const { setUser } = useSession();
 
   // Mutations
-  const [signIn] = useMutation(SIGN_IN);
+  const [updateProfile] = useMutation<{ updateProfile: IUser }>(UPDATE_PROFILE);
 
   // Handlers
   const handleFormSubmit = useCallback(
-    async (variables) => {
+    async (variables: SignProfileFormValues) => {
       try {
-        await signIn({ variables });
-        login();
+        const { data } = await updateProfile({ variables });
+        setUser(data?.updateProfile!);
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [login, signIn]
+    [setUser, updateProfile]
   );
 
   return (
@@ -50,37 +58,32 @@ export const SignIn: React.FC = () => {
       onSubmit={handleFormSubmit}
       validate={yupValidator(
         yup.object().shape({
-          email: yup.string().required(),
-          password: yup.string().required()
+          firstname: yup.string().required(),
+          lastname: yup.string().required(),
+          username: yup.string().required()
         })
       )}
     >
       {({ handleSubmit, submitting }) => (
         <form onSubmit={handleSubmit}>
-          <H2 className={styles.Title}>Sign In</H2>
-          <H1 className={styles.Fleetly}>Fleetly</H1>
+          <H2 className={styles.Title}>Glad To</H2>
+          <H1 className={styles.Fleetly}>Meet You</H1>
 
           <Text className={styles.Description} component="div">
-            New user? <Link to="/sign/up">Create an account</Link>
+            My name is Fleetly, and yours?
           </Text>
 
           <Error />
 
           <Fieldset>
-            <Field disabled={submitting} label="Email" name="email" />
-
-            <Field
-              disabled={submitting}
-              hint={<Link>Forgot password?</Link>}
-              label="Password"
-              name="password"
-              type="password"
-            />
+            <Field disabled={submitting} label="First name" name="firstname" />
+            <Field disabled={submitting} label="Last name" name="lastname" />
+            <Field disabled={submitting} label="Username" name="username" />
           </Fieldset>
 
           <Actions>
             <Button color="blue" loaded={submitting} type="submit">
-              Sign In
+              Let's rock!
             </Button>
           </Actions>
         </form>

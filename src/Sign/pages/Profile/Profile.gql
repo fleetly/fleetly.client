@@ -1,0 +1,19 @@
+mutation UPDATE_PROFILE(
+  $firstname: String!
+  $lastname: String!
+  $username: String
+) {
+  updateProfile(
+    firstname: $firstname
+    lastname: $lastname
+    username: $username
+  ) {
+    id
+    email
+    firstname
+    fullname
+    isConfirmed
+    lastname
+    username
+  }
+}

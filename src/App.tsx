@@ -2,6 +2,9 @@ import { useQuery } from '@apollo/client';
 import React, { lazy, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
+// Components
+import Loader from '@components/Loader';
+
 // Containers
 import Notifications from '@containers/Notifications';
 
@@ -27,17 +30,19 @@ const Sign = lazy(() => import('./Sign'));
 
 const App: React.FC<{}> = () => {
   // Setup
-  const { isAuthorized, isConfirmed, setUser } = useSession();
+  const { isAuthorized, isConfirmed, setUser, user } = useSession();
 
   // Data
-  useQuery<{ user: IUser }>(GET_USER, {
+  const { loading } = useQuery<{ user: IUser }>(GET_USER, {
     onCompleted: (res) => setUser(res.user)
   });
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className={styles.Root}>
       <Suspense fallback="">
-        {isAuthorized && isConfirmed ? (
+        {isAuthorized && isConfirmed && user.username ? (
           <Switch>
             <Redirect from={ROUTES.SIGN.ROOT} to="/" />
 

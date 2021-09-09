@@ -20,7 +20,7 @@ import CONFIRM_EMAIL from './graphql/confirmEmail.gql';
 import SEND_EMAIL_CODE from './graphql/sendEmailCode.gql';
 
 // Store
-import { useNotifications } from '@store';
+import { useNotifications, useSession } from '@store';
 
 // Styles
 import styles from './Confirm.scss';
@@ -33,6 +33,7 @@ export const SignConfirm: React.FC = () => {
   // Setup
   const DELAY = 20;
   const { createNotification, handleApolloError } = useNotifications();
+  const { setUser, user } = useSession();
 
   // State
   const [delay, setDelay] = useState<number>(DELAY);
@@ -65,11 +66,12 @@ export const SignConfirm: React.FC = () => {
     async ({ code }: SignConfirmFormValues) => {
       try {
         await confirmEmail({ variables: { code } });
+        setUser({ ...user, isConfirmed: true });
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [confirmEmail]
+    [confirmEmail, setUser, user]
   );
 
   const handleSendClick = useCallback(async () => {
@@ -86,7 +88,7 @@ export const SignConfirm: React.FC = () => {
           })
         )}
       >
-        {({ handleSubmit, submitting, valid }) => (
+        {({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
             <H2 className={styles.Title}>Confirm Your</H2>
             <H1 className={styles.Fleetly}>E-mail</H1>
@@ -104,12 +106,7 @@ export const SignConfirm: React.FC = () => {
             <SignConfirmCode />
 
             <Actions>
-              <Button
-                color="blue"
-                disabled={!valid}
-                loaded={submitting}
-                type="submit"
-              >
+              <Button color="blue" loaded={submitting} type="submit">
                 Confirm email
               </Button>
             </Actions>

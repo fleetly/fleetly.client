@@ -19,23 +19,34 @@ import { H1, H2, Text } from '@components/Typography';
 // GraphQL
 import SIGN_UP from './Up.gql';
 
+// Interfaces
+import { IUser } from '@interfaces/user.interface';
+
+// Store
+import { useSession } from '@store';
+
 // Styles
 import styles from './Up.scss';
 
 export const SignUp: React.FC = () => {
+  // Setup
+  const { login, setUser } = useSession();
+
   // Mutations
-  const [signUp] = useMutation(SIGN_UP);
+  const [signUp] = useMutation<{ register: IUser }>(SIGN_UP);
 
   // Handlers
   const handleFormSubmit = useCallback(
     async (variables) => {
       try {
-        await signUp(variables);
+        const { data } = await signUp({ variables });
+        login();
+        setUser(data?.register!);
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [signUp]
+    [login, setUser, signUp]
   );
 
   return (
