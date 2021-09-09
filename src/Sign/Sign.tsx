@@ -1,14 +1,21 @@
-import React from 'react';
-import { Route, RouteChildrenProps, Switch, Redirect } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import {
+  Redirect,
+  Route,
+  RouteChildrenProps,
+  Switch,
+  useLocation
+} from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
+// Routes
+import { SIGN_ROUTES } from './Sign.routes';
 
 // Store
 import { useSession } from '@store';
 
 // Styles
 import styles from './Sign.scss';
-
-// Utils
-import { resolve } from '@utils/url';
 
 // Views
 import { SignConfirm } from './pages/Confirm';
@@ -18,43 +25,42 @@ import { SignUp } from './pages/Up';
 
 const Sign: React.FC<RouteChildrenProps> = ({ match }) => {
   // Setup
+  const location = useLocation();
   const { isAuthorized, isConfirmed, user } = useSession();
+
+  const redirectProps = useMemo(() => {
+    if (isAuthorized && !isConfirmed) {
+      return {
+        from: '/sign/(in|up|profile)',
+        to: SIGN_ROUTES.CONFIRM
+      };
+    } else if (isAuthorized && !user?.username) {
+      return {
+        from: '/sign/(in|up|confirm)',
+        to: SIGN_ROUTES.PROFILE
+      };
+    } else {
+      return {
+        from: '/sign/(confirm|profile)',
+        to: SIGN_ROUTES.IN
+      };
+    }
+  }, [isAuthorized, isConfirmed, user]);
 
   return (
     <div className={styles.Root}>
-      <div className={styles.Sidebar}>
-        {isAuthorized && !isConfirmed ? (
-          <Switch>
-            <Route
-              component={SignConfirm}
-              path={resolve([match!.url, 'confirm'])}
-            />
-            <Redirect from="/sign" to="/sign/confirm" />
+      <Redirect {...redirectProps} />
+
+      <TransitionGroup className={styles.Sidebar}>
+        <CSSTransition key={location.key} timeout={600}>
+          <Switch location={location}>
+            <Route component={SignConfirm} path={SIGN_ROUTES.CONFIRM} />
+            <Route component={SignIn} path={SIGN_ROUTES.IN} />
+            <Route component={SignProfile} path={SIGN_ROUTES.PROFILE} />
+            <Route component={SignUp} path={SIGN_ROUTES.UP} />
           </Switch>
-        ) : isAuthorized && !user.username ? (
-          <Switch>
-            <Route
-              component={SignProfile}
-              path={resolve([match!.url, 'profile'])}
-            />
-            <Redirect from="/sign" to="/sign/profile" />
-          </Switch>
-        ) : isAuthorized ? (
-          <Switch>
-            <Route
-              component={SignConfirm}
-              path={resolve([match!.url, 'confirm'])}
-            />
-            <Redirect from="/sign" to="/sign/confirm" />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route component={SignIn} path={resolve([match!.url, 'in'])} />
-            <Route component={SignUp} path={resolve([match!.url, 'up'])} />
-            <Redirect from="/sign" to="/sign/in" />
-          </Switch>
-        )}
-      </div>
+        </CSSTransition>
+      </TransitionGroup>
     </div>
   );
 };

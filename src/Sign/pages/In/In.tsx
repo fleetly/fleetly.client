@@ -19,6 +19,9 @@ import { H1, H2, Text } from '@components/Typography';
 // GraphQL
 import SIGN_IN from './In.gql';
 
+// Interfaces
+import { IUser } from '@interfaces/user.interface';
+
 // Store
 import { useSession } from '@store';
 
@@ -30,14 +33,14 @@ export const SignIn: React.FC = () => {
   const { login } = useSession();
 
   // Mutations
-  const [signIn] = useMutation(SIGN_IN);
+  const [signIn] = useMutation<{ login: IUser }>(SIGN_IN);
 
   // Handlers
   const handleFormSubmit = useCallback(
     async (variables) => {
       try {
-        await signIn({ variables });
-        login();
+        const { data } = await signIn({ variables });
+        login(data?.login!);
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }

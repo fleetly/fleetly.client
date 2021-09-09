@@ -30,7 +30,7 @@ import styles from './Up.scss';
 
 export const SignUp: React.FC = () => {
   // Setup
-  const { login, setUser } = useSession();
+  const { login } = useSession();
 
   // Mutations
   const [signUp] = useMutation<{ register: IUser }>(SIGN_UP);
@@ -40,13 +40,12 @@ export const SignUp: React.FC = () => {
     async (variables) => {
       try {
         const { data } = await signUp({ variables });
-        login();
-        setUser(data?.register!);
+        login(data?.register!);
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [login, setUser, signUp]
+    [login, signUp]
   );
 
   return (

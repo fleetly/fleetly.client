@@ -23,10 +23,32 @@
 .Sidebar {
   background: $color-white;
   border-radius: 0 40px 40px 0;
-  padding: 100px;
 
   & > form {
+    margin: 100px;
     width: 300px;
+  }
+
+  :global .enter {
+    opacity: 0;
+    transform: translateY(10%);
+
+    &-active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all .4s .2s;
+    }
+  }
+
+  :global .exit {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+
+    &-active {
+      opacity: 0;
+      transition: all .2s;
+    }
   }
 }
 

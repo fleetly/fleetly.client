@@ -16,7 +16,7 @@ const initialState: Store.SessionState = {
 export default (state = initialState, action: Action): Store.SessionState => {
   switch (action.type) {
     case LOGIN:
-      return { ...state, isAuthorized: true };
+      return { ...state, isAuthorized: true, user: action.payload! };
     case LOGOUT:
       return { ...state, isAuthorized: false };
     case SET_USER:

@@ -40,7 +40,7 @@ const store = createStore();
 
 const httpLink = new HttpLink({
   credentials: 'include',
-  uri: 'https://api.fleetly.it/graphql'
+  uri: 'https://ivan.fleetly.me/graphql'
 });
 
 const wsLink = new WebSocketLink({

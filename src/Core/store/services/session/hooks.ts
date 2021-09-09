@@ -29,7 +29,10 @@ const useSession = () => {
   );
 
   // Handlers
-  const login = useCallback(() => dispatch(loginAction()), [dispatch]);
+  const login = useCallback((user: IUser) => dispatch(loginAction(user)), [
+    dispatch
+  ]);
+
   const logout = useCallback(() => dispatch(logoutAction()), [dispatch]);
   const setUser = useCallback((user: IUser) => dispatch(setUserAction(user)), [
     dispatch

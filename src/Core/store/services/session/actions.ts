@@ -4,10 +4,11 @@ import { IUser } from '@interfaces/user.interface';
 // Types
 import { LOGIN, LOGOUT, SET_USER } from './types';
 
-export const login = () => {
+export const login = (user: IUser) => {
   window.localStorage.setItem('isAuthorized', 'true');
 
   return {
+    payload: user,
     type: LOGIN
   };
 };
