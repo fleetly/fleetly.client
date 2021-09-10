@@ -32,6 +32,9 @@ import { COMPANY_ROUTES } from '@company/Company.routes';
 import { FLOW_ROUTES } from '@flow/Flow.routes';
 import { PROFILE_ROUTES } from '@profile/Profile.routes';
 
+// Store
+import { useSession } from '@store';
+
 // Styles
 import styles from './Company.scss';
 
@@ -43,6 +46,7 @@ import Panel from './pages/Panel';
 export const Company: React.FC = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
+  const { user } = useSession();
 
   // Data
   const { data: { companies = [] } = {}, loading } = useQuery<{
@@ -90,7 +94,7 @@ export const Company: React.FC = () => {
               </div>
             )}
 
-            <Link to={PROFILE_ROUTES.ROOT} />
+            <Link to={PROFILE_ROUTES.ROOT}>{user.fullname}</Link>
           </div>
 
           <div className={styles.Container}>

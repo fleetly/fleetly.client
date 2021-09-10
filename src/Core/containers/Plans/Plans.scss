@@ -20,6 +20,11 @@
 .Container {
   background: transparent;
   box-shadow: none;
+  overflow: visible;
+
+  & > div {
+    overflow: visible;
+  }
 }
 
 .Plans {

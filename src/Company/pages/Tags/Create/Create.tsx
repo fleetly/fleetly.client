@@ -89,7 +89,7 @@ export const TagsCreate: React.FC = () => {
           )}
         >
           {({ handleSubmit, submitting }) => (
-            <form onSubmit={handleSubmit}>
+            <form className={styles.Form} onSubmit={handleSubmit}>
               <Text className={styles.Description} component="div">
                 Group your followers with unique tags!
               </Text>
