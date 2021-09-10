@@ -23,11 +23,12 @@ import { SignIn } from './pages/In';
 import { SignProfile } from './pages/Profile';
 import { SignUp } from './pages/Up';
 
-const Sign: React.FC<RouteChildrenProps> = ({ match }) => {
+const Sign: React.FC<RouteChildrenProps> = () => {
   // Setup
   const location = useLocation();
   const { isAuthorized, isConfirmed, user } = useSession();
 
+  // Memo
   const redirectProps = useMemo(() => {
     if (isAuthorized && !isConfirmed) {
       return {
@@ -49,7 +50,15 @@ const Sign: React.FC<RouteChildrenProps> = ({ match }) => {
 
   return (
     <div className={styles.Root}>
-      <Redirect {...redirectProps} />
+      <Switch>
+        <Redirect exact {...redirectProps} />
+      </Switch>
+
+      <div className={styles.Cover}>
+        <div className={styles.Tree} />
+        <div className={styles.Land} />
+        <div className={styles.Rocket} />
+      </div>
 
       <TransitionGroup className={styles.Sidebar}>
         <CSSTransition key={location.key} timeout={600}>

@@ -1,9 +1,17 @@
 @import '~@styles/colors';
 
 .Root {
-  background: $color-blue;
+  background: linear-gradient(0deg, #76adff 0%, #5461ea 100%);
   display: flex;
+  overflow: hidden;
   width: 100%;
+}
+
+.Cover {
+  flex: 1 1 auto;
+  margin: 0 -40px 0 0;
+  position: relative;
+  z-index: 1;
 }
 
 .Description {
@@ -20,12 +28,29 @@
   text-shadow: 0 8px 4px rgba($color-primary, .1);
 }
 
+.Land {
+  animation: land .8s;
+  background: url('./assets/land.png') no-repeat right center / cover;
+  z-index: 2;
+}
+
+.Rocket {
+  animation: rocket 1s;
+  background: url('./assets/rocket.png') no-repeat left center / contain;
+  z-index: 1;
+}
+
 .Sidebar {
+  align-items: center;
   background: $color-white;
-  border-radius: 0 40px 40px 0;
+  border-radius: 40px 0 0 40px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 700px;
+  z-index: 2;
 
   & > form {
-    margin: 100px;
     width: 300px;
   }
 
@@ -43,7 +68,6 @@
   :global .exit {
     opacity: 1;
     position: absolute;
-    top: 0;
 
     &-active {
       opacity: 0;
@@ -54,4 +78,55 @@
 
 .Title {
   color: $color-gray-800;
+}
+
+.Tree {
+  animation: tree 1s;
+  background: url('./assets/tree.png') no-repeat right center / contain;
+  z-index: 3;
+}
+
+.Land,
+.Rocket,
+.Tree {
+  height: 100%;
+  min-width: 1100px;
+  position: absolute;
+  width: 100%;
+}
+
+@keyframes land {
+  from {
+    opacity: 1;
+    transform: translateY(8%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rocket {
+  from {
+    opacity: 1;
+    transform: translateY(16%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tree {
+  from {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
