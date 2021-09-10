@@ -15,7 +15,8 @@ import GET_USER from '@graphql/getUserById.gql';
 import { IUser } from '@interfaces/user.interface';
 
 // Routes
-import ROUTES from '@routes';
+import { PROFILE_ROUTES } from '@profile/Profile.routes';
+import { SIGN_ROUTES } from '@sign/Sign.routes';
 
 // Store
 import { useSession } from '@store';
@@ -30,10 +31,10 @@ const Sign = lazy(() => import('./Sign'));
 
 const App: React.FC<{}> = () => {
   // Setup
-  const { isAuthorized, isConfirmed, setUser, user } = useSession();
+  const { setUser } = useSession();
 
   // Data
-  const { loading } = useQuery<{ user: IUser }>(GET_USER, {
+  const { data: { user } = {}, loading } = useQuery<{ user: IUser }>(GET_USER, {
     onCompleted: (res) => setUser(res.user)
   });
 
@@ -42,19 +43,19 @@ const App: React.FC<{}> = () => {
   ) : (
     <div className={styles.Root}>
       <Suspense fallback="">
-        {isAuthorized && isConfirmed && user.username ? (
+        {!!user && user.isConfirmed && user.username ? (
           <Switch>
-            <Redirect from={ROUTES.SIGN.ROOT} to="/" />
+            <Redirect from={SIGN_ROUTES.ROOT} to="/" />
 
-            <Route component={Profile} path="/profile" />
+            <Route component={Profile} path={PROFILE_ROUTES.ROOT} />
             <Route component={Company} path="/:companyId?" />
           </Switch>
         ) : (
           <Switch>
-            <Route component={Landing} exact path={ROUTES.ROOT} />
-            <Route component={Sign} path={ROUTES.SIGN.ROOT} />
+            <Route component={Landing} exact path="/" />
+            <Route component={Sign} path={SIGN_ROUTES.ROOT} />
 
-            <Redirect to={ROUTES.ROOT} />
+            <Redirect to="/" />
           </Switch>
         )}
       </Suspense>

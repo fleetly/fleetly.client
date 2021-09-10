@@ -1,4 +1,5 @@
 import React from 'react';
+import { generatePath } from 'react-router';
 
 // Fleetly
 import { StatsType } from '@fleetly/provider/interfaces';
@@ -17,13 +18,10 @@ import { useChannelStats } from './Stats.hooks';
 import { IChannel } from '@interfaces/channel.interface';
 
 // Routes
-import ROUTES from '@routes';
+import { COMPANY_ROUTES } from '@company/Company.routes';
 
 // Styles
 import styles from './Stats.scss';
-
-// Utils
-import { fillUrl } from '@utils/url';
 
 export const ChannelStats: React.FC<IChannel> = ({ id, source }) => {
   // Setup
@@ -48,11 +46,11 @@ export const ChannelStats: React.FC<IChannel> = ({ id, source }) => {
       breadcrumbs={[
         {
           title: 'Channels',
-          to: fillUrl(ROUTES.COMPANY.CHANNELS, { companyId })
+          to: generatePath(COMPANY_ROUTES.CHANNELS, { companyId })
         },
         {
           title: source.title,
-          to: fillUrl(ROUTES.COMPANY.CHANNEL, { channelId: id, companyId })
+          to: generatePath(COMPANY_ROUTES.CHANNEL, { channelId: id, companyId })
         }
       ]}
       classes={{ actions: styles.Actions, container: styles.Container }}

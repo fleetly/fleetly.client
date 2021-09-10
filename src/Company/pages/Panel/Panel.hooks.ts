@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { generatePath, useParams } from 'react-router-dom';
 
 // Components
 import { MenuGroupProps } from '@components/Menu';
@@ -12,10 +12,9 @@ import GET_COMPANY from './Panel.gql';
 import { ICompany } from '@interfaces/company.interface';
 
 // Routes
-import ROUTES from '@routes';
-
-// Utils
-import { fillUrl } from '@utils/url';
+import { CHAT_ROUTES } from '@chat/Chat.routes';
+import { COMPANY_ROUTES } from '@company/Company.routes';
+import { FLOW_ROUTES } from '@flow/Flow.routes';
 
 export const usePanel = () => {
   // Setup
@@ -34,7 +33,7 @@ export const usePanel = () => {
           {
             icon: 'far fa-tachometer-alt',
             title: 'Dashboard',
-            to: fillUrl(ROUTES.COMPANY.DASHBOARD, { companyId })
+            to: generatePath(COMPANY_ROUTES.ROOT, { companyId })
           }
         ]
       },
@@ -43,12 +42,12 @@ export const usePanel = () => {
           {
             icon: 'far fa-comment',
             title: 'Chat',
-            to: fillUrl(ROUTES.COMPANY.CHAT.ROOT, { companyId })
+            to: generatePath(CHAT_ROUTES.ROOT, { companyId })
           },
           {
             icon: 'far fa-code-merge',
             title: 'Flow',
-            to: fillUrl(ROUTES.COMPANY.FLOWS.ROOT, { companyId })
+            to: generatePath(FLOW_ROUTES.ROOT, { companyId })
           }
         ],
         title: 'Apps'
@@ -58,12 +57,12 @@ export const usePanel = () => {
           {
             icon: 'far fa-database',
             title: 'Channels',
-            to: fillUrl(ROUTES.COMPANY.CHANNELS, { companyId })
+            to: generatePath(COMPANY_ROUTES.CHANNELS, { companyId })
           },
           {
             icon: 'far fa-users',
             title: 'Subscribers',
-            to: fillUrl(ROUTES.COMPANY.SUBSCRIBERS, { companyId })
+            to: generatePath(COMPANY_ROUTES.SUBSCRIBERS, { companyId })
           }
         ],
         title: 'General'
@@ -73,27 +72,27 @@ export const usePanel = () => {
           {
             icon: 'far fa-home-alt',
             title: 'General',
-            to: fillUrl(ROUTES.COMPANY.GENERAL, { companyId })
+            to: generatePath(COMPANY_ROUTES.GENERAL, { companyId })
           },
           {
             icon: 'far fa-wallet',
             title: 'Billing',
-            to: fillUrl(ROUTES.COMPANY.BILLING, { companyId })
+            to: generatePath(COMPANY_ROUTES.BILLING, { companyId })
           },
           {
             icon: 'far fa-user-friends',
             title: 'Collaborators',
-            to: fillUrl(ROUTES.COMPANY.COLLABORATORS, { companyId })
+            to: generatePath(COMPANY_ROUTES.COLLABORATORS, { companyId })
           },
           {
             icon: 'far fa-table',
             title: 'Fields',
-            to: fillUrl(ROUTES.COMPANY.FIELDS, { companyId })
+            to: generatePath(COMPANY_ROUTES.FIELDS, { companyId })
           },
           {
             icon: 'far fa-tags',
             title: 'Tags',
-            to: fillUrl(ROUTES.COMPANY.TAGS, { companyId })
+            to: generatePath(COMPANY_ROUTES.TAGS, { companyId })
           }
         ],
         title: 'Settings'

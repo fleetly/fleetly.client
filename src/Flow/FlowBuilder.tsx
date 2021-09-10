@@ -23,24 +23,15 @@ import Content from './Content';
 import Randomize from './Randomize';
 import Start from './Start';
 
-// Routes
-import ROUTES from '@routes';
-
 // Styles
 import styles from './FlowBuilder.scss';
 
-// Utils
-import { fillUrl } from '@utils/url';
-import { useParams } from 'react-router-dom';
-
 const Flow: React.FC<{}> = () => {
   // Setup
-  const { companyId } = useParams<{ companyId: string }>();
   const [blockMenuProps, { handleMenuOpen }] = useContextMenu();
 
   const {
     elements,
-    flowId,
     handleBlockDrag,
     handleEdgeConnect,
     title = 'Untitled flow'
@@ -48,19 +39,7 @@ const Flow: React.FC<{}> = () => {
 
   return (
     <Page title={title}>
-      <Wrapper
-        breadcrumbs={[
-          {
-            title: 'Flows',
-            to: fillUrl(ROUTES.COMPANY.FLOWS.ROOT, { companyId })
-          },
-          {
-            title,
-            to: fillUrl(ROUTES.COMPANY.FLOWS.FLOW, { flowId, companyId })
-          }
-        ]}
-        classes={{ container: styles.Container }}
-      >
+      <Wrapper classes={{ container: styles.Container }}>
         <ReactFlowProvider>
           <div className={styles.Builder}>
             <ReactFlow

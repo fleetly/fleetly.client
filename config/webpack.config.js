@@ -289,7 +289,10 @@ module.exports = function (webpackEnv) {
         .filter((ext) => useTypeScript || !ext.includes('ts')),
       alias: {
         '@chat': path.resolve(__dirname, '../src/Chat'),
+        '@company': path.resolve(__dirname, '../src/Company'),
         '@core': path.resolve(__dirname, '../src/Core'),
+        '@flow': path.resolve(__dirname, '../src/Flow'),
+        '@profile': path.resolve(__dirname, '../src/Profile'),
         '@sign': path.resolve(__dirname, '../src/Sign'),
 
         '@assets': path.resolve(__dirname, '../src/Core/assets'),
@@ -299,7 +302,6 @@ module.exports = function (webpackEnv) {
         '@entities': path.resolve(__dirname, '../src/Core/entities'),
         '@graphql': path.resolve(__dirname, '../src/Core/graphql'),
         '@hooks': path.resolve(__dirname, '../src/Core/hooks'),
-        '@routes': path.resolve(__dirname, '../src/routes'),
         '@store': path.resolve(__dirname, '../src/Core/store'),
         '@utils': path.resolve(__dirname, '../src/Core/utils'),
         '@styles': path.resolve(__dirname, '../src/Core/styles'),

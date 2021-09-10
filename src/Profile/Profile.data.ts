@@ -1,5 +1,5 @@
 // Routes
-import ROUTES from '@routes';
+import { PROFILE_ROUTES } from './Profile.routes';
 
 export const PROFILE_MENU = [
   {
@@ -8,17 +8,17 @@ export const PROFILE_MENU = [
         exact: true,
         icon: 'fas fa-user-circle',
         title: 'Profile',
-        to: ROUTES.PROFILE.GENERAL
+        to: PROFILE_ROUTES.ROOT
       },
       {
         icon: 'far fa-users',
         title: 'Collaboration',
-        to: ROUTES.PROFILE.COLLABORATION
+        to: PROFILE_ROUTES.COLLABORATION
       },
       {
         icon: 'far fa-shield-alt',
         title: 'Security',
-        to: ROUTES.PROFILE.SECURITY
+        to: PROFILE_ROUTES.SECURITY
       }
     ]
   }

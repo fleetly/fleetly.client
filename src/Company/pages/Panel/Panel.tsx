@@ -22,13 +22,10 @@ import Tags from '../Tags';
 import Subscribers from '../Subscribers';
 
 // Routes
-import ROUTES from '@routes';
+import { COMPANY_ROUTES } from '@company/Company.routes';
 
 // Styles
 import styles from './Panel.scss';
-
-// Utils
-import { fillUrl } from '@utils/url';
 
 export const Panel: React.FC = () => {
   // Setup
@@ -42,11 +39,7 @@ export const Panel: React.FC = () => {
         <>
           <div className={styles.Sidebar}>
             <div className={styles.Header}>
-              <Link
-                to={fillUrl(ROUTES.COMPANY.DASHBOARD, {
-                  companyId: company?.id
-                })}
-              >
+              <Link>
                 <CardHeader
                   avatar={
                     <Avatar
@@ -66,19 +59,19 @@ export const Panel: React.FC = () => {
 
           <div className={styles.Container}>
             <Switch>
-              <Route component={Billing} path={ROUTES.COMPANY.BILLING} />
-              <Route component={Channel} path={ROUTES.COMPANY.CHANNEL} />
-              <Route component={Channels} path={ROUTES.COMPANY.CHANNELS} />
+              <Route component={Billing} path={COMPANY_ROUTES.BILLING} />
+              <Route component={Channel} path={COMPANY_ROUTES.CHANNEL} />
+              <Route component={Channels} path={COMPANY_ROUTES.CHANNELS} />
               <Route
                 component={Collaborators}
-                path={ROUTES.COMPANY.COLLABORATORS}
+                path={COMPANY_ROUTES.COLLABORATORS}
               />
-              <Route component={General} path={ROUTES.COMPANY.GENERAL} />
-              <Route component={Fields} path={ROUTES.COMPANY.FIELDS} />
-              <Route component={Tags} path={ROUTES.COMPANY.TAGS} />
+              <Route component={General} path={COMPANY_ROUTES.GENERAL} />
+              <Route component={Fields} path={COMPANY_ROUTES.FIELDS} />
+              <Route component={Tags} path={COMPANY_ROUTES.TAGS} />
               <Route
                 component={Subscribers}
-                path={ROUTES.COMPANY.SUBSCRIBERS}
+                path={COMPANY_ROUTES.SUBSCRIBERS}
               />
             </Switch>
           </div>

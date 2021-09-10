@@ -13,7 +13,7 @@ import Phone from './containers/Phone';
 import { useResponsive } from '@hooks/responsive';
 
 // Routes
-import ROUTES from '@routes';
+import { SIGN_ROUTES } from '@sign/Sign.routes';
 
 // Styles
 import styles from './Intro.scss';
@@ -45,7 +45,7 @@ const LandingIntro = () => {
         </Text>
 
         <div className={styles.Actions}>
-          <Button to={ROUTES.SIGN.UP}>Try for Free</Button>
+          <Button to={SIGN_ROUTES.UP}>Try for Free</Button>
         </div>
       </div>
 

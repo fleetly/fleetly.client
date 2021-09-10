@@ -14,6 +14,9 @@ import { Collaboration } from './pages/Collaboration';
 import { ProfileUser } from './pages/User';
 import { Security } from './pages/Security';
 
+// Routes
+import { PROFILE_ROUTES } from './Profile.routes';
+
 // Styles
 import styles from './Profile.scss';
 
@@ -30,9 +33,15 @@ export const Profile = () => (
 
     <div className={styles.Container}>
       <Switch>
-        <Route component={ProfileUser} exact path="/profile" />
-        <Route component={Collaboration} exact path="/profile/collaboration" />
-        <Route component={Security} exact path="/profile/security" />
+        <Route component={ProfileUser} exact path={PROFILE_ROUTES.ROOT} />
+
+        <Route
+          component={Collaboration}
+          exact
+          path={PROFILE_ROUTES.COLLABORATION}
+        />
+
+        <Route component={Security} exact path={PROFILE_ROUTES.SECURITY} />
       </Switch>
     </div>
   </div>

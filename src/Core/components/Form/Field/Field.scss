@@ -35,10 +35,21 @@
   }
 }
 
+.Addition {
+  align-items: center;
+  background: darken($color-background, 10);
+  border-right: 2px solid darken($color-background, 10);
+  color: $color-text-secondary;
+  display: flex;
+  height: 100%;
+  padding: 0 16px;
+}
+
 .Container {
   background: $color-background;
   border: 2px solid darken($color-background, 10);
   border-radius: 20px;
+  display: flex;
   height: 40px;
   overflow: hidden;
   transition: all .2s;

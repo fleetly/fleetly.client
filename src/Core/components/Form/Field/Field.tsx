@@ -19,19 +19,25 @@ export interface FieldProps extends FinalFieldProp<FieldType, any> {
   className?: string;
   hint?: React.ReactNode;
   label?: React.ReactNode;
+  pre?: React.ReactNode;
+  post?: React.ReactNode;
 }
 
 export const Field: React.FC<FieldProps> = ({
   hint,
   label,
   name,
+  post,
+  pre,
   ...props
 }) => {
   // Setup
   const {
     input: { disabled },
-    meta: { active, error, touched }
+    meta: { active, touched, ...meta }
   } = useField(name);
+
+  const error = meta.error || meta.submitError;
 
   return (
     <div
@@ -45,12 +51,16 @@ export const Field: React.FC<FieldProps> = ({
         {label && <FieldHeader hint={hint} label={label} />}
 
         <div className={styles.Container}>
+          {pre && <div className={styles.Addition}>{pre}</div>}
+
           <FinalField
             {...props}
             className={styles.Input}
             component="input"
             name={name}
           />
+
+          {post && <div className={styles.Addition}>{post}</div>}
         </div>
 
         {error && touched && <FieldError>{error}</FieldError>}

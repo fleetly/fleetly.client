@@ -22,6 +22,9 @@ import SIGN_IN from './In.gql';
 // Interfaces
 import { IUser } from '@interfaces/user.interface';
 
+// Routes
+import { SIGN_ROUTES } from '@sign/Sign.routes';
+
 // Store
 import { useSession } from '@store';
 
@@ -64,7 +67,7 @@ export const SignIn: React.FC = () => {
           <H1 className={styles.Fleetly}>Fleetly</H1>
 
           <Text className={styles.Description} component="div">
-            New user? <Link to="/sign/up">Create an account</Link>
+            New user? <Link to={SIGN_ROUTES.UP}>Create an account</Link>
           </Text>
 
           <Error />

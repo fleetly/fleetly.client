@@ -1,0 +1,8 @@
+mutation CREATE_COMPANY($name: String!) {
+  createCompany(name: $name) {
+    id
+    name
+    title
+    role
+  }
+}

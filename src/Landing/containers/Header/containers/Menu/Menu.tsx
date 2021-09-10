@@ -21,7 +21,7 @@ import { MENU, MENU_ID } from './Menu.data';
 import { useResponsive } from '@hooks/responsive';
 
 // Routes
-import routes from '@routes';
+import { SIGN_ROUTES } from '@sign/Sign.routes';
 
 // Store
 import { useModals } from '@store';
@@ -102,11 +102,11 @@ const LandingHeaderMenu: React.FC<{}> = () => {
             </div>
 
             <div className={styles.Actions}>
-              <Button to={routes.SIGN.UP} variant="orange">
+              <Button to={SIGN_ROUTES.UP} variant="orange">
                 Try Free
               </Button>
 
-              <Button to={routes.SIGN.IN} variant="green">
+              <Button to={SIGN_ROUTES.IN} variant="green">
                 Sign In
               </Button>
             </div>

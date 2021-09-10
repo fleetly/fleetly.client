@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, { useContext } from 'react';
+import { generatePath } from 'react-router';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -18,13 +19,10 @@ import { SubscriberContext } from '../Subscriber';
 import { ISubscriber } from '@interfaces/subscriber.interface';
 
 // Routes
-import ROUTES from '@routes';
+import { CHAT_ROUTES } from '@chat/Chat.routes';
 
 // Styles
 import styles from './Source.scss';
-
-// Utils
-import { fillUrl } from '@utils/url';
 
 export const SubscriberSource: React.FC<ISubscriber> = ({
   id,
@@ -76,7 +74,7 @@ export const SubscriberSource: React.FC<ISubscriber> = ({
         <Button
           color="blue"
           fullWidth
-          to={fillUrl(ROUTES.COMPANY.CHAT.DIALOG, {
+          to={generatePath(CHAT_ROUTES.CHAT, {
             chatId: id,
             companyId
           })}

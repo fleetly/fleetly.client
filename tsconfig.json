@@ -13,10 +13,10 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "@global": ["src/types/global.d.ts"],
-      "@routes": ["routes.ts"],
-
       "@chat/*": ["Chat/*"],
+      "@company/*": ["Company/*"],
+      "@flow/*": ["Flow/*"],
+      "@profile/*": ["Profile/*"],
       "@sign/*": ["Sign/*"],
 
       "@assets/*": ["Core/assets/*"],

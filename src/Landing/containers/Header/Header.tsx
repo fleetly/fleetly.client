@@ -13,7 +13,7 @@ import Wrapper from 'Landing/components/Wrapper';
 import Menu from './containers/Menu';
 
 // Routes
-import routes from '@routes';
+import { SIGN_ROUTES } from '@sign/Sign.routes';
 
 // Styles
 import styles from './Header.scss';
@@ -31,11 +31,11 @@ const LandingHeader = () => (
     <Menu />
 
     <div className={styles.Actions}>
-      <Button to={routes.SIGN.UP} variant="orange">
+      <Button to={SIGN_ROUTES.UP} variant="orange">
         Try Free
       </Button>
 
-      <Button to={routes.SIGN.IN} variant="green">
+      <Button to={SIGN_ROUTES.IN} variant="green">
         Sign In
       </Button>
     </div>

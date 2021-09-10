@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { generatePath, useHistory, useParams } from 'react-router-dom';
 
 // Fleetly
 import { ChannelStatus } from '@fleetly/common/dist/interfaces';
@@ -16,10 +16,7 @@ import { IChannel } from '@interfaces/channel.interface';
 import { IStatus } from '@interfaces/status.interface';
 
 // Routes
-import ROUTES from '@routes';
-
-// Utils
-import { fillUrl } from '@utils/url';
+import { COMPANY_ROUTES } from '@company/Company.routes';
 
 export interface ChannelsTableProps {
   data: IChannel[];
@@ -33,7 +30,7 @@ export const ChannelsTable: React.FC<ChannelsTableProps> = ({ data }) => {
   // Handlers
   const handleTrClick = useCallback(
     ({ id }: IChannel) =>
-      push(fillUrl(ROUTES.COMPANY.CHANNEL, { companyId, channelId: id })),
+      push(generatePath(COMPANY_ROUTES.CHANNEL, { companyId, channelId: id })),
     [companyId, push]
   );
 

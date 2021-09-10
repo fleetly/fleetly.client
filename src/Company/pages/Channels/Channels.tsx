@@ -8,7 +8,7 @@ import emptyImage2x from './Common/assets/empty@1x.png';
 
 // Components
 import Button from '@components/Button';
-import Empty from '@components/Empty';
+import { Hero } from '@components/Hero';
 import Image from '@components/Image';
 import Loader from '@components/Loader';
 import Page, { Wrapper } from '@components/Page';
@@ -70,7 +70,7 @@ const Channels: React.FC = () => {
             {hasChannels ? (
               <ChannelsTable data={data!.channels} />
             ) : (
-              <Empty
+              <Hero
                 actions={
                   <Button color="blue" onClick={openModal}>
                     Add Channel

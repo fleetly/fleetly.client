@@ -26,7 +26,7 @@ import { IPlan } from '@interfaces/plan.interface';
 import { ISubscription } from '@interfaces/subscription.interface';
 
 // Routes
-import ROUTES from '@routes';
+import { SIGN_ROUTES } from '@sign/Sign.routes';
 
 // Store
 import { useModals, useNotifications, useSession } from '@store';
@@ -73,7 +73,7 @@ export const usePlans = (subscription?: ISubscription) => {
   const handleClick = useCallback(
     async (event: React.SyntheticEvent<HTMLButtonElement>) => {
       if (!isAuthorized) {
-        history.push(ROUTES.SIGN.UP);
+        history.push(SIGN_ROUTES.UP);
       } else {
         try {
           const planId = event.currentTarget.dataset.planId!;

@@ -6,7 +6,7 @@ import { H2, Text } from '@components/Typography';
 import Button from '../../../components/Button';
 
 // Routes
-import ROUTES from '@routes';
+import { SIGN_ROUTES } from '@sign/Sign.routes';
 
 // Styles
 import styles from './Item.scss';
@@ -83,7 +83,7 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
 
       {link && (
         <div className={styles.Actions}>
-          <Button to={ROUTES.SIGN.UP}>Try for Free</Button>
+          <Button to={SIGN_ROUTES.UP}>Try for Free</Button>
         </div>
       )}
     </div>

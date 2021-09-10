@@ -40,13 +40,13 @@ const Billing: React.FC = () => {
     <Page className={styles.Root} title="Billing">
       {!subscription && loading ? (
         <Loader />
-      ) : (
+      ) : subscription ? (
         <>
-          <BillingCurrent {...subscription!} />
-          <BillingNext {...subscription!} />
-          <BillingHistory data={subscription!.payments || []} />
+          <BillingCurrent {...subscription} />
+          <BillingNext {...subscription} />
+          <BillingHistory data={subscription.payments || []} />
         </>
-      )}
+      ) : null}
 
       <Plans subscription={subscription} />
     </Page>

@@ -1,17 +1,8 @@
-import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 
 import url from 'url';
-
-export const fillUrl = (url: string = '/', params: any): string => {
-  const splittedUrl: string[] = url.split('/');
-
-  return splittedUrl
-    .map((key) => get(params, key.replace(':', ''), key))
-    .join('/');
-};
 
 export const isExternal = (str: string): boolean => {
   const { host } = url.parse(str);

@@ -5,9 +5,9 @@ import Icon from '@components/Icon';
 import { H4, Text } from '@components/Typography';
 
 // Styles
-import styles from './Empty.scss';
+import styles from './Hero.scss';
 
-export interface EmptyProps {
+export interface HeroProps {
   actions?: React.ReactNode;
   description?: string;
   icon?: string;
@@ -15,7 +15,7 @@ export interface EmptyProps {
   title: string;
 }
 
-const Empty: React.FC<EmptyProps> = ({
+export const Hero: React.FC<HeroProps> = ({
   actions,
   description,
   icon,
@@ -39,5 +39,3 @@ const Empty: React.FC<EmptyProps> = ({
     </div>
   </div>
 );
-
-export default Empty;

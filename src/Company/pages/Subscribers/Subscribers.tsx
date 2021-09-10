@@ -9,7 +9,7 @@ import emptyImage2x from './assets/empty@1x.png';
 
 // Components
 import Avatar from '@components/Avatar';
-import Empty from '@components/Empty';
+import { Hero } from '@components/Hero';
 import Image from '@components/Image';
 import Link from '@components/Link';
 import Loader from '@components/Loader';
@@ -122,7 +122,7 @@ const Subscribers: React.FC = () => {
             onTrClick={handleTrClick}
           />
         ) : (
-          <Empty
+          <Hero
             description="Do not scare your catch and soon it will be displayed here"
             image={
               <Image

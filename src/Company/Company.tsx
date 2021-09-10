@@ -1,6 +1,14 @@
 import { useQuery } from '@apollo/client';
+import classNames from 'classnames';
 import React from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import {
+  generatePath,
+  NavLink,
+  Redirect,
+  Route,
+  Switch,
+  useParams
+} from 'react-router-dom';
 
 // Components
 import Avatar from '@components/Avatar';
@@ -8,6 +16,7 @@ import Link from '@components/Link';
 import Loader from '@components/Loader';
 
 // Containers
+import { CompanyCreate } from './containers/Create';
 import { Subscriber } from './containers/Subscriber';
 import { Sudo } from './containers/Sudo';
 
@@ -18,13 +27,13 @@ import GET_COMPANY_LIST from './Company.gql';
 import { ICompany } from '@interfaces/company.interface';
 
 // Routes
-import ROUTES from '@routes';
+import { CHAT_ROUTES } from '@chat/Chat.routes';
+import { COMPANY_ROUTES } from '@company/Company.routes';
+import { FLOW_ROUTES } from '@flow/Flow.routes';
+import { PROFILE_ROUTES } from '@profile/Profile.routes';
 
 // Styles
 import styles from './Company.scss';
-
-// Utils
-import { fillUrl } from '@utils/url';
 
 // Views
 import Chat from '../Chat';
@@ -32,28 +41,44 @@ import Flow from '../Flow';
 import Panel from './pages/Panel';
 
 export const Company: React.FC = () => {
+  // Setup
+  const { companyId } = useParams<{ companyId: string }>();
+
   // Data
-  const { data, loading } = useQuery<{ companies: ICompany[] }>(
-    GET_COMPANY_LIST
-  );
+  const { data: { companies = [] } = {}, loading } = useQuery<{
+    companies: ICompany[];
+  }>(GET_COMPANY_LIST);
 
   return (
-    <div className={styles.Root}>
+    <div
+      className={classNames(styles.Root, {
+        [styles.RootIsEmpty]: companies.length === 0
+      })}
+    >
       {loading ? (
         <Loader />
       ) : (
         <>
+          {!companyId && companies.length > 0 && (
+            <Redirect
+              from="/"
+              to={generatePath(COMPANY_ROUTES.ROOT, {
+                companyId: companies[0].id
+              })}
+            />
+          )}
+
           <div className={styles.Sidebar}>
             <Link className={styles.Logo} to="/" />
 
-            {data?.companies && data?.companies.length > 0 && (
+            {companies.length > 0 && (
               <div className={styles.List}>
-                {data?.companies.map(({ id, title }) => (
+                {companies.map(({ id, title }) => (
                   <NavLink
                     key={id}
                     activeClassName={styles.LinkIsSelected}
                     className={styles.Link}
-                    to={fillUrl(ROUTES.COMPANY.ROOT, { companyId: id })}
+                    to={generatePath(COMPANY_ROUTES.ROOT, { companyId: id })}
                   >
                     <Avatar
                       alt={title}
@@ -65,17 +90,18 @@ export const Company: React.FC = () => {
               </div>
             )}
 
-            <Link to={ROUTES.PROFILE.GENERAL} />
+            <Link to={PROFILE_ROUTES.ROOT} />
           </div>
 
           <div className={styles.Container}>
             <Switch>
-              <Route component={Chat} path="/:companyId/chat" />
-              <Route component={Flow} path="/:companyId/flows" />
-              <Route component={Panel} path="/:companyId" />
+              <Route component={Chat} path={CHAT_ROUTES.ROOT} />
+              <Route component={Flow} path={FLOW_ROUTES.ROOT} />
+              <Route component={Panel} path={COMPANY_ROUTES.ROOT} />
             </Switch>
           </div>
 
+          <CompanyCreate opened={companies.length === 0} />
           <Subscriber />
           <Sudo />
         </>

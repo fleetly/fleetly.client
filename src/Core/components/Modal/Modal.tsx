@@ -65,16 +65,18 @@ const Modal: React.FC<ModalProps> = ({
         />
 
         <div className={classNames(classes?.container, styles.Container)}>
-          {(modal?.title || title) && (
-            <H3 className={classNames(classes?.title, styles.Title)}>
-              {modal?.title || title}
-            </H3>
-          )}
+          <div className={styles.Wrapper}>
+            {(modal?.title || title) && (
+              <H3 className={classNames(classes?.title, styles.Title)}>
+                {modal?.title || title}
+              </H3>
+            )}
 
-          <div className={classNames(classes?.content, styles.Content)}>
-            {typeof children === 'function'
-              ? children(modal?.data || {})
-              : children}
+            <div className={classNames(classes?.content, styles.Content)}>
+              {typeof children === 'function'
+                ? children(modal?.data || {})
+                : children}
+            </div>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ import succeededImage2x from './assets/succeeded@1x.png';
 
 // Components
 import Button from '@components/Button';
-import Empty from '@components/Empty';
+import { Hero } from '@components/Hero';
 import Image from '@components/Image';
 import Modal from '@components/Modal';
 
@@ -26,7 +26,7 @@ export const PlansStatus: React.FC = () => {
   return (
     <>
       <Modal id={succeededModal.id!}>
-        <Empty
+        <Hero
           actions={
             <Button color="blue" onClick={handleCloseClick}>
               Start
@@ -44,7 +44,7 @@ export const PlansStatus: React.FC = () => {
       </Modal>
 
       <Modal id={canceledModal.id!}>
-        <Empty
+        <Hero
           actions={
             <Button color="blue" onClick={handleCloseClick}>
               Close
