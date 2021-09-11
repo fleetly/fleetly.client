@@ -10,3 +10,7 @@
     overflow: hidden visible;
   }
 }
+
+:global .grecaptcha-badge {
+  z-index: 2;
+}

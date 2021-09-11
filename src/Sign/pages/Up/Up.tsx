@@ -1,6 +1,7 @@
 import { ApolloError, useMutation } from '@apollo/client';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Form } from 'react-final-form';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 import * as yup from 'yup';
 
 // Components
@@ -35,20 +36,25 @@ export const SignUp: React.FC = () => {
   // Setup
   const { login } = useSession();
 
+  // State
+  const [token, setToken] = useState<string>();
+
   // Mutations
   const [signUp] = useMutation<{ register: IUser }>(SIGN_UP);
 
-  // Handlers
   const handleFormSubmit = useCallback(
     async (variables) => {
       try {
-        const { data } = await signUp({ variables });
+        const { data } = await signUp({
+          context: { headers: { recaptcha: token } },
+          variables
+        });
         login(data?.register!);
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [login, signUp]
+    [login, signUp, token]
   );
 
   return (
@@ -94,8 +100,15 @@ export const SignUp: React.FC = () => {
             />
           </Fieldset>
 
+          <GoogleReCaptcha onVerify={setToken} />
+
           <Actions>
-            <Button color="blue" loaded={submitting} type="submit">
+            <Button
+              color="blue"
+              disabled={!token}
+              loaded={submitting}
+              type="submit"
+            >
               Sign Up
             </Button>
           </Actions>

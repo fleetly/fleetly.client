@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
@@ -34,6 +36,8 @@ import '@fortawesome/fontawesome-pro/css/all.min.css';
 
 // Utils
 import * as serviceWorker from '@utils/serviceWorker';
+
+dotenv.config();
 
 let refreshTokenOperation: any = null;
 const store = createStore();

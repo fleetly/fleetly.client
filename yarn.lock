@@ -11227,6 +11227,13 @@ react-flow-renderer@^9.4.2:
     react-redux "^7.2.3"
     redux "^4.0.5"
 
+react-google-recaptcha-v3@^1.9.5:
+  version "1.9.5"
+  resolved "https://registry.yarnpkg.com/react-google-recaptcha-v3/-/react-google-recaptcha-v3-1.9.5.tgz#208834732c1e42a6f8503ab186de12398b8bf63f"
+  integrity sha512-WmrhBMCnJovUPdA5S+9SmYlPTPIDXmUJWlHlOnJAXdU0cyZcVkqwln3kIj/NLl8Y6HH/4lKgno5N/e1N+fEtfg==
+  dependencies:
+    hoist-non-react-statics "^3.3.2"
+
 react-helmet@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-6.0.0.tgz#fcb93ebaca3ba562a686eb2f1f9d46093d83b5f8"

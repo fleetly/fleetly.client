@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import {
   Redirect,
   Route,
@@ -22,6 +23,8 @@ import { SignConfirm } from './pages/Confirm';
 import { SignIn } from './pages/In';
 import { SignProfile } from './pages/Profile';
 import { SignUp } from './pages/Up';
+
+const { REACT_APP_GOOGLE_RECAPTCHA_KEY } = process.env;
 
 const Sign: React.FC<RouteChildrenProps> = () => {
   // Setup
@@ -49,28 +52,30 @@ const Sign: React.FC<RouteChildrenProps> = () => {
   }, [isAuthorized, isConfirmed, user]);
 
   return (
-    <div className={styles.Root}>
-      <Switch>
-        <Redirect exact {...redirectProps} />
-      </Switch>
+    <GoogleReCaptchaProvider reCaptchaKey={REACT_APP_GOOGLE_RECAPTCHA_KEY}>
+      <div className={styles.Root}>
+        <Switch>
+          <Redirect exact {...redirectProps} />
+        </Switch>
 
-      <div className={styles.Cover}>
-        <div className={styles.Tree} />
-        <div className={styles.Land} />
-        <div className={styles.Rocket} />
+        <div className={styles.Cover}>
+          <div className={styles.Tree} />
+          <div className={styles.Land} />
+          <div className={styles.Rocket} />
+        </div>
+
+        <TransitionGroup className={styles.Sidebar}>
+          <CSSTransition key={location.key} timeout={600}>
+            <Switch location={location}>
+              <Route component={SignConfirm} path={SIGN_ROUTES.CONFIRM} />
+              <Route component={SignIn} path={SIGN_ROUTES.IN} />
+              <Route component={SignProfile} path={SIGN_ROUTES.PROFILE} />
+              <Route component={SignUp} path={SIGN_ROUTES.UP} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
       </div>
-
-      <TransitionGroup className={styles.Sidebar}>
-        <CSSTransition key={location.key} timeout={600}>
-          <Switch location={location}>
-            <Route component={SignConfirm} path={SIGN_ROUTES.CONFIRM} />
-            <Route component={SignIn} path={SIGN_ROUTES.IN} />
-            <Route component={SignProfile} path={SIGN_ROUTES.PROFILE} />
-            <Route component={SignUp} path={SIGN_ROUTES.UP} />
-          </Switch>
-        </CSSTransition>
-      </TransitionGroup>
-    </div>
+    </GoogleReCaptchaProvider>
   );
 };
 
