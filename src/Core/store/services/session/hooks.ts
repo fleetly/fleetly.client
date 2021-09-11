@@ -1,3 +1,4 @@
+import { useApolloClient } from '@apollo/client';
 import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -14,6 +15,7 @@ import { IUser } from '@interfaces/user.interface';
 
 const useSession = () => {
   // Setup
+  const client = useApolloClient();
   const dispatch = useDispatch();
 
   // Data
@@ -33,7 +35,11 @@ const useSession = () => {
     dispatch
   ]);
 
-  const logout = useCallback(() => dispatch(logoutAction()), [dispatch]);
+  const logout = useCallback(() => {
+    client.clearStore();
+    return dispatch(logoutAction());
+  }, [client, dispatch]);
+
   const setUser = useCallback((user: IUser) => dispatch(setUserAction(user)), [
     dispatch
   ]);

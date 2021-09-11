@@ -18,7 +18,7 @@ export default (state = initialState, action: Action): Store.SessionState => {
     case LOGIN:
       return { ...state, isAuthorized: true, user: action.payload! };
     case LOGOUT:
-      return { ...state, isAuthorized: false };
+      return { ...state, isAuthorized: false, user: null };
     case SET_USER:
       return { ...state, user: action.payload! };
     default:

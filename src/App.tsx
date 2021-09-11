@@ -31,10 +31,12 @@ const Sign = lazy(() => import('./Sign'));
 
 const App: React.FC<{}> = () => {
   // Setup
-  const { setUser } = useSession();
+  const { setUser, user } = useSession();
 
   // Data
-  const { data: { user } = {}, loading } = useQuery<{ user: IUser }>(GET_USER, {
+  const { loading } = useQuery<{
+    user: IUser;
+  }>(GET_USER, {
     onCompleted: (res) => setUser(res.user)
   });
 
