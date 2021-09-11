@@ -20,8 +20,11 @@
 }
 
 .Sidebar {
+  align-self: flex-start;
   display: flex;
   flex: 0 0 260px;
   flex-direction: column;
   padding: 0 40px;
+  position: sticky;
+  top: 0;
 }

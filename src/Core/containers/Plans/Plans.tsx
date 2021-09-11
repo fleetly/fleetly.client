@@ -59,7 +59,7 @@ const Plans: React.FC<PlansProps> = ({ subscription }) => {
               </div>
             )}
 
-            {subscription?.plan.type !== PlanType.LITE && (
+            {subscription && subscription.plan.type !== PlanType.LITE && (
               <Badge
                 className={styles.Badge}
                 color="orange"

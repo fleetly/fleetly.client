@@ -1,8 +1,12 @@
+@import '~@styles/breakpoints.scss';
 @import '~@styles/reset.scss';
 
 .Root {
   display: flex;
   min-height: 100vh;
-  overflow-x: hidden;
   width: 100%;
+
+  @include breakpoints(mobile) {
+    overflow: hidden visible;
+  }
 }
