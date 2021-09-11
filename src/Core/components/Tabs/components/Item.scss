@@ -2,7 +2,7 @@
 
 .Root {
   align-items: center;
-  color: $color-gray-500;
+  color: $color-text-secondary;
   display: flex;
   font-weight: 600;
   justify-content: center;
@@ -10,14 +10,12 @@
   transition: all .2s;
 
   &:hover {
-    color: $color-gray-700;
+    color: $color-text;
     cursor: pointer;
   }
 
   &Is {
     &Selected {
-      color: $color-gray-800;
-
       .Line {
         opacity: 1;
         transform: translateY(0);
@@ -27,10 +25,10 @@
 }
 
 .Line {
-  background-color: $color-primary;
+  background-color: $color-blue;
   border-radius: 2px;
   bottom: 0;
-  box-shadow: 0 4px 10px rgba($color-primary, .4);
+  box-shadow: 0 4px 10px rgba($color-blue, .4);
   height: 2px;
   left: 0;
   opacity: 0;

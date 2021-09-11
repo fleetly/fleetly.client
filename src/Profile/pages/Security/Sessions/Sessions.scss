@@ -1,13 +1,13 @@
 @import '~@styles/colors';
 
 .Description {
-  color: $color-gray-500;
+  color: $color-text-secondary;
   font-weight: 500;
   margin: 4px 0 0;
 }
 
 .Device {
-  color: $color-primary;
+  color: $color-blue;
   display: flex !important;
   font-size: 20px;
   justify-content: center;

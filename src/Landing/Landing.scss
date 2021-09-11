@@ -2,7 +2,7 @@
 @import '~@styles/colors';
 
 .Root {
-  background: $color-gray-50;
+  background: $background-lighten;
   width: 100%;
 }
 
@@ -63,7 +63,7 @@
 
 .Intro {
   background-image: linear-gradient(to bottom, #76adff, #5461ea);
-  color: $color-gray-0;
+  color: $color-white;
   height: 1400px;
   width: 100%;
 }

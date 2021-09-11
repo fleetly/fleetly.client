@@ -17,7 +17,7 @@
   background: transparent;
   border: 0;
   border-radius: 16px;
-  color: $color-gray-600;
+  color: $color-text-secondary;
   font-family: inherit;
   font-size: 12px;
   font-weight: 700;
@@ -26,17 +26,17 @@
 
   &:hover,
   &IsSelected {
-    background: rgba($color-blue-300, .2);
-    color: $color-blue-300;
+    background: lighten($color-blue, 28);
+    color: $color-blue;
     cursor: pointer;
   }
 }
 
 .Range {
   align-items: center;
-  background: $color-gray-100;
+  background: $background-lighten;
   border-radius: 16px;
-  color: $color-gray-800;
+  color: $color-text;
   display: flex;
   justify-content: flex-end;
   margin: 0 0 0 32px;

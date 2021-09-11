@@ -10,7 +10,7 @@
 
   &Is {
     &Opened {
-      box-shadow: -20px 0 40px rgba($color-gray-1000, .1);
+      box-shadow: -20px 0 40px rgba($color-dark, .1);
       flex: 0 0 330px;
       transition: flex .2s, box-shadow .2s .3s ease-out;
 
@@ -85,7 +85,7 @@
 }
 
 .Wrapper {
-  background: $color-gray-0;
+  background: $color-white;
   height: 100%;
   opacity: 0;
   overflow: hidden;

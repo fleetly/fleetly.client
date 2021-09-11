@@ -1,7 +1,7 @@
 @import '~@styles/colors.scss';
 
 .Careful {
-  color: $color-warning;
+  color: $color-orange;
   font-weight: 600;
   margin: 12px 0 0;
 }
@@ -11,7 +11,7 @@
 }
 
 .Description {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   font-weight: 500;
   margin: 0 0 32px;
   text-align: center;

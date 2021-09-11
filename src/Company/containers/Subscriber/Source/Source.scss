@@ -21,7 +21,7 @@
 }
 
 .Id {
-  color: $color-gray-500;
+  color: $color-text-secondary;
   margin: 4px 0 0;
   text-transform: uppercase;
 }
@@ -33,7 +33,7 @@
   margin: 20px 0 0;
 
   &Delimiter {
-    background: $color-gray-300;
+    background: $background-light;
     height: 100%;
     width: 2px;
   }
@@ -53,7 +53,7 @@
 }
 
 .Label {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   margin: 0 0 4px;
 }
 
@@ -72,6 +72,6 @@
 }
 
 .Timezone {
-  color: $color-blue-200;
+  color: lighten($color-blue, 16);
   margin: 4px 0 0;
 }

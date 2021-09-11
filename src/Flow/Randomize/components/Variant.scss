@@ -42,7 +42,7 @@
 
 .Input {
   appearance: none;
-  background-color: $color-gray-300;
+  background-color: $background-light;
   border-radius: 2px;
   height: 4px;
   margin: 0;
@@ -52,8 +52,8 @@
 
   &::-webkit-slider-thumb {
     appearance: none;
-    background: $color-gray-0;
-    border: 3px solid $color-secondary;
+    background: $color-white;
+    border: 3px solid $color-purple;
     border-radius: 100%;
     height: 10px;
     position: relative;
@@ -62,23 +62,22 @@
     z-index: 2;
 
     &:hover {
-      box-shadow: 0 0 0 4px rgba($color-secondary, .2);
+      box-shadow: 0 0 0 4px rgba($color-purple, .2);
       cursor: pointer;
     }
   }
 }
 
 .Name {
-  color: $color-gray-700;
   margin: 0 4px 0 0;
 }
 
 .Title {
-  color: $color-gray-500;
+  color: $color-text-secondary;
 }
 
 .Value {
-  background-color: $color-secondary;
+  background-color: $color-purple;
   border-radius: 2px;
   height: 4px;
   pointer-events: none;

@@ -11,7 +11,7 @@
   width: calc(100% + 24px);
 
   &:not(:first-child) {
-    border-top: 2px solid $color-background-2;
+    border-top: 2px solid $background-light;
   }
 
   &Is {

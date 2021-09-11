@@ -10,8 +10,8 @@
 }
 
 .Root {
-  background: $color-gray-0;
-  border: 1.5px solid $color-gray-300;
+  background: $color-white;
+  border: 1.5px solid $background-light;
   border-radius: 8px;
   font-family: inherit;
   font-size: 12px;
@@ -22,7 +22,7 @@
   width: 100%;
 
   &:hover:not(:active) {
-    background: $color-gray-50;
+    background: $background-lighten;
     cursor: pointer;
   }
 

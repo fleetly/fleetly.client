@@ -3,7 +3,7 @@
 
 .Root {
   background:
-    $color-gray-0 url('./assets/bg-desktop.png') no-repeat center
+    $color-white url('./assets/bg-desktop.png') no-repeat center
     center / contain;
   display: flex;
   flex: 1 1 auto;
@@ -48,13 +48,13 @@
 }
 
 .Brand {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   margin: -6px 0 0 16px;
   text-decoration: none;
 }
 
 .Description {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   margin: 8px 0 0;
 }
 
@@ -87,11 +87,11 @@
 }
 
 .Oops {
-  color: $color-gray-800;
+  color: $color-text;
   margin: 0 0 -8px;
 }
 
 .Title {
-  color: $color-primary;
-  text-shadow: 0 10px 4px rgba($color-primary, .1);
+  color: $color-blue;
+  text-shadow: 0 10px 4px rgba($color-blue, .1);
 }

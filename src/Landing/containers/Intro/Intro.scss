@@ -30,27 +30,13 @@
   }
 }
 
-// .Blue {
-//   background: url('../../assets/intro-blue.svg') no-repeat center bottom / cover;
-//   height: 100%;
-//   opacity: 1;
-//   position: absolute;
-//   width: 100%;
-//   z-index: 1;
-
-//   @include breakpoints(mobile) {
-//     background-image: linear-gradient(to bottom, #76adff, #5461ea);
-//     height: 900px;
-//   }
-// }
-
 .Container {
   align-items: center;
   display: flex;
 }
 
 .Content {
-  color: $color-blue-300;
+  color: $color-blue;
   margin: 140px 0 0;
   max-width: 420px;
   position: relative;

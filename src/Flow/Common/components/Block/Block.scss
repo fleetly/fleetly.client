@@ -34,7 +34,7 @@
 }
 
 .Actions {
-  background: $color-gray-0;
+  background: $color-white;
   border-radius: 12px;
   display: flex;
   height: 32px;
@@ -50,13 +50,13 @@
 }
 
 .Card {
-  background: rgba($color-gray-0, .9);
+  background: rgba($color-white, .9);
   position: relative;
   z-index: 2;
 }
 
 .Next {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   margin: 20px 0 0;
   position: relative;
   text-align: right;

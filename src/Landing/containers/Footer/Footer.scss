@@ -20,7 +20,7 @@
 }
 
 .Copyright {
-  color: rgba($color-gray-0, .6);
+  color: rgba($color-white, .6);
 
   @include breakpoints(mobile) {
     margin: 20px 0 0;
@@ -28,10 +28,10 @@
 }
 
 .Link {
-  color: rgba($color-gray-0, .8);
+  color: rgba($color-white, .8);
 
   &:hover {
-    color: $color-gray-0;
+    color: $color-white;
   }
 }
 

@@ -39,11 +39,11 @@
       }
 
       .Icon {
-        border-color: $color-gray-300;
+        border-color: $background-light;
       }
 
       .Label {
-        color: $color-gray-300;
+        color: $background-light;
       }
     }
 
@@ -98,13 +98,13 @@
     cursor: pointer;
 
     .Icon {
-      border-color: $color-gray-0;
+      border-color: $color-white;
     }
   }
 }
 
 .Description {
-  color: $color-gray-500;
+  color: $color-text-secondary;
   margin: 2px 0 0;
 }
 
@@ -119,9 +119,9 @@
   width: 20px;
 
   &::after {
-    background: $color-primary;
+    background: $color-blue;
     border-radius: 100%;
-    box-shadow: 0 2px 3px 0 rgba($color-primary, .6);
+    box-shadow: 0 2px 3px 0 rgba($color-blue, .6);
     content: '';
     display: block;
     height: 10px;
@@ -132,7 +132,7 @@
 }
 
 .Info {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   composes: OptionDescription from '../Select.scss';
   font-weight: 500;
   line-height: 22px;

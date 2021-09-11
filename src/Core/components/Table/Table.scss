@@ -20,16 +20,16 @@
     }
 
     &:hover {
-      background: $color-blue-50;
+      background: lighten($color-blue, 32);
       border-radius: 8px;
       cursor: pointer;
 
       .Td {
         & button:not(:hover) {
-          border-color: $color-gray-0;
+          border-color: $color-white;
 
           &:not(:hover) {
-            background: $color-gray-0;
+            background: $color-white;
           }
         }
       }
@@ -45,7 +45,7 @@
 }
 
 .Thead {
-  border-bottom: 2px solid $color-gray-100;
+  border-bottom: 2px solid $background-lighten;
   display: flex;
   height: 50px;
   padding: 0 28px;
@@ -57,7 +57,7 @@
 
 .Th {
   align-items: center;
-  color: $color-gray-500;
+  color: $color-text-secondary;
   display: flex;
   font-size: 12px;
   font-weight: 600;

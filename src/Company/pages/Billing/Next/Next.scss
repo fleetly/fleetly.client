@@ -29,7 +29,7 @@
 }
 
 .Date {
-  color: $color-gray-600;
+  color: $color-text-secondary;
 }
 
 .Header {
@@ -48,7 +48,7 @@
 }
 
 .Method {
-  color: $color-gray-500;
+  color: $color-text-secondary;
   display: block;
   font-size: 12px;
   margin: 12px 0 0;
@@ -56,7 +56,7 @@
   width: 100%;
 
   &:hover {
-    color: $color-primary;
+    color: $color-blue;
   }
 
   & > i {
@@ -65,7 +65,7 @@
 }
 
 .Period {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   margin: 0 0 0 8px;
   position: relative;
   top: -4px;
@@ -78,5 +78,5 @@
 
 .Limit,
 .Title {
-  color: $color-blue-300;
+  color: $color-blue;
 }

@@ -11,11 +11,11 @@
 
     &Focused {
       .Container {
-        background: $color-background;
+        background: $background-lighten;
         border-color: $color-blue;
 
         &:hover {
-          background: $color-background;
+          background: $background-lighten;
           border-color: $color-blue;
         }
       }
@@ -27,7 +27,7 @@
         border-color: $color-red;
 
         &:hover {
-          background: $color-background;
+          background: $background-lighten;
           border-color: $color-red;
         }
       }
@@ -37,8 +37,7 @@
 
 .Addition {
   align-items: center;
-  background: darken($color-background, 10);
-  border-right: 2px solid darken($color-background, 10);
+  background: $background-light;
   color: $color-text-secondary;
   display: flex;
   height: 100%;
@@ -46,8 +45,8 @@
 }
 
 .Container {
-  background: $color-background;
-  border: 2px solid darken($color-background, 10);
+  background: $background-lighten;
+  border: 2px solid $background-light;
   border-radius: 20px;
   display: flex;
   height: 40px;

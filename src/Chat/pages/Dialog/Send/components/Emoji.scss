@@ -6,10 +6,10 @@
 }
 
 .Picker {
-  background-color: $color-gray-0;
+  background-color: $color-white;
   border-radius: 20px;
   bottom: 72px;
-  box-shadow: 0 20px 40px 0 rgba($color-gray-1000, .1);
+  box-shadow: 0 20px 40px 0 rgba($color-dark, .1);
   height: 650px;
   left: 0;
   overflow: hidden;
@@ -26,7 +26,7 @@
 
     &-anchor {
       &-selected {
-        color: $color-blue-300 !important;
+        color: $color-blue !important;
       }
 
       &-bar {
@@ -43,7 +43,7 @@
 
     &-bar {
       border: 0;
-      border-top: 2px solid $color-gray-100;
+      border-top: 2px solid $background-lighten;
       flex: 0 0 64px;
       order: 3;
       padding: 0 28px;
@@ -54,7 +54,7 @@
       margin: 8px 0 0;
 
       &-label {
-        color: $color-gray-500;
+        color: $color-text-secondary;
         font-family: 'Montserrat', sans-serif;
         font-size: 12px;
 
@@ -68,8 +68,8 @@
       margin: 28px 28px 8px;
 
       & > input {
-        background: $color-gray-100;
-        border: 2px solid $color-gray-300;
+        background: $background-lighten;
+        border: 2px solid $background-light;
         border-radius: 20px;
         font-family: 'Montserrat', sans-serif;
         font-size: 12px;
@@ -79,7 +79,7 @@
         transition: all .2s;
 
         &:focus {
-          border-color: rgba($color-blue-300, .8);
+          border-color: rgba($color-blue, .8);
         }
       }
 

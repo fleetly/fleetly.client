@@ -40,7 +40,7 @@
 
       :global .react-select {
         &__control {
-          background: rgba($color-primary, .1);
+          background: rgba($color-blue, .1);
           border: 0;
           border-radius: 16px;
           min-height: 32px;
@@ -55,8 +55,8 @@
     &Outlined {
       :global .react-select {
         &__control {
-          background: $color-gray-100;
-          border: 2px solid $color-gray-300;
+          background: $background-lighten;
+          border: 2px solid $background-light;
           border-radius: 20px;
           min-height: 40px;
           transition: all .2s;
@@ -71,7 +71,7 @@
           }
 
           &--is-focused {
-            background: $color-background;
+            background: $background-lighten;
             border-color: $color-blue !important;
             box-shadow: none;
           }
@@ -101,7 +101,7 @@
       }
 
       &:not(:first-child) {
-        border-top: 2px solid rgba($color-primary, .1);
+        border-top: 2px solid rgba($color-blue, .1);
       }
 
       & > * {
@@ -123,17 +123,17 @@
 
     &__input {
       & > input {
-        color: $color-gray-800 !important;
+        color: $color-text !important;
         font-family: inherit;
         font-weight: inherit;
       }
     }
 
     &__menu {
-      background: $color-gray-0;
-      border: 1px solid rgba($color-primary, .2);
+      background: $color-white;
+      border: 1px solid rgba($color-blue, .2);
       border-radius: 20px;
-      box-shadow: 0 20px 40px 0 rgba($color-gray-1000, .1);
+      box-shadow: 0 20px 40px 0 rgba($color-dark, .1);
       margin: 12px 0 0;
       max-width: 320px;
       min-width: 100%;

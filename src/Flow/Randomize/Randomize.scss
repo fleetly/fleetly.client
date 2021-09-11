@@ -5,7 +5,7 @@
 }
 
 .Description {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   margin: 16px 0 0;
 }
 
@@ -14,13 +14,13 @@
 }
 
 .List {
-  background: $color-gray-100;
-  border: 2px solid $color-gray-300;
+  background: $background-lighten;
+  border: 2px solid $background-light;
   border-radius: 16px;
   margin: 28px 0 0;
   padding: 0 20px;
 
   & > *:not(:first-child) {
-    border-top: 2px solid $color-gray-300;
+    border-top: 2px solid $background-light;
   }
 }

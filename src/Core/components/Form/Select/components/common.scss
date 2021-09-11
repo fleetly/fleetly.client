@@ -24,14 +24,14 @@
 
       .CaretIcon {
         background: none;
-        color: $color-gray-0;
+        color: $color-white;
         font-size: 16px;
         text-shadow: none;
       }
     }
 
     &Outlined {
-      border: 2px solid rgba($color-primary, .4);
+      border: 2px solid rgba($color-blue, .4);
       height: 30px;
       width: 30px;
     }
@@ -39,15 +39,15 @@
 
   &Icon {
     align-items: center;
-    background: rgba($color-primary, .1);
+    background: rgba($color-blue, .1);
     border-radius: 100%;
-    color: $color-primary;
+    color: $color-blue;
     composes: CaretIcon from '../Select.scss';
     display: flex !important;
     font-size: 18px;
     height: 26px;
     justify-content: center;
-    text-shadow: 0 2px 3px rgba($color-primary, .4);
+    text-shadow: 0 2px 3px rgba($color-blue, .4);
     transition: all .2s;
     width: 26px;
   }
@@ -68,7 +68,7 @@
   margin: 32px 0;
 
   &Description {
-    color: $color-gray-600;
+    color: $color-text-secondary;
     margin: 12px 0 0;
     max-width: 160px;
     text-align: center;
@@ -76,9 +76,9 @@
 
   &Icon {
     align-items: center;
-    border: 4px solid rgba($color-primary, .5);
+    border: 4px solid rgba($color-blue, .5);
     border-radius: 100%;
-    color: $color-primary;
+    color: $color-blue;
     display: flex !important;
     font-size: 24px;
     height: 60px;
@@ -98,7 +98,7 @@
 
 .Spinner {
   animation: spin .8s linear infinite;
-  color: $color-primary;
+  color: $color-blue;
   font-size: 20px;
   margin: 0 6px;
 

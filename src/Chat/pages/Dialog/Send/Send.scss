@@ -12,8 +12,8 @@
 
 .Closed {
   align-items: center;
-  background: lighten($color-background, 3);
-  border-top: 2px solid $color-background;
+  background: lighten($background-lighten, 3);
+  border-top: 2px solid $background-lighten;
   color: $color-text-secondary;
   display: flex;
   height: 80px;
@@ -23,7 +23,7 @@
 
 .Form {
   align-items: center;
-  border-top: 2px solid $color-background;
+  border-top: 2px solid $background-lighten;
   display: flex;
   min-height: 80px;
   padding: 16px 28px;

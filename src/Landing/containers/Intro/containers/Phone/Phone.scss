@@ -13,7 +13,7 @@
 
   &::after {
     bottom: 0;
-    box-shadow: 20px 20px 80px rgba($color-gray-1000, 1);
+    box-shadow: 20px 20px 80px rgba($color-dark, .1);
     content: '';
     display: block;
     height: 40px;
@@ -34,9 +34,9 @@
 }
 
 .Container {
-  background: $color-gray-50;
+  background: $background-lighten;
   border-radius: 52px 52px 0 0;
-  box-shadow: 0 0 0 8px rgba($color-gray-0, .2);
+  box-shadow: 0 0 0 8px rgba($color-white, .2);
   display: flex;
   flex: 1 1 calc(100% - 160px);
   flex-direction: column;
@@ -60,8 +60,8 @@
 
 .Form {
   align-items: center;
-  background: $color-gray-100;
-  border: 2px solid $color-gray-300;
+  background: $background-lighten;
+  border: 2px solid $background-light;
   border-radius: 28px;
   color: rgba($color-brown, .6);
   display: flex;
@@ -81,10 +81,15 @@
   background-image:
     linear-gradient(
       to bottom,
-      $color-green-200,
-      $color-green-400 20%
+      lighten($color-green, 32),
+      lighten($color-green, 10) 20%
     ),
-    linear-gradient(to top, $color-green-400, 20%, $color-green-200);
+    linear-gradient(
+      to top,
+      lighten($color-green, 10),
+      20%,
+      lighten($color-green, 32)
+    );
   border: 16px solid #757dff;
   border-radius: 68px;
   box-shadow: 2px 2px 0 2px #6870ff, 10px 10px 0 8px #676bde;

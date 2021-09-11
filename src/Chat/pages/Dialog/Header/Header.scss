@@ -1,7 +1,7 @@
 @import '~@styles/colors.scss';
 
 .Root {
-  border-bottom: 2px solid $color-background;
+  border-bottom: 2px solid $background-lighten;
   flex: 0 0 80px;
   height: 80px;
   overflow: hidden;

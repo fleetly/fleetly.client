@@ -16,9 +16,9 @@
 }
 
 .Root {
-  background: $color-gray-0;
+  background: $color-white;
   border-radius: 20px;
-  box-shadow: 0 20px 40px 0 rgba($color-gray-1000, .1);
+  box-shadow: 0 20px 40px 0 rgba($color-dark, .1);
   display: flex;
   justify-content: space-between;
   overflow: hidden;
@@ -28,19 +28,19 @@
 
   &Variant {
     &Alert {
-      @include variant($color-warning);
+      @include variant($color-orange);
     }
 
     &Danger {
-      @include variant($color-danger);
+      @include variant($color-red);
     }
 
     &Info {
-      @include variant($color-primary);
+      @include variant($color-blue);
     }
 
     &Success {
-      @include variant($color-success);
+      @include variant($color-green);
     }
   }
 }
@@ -59,7 +59,7 @@
 }
 
 .Description {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   margin: 4px 0 0;
 }
 

@@ -1,17 +1,13 @@
 @import '~@styles/colors';
 
 @mixin color($color) {
-  &:hover {
-    background: $color-gray-200; // rgba($color, .1);
-  }
-
   .Title {
     color: $color;
   }
 }
 
 .Root {
-  background: $color-gray-100;
+  background: $background-lighten;
   border-radius: 12px;
   max-width: 100%;
   overflow: hidden;
@@ -22,6 +18,7 @@
   @include coloring;
 
   &:hover {
+    background: $background-light;
     cursor: pointer;
 
     .Actions {
@@ -34,7 +31,7 @@
     }
 
     .Value {
-      color: $color-gray-800;
+      color: $color-text;
     }
   }
 }
@@ -51,8 +48,8 @@
   transition: all .2s;
 
   & > button {
-    background: $color-gray-0;
-    box-shadow: 0 6px 12px rgba($color-gray-1000, .1);
+    background: $color-white;
+    box-shadow: 0 6px 12px rgba($color-dark, .1);
     height: 32px;
     min-width: 32px;
     width: 32px;
@@ -60,8 +57,8 @@
 }
 
 .Cover {
-  background: $color-gray-200;
-  box-shadow: -12px 0 12px $color-gray-200;
+  background: $background-light;
+  box-shadow: -12px 0 12px $background-light;
   height: 100%;
   opacity: 0;
   position: absolute;
@@ -72,7 +69,7 @@
 }
 
 .Value {
-  color: $color-gray-600;
+  color: $color-text-secondary;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

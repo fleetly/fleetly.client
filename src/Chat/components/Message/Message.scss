@@ -1,7 +1,7 @@
 @import '~@styles/colors';
 
 .Root {
-  background-color: $color-background;
+  background-color: $background-lighten;
   border-radius: 16px;
   display: flex;
   padding: 7px 12px;
@@ -27,7 +27,7 @@
 
   &Is {
     &Read {
-      color: $color-blue-500;
+      color: $color-blue;
     }
   }
 }

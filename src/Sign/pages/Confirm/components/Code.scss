@@ -8,8 +8,8 @@
 
   & > input {
     -moz-appearance: textfield;
-    background: $color-background;
-    border: 2px solid darken($color-background, 10);
+    background: $background-lighten;
+    border: 2px solid darken($background-lighten, 10);
     border-radius: 8px;
     color: $color-dark;
     font-family: inherit;

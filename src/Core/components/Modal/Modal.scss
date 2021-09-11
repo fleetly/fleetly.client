@@ -14,7 +14,7 @@
 }
 
 .Backdrop {
-  background: rgba($color-gray-1000, .1);
+  background: rgba($color-dark, .1);
   height: 100%;
   left: 0;
   position: absolute;
@@ -24,7 +24,7 @@
 }
 
 .Container {
-  background: $color-gray-0;
+  background: $color-white;
   border-radius: 20px;
   box-shadow: 0 40px 80px 0 rgba(0, 0, 0, .06);
   display: flex;

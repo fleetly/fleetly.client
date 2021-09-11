@@ -16,7 +16,7 @@
 .Link {
   align-items: center;
   border-radius: 20px;
-  color: $color-gray-600;
+  color: $color-text-secondary;
   display: flex;
   font-weight: 600;
   letter-spacing: -.2px;
@@ -25,13 +25,13 @@
   transition: all .2s;
 
   &:hover {
-    color: $color-primary;
+    color: $color-blue;
   }
 
   &Is {
     &Selected {
-      background: rgba($color-primary, .1);
-      color: $color-primary;
+      background: rgba($color-blue, .1);
+      color: $color-blue;
     }
   }
 }
@@ -50,7 +50,7 @@
 }
 
 .Title {
-  color: $color-gray-800;
+  color: $color-text;
   font-weight: 600;
   letter-spacing: -.2px;
   margin: 0 0 20px;

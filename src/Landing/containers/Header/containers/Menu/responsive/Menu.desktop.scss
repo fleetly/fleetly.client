@@ -49,10 +49,10 @@
 
   &:hover {
     .Control {
-      background: $color-gray-0;
+      background: $color-white;
       box-shadow:
-        0 -10px 10px 0 rgba($color-gray-0, .6),
-        0 10px 10px 0 rgba($color-gray-1000, .2);
+        0 -10px 10px 0 rgba($color-white, .6),
+        0 10px 10px 0 rgba($color-dark, .2);
       cursor: pointer;
     }
 
@@ -65,7 +65,7 @@
   }
 
   &Title {
-    color: $color-green-500;
+    color: $color-green;
     text-align: center;
     width: 100%;
   }
