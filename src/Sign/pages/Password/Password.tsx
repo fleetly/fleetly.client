@@ -1,7 +1,7 @@
 import { ApolloError, useMutation } from '@apollo/client';
 import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useHistory, useParams } from 'react-router';
 import * as yup from 'yup';
 
 // Components
@@ -14,48 +14,46 @@ import {
   gqlErrorHandler,
   yupValidator
 } from '@components/Form';
-import Link from '@components/Link';
 import { H1, H2, Text } from '@components/Typography';
 
 // GraphQL
-import SIGN_UP from './Up.gql';
-
-// Interfaces
-import { IUser } from '@interfaces/user.interface';
+import RECOVER from './Password.gql';
 
 // Routes
 import { SIGN_ROUTES } from '@sign/Sign.routes';
 
-// Store
-import { useSession } from '@store';
-
 // Styles
-import styles from './Up.scss';
+import styles from '@sign/Sign.scss';
 
-export const SignUp: React.FC = () => {
+export interface SignPasswordFormValues {
+  newPassword: string;
+}
+
+export const SignPassword: React.FC = () => {
   // Setup
-  const { executeRecaptcha } = useGoogleReCaptcha();
-  const { login } = useSession();
+  const { replace } = useHistory();
+  const { token } = useParams<{ token: string }>();
 
   // Mutations
-  const [signUp] = useMutation<{ register: IUser }>(SIGN_UP);
+  const [recover] = useMutation(RECOVER);
 
+  // Handlers
   const handleFormSubmit = useCallback(
-    async (variables) => {
+    async ({ newPassword }: SignPasswordFormValues) => {
       try {
-        const token = await executeRecaptcha!('login');
-
-        const { data } = await signUp({
-          context: { headers: { recaptcha: token } },
-          variables
+        await recover({
+          variables: {
+            newPassword,
+            token
+          }
         });
 
-        login(data?.register!);
+        replace(SIGN_ROUTES.IN);
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [executeRecaptcha, login, signUp]
+    [recover, replace, token]
   );
 
   return (
@@ -63,33 +61,31 @@ export const SignUp: React.FC = () => {
       onSubmit={handleFormSubmit}
       validate={yupValidator(
         yup.object().shape({
-          email: yup.string().required().email(),
           confirmPassword: yup
             .string()
             .required()
-            .oneOf([yup.ref('password'), null], 'Passwords must match'),
-          password: yup.string().required()
+            .oneOf([yup.ref('newPassword'), null], 'Passwords must match'),
+          newPassword: yup.string().required()
         })
       )}
     >
       {({ handleSubmit, submitting }) => (
         <form onSubmit={handleSubmit}>
-          <H2 className={styles.Title}>Welcome to</H2>
-          <H1 className={styles.Fleetly}>Fleetly</H1>
+          <H2 className={styles.Title}>Set New</H2>
+          <H1 className={styles.Fleetly}>Password</H1>
 
           <Text className={styles.Description} component="div">
-            Already a user? <Link to={SIGN_ROUTES.IN}>Login now</Link>
+            Enter the email address with your account and we will send you a
+            link to reset your password
           </Text>
 
           <Error />
 
           <Fieldset>
-            <Field disabled={submitting} label="Email" name="email" />
-
             <Field
               disabled={submitting}
-              label="Password"
-              name="password"
+              label="New password"
+              name="newPassword"
               type="password"
             />
 
@@ -103,16 +99,9 @@ export const SignUp: React.FC = () => {
 
           <Actions>
             <Button color="blue" loaded={submitting} type="submit">
-              Sign Up
+              Save password
             </Button>
           </Actions>
-
-          <Text className={styles.Disclaimer} component="div" size="small">
-            By creating an account, you agree to the{' '}
-            <Link to="https://app.termly.io/document/terms-of-use-for-website/39452092-d91a-4396-9ec4-e207df253d0c">
-              Terms of Service
-            </Link>
-          </Text>
         </form>
       )}
     </Form>

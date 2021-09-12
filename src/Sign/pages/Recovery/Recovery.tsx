@@ -2,6 +2,7 @@ import { ApolloError, useMutation } from '@apollo/client';
 import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 
 // Components
@@ -10,35 +11,27 @@ import {
   Actions,
   Error,
   Field,
-  Fieldset,
   gqlErrorHandler,
   yupValidator
 } from '@components/Form';
-import Link from '@components/Link';
 import { H1, H2, Text } from '@components/Typography';
 
 // GraphQL
-import SIGN_IN from './In.gql';
-
-// Interfaces
-import { IUser } from '@interfaces/user.interface';
+import CREATE_RECOVERY from './Recovery.gql';
 
 // Routes
 import { SIGN_ROUTES } from '@sign/Sign.routes';
 
-// Store
-import { useSession } from '@store';
-
 // Styles
 import styles from '@sign/Sign.scss';
 
-export const SignIn: React.FC = () => {
+export const SignRecovery: React.FC = () => {
   // Setup
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const { login } = useSession();
+  const { replace } = useHistory();
 
   // Mutations
-  const [signIn] = useMutation<{ login: IUser }>(SIGN_IN);
+  const [createRecovery] = useMutation(CREATE_RECOVERY);
 
   // Handlers
   const handleFormSubmit = useCallback(
@@ -46,17 +39,17 @@ export const SignIn: React.FC = () => {
       try {
         const token = await executeRecaptcha!('login');
 
-        const { data } = await signIn({
+        await createRecovery({
           context: { headers: { recaptcha: token } },
           variables
         });
 
-        login(data?.login!);
+        replace(SIGN_ROUTES.RECOVERY_SUCCESS);
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [executeRecaptcha, login, signIn]
+    [createRecovery, executeRecaptcha, replace]
   );
 
   return (
@@ -64,37 +57,27 @@ export const SignIn: React.FC = () => {
       onSubmit={handleFormSubmit}
       validate={yupValidator(
         yup.object().shape({
-          email: yup.string().required(),
-          password: yup.string().required()
+          email: yup.string().required().email()
         })
       )}
     >
       {({ handleSubmit, submitting }) => (
         <form onSubmit={handleSubmit}>
-          <H2 className={styles.Title}>Sign In</H2>
-          <H1 className={styles.Fleetly}>Fleetly</H1>
+          <H2 className={styles.Title}>Recovery</H2>
+          <H1 className={styles.Fleetly}>Password</H1>
 
           <Text className={styles.Description} component="div">
-            New user? <Link to={SIGN_ROUTES.UP}>Create an account</Link>
+            Enter the email address with your account and we will send you a
+            link to reset your password
           </Text>
 
           <Error />
 
-          <Fieldset>
-            <Field disabled={submitting} label="Email" name="email" />
-
-            <Field
-              disabled={submitting}
-              hint={<Link to={SIGN_ROUTES.RECOVERY}>Forgot password?</Link>}
-              label="Password"
-              name="password"
-              type="password"
-            />
-          </Fieldset>
+          <Field disabled={submitting} label="Email" name="email" />
 
           <Actions>
             <Button color="blue" loaded={submitting} type="submit">
-              Sign In
+              Send Email
             </Button>
           </Actions>
         </form>

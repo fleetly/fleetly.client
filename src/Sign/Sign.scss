@@ -34,6 +34,16 @@
   z-index: 2;
 }
 
+.Logo {
+  background: url('~@assets/logo.svg') no-repeat center center / contain;
+  height: 60px;
+  left: 40px;
+  position: absolute;
+  top: 40px;
+  width: 60px;
+  z-index: 4;
+}
+
 .Rocket {
   animation: rocket 1s;
   background: url('./assets/rocket.png') no-repeat left center / contain;

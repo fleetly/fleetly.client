@@ -1,0 +1,3 @@
+mutation CREATE_RECOVERY($email: String!) {
+  createRecovery(email: $email)
+}
