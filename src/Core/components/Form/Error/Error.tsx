@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import { useForm } from 'react-final-form';
 
@@ -7,14 +8,18 @@ import Badge from '@components/Badge';
 // Styles
 import styles from './Error.scss';
 
-export const Error: React.FC = () => {
+export interface ErrorProps {
+  className?: string;
+}
+
+export const Error: React.FC<ErrorProps> = ({ className }) => {
   // Setup
   const { getState } = useForm();
   const { submitError } = getState();
 
   return submitError ? (
     <Badge
-      className={styles.Root}
+      className={classNames(className, styles.Root)}
       color="red"
       description={submitError}
       icon="far fa-exclamation-circle"

@@ -1,52 +1,52 @@
+import { useQuery } from '@apollo/client';
 import React from 'react';
+import { useParams } from 'react-router';
 
 // Components
-import Button from '@components/Button';
+import Loader from '@components/Loader';
 import Page, { Wrapper } from '@components/Page';
-import { H4, Text } from '@components/Typography';
 
 // Fragments
+import { GeneralDisable } from './Disable';
+import { GeneralDelete } from './Delete';
+import { GeneralRename } from './Rename';
 import { GeneralUpdate } from './Update';
+
+// GraphQL
+import GET_COMPANY from './General.gql';
+
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
 
 // Styles
 import styles from './General.scss';
 
-export const General = () => (
-  <Page className={styles.Root} title="General">
-    <GeneralUpdate />
+export const General = () => {
+  // Setup
+  const { companyId } = useParams<{ companyId: string }>();
 
-    <Wrapper classes={{ container: styles.Container }} title="Danger zone">
-      <section>
-        <div className={styles.Content}>
-          <H4>Disable this company</H4>
+  // Data
+  const { data, loading } = useQuery<{ company: ICompany }>(GET_COMPANY, {
+    variables: { companyId }
+  });
 
-          <Text className={styles.Description} component="div">
-            All incoming information will no longer be processed.
-          </Text>
-        </div>
+  return (
+    <Page className={styles.Root} title="General">
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Wrapper classes={{ container: styles.Container }} title="Company ">
+            <GeneralUpdate {...data!.company} />
+          </Wrapper>
 
-        <div className={styles.Actions}>
-          <Button color="red" disabled variant="outlined">
-            Disable
-          </Button>
-        </div>
-      </section>
-
-      <section>
-        <div className={styles.Content}>
-          <H4>Delete Company</H4>
-
-          <Text className={styles.Description} component="div">
-            Delete your company can have unintended side effects.
-          </Text>
-        </div>
-
-        <div className={styles.Actions}>
-          <Button color="red" disabled variant="outlined">
-            Delete
-          </Button>
-        </div>
-      </section>
-    </Wrapper>
-  </Page>
-);
+          <Wrapper classes={{ container: styles.Danger }} title="Danger zone">
+            <GeneralDisable {...data!.company} />
+            <GeneralRename {...data!.company} />
+            <GeneralDelete {...data!.company} />
+          </Wrapper>
+        </>
+      )}
+    </Page>
+  );
+};

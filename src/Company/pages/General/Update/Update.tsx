@@ -1,14 +1,12 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Form } from 'react-final-form';
 
 // Components
-import Avatar from '@components/Avatar';
 import Button from '@components/Button';
-import Card from '@components/Card';
 import { Actions, Error, Field, Fieldset } from '@components/Form';
 
-// Styles
-import styles from './Update.scss';
+// Interfaces
+import { ICompany } from '@interfaces/company.interface';
 
 export interface GeneralUpdateFormValues {
   location?: string;
@@ -16,14 +14,11 @@ export interface GeneralUpdateFormValues {
   title: string;
 }
 
-export const GeneralUpdate = () => {
-  // Setup
+export const GeneralUpdate: React.FC<ICompany> = (initialValues) => {
+  // // Setup
   // const { createNotification } = useNotifications();
 
-  // Data
-  // const { data } = useQuery<{ user: IUser }>(GET_USER);
-
-  // Mutations
+  // // Mutations
   // const [updateProfile] = useMutation(UPDATE_PROFILE, {
   //   onCompleted: () =>
   //     createNotification({
@@ -33,35 +28,34 @@ export const GeneralUpdate = () => {
   //     })
   // });
 
-  const handleFormSubmit = useCallback(async () => {
-    return true;
-  }, []);
+  // const handleFormSubmit = useCallback(async () => {
+  //   return true;
+  // }, []);
 
   return (
-    <Form onSubmit={handleFormSubmit}>
-      {({ handleSubmit, submitting, values }) => (
-        <Card className={styles.Root}>
-          <form>
-            <Avatar
-              alt={values.title}
-              classes={{ root: styles.Avatar, plug: styles.AvatarPlug }}
-            />
+    <Form initialValues={initialValues} onSubmit={window.location.reload}>
+      {({ handleSubmit, submitting }) => (
+        <form onSubmit={handleSubmit}>
+          <Error />
 
-            <Error />
+          <Fieldset>
+            <Field label="Company Name" name="title" />
+            <Field label="Location" name="location" />
+            <Field label="Timezone" name="timezone" />
+          </Fieldset>
 
-            <Fieldset>
-              <Field label="Company Name" name="title" />
-              <Field label="Location" name="location" />
-              <Field label="Timezone" name="timezone" />
-            </Fieldset>
-
-            <Actions>
-              <Button color="blue" fullWidth loaded={submitting} type="submit">
-                Save
-              </Button>
-            </Actions>
-          </form>
-        </Card>
+          <Actions>
+            <Button
+              color="blue"
+              disabled
+              fullWidth
+              loaded={submitting}
+              type="submit"
+            >
+              Save
+            </Button>
+          </Actions>
+        </form>
       )}
     </Form>
   );
