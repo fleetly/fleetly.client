@@ -24,6 +24,7 @@
 }
 
 .Root {
+  overflow: hidden;
   width: 100%;
 
   @include coloring;
@@ -66,6 +67,7 @@
 
     &Description {
       .Avatar {
+        flex: 0 0 38px;
         height: 38px;
         width: 38px;
       }
@@ -79,6 +81,7 @@
 }
 
 .Avatar {
+  flex: 0 0 30px;
   height: 30px;
   margin: 0 4px 0 0;
   width: 30px;
@@ -141,4 +144,7 @@
 
 .Label {
   margin: 0 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

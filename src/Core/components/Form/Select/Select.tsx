@@ -9,6 +9,7 @@ import { FieldError, FieldHeader } from '@components/Form';
 import {
   DropdownIndicator,
   LoadingIndicator,
+  Menu,
   NoOptionsMessage,
   SelectContainer
 } from './components';
@@ -103,6 +104,7 @@ export const Select: React.FC<Form.SelectProps> = ({
           DropdownIndicator,
           LoadingIndicator,
           Option,
+          Menu,
           MultiValue: Value,
           NoOptionsMessage,
           SelectContainer,

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
-import { PropTypes } from '@components/ContextMenu';
+import { ContextMenuProps } from '@components/ContextMenu';
 
 interface Result {
   anchor?: HTMLElement;
@@ -10,7 +10,7 @@ interface Result {
   isOpened: boolean;
 }
 
-const useContextMenu = (): [PropTypes, Result] => {
+const useContextMenu = (): [ContextMenuProps, Result] => {
   // State
   const [anchor, setAnchor] = useState<HTMLElement>();
   const [isOpened, setOpenState] = useState(false);

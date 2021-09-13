@@ -129,18 +129,6 @@
       }
     }
 
-    &__menu {
-      background: $color-white;
-      border: 1px solid rgba($color-blue, .2);
-      border-radius: 20px;
-      box-shadow: 0 20px 40px 0 rgba($color-dark, .1);
-      margin: 12px 0 0;
-      max-width: 320px;
-      min-width: 100%;
-      padding: 16px 12px;
-      width: auto;
-    }
-
     &__menu-list {
       display: grid;
       grid-row-gap: 4px;

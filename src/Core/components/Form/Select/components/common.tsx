@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React, { useRef } from 'react';
 import { components, IndicatorProps } from 'react-select';
 
 // Components
-import Transition from '@components/Transition';
+import ContextMenu from '@components/ContextMenu';
 import { H4, P } from '@components/Typography';
 
 // Styles
@@ -17,9 +17,9 @@ export const DropdownIndicator: React.FC<IndicatorProps<
 >> = ({ getValue, innerProps, selectProps }) => {
   const [value]: any = getValue();
 
-  const { rootClassName, iconClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(
+  return (
+    <div
+      className={classNames(
         styles.Caret,
         getClassName('color', {
           collection: styles,
@@ -30,19 +30,16 @@ export const DropdownIndicator: React.FC<IndicatorProps<
           [styles.CaretVariantFilled]: selectProps?.isFilled,
           [styles.CaretVariantOutlined]: !selectProps?.isFilled
         }
-      ),
-      iconClassName: classNames(styles.CaretIcon, {
-        'fas fa-angle-down': selectProps?.isFilled,
-        'fas fa-caret-down': !selectProps?.isFilled
-      })
-    }),
-    [selectProps, value]
-  );
-
-  return (
-    <div className={rootClassName} {...innerProps}>
+      )}
+      {...innerProps}
+    >
       {!selectProps?.isFilled && <div className={styles.CaretCircle} />}
-      <i className={iconClassName} />
+      <i
+        className={classNames(styles.CaretIcon, {
+          'fas fa-angle-down': selectProps?.isFilled,
+          'fas fa-caret-down': !selectProps?.isFilled
+        })}
+      />
     </div>
   );
 };
@@ -50,9 +47,10 @@ export const DropdownIndicator: React.FC<IndicatorProps<
 export const LoadingIndicator: React.FC<any> = ({ getValue, innerProps }) => {
   const [value]: any = getValue();
 
-  const { rootClassName } = React.useMemo(
-    () => ({
-      rootClassName: classNames(
+  return (
+    <i
+      {...innerProps}
+      className={classNames(
         styles.Spinner,
         getClassName('color', {
           collection: styles,
@@ -60,13 +58,14 @@ export const LoadingIndicator: React.FC<any> = ({ getValue, innerProps }) => {
           value: value?.color
         }),
         'far fa-spinner-third'
-      )
-    }),
-    [value]
+      )}
+    />
   );
-
-  return <i {...innerProps} className={rootClassName} />;
 };
+
+export const Menu: React.FC<any> = (props) => (
+  <div {...props.innerProps}>{props.children}</div>
+);
 
 export const NoOptionsMessage: React.FC<{}> = () => (
   <div className={styles.Empty}>
@@ -78,15 +77,29 @@ export const NoOptionsMessage: React.FC<{}> = () => (
   </div>
 );
 
-export const SelectContainer: React.FC<any> = (props) => (
-  <components.SelectContainer {...props}>
-    {props.children[0]}
-    {props.children[1]}
+export const SelectContainer: React.FC<any> = (props) => {
+  // Setup
+  const $anchor = useRef<HTMLDivElement>(null);
 
-    <Transition duration={200} enter="zoomIn" in={!!props.children[2]}>
-      <div className={styles.Container}>{props.children[2]}</div>
-    </Transition>
+  return (
+    <components.SelectContainer {...props}>
+      {props.children[0]}
 
-    {props.children[3]}
-  </components.SelectContainer>
-);
+      <div className={styles.Control} ref={$anchor}>
+        {props.children[1]}
+      </div>
+
+      <ContextMenu
+        anchor={$anchor.current as HTMLElement}
+        classes={{ card: styles.Card }}
+        opened={props.selectProps.menuIsOpen}
+        position="bottom"
+        width={$anchor.current?.clientWidth}
+      >
+        {props.children[2]}
+      </ContextMenu>
+
+      {props.children[3]}
+    </components.SelectContainer>
+  );
+};

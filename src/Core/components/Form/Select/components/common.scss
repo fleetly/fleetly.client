@@ -7,6 +7,10 @@
   }
 }
 
+.Card {
+  padding: 12px;
+}
+
 .Caret {
   align-items: center;
   border-radius: 100%;
@@ -56,8 +60,11 @@
 .Container {
   display: flex;
   justify-content: center;
-  min-width: 100%;
-  position: relative;
+  position: fixed;
+}
+
+.Control {
+  width: 100%;
 }
 
 .Empty {

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 import { OptionProps } from 'react-select';
 
 // Components
@@ -22,16 +22,9 @@ const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
 }) => {
   const classes = selectProps.classes?.option;
 
-  const {
-    rootClassName,
-    controlClassName,
-    descriptionClassName,
-    iconClassName,
-    infoClassName,
-    labelClassName
-  } = React.useMemo(
-    () => ({
-      rootClassName: classNames(
+  return (
+    <div
+      className={classNames(
         classes?.root,
         styles.Root,
         getClassName('color', {
@@ -46,39 +39,34 @@ const FormSelectOption: React.FC<OptionProps<Form.SelectOptionType>> = ({
           [styles.RootVariantAvatar]: !!avatar,
           [styles.RootVariantDescription]: !!description
         }
-      ),
-      controlClassName: classNames(classes?.control, styles.Control),
-      descriptionClassName: classNames(
-        classes?.description,
-        styles.Description
-      ),
-      infoClassName: classNames(classes?.info, styles.Info),
-      iconClassName: classNames(classes?.icon, styles.Icon),
-      labelClassName: classNames(classes?.label, styles.Label)
-    }),
-    [avatar, classes, color, description, isDisabled, isSelected]
-  );
-
-  return (
-    <div className={rootClassName}>
-      <div className={controlClassName} {...innerProps}>
+      )}
+    >
+      <div
+        className={classNames(classes?.control, styles.Control)}
+        {...innerProps}
+      >
         {avatar ? (
           <Avatar {...avatar} classes={{ root: styles.Avatar }} color={color} />
         ) : (
-          <div className={iconClassName} />
+          <div className={classNames(classes?.icon, styles.Icon)} />
         )}
 
-        <div className={labelClassName}>
+        <div className={classNames(classes?.label, styles.Label)}>
           {label}
           {description && (
-            <Caption className={descriptionClassName} component="div">
+            <Caption
+              className={classNames(classes?.description, styles.Description)}
+              component="div"
+            >
               {description}
             </Caption>
           )}
         </div>
       </div>
 
-      {info && <div className={infoClassName}>{info}</div>}
+      {info && (
+        <div className={classNames(classes?.info, styles.Info)}>{info}</div>
+      )}
     </div>
   );
 };

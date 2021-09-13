@@ -9,7 +9,7 @@ import { BlockType } from '@fleetly/flow/dist/common/interfaces';
 import ContextMenu, {
   MenuItem,
   MenuTitle,
-  PropTypes as ContextMenuProps
+  ContextMenuProps
 } from '@components/ContextMenu';
 
 // GraphQL
