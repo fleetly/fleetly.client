@@ -9,8 +9,14 @@
   display: flex;
   flex: 1 1 auto;
   height: 100%;
+  justify-content: center;
   max-width: calc(100% - 260px);
   position: relative;
+
+  & > * {
+    max-width: 1280px;
+    width: 100%;
+  }
 }
 
 .Header {

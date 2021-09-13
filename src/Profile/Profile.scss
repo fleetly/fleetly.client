@@ -9,7 +9,13 @@
 .Container {
   display: flex;
   flex: 1 1 auto;
+  justify-content: center;
   max-width: calc(100% - 260px);
+
+  & > * {
+    max-width: 1280px;
+    width: 100%;
+  }
 }
 
 .Link {

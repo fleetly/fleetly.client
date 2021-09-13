@@ -53,7 +53,7 @@ export const useChannelStats = () => {
           ]
         },
         options: {
-          aspectRatio: 3.6,
+          aspectRatio: 3,
           plugins: {
             legend: {
               display: false

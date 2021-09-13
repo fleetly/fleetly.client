@@ -32,6 +32,7 @@ export const usePanel = () => {
         children: [
           {
             icon: 'far fa-tachometer-alt',
+            exact: true,
             title: 'Dashboard',
             to: generatePath(COMPANY_ROUTES.ROOT, { companyId })
           }

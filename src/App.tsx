@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client';
-import React, { lazy, Suspense } from 'react';
+import { useLazyQuery } from '@apollo/client';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Components
@@ -31,21 +31,52 @@ const Sign = lazy(() => import('./Sign'));
 
 const App: React.FC<{}> = () => {
   // Setup
-  const { setUser, user } = useSession();
+  const { isAuthorized, setUser, user } = useSession();
 
   // Data
-  const { loading } = useQuery<{
+  const [getUser, { loading }] = useLazyQuery<{
     user: IUser;
   }>(GET_USER, {
     onCompleted: (res) => setUser(res.user)
   });
+
+  // Effects
+  useEffect(() => {
+    isAuthorized && getUser();
+  }, [getUser, isAuthorized]);
 
   return loading ? (
     <Loader />
   ) : (
     <div className={styles.Root}>
       <Suspense fallback="">
-        {!!user && user.isConfirmed && user.username ? (
+        <Switch>
+          {(!isAuthorized || !user?.isConfirmed || !user?.username) && (
+            <Route component={Sign} path={SIGN_ROUTES.ROOT} />
+          )}
+
+          {isAuthorized ? (
+            <Switch>
+              {user && (!user?.isConfirmed || !user?.username) ? (
+                <Redirect to={SIGN_ROUTES.ROOT} />
+              ) : (
+                <Redirect from={SIGN_ROUTES.ROOT} to="/" />
+              )}
+
+              <Route component={Profile} path={PROFILE_ROUTES.ROOT} />
+              <Route component={Company} path="/:companyId?" />
+            </Switch>
+          ) : (
+            <Switch>
+              <Route component={Landing} exact path="/" />
+              <Redirect to="/" />
+            </Switch>
+          )}
+        </Switch>
+        {/* {isAuthorized &&
+        data?.user &&
+        data?.user.isConfirmed &&
+        data?.user.username ? (
           <Switch>
             <Redirect from={SIGN_ROUTES.ROOT} to="/" />
 
@@ -59,7 +90,7 @@ const App: React.FC<{}> = () => {
 
             <Redirect to="/" />
           </Switch>
-        )}
+        )} */}
       </Suspense>
 
       <Notifications />
