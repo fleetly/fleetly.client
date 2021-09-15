@@ -1,7 +1,5 @@
-import { useQuery } from '@apollo/client';
 import moment from 'moment';
-import React, { useCallback, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useMemo } from 'react';
 
 // Assets
 import emptyImage1x from './assets/empty@1x.png';
@@ -19,36 +17,23 @@ import Table from '@components/Table';
 import { Text } from '@components/Typography';
 
 // Constants
-import { MESSAGE_POLICY_STATUS, SUBSCRIBER_MODAL } from '@constants';
+import { MESSAGE_POLICY_STATUS } from '@constants';
 
-// GraphQL
-import GET_SUBSCRIBER_LIST from './Subscribers.gql';
-
-// Interfaces
-import { ISubscriber } from '@interfaces/subscriber.interface';
-
-// Store
-import { useModals } from '@store';
+// Hooks
+import { useSubscribersPage } from './Subscribers.hooks';
 
 // Styles
 import styles from './Subscribers.scss';
 
 const Subscribers: React.FC = () => {
-  // Setup
-  const { openModal } = useModals(SUBSCRIBER_MODAL);
-  const { companyId } = useParams<{ companyId: string }>();
-
-  // Data
-  const { data, loading } = useQuery<{ subscribers: ISubscriber[] }>(
-    GET_SUBSCRIBER_LIST,
-    { variables: { companyId } }
-  );
-
-  // Handlers
-  const handleTrClick = useCallback(
-    ({ id }: ISubscriber) => openModal({ data: { subscriberId: id } }),
-    [openModal]
-  );
+  const {
+    count,
+    hasMore,
+    handleFetchMore,
+    handleTrClick,
+    loading,
+    subscribers
+  } = useSubscribersPage();
 
   // Memo
   const columns = useMemo(
@@ -108,17 +93,20 @@ const Subscribers: React.FC = () => {
     []
   );
 
-  const hasSubscribers = data?.subscribers && data?.subscribers.length > 0;
+  const hasSubscribers = subscribers.length > 0;
 
   return (
-    <Page title="Subscribers">
+    <Page className={styles.Root} title="Subscribers">
       <Wrapper title="Subscribers">
         {!hasSubscribers && loading ? (
           <Loader />
         ) : hasSubscribers ? (
           <Table
             columns={columns}
-            data={data?.subscribers || []}
+            count={count}
+            hasMore={hasMore}
+            data={subscribers}
+            onFetchMore={handleFetchMore}
             onTrClick={handleTrClick}
           />
         ) : (

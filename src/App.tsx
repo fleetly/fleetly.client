@@ -73,24 +73,6 @@ const App: React.FC<{}> = () => {
             </Switch>
           )}
         </Switch>
-        {/* {isAuthorized &&
-        data?.user &&
-        data?.user.isConfirmed &&
-        data?.user.username ? (
-          <Switch>
-            <Redirect from={SIGN_ROUTES.ROOT} to="/" />
-
-            <Route component={Profile} path={PROFILE_ROUTES.ROOT} />
-            <Route component={Company} path="/:companyId?" />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route component={Landing} exact path="/" />
-            <Route component={Sign} path={SIGN_ROUTES.ROOT} />
-
-            <Redirect to="/" />
-          </Switch>
-        )} */}
       </Suspense>
 
       <Notifications />

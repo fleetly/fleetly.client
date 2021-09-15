@@ -1,6 +1,11 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React, { useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { Column, useTable } from 'react-table';
+import { v1 } from 'uuid';
+
+// Components
+import Loader from '@components/Loader';
 
 // Styles
 import styles from './Table.scss';
@@ -15,11 +20,23 @@ interface Classes extends ExtendedClasses {
 interface PropTypes {
   classes?: Classes;
   columns: Column[];
+  count?: number;
   data: any[];
+  hasMore?: boolean;
+  onFetchMore?(): void;
   onTrClick?(event: any): void;
 }
 
-const Table: React.FC<PropTypes> = ({ columns, data, onTrClick }) => {
+const Table: React.FC<PropTypes> = ({
+  columns,
+  count,
+  data,
+  hasMore = false,
+  onFetchMore,
+  onTrClick
+}) => {
+  const [id] = useState(v1());
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -63,40 +80,49 @@ const Table: React.FC<PropTypes> = ({ columns, data, onTrClick }) => {
         ))}
       </div>
 
-      <div {...getTableBodyProps()} className={styles.Tbody}>
-        {rows.map((row: any, index) => {
-          prepareRow(row);
+      <div {...getTableBodyProps()} className={styles.Tbody} id={id}>
+        <InfiniteScroll
+          className={styles.Scroll}
+          dataLength={count || data.length}
+          hasMore={hasMore}
+          loader={<Loader className={styles.Loader} />}
+          next={onFetchMore!}
+          scrollableTarget={id}
+        >
+          {rows.map((row: any, index) => {
+            prepareRow(row);
 
-          const handleRowClick = () => onTrClick && onTrClick(row.original);
+            const handleRowClick = () => onTrClick && onTrClick(row.original);
 
-          return (
-            <div
-              {...row.getRowProps()}
-              className={classNames(styles.Tr, {
-                [styles.TrHasAction]: !!onTrClick
-              })}
-              key={index}
-              onClick={handleRowClick}
-            >
-              {row.cells.map((cell: any, index: number) => {
-                return (
-                  <div
-                    {...cell.getCellProps()}
-                    className={styles.Td}
-                    key={index}
-                    style={{
-                      flex: `${cell.column.width} 0 auto`,
-                      maxWidth: cell.column.maxWidth,
-                      width: cell.column.width
-                    }}
-                  >
-                    {cell.render('Cell')}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
+            return (
+              <div
+                {...row.getRowProps()}
+                className={classNames(styles.Tr, {
+                  [styles.TrHasAction]: !!onTrClick
+                })}
+                key={index}
+                onClick={handleRowClick}
+              >
+                {row.cells.map((cell: any, index: number) => {
+                  return (
+                    <div
+                      {...cell.getCellProps()}
+                      className={styles.Td}
+                      key={index}
+                      style={{
+                        flex: `${cell.column.width} 0 auto`,
+                        maxWidth: cell.column.maxWidth,
+                        width: cell.column.width
+                      }}
+                    >
+                      {cell.render('Cell')}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </InfiniteScroll>
       </div>
     </div>
   );

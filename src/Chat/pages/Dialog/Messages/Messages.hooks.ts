@@ -46,7 +46,7 @@ export const useDialogMessages = (search?: string) => {
 
     subscribeToMore({
       document: SUB_MESSAGE_UPDATED,
-      variables: { chatId: '123' }
+      variables: { chatId }
     });
   }, [chatId, subscribeToMore]);
 

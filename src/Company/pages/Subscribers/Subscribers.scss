@@ -1,5 +1,9 @@
 @import '~@styles/colors.scss';
 
+.Root {
+  height: calc(100vh - 40px);
+}
+
 .User {
   display: flex;
   flex-direction: column;

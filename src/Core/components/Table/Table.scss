@@ -3,11 +3,20 @@
 .Root {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+.Loader {
+  height: 80px;
+  position: relative;
 }
 
 .Tbody {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
+  max-height: calc(100% - 52px);
+  overflow: auto;
   padding: 16px 20px;
 
   .Tr {
@@ -47,6 +56,7 @@
 .Thead {
   border-bottom: 2px solid $background-lighten;
   display: flex;
+  flex: 0 0 50px;
   height: 50px;
   padding: 0 28px;
 
