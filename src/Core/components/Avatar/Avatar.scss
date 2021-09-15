@@ -69,12 +69,19 @@
   width: 20px;
 
   &Variant {
+    &Facebook {
+      background: $color-facebook;
+      color: $color-white;
+    }
+
     &Telegram {
-      color: $color-telegram;
+      background: $color-telegram;
+      color: $color-white;
     }
 
     &VK {
-      color: $color-vk;
+      background: $color-vk;
+      color: $color-white;
     }
   }
 }

@@ -1,4 +1,6 @@
-import { MessagePolicy, Source } from '@fleetly/common';
+// Fleetly
+import { MessagePolicy } from '@fleetly/common';
+import { ChannelSource } from '@fleetly/provider/interfaces';
 
 export interface ISubscriber {
   id: string;
@@ -19,6 +21,6 @@ export interface ISubscriberSource {
   lastname?: string;
   link: string;
   photo?: string;
-  type: Source;
+  type: ChannelSource;
   username: string;
 }

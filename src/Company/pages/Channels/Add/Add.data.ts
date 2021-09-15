@@ -3,9 +3,8 @@ import { ChannelSource } from '@fleetly/provider/interfaces';
 
 export const SOURCES = [
   {
-    id: 'FB',
+    id: ChannelSource.FACEBOOK,
     icon: 'fab fa-facebook-f',
-    isDisabled: true,
     title: 'Facebook'
   },
   {

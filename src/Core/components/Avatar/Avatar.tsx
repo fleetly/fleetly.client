@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import React, { useMemo } from 'react';
 
 // Fleetly
-import { Color, Source } from '@fleetly/common/dist/enums';
+import { Color } from '@fleetly/common/dist/enums';
+import { ChannelSource } from '@fleetly/provider/interfaces';
 
 // Styles
 import styles from './Avatar.scss';
@@ -23,7 +24,7 @@ interface PropTypes {
   classes?: Classes;
   className?: string;
   color?: Color;
-  sourceType?: Source;
+  sourceType?: ChannelSource;
   src?: string;
   toColor?: string;
 }
@@ -86,11 +87,15 @@ const Avatar: React.FC<PropTypes> = ({
           className={classNames(
             classes?.source,
             styles.Source,
-            sourceType === Source.VK.toUpperCase() && {
+            sourceType === ChannelSource.FACEBOOK && {
+              'fab fa-facebook-f': true,
+              [styles.SourceVariantFacebook]: true
+            },
+            sourceType === ChannelSource.VK && {
               'fab fa-vk': true,
               [styles.SourceVariantVK]: true
             },
-            sourceType === Source.TELEGRAM.toUpperCase() && {
+            sourceType === ChannelSource.TELEGRAM && {
               'fab fa-telegram-plane': true,
               [styles.SourceVariantTelegram]: true
             }

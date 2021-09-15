@@ -1,4 +1,6 @@
-import { ChannelStatus, Source } from '@fleetly/common';
+// Fleetly
+import { ChannelStatus } from '@fleetly/common';
+import { ChannelSource } from '@fleetly/provider/interfaces';
 
 // Interfaces
 import { IStatus } from '@interfaces/status.interface';
@@ -17,5 +19,5 @@ export interface IChannelSource {
   name: string;
   photo?: string;
   title: string;
-  type: Source;
+  type: ChannelSource;
 }
