@@ -2,12 +2,10 @@ export const INTEGRATIONS = [
   {
     items: [
       {
-        disabled: true,
         logo: require('./assets/products/facebook.svg'),
         title: 'Facebook'
       },
       {
-        disabled: true,
         logo: require('./assets/products/instagram.svg'),
         title: 'Instagram'
       },
