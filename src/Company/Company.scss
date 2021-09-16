@@ -46,6 +46,12 @@
   background: url('~@assets/logo.svg') no-repeat center center / 72% 72%;
 }
 
+.Profile {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .Sidebar {
   display: grid;
   flex: 0 0 88px;
