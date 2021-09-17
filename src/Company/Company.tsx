@@ -94,7 +94,9 @@ export const Company: React.FC = () => {
               </div>
             )}
 
-            <Link to={PROFILE_ROUTES.ROOT}>{user.fullname}</Link>
+            <Link className={styles.Profile} to={PROFILE_ROUTES.ROOT}>
+              <Avatar alt={user.fullname} toColor={user.id} />
+            </Link>
           </div>
 
           <div className={styles.Container}>
