@@ -1246,10 +1246,10 @@
   resolved "https://npm.pkg.github.com/download/@fleetly/provider/0.3.16/2c934e4279ad994754ffc5fd52891537035cf313c1f8ad2141cfd4b3acef388d#91ec88b8ddf546fc7420fa9f7cc4a4367cd62587"
   integrity sha512-RrHVkRBjBcHvisP33lKXmL+nvvrNfLfQR9RbaONKeW7erUD+Gb6VPdP2qPALePlWmEFx5xtr1SN9z/tb69nFmw==
 
-"@fleetly/provider@^0.5.0":
-  version "0.5.0"
-  resolved "https://npm.pkg.github.com/download/@fleetly/provider/0.5.0/54218d20cdd06e860ae2ed8435937905f94328f68cfa272bbf43646e9d51717f#24d2e9bb9ca8e1964499808018a3cbcf71a0012f"
-  integrity sha512-jwfLDG+Fu4Y+UM83gDFKso1NXvWHEA/hpUzpEfDNmmS/r7bPJ/GQ3wk36+dvG9ndXGhxk6uxMn36L1n1PvbSEA==
+"@fleetly/provider@^0.6.0":
+  version "0.6.0"
+  resolved "https://npm.pkg.github.com/download/@fleetly/provider/0.6.0/5a543be99c792b92cd2b5052ddfc178c17d4d04c668ae63b195a7ff4293f27b2#dc9888fe1e0f3e4899c094c9e0bc1d87bbc49004"
+  integrity sha512-E+DgeWyAKdmMfACxf4KqYOTDzJ8+rRS2sOqNqrN/Qzh8pGcgHBLF4P6M0yKzPUD/aNUhUrcH+YATUSIuKBUKkA==
 
 "@fortawesome/fontawesome-pro@^5.13.0":
   version "5.13.0"

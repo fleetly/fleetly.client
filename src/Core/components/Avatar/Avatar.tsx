@@ -87,6 +87,10 @@ const Avatar: React.FC<PropTypes> = ({
           className={classNames(
             classes?.source,
             styles.Source,
+            sourceType === ChannelSource.INSTAGRAM && {
+              'fab fa-instagram': true,
+              [styles.SourceVariantInstagram]: true
+            },
             sourceType === ChannelSource.FACEBOOK && {
               'fab fa-facebook-f': true,
               [styles.SourceVariantFacebook]: true
