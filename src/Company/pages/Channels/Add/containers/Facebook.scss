@@ -27,6 +27,12 @@
   }
 }
 
+.Check {
+  opacity: 0;
+  transform: scale(0);
+  transition: all .2s;
+}
+
 .Icon {
   font-size: 24px;
   margin: 0 8px 0 0;
@@ -34,9 +40,20 @@
 
 .Item {
   &Is {
-    &Selected {
+    &NotSelected {
       .Page {
-        background: lighten($color-blue, 34);
+        opacity: .6;
+      }
+    }
+
+    &Selected {
+      .Check {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .Page {
+        background: lighten($color-blue, 32);
       }
     }
   }
@@ -44,13 +61,13 @@
 
 .List {
   display: grid;
-  margin: 0 -20px;
+  margin: 0 -12px;
   row-gap: 8px;
 }
 
 .Page {
   border-radius: 20px;
-  padding: 20px;
+  padding: 12px;
   transition: all .2s;
 
   &:hover {

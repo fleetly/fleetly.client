@@ -116,7 +116,7 @@ export const ChannelAdd: React.FC = () => {
                   <Button
                     className={styles.Back}
                     icon="fas fa-arrow-left"
-                    onClick={form.change.bind(null, 'sourceType', undefined)}
+                    onClick={form.restart as any}
                     variant="outlined"
                   />
 

@@ -10,6 +10,7 @@ import { ChannelSource } from '@fleetly/provider/interfaces';
 import Avatar from '@components/Avatar';
 import { CardHeader } from '@components/Card';
 import { Hero } from '@components/Hero';
+import Icon from '@components/Icon';
 
 // Styles
 import styles from './Facebook.scss';
@@ -77,7 +78,8 @@ export const ChannelsAddFacebook: React.FC = () => {
           {pages.map(({ id, accessToken, name, photo, title }) => (
             <div
               className={classNames(styles.Item, {
-                [styles.ItemIsSelected]: accessToken === value
+                [styles.ItemIsSelected]: accessToken === value,
+                [styles.ItemIsNotSelected]: !!value && accessToken !== value
               })}
               data-id={id}
               key={id}
@@ -86,6 +88,7 @@ export const ChannelsAddFacebook: React.FC = () => {
               tabIndex={0}
             >
               <CardHeader
+                actions={<Icon className={styles.Check} icon="far fa-check" />}
                 avatar={
                   <Avatar
                     alt={title}
