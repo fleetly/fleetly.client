@@ -1,0 +1,60 @@
+@import '~@styles/colors';
+
+.Root {
+  width: 100%;
+}
+
+.Button {
+  align-items: center;
+  background: $color-facebook;
+  border: 0;
+  border-radius: 20px;
+  color: $color-white;
+  display: flex;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  justify-content: center;
+  padding: 0 16px;
+  transition: all .2s;
+  white-space: nowrap;
+  width: 100%;
+
+  &:hover {
+    background: darken($color-facebook, 10);
+    cursor: pointer;
+  }
+}
+
+.Icon {
+  font-size: 24px;
+  margin: 0 8px 0 0;
+}
+
+.Item {
+  &Is {
+    &Selected {
+      .Page {
+        background: lighten($color-blue, 34);
+      }
+    }
+  }
+}
+
+.List {
+  display: grid;
+  margin: 0 -20px;
+  row-gap: 8px;
+}
+
+.Page {
+  border-radius: 20px;
+  padding: 20px;
+  transition: all .2s;
+
+  &:hover {
+    background: lighten($color-blue, 32);
+    cursor: pointer;
+  }
+}

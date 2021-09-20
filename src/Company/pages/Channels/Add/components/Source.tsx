@@ -8,6 +8,7 @@ import { Text } from '@components/Typography';
 
 // Styles
 import styles from './Source.scss';
+import { getClassName } from '@utils/styles';
 
 export interface ChannelAddSourceItem {
   id: string;
@@ -41,10 +42,18 @@ export const ChannelsAddSource: React.FC<ChannelsAddSourceProps> = ({
     <div className={styles.Root}>
       {sources.map(({ id, icon, isDisabled, title }) => (
         <div
-          className={classNames(styles.Item, {
-            [styles.ItemIsDisabled]: isDisabled,
-            [styles.ItemIsSelected]: id === value
-          })}
+          className={classNames(
+            styles.Item,
+            {
+              [styles.ItemIsDisabled]: isDisabled,
+              [styles.ItemIsSelected]: id === value
+            },
+            getClassName('variant', {
+              collection: styles,
+              prefix: 'Item',
+              value: id
+            })
+          )}
           data-source-id={id}
           key={id}
           onClick={handleItemClick}

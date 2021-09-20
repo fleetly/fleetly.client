@@ -1,6 +1,7 @@
 import { ApolloError, useMutation } from '@apollo/client';
-import React, { useCallback } from 'react';
-import { Form } from 'react-final-form';
+import classNames from 'classnames';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Form, FormSpy } from 'react-final-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
 
@@ -12,8 +13,6 @@ import Button from '@components/Button';
 import {
   Actions,
   Error,
-  Field,
-  Fieldset,
   gqlErrorHandler,
   yupValidator
 } from '@components/Form';
@@ -23,6 +22,10 @@ import { ChannelsAddSource } from './components/Source';
 
 // Constants
 import { ADD_CHANNEL_MODAL } from '@constants';
+
+// Containers
+import { ChannelsAddFacebook } from './containers/Facebook';
+import { ChannelsAddManual } from './containers/Manual';
 
 // Data
 import { SOURCES } from './Add.data';
@@ -34,7 +37,7 @@ import CREATE_CHANNEL from './Add.gql';
 import styles from './Add.scss';
 
 export interface ChannelAddFormValues {
-  sourceType: ChannelSource;
+  sourceType?: ChannelSource;
   token: string;
 }
 
@@ -42,10 +45,20 @@ export const ChannelAdd: React.FC = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
 
+  // State
+  const [sourceType, setSourceType] = useState<ChannelSource>();
+
   // Mutations
   const [createChannel] = useMutation(CREATE_CHANNEL);
 
   // Handlers
+  const handleFormChange = useCallback(
+    ({ values }: { values: ChannelAddFormValues }) => {
+      setSourceType(values.sourceType);
+    },
+    []
+  );
+
   const handleFormSubmit = useCallback(
     async ({ sourceType, token }: ChannelAddFormValues) => {
       try {
@@ -57,6 +70,17 @@ export const ChannelAdd: React.FC = () => {
     [companyId, createChannel]
   );
 
+  // Memo
+  const Component = useMemo(() => {
+    switch (sourceType) {
+      case ChannelSource.FACEBOOK:
+      case ChannelSource.INSTAGRAM:
+        return ChannelsAddFacebook;
+      default:
+        return ChannelsAddManual;
+    }
+  }, [sourceType]);
+
   return (
     <Modal id={ADD_CHANNEL_MODAL} title="Add channel">
       <Form
@@ -65,21 +89,49 @@ export const ChannelAdd: React.FC = () => {
           yup.object().shape({ token: yup.string().required() })
         )}
       >
-        {({ handleSubmit, submitting }) => (
+        {({ handleSubmit, form, submitting, valid, values }) => (
           <form className={styles.Root} onSubmit={handleSubmit}>
-            <Error />
+            <FormSpy
+              onChange={handleFormChange}
+              subscription={{ values: true }}
+            />
 
-            <Fieldset>
-              {/* <SourceType name="sourceType" /> */}
-              <ChannelsAddSource name="sourceType" sources={SOURCES} />
-              <Field name="token" placeholder="Token" />
-            </Fieldset>
+            <div
+              className={classNames(styles.Track, {
+                [styles.TrackIsMoved]: !!values.sourceType
+              })}
+            >
+              <div>
+                <ChannelsAddSource name="sourceType" sources={SOURCES} />
+              </div>
 
-            <Actions>
-              <Button color="blue" fullWidth loaded={submitting} type="submit">
-                Add Channel
-              </Button>
-            </Actions>
+              <div className={styles.Form}>
+                <Error />
+
+                <div className={styles.Content}>
+                  <Component />
+                </div>
+
+                <Actions className={styles.Actions}>
+                  <Button
+                    className={styles.Back}
+                    icon="fas fa-arrow-left"
+                    onClick={form.change.bind(null, 'sourceType', undefined)}
+                    variant="outlined"
+                  />
+
+                  <Button
+                    color="blue"
+                    disabled={!valid}
+                    fullWidth
+                    loaded={submitting}
+                    type="submit"
+                  >
+                    Add Channel
+                  </Button>
+                </Actions>
+              </div>
+            </div>
           </form>
         )}
       </Form>

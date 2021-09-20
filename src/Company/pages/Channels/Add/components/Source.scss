@@ -25,6 +25,32 @@
   &IsSelected {
     cursor: pointer;
 
+    &.ItemVariant {
+      &Facebook {
+        .Icon {
+          background: $color-facebook;
+        }
+      }
+
+      &Instagram {
+        .Icon {
+          background: $background-instagram;
+        }
+      }
+
+      &Telegram {
+        .Icon {
+          background: $color-telegram;
+        }
+      }
+
+      &VK {
+        .Icon {
+          background: $color-vk;
+        }
+      }
+    }
+
     .Icon {
       background: rgba($color-blue, .8);
       color: $color-white;

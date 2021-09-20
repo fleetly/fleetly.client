@@ -1,3 +1,57 @@
 .Root {
-  width: 280px;
+  margin: 0 -40px;
+  overflow: hidden;
+  padding: 0 40px;
+  width: 360px;
+}
+
+.Actions {
+  grid-template-columns: 40px 1fr !important;
+}
+
+.Back {
+  align-self: flex-start;
+}
+
+.Content {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Track {
+  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 280px);
+  transition: all .4s;
+
+  &IsMoved {
+    transform: translateX(calc(-100% - 40px));
+
+    & > div {
+      &:first-child {
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &:last-child {
+        opacity: 1;
+      }
+    }
+  }
+
+  & > div {
+    opacity: 0;
+    transition: all .4s;
+
+    &:first-child {
+      opacity: 1;
+    }
+  }
 }

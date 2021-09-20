@@ -18,9 +18,8 @@ export const SOURCES = [
     title: 'VK'
   },
   {
-    id: 'INSTAGRAM',
+    id: ChannelSource.INSTAGRAM,
     icon: 'fab fa-instagram',
-    isDisabled: true,
     title: 'Instagram'
   },
   {
