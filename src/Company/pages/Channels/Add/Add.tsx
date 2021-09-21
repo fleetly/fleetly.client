@@ -32,6 +32,10 @@ import { SOURCES } from './Add.data';
 
 // GraphQL
 import CREATE_CHANNEL from './Add.gql';
+import GET_CHANNEL_LIST from '@graphql/getChannelList.gql';
+
+// Store
+import { useModals } from '@store';
 
 // Styles
 import styles from './Add.scss';
@@ -43,13 +47,16 @@ export interface ChannelAddFormValues {
 
 export const ChannelAdd: React.FC = () => {
   // Setup
+  const { closeModal } = useModals(ADD_CHANNEL_MODAL);
   const { companyId } = useParams<{ companyId: string }>();
 
   // State
   const [sourceType, setSourceType] = useState<ChannelSource>();
 
   // Mutations
-  const [createChannel] = useMutation(CREATE_CHANNEL);
+  const [createChannel] = useMutation(CREATE_CHANNEL, {
+    refetchQueries: [{ query: GET_CHANNEL_LIST, variables: { companyId } }]
+  });
 
   // Handlers
   const handleFormChange = useCallback(
@@ -63,11 +70,12 @@ export const ChannelAdd: React.FC = () => {
     async ({ sourceType, token }: ChannelAddFormValues) => {
       try {
         await createChannel({ variables: { companyId, sourceType, token } });
+        closeModal();
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [companyId, createChannel]
+    [closeModal, companyId, createChannel]
   );
 
   // Memo
