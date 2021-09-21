@@ -24,7 +24,7 @@ export const Dialog: React.FC = () => {
   const { chatId } = useParams<{ chatId: string }>();
 
   // State
-  const [search, setSearch] = useState<string>();
+  const [search, setSearch] = useState<string>('');
 
   // Data
   const { data, loading } = useQuery<{ chat: IChat }>(GET_CHAT, {

@@ -80,6 +80,7 @@ export const NoOptionsMessage: React.FC<{}> = () => (
 export const SelectContainer: React.FC<any> = (props) => {
   // Setup
   const $anchor = useRef<HTMLDivElement>(null);
+  const classes = props.selectProps?.classes?.container || {};
 
   return (
     <components.SelectContainer {...props}>
@@ -91,7 +92,7 @@ export const SelectContainer: React.FC<any> = (props) => {
 
       <ContextMenu
         anchor={$anchor.current as HTMLElement}
-        classes={{ card: styles.Card }}
+        classes={{ card: classNames(classes?.menu, styles.Card) }}
         opened={props.selectProps.menuIsOpen}
         position="bottom"
         width={$anchor.current?.clientWidth}

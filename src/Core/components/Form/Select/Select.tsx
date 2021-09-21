@@ -98,6 +98,7 @@ export const Select: React.FC<Form.SelectProps> = ({
       {label && <FieldHeader classes={classes} hint={hint} label={label} />}
 
       <ReactSelect
+        classes={classes}
         className={styles.Container}
         classNamePrefix="react-select"
         components={{

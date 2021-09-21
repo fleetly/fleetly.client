@@ -84,6 +84,7 @@ export const CollaboratorsTableRole: React.FC<CollaboratorsTableRoleProps> = ({
 
           <Select
             className={styles.Select}
+            classes={{ container: { menu: styles.Menu } }}
             loaded={submitting}
             name="newRole"
             options={OPTIONS}
