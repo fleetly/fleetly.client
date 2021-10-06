@@ -8,11 +8,25 @@
 
 .Container {
   background: url('../assets/combine-bg.webp') no-repeat center center / contain;
+  background-image:
+    image-set(
+      url('../assets/combine-bg.webp') type('image/webp'),
+      url('../assets/combine-bg.png') type('image/png')
+    );
+  background-image:
+    -webkit-image-set(
+      url('../assets/combine-bg.webp') type('image/webp'),
+      url('../assets/combine-bg.png') type('image/png')
+    );
   height: 980px;
   width: 1200px;
 
   @include breakpoints(mobile) {
-    background-image: url('../assets/combine-bg_mobile.webp');
+    background-image:
+      image-set(
+        url('../assets/combine-bg_mobile.webp') type('image/webp'),
+        url('../assets/combine-bg_mobile.png') type('image/png')
+      );
     height: 900px;
     padding: 0;
     width: 100%;

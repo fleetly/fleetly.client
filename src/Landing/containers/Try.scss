@@ -19,11 +19,25 @@
 
 .Container {
   background: url('../assets/try-bg.webp') no-repeat center center / contain;
+  background-image:
+    image-set(
+      url('../assets/try-bg.webp') type('image/webp'),
+      url('../assets/try-bg.png') type('image/png')
+    );
+  background-image:
+    -webkit-image-set(
+      url('../assets/try-bg.webp') type('image/webp'),
+      url('../assets/try-bg.png') type('image/png')
+    );
   height: 632px;
   width: 1200px;
 
   @include breakpoints(mobile) {
-    background-image: url('../assets/try-bg_mobile.webp');
+    background-image:
+      image-set(
+        url('../assets/try-bg_mobile.webp') type('image/webp'),
+        url('../assets/try-bg_mobile.png') type('image/png')
+      );
     height: 716px;
     width: 100%;
   }
