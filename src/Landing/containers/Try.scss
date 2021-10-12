@@ -1,6 +1,14 @@
 @import '~@styles/breakpoints';
 @import '~@styles/colors';
 
+:global .webp-supported :local .Container {
+  background-image: url('../assets/try-bg.webp');
+
+  @include breakpoints(mobile) {
+    background-image: url('../assets/try-bg_mobile.webp');
+  }
+}
+
 .Root {
   margin: 200px 0 0;
 
@@ -18,26 +26,12 @@
 }
 
 .Container {
-  background: url('../assets/try-bg.webp') no-repeat center center / contain;
-  background-image:
-    image-set(
-      url('../assets/try-bg.webp') type('image/webp'),
-      url('../assets/try-bg.png') type('image/png')
-    );
-  background-image:
-    -webkit-image-set(
-      url('../assets/try-bg.webp') type('image/webp'),
-      url('../assets/try-bg.png') type('image/png')
-    );
+  background: url('../assets/try-bg.png') no-repeat center center / contain;
   height: 632px;
   width: 1200px;
 
   @include breakpoints(mobile) {
-    background-image:
-      image-set(
-        url('../assets/try-bg_mobile.webp') type('image/webp'),
-        url('../assets/try-bg_mobile.png') type('image/png')
-      );
+    background-image: url('../assets/try-bg_mobile.png');
     height: 716px;
     width: 100%;
   }
