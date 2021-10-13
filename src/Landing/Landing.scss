@@ -1,6 +1,22 @@
 @import '~@styles/breakpoints';
 @import '~@styles/colors';
 
+:global .webp-supported :local .Half::after {
+  background-image: url('./assets/half-bg-2.webp');
+
+  @include breakpoints(mobile) {
+    background-image: url('./assets/half-bg-2_mobile.webp');
+  }
+}
+
+:global .webp-supported :local .Half::before {
+  background-image: url('./assets/half-bg-1.webp');
+
+  @include breakpoints(mobile) {
+    background-image: url('./assets/half-bg-1_mobile.webp');
+  }
+}
+
 .Root {
   background: $background-lighten;
   overflow: hidden visible;
@@ -25,7 +41,7 @@
     width: 100%;
 
     &::after {
-      background: url('./assets/half-bg-2.webp') no-repeat left bottom / contain;
+      background: url('./assets/half-bg-2.png') no-repeat left bottom / contain;
       bottom: 0;
       content: '';
       display: block;
@@ -35,14 +51,14 @@
       width: 100%;
 
       @include breakpoints(mobile) {
-        background-image: url('./assets/half-bg-2_mobile.webp');
+        background-image: url('./assets/half-bg-2_mobile.png');
         height: 780px;
         width: 100%;
       }
     }
 
     &::before {
-      background: url('./assets/half-bg-1.webp') no-repeat left center / contain;
+      background: url('./assets/half-bg-1.png') no-repeat left center / contain;
       content: '';
       display: block;
       height: 1000px;
@@ -52,7 +68,7 @@
       width: 100%;
 
       @include breakpoints(mobile) {
-        background-image: url('./assets/half-bg-1_mobile.webp');
+        background-image: url('./assets/half-bg-1_mobile.png');
         height: 552px;
         min-width: auto;
         top: -360px;
