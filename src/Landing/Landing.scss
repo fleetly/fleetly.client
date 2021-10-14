@@ -1,19 +1,21 @@
 @import '~@styles/breakpoints';
 @import '~@styles/colors';
 
-:global .webp-supported :local .Half::after {
-  background-image: url('./assets/half-bg-2.webp');
+:global .webp-supported :local .Half {
+  &::after {
+    background-image: url('./assets/half-bg-2.webp');
 
-  @include breakpoints(mobile) {
-    background-image: url('./assets/half-bg-2_mobile.webp');
+    @include breakpoints(mobile) {
+      background-image: url('./assets/half-bg-2_mobile.webp');
+    }
   }
-}
 
-:global .webp-supported :local .Half::before {
-  background-image: url('./assets/half-bg-1.webp');
+  &::before {
+    background-image: url('./assets/half-bg-1.webp');
 
-  @include breakpoints(mobile) {
-    background-image: url('./assets/half-bg-1_mobile.webp');
+    @include breakpoints(mobile) {
+      background-image: url('./assets/half-bg-1_mobile.webp');
+    }
   }
 }
 
