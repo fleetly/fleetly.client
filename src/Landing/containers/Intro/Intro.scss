@@ -1,6 +1,14 @@
 @import '~@styles/breakpoints';
 @import '~@styles/colors';
 
+:global .webp-supported :local .Background {
+  background-image: url('../../assets/intro-bg.webp');
+
+  @include breakpoints(mobile) {
+    background-image: url('../../assets/intro-bg_mobile.webp');
+  }
+}
+
 .Root {
   height: 1000px;
 
@@ -18,14 +26,14 @@
 }
 
 .Background {
-  background: url('../../assets/intro-bg.webp') no-repeat center bottom / cover;
+  background: url('../../assets/intro-bg.png') no-repeat center bottom / cover;
   height: 100%;
   position: relative;
   width: 100%;
   z-index: 2;
 
   @include breakpoints(mobile) {
-    background-image: url('../../assets/intro-bg_mobile.webp');
+    background-image: url('../../assets/intro-bg_mobile.png');
     height: 952px;
   }
 }

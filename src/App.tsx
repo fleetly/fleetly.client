@@ -24,6 +24,9 @@ import { useSession } from '@store';
 // Styles
 import styles from './App.scss';
 
+// Utils
+import { isWEBPSupported } from '@utils/support';
+
 const Company = lazy(() => import('./Company'));
 const Landing = lazy(() => import('./Landing'));
 const Profile = lazy(() => import('./Profile'));
@@ -41,6 +44,11 @@ const App: React.FC<{}> = () => {
   });
 
   // Effects
+  useEffect(() => {
+    // @todo - сделать более разумную функцию по саппортингу
+    isWEBPSupported() && document.body.classList.add('webp-supported');
+  }, []);
+
   useEffect(() => {
     isAuthorized && getUser();
   }, [getUser, isAuthorized]);
