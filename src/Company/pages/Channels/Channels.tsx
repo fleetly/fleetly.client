@@ -9,7 +9,7 @@ import emptyImage2x from './Common/assets/empty@1x.png';
 // Components
 import Button from '@components/Button';
 import { Hero } from '@components/Hero';
-import Image from '@components/Image';
+import { Image } from '@components/Picture';
 import Loader from '@components/Loader';
 import Page, { Wrapper } from '@components/Page';
 

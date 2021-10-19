@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 // Components
+import { Picture } from '@components/Picture';
 import { H2, Text } from '@components/Typography';
 import Button from '../../../components/Button';
 
@@ -57,10 +58,10 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
     )}
   >
     <div className={classNames(classes.cover, styles.Cover)}>
-      <img
+      <Picture
         alt={title}
         className={classNames(classes.image, styles.Image)}
-        src={image}
+        images={[{ src: image }]}
       />
     </div>
 

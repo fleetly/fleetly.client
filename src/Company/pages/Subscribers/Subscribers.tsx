@@ -8,7 +8,7 @@ import emptyImage2x from './assets/empty@1x.png';
 // Components
 import Avatar from '@components/Avatar';
 import { Hero } from '@components/Hero';
-import Image from '@components/Image';
+import { Image } from '@components/Picture';
 import Link from '@components/Link';
 import Loader from '@components/Loader';
 import Page, { Wrapper } from '@components/Page';

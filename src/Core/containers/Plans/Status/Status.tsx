@@ -9,7 +9,7 @@ import succeededImage2x from './assets/succeeded@1x.png';
 // Components
 import Button from '@components/Button';
 import { Hero } from '@components/Hero';
-import Image from '@components/Image';
+import { Image } from '@components/Picture';
 import Modal from '@components/Modal';
 
 // Hooks

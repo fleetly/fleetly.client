@@ -6,17 +6,19 @@ export type ImageType = 'image/webp';
 export interface ImageProps {
   alt?: string;
   className?: string;
+  media?: string;
   src: string;
   srcSet?: Partial<Record<ImageSize, string>>;
-  source?: boolean;
+  type?: string;
 }
 
-const Image: React.FC<ImageProps> = ({
+export const Image: React.FC<ImageProps> = ({
   alt,
   className,
+  media,
   src,
   srcSet,
-  source
+  type
 }) => {
   // Memo
   const set = useMemo(
@@ -28,11 +30,9 @@ const Image: React.FC<ImageProps> = ({
     [srcSet]
   );
 
-  return source ? (
-    <source src={src} srcSet={set} />
+  return media || type ? (
+    <source media={media} src={src} srcSet={set} type={type} />
   ) : (
     <img alt={alt} className={className} src={src} srcSet={set} />
   );
 };
-
-export default Image;

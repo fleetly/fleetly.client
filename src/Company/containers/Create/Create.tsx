@@ -17,7 +17,7 @@ import {
   gqlErrorHandler,
   yupValidator
 } from '@components/Form';
-import Image from '@components/Image';
+import { Image } from '@components/Picture';
 import Modal from '@components/Modal';
 
 // GraphQL

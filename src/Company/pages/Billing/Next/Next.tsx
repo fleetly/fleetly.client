@@ -7,7 +7,7 @@ import { PlanType } from '@fleetly/core/interfaces';
 // Components
 import Button from '@components/Button';
 import Card from '@components/Card';
-import Image from '@components/Image';
+import { Image } from '@components/Picture';
 import { Caption, H2, H4, Text } from '@components/Typography';
 
 // Components

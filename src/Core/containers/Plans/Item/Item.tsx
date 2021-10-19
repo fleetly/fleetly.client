@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { PlanType } from '@fleetly/core/interfaces';
 
 // Components
-import Image from '@components/Image';
+import { Image } from '@components/Picture';
 import { H3, Text } from '@components/Typography';
 
 import Select from './components/Select';
