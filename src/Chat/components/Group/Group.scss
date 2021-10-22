@@ -7,6 +7,12 @@
   width: 100%;
 
   &Is {
+    &Bot {
+      .Author {
+        color: $color-green !important;
+      }
+    }
+
     &Outcoming {
       display: flex;
       flex-direction: row-reverse;
@@ -21,6 +27,20 @@
 
       .List {
         align-items: flex-end;
+
+        & > * {
+          &:first-child {
+            border-radius: 16px 16px 4px 16px;
+          }
+
+          &:not(:first-child):not(:last-child) {
+            border-radius: 16px 4px 4px 16px;
+          }
+
+          &:last-child {
+            border-radius: 16px 4px 16px 16px;
+          }
+        }
       }
     }
   }
@@ -53,7 +73,25 @@
   flex-direction: column;
   max-width: 80%;
 
-  & > *:not(:first-child) {
-    margin: 4px 0 0;
+  & > * {
+    &:first-child {
+      border-radius: 16px 16px 16px 4px;
+    }
+
+    &:first-child:last-child {
+      border-radius: 16px;
+    }
+
+    &:last-child {
+      border-radius: 4px 16px 16px 16px;
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 4px 16px 16px 4px;
+    }
+
+    &:not(:first-child) {
+      margin: 4px 0 0;
+    }
   }
 }

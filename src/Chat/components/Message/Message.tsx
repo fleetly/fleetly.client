@@ -16,6 +16,7 @@ import styles from './Message.scss';
 export interface MessageProps {
   id: string;
   date: string;
+  isBot?: boolean;
   isOutcoming?: boolean;
   status: MessageStatus;
   sticker?: IMessageSticker;
@@ -24,12 +25,14 @@ export interface MessageProps {
 
 export const Message: React.FC<MessageProps> = ({
   date,
+  isBot,
   isOutcoming = true,
   status,
   text
 }) => (
   <div
     className={classNames(styles.Root, {
+      [styles.RootIsBot]: isOutcoming && isBot,
       [styles.RootIsOutcoming]: isOutcoming
     })}
   >

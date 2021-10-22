@@ -99,7 +99,12 @@ export const DialogHeader: React.FC<DialogHeaderProps & IChat> = ({
             variant="outlined"
           />
 
-          <Button color="blue" loaded={loading} onClick={handleCloseClick}>
+          <Button
+            color="blue"
+            loaded={loading}
+            onClick={handleCloseClick}
+            variant="outlined"
+          >
             Confirm
           </Button>
         </div>

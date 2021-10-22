@@ -3,6 +3,7 @@ import React from 'react';
 
 // Components
 import Avatar from '@components/Avatar';
+import Icon from '@components/Icon';
 import { Text } from '@components/Typography';
 
 import { Message, MessageProps } from '../Message';
@@ -27,22 +28,25 @@ export const Group: React.FC<GroupProps> = ({
   messages
 }) => {
   // Data
-  const { firstname, id, lastname, photo } = author;
-
-  // Memo
-  const rootClassName = React.useMemo(
-    () => classNames(styles.Root, { [styles.RootIsOutcoming]: isOutcoming }),
-    [isOutcoming]
-  );
+  const { id, firstname, isBot, lastname, photo } = author;
 
   return (
-    <div className={rootClassName}>
-      <Avatar
-        alt={firstname}
-        className={styles.Avatar}
-        src={photo}
-        toColor={id}
-      />
+    <div
+      className={classNames(styles.Root, {
+        [styles.RootIsBot]: isOutcoming && isBot,
+        [styles.RootIsOutcoming]: isOutcoming
+      })}
+    >
+      {isBot ? (
+        <Icon className={styles.Avatar} color="green" icon="fad fa-robot" />
+      ) : (
+        <Avatar
+          alt={firstname}
+          className={styles.Avatar}
+          src={photo}
+          toColor={id}
+        />
+      )}
 
       <div className={styles.Container}>
         <Text
@@ -51,7 +55,7 @@ export const Group: React.FC<GroupProps> = ({
           size="small"
           weight="semiBold"
         >
-          {firstname} {lastname}
+          {isBot ? 'Bot' : `${firstname} ${lastname}`}
         </Text>
 
         <div className={styles.List}>
@@ -62,6 +66,7 @@ export const Group: React.FC<GroupProps> = ({
               <Component
                 {...message}
                 key={message.id}
+                isBot={isBot}
                 isOutcoming={isOutcoming}
               />
             );

@@ -16,6 +16,7 @@ export interface IMessage {
 export interface IMessageAuthor {
   readonly id: string;
   readonly firstname: string;
+  readonly isBot?: boolean;
   readonly lastname: string;
   readonly photo: string;
   readonly username: string;

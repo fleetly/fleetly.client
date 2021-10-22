@@ -6,6 +6,9 @@ import { useParams } from 'react-router-dom';
 // Fleetly
 import { IPagination } from '@fleetly/common/dist/interfaces';
 
+// Assets
+import messageNotification from '@chat/assets/audio/message-notification.wav';
+
 // GraphQL
 import GET_MESSAGE_LIST from './graphql/getMessageList.gql';
 import SUB_MESSAGE_SENT from './graphql/subMessageSent.gql';
@@ -30,18 +33,25 @@ export const useDialogMessages = (search?: string) => {
 
   // Effects
   useEffect(() => {
+    const audio = new Audio(messageNotification);
+    audio.volume = 0.4;
+
     subscribeToMore({
       document: SUB_MESSAGE_SENT,
       variables: { chatId },
-      updateQuery: (prevResult, { subscriptionData }) => ({
-        messages: {
-          ...prevResult.messages,
-          items: [
-            (subscriptionData?.data as any).messageSent as IMessage,
-            ...prevResult.messages.items
-          ]
-        }
-      })
+      updateQuery: (prevResult, { subscriptionData }) => {
+        audio.play();
+
+        return {
+          messages: {
+            ...prevResult.messages,
+            items: [
+              (subscriptionData?.data as any).messageSent as IMessage,
+              ...prevResult.messages.items
+            ]
+          }
+        };
+      }
     });
 
     subscribeToMore({

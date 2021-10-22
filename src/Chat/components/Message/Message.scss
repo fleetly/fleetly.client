@@ -1,14 +1,23 @@
 @import '~@styles/colors';
 
 .Root {
-  background-color: $background-lighten;
+  background-color: darken($background-lighten, 4);
   border-radius: 16px;
   display: flex;
   padding: 7px 12px;
 
   &Is {
+    &Bot {
+      background-color: $color-green !important;
+    }
+
     &Outcoming {
-      background-color: lighten($color-blue, 32);
+      background-color: $color-blue;
+      color: $color-white;
+
+      .Date {
+        color: rgba($color-white, .8);
+      }
     }
   }
 }
