@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const useOutsideClick = <T extends HTMLElement>(
+export const useOutsideClick = <T extends HTMLElement>(
   callback?: (event: React.SyntheticEvent) => void
 ) => {
   const ref = useRef<T>(null);
@@ -25,5 +25,3 @@ const useOutsideClick = <T extends HTMLElement>(
 
   return ref;
 };
-
-export { useOutsideClick };

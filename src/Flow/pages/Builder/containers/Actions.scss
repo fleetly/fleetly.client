@@ -1,0 +1,37 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 136px;
+  position: absolute;
+  right: 16px;
+  top: calc(50% - 68px);
+  z-index: 4;
+
+  & > *:not(:first-child) {
+    flex: 0 0 32px;
+    margin: 8px 0 0;
+  }
+}
+
+.Action {
+  background: $color-white;
+  font-size: 10px;
+  height: 32px;
+  min-width: 32px;
+  width: 32px;
+}
+
+.Add {
+  border-radius: 100%;
+  flex: 0 0 48px;
+  height: 48px;
+  margin: 0 0 8px;
+  width: 48px;
+
+  &Icon {
+    font-size: 18px;
+  }
+}
