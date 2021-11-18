@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+import { ApolloError, useMutation } from '@apollo/client';
 import React, { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -6,9 +6,10 @@ import { useParams } from 'react-router-dom';
 import { BlockType } from '@fleetly/flow/entities';
 
 // Components
-import ContextMenu, {
-  MenuItem,
-  MenuTitle,
+import {
+  ContextMenu,
+  ContextMenuItem,
+  ContextMenuTitle,
   ContextMenuProps
 } from '@components/ContextMenu';
 
@@ -40,7 +41,7 @@ export const BuilderMenu: React.FC<ContextMenuProps> = () => {
           }
         });
       } catch (error) {
-        return handleApolloError(error);
+        return handleApolloError(error as ApolloError);
       }
     },
     [addBlock, flowId, handleApolloError]
@@ -48,9 +49,9 @@ export const BuilderMenu: React.FC<ContextMenuProps> = () => {
 
   return (
     <ContextMenu>
-      <MenuTitle>New Block</MenuTitle>
+      <ContextMenuTitle>New Block</ContextMenuTitle>
 
-      <MenuItem
+      <ContextMenuItem
         data-block-type={BlockType.ACTION}
         color="yellow"
         icon="fas fa-bolt"

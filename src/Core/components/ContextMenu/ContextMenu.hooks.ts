@@ -5,7 +5,8 @@ import { ContextMenuProps } from '@components/ContextMenu';
 
 interface Result {
   anchor?: HTMLElement;
-  handleMenuClose?(event: React.SyntheticEvent): void;
+  closeMenu(): void;
+  handleMenuClose?(): void;
   handleMenuOpen?(event: React.SyntheticEvent): void;
   isOpened: boolean;
 }
@@ -31,7 +32,13 @@ const useContextMenu = (): [ContextMenuProps, Result] => {
 
   return [
     { anchor, onClose: handleMenuClose, opened: isOpened },
-    { anchor, handleMenuClose, handleMenuOpen, isOpened }
+    {
+      anchor,
+      closeMenu: handleMenuClose,
+      handleMenuClose,
+      handleMenuOpen,
+      isOpened
+    }
   ];
 };
 

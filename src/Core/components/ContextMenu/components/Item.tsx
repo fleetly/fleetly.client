@@ -10,30 +10,32 @@ import { Text } from '@components/Typography';
 import styles from './Item.scss';
 import { getClassName } from '@utils/styles';
 
-interface Classes extends ExtendedClasses {
+export interface ContextMenuItemClasses extends ExtendedClasses {
   arrow?: string;
   icon?: string;
   title?: string;
 }
 
-interface PropTypes {
+export interface ContextMenuItemProps {
   arrow?: boolean;
-  classes?: Classes;
+  classes?: ContextMenuItemClasses;
   className?: string;
   color?: Color;
   icon?: string;
   onClick?(event: React.SyntheticEvent): void;
+  selected?: boolean;
   title: string;
   to?: string;
 }
 
-const ContextMenuItem: React.FC<PropTypes> = ({
+export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
   arrow,
   classes = {},
   className,
   color = 'blue',
   icon,
   onClick,
+  selected,
   title,
   to,
   ...props
@@ -51,7 +53,8 @@ const ContextMenuItem: React.FC<PropTypes> = ({
         className,
         classes.root,
         styles.Root,
-        getClassName('color', { collection: styles, value: color })
+        getClassName('color', { collection: styles, value: color }),
+        { [styles.RootIsSelected]: selected }
       )}
       onClick={onClick}
       {...props}
@@ -84,5 +87,3 @@ const ContextMenuItem: React.FC<PropTypes> = ({
     </Component>
   );
 };
-
-export default ContextMenuItem;

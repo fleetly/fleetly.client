@@ -8,7 +8,7 @@ import Card, { CardHeader } from '@components/Card';
 import Icon from '@components/Icon';
 import { Caption } from '@components/Typography';
 
-import { Handle } from '../Handle';
+import { Handle } from '@flow/components';
 
 // Styles
 import styles from './Block.scss';

@@ -2,8 +2,9 @@
 
 @mixin color($color) {
   &:focus,
-  &:hover {
-    background: rgba($color, .2);
+  &:hover,
+  &.RootIsSelected {
+    background: rgba($color, .12);
   }
 }
 
@@ -14,7 +15,7 @@
   height: 32px;
   justify-content: space-between;
   margin: 4px 0 0;
-  padding: 4px;
+  padding: 4px 12px;
 
   &:hover {
     cursor: pointer;
@@ -31,6 +32,7 @@
   flex: 0 0 24px;
   font-size: 12px;
   height: 24px;
+  margin: 0 0 0 -8px;
   width: 24px;
 }
 

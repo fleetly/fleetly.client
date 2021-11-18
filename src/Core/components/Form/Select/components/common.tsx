@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { components, IndicatorProps } from 'react-select';
 
 // Components
-import ContextMenu from '@components/ContextMenu';
+import { ContextMenu } from '@components/ContextMenu';
 import { H4, P } from '@components/Typography';
 
 // Styles

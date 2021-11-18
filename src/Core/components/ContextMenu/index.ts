@@ -1,11 +1,11 @@
-export { default } from './ContextMenu';
 export * from './ContextMenu';
 
 // Components
-export { CardHr as MenuHr } from '@components/Card';
+export { CardHr as ContextMenuHr } from '@components/Card';
 
-export { default as MenuItem } from './components/Item';
-export { default as MenuTitle } from './components/Title';
+export * from './components/Column';
+export * from './components/Item';
+export * from './components/Title';
 
 // Hooks
 export * from './ContextMenu.hooks';

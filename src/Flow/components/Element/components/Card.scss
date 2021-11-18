@@ -2,8 +2,12 @@
 
 .Root {
   align-items: center;
-  border: 1.5px solid $background-light;
+  border: 2px solid $background-light;
   border-radius: 16px;
   padding: 12px;
   width: 100%;
+
+  &:hover {
+    background-color: $background-lighten;
+  }
 }
