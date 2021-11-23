@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 // Components
+import { ImageProps } from '@components/Picture';
 import { Picture } from '@components/Picture';
 import { H2, Text } from '@components/Typography';
 import Button from '../../../components/Button';
@@ -30,7 +31,7 @@ interface PropTypes {
   className?: string;
   color?: Color;
   description: string;
-  image: string;
+  images: ImageProps[];
   link?: boolean;
   reverse?: boolean;
   title: string;
@@ -41,7 +42,7 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
   className,
   color = 'default',
   description,
-  image,
+  images,
   link,
   reverse = false,
   title
@@ -61,7 +62,7 @@ const LandingFeaturesItem: React.FC<PropTypes> = ({
       <Picture
         alt={title}
         className={classNames(classes.image, styles.Image)}
-        images={[{ src: image }]}
+        images={images}
       />
     </div>
 
