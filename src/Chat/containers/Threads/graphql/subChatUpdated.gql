@@ -6,6 +6,7 @@ subscription SUB_CHAT_UPDATED($companyId: String!, $status: ChatStatusType!) {
       author {
         id
         firstname
+        isBot
       }
       date
       isComment

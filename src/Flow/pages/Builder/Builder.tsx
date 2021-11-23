@@ -2,7 +2,7 @@ import React from 'react';
 import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
 
 // Blocks
-import { BlockStart } from '@flow/blocks';
+import { BlockContent, BlockStart } from '@flow/blocks';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
@@ -31,7 +31,10 @@ export const Builder: React.FC = () => {
             elements={elements}
             onConnect={handleEdgeConnect}
             onNodeDragStop={handleBlockDrag}
-            nodeTypes={{ [BlockType.START]: BlockStart }}
+            nodeTypes={{
+              [BlockType.CONTENT]: BlockContent,
+              [BlockType.START]: BlockStart
+            }}
             snapToGrid
           />
 

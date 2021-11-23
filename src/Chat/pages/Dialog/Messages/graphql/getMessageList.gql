@@ -9,6 +9,7 @@ query GET_MESSAGE_LIST(
       author {
         id
         firstname
+        isBot
         lastname
         photo
         username

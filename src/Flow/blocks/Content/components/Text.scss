@@ -1,0 +1,30 @@
+@import '~@styles/colors';
+
+.Root {
+  background: $background-lighten;
+  border: 2px solid $background-light;
+  border-radius: 15px;
+  padding: 12px;
+}
+
+.Text {
+  color: rgba($color-text, .8);
+  padding: 4px 10px;
+}
+
+.Textarea {
+  background: $color-white;
+  border: 2px solid $background-light;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+  resize: none;
+  transition: all .2s;
+  width: 100%;
+
+  &:focus {
+    border-color: $color-blue;
+  }
+}

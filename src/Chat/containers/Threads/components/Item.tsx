@@ -63,7 +63,7 @@ export const ThreadsItem: React.FC<IChat> = ({
           {lastMessage && (
             <Text className={styles.Text} noWrap>
               <Text className={styles.Author} weight="semiBold">
-                {author.firstname}:
+                {author.isBot ? 'Bot' : author.firstname}:
               </Text>
 
               {!!sticker ? 'Sticker 😊' : text}
