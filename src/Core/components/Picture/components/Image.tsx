@@ -31,7 +31,7 @@ export const Image: React.FC<ImageProps> = ({
   );
 
   return media || type ? (
-    <source media={media} src={src} srcSet={set || src} type={type} />
+    <source media={media} src={src} srcSet={set} type={type} />
   ) : (
     <img alt={alt} className={className} src={src} srcSet={set} />
   );
