@@ -70,7 +70,7 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
       <Text
         className={classNames(classes.title, styles.Title)}
         size="small"
-        weight="medium"
+        weight="semiBold"
       >
         {title}
       </Text>

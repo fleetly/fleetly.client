@@ -11,7 +11,7 @@ import {
 } from '@components/ContextMenu';
 import { Field } from '@components/Form';
 
-import { ElementCard } from '@flow/components';
+import { BuilderElement } from '../../../components';
 
 // Data
 import {
@@ -46,7 +46,7 @@ export const BlockStartKeyword: React.FC<BlockStartKeywordProps> = ({ id }) => {
   return (
     <>
       <div onClick={handleMenuOpen}>
-        <ElementCard
+        <BuilderElement
           id={id}
           color="green"
           icon="fad fa-text"

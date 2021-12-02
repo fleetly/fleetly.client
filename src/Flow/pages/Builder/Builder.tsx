@@ -2,10 +2,11 @@ import React from 'react';
 import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
 
 // Blocks
-import { BlockContent, BlockStart } from '@flow/blocks';
+import { BlockContent, BlockStart } from './blocks';
 
 // Components
 import Page, { Wrapper } from '@components/Page';
+import { BuilderEdge } from './components/Edge';
 
 // Containers
 import { BuilderActions } from './containers/Actions';
@@ -28,6 +29,7 @@ export const Builder: React.FC = () => {
       <Wrapper classes={{ container: styles.Container }} title="Flow Builder">
         <ReactFlowProvider>
           <ReactFlow
+            edgeTypes={{ default: BuilderEdge }}
             elements={elements}
             onConnect={handleEdgeConnect}
             onNodeDragStop={handleBlockDrag}

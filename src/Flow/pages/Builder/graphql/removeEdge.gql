@@ -1,0 +1,12 @@
+mutation REMOVE_EDGE($edgeId: String!) {
+  removeEdge(edgeId: $edgeId) {
+    id
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+  }
+}

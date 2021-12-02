@@ -7,14 +7,14 @@ import styles from './Button.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-export interface ButtonProps {
+export interface BuilderButtonProps {
   children?: React.ReactNode;
   className?: string;
   color?: Color;
   onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const BuilderButton: React.FC<BuilderButtonProps> = ({
   children,
   className,
   color = 'default',

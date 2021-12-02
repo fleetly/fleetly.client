@@ -1,33 +1,28 @@
 import { getClassName } from '@utils/styles';
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
-import {
-  Handle as FlowHandle,
-  HandleProps as FlowHandleProps,
-  useStoreState
-} from 'react-flow-renderer';
+import React, { useContext, useMemo } from 'react';
+import { Handle, HandleProps, useStoreState } from 'react-flow-renderer';
+
+// Contexts
+import { BuilderBlockContext } from '../contexts/block.context';
 
 // Styles
 import styles from './Handle.scss';
 
-export interface HandleProps extends FlowHandleProps {
-  blockId?: string;
+export interface BlockHandleProps extends HandleProps {
   className?: string;
-  color?: Color;
 }
 
-export const Handle: React.FC<HandleProps> = ({
+export const BlockHandle: React.FC<BlockHandleProps> = ({
   id,
   className,
-  color = 'blue',
-  blockId,
   type,
   ...props
 }) => {
   // Setup
+  const { blockId, color = 'blue' } = useContext(BuilderBlockContext);
   const edges = useStoreState(({ edges }) => edges);
 
-  // @todo - make it better
   const isConnected = useMemo(
     () =>
       !!edges.find(({ source, sourceHandle, target, targetHandle }) =>
@@ -41,7 +36,7 @@ export const Handle: React.FC<HandleProps> = ({
   );
 
   return (
-    <FlowHandle
+    <Handle
       {...props}
       className={classNames(
         className,
