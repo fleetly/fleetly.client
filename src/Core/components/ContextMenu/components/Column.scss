@@ -1,0 +1,11 @@
+@import '~@styles/colors';
+
+.Root {
+  flex: 1 1 auto;
+
+  &:not(:first-child) {
+    border-left: 2px solid $background-light;
+    margin: 0 0 0 20px;
+    padding: 0 0 0 20px;
+  }
+}

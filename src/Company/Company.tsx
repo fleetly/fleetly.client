@@ -40,7 +40,7 @@ import styles from './Company.scss';
 
 // Views
 import Chat from '../Chat';
-import Flow from '../Flow';
+import { Flow } from '../Flow';
 import Panel from './pages/Panel';
 
 export const Company: React.FC = () => {

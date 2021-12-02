@@ -11,6 +11,7 @@ query GET_CHAT_LIST(
         author {
           id
           firstname
+          isBot
         }
         date
         isComment

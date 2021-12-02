@@ -7,19 +7,21 @@ import { Text } from '@components/Typography';
 // Styles
 import styles from './Title.scss';
 
-interface PropTypes {
+export interface ContextMenuTitleProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const ContextMenuTitle: React.FC<PropTypes> = ({ children, className }) => (
+export const ContextMenuTitle: React.FC<ContextMenuTitleProps> = ({
+  children,
+  className
+}) => (
   <Text
     className={classNames(className, styles.Root)}
+    component="div"
     size="small"
     weight="medium"
   >
     {children}
   </Text>
 );
-
-export default ContextMenuTitle;

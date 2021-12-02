@@ -1,0 +1,70 @@
+@import '~@styles/colors';
+
+@mixin color($color) {
+  &:hover {
+    .Card {
+      box-shadow: 0 0 0 3px rgba($color, .6);
+    }
+  }
+}
+
+.Root {
+  transition: box-shadow .2s;
+  width: 300px;
+
+  &:hover {
+    .Actions {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+  }
+
+  @include coloring();
+}
+
+.Action {
+  border: none;
+  border-radius: 0;
+  height: 32px;
+  min-width: 50%;
+  width: 50%;
+}
+
+.Actions {
+  background: $color-white;
+  border-radius: 12px;
+  display: flex;
+  height: 32px;
+  left: calc(50% - 32px);
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: -40px;
+  transform: translateY(100%);
+  transition: all .2s .2s;
+  width: 64px;
+  z-index: 1;
+}
+
+.Card {
+  background: rgba($color-white, .9);
+  position: relative;
+  z-index: 2;
+}
+
+.Next {
+  color: $color-text-secondary;
+  margin: 20px 0 0;
+  position: relative;
+  text-align: right;
+}
+
+.Source {
+  right: -30px !important;
+}
+
+.Target {
+  left: -10px !important;
+  top: 40px !important;
+}

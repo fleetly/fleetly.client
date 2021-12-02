@@ -1,0 +1,20 @@
+mutation REMOVE_BLOCK($blockId: String!) {
+  removeBlock(blockId: $blockId) {
+    id
+    blocks {
+      id
+      position {
+        x
+        y
+      }
+      title
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+  }
+}

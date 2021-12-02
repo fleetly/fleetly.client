@@ -4,6 +4,7 @@ subscription SUB_MESSAGE_UPDATED($chatId: String!) {
     author {
       id
       firstname
+      isBot
       lastname
       photo
       username

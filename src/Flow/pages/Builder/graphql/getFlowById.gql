@@ -1,0 +1,27 @@
+query getFlowById($flowId: String!) {
+  flow(flowId: $flowId) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        payload
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+    title
+  }
+}

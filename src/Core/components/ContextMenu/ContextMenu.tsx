@@ -29,7 +29,7 @@ export interface ContextMenuProps {
   width?: number;
 }
 
-const ContextMenu: React.FC<ContextMenuProps> = ({
+export const ContextMenu: React.FC<ContextMenuProps> = ({
   anchor,
   children,
   classes = {},
@@ -112,5 +112,3 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
     document.getElementById('portal') as HTMLElement
   );
 };
-
-export default ContextMenu;

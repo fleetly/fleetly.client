@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Assets
-import feature3Img from '../assets/features/feature-3.webp';
-import feature3Img1 from '../assets/features/feature-3.png';
+import feature3ImgPng from '../assets/features/feature-3.png';
+import feature3ImgWebp from '../assets/features/feature-3.webp';
 
 // Components
 import { Feature } from './Features';
@@ -15,13 +15,8 @@ const LandingAnalyze: React.FC<{}> = () => (
       description="Optimize costs and get the most profitable model
 by analyzing customer service data"
       images={[
-        {
-          src: feature3Img,
-          type: 'image/webp'
-        },
-        {
-          src: feature3Img1
-        }
+        { src: feature3ImgWebp, type: 'image/webp' },
+        { src: feature3ImgPng }
       ]}
       title={'Analyze data\nand increase sales'}
     />

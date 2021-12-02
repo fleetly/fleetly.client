@@ -2,8 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 // Components
-import { ImageProps } from '@components/Picture';
-import { Picture } from '@components/Picture';
+import { ImageProps, Picture } from '@components/Picture';
 import { H2, Text } from '@components/Typography';
 import Button from '../../../components/Button';
 
