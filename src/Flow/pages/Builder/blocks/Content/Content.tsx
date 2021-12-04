@@ -12,11 +12,10 @@ import {
 } from '@components/ContextMenu';
 
 import { BlockContentText } from './components/Text';
-import { BuilderButton } from '../../components';
+import { BuilderBlock, BuilderButton } from '../../components';
 
 // Containers
-import { BuilderBlock } from '../../components';
-import { BuilderWrapper } from '../../containers/Wrapper';
+import { BuilderElements } from '../../containers/Elements';
 
 // GraphQL
 import ADD_ELEMENT from '../../graphql/addElement.gql';
@@ -65,11 +64,11 @@ export const BlockContent: React.FC<NodeProps> = ({
       subTitle="Content"
       title={title}
     >
-      <BuilderWrapper>
+      <BuilderElements>
         {elements.map((element: any) => (
           <BlockContentText {...element} key={element.id} />
         ))}
-      </BuilderWrapper>
+      </BuilderElements>
 
       <BuilderButton onClick={handleMenuOpen}>Add Content</BuilderButton>
 

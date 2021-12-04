@@ -14,7 +14,7 @@ import {
 import { BuilderBlock, BuilderButton } from '../../components';
 
 // Containers
-import { BuilderWrapper } from '../../containers/Wrapper';
+import { BuilderElements } from '../../containers/Elements';
 
 // Elements
 import { BlockStartKeyword } from './components/Keyword';
@@ -67,11 +67,11 @@ export const BlockStart: React.FC<NodeProps> = ({
       subTitle="Start"
       title={title}
     >
-      <BuilderWrapper>
+      <BuilderElements>
         {elements.map((element: any) => (
           <BlockStartKeyword {...element} key={element.id} />
         ))}
-      </BuilderWrapper>
+      </BuilderElements>
 
       <BuilderButton onClick={handleMenuOpen}>Add Trigger</BuilderButton>
 
