@@ -5,7 +5,8 @@ import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
 import { BlockContent, BlockStart } from './blocks';
 
 // Components
-import Page, { Wrapper } from '@components/Page';
+import Button from '@components/Button';
+import Page, { Breadcrumbs } from '@components/Page';
 import { BuilderEdge } from './components/Edge';
 
 // Containers
@@ -26,23 +27,36 @@ export const Builder: React.FC = () => {
 
   return (
     <Page title="Flow Builder">
-      <Wrapper classes={{ container: styles.Container }} title="Flow Builder">
-        <ReactFlowProvider>
-          <ReactFlow
-            edgeTypes={{ default: BuilderEdge }}
-            elements={elements}
-            onConnect={handleEdgeConnect}
-            onNodeDragStop={handleBlockDrag}
-            nodeTypes={{
-              [BlockType.CONTENT]: BlockContent,
-              [BlockType.START]: BlockStart
-            }}
-            snapToGrid
-          />
+      <div className={styles.Header}>
+        <Breadcrumbs
+          data={[
+            { title: 'Flow', to: '/' },
+            { title: 'Test Flow', to: '/' }
+          ]}
+        />
 
-          <BuilderActions />
-        </ReactFlowProvider>
-      </Wrapper>
+        <Button color="green" variant="outlined">
+          Publish
+        </Button>
+
+        <Button icon="far fa-cog" variant="outlined" />
+      </div>
+
+      <ReactFlowProvider>
+        <ReactFlow
+          edgeTypes={{ default: BuilderEdge }}
+          elements={elements}
+          onConnect={handleEdgeConnect}
+          onNodeDragStop={handleBlockDrag}
+          nodeTypes={{
+            [BlockType.CONTENT]: BlockContent,
+            [BlockType.START]: BlockStart
+          }}
+          snapToGrid
+        />
+
+        <BuilderActions />
+      </ReactFlowProvider>
     </Page>
   );
 };
