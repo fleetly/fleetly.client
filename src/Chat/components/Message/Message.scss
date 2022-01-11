@@ -2,6 +2,7 @@
 
 .Root {
   background-color: darken($background-lighten, 4);
+  border: 2px solid $background-light;
   border-radius: 16px;
   display: flex;
   padding: 7px 12px;
@@ -9,10 +10,12 @@
   &Is {
     &Bot {
       background-color: $color-green !important;
+      border-color: $color-green;
     }
 
     &Outcoming {
       background-color: $color-blue;
+      border-color: $color-blue;
       color: $color-white;
 
       .Date {

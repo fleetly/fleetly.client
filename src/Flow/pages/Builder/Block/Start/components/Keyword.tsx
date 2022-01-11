@@ -11,7 +11,7 @@ import {
 } from '@components/ContextMenu';
 import { Field } from '@components/Form';
 
-import { BuilderElement } from '../../../components';
+import { BuilderElement } from '../../../Common/components';
 
 // Data
 import {

@@ -3,12 +3,11 @@ import { debounce } from 'lodash';
 import React, { Children, useCallback } from 'react';
 import { Form, FormSpy } from 'react-final-form';
 
+// API
+import { REMOVE_ELEMENT, UPDATE_ELEMENT } from '@flow/Flow.gql';
+
 // Components
 import Button from '@components/Button';
-
-// GraphQL
-import REMOVE_ELEMENT from '../graphql/removeElement.gql';
-import UPDATE_ELEMENT from '../graphql/updateElement.gql';
 
 // Store
 import { useNotifications } from '@store';

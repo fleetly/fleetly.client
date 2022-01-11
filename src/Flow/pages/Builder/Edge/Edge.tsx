@@ -8,11 +8,11 @@ import {
   getMarkerEnd
 } from 'react-flow-renderer';
 
+// API
+import { REMOVE_EDGE } from '@flow/Flow.gql';
+
 // Components
 import Button from '@components/Button';
-
-// GraphQL
-import REMOVE_EDGE from '../graphql/removeEdge.gql';
 
 // Store
 import { useNotifications } from '@store';

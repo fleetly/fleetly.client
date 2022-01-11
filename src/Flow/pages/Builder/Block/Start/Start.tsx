@@ -2,6 +2,9 @@ import { useMutation } from '@apollo/client';
 import React, { useCallback } from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
+// API
+import { ADD_ELEMENT } from '@flow/Flow.gql';
+
 // Components
 import {
   ContextMenu,
@@ -11,14 +14,14 @@ import {
   useContextMenu
 } from '@components/ContextMenu';
 
-import { BlockContentText } from './components/Text';
-import { BuilderBlock, BuilderButton } from '../../components';
+import { BuilderButton } from '../../Common/components';
 
-// Containers
-import { BuilderElements } from '../../containers/Elements';
+// Elements
+import { BlockStartKeyword } from './components/Keyword';
 
-// GraphQL
-import ADD_ELEMENT from '../../graphql/addElement.gql';
+// Fragments
+import { BuilderBlock } from '../../Block';
+import { BuilderElements } from '../../Elements';
 
 // Interfaces
 import { ElementType } from '@flow/interfaces';
@@ -26,7 +29,7 @@ import { ElementType } from '@flow/interfaces';
 // Store
 import { useNotifications } from '@store';
 
-export const BlockContent: React.FC<NodeProps> = ({
+export const BlockStart: React.FC<NodeProps> = ({
   data: { elements, title },
   id
 }) => {
@@ -56,32 +59,33 @@ export const BlockContent: React.FC<NodeProps> = ({
 
   return (
     <BuilderBlock
-      color="blue"
-      hasSource
-      hasTarget
-      icon="fas fa-text"
+      color="green"
+      editable={false}
+      hasTarget={false}
+      hasSource={false}
+      icon="fas fa-play"
       id={id}
-      subTitle="Content"
+      subTitle="Start"
       title={title}
     >
       <BuilderElements>
         {elements.map((element: any) => (
-          <BlockContentText {...element} key={element.id} />
+          <BlockStartKeyword {...element} key={element.id} />
         ))}
       </BuilderElements>
 
-      <BuilderButton onClick={handleMenuOpen}>Add Content</BuilderButton>
+      <BuilderButton onClick={handleMenuOpen}>Add Trigger</BuilderButton>
 
       <ContextMenu {...menuProps} position="bottom" width={260}>
         <ContextMenuColumn>
           <ContextMenuTitle>Elements</ContextMenuTitle>
 
           <ContextMenuItem
-            color="blue"
-            data-type={ElementType.CONTENT_TEXT}
+            color="green"
+            data-type={ElementType.START_KEYWORD}
             icon="far fa-font-case"
             onClick={handleItemClick}
-            title="Text + Button"
+            title="Message keyword"
           />
         </ContextMenuColumn>
       </ContextMenu>

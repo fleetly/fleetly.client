@@ -4,7 +4,7 @@ import React, { useContext, useMemo } from 'react';
 import { Handle, HandleProps, useStoreState } from 'react-flow-renderer';
 
 // Contexts
-import { BuilderBlockContext } from '../contexts/block.context';
+import { BuilderBlockContext } from '../../Block';
 
 // Styles
 import styles from './Handle.scss';

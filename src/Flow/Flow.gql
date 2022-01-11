@@ -1,0 +1,212 @@
+###############
+## MUTATIONS ##
+###############
+mutation ADD_BLOCK($block: CreateBlockInput!, $flowId: String!) {
+  addBlock(block: $block, flowId: $flowId) {
+    id
+    blocks {
+      id
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+  }
+}
+
+mutation ADD_EDGE(
+  $sourceId: String!
+  $sourceElementId: String
+  $sourceHandleId: String
+  $targetId: String!
+) {
+  addEdge(
+    edge: {
+      sourceId: $sourceId
+      sourceElementId: $sourceElementId
+      sourceHandleId: $sourceHandleId
+      targetId: $targetId
+    }
+  ) {
+    id
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+  }
+}
+
+mutation ADD_ELEMENT($blockId: String!, $element: ElementInput!) {
+  addElement(blockId: $blockId, element: $element) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        payload
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+    title
+  }
+}
+
+mutation REMOVE_BLOCK($blockId: String!) {
+  removeBlock(blockId: $blockId) {
+    id
+    blocks {
+      id
+      position {
+        x
+        y
+      }
+      title
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+  }
+}
+
+mutation REMOVE_EDGE($edgeId: String!) {
+  removeEdge(edgeId: $edgeId) {
+    id
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+  }
+}
+
+mutation REMOVE_ELEMENT($elementId: String!) {
+  removeElement(elementId: $elementId) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        payload
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+    title
+  }
+}
+
+mutation UPDATE_BLOCK($blockId: String!, $block: UpdateBlockInput!) {
+  updateBlock(blockId: $blockId, block: $block) {
+    id
+    blocks {
+      id
+      position {
+        x
+        y
+      }
+      title
+    }
+  }
+}
+
+mutation UPDATE_ELEMENT($elementId: String!, $payload: JSON!) {
+  updateElement(elementId: $elementId, payload: $payload) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        payload
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+    title
+  }
+}
+
+#############
+## QUERIES ##
+#############
+query GET_FLOW($flowId: String!) {
+  flow(flowId: $flowId) {
+    id
+    blocks {
+      id
+      elements {
+        id
+        payload
+        type
+      }
+      position {
+        x
+        y
+      }
+      title
+      type
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
+    }
+    title
+  }
+}
+
+query GET_FLOWS($companyId: String!) {
+  flows(companyId: $companyId) {
+    id
+    title
+  }
+}

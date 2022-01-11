@@ -4,6 +4,9 @@ import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { Position } from 'react-flow-renderer';
 
+// API
+import { REMOVE_BLOCK, UPDATE_BLOCK } from '@flow/Flow.gql';
+
 // Components
 import Button from '@components/Button';
 import Card, { CardHeader } from '@components/Card';
@@ -12,14 +15,10 @@ import Icon from '@components/Icon';
 import Modal from '@components/Modal';
 import { Caption } from '@components/Typography';
 
-import { BlockHandle } from '../components';
+import { BlockHandle } from '../Common/components';
 
 // Contexts
-import { BuilderBlockContext } from '../contexts/block.context';
-
-// GraphQL
-import REMOVE_BLOCK from '../graphql/removeBlock.gql';
-import UPDATE_BLOCK from '../graphql/updateBlock.gql';
+import { BuilderBlockContext } from './Block.context';
 
 // Store
 import { useModals, useNotifications } from '@store';

@@ -47,7 +47,7 @@ export const usePanel = () => {
           },
           {
             icon: 'far fa-code-merge',
-            title: 'Flow',
+            title: 'Flows',
             to: generatePath(FLOW_ROUTES.ROOT, { companyId })
           }
         ],

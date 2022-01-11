@@ -3,10 +3,8 @@ import React, { useCallback, useMemo } from 'react';
 import { Connection, Edge, Elements, Node } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 
-// GraphQL
-import ADD_EDGE from './graphql/addEdge.gql';
-import GET_FLOW_BY_ID from './graphql/getFlowById.gql';
-import UPDATE_BLOCK from './graphql/updateBlock.gql';
+// API
+import { ADD_EDGE, GET_FLOW, UPDATE_BLOCK } from '@flow/Flow.gql';
 
 // Interfaces
 import { Flow } from '@flow/interfaces/flow.interface';
@@ -23,7 +21,7 @@ export const useFlowBuilder = () => {
   const { handleApolloError } = useNotifications();
 
   // Data
-  const { data } = useQuery<{ flow: Flow }>(GET_FLOW_BY_ID, {
+  const { data } = useQuery<{ flow: Flow }>(GET_FLOW, {
     variables: { flowId }
   });
 

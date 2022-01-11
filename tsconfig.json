@@ -34,7 +34,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es5",
-    "typeRoots": ["./src/types", "./node_modules/@types"]
+    "typeRoots": ["./src/Core/types", "./node_modules/@types"]
   },
   "include": ["src"]
 }

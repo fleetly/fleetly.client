@@ -28,7 +28,10 @@ export const Group: React.FC<GroupProps> = ({
   messages
 }) => {
   // Data
-  const { id, firstname, isBot, lastname, photo } = author;
+  const { id, firstname, lastname, photo } = author;
+
+  // @todo - make isBot field as boolean on Gateway
+  const isBot = (author.isBot as any) === 'true';
 
   return (
     <div

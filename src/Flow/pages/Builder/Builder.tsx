@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
 
-// Blocks
-import { BlockContent, BlockStart } from './blocks';
-
 // Components
 import Button from '@components/Button';
 import Page, { Breadcrumbs } from '@components/Page';
-import { BuilderEdge } from './components/Edge';
 
-// Containers
-import { BuilderActions } from './containers/Actions';
+// Fragments
+import { BuilderActions } from './Actions';
+import { BlockContent, BlockStart } from './Block';
+import { BuilderEdge } from './Edge';
 
 // Hooks
 import { useFlowBuilder } from './Builder.hooks';

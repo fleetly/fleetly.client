@@ -3,6 +3,9 @@ import React, { useCallback } from 'react';
 import { useZoomPanHelper } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 
+// API
+import { ADD_BLOCK } from '@flow/Flow.gql';
+
 // Components
 import Button from '@components/Button';
 import {
@@ -12,9 +15,6 @@ import {
   ContextMenuTitle,
   useContextMenu
 } from '@components/ContextMenu';
-
-// GraphQL
-import ADD_BLOCK from '../graphql/addBlock.gql';
 
 // Interfaces
 import { BlockType } from '@flow/interfaces';
