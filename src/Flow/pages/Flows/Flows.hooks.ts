@@ -11,12 +11,13 @@ export const useFlows = () => {
   // Setup
   const { companyId } = useParams<{ companyId: string }>();
 
-  // Data
+  // API
   const { data } = useQuery<{ flows: Flow[] }>(GET_FLOWS, {
     variables: { companyId }
   });
 
   return {
-    data
+    companyId,
+    data: data?.flows || []
   };
 };

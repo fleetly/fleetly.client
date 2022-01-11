@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactFlow, { ReactFlowProvider } from 'react-flow-renderer';
+import { generatePath } from 'react-router-dom';
 
 // Components
 import Button from '@components/Button';
@@ -16,19 +17,30 @@ import { useFlowBuilder } from './Builder.hooks';
 // Interfaces
 import { BlockType } from '@flow/interfaces';
 
+// Routes
+import { FLOW_ROUTES } from '@flow/Flow.routes';
+
 // Styles
 import styles from './Builder.scss';
 
 export const Builder: React.FC = () => {
   // Setup
-  const { elements, handleBlockDrag, handleEdgeConnect } = useFlowBuilder();
+  const {
+    companyId,
+    elements,
+    handleBlockDrag,
+    handleEdgeConnect
+  } = useFlowBuilder();
 
   return (
     <Page title="Flow Builder">
       <div className={styles.Header}>
         <Breadcrumbs
           data={[
-            { title: 'Flow', to: '/' },
+            {
+              title: 'Flow',
+              to: generatePath(FLOW_ROUTES.ROOT, { companyId })
+            },
             { title: 'Test Flow', to: '/' }
           ]}
         />

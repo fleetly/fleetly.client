@@ -10,7 +10,7 @@ import { FLOW_ROUTES } from '@flow/Flow.routes';
 
 export const Flow: React.FC = () => (
   <Switch>
-    <Route component={Flows} path={FLOW_ROUTES.ROOT} />
+    <Route component={Flows} exact path={FLOW_ROUTES.ROOT} />
     <Route component={Builder} path={FLOW_ROUTES.FLOW} />
   </Switch>
 );

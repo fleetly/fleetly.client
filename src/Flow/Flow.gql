@@ -69,6 +69,13 @@ mutation ADD_ELEMENT($blockId: String!, $element: ElementInput!) {
   }
 }
 
+mutation CREATE_FLOW($companyId: String!, $flow: FlowInput!) {
+  createFlow(companyId: $companyId, flow: $flow) {
+    id
+    title
+  }
+}
+
 mutation REMOVE_BLOCK($blockId: String!) {
   removeBlock(blockId: $blockId) {
     id

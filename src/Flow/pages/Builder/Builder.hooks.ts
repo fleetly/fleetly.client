@@ -14,7 +14,8 @@ import { useNotifications } from '@store';
 
 export const useFlowBuilder = () => {
   // Setup
-  const { flowId = '60897697e1a2ae00297c16fc' } = useParams<{
+  const { companyId, flowId } = useParams<{
+    companyId: string;
     flowId: string;
   }>();
 
@@ -97,6 +98,7 @@ export const useFlowBuilder = () => {
   );
 
   return {
+    companyId,
     elements,
     flowId,
     handleBlockDrag,
