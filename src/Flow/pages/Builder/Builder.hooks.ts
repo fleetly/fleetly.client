@@ -103,6 +103,6 @@ export const useFlowBuilder = () => {
     flowId,
     handleBlockDrag,
     handleEdgeConnect,
-    title: data?.flow.title
+    title: data?.flow.title || 'Untitled'
   };
 };

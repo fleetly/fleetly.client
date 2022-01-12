@@ -36,6 +36,7 @@
     }
 
     &Selected {
+      filter: drop-shadow(0 0 3px rgba($color-blue, .2));
       stroke: $color-blue !important;
     }
   }

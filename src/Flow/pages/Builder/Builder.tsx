@@ -29,7 +29,8 @@ export const Builder: React.FC = () => {
     companyId,
     elements,
     handleBlockDrag,
-    handleEdgeConnect
+    handleEdgeConnect,
+    title
   } = useFlowBuilder();
 
   return (
@@ -41,7 +42,7 @@ export const Builder: React.FC = () => {
               title: 'Flow',
               to: generatePath(FLOW_ROUTES.ROOT, { companyId })
             },
-            { title: 'Test Flow', to: '/' }
+            { title, to: '/' }
           ]}
         />
 
@@ -52,21 +53,23 @@ export const Builder: React.FC = () => {
         <Button icon="far fa-cog" variant="outlined" />
       </div>
 
-      <ReactFlowProvider>
-        <ReactFlow
-          edgeTypes={{ default: BuilderEdge }}
-          elements={elements}
-          onConnect={handleEdgeConnect}
-          onNodeDragStop={handleBlockDrag}
-          nodeTypes={{
-            [BlockType.CONTENT]: BlockContent,
-            [BlockType.START]: BlockStart
-          }}
-          snapToGrid
-        />
+      {elements && elements.length > 0 && (
+        <ReactFlowProvider>
+          <ReactFlow
+            edgeTypes={{ default: BuilderEdge }}
+            elements={elements}
+            onConnect={handleEdgeConnect}
+            onNodeDragStop={handleBlockDrag}
+            nodeTypes={{
+              [BlockType.CONTENT]: BlockContent,
+              [BlockType.START]: BlockStart
+            }}
+            snapToGrid
+          />
 
-        <BuilderActions />
-      </ReactFlowProvider>
+          <BuilderActions />
+        </ReactFlowProvider>
+      )}
     </Page>
   );
 };

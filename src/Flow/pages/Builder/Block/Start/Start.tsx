@@ -31,7 +31,8 @@ import { useNotifications } from '@store';
 
 export const BlockStart: React.FC<NodeProps> = ({
   data: { elements, title },
-  id
+  id,
+  ...props
 }) => {
   // Setup
   const [menuProps, { closeMenu, handleMenuOpen }] = useContextMenu();
@@ -59,6 +60,7 @@ export const BlockStart: React.FC<NodeProps> = ({
 
   return (
     <BuilderBlock
+      {...props}
       color="green"
       editable={false}
       hasTarget={false}

@@ -37,6 +37,7 @@ export interface BuilderBlockProps {
   hasTarget?: boolean;
   icon?: string;
   id: string;
+  selected?: boolean;
   subTitle?: string;
   title: string;
 }
@@ -49,6 +50,7 @@ export const BuilderBlock: React.FC<BuilderBlockProps> = ({
   hasTarget,
   icon,
   id,
+  selected,
   subTitle,
   title
 }) => {
@@ -83,7 +85,8 @@ export const BuilderBlock: React.FC<BuilderBlockProps> = ({
       <div
         className={classNames(
           styles.Root,
-          getClassName('color', { collection: styles, value: color })
+          getClassName('color', { collection: styles, value: color }),
+          { [styles.RootIsSelected]: selected }
         )}
       >
         <Card className={styles.Card}>

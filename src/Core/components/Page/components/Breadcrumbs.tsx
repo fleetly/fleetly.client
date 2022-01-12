@@ -14,7 +14,7 @@ export interface Classes extends ExtendedClasses {
 
 export interface BreadcrumbsData {
   title: string;
-  to: string;
+  to?: string;
 }
 
 export interface PropTypes {

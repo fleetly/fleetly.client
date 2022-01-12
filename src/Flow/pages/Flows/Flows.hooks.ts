@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
 // GraphQL
-import { GET_FLOWS } from './Flows.gql';
+import { GET_FLOWS } from '@flow/Flow.gql';
 
 // Interfaces
 import { Flow } from '@flow/interfaces/flow.interface';

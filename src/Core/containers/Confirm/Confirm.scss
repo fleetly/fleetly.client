@@ -1,0 +1,20 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Description {
+  color: $color-text-secondary;
+  margin: 12px 0 0;
+}
+
+.Icon {
+  flex: 0 0 100px;
+  font-size: 52px;
+  height: 100px;
+  margin: 0 0 32px;
+  width: 100px;
+}

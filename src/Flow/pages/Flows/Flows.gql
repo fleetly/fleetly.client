@@ -1,6 +1,0 @@
-query GET_FLOWS($companyId: String!) {
-  flows(companyId: $companyId) {
-    id
-    title
-  }
-}

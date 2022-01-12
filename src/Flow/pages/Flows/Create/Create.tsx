@@ -5,12 +5,13 @@ import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
 
 // API
-import { CREATE_FLOW } from '@flow/Flow.gql';
+import { CREATE_FLOW, GET_FLOWS } from '@flow/Flow.gql';
 
 // Components
 import Button from '@components/Button';
 import {
   Actions,
+  Error,
   Field,
   Fieldset,
   gqlErrorHandler,
@@ -27,18 +28,21 @@ export const FlowsCreate: React.FC = () => {
   const { companyId } = useParams<{ companyId: string }>();
 
   // API
-  const [createFlow] = useMutation(CREATE_FLOW);
+  const [createFlow] = useMutation(CREATE_FLOW, {
+    refetchQueries: [{ query: GET_FLOWS, variables: { companyId } }]
+  });
 
   // Handlers
   const handleFormSubmit = useCallback(
     async (flow) => {
       try {
         await createFlow({ variables: { companyId, flow } });
+        modal.closeModal();
       } catch (error) {
         return gqlErrorHandler(error as ApolloError);
       }
     },
-    [companyId, createFlow]
+    [companyId, createFlow, modal]
   );
 
   return (
@@ -51,19 +55,16 @@ export const FlowsCreate: React.FC = () => {
           })
         )}
       >
-        {({ handleSubmit, submitting, valid, ...props }) => (
+        {({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
+            <Error />
+
             <Fieldset>
               <Field label="Flow title" name="title" />
             </Fieldset>
 
             <Actions>
-              <Button
-                color="blue"
-                disabled={!valid}
-                loaded={submitting}
-                type="submit"
-              >
+              <Button color="blue" loaded={submitting} type="submit">
                 Create
               </Button>
             </Actions>

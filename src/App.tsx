@@ -6,6 +6,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Loader from '@components/Loader';
 
 // Containers
+import { Confirm } from '@containers/Confirm';
 import Notifications from '@containers/Notifications';
 
 // GraphQL
@@ -83,6 +84,7 @@ const App: React.FC<{}> = () => {
         </Switch>
       </Suspense>
 
+      <Confirm />
       <Notifications />
     </div>
   );

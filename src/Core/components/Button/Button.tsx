@@ -10,15 +10,14 @@ import styles from './Button.scss';
 // Utils
 import { getClassName } from '@utils/styles';
 
-interface Classes extends ExtendedClasses {
+export interface ButtonClasses extends ExtendedClasses {
   icon?: string;
   spinner?: string;
 }
 
-interface PropTypes {
-  children?: React.ReactNode;
+export interface ButtonProps {
   className?: string;
-  classes?: Classes;
+  classes?: ButtonClasses;
   color?: Color;
   disabled?: boolean;
   fullWidth?: boolean;
@@ -26,12 +25,13 @@ interface PropTypes {
   id?: number | string;
   loaded?: boolean;
   onClick?(event: React.SyntheticEvent<HTMLButtonElement>): void;
+  title?: string;
   to?: string;
   type?: 'button' | 'reset' | 'submit';
   variant?: 'filled' | 'outlined';
 }
 
-const Button: React.FC<PropTypes> = ({
+const Button: React.FC<ButtonProps> = ({
   children,
   className,
   classes,
@@ -42,6 +42,7 @@ const Button: React.FC<PropTypes> = ({
   id,
   loaded,
   onClick,
+  title,
   to,
   type = 'button',
   variant = 'filled',
@@ -66,7 +67,7 @@ const Button: React.FC<PropTypes> = ({
         },
         {
           [styles.RootModeFullWidth]: fullWidth,
-          [styles.RootModeIcon]: icon && !children
+          [styles.RootModeIcon]: icon && !children && !title
         }
       )}
       disabled={disabled}
@@ -89,7 +90,7 @@ const Button: React.FC<PropTypes> = ({
             <i className={classNames(classes?.icon, styles.Icon, icon)} />
           )}
 
-          {children}
+          {children || title}
         </>
       )}
     </Component>

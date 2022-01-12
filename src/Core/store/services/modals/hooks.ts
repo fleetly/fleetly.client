@@ -1,17 +1,17 @@
-import * as React from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 
 // Actions
 import { closeModal, closeModals, openModal } from './actions';
 
-const useModals = <T = {}>(currentModalId?: string) => {
+export const useModals = <T = {}>(currentModalId?: string) => {
   // Setup
   const dispatch = useDispatch();
 
   // Data
   const modal: Modal.Options<T> = useSelector(
-    React.useMemo(
+    useMemo(
       () =>
         createSelector(
           (state: any) => state?.modals,
@@ -22,16 +22,16 @@ const useModals = <T = {}>(currentModalId?: string) => {
   );
 
   // Handlers
-  const handleCloseModal = React.useCallback<(modalId?: string) => void>(
+  const handleCloseModal = useCallback<(modalId?: string) => void>(
     (modalId = currentModalId) => dispatch(closeModal(modalId)),
     [currentModalId, dispatch]
   );
 
-  const handleCloseModals = React.useCallback(() => dispatch(closeModals()), [
+  const handleCloseModals = useCallback(() => dispatch(closeModals()), [
     dispatch
   ]);
 
-  const handleOpenModal = React.useCallback(
+  const handleOpenModal = useCallback(
     (idOrData = currentModalId, data?: any) => {
       dispatch(
         openModal(
@@ -43,15 +43,22 @@ const useModals = <T = {}>(currentModalId?: string) => {
     [currentModalId, dispatch]
   );
 
+  // Methods
+  const confirm = useCallback(
+    async (data: { description?: string; title: string }) => {
+      dispatch(openModal('CONFIRM', { data }));
+    },
+    [dispatch]
+  );
+
   return {
     data: modal?.data,
     closeModal: handleCloseModal,
     closeModals: handleCloseModals,
+    confirm,
     id: currentModalId,
     isOpened: !!modal,
     modal,
     openModal: handleOpenModal
   };
 };
-
-export { useModals };

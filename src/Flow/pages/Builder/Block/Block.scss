@@ -1,6 +1,7 @@
 @import '~@styles/colors';
 
 @mixin color($color) {
+  &.RootIsSelected,
   &:hover {
     .Card {
       box-shadow: 0 0 0 3px rgba($color, .6);
@@ -12,6 +13,7 @@
   transition: box-shadow .2s;
   width: 300px;
 
+  &IsSelected,
   &:hover {
     .Actions {
       opacity: 1;

@@ -29,7 +29,8 @@ import { useNotifications } from '@store';
 
 export const BlockContent: React.FC<NodeProps> = ({
   data: { elements, title },
-  id
+  id,
+  ...props
 }) => {
   // Setup
   const [menuProps, { closeMenu, handleMenuOpen }] = useContextMenu();
@@ -57,6 +58,7 @@ export const BlockContent: React.FC<NodeProps> = ({
 
   return (
     <BuilderBlock
+      {...props}
       color="blue"
       hasSource
       hasTarget

@@ -5,7 +5,8 @@ import {
   EdgeProps,
   getBezierPath,
   getEdgeCenter,
-  getMarkerEnd
+  getMarkerEnd,
+  useStoreState
 } from 'react-flow-renderer';
 
 // API
@@ -26,17 +27,23 @@ export const BuilderEdge: React.FC<EdgeProps> = ({
   id,
   arrowHeadType,
   markerEndId,
+  source,
   sourcePosition,
   sourceX,
   sourceY,
+  target,
   targetPosition,
   targetX,
   targetY,
   selected,
-  style = {}
+  style = {},
+  ...props
 }) => {
   // Setup
   const { handleApolloError } = useNotifications();
+  const selectedElements = useStoreState(
+    ({ selectedElements }) => selectedElements || []
+  );
 
   // Mutation
   const [removeEdge, { loading }] = useMutation(REMOVE_EDGE, {
@@ -73,6 +80,13 @@ export const BuilderEdge: React.FC<EdgeProps> = ({
     [sourceX, sourceY, targetX, targetY]
   );
 
+  const isSelected = useMemo(
+    () =>
+      selectedElements.filter(({ id }) => id === source || id === target)
+        .length > 0,
+    [selectedElements, source, target]
+  );
+
   const markerEnd = useMemo(() => getMarkerEnd(arrowHeadType, markerEndId), [
     arrowHeadType,
     markerEndId
@@ -84,7 +98,7 @@ export const BuilderEdge: React.FC<EdgeProps> = ({
         id={id}
         className={classNames('react-flow__edge-path', styles.Path, {
           [styles.PathIsLoaded]: loading,
-          [styles.PathIsSelected]: selected && !loading
+          [styles.PathIsSelected]: isSelected || (selected && !loading)
         })}
         d={edgePath}
         markerEnd={markerEnd}

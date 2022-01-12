@@ -1,6 +1,6 @@
 import { ApolloError, useMutation } from '@apollo/client';
-import React, { useCallback } from 'react';
-import { useZoomPanHelper } from 'react-flow-renderer';
+import React, { useCallback, useEffect } from 'react';
+import { useStore, useZoomPanHelper } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 
 // API
@@ -29,12 +29,26 @@ export const BuilderActions: React.FC = () => {
   // Setup
   const { handleApolloError } = useNotifications();
   const { flowId } = useParams<{ flowId: string }>();
-  const { zoomIn, zoomOut } = useZoomPanHelper();
+  const store = useStore();
+  const { setCenter, zoomIn, zoomOut } = useZoomPanHelper();
 
-  const [menuProps, { handleMenuOpen }] = useContextMenu();
+  const [menuProps, { closeMenu, handleMenuOpen }] = useContextMenu();
 
-  // Mutations
+  // API
   const [addBlock] = useMutation(ADD_BLOCK);
+
+  // Effects
+  useEffect(() => {
+    const { nodes } = store.getState();
+
+    if (nodes.length) {
+      setCenter(
+        nodes[0].__rf.position.x + nodes[0].__rf.width / 2,
+        nodes[0].__rf.position.y + nodes[0].__rf.height / 2,
+        1
+      );
+    }
+  }, [setCenter, store]);
 
   // Handlers
   const handleMenuItemClick = useCallback(
@@ -49,11 +63,13 @@ export const BuilderActions: React.FC = () => {
             }
           }
         });
+
+        closeMenu();
       } catch (error) {
         return handleApolloError(error as ApolloError);
       }
     },
-    [addBlock, flowId, handleApolloError]
+    [addBlock, closeMenu, flowId, handleApolloError]
   );
 
   return (
