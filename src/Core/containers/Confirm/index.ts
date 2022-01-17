@@ -1,4 +1,5 @@
 export * from './Confirm';
 
-// Hooks
+//
+export * from './Confirm.data';
 export * from './Confirm.hooks';

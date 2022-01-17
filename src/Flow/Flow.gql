@@ -4,14 +4,16 @@
 mutation ADD_BLOCK($block: CreateBlockInput!, $flowId: String!) {
   addBlock(block: $block, flowId: $flowId) {
     id
-    blocks {
-      id
-      position {
-        x
-        y
+    draft {
+      blocks {
+        id
+        position {
+          x
+          y
+        }
+        title
+        type
       }
-      title
-      type
     }
   }
 }
@@ -31,12 +33,14 @@ mutation ADD_EDGE(
     }
   ) {
     id
-    edges {
-      id
-      sourceId
-      sourceElementId
-      sourceHandleId
-      targetId
+    draft {
+      edges {
+        id
+        sourceId
+        sourceElementId
+        sourceHandleId
+        targetId
+      }
     }
   }
 }
@@ -44,55 +48,51 @@ mutation ADD_EDGE(
 mutation ADD_ELEMENT($blockId: String!, $element: ElementInput!) {
   addElement(blockId: $blockId, element: $element) {
     id
-    blocks {
-      id
-      elements {
+    draft {
+      blocks {
         id
-        payload
+        elements {
+          id
+          payload
+          type
+        }
+        position {
+          x
+          y
+        }
+        title
         type
       }
-      position {
-        x
-        y
-      }
-      title
-      type
     }
-    edges {
-      id
-      sourceId
-      sourceElementId
-      sourceHandleId
-      targetId
-    }
-    title
   }
 }
 
 mutation CREATE_FLOW($companyId: String!, $flow: FlowInput!) {
   createFlow(companyId: $companyId, flow: $flow) {
     id
+    status
     title
   }
+}
+
+mutation DELETE_FLOW($flowId: String!) {
+  deleteFlow(flowId: $flowId)
 }
 
 mutation REMOVE_BLOCK($blockId: String!) {
   removeBlock(blockId: $blockId) {
     id
-    blocks {
-      id
-      position {
-        x
-        y
+    draft {
+      blocks {
+        id
       }
-      title
-    }
-    edges {
-      id
-      sourceId
-      sourceElementId
-      sourceHandleId
-      targetId
+      edges {
+        id
+        sourceId
+        sourceElementId
+        sourceHandleId
+        targetId
+      }
     }
   }
 }
@@ -100,12 +100,10 @@ mutation REMOVE_BLOCK($blockId: String!) {
 mutation REMOVE_EDGE($edgeId: String!) {
   removeEdge(edgeId: $edgeId) {
     id
-    edges {
-      id
-      sourceId
-      sourceElementId
-      sourceHandleId
-      targetId
+    draft {
+      edges {
+        id
+      }
     }
   }
 }
@@ -113,41 +111,37 @@ mutation REMOVE_EDGE($edgeId: String!) {
 mutation REMOVE_ELEMENT($elementId: String!) {
   removeElement(elementId: $elementId) {
     id
-    blocks {
-      id
-      elements {
+    draft {
+      blocks {
         id
-        payload
-        type
+        elements {
+          id
+        }
       }
-      position {
-        x
-        y
+
+      edges {
+        id
+        sourceId
+        sourceElementId
+        sourceHandleId
+        targetId
       }
-      title
-      type
     }
-    edges {
-      id
-      sourceId
-      sourceElementId
-      sourceHandleId
-      targetId
-    }
-    title
   }
 }
 
 mutation UPDATE_BLOCK($blockId: String!, $block: UpdateBlockInput!) {
   updateBlock(blockId: $blockId, block: $block) {
     id
-    blocks {
-      id
-      position {
-        x
-        y
+    draft {
+      blocks {
+        id
+        position {
+          x
+          y
+        }
+        title
       }
-      title
     }
   }
 }
@@ -155,27 +149,23 @@ mutation UPDATE_BLOCK($blockId: String!, $block: UpdateBlockInput!) {
 mutation UPDATE_ELEMENT($elementId: String!, $payload: JSON!) {
   updateElement(elementId: $elementId, payload: $payload) {
     id
-    blocks {
-      id
-      elements {
+    draft {
+      blocks {
         id
-        payload
-        type
+        elements {
+          id
+          payload
+          type
+        }
       }
-      position {
-        x
-        y
-      }
-      title
-      type
     }
-    edges {
-      id
-      sourceId
-      sourceElementId
-      sourceHandleId
-      targetId
-    }
+  }
+}
+
+mutation UPDATE_FLOW($flowId: String!, $flow: FlowInput!) {
+  updateFlow(flowId: $flowId, flow: $flow) {
+    id
+    status
     title
   }
 }
@@ -186,27 +176,30 @@ mutation UPDATE_ELEMENT($elementId: String!, $payload: JSON!) {
 query GET_FLOW($flowId: String!) {
   flow(flowId: $flowId) {
     id
-    blocks {
-      id
-      elements {
+    draft {
+      blocks {
         id
-        payload
+        elements {
+          id
+          payload
+          type
+        }
+        position {
+          x
+          y
+        }
+        title
         type
       }
-      position {
-        x
-        y
+      edges {
+        id
+        sourceId
+        sourceElementId
+        sourceHandleId
+        targetId
       }
-      title
-      type
     }
-    edges {
-      id
-      sourceId
-      sourceElementId
-      sourceHandleId
-      targetId
-    }
+    status
     title
   }
 }
@@ -214,6 +207,7 @@ query GET_FLOW($flowId: String!) {
 query GET_FLOWS($companyId: String!) {
   flows(companyId: $companyId) {
     id
+    status
     title
   }
 }

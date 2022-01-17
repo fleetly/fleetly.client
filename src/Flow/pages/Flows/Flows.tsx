@@ -8,13 +8,14 @@ import Status from '@components/Status';
 import Table from '@components/Table';
 
 // Fragments
+import { FlowsActions } from './Actions';
 import { FlowsCreate, useFlowsCreate } from './Create';
 
 // Hooks
 import { useFlows } from './Flows.hooks';
 
 // Interfaces
-import { Flow } from '@flow/interfaces/flow.interface';
+import { Flow, FlowStatus } from '@flow/interfaces/flow.interface';
 
 // Routes
 import { FLOW_ROUTES } from '@flow/Flow.routes';
@@ -39,8 +40,19 @@ export const Flows: React.FC = () => {
   const columns = useMemo(
     () => [
       {
-        accessor: 'id',
-        Cell: () => <Status color="orange" title="Unpublished" />,
+        accessor: 'status',
+        Cell: ({ value }: any) => (
+          <Status
+            color={
+              value === FlowStatus.UNPUBLISHED
+                ? value === FlowStatus.PUBLISHED
+                  ? 'green'
+                  : 'orange'
+                : 'gray'
+            }
+            title={value}
+          />
+        ),
         Header: 'Status',
         maxWidth: 200
       },
@@ -55,6 +67,11 @@ export const Flows: React.FC = () => {
       {
         accessor: 'updatedAt',
         Header: 'Modified'
+      },
+      {
+        accessor: 'id',
+        Cell: ({ row }: any) => <FlowsActions {...row.original} />,
+        maxWidth: 40
       }
     ],
     []

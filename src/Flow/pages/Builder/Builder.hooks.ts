@@ -12,7 +12,7 @@ import { Flow } from '@flow/interfaces/flow.interface';
 // Store
 import { useNotifications } from '@store';
 
-export const useFlowBuilder = () => {
+export const useBuilder = () => {
   // Setup
   const { companyId, flowId } = useParams<{
     companyId: string;
@@ -35,7 +35,7 @@ export const useFlowBuilder = () => {
     const result: Elements = [];
 
     if (data?.flow) {
-      (data.flow.blocks || []).forEach(
+      (data.flow.draft.blocks || []).forEach(
         ({ id, elements, position, title, type }) =>
           result.push({
             id,
@@ -48,7 +48,7 @@ export const useFlowBuilder = () => {
           })
       );
 
-      (data.flow.edges || []).forEach(
+      (data.flow.draft.edges || []).forEach(
         ({ id, sourceId, sourceElementId, targetId }) =>
           result.push({
             id,

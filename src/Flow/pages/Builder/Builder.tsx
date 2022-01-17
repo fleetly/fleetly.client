@@ -12,7 +12,7 @@ import { BlockContent, BlockStart } from './Block';
 import { BuilderEdge } from './Edge';
 
 // Hooks
-import { useFlowBuilder } from './Builder.hooks';
+import { useBuilder } from './Builder.hooks';
 
 // Interfaces
 import { BlockType } from '@flow/interfaces';
@@ -23,15 +23,20 @@ import { FLOW_ROUTES } from '@flow/Flow.routes';
 // Styles
 import styles from './Builder.scss';
 
-export const Builder: React.FC = () => {
+export interface BuilderProps {
+  readOnly: boolean;
+}
+
+export const Builder: React.FC<BuilderProps> = ({ readOnly }) => {
   // Setup
   const {
     companyId,
     elements,
+    flowId,
     handleBlockDrag,
     handleEdgeConnect,
     title
-  } = useFlowBuilder();
+  } = useBuilder();
 
   return (
     <Page title="Flow Builder">
@@ -42,15 +47,36 @@ export const Builder: React.FC = () => {
               title: 'Flow',
               to: generatePath(FLOW_ROUTES.ROOT, { companyId })
             },
-            { title, to: '/' }
+            ...(readOnly
+              ? [
+                  {
+                    title
+                  }
+                ]
+              : [
+                  {
+                    title,
+                    to: generatePath(FLOW_ROUTES.FLOW, { companyId, flowId })
+                  },
+                  { title: 'Edit' }
+                ])
           ]}
         />
 
-        <Button color="green" variant="outlined">
-          Publish
-        </Button>
-
-        <Button icon="far fa-cog" variant="outlined" />
+        {readOnly ? (
+          <Button
+            color="blue"
+            icon="far fa-edit"
+            to={generatePath(FLOW_ROUTES.FLOW_EDIT, { companyId, flowId })}
+            variant="outlined"
+          >
+            Edit
+          </Button>
+        ) : (
+          <Button color="green" icon="fad fa-rocket-launch" variant="outlined">
+            Publish
+          </Button>
+        )}
       </div>
 
       {elements && elements.length > 0 && (

@@ -36,8 +36,7 @@ export const BuilderEdge: React.FC<EdgeProps> = ({
   targetX,
   targetY,
   selected,
-  style = {},
-  ...props
+  style = {}
 }) => {
   // Setup
   const { handleApolloError } = useNotifications();
