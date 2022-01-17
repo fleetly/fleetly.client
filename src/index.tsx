@@ -44,17 +44,17 @@ const store = createStore();
 
 const httpLink = new HttpLink({
   credentials: 'include',
-  uri: 'http://localhost:3001/graphql'
+  // uri: 'http://localhost:3001/graphql'
   // uri: 'https://ivan.fleetly.me/graphql'
-  // uri: 'https://api.fleetly.it/graphql'
+  uri: 'https://api.fleetly.it/graphql'
 });
 
 const wsLink = new WebSocketLink({
   options: {
     reconnect: true
   },
-  uri: 'wss://ivan.fleetly.me/graphql'
-  // uri: 'wss://api.fleetly.it/graphql'
+  // uri: 'wss://ivan.fleetly.me/graphql'
+  uri: 'wss://api.fleetly.it/graphql'
 });
 
 const splitLink = split(
