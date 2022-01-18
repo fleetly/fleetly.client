@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { debounce } from 'lodash';
-import React, { Children, useCallback } from 'react';
+import React, { Children, useCallback, useContext } from 'react';
 import { Form, FormSpy } from 'react-final-form';
 
 // API
@@ -8,6 +8,9 @@ import { REMOVE_ELEMENT, UPDATE_ELEMENT } from '@flow/Flow.gql';
 
 // Components
 import Button from '@components/Button';
+
+// Contexts
+import { BuilderContext } from '../Builder.context';
 
 // Store
 import { useNotifications } from '@store';
@@ -26,6 +29,7 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
   payload
 }) => {
   // Setup
+  const { isEditable } = useContext(BuilderContext);
   const { handleApolloError } = useNotifications();
 
   // Mutation
@@ -39,20 +43,22 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
 
   // Handlers
   const handleFormChange = debounce(async ({ values }) => {
-    await updateElement({
-      variables: { elementId: values.id, payload: values }
-    });
+    isEditable &&
+      (await updateElement({
+        variables: { elementId: values.id, payload: values }
+      }));
   }, 1000);
 
   const handleFormSubmit = useCallback(async () => true, []);
 
   const handleRemoveClick = useCallback(
     async (event: React.SyntheticEvent<HTMLButtonElement>) => {
-      await removeElement({
-        variables: { elementId: event.currentTarget.dataset.elementId }
-      });
+      isEditable &&
+        (await removeElement({
+          variables: { elementId: event.currentTarget.dataset.elementId }
+        }));
     },
-    [removeElement]
+    [isEditable, removeElement]
   );
 
   return (
@@ -64,17 +70,19 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
             subscription={{ values: true }}
           />
 
-          <div className={styles.Actions}>
-            <Button
-              className={styles.Remove}
-              color="red"
-              data-element-id={id}
-              icon="far fa-trash-alt"
-              loaded={loading}
-              onClick={handleRemoveClick}
-              variant="outlined"
-            />
-          </div>
+          {isEditable && (
+            <div className={styles.Actions}>
+              <Button
+                className={styles.Remove}
+                color="red"
+                data-element-id={id}
+                icon="far fa-trash-alt"
+                loaded={loading}
+                onClick={handleRemoveClick}
+                variant="outlined"
+              />
+            </div>
+          )}
 
           <div className={styles.Container}>{children}</div>
         </form>

@@ -12,14 +12,10 @@ export const Flow: React.FC = () => (
   <Switch>
     <Route component={Flows} exact path={FLOW_ROUTES.ROOT} />
 
-    <Route exact path={FLOW_ROUTES.FLOW}>
-      <Builder readOnly />
-    </Route>
-
-    <Route component={Builder} exact path={FLOW_ROUTES.FLOW_EDIT} />
+    <Route component={Builder} exact path={FLOW_ROUTES.FLOW} />
 
     <Route exact path={FLOW_ROUTES.FLOW_EDIT}>
-      <Builder readOnly={false} />
+      <Builder editable={true} />
     </Route>
   </Switch>
 );

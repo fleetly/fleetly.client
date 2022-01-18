@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useField } from 'react-final-form';
 
 // Components
@@ -12,6 +12,9 @@ import {
 import { Field } from '@components/Form';
 
 import { BuilderElement } from '../../../Common/components';
+
+// Contexts
+import { BuilderContext } from '@flow/pages/Builder';
 
 // Data
 import {
@@ -30,6 +33,7 @@ export interface BlockStartKeywordProps {
 
 export const BlockStartKeyword: React.FC<BlockStartKeywordProps> = ({ id }) => {
   // Setup
+  const { isEditable } = useContext(BuilderContext);
   const [menuProps, { handleMenuOpen }] = useContextMenu();
 
   const { input: operatorInput } = useField('operator');
@@ -45,7 +49,7 @@ export const BlockStartKeyword: React.FC<BlockStartKeywordProps> = ({ id }) => {
 
   return (
     <>
-      <div onClick={handleMenuOpen}>
+      <div onClick={isEditable ? handleMenuOpen : undefined}>
         <BuilderElement
           id={id}
           color="green"
@@ -55,28 +59,30 @@ export const BlockStartKeyword: React.FC<BlockStartKeywordProps> = ({ id }) => {
         />
       </div>
 
-      <ContextMenu {...menuProps} position="bottom">
-        <ContextMenuColumn>
-          <ContextMenuTitle>Operator</ContextMenuTitle>
+      {isEditable && (
+        <ContextMenu {...menuProps} position="bottom">
+          <ContextMenuColumn>
+            <ContextMenuTitle>Operator</ContextMenuTitle>
 
-          {OPERATOR_LIST.map(({ icon, title, value }) => (
-            <ContextMenuItem
-              data-value={value}
-              color="green"
-              icon={icon}
-              key={value}
-              onClick={handleItemClick}
-              selected={value === operatorInput.value}
-              title={title}
-            />
-          ))}
-        </ContextMenuColumn>
+            {OPERATOR_LIST.map(({ icon, title, value }) => (
+              <ContextMenuItem
+                data-value={value}
+                color="green"
+                icon={icon}
+                key={value}
+                onClick={handleItemClick}
+                selected={value === operatorInput.value}
+                title={title}
+              />
+            ))}
+          </ContextMenuColumn>
 
-        <ContextMenuColumn>
-          <ContextMenuTitle>Value</ContextMenuTitle>
-          <Field name="value" placeholder="Keyword" />
-        </ContextMenuColumn>
-      </ContextMenu>
+          <ContextMenuColumn>
+            <ContextMenuTitle>Value</ContextMenuTitle>
+            <Field name="value" placeholder="Keyword" />
+          </ContextMenuColumn>
+        </ContextMenu>
+      )}
     </>
   );
 };

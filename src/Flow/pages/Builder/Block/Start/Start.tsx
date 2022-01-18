@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
 // API
@@ -15,6 +15,9 @@ import {
 } from '@components/ContextMenu';
 
 import { BuilderButton } from '../../Common/components';
+
+// Contexts
+import { BuilderContext } from '../../Builder.context.ts';
 
 // Elements
 import { BlockStartKeyword } from './components/Keyword';
@@ -35,6 +38,7 @@ export const BlockStart: React.FC<NodeProps> = ({
   ...props
 }) => {
   // Setup
+  const { isEditable } = useContext(BuilderContext);
   const [menuProps, { closeMenu, handleMenuOpen }] = useContextMenu();
   const { handleApolloError } = useNotifications();
 
@@ -76,21 +80,25 @@ export const BlockStart: React.FC<NodeProps> = ({
         ))}
       </BuilderElements>
 
-      <BuilderButton onClick={handleMenuOpen}>Add Trigger</BuilderButton>
+      {isEditable && (
+        <>
+          <BuilderButton onClick={handleMenuOpen}>Add Trigger</BuilderButton>
 
-      <ContextMenu {...menuProps} position="bottom" width={260}>
-        <ContextMenuColumn>
-          <ContextMenuTitle>Elements</ContextMenuTitle>
+          <ContextMenu {...menuProps} position="bottom" width={260}>
+            <ContextMenuColumn>
+              <ContextMenuTitle>Elements</ContextMenuTitle>
 
-          <ContextMenuItem
-            color="green"
-            data-type={ElementType.START_KEYWORD}
-            icon="far fa-font-case"
-            onClick={handleItemClick}
-            title="Message keyword"
-          />
-        </ContextMenuColumn>
-      </ContextMenu>
+              <ContextMenuItem
+                color="green"
+                data-type={ElementType.START_KEYWORD}
+                icon="far fa-font-case"
+                onClick={handleItemClick}
+                title="Message keyword"
+              />
+            </ContextMenuColumn>
+          </ContextMenu>
+        </>
+      )}
     </BuilderBlock>
   );
 };

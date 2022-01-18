@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
 // API
@@ -17,6 +17,9 @@ import {
 import { BlockContentText } from './components/Text';
 import { BuilderButton } from '../../Common/components';
 
+// Contexts
+import { BuilderContext } from '../../Builder.context.ts';
+
 // Fragments
 import { BuilderBlock } from '../../Block';
 import { BuilderElements } from '../../Elements';
@@ -33,6 +36,7 @@ export const BlockContent: React.FC<NodeProps> = ({
   ...props
 }) => {
   // Setup
+  const { isEditable } = useContext(BuilderContext);
   const [menuProps, { closeMenu, handleMenuOpen }] = useContextMenu();
   const { handleApolloError } = useNotifications();
 
@@ -60,6 +64,7 @@ export const BlockContent: React.FC<NodeProps> = ({
     <BuilderBlock
       {...props}
       color="blue"
+      editable={isEditable}
       hasSource
       hasTarget
       icon="fas fa-text"
@@ -73,21 +78,25 @@ export const BlockContent: React.FC<NodeProps> = ({
         ))}
       </BuilderElements>
 
-      <BuilderButton onClick={handleMenuOpen}>Add Content</BuilderButton>
+      {isEditable && (
+        <>
+          <BuilderButton onClick={handleMenuOpen}>Add Content</BuilderButton>
 
-      <ContextMenu {...menuProps} position="bottom" width={260}>
-        <ContextMenuColumn>
-          <ContextMenuTitle>Elements</ContextMenuTitle>
+          <ContextMenu {...menuProps} position="bottom" width={260}>
+            <ContextMenuColumn>
+              <ContextMenuTitle>Elements</ContextMenuTitle>
 
-          <ContextMenuItem
-            color="blue"
-            data-type={ElementType.CONTENT_TEXT}
-            icon="far fa-font-case"
-            onClick={handleItemClick}
-            title="Text + Button"
-          />
-        </ContextMenuColumn>
-      </ContextMenu>
+              <ContextMenuItem
+                color="blue"
+                data-type={ElementType.CONTENT_TEXT}
+                icon="far fa-font-case"
+                onClick={handleItemClick}
+                title="Text + Button"
+              />
+            </ContextMenuColumn>
+          </ContextMenu>
+        </>
+      )}
     </BuilderBlock>
   );
 };

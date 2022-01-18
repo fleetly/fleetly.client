@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import classNames from 'classnames';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import {
   EdgeProps,
   getBezierPath,
@@ -14,6 +14,9 @@ import { REMOVE_EDGE } from '@flow/Flow.gql';
 
 // Components
 import Button from '@components/Button';
+
+// Contexts
+import { BuilderContext } from '../Builder.context';
 
 // Store
 import { useNotifications } from '@store';
@@ -39,6 +42,7 @@ export const BuilderEdge: React.FC<EdgeProps> = ({
   style = {}
 }) => {
   // Setup
+  const { isEditable } = useContext(BuilderContext);
   const { handleApolloError } = useNotifications();
   const selectedElements = useStoreState(
     ({ selectedElements }) => selectedElements || []
@@ -51,8 +55,8 @@ export const BuilderEdge: React.FC<EdgeProps> = ({
 
   // Handlers
   const handleRemoveClick = useCallback(async () => {
-    await removeEdge({ variables: { edgeId: id } });
-  }, [id, removeEdge]);
+    isEditable && (await removeEdge({ variables: { edgeId: id } }));
+  }, [id, isEditable, removeEdge]);
 
   // Memo
   const edgePath = useMemo(
@@ -104,29 +108,31 @@ export const BuilderEdge: React.FC<EdgeProps> = ({
         style={style}
       />
 
-      <foreignObject
-        className="edgebutton-foreignobject"
-        height={foreignObjectSize}
-        requiredExtensions="http://www.w3.org/1999/xhtml"
-        width={foreignObjectSize}
-        x={edgeCenterX - foreignObjectSize / 2}
-        y={edgeCenterY - foreignObjectSize / 2}
-      >
-        <body
-          className={classNames(styles.Root, {
-            [styles.RootIsLoaded]: loading
-          })}
+      {isEditable && (
+        <foreignObject
+          className="edgebutton-foreignobject"
+          height={foreignObjectSize}
+          requiredExtensions="http://www.w3.org/1999/xhtml"
+          width={foreignObjectSize}
+          x={edgeCenterX - foreignObjectSize / 2}
+          y={edgeCenterY - foreignObjectSize / 2}
         >
-          <Button
-            className={styles.Button}
-            color="red"
-            icon="far fa-times"
-            loaded={loading}
-            onClick={handleRemoveClick}
-            variant="outlined"
-          />
-        </body>
-      </foreignObject>
+          <body
+            className={classNames(styles.Root, {
+              [styles.RootIsLoaded]: loading
+            })}
+          >
+            <Button
+              className={styles.Button}
+              color="red"
+              icon="far fa-times"
+              loaded={loading}
+              onClick={handleRemoveClick}
+              variant="outlined"
+            />
+          </body>
+        </foreignObject>
+      )}
     </>
   );
 };

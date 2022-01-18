@@ -70,15 +70,15 @@ export const BuilderBlock: React.FC<BuilderBlockProps> = ({
   // Handlers
   const handleFormSubmit = useCallback(
     async (block) => {
-      await updateBlock({ variables: { blockId: id, block } });
+      editable && (await updateBlock({ variables: { blockId: id, block } }));
       modal.closeModal();
     },
-    [id, modal, updateBlock]
+    [editable, id, modal, updateBlock]
   );
 
   const handleRemoveClick = useCallback(async () => {
-    await removeBlock({ variables: { blockId: id } });
-  }, [id, removeBlock]);
+    editable && (await removeBlock({ variables: { blockId: id } }));
+  }, [editable, id, removeBlock]);
 
   return (
     <BuilderBlockContext.Provider value={{ blockId: id, color }}>

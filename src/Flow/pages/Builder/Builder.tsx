@@ -6,6 +6,9 @@ import { generatePath } from 'react-router-dom';
 import Button from '@components/Button';
 import Page, { Breadcrumbs } from '@components/Page';
 
+// Contexts
+import { BuilderContext } from './Builder.context';
+
 // Fragments
 import { BuilderActions } from './Actions';
 import { BlockContent, BlockStart } from './Block';
@@ -24,10 +27,10 @@ import { FLOW_ROUTES } from '@flow/Flow.routes';
 import styles from './Builder.scss';
 
 export interface BuilderProps {
-  readOnly: boolean;
+  editable?: boolean;
 }
 
-export const Builder: React.FC<BuilderProps> = ({ readOnly }) => {
+export const Builder: React.FC<BuilderProps> = ({ editable }) => {
   // Setup
   const {
     companyId,
@@ -47,23 +50,27 @@ export const Builder: React.FC<BuilderProps> = ({ readOnly }) => {
               title: 'Flow',
               to: generatePath(FLOW_ROUTES.ROOT, { companyId })
             },
-            ...(readOnly
+            ...(editable
               ? [
-                  {
-                    title
-                  }
-                ]
-              : [
                   {
                     title,
                     to: generatePath(FLOW_ROUTES.FLOW, { companyId, flowId })
                   },
                   { title: 'Edit' }
+                ]
+              : [
+                  {
+                    title
+                  }
                 ])
           ]}
         />
 
-        {readOnly ? (
+        {editable ? (
+          <Button color="green" icon="fad fa-rocket-launch" variant="outlined">
+            Publish
+          </Button>
+        ) : (
           <Button
             color="blue"
             icon="far fa-edit"
@@ -72,29 +79,29 @@ export const Builder: React.FC<BuilderProps> = ({ readOnly }) => {
           >
             Edit
           </Button>
-        ) : (
-          <Button color="green" icon="fad fa-rocket-launch" variant="outlined">
-            Publish
-          </Button>
         )}
       </div>
 
       {elements && elements.length > 0 && (
-        <ReactFlowProvider>
-          <ReactFlow
-            edgeTypes={{ default: BuilderEdge }}
-            elements={elements}
-            onConnect={handleEdgeConnect}
-            onNodeDragStop={handleBlockDrag}
-            nodeTypes={{
-              [BlockType.CONTENT]: BlockContent,
-              [BlockType.START]: BlockStart
-            }}
-            snapToGrid
-          />
+        <BuilderContext.Provider value={{ isEditable: !!editable }}>
+          <ReactFlowProvider>
+            <ReactFlow
+              edgeTypes={{ default: BuilderEdge }}
+              elements={elements}
+              onConnect={handleEdgeConnect}
+              onNodeDragStop={handleBlockDrag}
+              nodesConnectable={!!editable}
+              nodesDraggable={!!editable}
+              nodeTypes={{
+                [BlockType.CONTENT]: BlockContent,
+                [BlockType.START]: BlockStart
+              }}
+              snapToGrid
+            />
 
-          <BuilderActions />
-        </ReactFlowProvider>
+            <BuilderActions />
+          </ReactFlowProvider>
+        </BuilderContext.Provider>
       )}
     </Page>
   );
