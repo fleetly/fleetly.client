@@ -53,8 +53,8 @@ const wsLink = new WebSocketLink({
   options: {
     reconnect: true
   },
-  uri: 'wss://ivan.fleetly.me/graphql'
-  // uri: 'wss://api.fleetly.it/graphql'
+  // uri: 'wss://ivan.fleetly.me/graphql'
+  uri: 'wss://api.fleetly.it/graphql'
 });
 
 const splitLink = split(
