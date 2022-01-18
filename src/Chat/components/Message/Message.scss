@@ -8,15 +8,15 @@
   padding: 7px 12px;
 
   &Is {
-    &Bot {
-      background-color: $color-green !important;
-      border-color: $color-green;
-    }
-
     &Outcoming {
       background-color: $color-blue;
       border-color: $color-blue;
       color: $color-white;
+
+      &.RootIsBot {
+        background-color: $color-green;
+        border-color: $color-green;
+      }
 
       .Date {
         color: rgba($color-white, .8);
