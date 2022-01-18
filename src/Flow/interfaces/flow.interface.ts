@@ -15,14 +15,8 @@ export enum FlowStatus {
 
 export interface Flow {
   readonly id: string;
-  readonly draft: {
-    readonly blocks: Block[];
-    readonly edges: Edge[];
-  };
-  readonly public: {
-    readonly blocks: Block[];
-    readonly edges: Edge[];
-  };
+  readonly blocks: Block[];
+  readonly edges: Edge[];
   readonly status: FlowStatus;
   readonly title: string;
 }

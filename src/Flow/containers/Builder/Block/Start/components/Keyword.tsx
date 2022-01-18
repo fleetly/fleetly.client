@@ -14,7 +14,7 @@ import { Field } from '@components/Form';
 import { BuilderElement } from '../../../Common/components';
 
 // Contexts
-import { BuilderContext } from '@flow/pages/Builder';
+import { BuilderContext } from '@flow/containers/Builder';
 
 // Data
 import {

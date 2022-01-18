@@ -1,10 +1,9 @@
-import { ApolloError, useMutation, useQuery } from '@apollo/client';
+import { ApolloError, useMutation } from '@apollo/client';
 import React, { useCallback, useMemo } from 'react';
 import { Connection, Edge, Elements, Node } from 'react-flow-renderer';
-import { useParams } from 'react-router-dom';
 
 // API
-import { ADD_EDGE, GET_FLOW, UPDATE_BLOCK } from '@flow/Flow.gql';
+import { ADD_EDGE, UPDATE_BLOCK } from '@flow/Flow.gql';
 
 // Interfaces
 import { Flow } from '@flow/interfaces/flow.interface';
@@ -12,21 +11,11 @@ import { Flow } from '@flow/interfaces/flow.interface';
 // Store
 import { useNotifications } from '@store';
 
-export const useBuilder = () => {
+export const useBuilder = ({ blocks, edges }: Flow, isEditable: boolean) => {
   // Setup
-  const { companyId, flowId } = useParams<{
-    companyId: string;
-    flowId: string;
-  }>();
-
   const { handleApolloError } = useNotifications();
 
-  // Data
-  const { data } = useQuery<{ flow: Flow }>(GET_FLOW, {
-    variables: { flowId }
-  });
-
-  // Mutations
+  // API
   const [addEdge] = useMutation(ADD_EDGE);
   const [updateBlock] = useMutation(UPDATE_BLOCK);
 
@@ -34,34 +23,30 @@ export const useBuilder = () => {
   const elements = useMemo(() => {
     const result: Elements = [];
 
-    if (data?.flow) {
-      (data.flow.draft.blocks || []).forEach(
-        ({ id, elements, position, title, type }) =>
-          result.push({
-            id,
-            data: {
-              elements,
-              title
-            },
-            position,
-            type
-          })
-      );
+    blocks.forEach(({ id, elements, position, title, type }) =>
+      result.push({
+        id,
+        data: {
+          elements,
+          title
+        },
+        position,
+        type
+      })
+    );
 
-      (data.flow.draft.edges || []).forEach(
-        ({ id, sourceId, sourceElementId, targetId }) =>
-          result.push({
-            id,
-            target: targetId,
-            source: sourceId,
-            sourceHandle: sourceElementId,
-            style: { strokeWidth: 2 }
-          })
-      );
-    }
+    edges.forEach(({ id, sourceId, sourceElementId, targetId }) =>
+      result.push({
+        id,
+        target: targetId,
+        source: sourceId,
+        sourceHandle: sourceElementId,
+        style: { strokeWidth: 2 }
+      })
+    );
 
     return result;
-  }, [data]);
+  }, [blocks, edges]);
 
   // Handlers
   const handleBlockDrag = useCallback(
@@ -98,11 +83,8 @@ export const useBuilder = () => {
   );
 
   return {
-    companyId,
     elements,
-    flowId,
     handleBlockDrag,
-    handleEdgeConnect,
-    title: data?.flow.title || 'Untitled'
+    handleEdgeConnect
   };
 };

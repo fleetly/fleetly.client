@@ -62,7 +62,7 @@ export const FlowsActions: React.FC<Flow> = (props) => {
   return (
     <>
       <Button
-        icon="far fa-ellipsis-v"
+        icon="fas fa-ellipsis-v"
         onClick={handleMenuOpen}
         variant="outlined"
       />

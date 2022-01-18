@@ -31,8 +31,18 @@ export const Flows: React.FC = () => {
 
   // Handlers
   const handleTrClick = useCallback(
-    ({ id }: Flow) =>
-      push(generatePath(FLOW_ROUTES.FLOW, { companyId, flowId: id })),
+    ({ id, status }: Flow) =>
+      push(
+        generatePath(
+          status === FlowStatus.PUBLISHED
+            ? FLOW_ROUTES.FLOW
+            : FLOW_ROUTES.FLOW_EDIT,
+          {
+            companyId,
+            flowId: id
+          }
+        )
+      ),
     [companyId, push]
   );
 
@@ -45,9 +55,9 @@ export const Flows: React.FC = () => {
           <Status
             color={
               value === FlowStatus.UNPUBLISHED
-                ? value === FlowStatus.PUBLISHED
-                  ? 'green'
-                  : 'orange'
+                ? 'orange'
+                : value === FlowStatus.PUBLISHED
+                ? 'green'
                 : 'gray'
             }
             title={value}

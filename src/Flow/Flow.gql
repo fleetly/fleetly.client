@@ -4,16 +4,14 @@
 mutation ADD_BLOCK($block: CreateBlockInput!, $flowId: String!) {
   addBlock(block: $block, flowId: $flowId) {
     id
-    draft {
-      blocks {
-        id
-        position {
-          x
-          y
-        }
-        title
-        type
+    blocks {
+      id
+      position {
+        x
+        y
       }
+      title
+      type
     }
   }
 }
@@ -33,14 +31,12 @@ mutation ADD_EDGE(
     }
   ) {
     id
-    draft {
-      edges {
-        id
-        sourceId
-        sourceElementId
-        sourceHandleId
-        targetId
-      }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
     }
   }
 }
@@ -48,21 +44,19 @@ mutation ADD_EDGE(
 mutation ADD_ELEMENT($blockId: String!, $element: ElementInput!) {
   addElement(blockId: $blockId, element: $element) {
     id
-    draft {
-      blocks {
+    blocks {
+      id
+      elements {
         id
-        elements {
-          id
-          payload
-          type
-        }
-        position {
-          x
-          y
-        }
-        title
+        payload
         type
       }
+      position {
+        x
+        y
+      }
+      title
+      type
     }
   }
 }
@@ -79,20 +73,22 @@ mutation DELETE_FLOW($flowId: String!) {
   deleteFlow(flowId: $flowId)
 }
 
+mutation PUBLISH_FLOW($flowId: String!) {
+  publishFlow(flowId: $flowId)
+}
+
 mutation REMOVE_BLOCK($blockId: String!) {
   removeBlock(blockId: $blockId) {
     id
-    draft {
-      blocks {
-        id
-      }
-      edges {
-        id
-        sourceId
-        sourceElementId
-        sourceHandleId
-        targetId
-      }
+    blocks {
+      id
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
     }
   }
 }
@@ -100,10 +96,8 @@ mutation REMOVE_BLOCK($blockId: String!) {
 mutation REMOVE_EDGE($edgeId: String!) {
   removeEdge(edgeId: $edgeId) {
     id
-    draft {
-      edges {
-        id
-      }
+    edges {
+      id
     }
   }
 }
@@ -111,21 +105,19 @@ mutation REMOVE_EDGE($edgeId: String!) {
 mutation REMOVE_ELEMENT($elementId: String!) {
   removeElement(elementId: $elementId) {
     id
-    draft {
-      blocks {
+    blocks {
+      id
+      elements {
         id
-        elements {
-          id
-        }
       }
+    }
 
-      edges {
-        id
-        sourceId
-        sourceElementId
-        sourceHandleId
-        targetId
-      }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
     }
   }
 }
@@ -133,15 +125,13 @@ mutation REMOVE_ELEMENT($elementId: String!) {
 mutation UPDATE_BLOCK($blockId: String!, $block: UpdateBlockInput!) {
   updateBlock(blockId: $blockId, block: $block) {
     id
-    draft {
-      blocks {
-        id
-        position {
-          x
-          y
-        }
-        title
+    blocks {
+      id
+      position {
+        x
+        y
       }
+      title
     }
   }
 }
@@ -149,14 +139,12 @@ mutation UPDATE_BLOCK($blockId: String!, $block: UpdateBlockInput!) {
 mutation UPDATE_ELEMENT($elementId: String!, $payload: JSON!) {
   updateElement(elementId: $elementId, payload: $payload) {
     id
-    draft {
-      blocks {
+    blocks {
+      id
+      elements {
         id
-        elements {
-          id
-          payload
-          type
-        }
+        payload
+        type
       }
     }
   }
@@ -173,31 +161,29 @@ mutation UPDATE_FLOW($flowId: String!, $flow: FlowInput!) {
 #############
 ## QUERIES ##
 #############
-query GET_FLOW($flowId: String!) {
-  flow(flowId: $flowId) {
+query GET_FLOW($flowId: String!, $flowMode: FlowMode!) {
+  flow(flowId: $flowId, flowMode: $flowMode) {
     id
-    draft {
-      blocks {
+    blocks {
+      id
+      elements {
         id
-        elements {
-          id
-          payload
-          type
-        }
-        position {
-          x
-          y
-        }
-        title
+        payload
         type
       }
-      edges {
-        id
-        sourceId
-        sourceElementId
-        sourceHandleId
-        targetId
+      position {
+        x
+        y
       }
+      title
+      type
+    }
+    edges {
+      id
+      sourceId
+      sourceElementId
+      sourceHandleId
+      targetId
     }
     status
     title

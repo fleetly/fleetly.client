@@ -7,7 +7,7 @@ import Textarea from 'react-textarea-autosize';
 import { Text } from '@components/Typography';
 
 // Contexts
-import { BuilderContext } from '@flow/pages/Builder';
+import { BuilderContext } from '@flow/containers/Builder';
 
 // Hooks
 import { useOutsideClick } from '@hooks/events';
