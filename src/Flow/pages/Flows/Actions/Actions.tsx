@@ -27,6 +27,8 @@ import { Flow } from '@flow/interfaces/flow.interface';
 import { useNotifications } from '@store';
 
 export const FlowsActions: React.FC<Flow> = (props) => {
+  const { id, channels, title } = props;
+
   // Setup
   const { confirm } = useConfirm();
   const [menuProps, { handleMenuOpen }] = useContextMenu();
@@ -44,9 +46,12 @@ export const FlowsActions: React.FC<Flow> = (props) => {
   const handleEditClick = useCallback(
     (event: React.SyntheticEvent<HTMLElement>) => {
       event.stopPropagation();
-      modal.openModal({ data: props, title: 'Update the Flow' });
+      modal.openModal({
+        data: { id, channels: channels.map(({ id }) => id), title },
+        title: 'Update the Flow'
+      });
     },
-    [modal, props]
+    [channels, id, modal, title]
   );
 
   const handleRemoveClick = useCallback(
@@ -72,7 +77,7 @@ export const FlowsActions: React.FC<Flow> = (props) => {
           <ContextMenuItem
             icon="fas fa-edit"
             onClick={handleEditClick}
-            title="Rename"
+            title="Edit Flow"
           />
 
           <ContextMenuItem

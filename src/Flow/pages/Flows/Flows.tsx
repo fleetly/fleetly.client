@@ -3,6 +3,7 @@ import { generatePath, useHistory } from 'react-router-dom';
 
 // Components
 import Button from '@components/Button';
+import Link from '@components/Link';
 import Page, { Wrapper } from '@components/Page';
 import Status from '@components/Status';
 import Table from '@components/Table';
@@ -15,6 +16,7 @@ import { FlowsCreate, useFlowsCreate } from './Create';
 import { useFlows } from './Flows.hooks';
 
 // Interfaces
+import { IChannel } from '@interfaces/channel.interface';
 import { Flow, FlowStatus } from '@flow/interfaces/flow.interface';
 
 // Routes
@@ -22,6 +24,8 @@ import { FLOW_ROUTES } from '@flow/Flow.routes';
 
 // Styles
 import styles from './Flows.scss';
+import Avatar from '@components/Avatar';
+import { COMPANY_ROUTES } from '@company/Company.routes';
 
 export const Flows: React.FC = () => {
   // Setup
@@ -30,6 +34,13 @@ export const Flows: React.FC = () => {
   const { push } = useHistory();
 
   // Handlers
+  const handleLinkClick = useCallback(
+    (event: React.SyntheticEvent<HTMLAnchorElement>) => {
+      event.stopPropagation();
+    },
+    []
+  );
+
   const handleTrClick = useCallback(
     ({ id, status }: Flow) =>
       push(
@@ -72,6 +83,22 @@ export const Flows: React.FC = () => {
       },
       {
         accessor: 'channels',
+        Cell: ({ value }: { value: IChannel[] }) => (
+          <div className={styles.Channels}>
+            {value.map(({ id, source }) => (
+              <Link
+                key={id}
+                onClick={handleLinkClick}
+                to={generatePath(COMPANY_ROUTES.CHANNEL, {
+                  companyId,
+                  channelId: id
+                })}
+              >
+                <Avatar src={source.photo} sourceType={source.type} />
+              </Link>
+            ))}
+          </div>
+        ),
         Header: 'Channels'
       },
       {
@@ -84,7 +111,7 @@ export const Flows: React.FC = () => {
         maxWidth: 40
       }
     ],
-    []
+    [companyId, handleLinkClick]
   );
 
   return (

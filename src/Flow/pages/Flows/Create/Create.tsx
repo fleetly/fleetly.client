@@ -19,18 +19,22 @@ import {
 } from '@components/Form';
 import Modal from '@components/Modal';
 
+import { FlowsCreateChannels } from './components/Channels';
+
 // Hooks
 import { useFlowsCreate } from './Create.hooks';
 
 // Interfaces
 import { Flow } from '@flow/interfaces/flow.interface';
 
+// Styles
+import styles from './Create.scss';
+
 export const FlowsCreate: React.FC = () => {
   // Setup
   const { modal } = useFlowsCreate();
   const { companyId } = useParams<{ companyId: string }>();
 
-  // API
   const refetchQueries = [{ query: GET_FLOWS, variables: { companyId } }];
 
   const [createFlow] = useMutation(CREATE_FLOW, { refetchQueries });
@@ -38,11 +42,15 @@ export const FlowsCreate: React.FC = () => {
 
   // Handlers
   const handleFormSubmit = useCallback(
-    async ({ id, title }) => {
+    async ({ id, channels, title }) => {
       try {
         id
-          ? await updateFlow({ variables: { flowId: id, flow: { title } } })
-          : await createFlow({ variables: { companyId, flow: { title } } });
+          ? await updateFlow({
+              variables: { flowId: id, flow: { channels, title } }
+            })
+          : await createFlow({
+              variables: { companyId, flow: { channels, title } }
+            });
 
         modal.closeModal();
       } catch (error) {
@@ -65,11 +73,17 @@ export const FlowsCreate: React.FC = () => {
           )}
         >
           {({ handleSubmit, initialValues, submitting }) => (
-            <form onSubmit={handleSubmit}>
+            <form className={styles.Form} onSubmit={handleSubmit}>
               <Error />
 
               <Fieldset>
-                <Field label="Flow title" name="title" />
+                <Field
+                  label="Flow name"
+                  name="title"
+                  placeholder="Enter new name"
+                />
+
+                <FlowsCreateChannels />
               </Fieldset>
 
               <Actions>

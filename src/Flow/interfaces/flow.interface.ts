@@ -1,4 +1,6 @@
 // Interfaces
+import { IChannel } from '@interfaces/channel.interface';
+
 import { Block } from './block.interface';
 import { Edge } from './edge.interface';
 
@@ -16,6 +18,7 @@ export enum FlowStatus {
 export interface Flow {
   readonly id: string;
   readonly blocks: Block[];
+  readonly channels: IChannel[];
   readonly edges: Edge[];
   readonly status: FlowStatus;
   readonly title: string;

@@ -1,3 +1,11 @@
 .Root {
   margin: 0 40px 40px 40px;
 }
+
+.Channels {
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin: 0 0 0 12px;
+  }
+}

@@ -1,0 +1,21 @@
+#############
+## QUERIES ##
+#############
+query GET_CHANNELS($companyId: String!) {
+  channels(companyId: $companyId) {
+    id
+    source {
+      id
+      link
+      name
+      photo
+      title
+      type
+    }
+    status {
+      color
+      message
+      type
+    }
+  }
+}

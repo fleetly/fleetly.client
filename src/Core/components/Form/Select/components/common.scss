@@ -9,6 +9,10 @@
 
 .Card {
   padding: 12px;
+
+  & > div {
+    width: 100%;
+  }
 }
 
 .Caret {

@@ -193,6 +193,14 @@ query GET_FLOW($flowId: String!, $flowMode: FlowMode!) {
 query GET_FLOWS($companyId: String!) {
   flows(companyId: $companyId) {
     id
+    channels {
+      id
+      source {
+        photo
+        title
+        type
+      }
+    }
     status
     title
   }
