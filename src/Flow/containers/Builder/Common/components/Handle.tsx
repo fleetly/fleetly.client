@@ -9,11 +9,11 @@ import { BuilderBlockContext } from '../../Block';
 // Styles
 import styles from './Handle.scss';
 
-export interface BlockHandleProps extends HandleProps {
+export interface BuilderHandleProps extends HandleProps {
   className?: string;
 }
 
-export const BlockHandle: React.FC<BlockHandleProps> = ({
+export const BuilderHandle: React.FC<BuilderHandleProps> = ({
   id,
   className,
   type,

@@ -14,11 +14,13 @@ import {
   useContextMenu
 } from '@components/ContextMenu';
 
-import { BlockContentText } from './components/Text';
 import { BuilderButton } from '../../Common/components';
 
 // Contexts
 import { BuilderContext } from '../../Builder.context.ts';
+
+// Elements
+import { BlockContentText } from './Text';
 
 // Fragments
 import { BuilderBlock } from '../../Block';

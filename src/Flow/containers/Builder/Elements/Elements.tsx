@@ -1,4 +1,5 @@
 import { useMutation } from '@apollo/client';
+import classNames from 'classnames';
 import { debounce } from 'lodash';
 import React, { Children, useCallback, useContext } from 'react';
 import { Form, FormSpy } from 'react-final-form';
@@ -91,8 +92,15 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
   );
 };
 
-export const BuilderElements: React.FC = ({ children }) => (
-  <div className={styles.Root}>
+export interface BuilderElementsProps {
+  className?: string;
+}
+
+export const BuilderElements: React.FC<BuilderElementsProps> = ({
+  children,
+  className
+}) => (
+  <div className={classNames(className, styles.Root)}>
     {Children.map(children, (child: any) => (
       <BuilderElementsForm children={child} {...child.props} />
     ))}

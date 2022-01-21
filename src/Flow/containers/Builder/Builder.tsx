@@ -6,7 +6,7 @@ import { BuilderContext } from './Builder.context';
 
 // Fragments
 import { BuilderActions } from './Actions';
-import { BlockContent, BlockStart } from './Block';
+import { BlockContent, BlockRandomize, BlockStart } from './Block';
 import { BuilderEdge } from './Edge';
 
 // Hooks
@@ -38,6 +38,7 @@ export const Builder: React.FC<BuilderProps> = ({ editable, ...flow }) => {
           nodesDraggable={!!editable}
           nodeTypes={{
             [BlockType.CONTENT]: BlockContent,
+            [BlockType.RANDOMIZE]: BlockRandomize,
             [BlockType.START]: BlockStart
           }}
           snapToGrid

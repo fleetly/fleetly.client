@@ -40,3 +40,14 @@ export const formatCurrency = (
 
   return currentIntl.format(value);
 };
+
+export const numberToLetter = (num: number) => {
+  let result = '';
+
+  while (num >= 0) {
+    result += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[num % 26];
+    num = Math.floor(num / 26) - 1;
+  }
+
+  return result;
+};

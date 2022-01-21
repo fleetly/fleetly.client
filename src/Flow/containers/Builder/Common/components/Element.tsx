@@ -5,7 +5,7 @@ import { Position } from 'react-flow-renderer';
 import Card, { CardHeader } from '@components/Card';
 import Icon from '@components/Icon';
 
-import { BlockHandle } from './Handle';
+import { BuilderHandle } from './Handle';
 
 // Styles
 import styles from './Element.scss';
@@ -27,7 +27,9 @@ export const BuilderElement: React.FC<BuilderElementProps> = ({
 }) => (
   <Card className={styles.Root}>
     <CardHeader
-      actions={<BlockHandle id={id} position={Position.Right} type="source" />}
+      actions={
+        <BuilderHandle id={id} position={Position.Right} type="source" />
+      }
       avatar={<Icon color={color} icon={icon} />}
       subTitle={subTitle}
       title={title}

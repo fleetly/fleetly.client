@@ -20,7 +20,7 @@ import { BuilderButton } from '../../Common/components';
 import { BuilderContext } from '../../Builder.context.ts';
 
 // Elements
-import { BlockStartKeyword } from './components/Keyword';
+import { BlockStartKeyword } from './Keyword';
 
 // Fragments
 import { BuilderBlock } from '../../Block';

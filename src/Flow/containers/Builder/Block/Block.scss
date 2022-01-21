@@ -1,10 +1,16 @@
 @import '~@styles/colors';
 
 @mixin color($color) {
-  &.RootIsSelected,
   &:hover {
     .Card {
       box-shadow: 0 0 0 3px rgba($color, .6);
+    }
+  }
+
+  &.RootIsSelected {
+    .Card {
+      background: rgba(lighten($color, 32), .9);
+      box-shadow: 0 0 0 3px rgba($color, .8);
     }
   }
 }

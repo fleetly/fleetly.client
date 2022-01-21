@@ -3,15 +3,19 @@
 @mixin color($color) {
   color: $color;
 
+  &:hover {
+    background: rgba($color, .1);
+    border-color: $color;
+  }
+
   &:focus {
     border-color: $color;
-    box-shadow: 0 0 0 1px $color;
   }
 }
 
 .Root {
   background: $color-white;
-  border: 1.5px solid $background-light;
+  border: 2px solid $background-light;
   border-radius: 8px;
   font-family: inherit;
   font-size: 12px;
@@ -22,8 +26,15 @@
   width: 100%;
 
   &:hover:not(:active) {
-    background: $background-lighten;
     cursor: pointer;
+  }
+
+  &Color {
+    &Default {
+      &:hover:not(:active) {
+        background: $background-lighten;
+      }
+    }
   }
 
   @include coloring();

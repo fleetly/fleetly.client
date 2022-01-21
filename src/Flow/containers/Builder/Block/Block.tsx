@@ -15,7 +15,7 @@ import Icon from '@components/Icon';
 import Modal from '@components/Modal';
 import { Caption } from '@components/Typography';
 
-import { BlockHandle } from '../Common/components';
+import { BuilderHandle } from '../Common/components';
 
 // Contexts
 import { BuilderBlockContext } from './Block.context';
@@ -91,7 +91,7 @@ export const BuilderBlock: React.FC<BuilderBlockProps> = ({
       >
         <Card className={styles.Card}>
           {hasTarget && (
-            <BlockHandle
+            <BuilderHandle
               className={styles.Target}
               position={Position.Left}
               type="target"
@@ -109,7 +109,7 @@ export const BuilderBlock: React.FC<BuilderBlockProps> = ({
           {hasSource && (
             <Caption className={styles.Next} component="div">
               Next Step
-              <BlockHandle
+              <BuilderHandle
                 className={styles.Source}
                 position={Position.Right}
                 type="source"

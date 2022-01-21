@@ -55,6 +55,11 @@
   }
 }
 
+:global input {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 :global h1,
 :global h2,
 :global h3,

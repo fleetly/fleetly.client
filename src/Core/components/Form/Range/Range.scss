@@ -1,0 +1,58 @@
+@import '~@styles/colors';
+
+@mixin color($color) {
+  .Input {
+    &::-webkit-slider-thumb {
+      background: $color-white;
+      border-color: $color;
+      box-shadow: 0 2px 4px 0 rgba($color, .6);
+
+      &:hover {
+        box-shadow: 0 2px 4px 0 rgba($color, .6), 0 0 0 5px rgba($color, .2);
+      }
+    }
+  }
+
+  .Value {
+    background: $color;
+  }
+}
+
+.Root {
+  background: $background-light;
+  border-radius: 2px;
+  height: 4px;
+  margin: 4px 0;
+  position: relative;
+
+  @include coloring();
+}
+
+.Input {
+  appearance: none;
+  background: none;
+  width: 100%;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    background: $color-white;
+    border: 3px solid;
+    border-radius: 100%;
+    height: 10px;
+    position: relative;
+    top: -7px;
+    transition: all .2s;
+    width: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.Value {
+  background: #f00;
+  border-radius: 2px;
+  height: 100%;
+  position: absolute;
+}

@@ -27,6 +27,7 @@ import { useNotifications } from '@store';
 
 // Styles
 import styles from './Actions.scss';
+import { last } from 'lodash';
 
 export const BuilderActions: React.FC = () => {
   // Setup
@@ -57,24 +58,33 @@ export const BuilderActions: React.FC = () => {
   // Handlers
   const handleMenuItemClick = useCallback(
     async (event: React.SyntheticEvent<HTMLDivElement>) => {
-      try {
-        isEditable &&
-          (await addBlock({
-            variables: {
-              flowId,
-              block: {
-                title: 'Text',
-                type: event.currentTarget.dataset.blockType
-              }
-            }
-          }));
+      if (isEditable) {
+        const { nodes } = store.getState();
+        const { __rf } = last(nodes)!;
 
-        closeMenu();
-      } catch (error) {
-        return handleApolloError(error as ApolloError);
+        try {
+          isEditable &&
+            (await addBlock({
+              variables: {
+                flowId,
+                block: {
+                  position: {
+                    x: __rf.position.x + __rf.width + 60,
+                    y: __rf.position.y
+                  },
+                  title: 'Text',
+                  type: event.currentTarget.dataset.blockType
+                }
+              }
+            }));
+
+          closeMenu();
+        } catch (error) {
+          return handleApolloError(error as ApolloError);
+        }
       }
     },
-    [addBlock, closeMenu, flowId, handleApolloError, isEditable]
+    [addBlock, closeMenu, flowId, handleApolloError, isEditable, store]
   );
 
   return (
@@ -118,6 +128,7 @@ export const BuilderActions: React.FC = () => {
                 data-block-type={BlockType.RANDOMIZE}
                 color="purple"
                 icon="fas fa-random"
+                onClick={handleMenuItemClick}
                 title="Randomize"
               />
             </ContextMenuColumn>
