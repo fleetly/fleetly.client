@@ -4,13 +4,19 @@
   background: $background-lighten;
   border: 2px solid $background-light;
   border-radius: 16px;
-  padding: 0 20px;
+  padding: 20px;
 
-  & > * {
-    padding: 20px 0;
+  &Is {
+    &Editable {
+      padding: 0 20px;
 
-    &:not(:first-child) {
-      border-top: 2px solid $background-light;
+      & > * {
+        padding: 20px 0;
+
+        &:not(:first-child) {
+          border-top: 2px solid $background-light;
+        }
+      }
     }
   }
 }

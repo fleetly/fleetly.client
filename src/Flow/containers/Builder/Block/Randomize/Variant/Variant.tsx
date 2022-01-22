@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { Field, useField } from 'react-final-form';
 import { Position } from 'react-flow-renderer';
 
@@ -38,6 +38,12 @@ export const BlockRandomizeVariant: React.FC<BlockRandomizeVariantProps> = ({
     input: { value }
   } = useField('value');
 
+  // Handlers
+  const handleFieldParse = useCallback(
+    (value: string) => Math.max(1, Math.min(parseFloat(value), 100)),
+    []
+  );
+
   // Memo
   const letter = useMemo(() => numberToLetter(index), [index]);
 
@@ -58,21 +64,24 @@ export const BlockRandomizeVariant: React.FC<BlockRandomizeVariantProps> = ({
             name="value"
           />
 
-          <Field className={styles.Input} component="input" name="value" />
+          <Field
+            className={styles.Input}
+            component="input"
+            name="value"
+            parse={handleFieldParse}
+          />
         </div>
       )}
 
-      <div className={styles.Actions}>
-        <BuilderButton color="purple">
-          {letter} - {value}%
-          <BuilderHandle
-            className={styles.Handle}
-            id={id}
-            position={Position.Right}
-            type="source"
-          />
-        </BuilderButton>
-      </div>
+      <BuilderButton color="purple">
+        {letter} - {value}%
+        <BuilderHandle
+          className={styles.Handle}
+          id={id}
+          position={Position.Right}
+          type="source"
+        />
+      </BuilderButton>
     </div>
   );
 };

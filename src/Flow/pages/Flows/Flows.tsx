@@ -94,7 +94,12 @@ export const Flows: React.FC = () => {
                   channelId: id
                 })}
               >
-                <Avatar src={source.photo} sourceType={source.type} />
+                <Avatar
+                  alt={source.title}
+                  src={source.photo}
+                  sourceType={source.type}
+                  toColor={id}
+                />
               </Link>
             ))}
           </div>

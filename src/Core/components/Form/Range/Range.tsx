@@ -25,8 +25,13 @@ export const Range: React.FC<RangeProps> = ({
     []
   );
 
+  const handleFieldParse = useCallback(
+    (value: string) => parseFloat(value),
+    []
+  );
+
   return (
-    <Field {...props}>
+    <Field {...props} parse={handleFieldParse}>
       {({ input, max, min, step }) => (
         <div
           className={classNames(

@@ -1,4 +1,5 @@
 import { useMutation } from '@apollo/client';
+import classNames from 'classnames';
 import React, { useCallback, useContext } from 'react';
 import { NodeProps } from 'react-flow-renderer';
 
@@ -63,13 +64,19 @@ export const BlockRandomize: React.FC<NodeProps> = ({
       subTitle="Randomize"
       title={title}
     >
-      <BuilderElements className={styles.Container}>
+      <BuilderElements
+        className={classNames(styles.Container, {
+          [styles.ContainerIsEditable]: isEditable
+        })}
+      >
         {elements.map((element: any, index: number) => (
           <BlockRandomizeVariant {...element} key={element.id} index={index} />
         ))}
       </BuilderElements>
 
-      <BuilderButton onClick={handleAddClick}>Add Variant</BuilderButton>
+      {isEditable && (
+        <BuilderButton onClick={handleAddClick}>Add Variant</BuilderButton>
+      )}
     </BuilderBlock>
   );
 };
