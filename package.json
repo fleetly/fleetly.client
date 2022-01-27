@@ -19,6 +19,7 @@
     "apollo-cache-inmemory": "^1.6.5",
     "chart.js": "^3.3.2",
     "classnames": "^2.2.6",
+    "deep-object-diff": "^1.1.0",
     "emoji-mart": "^3.0.1",
     "final-form": "^4.20.2",
     "graphql": "^15.0.0",
@@ -52,6 +53,9 @@
     "redux": "^4.0.5",
     "redux-form": "^8.3.6",
     "reselect": "^4.0.0",
+    "slate": "^0.72.3",
+    "slate-plain-serializer": "^0.7.13",
+    "slate-react": "^0.72.6",
     "subscriptions-transport-ws": "^0.9.18",
     "uuid": "^8.0.0",
     "yup": "^0.32.9"

@@ -1,6 +1,7 @@
 import { useMutation } from '@apollo/client';
 import classNames from 'classnames';
-import { debounce } from 'lodash';
+import { diff } from 'deep-object-diff';
+import { debounce, isEmpty } from 'lodash';
 import React, { Children, useCallback, useContext } from 'react';
 import { Form, FormSpy } from 'react-final-form';
 
@@ -44,10 +45,11 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
 
   // Handlers
   const handleFormChange = debounce(async ({ values }) => {
-    isEditable &&
-      (await updateElement({
+    if (isEditable && !isEmpty(diff({ id, ...payload }, values))) {
+      await updateElement({
         variables: { elementId: values.id, payload: values }
-      }));
+      });
+    }
   }, 1000);
 
   const handleFormSubmit = useCallback(async () => true, []);

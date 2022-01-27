@@ -7,24 +7,16 @@
   padding: 12px;
 }
 
-.Text {
-  color: rgba($color-text, .8);
-  padding: 4px 10px;
+.Action {
+  height: 20px !important;
+  width: 20px !important;
 }
 
-.Textarea {
-  background: $color-white;
-  border: 2px solid $background-light;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 4px 8px;
-  resize: none;
-  transition: all .2s;
-  width: 100%;
+.Buttons {
+  margin: 16px 0 0;
+}
 
-  &:focus {
-    border-color: $color-blue;
-  }
+.Editor {
+  position: relative;
+  z-index: 2;
 }

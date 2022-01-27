@@ -1,0 +1,15 @@
+@import '~@styles/colors';
+
+.Root {
+  background: $color-blue;
+  border-radius: 4px;
+  color: $color-white;
+  padding: 2px 6px;
+  transition: all .2s;
+
+  &Is {
+    &Selected {
+      background: darken($color-blue, 12);
+    }
+  }
+}

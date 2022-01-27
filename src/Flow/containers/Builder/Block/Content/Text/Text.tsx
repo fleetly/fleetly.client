@@ -1,57 +1,59 @@
-import classNames from 'classnames';
-import React, { useCallback, useContext, useState } from 'react';
-import { Field } from 'react-final-form';
-import Textarea from 'react-textarea-autosize';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
+import { useField } from 'react-final-form';
+import { compose } from 'recompose';
+import { createEditor } from 'slate';
+import { Editable, Slate, withReact } from 'slate-react';
 
 // Components
-import { Text } from '@components/Typography';
+import { BlockContentTextVariable, withVariable } from './components/Variable';
 
 // Contexts
 import { BuilderContext } from '@flow/containers/Builder';
 
-// Hooks
-import { useOutsideClick } from '@hooks/events';
-
 // Styles
 import styles from './Text.scss';
+
+// Utils
+import { deserialize } from './utils/deserialize';
+import { BuilderButton } from '@flow/containers/Builder/Common/components';
 
 export const BlockContentText: React.FC = () => {
   // Setup
   const { isEditable } = useContext(BuilderContext);
+  const { input } = useField('text', {
+    format: (value) => deserialize(value)
+  });
 
   // State
-  const [isFocused, setFocusState] = useState(false);
+  const [value, setValue] = useState(deserialize('Hello, {{firstname}}!'));
 
-  // Handlers
-  const handleClickClosed = useCallback(() => setFocusState(false), []);
-
-  const handleClickOpened = useCallback(() => setFocusState(isEditable), [
-    isEditable
-  ]);
-
-  const ref = useOutsideClick<HTMLDivElement>(
-    isFocused ? handleClickClosed : undefined
+  // Memo
+  const editor = useMemo(
+    () => compose(withVariable, withReact)(createEditor() as any),
+    []
   );
 
+  // Renders
+  const renderElement = useCallback((props) => {
+    const { attributes, children, element } = props;
+
+    switch (element.type) {
+      case 'variable':
+        return <BlockContentTextVariable {...props} />;
+      default:
+        return <p {...attributes}>{children}</p>;
+    }
+  }, []);
+
   return (
-    <div
-      className={classNames(styles.Root, {
-        [styles.RootIsFocused]: isFocused
-      })}
-      onClick={handleClickOpened}
-      ref={ref}
-    >
-      <Field name="text">
-        {({ input }) =>
-          isFocused ? (
-            <Textarea {...input} className={styles.Textarea} />
-          ) : (
-            <Text className={styles.Text} component="div" weight="semiBold">
-              {input.value}
-            </Text>
-          )
-        }
-      </Field>
+    <div className={styles.Root}>
+      <Slate editor={editor as any} onChange={setValue} value={input.value}>
+        <Editable readOnly={!isEditable} renderElement={renderElement} />
+      </Slate>
+
+      <div className={styles.Buttons}>
+        <BuilderButton color="blue">Add Button</BuilderButton>
+      </div>
     </div>
   );
 };
