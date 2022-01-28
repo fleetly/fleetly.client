@@ -68,23 +68,25 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
     <Form initialValues={{ id, ...payload }} onSubmit={handleFormSubmit}>
       {({ handleSubmit }) => (
         <form className={styles.Form} onSubmit={handleSubmit}>
-          <FormSpy
-            onChange={handleFormChange}
-            subscription={{ values: true }}
-          />
-
           {isEditable && (
-            <div className={styles.Actions}>
-              <Button
-                className={styles.Remove}
-                color="red"
-                data-element-id={id}
-                icon="far fa-trash-alt"
-                loaded={loading}
-                onClick={handleRemoveClick}
-                variant="outlined"
+            <>
+              <FormSpy
+                onChange={handleFormChange}
+                subscription={{ active: true, values: true }}
               />
-            </div>
+
+              <div className={styles.Actions}>
+                <Button
+                  className={styles.Remove}
+                  color="red"
+                  data-element-id={id}
+                  icon="far fa-trash-alt"
+                  loaded={loading}
+                  onClick={handleRemoveClick}
+                  variant="outlined"
+                />
+              </div>
+            </>
           )}
 
           <div className={styles.Container}>{children}</div>

@@ -25,7 +25,7 @@ export const BlockContentText: React.FC = () => {
   });
 
   // State
-  const [value, setValue] = useState(deserialize('Hello, {{firstname}}!'));
+  const [, setValue] = useState(deserialize('Hello, {{firstname}}!'));
 
   // Memo
   const editor = useMemo(

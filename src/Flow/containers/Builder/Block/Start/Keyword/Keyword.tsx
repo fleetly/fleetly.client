@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { useField } from 'react-final-form';
 
 // Components
@@ -38,6 +38,11 @@ export const BlockStartKeyword: React.FC<BlockStartKeywordProps> = ({ id }) => {
 
   const { input: operatorInput } = useField('operator');
   const { input: valueInput } = useField('value');
+
+  // Effects
+  useEffect(() => {
+    // !menuProps.opened && valueInput.onChange;
+  }, [menuProps.opened, valueInput.onChange]);
 
   // Handlers
   const handleItemClick = useCallback(
@@ -79,6 +84,7 @@ export const BlockStartKeyword: React.FC<BlockStartKeywordProps> = ({ id }) => {
 
           <ContextMenuColumn>
             <ContextMenuTitle>Value</ContextMenuTitle>
+
             <Field name="value" placeholder="Keyword" />
           </ContextMenuColumn>
         </ContextMenu>

@@ -8,11 +8,11 @@ $background-darken: #ababab;
 $color-dark: #2a2628;
 $color-blue: #3e4df2;
 $color-brown: #887466;
-$color-green: #55b242; // #55b242;
-$color-orange: #fe9e3b;
+$color-green: #55b242;
+$color-orange: #ffcb48; //#fe9e3b;
 $color-pink: #d13bfb; // #cd6cee
 $color-purple: #9204ea;
-$color-red: #ef2944;
+$color-red: #fe3345; // #ef2944;
 $color-sky: #0089ff;
 $color-yellow: #ffe26c;
 $color-white: #fff;
@@ -55,5 +55,19 @@ $coloring-variants: (
         @include color($value);
       }
     }
+  }
+}
+
+@function shade($color, $value) {
+  @if $value > 500 {
+    @return mix(black, $color, 100% - (1000 - $value) * 100 / 500);
+  }
+
+  @else if $value < 500 {
+    @return mix(white, $color, 100% - $value * 100 / 500);
+  }
+
+  @else {
+    @return $color;
   }
 }

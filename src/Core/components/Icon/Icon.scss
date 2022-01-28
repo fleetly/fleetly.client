@@ -2,7 +2,7 @@
 
 @mixin color($color) {
   &.RootVariantFilled {
-    background: lighten($color, 28);
+    background: mix(white, $color, 72%);
     color: $color;
     text-shadow: 0 4px 4px lighten($color, 16);
   }

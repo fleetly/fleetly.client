@@ -67,11 +67,11 @@
   color: $color-white;
 
   &:active {
-    background: darken($color, 10);
+    background: shade($color, 600);
   }
 
   &:hover:not(:active) {
-    background: lighten($color, 10);
+    background: shade($color, 400);
   }
 }
 
@@ -90,16 +90,16 @@
 }
 
 @mixin color($color) {
-  border-color: lighten($color, 16);
+  border-color: shade($color, 300);
   color: $color;
 
   &:active {
-    background: lighten($color, 20);
+    background: shade($color, 200);
     border-color: transparent;
   }
 
   &:hover:not(:active) {
-    background: lighten($color, 28);
+    background: shade($color, 100);
     border-color: transparent;
   }
 }
