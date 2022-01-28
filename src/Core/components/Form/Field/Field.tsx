@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   Field as FinalField,
   FieldProps as FinalFieldProp,
@@ -33,16 +33,24 @@ export const Field: React.FC<FieldProps> = ({
 }) => {
   // Setup
   const {
-    input: { disabled },
+    input,
     meta: { active, touched, ...meta }
   } = useField(name);
 
   const error = meta.error || meta.submitError;
 
+  // Handlers
+  const handleInputMouseDown = useCallback(
+    (event: React.SyntheticEvent<HTMLInputElement>) => {
+      event.stopPropagation();
+    },
+    []
+  );
+
   return (
     <div
       className={classNames(styles.Root, {
-        [styles.RootIsDisabled]: disabled,
+        [styles.RootIsDisabled]: input.disabled,
         [styles.RootIsFocused]: active,
         [styles.RootIsInvalid]: error && touched
       })}
@@ -53,11 +61,10 @@ export const Field: React.FC<FieldProps> = ({
         <div className={styles.Container}>
           {pre && <div className={styles.Addition}>{pre}</div>}
 
-          <FinalField
-            {...props}
+          <input
+            {...input}
             className={styles.Input}
-            component="input"
-            name={name}
+            onMouseDown={handleInputMouseDown}
           />
 
           {post && <div className={styles.Addition}>{post}</div>}

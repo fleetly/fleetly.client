@@ -16,6 +16,7 @@ import styles from './Text.scss';
 // Utils
 import { deserialize } from './utils/deserialize';
 import { BuilderButton } from '@flow/containers/Builder/Common/components';
+import classNames from 'classnames';
 
 export const BlockContentText: React.FC = () => {
   // Setup
@@ -26,6 +27,14 @@ export const BlockContentText: React.FC = () => {
 
   // State
   const [, setValue] = useState(deserialize('Hello, {{firstname}}!'));
+
+  // Handlers
+  const handleSlateMouseDown = useCallback(
+    (event: React.SyntheticEvent<HTMLElement>) => {
+      event.stopPropagation();
+    },
+    []
+  );
 
   // Memo
   const editor = useMemo(
@@ -46,9 +55,18 @@ export const BlockContentText: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.Root}>
+    <div
+      className={classNames(styles.Root, {
+        [styles.RootIsEditable]: isEditable
+      })}
+    >
       <Slate editor={editor as any} onChange={setValue} value={input.value}>
-        <Editable readOnly={!isEditable} renderElement={renderElement} />
+        <Editable
+          className={styles.Editor}
+          onMouseDown={handleSlateMouseDown}
+          readOnly={!isEditable}
+          renderElement={renderElement}
+        />
       </Slate>
 
       <div className={styles.Buttons}>
