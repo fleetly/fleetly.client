@@ -1,10 +1,12 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import classNames from 'classnames';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { useField } from 'react-final-form';
 import { compose } from 'recompose';
 import { createEditor } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 
 // Components
+import { BuilderButton } from '@flow/containers/Builder/Common/components';
 import { BlockContentTextVariable, withVariable } from './components/Variable';
 
 // Contexts
@@ -15,18 +17,15 @@ import styles from './Text.scss';
 
 // Utils
 import { deserialize } from './utils/deserialize';
-import { BuilderButton } from '@flow/containers/Builder/Common/components';
-import classNames from 'classnames';
+import { serialize } from './utils/serialize';
 
 export const BlockContentText: React.FC = () => {
   // Setup
   const { isEditable } = useContext(BuilderContext);
   const { input } = useField('text', {
-    format: (value) => deserialize(value)
+    format: (value) => deserialize(value),
+    parse: (value) => serialize(value)
   });
-
-  // State
-  const [, setValue] = useState(deserialize('Hello, {{firstname}}!'));
 
   // Handlers
   const handleSlateMouseDown = useCallback(
@@ -60,7 +59,7 @@ export const BlockContentText: React.FC = () => {
         [styles.RootIsEditable]: isEditable
       })}
     >
-      <Slate editor={editor as any} onChange={setValue} value={input.value}>
+      <Slate editor={editor as any} {...input}>
         <Editable
           className={styles.Editor}
           onMouseDown={handleSlateMouseDown}

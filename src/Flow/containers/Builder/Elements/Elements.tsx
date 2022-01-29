@@ -1,9 +1,15 @@
 import { useMutation } from '@apollo/client';
 import classNames from 'classnames';
 import { diff } from 'deep-object-diff';
-import { debounce, isEmpty } from 'lodash';
-import React, { Children, useCallback, useContext } from 'react';
-import { Form, FormSpy } from 'react-final-form';
+import { isEmpty } from 'lodash';
+import React, {
+  Children,
+  useCallback,
+  useContext,
+  useEffect,
+  useState
+} from 'react';
+import { Form, useFormState } from 'react-final-form';
 
 // API
 import { REMOVE_ELEMENT, UPDATE_ELEMENT } from '@flow/Flow.gql';
@@ -13,6 +19,9 @@ import Button from '@components/Button';
 
 // Contexts
 import { BuilderContext } from '../Builder.context';
+
+// Hooks
+import { useOutsideClick } from '@hooks/events';
 
 // Store
 import { useNotifications } from '@store';
@@ -26,13 +35,17 @@ export interface BuilderElementsFormProps {
 }
 
 export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
-  id,
   children,
+  id,
   payload
 }) => {
   // Setup
   const { isEditable } = useContext(BuilderContext);
+  const { values } = useFormState();
   const { handleApolloError } = useNotifications();
+
+  // State
+  const [isFocused, setFocusState] = useState(false);
 
   // Mutation
   const [removeElement, { loading }] = useMutation(REMOVE_ELEMENT, {
@@ -43,16 +56,21 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
     onError: handleApolloError
   });
 
-  // Handlers
-  const handleFormChange = debounce(async ({ values }) => {
-    if (isEditable && !isEmpty(diff({ id, ...payload }, values))) {
-      await updateElement({
-        variables: { elementId: values.id, payload: values }
+  // Effects
+  useEffect(() => {
+    if (
+      !isFocused &&
+      isEditable &&
+      !isEmpty(diff({ id, ...payload }, values))
+    ) {
+      updateElement({
+        variables: { elementId: id, payload: values }
       });
     }
-  }, 1000);
+  }, [id, isEditable, isFocused, payload, updateElement, values]);
 
-  const handleFormSubmit = useCallback(async () => true, []);
+  // Handlers
+  const handleFormClick = useCallback(() => setFocusState(true), []);
 
   const handleRemoveClick = useCallback(
     async (event: React.SyntheticEvent<HTMLButtonElement>) => {
@@ -64,35 +82,29 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
     [isEditable, removeElement]
   );
 
+  // Refs
+  const $form = useOutsideClick<HTMLFormElement>(() => {
+    setFocusState(false);
+  });
+
   return (
-    <Form initialValues={{ id, ...payload }} onSubmit={handleFormSubmit}>
-      {({ handleSubmit }) => (
-        <form className={styles.Form} onSubmit={handleSubmit}>
-          {isEditable && (
-            <>
-              <FormSpy
-                onChange={handleFormChange}
-                subscription={{ active: true, values: true }}
-              />
-
-              <div className={styles.Actions}>
-                <Button
-                  className={styles.Remove}
-                  color="red"
-                  data-element-id={id}
-                  icon="far fa-trash-alt"
-                  loaded={loading}
-                  onClick={handleRemoveClick}
-                  variant="outlined"
-                />
-              </div>
-            </>
-          )}
-
-          <div className={styles.Container}>{children}</div>
-        </form>
+    <form className={styles.Form} onClick={handleFormClick} ref={$form}>
+      {isEditable && (
+        <div className={styles.Actions}>
+          <Button
+            className={styles.Remove}
+            color="red"
+            data-element-id={id}
+            icon="far fa-trash-alt"
+            loaded={loading}
+            onClick={handleRemoveClick}
+            variant="outlined"
+          />
+        </div>
       )}
-    </Form>
+
+      <div className={styles.Container}>{children}</div>
+    </form>
   );
 };
 
@@ -103,10 +115,23 @@ export interface BuilderElementsProps {
 export const BuilderElements: React.FC<BuilderElementsProps> = ({
   children,
   className
-}) => (
-  <div className={classNames(className, styles.Root)}>
-    {Children.map(children, (child: any) => (
-      <BuilderElementsForm children={child} {...child.props} />
-    ))}
-  </div>
-);
+}) => {
+  // Handlers
+  const handleFormSubmit = useCallback(async () => true, []);
+
+  return (
+    <div className={classNames(className, styles.Root)}>
+      {Children.map(children, (child: any) => {
+        const { id, payload } = child.props;
+
+        return (
+          <Form initialValues={{ id, ...payload }} onSubmit={handleFormSubmit}>
+            {() => (
+              <BuilderElementsForm children={child} id={id} payload={payload} />
+            )}
+          </Form>
+        );
+      })}
+    </div>
+  );
+};

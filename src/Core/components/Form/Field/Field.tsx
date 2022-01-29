@@ -1,10 +1,6 @@
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
-import {
-  Field as FinalField,
-  FieldProps as FinalFieldProp,
-  useField
-} from 'react-final-form';
+import { FieldProps as FinalFieldProp, useField } from 'react-final-form';
 
 // Components
 import { FieldError } from './components/Error';

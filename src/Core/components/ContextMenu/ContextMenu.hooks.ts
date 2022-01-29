@@ -24,7 +24,7 @@ const useContextMenu = (): [ContextMenuProps, Result] => {
 
   const handleMenuOpen = useCallback(
     (event: React.SyntheticEvent<HTMLElement>) => {
-      event.stopPropagation();
+      // event.stopPropagation();
 
       setAnchor(event.currentTarget);
       setOpenState(true);
