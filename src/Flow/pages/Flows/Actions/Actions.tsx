@@ -31,7 +31,7 @@ export const FlowsActions: React.FC<Flow> = (props) => {
 
   // Setup
   const { confirm } = useConfirm();
-  const [menuProps, { handleMenuOpen }] = useContextMenu();
+  const [menuProps, { openMenu }] = useContextMenu();
   const { modal } = useFlowsCreate();
   const { handleApolloError } = useNotifications();
   const { companyId } = useParams<{ companyId: string }>();
@@ -54,6 +54,14 @@ export const FlowsActions: React.FC<Flow> = (props) => {
     [channels, id, modal, title]
   );
 
+  const handleButtonClick = useCallback(
+    (event: React.SyntheticEvent<HTMLElement>) => {
+      event.stopPropagation();
+      openMenu(event);
+    },
+    [openMenu]
+  );
+
   const handleRemoveClick = useCallback(
     async (event: React.SyntheticEvent<HTMLElement>) => {
       event.stopPropagation();
@@ -68,7 +76,7 @@ export const FlowsActions: React.FC<Flow> = (props) => {
     <>
       <Button
         icon="fas fa-ellipsis-v"
-        onClick={handleMenuOpen}
+        onClick={handleButtonClick}
         variant="outlined"
       />
 

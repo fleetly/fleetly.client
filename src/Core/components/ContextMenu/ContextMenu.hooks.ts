@@ -6,9 +6,10 @@ import { ContextMenuProps } from '@components/ContextMenu';
 interface Result {
   anchor?: HTMLElement;
   closeMenu(): void;
-  handleMenuClose?(): void;
-  handleMenuOpen?(event: React.SyntheticEvent): void;
+  handleMenuClose(): void;
+  handleMenuOpen(event: React.SyntheticEvent<HTMLElement>): void;
   isOpened: boolean;
+  openMenu(event: React.SyntheticEvent<HTMLElement>): void;
 }
 
 const useContextMenu = (): [ContextMenuProps, Result] => {
@@ -24,8 +25,6 @@ const useContextMenu = (): [ContextMenuProps, Result] => {
 
   const handleMenuOpen = useCallback(
     (event: React.SyntheticEvent<HTMLElement>) => {
-      // event.stopPropagation();
-
       setAnchor(event.currentTarget);
       setOpenState(true);
     },
@@ -39,6 +38,7 @@ const useContextMenu = (): [ContextMenuProps, Result] => {
       closeMenu: handleMenuClose,
       handleMenuClose,
       handleMenuOpen,
+      openMenu: handleMenuOpen,
       isOpened
     }
   ];

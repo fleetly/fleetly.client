@@ -94,7 +94,7 @@ export const SelectContainer: React.FC<any> = (props) => {
         anchor={$anchor.current as HTMLElement}
         classes={{ card: classNames(classes?.menu, styles.Card) }}
         opened={props.selectProps.menuIsOpen}
-        position="bottom"
+        placement="bottom"
         width={$anchor.current?.clientWidth}
       >
         {props.children[2]}

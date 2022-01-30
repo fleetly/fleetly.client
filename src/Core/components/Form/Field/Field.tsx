@@ -25,7 +25,7 @@ export const Field: React.FC<FieldProps> = ({
   name,
   post,
   pre,
-  ...props
+  type = 'text'
 }) => {
   // Setup
   const {
@@ -61,6 +61,7 @@ export const Field: React.FC<FieldProps> = ({
             {...input}
             className={styles.Input}
             onMouseDown={handleInputMouseDown}
+            type={type}
           />
 
           {post && <div className={styles.Addition}>{post}</div>}

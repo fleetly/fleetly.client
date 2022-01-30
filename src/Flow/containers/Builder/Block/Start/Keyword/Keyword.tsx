@@ -65,7 +65,7 @@ export const BlockStartKeyword: React.FC<BlockStartKeywordProps> = ({ id }) => {
       </div>
 
       {isEditable && (
-        <ContextMenu {...menuProps} position="bottom">
+        <ContextMenu {...menuProps} placement="bottom-start">
           <ContextMenuColumn>
             <ContextMenuTitle>Operator</ContextMenuTitle>
 

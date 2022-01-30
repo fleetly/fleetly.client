@@ -1,5 +1,13 @@
+import { Placement } from '@floating-ui/core';
+import {
+  getScrollParents,
+  flip,
+  offset,
+  shift,
+  useFloating
+} from '@floating-ui/react-dom';
 import classNames from 'classnames';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 // Components
@@ -12,8 +20,6 @@ import { useOutsideClick } from '@hooks/events';
 // Styles
 import styles from './ContextMenu.scss';
 
-export type ContextMenuPosition = 'bottom' | 'left' | 'top' | 'right';
-
 export interface ContextMenuClasses extends ExtendedClasses {
   card?: string;
 }
@@ -24,8 +30,7 @@ export interface ContextMenuProps {
   classes?: ContextMenuClasses;
   onClose?(event: React.SyntheticEvent): void;
   opened?: boolean;
-  position?: ContextMenuPosition;
-  spacing?: number;
+  placement?: Placement;
   width?: number;
 }
 
@@ -35,72 +40,54 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   classes = {},
   onClose,
   opened,
-  position: propPosition = 'right',
-  spacing = 8,
+  placement = 'right-start',
   width
 }) => {
   // Setup
-  const ref = useOutsideClick<HTMLDivElement>(opened ? onClose : undefined);
-
-  // State
-  const [position, setPosition] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0
+  const { floating, refs, reference, strategy, update, x, y } = useFloating({
+    placement,
+    middleware: [flip(), offset(4), shift()]
   });
 
-  // Handlers
-  const handleWindowResize = useCallback(() => {
-    if (anchor && ref && ref.current) {
-      const { left, top } = anchor.getBoundingClientRect();
-      const $menu = ref.current as any;
-
-      switch (propPosition) {
-        case 'bottom':
-          setPosition({
-            x: left,
-            y: top + anchor.clientHeight + spacing
-          });
-          break;
-        case 'left':
-        case 'right':
-        case 'top':
-          setPosition({
-            x:
-              left + $menu.clientWidth < window.innerWidth
-                ? left + anchor.clientWidth + spacing
-                : left - ($menu.clientWidth + spacing),
-            y:
-              top + $menu.clientHeight < window.innerHeight
-                ? top
-                : top +
-                  (window.innerHeight - (top + spacing + $menu.clientHeight))
-          });
-          break;
-      }
-    }
-  }, [anchor, propPosition, ref, spacing]);
+  useOutsideClick<HTMLDivElement>(opened ? onClose : undefined, refs.floating);
 
   // Effects
   useEffect(() => {
-    if (opened) {
-      handleWindowResize();
-      window.addEventListener('resize', handleWindowResize as any);
-
-      return () => {
-        window.removeEventListener('resize', handleWindowResize as any);
-      };
+    if (!refs.reference.current || !refs.floating.current) {
+      return;
     }
-  }, [handleWindowResize, opened]);
+
+    const parents = [
+      ...getScrollParents(refs.reference.current),
+      ...getScrollParents(refs.floating.current)
+    ];
+
+    parents.forEach((parent) => {
+      parent.addEventListener('scroll', update);
+      parent.addEventListener('resize', update);
+    });
+
+    return () => {
+      parents.forEach((parent) => {
+        parent.removeEventListener('scroll', update);
+        parent.removeEventListener('resize', update);
+      });
+    };
+  }, [refs.reference, refs.floating, update, refs]);
+
+  useLayoutEffect(() => {
+    anchor && reference(anchor as any);
+  }, [anchor, reference, update]);
 
   return ReactDOM.createPortal(
     <Transition duration={150} enter="zoomIn" in={opened}>
       <div
         className={classNames(classes?.root, styles.Root)}
-        ref={ref}
+        ref={floating}
         style={{
-          left: position?.x,
-          position: 'absolute',
-          top: position?.y,
+          left: `${x}px`,
+          position: strategy,
+          top: `${y}px`,
           width
         }}
       >

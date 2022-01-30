@@ -1370,6 +1370,26 @@
   resolved "https://npm.pkg.github.com/download/@fleetly/provider/0.6.0/5a543be99c792b92cd2b5052ddfc178c17d4d04c668ae63b195a7ff4293f27b2#dc9888fe1e0f3e4899c094c9e0bc1d87bbc49004"
   integrity sha512-E+DgeWyAKdmMfACxf4KqYOTDzJ8+rRS2sOqNqrN/Qzh8pGcgHBLF4P6M0yKzPUD/aNUhUrcH+YATUSIuKBUKkA==
 
+"@floating-ui/core@^0.3.0":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-0.3.1.tgz#3dde0ad0724d4b730567c92f49f0950910e18871"
+  integrity sha512-ensKY7Ub59u16qsVIFEo2hwTCqZ/r9oZZFh51ivcLGHfUwTn8l1Xzng8RJUe91H/UP8PeqeBronAGx0qmzwk2g==
+
+"@floating-ui/dom@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-0.1.10.tgz#ce304136a52c71ef157826d2ebf52d68fa2deed5"
+  integrity sha512-4kAVoogvQm2N0XE0G6APQJuCNuErjOfPW8Ux7DFxh8+AfugWflwVJ5LDlHOwrwut7z/30NUvdtHzQ3zSip4EzQ==
+  dependencies:
+    "@floating-ui/core" "^0.3.0"
+
+"@floating-ui/react-dom@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-0.4.3.tgz#84fc50ba9598b93d8fc6d59785bd2bcd96ea42cf"
+  integrity sha512-ZL88ryd9p6sFh9jIC/+05JZoNsogcq6U09cygQjiy757QtQqxIVLQwFag+BAWWYqpNEMO0S60fkqmh8KIAV4oA==
+  dependencies:
+    "@floating-ui/dom" "^0.1.10"
+    use-isomorphic-layout-effect "^1.1.1"
+
 "@fortawesome/fontawesome-pro@^5.13.0":
   version "5.13.0"
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/5.13.0/fontawesome-pro-5.13.0.tgz#fde32ed4d9933c4c9b60b8a74a79c67eba58d984"
@@ -14037,10 +14057,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.8.3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
-  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+typescript@^4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
+  integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
 
 ua-parser-js@^0.7.18:
   version "0.7.21"
@@ -14215,7 +14235,7 @@ use-composed-ref@^1.0.0:
   dependencies:
     ts-essentials "^2.0.3"
 
-use-isomorphic-layout-effect@^1.0.0:
+use-isomorphic-layout-effect@^1.0.0, use-isomorphic-layout-effect@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.1.tgz#7bb6589170cd2987a152042f9084f9effb75c225"
   integrity sha512-L7Evj8FGcwo/wpbv/qvSfrkHFtOpCzvM5yl2KVyDJoylVuSvzphiiasmjgQPttIGBAy2WKiBNR98q8w7PiNgKQ==

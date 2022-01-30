@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { MutableRefObject, useEffect, useRef } from 'react';
 
 export const useOutsideClick = <T extends HTMLElement>(
-  callback?: (event: React.SyntheticEvent) => void
+  callback?: (event: React.SyntheticEvent) => void,
+  externalRef?: MutableRefObject<HTMLElement | null>
 ) => {
-  const ref = useRef<T>(null);
+  const _ref = useRef<T>(null);
+  const ref = externalRef || _ref;
 
   useEffect(() => {
     const handleDocumentClick = (event: React.SyntheticEvent) => {
@@ -23,5 +25,5 @@ export const useOutsideClick = <T extends HTMLElement>(
     };
   }, [callback, ref]);
 
-  return ref;
+  return _ref;
 };

@@ -41,7 +41,7 @@ export const BlockContentTextVariable: React.FC<BlockContentTextVariableProps> =
         {children}
       </span>
 
-      <ContextMenu {...menuProps} position="bottom">
+      <ContextMenu {...menuProps} placement="bottom">
         <ContextMenuColumn>
           <ContextMenuItem icon="far fa-text" title="First Name" />
           <ContextMenuItem icon="far fa-text" title="Last Name" />

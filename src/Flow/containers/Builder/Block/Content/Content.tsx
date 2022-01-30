@@ -84,7 +84,7 @@ export const BlockContent: React.FC<NodeProps> = ({
         <>
           <BuilderButton onClick={handleMenuOpen}>Add Content</BuilderButton>
 
-          <ContextMenu {...menuProps} position="bottom" width={260}>
+          <ContextMenu {...menuProps} placement="bottom" width={260}>
             <ContextMenuColumn>
               <ContextMenuTitle>Elements</ContextMenuTitle>
 
