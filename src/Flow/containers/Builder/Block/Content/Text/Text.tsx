@@ -27,7 +27,13 @@ export const BlockContentText: React.FC = () => {
     parse: (value) => serialize(value)
   });
 
+  const editor = useMemo(
+    () => compose(withVariable, withReact)(createEditor() as any),
+    []
+  );
+
   // Handlers
+
   const handleSlateMouseDown = useCallback(
     (event: React.SyntheticEvent<HTMLElement>) => {
       event.stopPropagation();
@@ -35,11 +41,16 @@ export const BlockContentText: React.FC = () => {
     []
   );
 
-  // Memo
-  const editor = useMemo(
-    () => compose(withVariable, withReact)(createEditor() as any),
-    []
-  );
+  // const handleVariableClick = useCallback(() => {
+  //   Transforms.insertNodes(
+  //     editor as any,
+  //     {
+  //       type: 'variable',
+  //       children: [{ text: '' }],
+  //       variable: ''
+  //     } as any
+  //   );
+  // }, [editor]);
 
   // Renders
   const renderElement = useCallback((props) => {
