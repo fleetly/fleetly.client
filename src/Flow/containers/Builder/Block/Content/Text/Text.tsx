@@ -1,5 +1,11 @@
 import classNames from 'classnames';
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
 import { useField, useFormState } from 'react-final-form';
 import { compose } from 'recompose';
 import { Transforms, createEditor } from 'slate';
@@ -42,8 +48,20 @@ export const BlockContentText: React.FC = () => {
   // State
   const [isFocused, setFocusState] = useState(false);
 
+  // Effects
+  useEffect(() => {
+    if (!isSelected) {
+      Transforms.deselect(editor as any);
+      setFocusState(false);
+    }
+  }, [editor, isSelected]);
+
   // Handlers
-  const handleInputBlur = useCallback(() => setFocusState(false), []);
+  const handleInputBlur = useCallback(() => {
+    Transforms.deselect(editor as any);
+    setFocusState(false);
+  }, [editor]);
+
   const handleInputFocus = useCallback(() => setFocusState(true), []);
 
   const handleSlateMouseDown = useCallback(

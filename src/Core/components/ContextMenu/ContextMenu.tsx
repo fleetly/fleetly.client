@@ -7,7 +7,7 @@ import {
   useFloating
 } from '@floating-ui/react-dom';
 import classNames from 'classnames';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 
 // Components
@@ -31,6 +31,7 @@ export interface ContextMenuProps {
   onClose?(event: React.SyntheticEvent): void;
   opened?: boolean;
   placement?: Placement;
+  portal?: boolean;
   width?: number;
 }
 
@@ -40,6 +41,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   classes = {},
   onClose,
   opened,
+  portal = true,
   placement = 'right-start',
   width
 }) => {
@@ -79,23 +81,33 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     anchor && reference(anchor as any);
   }, [anchor, reference, update]);
 
-  return ReactDOM.createPortal(
-    <Transition duration={150} enter="zoomIn" in={opened}>
-      <div
-        className={classNames(classes?.root, styles.Root)}
-        ref={floating}
-        style={{
-          left: `${x}px`,
-          position: strategy,
-          top: `${y}px`,
-          width
-        }}
-      >
-        <Card className={classNames(classes?.card, styles.Card)}>
-          {children}
-        </Card>
-      </div>
-    </Transition>,
-    document.getElementById('portal') as HTMLElement
+  // Memo
+  const Component = useMemo(
+    () => (
+      <Transition duration={150} enter="zoomIn" in={opened}>
+        <div
+          className={classNames(classes?.root, styles.Root)}
+          ref={floating}
+          style={{
+            left: `${x}px`,
+            position: strategy,
+            top: `${y}px`,
+            width
+          }}
+        >
+          <Card className={classNames(classes?.card, styles.Card)}>
+            {children}
+          </Card>
+        </div>
+      </Transition>
+    ),
+    [children, classes, floating, opened, strategy, width, x, y]
   );
+
+  return portal
+    ? ReactDOM.createPortal(
+        Component,
+        document.getElementById('portal') as HTMLElement
+      )
+    : Component;
 };

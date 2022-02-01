@@ -16,7 +16,7 @@ export interface ContextMenuItemClasses extends ExtendedClasses {
   title?: string;
 }
 
-export interface ContextMenuItemProps {
+export interface ContextMenuItemProps extends React.HTMLProps<HTMLElement> {
   arrow?: boolean;
   classes?: ContextMenuItemClasses;
   className?: string;
