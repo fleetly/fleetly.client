@@ -34,6 +34,10 @@ export interface BuilderElementsFormProps {
   payload: any;
 }
 
+export const BuilderElementsContext = React.createContext({
+  isFocused: false
+});
+
 export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
   children,
   id,
@@ -88,23 +92,25 @@ export const BuilderElementsForm: React.FC<BuilderElementsFormProps> = ({
   });
 
   return (
-    <form className={styles.Form} onClick={handleFormClick} ref={$form}>
-      {isEditable && (
-        <div className={styles.Actions}>
-          <Button
-            className={styles.Remove}
-            color="red"
-            data-element-id={id}
-            icon="far fa-trash-alt"
-            loaded={loading}
-            onClick={handleRemoveClick}
-            variant="outlined"
-          />
-        </div>
-      )}
+    <BuilderElementsContext.Provider value={{ isFocused }}>
+      <form className={styles.Form} onClick={handleFormClick} ref={$form}>
+        {isEditable && (
+          <div className={styles.Actions}>
+            <Button
+              className={styles.Remove}
+              color="red"
+              data-element-id={id}
+              icon="far fa-trash-alt"
+              loaded={loading}
+              onClick={handleRemoveClick}
+              variant="outlined"
+            />
+          </div>
+        )}
 
-      <div className={styles.Container}>{children}</div>
-    </form>
+        <div className={styles.Container}>{children}</div>
+      </form>
+    </BuilderElementsContext.Provider>
   );
 };
 
