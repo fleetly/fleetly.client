@@ -61,6 +61,7 @@ export const BlockContentTextVariable: React.FC<BlockContentTextVariableProps> =
         opened={selected}
         placement="bottom"
         portal={false}
+        width={200}
       >
         <ContextMenuColumn>
           <ContextMenuItem
@@ -75,13 +76,6 @@ export const BlockContentTextVariable: React.FC<BlockContentTextVariableProps> =
             icon="far fa-text"
             onMouseDown={handleItemClick}
             title="Last Name"
-          />
-
-          <ContextMenuItem
-            data-variable="fullname"
-            icon="far fa-text"
-            onMouseDown={handleItemClick}
-            title="Full Name"
           />
         </ContextMenuColumn>
       </ContextMenu>
