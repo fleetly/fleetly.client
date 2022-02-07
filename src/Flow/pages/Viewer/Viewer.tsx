@@ -10,7 +10,7 @@ import Button from '@components/Button';
 import Page, { Wrapper } from '@components/Page';
 
 // Containers
-import { Builder } from '@flow/containers/Builder';
+import { Builder } from '@flow/builder';
 
 // Interfaces
 import { FlowMode } from '@flow/interfaces/flow.interface';

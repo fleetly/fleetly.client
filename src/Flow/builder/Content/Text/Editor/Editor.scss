@@ -1,0 +1,59 @@
+@import '~@styles/colors';
+
+.Root {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+
+  &Is {
+    &Editable {
+      .Editor {
+        background: $color-white;
+        border: 2px solid $background-darken;
+        border-radius: 8px 8px 0 8px;
+        padding: 2px 6px;
+      }
+    }
+
+    &Focused {
+      .Actions {
+        background: $color-blue;
+      }
+
+      .Editor {
+        border-color: $color-blue;
+      }
+    }
+  }
+}
+
+.Actions {
+  align-items: center;
+  background: $background-darken;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+
+  & > * {
+    background: transparent !important;
+  }
+}
+
+.Editor {
+  line-height: 24px;
+  position: relative;
+  transition: border all .2s;
+  width: 100%;
+  z-index: 2;
+}
+
+.Limit {
+  color: $color-white;
+  flex: 0 0 80px;
+  padding: 0 4px;
+}
+
+.Variable {
+  height: 20px;
+  min-width: 28px;
+  width: 28px;
+}

@@ -39,22 +39,21 @@ import * as serviceWorker from '@utils/serviceWorker';
 
 dotenv.config();
 
+const { REACT_APP_GRAPHQL_API, REACT_APP_GRAPHQL_WSS } = process.env;
+
 let refreshTokenOperation: any = null;
 const store = createStore();
 
 const httpLink = new HttpLink({
   credentials: 'include',
-  // uri: 'http://localhost:3001/graphql'
-  // uri: 'https://ivan.fleetly.me/graphql'
-  uri: 'https://api.fleetly.it/graphql'
+  uri: REACT_APP_GRAPHQL_API
 });
 
 const wsLink = new WebSocketLink({
   options: {
     reconnect: true
   },
-  // uri: 'wss://ivan.fleetly.me/graphql'
-  uri: 'wss://api.fleetly.it/graphql'
+  uri: REACT_APP_GRAPHQL_WSS!
 });
 
 const splitLink = split(

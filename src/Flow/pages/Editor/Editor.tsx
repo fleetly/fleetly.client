@@ -9,7 +9,7 @@ import { GET_FLOW } from '@flow/Flow.gql';
 import Page, { Wrapper } from '@components/Page';
 
 // Containers
-import { Builder } from '@flow/containers/Builder';
+import { Builder } from '@flow/builder';
 
 // Fragments
 import { EditorPublish } from './Publish';
