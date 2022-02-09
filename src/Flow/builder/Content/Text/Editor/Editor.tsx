@@ -59,9 +59,9 @@ export const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
 
   const handleInputMouseDown = useCallback(
     (event: React.SyntheticEvent<HTMLElement>) => {
-      event.stopPropagation();
+      !readOnly && event.stopPropagation();
     },
-    []
+    [readOnly]
   );
 
   const handleVariableClick = useCallback(() => {

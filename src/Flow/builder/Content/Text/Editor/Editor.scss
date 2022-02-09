@@ -4,14 +4,17 @@
   align-items: flex-end;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   &Is {
     &Editable {
+      margin: -14px -14px 0;
+
       .Editor {
         background: $color-white;
         border: 2px solid $background-darken;
-        border-radius: 8px 8px 0 8px;
-        padding: 2px 6px;
+        border-radius: 16px 16px 0 0;
+        padding: 12px;
       }
     }
 
@@ -22,6 +25,7 @@
 
       .Editor {
         border-color: $color-blue;
+        padding: 12px 12px;
       }
     }
   }
@@ -31,7 +35,10 @@
   align-items: center;
   background: $background-darken;
   border-radius: 0 0 4px 4px;
+  bottom: -24px;
   display: flex;
+  position: absolute;
+  right: 0;
 
   & > * {
     background: transparent !important;

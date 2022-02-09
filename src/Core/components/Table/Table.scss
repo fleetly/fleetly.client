@@ -29,7 +29,7 @@
     }
 
     &:hover {
-      background: lighten($color-blue, 32);
+      background: shade($color-blue, 50);
       border-radius: 8px;
       cursor: pointer;
 

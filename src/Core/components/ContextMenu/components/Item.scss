@@ -4,7 +4,7 @@
   &:focus,
   &:hover,
   &.RootIsSelected {
-    background: rgba($color, .12);
+    background: shade($color, 20);
   }
 }
 

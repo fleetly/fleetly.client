@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import arrayMutators from 'final-form-arrays';
 import React, { Children, useCallback } from 'react';
 import { Form } from 'react-final-form';
 
@@ -22,7 +23,11 @@ export const Elements: React.FC<ElementsProps> = ({ children, className }) => {
         const { id, payload } = child.props;
 
         return (
-          <Form initialValues={{ id, ...payload }} onSubmit={handleFormSubmit}>
+          <Form
+            initialValues={{ id, ...payload }}
+            mutators={{ ...arrayMutators }}
+            onSubmit={handleFormSubmit}
+          >
             {() => (
               <ElementsForm
                 children={child}

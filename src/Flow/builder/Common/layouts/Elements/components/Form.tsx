@@ -61,7 +61,9 @@ export const ElementsForm: React.FC<ElementsFormProps> = ({
   }, [id, isEditable, isSelected, payload, updateElement, values]);
 
   // Handlers
-  const handleFormClick = useCallback(() => setSelectState(true), []);
+  const handleFormClick = useCallback(() => setSelectState(isEditable), [
+    isEditable
+  ]);
 
   const handleRemoveClick = useCallback(
     async (event: React.SyntheticEvent<HTMLButtonElement>) => {

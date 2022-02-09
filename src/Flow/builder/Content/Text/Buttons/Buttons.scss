@@ -1,0 +1,15 @@
+@import '~@styles/colors';
+
+.Add {
+  border-bottom: 2px solid $background-light;
+  margin: 32px 0 12px;
+  padding: 0 0 12px;
+}
+
+.List {
+  margin: 12px 0 0;
+
+  & > *:not(:first-child) {
+    margin: 4px 0 0;
+  }
+}
